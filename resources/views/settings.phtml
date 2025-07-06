@@ -1,0 +1,70 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Jefferson49\Webtrees\Module\CustomModuleManager;
+
+use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\View;
+use Jefferson49\Webtrees\Internationalization\MoreI18N;
+
+
+/**
+ * @var string $title
+ * @var string $setting
+ */
+
+?>
+
+<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => I18N::translate('Control panel'), e($title)]]) ?>
+
+<h1><?=e($title) ?></h1>
+
+<div class="row mb-3"><?= view('icons/spacer') ?></div>
+
+<form method="post" id="settings-form">
+	<?= csrf_field() ?>
+	<input type="hidden" name="save" id="save" value="1">
+  
+	<div class="h4">
+		<?= I18N::translate('Settings') ?>	
+	</div>
+
+	<fieldset class="mb-3">
+		<div class="row">
+			<legend class="col-form-label col-sm-3">
+				<?= I18N::translate('Setting') ?>
+			</legend>
+			<div class="col-sm-9">
+				<?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_SETTING, 'checked' => $setting]) ?>
+				<div class="form-text">
+					<?= I18N::translate('By selecting/unselecting this option, ....'); ?>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+    <div class="row mb-3">
+		<div class="col">
+			<p></p>
+			<button type="submit" class="btn btn-primary">
+				<?= view('icons/save') ?>
+				<?= MoreI18N::xlate('save') ?>
+			</button>
+		</div>		
+	</div>
+
+</form>	
+
+<?php View::push('javascript') ?>
+<script>
+    $('#select-all-1').change(function(e) {
+        if (e.currentTarget.checked) {
+            $('.mb-3 .row').find('input[type="checkbox"]').prop('checked', true);
+        } else {
+            $('.mb-3 .row').find('input[type="checkbox"]').prop('checked', false);
+        }
+    });
+</script>
+<?php View::endpush() ?>

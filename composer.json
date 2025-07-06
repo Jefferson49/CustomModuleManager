@@ -1,0 +1,13 @@
+{
+    "repositories": [
+        {
+            "url": "https://github.com/Jefferson49/webtrees-common.git",
+            "type": "git"
+        }
+    ],
+    "require": {
+        "jefferson49/webtrees-common": ">=1.2.8"
+    },
+    "replace": {
+    }    
+}
