@@ -31,10 +31,10 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
-use Fisharebest\Webtrees\Module\AbstractModule;
-use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
+use Fisharebest\Webtrees\Module\ModuleCustomInterface;
+use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
-
 
 /**
  * Abstract class with common functions for custom module updates
@@ -42,10 +42,10 @@ use Illuminate\Support\Collection;
 abstract class AbstractModuleUpdate
 {
     //The custom module name
-    protected string $module_name;
+    protected string $module_name; 
 
-    //The custom module (if installed)
-    protected ?AbstractModule $module;
+    //The top level folder in the ZIP file of the custom module
+    protected string $zip_folder;
 
     /**
      * A unique internal name for this module (based on the installation folder).
@@ -58,26 +58,70 @@ abstract class AbstractModuleUpdate
     }
 
     /**
+     * Get the module
+     *
+    * @return ?ModuleCustomInterface
+     */
+    public function getModule(): ?ModuleCustomInterface
+    {
+        $module_service = New ModuleService();
+        $module = $module_service->findByName($this->module_name, true);
+
+        if ($module !== null && class_implements(ModuleCustomInterface::class)) {
+            return $module;            
+        }
+
+        return null;
+    }
+
+    /**
      * The version of this module.
      *
      * @return string
      */
     public function customModuleVersion(): string
     {
-        if ($this->module === null) {
+        $module = $this->getModule();
+
+        if ($module === null) {
             return '';
         }
-
-        $module = $this->module;
-
-        //Dummy PHPDoc to avoid IDE warnings
-        /** @var CustomModuleManager $module */        
 
         return $module->customModuleVersion();
     }
 
     /**
-     * A default name for a custom module
+     * Get the latest version of this module
+     *
+     * @return string
+     */
+    public function customModuleLatestVersion(): string
+    {
+        $module = $this->getModule();
+
+        if ($module === null) {
+            return '';
+        }
+
+        return $module->customModuleLatestVersion();
+    }
+
+    /**
+     * Whether an upgrade is available for the custom module
+     *
+     * @return bool
+     */
+    public function upgradeAvailable(): bool
+    {
+        $latest_version  = $this->customModuleLatestVersion();
+        $current_version = $this->customModuleVersion();
+
+        return version_compare($latest_version, $current_version) > 0;
+    }      
+
+
+    /**
+     * A default name for a custom module based on the installation folder
      * 
      * @param string $installation_folder_name  The installation folder in modules_v4
      * 
@@ -89,17 +133,17 @@ abstract class AbstractModuleUpdate
     }
 
     /**
-     * Get the custom module installation folder name (within the modules_v4 folder)
+     * Get the custom module installation folder name within webtrees, i.e. including the modules_v4 custom modules folder
      *
      * @return string
      */
-    public function getInstallationFolder(): string {
-
-        if ($this->module === null ) {
+    public function getInstallationFolder(): string 
+    {
+        if ($this->getModule() === null ) {
             return '';
         }
 
-        return self::getInstallationFolderFromModuleName($this->module->name());
+        return Webtrees::MODULES_PATH . self::getInstallationFolderFromModuleName($this->module_name);
     }
 
     /**
@@ -120,28 +164,6 @@ abstract class AbstractModuleUpdate
     }
 
     /**
-     * Whether an upgrade is available for the custom module
-     *
-     * @return bool
-     */
-    public function upgradeAvailable(): bool
-    {
-        if ($this->module === null) {
-            return false;
-        }
-
-        $module = $this->module;
-
-        //Dummy PHPDoc to avoid IDE warnings
-        /** @var CustomModuleManager $module */           
-        
-        $latest_version  = $module->customModuleLatestVersion();
-        $current_version = $module->customModuleVersion();
-
-        return version_compare($latest_version, $current_version) > 0;
-    }
-
-    /**
      * A collection of folder names within the module, which shall be cleaned after an upgrade
      *
      * @return Collection<int,string>
@@ -149,5 +171,15 @@ abstract class AbstractModuleUpdate
     public function getFoldersToClean(): Collection
     {
         return new Collection([]);
+    }
+
+    /**
+     * The top level folder in the ZIP file of the custom module
+     *
+     * @return string
+     */
+    public function getZipFolder(): string {
+
+        return $this->zip_folder;
     }
 }

@@ -31,7 +31,9 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
+use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Illuminate\Support\Collection;
+
 
 /**
  * Interface for custom module updates 
@@ -45,6 +47,12 @@ interface CustomModuleUpdateInterface
      */
     public function name(): string;
 
+    /**
+     * Get the module
+     *
+    * @return ?ModuleCustomInterface
+     */
+    public function getModule(): ?ModuleCustomInterface;
     /**
      * The version of this module.
      *
@@ -67,7 +75,7 @@ interface CustomModuleUpdateInterface
     public function downloadUrl(): string;
 
     /**
-     * Get the custom module installation folder (within the modules_v4 folder)
+     * Get the custom module installation folder name within webtrees, i.e. including the "modules_v4" custom modules folder
      *
      * @return string
      */

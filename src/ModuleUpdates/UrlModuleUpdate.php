@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * webtrees: online genealogy
+ * Copyright (C) 2025 webtrees development team
+ *                    <http://webtrees.net>
+ *
+ * CustomModuleManager (webtrees custom module):
+ * Copyright (C) 2025 Markus Hemprich
+ *                    <http://www.familienforschung-hemprich.de>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ *
+ * 
+ * CustomModuleManager
+ *
+ * A weebtrees(https://webtrees.net) 2.2 custom module to manage custom modules
+ * 
+ */
+
+declare(strict_types=1);
+
+namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
+
+use Fisharebest\Webtrees\I18N;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
+
+
+/**
+ * Update API for a custom module, which is based on a simple download URL
+ */
+class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdateInterface 
+{
+    //The download URL
+    protected string $download_url;
+
+    /**
+     * @param string $module_name  The custom module name
+     * @param array  $params       The configuration parameters of the update service
+     * 
+     * @return void
+     */
+    public function __construct(string $module_name, array  $params) {
+
+        $installation_folder = self::getInstallationFolderFromModuleName($module_name);
+
+        $this->module_name = $module_name;
+        $this->zip_folder  = $installation_folder;
+
+        if (array_key_exists('download_url', $params)) {
+            $this->download_url = $params['download_url'];
+        }
+        else {
+            throw new CustomModuleManagerException(I18N::translate('Could not create %s service. Configuration parameter "%s" missing.', basename(str_replace('\\', '/', __CLASS__)) , 'download_url'));
+        }
+    }    
+    /**
+     * Where can we download a certain version of the module. Latest release if no tag is provided
+     * 
+     * @param string $tag  The tag of the release 
+     * 
+     * @return string
+     */
+    public function downloadUrl(string $tag = ''): string
+    {
+        return $this->download_url;
+    }    
+}

@@ -33,10 +33,8 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
 use Fig\Http\Message\StatusCodeInterface;
 use Fisharebest\Webtrees\I18N;
-use Fisharebest\Webtrees\Services\ModuleService;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
 
 
@@ -48,9 +46,6 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     //The Github repository of the module, e.g. Jefferson49/CustomModuleManager
     protected string $github_repo;
 
-    //The top level folder in the ZIP file of the custom module
-    protected string $zip_folder;
-
     /**
      * @param string $module_name  The custom module name
      * @param array  $params       The configuration parameters of the update service
@@ -59,12 +54,9 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function __construct(string $module_name, array  $params) {
 
-        $module_service = New ModuleService();
-        $module = $module_service->findByName($module_name, true);
         $installation_folder = self::getInstallationFolderFromModuleName($module_name);
 
         $this->module_name = $module_name;
-        $this->module      = $module;
         $this->zip_folder  = $installation_folder;
 
         if (array_key_exists('github_repo', $params)) {
@@ -125,30 +117,17 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     }
 
     /**
-     * The top level folder in the ZIP file of the custom module
-     *
-     * @return string
-     */
-    public function getZipFolder(): string {
-
-        return $this->zip_folder;
-    }
-
-    /**
      * Fetch the latest version of this module
      *
      * @return string
      */
     public function customModuleLatestVersion(): string
     {
+        $module = $this->getModule();
+
         //If the installed module is available, try to get latest version from the module
-        if ($this->module !== null) {
+        if ($module !== null) {
 
-            $module = $this->module;
-
-            //Dummy PHPDoc to avoid IDE warnings
-            /** @var CustomModuleManager $module */
-            
             $version = $module->customModuleLatestVersion();
 
             if ($version !== '') {
@@ -190,19 +169,5 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         }
 
         return $tag_name;
-    }
-
-
-    /**
-     * Whether an upgrade is available for the custom module
-     *
-     * @return bool
-     */
-    public function upgradeAvailable(): bool
-    {
-        $latest_version  = $this->customModuleLatestVersion();
-        $current_version = $this->customModuleVersion();
-
-        return version_compare($latest_version, $current_version) > 0;
-    }    
+    }  
 }

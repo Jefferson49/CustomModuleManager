@@ -71,9 +71,6 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     public const STEP_UNZIP    = 'Unzip';
     public const STEP_COPY     = 'Copy';
 
-    // The webtrees folder for custom module
-    private const CUSTOM_MODULES_FOLDER = 'modules_v4/';
-
     // Where to store our temporary files.
     private const UPGRADE_FOLDER = 'data/tmp/upgrade/';
 
@@ -241,7 +238,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     private function wizardStepCopyAndCleanUp(string $zip_file, string $zip_folder, string $installation_folder, Collection $folders_to_clean = new Collection([])): ResponseInterface
     {
         $source_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . $zip_folder);
-        $destination_filesystem = Registry::filesystem()->root(self::CUSTOM_MODULES_FOLDER . $installation_folder);
+        $destination_filesystem = Registry::filesystem()->root($installation_folder);
 
         $this->upgrade_service->startMaintenanceMode();
         $this->upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
