@@ -5,6 +5,8 @@ declare(strict_types=1);
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 use Fisharebest\Webtrees\I18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardConfirm;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
+
 
 /**
  * @var string $current_version
@@ -46,6 +48,9 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgrad
         <button type="submit" class="btn btn-primary" name="continue" value="1">
             <?= I18N::translate('continue') ?>
         </button>
+        <a href="<?= route(CustomModuleUpdatePage::class) ?>" type="submit" class="btn btn-secondary">
+            <?= I18N::translate('quit') ?>
+        </a>
 
         <?= csrf_field() ?>
     </form>

@@ -57,6 +57,7 @@ use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardConfirm;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardStep;
@@ -107,9 +108,10 @@ class CustomModuleManager extends AbstractModule implements
 	public const PREF_SETTING = 'setting';
 
     //Routes
-    public const ROUTE_WIZARD_PAGE = '/module_upgrade_wizard_page';
-    public const ROUTE_WIZARD_STEP = '/module_upgrade_wizard_step';
-    public const ROUTE_WIZARD_CONFIRM = '/module_upgrade_wizard_confirm';
+    public const ROUTE_WIZARD_PAGE        = '/module_upgrade_wizard_page';
+    public const ROUTE_WIZARD_STEP        = '/module_upgrade_wizard_step';
+    public const ROUTE_WIZARD_CONFIRM     = '/module_upgrade_wizard_confirm';
+    public const ROUTE_MODULE_UPDATE_PAGE = '/module_update_page';
 
 
     /**
@@ -153,6 +155,12 @@ class CustomModuleManager extends AbstractModule implements
         $router = Registry::routeFactory()->routeMap();                 
         $router
         ->get(ModuleUpgradeWizardConfirm::class, self::ROUTE_WIZARD_CONFIRM)
+        ->allows(RequestMethodInterface::METHOD_POST);
+
+        //Register a route for the custom module update page
+        $router = Registry::routeFactory()->routeMap();                 
+        $router
+        ->get(CustomModuleUpdatePage::class, self::ROUTE_MODULE_UPDATE_PAGE)
         ->allows(RequestMethodInterface::METHOD_POST);
     }
 	

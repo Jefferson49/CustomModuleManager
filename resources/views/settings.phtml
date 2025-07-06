@@ -10,7 +10,7 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\View;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
-use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
 
 
 /**
@@ -55,12 +55,8 @@ $custom_updates = $module_service
 
     <div class="row mb-3">
 		<div class="col">	
-			<a href="<?= e(route(ModuleUpgradeWizardPage::class, [
-	                'update_service' => 'GithubModuleUpdate',
-					'module_name'    => '_change_language_with_url_',
-					'params'         => ['github_repo' => 'Jefferson49/ChangeLanguageWithURL'],
-				])) ?>" type="submit" class="btn btn-secondary">
-				<?= I18N::translate('Update module') ?>
+			<a href="<?= e(route(CustomModuleUpdatePage::class)) ?>" type="submit" class="btn btn-secondary">
+				<?= I18N::translate('Update custom modules') ?>
 			</a>
 		</div>
     <div class="row mb-3">

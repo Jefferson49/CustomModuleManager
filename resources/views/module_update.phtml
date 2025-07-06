@@ -1,0 +1,124 @@
+<?php
+
+declare(strict_types=1);
+
+use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
+use Fisharebest\Webtrees\Module\ModuleCustomInterface;
+use Fisharebest\Webtrees\Module\ModuleThemeInterface;
+use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\I18N;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
+
+/**
+ * @var string $title
+ */
+
+
+$module_service = New ModuleService();
+$custom_modules = $module_service->findByInterface(ModuleCustomInterface::class);
+$themes         = $module_service->findByInterface(ModuleThemeInterface::class);
+
+$module_update_config = [
+	'_change_language_with_url_' =>  'Jefferson49/ChangeLanguageWithURL',
+	'_extended_import_export_'   =>  'Jefferson49/ExtendedImportExportL',
+	'_oauth2_client_'            =>  'Jefferson49/webtrees-oauth2-client',
+	'_repository_hierarchy_'     =>  'Jefferson49/RepositoryHierarchy',
+];
+
+?>
+
+<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => I18N::translate('Control panel'), $title]]) ?>
+
+<h1><?= $title ?></h1>
+
+<div class="row mb-3"><?= view('icons/spacer') ?></div>
+
+<table
+    class="table table-bordered table-sm wt-table-module-updates datatables d-none"
+    <?= view('lists/datatables-attributes') ?>
+    data-columns="<?= e(json_encode([
+        ['type' => 'html'],
+        null,
+        ['searchable' => false],
+        null,
+        null,
+        ['searchable' => false],
+        ['type' => 'html', 'searchable' => false],
+    ], JSON_THROW_ON_ERROR)) ?>"
+>
+    <caption class="visually-hidden">
+        <?= $caption ?? I18N::translate('Module Updates') ?>
+    </caption>
+
+    <thead>
+        <tr>
+            <th><?= I18N::translate('Title') ?></th>
+            <th><?= I18N::translate('Folder (within modules_v4)') ?></th>
+            <th><?= I18N::translate('Theme') ?></th>
+            <th><?= I18N::translate('Current Version') ?></th>
+            <th><?= I18N::translate('Latest Version') ?></th>
+            <th><?= I18N::translate('Update Service') ?></th>
+            <th><?= I18N::translate('Update') ?></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <?php foreach ($custom_modules as $module) : ?>
+            <tr>
+                <!-- Title -->
+                <td data-sort="<?= e($module->title()) ?>">
+					<?= e($module->title()) ?>
+                </td>
+
+                <!-- Folder -->
+				<?php $installation_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module->name()) ?>
+                <td data-sort="<?= e($installation_folder) ?>">
+					<?= e($installation_folder) ?>
+                </td>
+
+                <!-- Theme -->
+				<?php $is_theme = $themes->contains($module) ?>			
+                 <td class="text-center" data-sort="<?= $is_theme === true ? '1' : '0' ?>">
+					<?php if ($is_theme) : ?>
+						<?= I18N::translate('yes') ?>
+					<?php endif ?>						
+                </td>
+
+                <!-- Current version -->
+				<?php $current_version = $module->customModuleVersion() ?>
+                <td data-sort="<?= e($current_version) ?>">
+                	<?= e($current_version) ?>
+                </td>
+
+                <!-- Latest version -->
+				<?php $latest_version = $module->customModuleLatestVersion() ?>
+                <td data-sort="<?= e($latest_version) ?>">
+                	<?= e($latest_version) ?>
+                </td>
+
+                <!--Update service available-->
+				<?php $update_service_available = array_key_exists($module->name(), $module_update_config) ?>
+                <td class="text-center" data-sort="<?= $update_service_available === true ? '1' : '0' ?>">
+					<?php if ($update_service_available) : ?>
+						<?= I18N::translate('yes') ?>
+					<?php endif ?>						
+                </td>
+
+                <!--Update -->
+				<?php $update = version_compare($latest_version, $current_version) > 0; ?>
+                <td data-sort="<?= $update === true ? '1' : '0' ?>">
+					<?php if ($update && array_key_exists($module->name(), $module_update_config)) : ?>
+						<a href="<?= e(route(ModuleUpgradeWizardPage::class, [
+								'update_service' => 'GithubModuleUpdate',
+								'module_name'    => $module->name(),
+								'params'         => ['github_repo' => e($module_update_config[$module->name()])],
+							])) ?>" type="submit" class="btn btn-secondary">
+							<?= I18N::translate('Update module') ?>
+						</a>
+					<?php endif ?>						
+                </td>
+            </tr>
+        <?php endforeach ?>
+    </tbody>
+</table>

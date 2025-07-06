@@ -33,7 +33,6 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers;
 
 use Fig\Http\Message\StatusCodeInterface;
 use Fisharebest\Webtrees\Http\Exceptions\HttpServerErrorException;
-use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\UpgradeService;
@@ -253,7 +252,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
         $this->upgrade_service->cleanFiles($destination_filesystem, $folders_to_clean, $files_to_keep);
 
-        $url    = route(ControlPanel::class);
+        $url    = route(CustomModuleUpdatePage::class);
         $alert  = I18N::translate('The upgrade is complete.');
         $button = '<a href="' . e($url) . '" class="btn btn-primary">' . I18N::translate('continue') . '</a>';
 
