@@ -36,7 +36,7 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Services\UpgradeService;
 use Fisharebest\Webtrees\Validator;
-use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -78,27 +78,33 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
     {
         $this->layout = 'layouts/administration';
 
-        $continue    = Validator::queryParams($request)->string('continue', '');
-
-        $module_upgrade_service = GithubModuleUpdate::getModuleUpdateServiceFromRequest($request);
-        $params                 = GithubModuleUpdate::getParams($module_upgrade_service);      
+        $continue       = Validator::queryParams($request)->string('continue', '');
+        $update_service = Validator::queryParams($request)->string('update_service', '');
+        $module_name    = Validator::queryParams($request)->string('module_name', '');
+        $params         = Validator::queryParams($request)->array('params');
  
+        $module_upgrade_service = CustomModuleUpdateFactory::make($update_service, $module_name, $params);
+
         $title = I18N::translate('Upgrade wizard');
 
         $upgrade_available = $module_upgrade_service->upgradeAvailable();
+        $download_url      = $module_upgrade_service->downloadUrl();
 
         if ($upgrade_available && $continue === '1') {
             return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
-                'steps' => $this->wizardSteps($module_upgrade_service->downloadUrl(), $params),
+                'steps' => $this->wizardSteps($download_url, ['download_url' => $download_url, 'update_service' => $update_service, 'module_name' => $module_name, 'params' => $params]),
                 'title' => $title,
             ]);
         }
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::wizard', [
+            'update_service'  => $update_service,
+            'module_name'     => $module_name,
+            'params'          => $params,
             'current_version' => $module_upgrade_service->customModuleVersion(),
             'latest_version'  => $module_upgrade_service->customModuleLatestVersion(),
-            'title'           => $title,            
-        ] + $params);
+            'title'           => $title,
+        ]);
     }
 
     /**

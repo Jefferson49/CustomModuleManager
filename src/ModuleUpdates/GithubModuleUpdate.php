@@ -32,14 +32,12 @@ declare(strict_types=1);
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
 use Fig\Http\Message\StatusCodeInterface;
-use Fisharebest\Webtrees\Module\AbstractModule;
-use Fisharebest\Webtrees\Registry;
+use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Services\ModuleService;
-use Fisharebest\Webtrees\Validator;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
-use Psr\Http\Message\ServerRequestInterface;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
 
 
 /**
@@ -50,113 +48,76 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     //The Github repository of the module, e.g. Jefferson49/CustomModuleManager
     protected string $github_repo;
 
-    //The tag prefix, which is used for Github releases, e.g. "v" in "v1.2.3"
-    protected string $tag_prefix = '';
-
-    //The asset name (without tag and tag prefix), which the module uses for downloads in Github releases
-    protected string $asset_name;
-
     //The top level folder in the ZIP file of the custom module
     protected string $zip_folder;
 
-
     /**
-     * @param string         $github_repo  The Github repository of the module, e.g. Jefferson49/CustomModuleManager
-     * @param string         $tag_prefix   The tag prefix, which is used for Github releases, e.g. "v" in "v1.2.3"
-     * @param string         $zip_folder   The top level folder in the ZIP file of the custom module
-     * @param string         $module_name  The custom module name
-     * @param string         $asset_name   The asset name (without tag and tag prefix), which the module uses for downloads in Github releases
-     * @param AbstractModule $module       The custom module; or null if not installed yet
+     * @param string $module_name  The custom module name
+     * @param array  $params       The configuration parameters of the update service
      * 
      * @return void
      */
-    public function __construct(
-        string $github_repo,
-        string $tag_prefix, 
-        string $zip_folder,
-        string $module_name = '',
-        string $asset_name = '',
-        ?AbstractModule $module = null
-    ) {
-        $this->github_repo = $github_repo;
-        $this->tag_prefix  = $tag_prefix;
-        $this->zip_folder  = $zip_folder;
-        $this->module_name = $module_name !== '' ? $module_name : self::defaultModuleName($zip_folder);
-        $this->asset_name  = $asset_name !== '' ? $asset_name : $this->defaultAssetName($zip_folder);
+    public function __construct(string $module_name, array  $params) {
+
+        $module_service = New ModuleService();
+        $module = $module_service->findByName($module_name);
+        $installation_folder = self::getInstallationFolderFromModuleName($module_name);
+
+        $this->module_name = $module_name;
         $this->module      = $module;
-    }
+        $this->zip_folder  = $installation_folder;
 
-    /**
-     * Alternative constructor for an installed custom module
-     * 
-     * @param AbstractModule $module       The custom module
-     * @param string         $github_repo  The Github repository of the module, e.g. Jefferson49/CustomModuleManager
-     * @param string         $tag_prefix   The tag prefix, which is used for Github releases, e.g. "v" in "v1.2.3"
-     * @param string         $asset_name   The asset name (without tag and tag prefix), which the module uses for downloads in Github releases
-     * @param string         $zip_folder   The top level folder in the ZIP file of the custom module
-     * 
-     * @return GithubModuleUpdate
-     */    
-    public static function constructFromModule(
-        AbstractModule $module,
-        string $github_repo,
-        string $tag_prefix,
-        string $zip_folder = '',
-        string $asset_name = ''
-    ): GithubModuleUpdate 
-    {
-        $installation_folder = self::getInstallationFolderFromModuleName($module->name());
-
-        return new self(
-            $github_repo, 
-            $tag_prefix, 
-            $zip_folder !== '' ? $zip_folder : $installation_folder,
-            $module->name(),
-            $asset_name !== '' ? $asset_name  : self::defaultAssetName($installation_folder),
-            $module
-        );
-    }
-
-    /**
-     * A URL that will provide the latest version of this module.
-     *
-     * @return string
-     */
-    public function customModuleLatestVersionUrl(): string
-    {
-        //If the installed module is available, try to get the URL from the module
-        if ($this->module !== null) {
-
-            $module = $this->module;
-
-            //Dummy PHPDoc to avoid IDE warnings
-            /** @var CustomModuleManager $module */
-
-            $url = $module->customModuleLatestVersionUrl();
-
-            if ($url !== '') {
-                return $url;
-            }
+        if (array_key_exists('github_repo', $params)) {
+            $this->github_repo = $params['github_repo'];
         }
-
-        //As default, use the generic Github API
-        return 'https://api.github.com/repos/'. $this->github_repo . '/releases/latest';
-    } 
+        else {
+            throw new CustomModuleManagerException(I18N::translate('Could not create %s service. Configuration parameter "%s" missing.', basename(str_replace('\\', '/', __CLASS__)) , 'github_repo'));
+        }
+    }
 
     /**
-     * Where can we download the latest version of the module
+     * Where can we download a certain version of the module. Latest release if no tag is provided
+     * 
+     * @param string $tag  The tag of the release 
      * 
      * @return string
      */
-    public function downloadUrl(): string
+    public function downloadUrl(string $tag = ''): string
     {
-        $tag = $this->customModuleLatestVersion();
+        $download_url   = '';
+        $github_api_url = 'https://api.github.com/repos/'. $this->github_repo . '/releases/';
 
+        // If no tag is provided get the download URL of the latest release
         if ($tag === '') {
-            return '';
+            $url = $github_api_url . 'latest';
+        }
+        // Get the download URL for a certain tag
+        else {
+            $url = $github_api_url . 'tags/' . $tag;
         }
 
-        return 'https://github.com/' . $this->github_repo . '/releases/download/'. $this->tag_prefix . $tag . '/' . $this->asset_name . $this->tag_prefix . $tag . '.zip';
+        // Get the download URL from Github
+        try {
+            $client = new Client(
+                [
+                'timeout' => 3,
+                ]
+            );
+
+            $response = $client->get($url);
+
+            if ($response->getStatusCode() === StatusCodeInterface::STATUS_OK) {
+                $content = $response->getBody()->getContents();
+                
+                if (preg_match('/"browser_download_url":"([^"]+?)"/', $content, $matches) === 1) {
+                    $download_url = $matches[1];
+                }
+            }
+        } catch (GuzzleException $ex) {
+            // Can't connect to the server?
+        }
+
+        return $download_url;
     }
 
     /**
@@ -197,109 +158,29 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             return '';
         }
 
-        return Registry::cache()->file()->remember(
-            $this->module_name . '-latest-version',
-            function (): string {        
+        $tag_name = '';
+        $github_api_url = 'https://api.github.com/repos/'. $this->github_repo . '/releases/latest';
 
-                $latest_tag          = '';
-                $url                 =  $this->customModuleLatestVersionUrl();
-                $tag_search_pattern  = '"tag_name":"'. $this->tag_prefix;
-
-                try {
-                    $client = new Client(
-                        [
-                        'timeout' => 3,
-                        ]
-                    );
-
-                    $response = $client->get($url);
-
-                    if ($response->getStatusCode() === StatusCodeInterface::STATUS_OK) {
-                        $content = $response->getBody()->getContents();
-                        preg_match_all('/' . $tag_search_pattern . '\d+\.\d+\.\d+/', $content, $matches, PREG_OFFSET_CAPTURE);
-
-                        if(!empty($matches[0]))
-                        {
-                            $latest_tag = $matches[0][0][0];
-                            $latest_tag = substr($latest_tag, strlen($this->tag_prefix));
-                        }
-                    }
-                } catch (GuzzleException $ex) {
-                    // Can't connect to the server?
-                }
-
-                return $latest_tag;
-            },
-            86400
-        );        
-    }
-
-    /**
-     * The default asset name for a Github release (based on the installation folder name)
-     * 
-     * @param string $installation_folder The installation folder of the custom module
-     * 
-     * @return string
-     */
-    public static function defaultAssetName(string $installation_folder): string
-    {
-        return $installation_folder . '_';
-    }
-
-    /**
-     * Get params for this custom module update service
-     * 
-     * @param GithubModuleUpdate $github_module_update
-     * 
-     * @return array<string>
-     */
-    public static function getParams(AbstractModuleUpdate $github_module_update): array
-    {
-        return [
-            'module_name' => $github_module_update->module_name,
-            'github_repo' => $github_module_update->github_repo,
-            'tag_prefix'  => $github_module_update->tag_prefix,
-            'zip_folder'  => $github_module_update->zip_folder,
-            'asset_name'  => $github_module_update->asset_name,
-        ];
-    }
-
-    /**
-     * Create a custom module upgrade service from a request
-     * 
-     * @param ServerRequestInterface $request         T
-     *
-     * @return GithubModuleUpdate
-     */    
-    public static function getModuleUpdateServiceFromRequest(ServerRequestInterface $request) : GithubModuleUpdate {
-
-        $module_name         = Validator::queryParams($request)->string('module_name', '');
-        $github_repo         = Validator::queryParams($request)->string('github_repo', '');
-        $tag_prefix          = Validator::queryParams($request)->string('tag_prefix', '');
-        $zip_folder          = Validator::queryParams($request)->string('zip_folder', '');
-        $asset_name          = Validator::queryParams($request)->string('asset_name', '');
-
-        $module_service = New ModuleService();
-        $module = $module_service->findByName($module_name);
-
-        //Create the upgrade service for the module
-        if ($module !== null) {
-            return GithubModuleUpdate::constructFromModule(
-                $module,
-                $github_repo,
-                $tag_prefix,
-                $zip_folder,
-                $asset_name 
+        try {
+            $client = new Client(
+                [
+                'timeout' => 3,
+                ]
             );
+
+            $response = $client->get($github_api_url);
+
+            if ($response->getStatusCode() === StatusCodeInterface::STATUS_OK) {
+                $content = $response->getBody()->getContents();
+                
+                if (preg_match('/"tag_name":"([^"]+?)"/', $content, $matches) === 1) {
+                    $tag_name = $matches[1];
+                }
+            }
+        } catch (GuzzleException $ex) {
+            // Can't connect to the server?
         }
-        else {
-            return new GithubModuleUpdate(
-                $github_repo,
-                $tag_prefix,
-                $zip_folder,
-                $module_name,
-                $asset_name
-            );           
-        }
+
+        return $tag_name;
     }
 }

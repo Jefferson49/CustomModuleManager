@@ -31,7 +31,7 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers;
 
-use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
+use Fisharebest\Webtrees\Validator;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -51,9 +51,15 @@ class ModuleUpgradeWizardConfirm implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $module_upgrade_service = GithubModuleUpdate::getModuleUpdateServiceFromRequest($request);
-        $params                 = GithubModuleUpdate::getParams($module_upgrade_service);
+        $update_service = Validator::queryParams($request)->string('update_service', '');
+        $module_name    = Validator::queryParams($request)->string('module_name', '');
+        $params         = Validator::queryParams($request)->array('params');
 
-        return redirect(route(ModuleUpgradeWizardPage::class, ['continue' => 1] + $params));
+        return redirect(route(ModuleUpgradeWizardPage::class, [
+            'continue'       => 1,
+            'update_service' => $update_service,
+            'module_name'    => $module_name,
+            'params'          => $params,
+        ]));
     }
 }

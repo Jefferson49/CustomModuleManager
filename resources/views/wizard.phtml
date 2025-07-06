@@ -10,11 +10,9 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgrad
  * @var string $current_version
  * @var string $latest_version
  * @var string $title
+ * @var string $update_service
  * @var string $module_name
- * @var string $github_repo
- * @var string $tag_prefix
- * @var string $zip_folder
- * @var string $asset_name
+ * @var array  $params
  */
 
 ?>
@@ -41,11 +39,9 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgrad
     </p>
 
     <form method="post" action="<?= e(route(ModuleUpgradeWizardConfirm::class, [
-                'module_name' => $module_name,
-                'github_repo' => $github_repo,
-                'tag_prefix'  => $tag_prefix,
-                'zip_folder'  => $zip_folder,
-                'asset_name'  => $asset_name,
+                'update_service' => $update_service,
+                'module_name'    => $module_name,
+                'params'         => $params,
             ])) ?>" class="form-horizontal">
         <button type="submit" class="btn btn-primary" name="continue" value="1">
             <?= I18N::translate('continue') ?>

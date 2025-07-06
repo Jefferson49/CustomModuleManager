@@ -32,11 +32,8 @@ declare(strict_types=1);
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
 use Fisharebest\Webtrees\Module\AbstractModule;
-use Fisharebest\Webtrees\Services\ModuleService;
-use Fisharebest\Webtrees\Validator;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Illuminate\Support\Collection;
-use Psr\Http\Message\ServerRequestInterface;
 
 
 /**
@@ -44,11 +41,11 @@ use Psr\Http\Message\ServerRequestInterface;
  */
 abstract class AbstractModuleUpdate
 {
-    //The custom module
-    protected ?AbstractModule $module;
-
     //The custom module name
     protected string $module_name;
+
+    //The custom module (if installed)
+    protected ?AbstractModule $module;
 
     /**
      * A unique internal name for this module (based on the installation folder).
@@ -153,22 +150,4 @@ abstract class AbstractModuleUpdate
     {
         return new Collection([]);
     }
-
-    /**
-     * Get params for this custom module update service
-     * 
-     * @param  AbstractModuleUpdate $module_update
-     * 
-     * @return array<string>
-     */
-    abstract static function getParams(AbstractModuleUpdate $module_update): array;
-    
-    /**
-     * Create a custom module upgrade service from a request
-     * 
-     * @param  ServerRequestInterface $request
-     *
-     * @return AbstractModuleUpdate
-     */    
-    abstract static function getModuleUpdateServiceFromRequest(ServerRequestInterface $request) : AbstractModuleUpdate;   
 }

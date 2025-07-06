@@ -41,7 +41,7 @@ use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CustomModuleUpdateInterface;
-use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemReader;
@@ -85,15 +85,15 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     // The webtrees upgrade service
     private UpgradeService $upgrade_service;
 
-    // The custom module upgrade service
-    private CustomModuleUpdateInterface $module_upgrade_service;
+    // The custom module update service
+    private CustomModuleUpdateInterface $module_update_service;
 
 
     /**
      * @param UpgradeService            $upgrade_service
      */
     public function __construct(UpgradeService $upgrade_service) {
-        $this->upgrade_service        = $upgrade_service;
+        $this->upgrade_service = $upgrade_service;
     }
 
     /**
@@ -105,16 +105,20 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $step                = Validator::queryParams($request)->string('step', self::STEP_CHECK);
-
-        $this->module_upgrade_service = GithubModuleUpdate::getModuleUpdateServiceFromRequest($request);
+        $step           = Validator::queryParams($request)->string('step', self::STEP_CHECK);
+        $download_url   = Validator::queryParams($request)->string('download_url', '');
+        $update_service = Validator::queryParams($request)->string('update_service', '');
+        $module_name    = Validator::queryParams($request)->string('module_name', '');
+        $params         = Validator::queryParams($request)->array('params');
+ 
+        $this->module_update_service = CustomModuleUpdateFactory::make($update_service, $module_name, $params);
 
         $zip_file            = Webtrees::ROOT_DIR . self::ZIP_FILENAME;
         $upgrade_folder      = Webtrees::ROOT_DIR . self::UPGRADE_FOLDER;
 
-        $zip_folder          = $this->module_upgrade_service->getZipFolder();
-        $installation_folder = $this->module_upgrade_service->getInstallationFolder();
-        $folders_to_clean    = $this->module_upgrade_service->getFoldersToClean();
+        $zip_folder          = $this->module_update_service->getZipFolder();
+        $installation_folder = $this->module_update_service->getInstallationFolder();
+        $folders_to_clean    = $this->module_update_service->getFoldersToClean();
 
         switch ($step) {
             case self::STEP_CHECK:
@@ -124,7 +128,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 return $this->wizardStepPrepare();
 
             case self::STEP_DOWNLOAD:
-                return $this->wizardStepDownload();
+                return $this->wizardStepDownload($download_url);
 
             case self::STEP_UNZIP:
                 return $this->wizardStepUnzip($zip_file, $upgrade_folder, $zip_folder);
@@ -142,14 +146,14 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      */
     private function wizardStepCheck(): ResponseInterface
     {
-        $latest_version = $this->module_upgrade_service->customModuleLatestVersion();
+        $latest_version = $this->module_update_service->customModuleLatestVersion();
 
         if ($latest_version === '') {
             throw new HttpServerErrorException(I18N::translate('No upgrade information is available.'));
         }
 
-        if (version_compare($this->module_upgrade_service->customModuleVersion(), $latest_version) >= 0) {
-            $message = I18N::translate('This is the latest version of the module %s. No upgrade is available.', $this->module_upgrade_service->name());
+        if (version_compare($this->module_update_service->customModuleVersion(), $latest_version) >= 0) {
+            $message = I18N::translate('This is the latest version of the module %s. No upgrade is available.', $this->module_update_service->name());
             throw new HttpServerErrorException($message);
         }
 
@@ -178,13 +182,14 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     }
 
     /**
+     * @param string $download_url  The URL where we can download the module ZIP file
+     * 
      * @return ResponseInterface
      */
-    private function wizardStepDownload(): ResponseInterface
+    private function wizardStepDownload(string $download_url): ResponseInterface
     {
         $root_filesystem = Registry::filesystem()->root();
         $start_time      = Registry::timeFactory()->now();
-        $download_url    = $this->module_upgrade_service->downloadUrl();
 
         try {
             $bytes = $this->upgrade_service->downloadFile($download_url, $root_filesystem, self::ZIP_FILENAME);

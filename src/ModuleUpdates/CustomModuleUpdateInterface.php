@@ -53,13 +53,6 @@ interface CustomModuleUpdateInterface
     public function customModuleVersion(): string;    
 
     /**
-     * A URL that will provide the latest version of this module.
-     *
-     * @return string
-     */
-    public function customModuleLatestVersionUrl(): string;
-
-    /**
      * Fetch the latest version of this module
      *
      * @return string
