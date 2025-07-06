@@ -92,5 +92,42 @@ class ModuleUpdateServiceConfiguration
     public static function getModuleUpdateServiceConfiguration(): array
     {
         return self::MODULE_UPDATE_SERVICE_CONFIG;
-    }    
+    }
+
+    /**
+     * Get the configuration parameters for the update service of a module
+     * 
+     * @param string $module_name
+     *  
+     * @return array
+     */
+    public static function getParams(string $module_name): array
+    {
+        $config = self::MODULE_UPDATE_SERVICE_CONFIG;
+
+        if (array_key_exists($module_name, $config)) {
+            return $config[$module_name]['params'];
+        }
+
+        return [];
+    }      
+
+    /**
+     * Get the update service name for a module
+     * 
+     * @param string $module_name
+     *  
+     * @return string
+     */
+    public static function getUpdateServiceName(string $module_name): string
+    {
+        $config = self::MODULE_UPDATE_SERVICE_CONFIG;
+
+        if (array_key_exists($module_name, $config)) {
+            return $config[$module_name]['update_service'];
+        }
+
+        return '';
+    }      
+
 }

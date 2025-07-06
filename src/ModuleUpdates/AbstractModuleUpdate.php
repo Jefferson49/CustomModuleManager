@@ -36,6 +36,8 @@ use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
 
+use Throwable;
+
 /**
  * Abstract class with common functions for custom module updates
  */
@@ -139,10 +141,6 @@ abstract class AbstractModuleUpdate
      */
     public function getInstallationFolder(): string 
     {
-        if ($this->getModule() === null ) {
-            return '';
-        }
-
         return Webtrees::MODULES_PATH . self::getInstallationFolderFromModuleName($this->module_name);
     }
 

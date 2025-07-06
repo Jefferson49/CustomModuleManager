@@ -66,6 +66,8 @@ use Illuminate\Support\Collection;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 use RuntimeException;
 
@@ -73,7 +75,8 @@ use function substr;
 
 
 class CustomModuleManager extends AbstractModule implements
-	ModuleCustomInterface, 
+    MiddlewareInterface,
+    ModuleCustomInterface,
 	ModuleConfigInterface,
     ModuleGlobalInterface,
     ModuleMenuInterface,
@@ -101,11 +104,11 @@ class CustomModuleManager extends AbstractModule implements
     private Collection $custom_view_list;
 
     //Prefences, Settings
-	public const PREF_MODULE_VERSION = 'module_version';
+	public const PREF_MODULE_VERSION      = 'module_version';
     public const PREF_DEBUGGING_ACTIVATED = 'debugging_activated';
-
-    //Prefences, Settings
-	public const PREF_SETTING = 'setting';
+	public const PREF_SETTING             = 'setting';
+	public const PREF_LAST_UPDATED_MODULE = 'last_updated_module';
+    public const PREF_ROLLBACK_ONGOING    = 'rollback_ongoing';
 
     //Routes
     public const ROUTE_WIZARD_PAGE        = '/module_upgrade_wizard_page';
@@ -418,6 +421,50 @@ class CustomModuleManager extends AbstractModule implements
         FlashMessages::addMessage($message, 'success');	
 
         return redirect($this->getConfigLink());
+    }
+
+    /**
+     * Code here is executed before and after we process the request/response.
+     * We can block access by throwing an exception.
+     *
+     * @param ServerRequestInterface  $request
+     * @param RequestHandlerInterface $handler
+     *
+     * @return ResponseInterface
+     */
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        $updated_module_name = $this->getPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, '');
+
+        //If a module has recently been updated
+        if ($updated_module_name !== '') {
+
+            $rollback_ongoing = boolval($this->getPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0'));
+
+            //If we are not already in the middle of an ongoing rollback
+            if (!$rollback_ongoing) {
+
+                //If test for the updated module fails
+                if (ModuleUpgradeWizardStep::testModule($updated_module_name) !== '') {
+
+                    //Trigger rollback of the udpated module                
+                    $this->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '1');
+
+                    $this->layout = 'layouts/administration';
+
+                    return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
+                        'title' => I18N::translate('Rollback Custom Module Update'),
+                        'steps' => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ROLLBACK, 'module_name' => $updated_module_name]) => I18N::translate('Rollback')],
+                    ]);
+                }
+                else {
+                    //Reset update information
+                    $this->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, '');
+                }
+            }
+        }
+
+        return $handler->handle($request);
     }
 
     /**

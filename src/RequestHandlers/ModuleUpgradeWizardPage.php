@@ -79,28 +79,23 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
         $this->layout = 'layouts/administration';
 
         $continue       = Validator::queryParams($request)->string('continue', '');
-        $update_service = Validator::queryParams($request)->string('update_service', '');
         $module_name    = Validator::queryParams($request)->string('module_name', '');
-        $params         = Validator::queryParams($request)->array('params');
- 
-        $module_upgrade_service = CustomModuleUpdateFactory::make($update_service, $module_name, $params);
+
+        $module_upgrade_service = CustomModuleUpdateFactory::make($module_name);
 
         $title = I18N::translate('Upgrade wizard');
 
         $upgrade_available = $module_upgrade_service->upgradeAvailable();
-        $download_url      = $module_upgrade_service->downloadUrl();
 
         if ($upgrade_available && $continue === '1') {
             return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
-                'steps' => $this->wizardSteps($download_url, ['download_url' => $download_url, 'update_service' => $update_service, 'module_name' => $module_name, 'params' => $params]),
-                'title' => $title,
+                'steps'       => $this->wizardSteps($module_name, $module_upgrade_service->downloadUrl()),
+                'title'       => $title,
             ]);
         }
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::wizard', [
-            'update_service'  => $update_service,
             'module_name'     => $module_name,
-            'params'          => $params,
             'current_version' => $module_upgrade_service->customModuleVersion(),
             'latest_version'  => $module_upgrade_service->customModuleLatestVersion(),
             'title'           => $title,
@@ -108,19 +103,20 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
     }
 
     /**
-     * @return array<string>
+     * @param string $download_url
+     * @param string $module_name
      * 
-     * @param string        $download_url
-     * @param array<string> $params
+     * @return array<string>
      */
-    private function wizardSteps(string $download_url, array $params): array
+    private function wizardSteps(string $module_name, string $download_url): array
     {
         return [
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_CHECK] + $params)    => I18N::translate('Upgrade wizard'),
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_PREPARE] + $params)  => I18N::translate('Create a temporary folder…'),
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_DOWNLOAD] + $params) => I18N::translate('Download %s…', e($download_url)),
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_UNZIP] + $params)    => I18N::translate('Unzip %s to a temporary folder…', e(basename($download_url))),
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_COPY] + $params)     => I18N::translate('Copy files…'),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_CHECK, 'module_name' => $module_name])    => I18N::translate('Upgrade wizard'),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_PREPARE, 'module_name' => $module_name])  => I18N::translate('Create temporary folders…'),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_BACKUP, 'module_name' => $module_name])   => I18N::translate('Backup…'),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_DOWNLOAD, 'module_name' => $module_name]) => I18N::translate('Download %s…', e($download_url)),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_UNZIP, 'module_name' => $module_name])    => I18N::translate('Unzip %s to a temporary folder…', e(basename($download_url))),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_COPY, 'module_name' => $module_name])     => I18N::translate('Copy files…'),
             ];
     }
 }

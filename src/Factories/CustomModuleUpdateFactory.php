@@ -31,6 +31,7 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\Factories;
 
+use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CustomModuleUpdateInterface;
 
 
@@ -42,24 +43,20 @@ class CustomModuleUpdateFactory
     /**
      * Create a custom module update service
      * 
-     * @param string $name         Name of the custom module update service
      * @param string $module_name  Name of the custom module
-     * @param array  $params       Configuration parameters
      * 
      * @return CustomModuleUpdateInterface   A configured authorization provider. Null, if error 
      */
-    public static function make(string $name, string $module_name, array  $params) : ?CustomModuleUpdateInterface
+    public static function make(string $module_name) : ?CustomModuleUpdateInterface
     {
         $name_space = str_replace('\\\\', '\\',__NAMESPACE__ );
         $name_space = str_replace('Factories', 'ModuleUpdates\\', $name_space);
 
-        $module_update_service_names = self::getModuleUpdateServiceNames();
+        $class_name = ModuleUpdateServiceConfiguration::getUpdateServiceName($module_name);
 
-        foreach($module_update_service_names as $class_name) {
-            if ($class_name === $name) {
-                $class_name = $name_space . $class_name;
-                return new $class_name($module_name, $params);
-            }
+        if ($class_name !== '') {
+            $class_name_with_namespace = $name_space . $class_name;
+            return new $class_name_with_namespace($module_name, ModuleUpdateServiceConfiguration::getParams($module_name));
         }
 
         //If no update service found
