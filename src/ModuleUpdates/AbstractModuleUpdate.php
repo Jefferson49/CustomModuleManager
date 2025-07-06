@@ -52,7 +52,7 @@ abstract class AbstractModuleUpdate
      *
      * @return string
      */
-    public function name(): string
+    public function getModuleName(): string
     {
         return $this->module_name;
     }

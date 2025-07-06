@@ -45,7 +45,7 @@ interface CustomModuleUpdateInterface
      *
      * @return string
      */
-    public function name(): string;
+    public function getModuleName(): string;
 
     /**
      * Get the module

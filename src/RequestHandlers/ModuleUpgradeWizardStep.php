@@ -79,17 +79,17 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
 
     // The webtrees upgrade service
-    private UpgradeService $upgrade_service;
+    private UpgradeService $webtrees_upgrade_service;
 
     // The custom module update service
     private CustomModuleUpdateInterface $module_update_service;
 
 
     /**
-     * @param UpgradeService            $upgrade_service
+     * @param UpgradeService $webtrees_upgrade_service
      */
-    public function __construct(UpgradeService $upgrade_service) {
-        $this->upgrade_service = $upgrade_service;
+    public function __construct(UpgradeService $webtrees_upgrade_service) {
+        $this->webtrees_upgrade_service = $webtrees_upgrade_service;
     }
 
     /**
@@ -149,7 +149,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         }
 
         if (version_compare($this->module_update_service->customModuleVersion(), $latest_version) >= 0) {
-            $message = I18N::translate('This is the latest version of the module %s. No upgrade is available.', $this->module_update_service->name());
+            $message = I18N::translate('This is the latest version of the module %s. No upgrade is available.', $this->module_update_service->getModuleName());
             throw new HttpServerErrorException($message);
         }
 
@@ -188,7 +188,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $start_time      = Registry::timeFactory()->now();
 
         try {
-            $bytes = $this->upgrade_service->downloadFile($download_url, $root_filesystem, self::ZIP_FILENAME);
+            $bytes = $this->webtrees_upgrade_service->downloadFile($download_url, $root_filesystem, self::ZIP_FILENAME);
         } catch (Throwable $exception) {
             throw new HttpServerErrorException($exception->getMessage());
         }
@@ -214,7 +214,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     private function wizardStepUnzip(string $zip_file, $upgrade_folder, string $zip_folder): ResponseInterface
     {
         $start_time = Registry::timeFactory()->now();
-        $this->upgrade_service->extractWebtreesZip($zip_file, $upgrade_folder);
+        $this->webtrees_upgrade_service->extractWebtreesZip($zip_file, $upgrade_folder);
         $count    = $this->customModuleZipContents($zip_file, $zip_folder)->count();
         $end_time = Registry::timeFactory()->now();
         $seconds  = I18N::number($end_time - $start_time, 2);
@@ -240,14 +240,14 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $source_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . $zip_folder);
         $destination_filesystem = Registry::filesystem()->root($installation_folder);
 
-        $this->upgrade_service->startMaintenanceMode();
-        $this->upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
-        $this->upgrade_service->endMaintenanceMode();
+        $this->webtrees_upgrade_service->startMaintenanceMode();
+        $this->webtrees_upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
+        $this->webtrees_upgrade_service->endMaintenanceMode();
 
         // While we have time, clean up any old files.
         $files_to_keep = $this->customModuleZipContents($zip_file, $zip_folder);
 
-        $this->upgrade_service->cleanFiles($destination_filesystem, $folders_to_clean, $files_to_keep);
+        $this->webtrees_upgrade_service->cleanFiles($destination_filesystem, $folders_to_clean, $files_to_keep);
 
         $url    = route(CustomModuleUpdatePage::class);
         $alert  = I18N::translate('The upgrade is complete.');
