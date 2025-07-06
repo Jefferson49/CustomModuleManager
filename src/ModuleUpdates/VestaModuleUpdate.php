@@ -57,6 +57,16 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
     }
 
     /**
+     * The name of the module update service
+     *
+     * @return string
+     */
+    public function name(): string {
+
+        return 'Vesta';
+    }
+
+    /**
      * Where can we download a certain version of the module. Latest release if no tag is provided
      * 
      * @param string $tag  The tag of the release 

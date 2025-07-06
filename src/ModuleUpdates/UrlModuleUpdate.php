@@ -60,9 +60,20 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
             $this->download_url = $params['download_url'];
         }
         else {
-            throw new CustomModuleManagerException(I18N::translate('Could not create %s service. Configuration parameter "%s" missing.', basename(str_replace('\\', '/', __CLASS__)) , 'download_url'));
+            throw new CustomModuleManagerException(I18N::translate('Could not create the %s update service. Configuration parameter "%s" missing.', basename(str_replace('\\', '/', __CLASS__)) , 'download_url'));
         }
-    }    
+    }
+
+    /**
+     * The name of the module update service
+     *
+     * @return string
+     */
+    public function name(): string {
+
+        return 'URL';
+    }
+    
     /**
      * Where can we download a certain version of the module. Latest release if no tag is provided
      * 

@@ -50,7 +50,14 @@ abstract class AbstractModuleUpdate
     protected string $zip_folder;
 
     /**
-     * A unique internal name for this module (based on the installation folder).
+     * The name of the module update service
+     *
+     * @return string
+     */
+    abstract public function name(): string;
+    
+    /**
+     * A unique internal name for the module (based on the installation folder).
      *
      * @return string
      */

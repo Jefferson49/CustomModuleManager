@@ -63,9 +63,19 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             $this->github_repo = $params['github_repo'];
         }
         else {
-            throw new CustomModuleManagerException(I18N::translate('Could not create %s service. Configuration parameter "%s" missing.', basename(str_replace('\\', '/', __CLASS__)) , 'github_repo'));
+            throw new CustomModuleManagerException(I18N::translate('Could not create the %s update service. Configuration parameter "%s" missing.', basename(str_replace('\\', '/', __CLASS__)) , 'github_repo'));
         }
     }
+
+    /**
+     * The name of the module update service
+     *
+     * @return string
+     */
+    public function name(): string {
+
+        return 'Github';
+    }    
 
     /**
      * Where can we download a certain version of the module. Latest release if no tag is provided

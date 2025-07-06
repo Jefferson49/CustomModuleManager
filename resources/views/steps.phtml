@@ -3,8 +3,9 @@
 declare(strict_types=1);
 
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
-use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\View;
+use Jefferson49\Webtrees\Internationalization\MoreI18N;
+
 
 /**
  * @var array<string,string> $steps
@@ -13,12 +14,12 @@ use Fisharebest\Webtrees\View;
 
 ?>
 
-<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => I18N::translate('Control panel'), $title]]) ?>
+<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => MoreI18N::xlate('Control panel'), $title]]) ?>
 
 <h1><?= $title ?></h1>
 
 <p>
-    <?= I18N::translate('It can take several minutes to download and install the upgrade. Be patient.') ?>
+    <?= MoreI18N::xlate('It can take several minutes to download and install the upgrade. Be patient.') ?>
 </p>
 
 <dl>

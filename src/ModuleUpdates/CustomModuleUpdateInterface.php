@@ -41,7 +41,14 @@ use Illuminate\Support\Collection;
 interface CustomModuleUpdateInterface
 {
     /**
-     * A unique internal name for this module (during runtime, based on the installation folder).
+     * The name of the module update service
+     *
+     * @return string
+     */
+    public function name(): string;
+  
+    /**
+     * A unique internal name for the module (during runtime, based on the installation folder).
      *
      * @return string
      */

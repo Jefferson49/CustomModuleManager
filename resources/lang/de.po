@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2025-05-29 15:18+0200\n"
-"PO-Revision-Date: 2025-05-29 15:18+0200\n"
+"POT-Creation-Date: 2025-07-06 07:59+0200\n"
+"PO-Revision-Date: 2025-07-06 07:59+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,27 +15,39 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:141
+#: src/CustomModuleManager.php:179
 msgid "Custom Module Manager"
-msgstr ""
+msgstr "Manager für benutzerdefinierte Module"
 
-#: src/CustomModuleManager.php:154
+#: src/CustomModuleManager.php:192
 msgid "A custom module to manage webtrees custom modules."
 msgstr ""
+"Ein benutzerdefiniertes Modul zum Verwalten von benutzerdefinierten webtrees-"
+"Modulen."
 
-#: src/CustomModuleManager.php:383
+#: src/CustomModuleManager.php:420
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
-msgstr ""
+msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:406
+#: src/CustomModuleManager.php:456
+msgid "Rollback Custom Module Update"
+msgstr "Aktualisierung des benutzerdefinierten Moduls rückgängig machen"
+
+#: src/CustomModuleManager.php:457
+msgid "Rollback"
+msgstr "Rückgängig machen"
+
+#: src/CustomModuleManager.php:487
 #, php-format
 msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
 "new module version %s."
 msgstr ""
+"Die Einstellungen für das benutzerdefinierte Modul \"%s\" wurden für die "
+"neue Modul-Version %s aktualisiert."
 
-#: src/CustomModuleManager.php:438
+#: src/CustomModuleManager.php:519
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -43,8 +55,13 @@ msgid ""
 "recommended to deactivate the \"%s\" module, because the identical "
 "functionality is also integrated in the %s module."
 msgstr ""
+"Das benutzerspezifische Modul \"%s\" ist parallel zum benutzerspezifische "
+"Modul %s aktiviert. Dies kann zu unbeabsichtigtem Verhalten führen. Bei "
+"Verwendung des Moduls %s wird dringend empfohlen, das Modul \"%s\" zu "
+"deaktivieren, weil die identische Funktion ebenfalls im Modul %s integriert "
+"ist."
 
-#: src/CustomModuleManager.php:443
+#: src/CustomModuleManager.php:524
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -52,8 +69,12 @@ msgid ""
 "registered the same custom view \"%s\". It is strongly recommended to "
 "deactivate one of the modules."
 msgstr ""
+"Das benutzerspezifische Modul \"%s\" ist parallel zum benutzerspezifische "
+"Modul %s aktiviert. Dies kann zu unbeabsichtigtem Verhalten führen, weil "
+"beide Module die gleiche Custom View \"%s\" registriert haben. Es wird "
+"dringend empfohlen eines der beiden Module zu deaktivieren."
 
-#: src/CustomModuleManager.php:467
+#: src/CustomModuleManager.php:548
 #, php-format
 msgid ""
 "The custom module view \"%s\" is not registered as replacement for the "
@@ -62,19 +83,94 @@ msgid ""
 "strongly recommended to deactivate one of the modules. The path of the "
 "parallel view is: %s"
 msgstr ""
+"Der Custom View \"%s\" ist nicht als Ersatz für den Standard Custom View von "
+"webtrees registriert. Es könnte ein anderes Modul installiert sein, welches "
+"den gleiche Custom View registriert hat. Dies kann zu unerwartetem Verhalten "
+"führen. Es wird dringend empfohlen, eines der Module zu deaktivieren. Der "
+"Pfad für den Custom View ist: %s"
 
-#: resources/views/settings.phtml:20
-msgid "Control panel"
+#: src/ModuleUpdates/GithubModuleUpdate.php:66
+#: src/ModuleUpdates/UrlModuleUpdate.php:63
+#, php-format
+msgid ""
+"Could not create the %s update service. Configuration parameter \"%s\" "
+"missing."
 msgstr ""
+"Der Updatedienst %s konnte nicht erstellt werden. Konfigurationsparameter "
+"\"%s\" fehlt."
 
-#: resources/views/settings.phtml:31
-msgid "Settings"
-msgstr ""
+#: src/RequestHandlers/CustomModuleUpdatePage.php:65
+msgid "Custom Module Updates"
+msgstr "Aktualisierung von benutzerdefinierten Modulen"
 
-#: resources/views/settings.phtml:37
-msgid "Setting A"
-msgstr ""
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:116
+msgid "Create temporary folders…"
+msgstr "Temporäre Ordner anlegen..."
 
-#: resources/views/settings.phtml:42
-msgid "By selecting/unselecting this option, ...."
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:117
+msgid "Backup…"
+msgstr "Sicherung…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:169
+msgid ""
+"This is the latest version of the custom module. No upgrade is available."
 msgstr ""
+"Dies ist die neueste Version des benutzerdefinierten Moduls. Es ist keine "
+"Aktualisierung verfügbar."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:242
+#, php-format
+msgid "A backup of the current module was created in %s seconds."
+msgstr ""
+"Eine Sicherungskopie des aktuellen Moduls wurde in %s Sekunden erstellt."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:361
+msgid ""
+"The module was rolled back to the current version, because the update "
+"creates errors."
+msgstr ""
+"Das Modul wurde auf die aktuelle Version zurückgesetzt, da das Update Fehler "
+"verursacht."
+
+#: resources/views/module_update.phtml:38
+msgid "Module Updates"
+msgstr "Aktualisierungen für Module"
+
+#: resources/views/module_update.phtml:44
+msgid "Folder (within modules_v4)"
+msgstr "Ordner (in modules_v4)"
+
+#: resources/views/module_update.phtml:46
+msgid "Current Version"
+msgstr "Aktuelle Version"
+
+#: resources/views/module_update.phtml:47
+msgid "Latest Version"
+msgstr "Neueste Version"
+
+#: resources/views/module_update.phtml:48
+msgid "Update Service"
+msgstr "Aktualisierungs-Dienst"
+
+#: resources/views/module_update.phtml:105
+msgid "Update module"
+msgstr "Modul aktualisieren"
+
+#: resources/views/settings.phtml:41
+msgid "Update custom modules"
+msgstr "Benutzerdefinierte Module aktualisieren"
+
+#: resources/views/wizard.phtml:35
+msgid "A new version of the custom module is available."
+msgstr "Eine neue Version des benutzerdefinierten Moduls ist verfügbar."
+
+#: resources/views/wizard.phtml:49
+msgid "quit"
+msgstr "Abbrechen"
+
+#, php-format
+#~ msgid ""
+#~ "This is the latest version of the module %s. No upgrade is available."
+#~ msgstr ""
+#~ "Dies ist die neueste Version des Moduls %s. Es ist keine Aktualisierung "
+#~ "verfügbar."

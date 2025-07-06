@@ -41,6 +41,7 @@ use Fisharebest\Webtrees\Services\UpgradeService;
 use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
+use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CustomModuleUpdateInterface;
@@ -161,16 +162,16 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $latest_version = $this->module_update_service->customModuleLatestVersion();
 
         if ($latest_version === '') {
-            throw new HttpServerErrorException(I18N::translate('No upgrade information is available.'));
+            throw new HttpServerErrorException(MoreI18N::xlate('No upgrade information is available.'));
         }
 
         if (version_compare($this->module_update_service->customModuleVersion(), $latest_version) >= 0) {
-            $message = I18N::translate('This is the latest version of the module %s. No upgrade is available.', $this->module_update_service->getModuleName());
+            $message = I18N::translate('This is the latest version of the custom module. No upgrade is available.');
             throw new HttpServerErrorException($message);
         }
 
         /* I18N: %s is a version number, such as 1.2.3 */
-        $alert = I18N::translate('Upgrade the module to version %s.', e($latest_version));
+        $alert = MoreI18N::xlate('Upgrade the module to version %s.', e($latest_version));
 
         return response(view('components/alert-success', [
             'alert' => $alert,
@@ -191,8 +192,8 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $root_filesystem->createDirectory(self::BACKUP_FOLDER);
 
         return response(view('components/alert-success', [
-            'alert' =>  I18N::translate('The folder %s has been created.', e(self::UPGRADE_FOLDER)) . "\n" . 
-                        I18N::translate('The folder %s has been created.',  e(self::BACKUP_FOLDER)),
+            'alert' =>  MoreI18N::xlate('The folder %s has been created.', e(self::UPGRADE_FOLDER)) . "\n" . 
+                        MoreI18N::xlate('The folder %s has been created.', e(self::BACKUP_FOLDER)),
         ]));
     }
 
@@ -235,7 +236,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         }
 
         $end_time = Registry::timeFactory()->now();
-        $seconds  = I18N::number($end_time - $start_time, 2);
+        $seconds  = MoreI18N::number($end_time - $start_time, 2);
 
         return response(view('components/alert-success', [
             'alert' => I18N::translate('A backup of the current module was created in %s seconds.', $seconds),
@@ -263,7 +264,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $seconds  = I18N::number($end_time - $start_time, 2);
 
         return response(view('components/alert-success', [
-            'alert' => I18N::translate('%1$s KB were downloaded in %2$s seconds.', $kb, $seconds),
+            'alert' => MoreI18N::xlate('%1$s KB were downloaded in %2$s seconds.', $kb, $seconds),
         ]));
     }
 
@@ -320,8 +321,8 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
 
         $url    = route(CustomModuleUpdatePage::class);
-        $alert  = I18N::translate('The upgrade is complete.');
-        $button = '<a href="' . e($url) . '" class="btn btn-primary">' . I18N::translate('continue') . '</a>';
+        $alert  = MoreI18N::xlate('The upgrade is complete.');
+        $button = '<a href="' . e($url) . '" class="btn btn-primary">' . MoreI18N::xlate('continue') . '</a>';
 
         return response(view('components/alert-success', [
             'alert' => $alert . ' ' . $button,
@@ -358,7 +359,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
         $url    = route(CustomModuleUpdatePage::class);
         $alert  = I18N::translate('The module was rolled back to the current version, because the update creates errors.');
-        $button = '<a href="' . e($url) . '" class="btn btn-primary">' . I18N::translate('continue') . '</a>';
+        $button = '<a href="' . e($url) . '" class="btn btn-primary">' . MoreI18N::xlate('continue') . '</a>';
 
         return response(view('components/alert-danger', [
             'alert' => $alert . ' ' . $button,
@@ -432,7 +433,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 $destination->write($attributes->path(), $source->read($attributes->path()));
 
                 if ($timeout_service->isTimeNearlyUp()) {
-                    throw new HttpServerErrorException(I18N::translate('The server’s time limit has been reached.'));
+                    throw new HttpServerErrorException(MoreI18N::xlate('The server’s time limit has been reached.'));
                 }
             }
         }

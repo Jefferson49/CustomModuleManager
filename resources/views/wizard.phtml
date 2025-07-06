@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 use Fisharebest\Webtrees\I18N;
+use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardConfirm;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
 
@@ -17,13 +18,13 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 
 ?>
 
-<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => I18N::translate('Control panel'), $title]]) ?>
+<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => MoreI18N::xlate('Control panel'), $title]]) ?>
 
 <h1><?= $title ?></h1>
 
 <?php if ($latest_version === '') : ?>
     <div class="alert alert-warning">
-        <?= I18N::translate('No upgrade information is available.') ?>
+        <?= MoreI18N::xlate('No upgrade information is available.') ?>
     </div>
 <?php elseif (version_compare($current_version, $latest_version) >= 0) : ?>
     <div class="alert alert-info">
@@ -35,14 +36,14 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
     </p>
 
     <p>
-        <?= I18N::translate('Depending on your server configuration, you may be able to upgrade automatically.') ?>
+        <?= MoreI18N::xlate('Depending on your server configuration, you may be able to upgrade automatically.') ?>
     </p>
 
     <form method="post" action="<?= e(route(ModuleUpgradeWizardConfirm::class, [
                 'module_name'    => $module_name,
             ])) ?>" class="form-horizontal">
         <button type="submit" class="btn btn-primary" name="continue" value="1">
-            <?= I18N::translate('continue') ?>
+            <?= MoreI18N::xlate('continue') ?>
         </button>
         <a href="<?= route(CustomModuleUpdatePage::class) ?>" type="submit" class="btn btn-secondary">
             <?= I18N::translate('quit') ?>

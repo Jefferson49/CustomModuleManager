@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 use Fisharebest\Webtrees\I18N;
+use Jefferson49\Webtrees\Internationalization\MoreI18N;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 
@@ -13,7 +15,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgrad
 
 ?>
 
-<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => I18N::translate('Control panel'), $title]]) ?>
+<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => MoreI18N::xlate('Control panel'), $title]]) ?>
 
 <h1><?= $title ?></h1>
 
@@ -38,13 +40,13 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgrad
 
     <thead>
         <tr>
-            <th><?= I18N::translate('Title') ?></th>
+            <th><?= MoreI18N::xlate('Title') ?></th>
             <th><?= I18N::translate('Folder (within modules_v4)') ?></th>
-            <th><?= I18N::translate('Theme') ?></th>
+            <th><?= MoreI18N::xlate('Theme') ?></th>
             <th><?= I18N::translate('Current Version') ?></th>
             <th><?= I18N::translate('Latest Version') ?></th>
             <th><?= I18N::translate('Update Service') ?></th>
-            <th><?= I18N::translate('Update') ?></th>
+            <th><?= MoreI18N::xlate('Update') ?></th>
         </tr>
     </thead>
 
@@ -66,7 +68,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgrad
 				<?php $is_theme = $themes->contains($module) ?>			
                  <td class="text-center" data-sort="<?= $is_theme === true ? '1' : '0' ?>">
 					<?php if ($is_theme) : ?>
-						<?= I18N::translate('yes') ?>
+						<?= MoreI18N::xlate('yes') ?>
 					<?php endif ?>						
                 </td>
 
@@ -84,9 +86,10 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgrad
 
                 <!--Update service available-->
 				<?php $update_service_available = array_key_exists($module->name(), $module_update_config) ?>
+				<?php $module_upgrade_service = CustomModuleUpdateFactory::make($module->name()); ?>
                 <td class="text-center" data-sort="<?= $update_service_available === true ? '1' : '0' ?>">
 					<?php if ($update_service_available) : ?>
-						<?= I18N::translate('yes') ?>
+						<?= $module_upgrade_service->name() ?>
 					<?php endif ?>						
                 </td>
 

@@ -36,6 +36,7 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Services\UpgradeService;
 use Fisharebest\Webtrees\Validator;
+use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Psr\Http\Message\ResponseInterface;
@@ -83,7 +84,7 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
 
         $module_upgrade_service = CustomModuleUpdateFactory::make($module_name);
 
-        $title = I18N::translate('Upgrade wizard');
+        $title = MoreI18N::xlate('Upgrade wizard');
 
         $upgrade_available = $module_upgrade_service->upgradeAvailable();
 
@@ -111,12 +112,12 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
     private function wizardSteps(string $module_name, string $download_url): array
     {
         return [
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_CHECK, 'module_name' => $module_name])    => I18N::translate('Upgrade wizard'),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_CHECK, 'module_name' => $module_name])    => MoreI18N::xlate('Upgrade wizard'),
                 route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_PREPARE, 'module_name' => $module_name])  => I18N::translate('Create temporary folders…'),
                 route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_BACKUP, 'module_name' => $module_name])   => I18N::translate('Backup…'),
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_DOWNLOAD, 'module_name' => $module_name]) => I18N::translate('Download %s…', e($download_url)),
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_UNZIP, 'module_name' => $module_name])    => I18N::translate('Unzip %s to a temporary folder…', e(basename($download_url))),
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_COPY, 'module_name' => $module_name])     => I18N::translate('Copy files…'),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_DOWNLOAD, 'module_name' => $module_name]) => MoreI18N::xlate('Download %s…', e($download_url)),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_UNZIP, 'module_name' => $module_name])    => MoreI18N::xlate('Unzip %s to a temporary folder…', e(basename($download_url))),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_COPY, 'module_name' => $module_name])     => MoreI18N::xlate('Copy files…'),
             ];
     }
 }
