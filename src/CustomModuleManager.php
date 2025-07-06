@@ -35,6 +35,7 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager;
 
+use Fig\Http\Message\RequestMethodInterface;
 use Fig\Http\Message\StatusCodeInterface;
 use Fisharebest\Localization\Translation;
 use Fisharebest\Webtrees\FlashMessages;
@@ -56,6 +57,9 @@ use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardConfirm;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardStep;
 use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
 use GuzzleHttp\Exception\GuzzleException;
@@ -102,8 +106,13 @@ class CustomModuleManager extends AbstractModule implements
     //Prefences, Settings
 	public const PREF_SETTING = 'setting';
 
+    //Routes
+    public const ROUTE_WIZARD_PAGE = '/module_upgrade_wizard_page';
+    public const ROUTE_WIZARD_STEP = '/module_upgrade_wizard_step';
+    public const ROUTE_WIZARD_CONFIRM = '/module_upgrade_wizard_confirm';
 
-   /**
+
+    /**
      * CustomModuleManager constructor.
      */
     public function __construct()
@@ -127,6 +136,24 @@ class CustomModuleManager extends AbstractModule implements
 
 		// Register a namespace for the views.
 		View::registerNamespace(self::viewsNamespace(), $this->resourcesFolder() . 'views/');
+
+        //Register a route for the upgrade wizard page
+        $router = Registry::routeFactory()->routeMap();                 
+        $router
+        ->get(ModuleUpgradeWizardPage::class, self::ROUTE_WIZARD_PAGE)
+        ->allows(RequestMethodInterface::METHOD_POST);
+
+        //Register a route for a upgrade wizard step
+        $router = Registry::routeFactory()->routeMap();                 
+        $router
+        ->get(ModuleUpgradeWizardStep::class, self::ROUTE_WIZARD_STEP)
+        ->allows(RequestMethodInterface::METHOD_POST);
+
+        //Register a route for upgrade wizard confirm
+        $router = Registry::routeFactory()->routeMap();                 
+        $router
+        ->get(ModuleUpgradeWizardConfirm::class, self::ROUTE_WIZARD_CONFIRM)
+        ->allows(RequestMethodInterface::METHOD_POST);
     }
 	
     /**

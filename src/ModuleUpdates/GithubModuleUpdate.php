@@ -32,19 +32,23 @@ declare(strict_types=1);
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
 use Fig\Http\Message\StatusCodeInterface;
-use Fisharebest\Webtrees\Module\ModuleCustomInterface;
+use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Registry;
+use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Validator;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Support\Collection;
+use Psr\Http\Message\ServerRequestInterface;
 
 
 /**
  * Update API for a custom module, which is hosted in a Github repository
  */
-class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdateInterface 
+class GithubModuleUpdate implements CustomModuleUpdateInterface 
 {
     //The custom module
-    protected ModuleCustomInterface $module;
+    protected ?AbstractModule $module;
 
     //The custom module name
     protected string $module_name;
@@ -58,56 +62,64 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     //The asset name (without tag and tag prefix), which the module uses for downloads in Github releases
     protected string $asset_name;
 
-    //The installation folder of the custom module (in modules_v4)
-    protected string $installation_folder_name;
+    //The top level folder in the ZIP file of the custom module
+    protected string $zip_folder;
 
 
     /**
      * @param string $github_repo                   The Github repository of the module, e.g. Jefferson49/CustomModuleManager
      * @param string $tag_prefix                    The tag prefix, which is used for Github releases, e.g. "v" in "v1.2.3"
-     * @param string $installation_folder_name      The installation folder of the custom module (in modules_v4)
+     * @param string $zip_folder                    The top level folder in the ZIP file of the custom module
      * @param string $module_name                   The custom module name
      * @param string $asset_name                    The asset name (without tag and tag prefix), which the module uses for downloads in Github releases
-     * @param        ModuleCustomInterface $module  The custom module; or null if not installed yet
+     * @param AbstractModule $module  The custom module; or null if not installed yet
      * 
      * @return void
      */    
+
     public function __construct(
-        string $github_repo, 
-        $tag_prefix, 
-        $installation_folder_name, 
-        string $module_name = '', 
-        $asset_name = '', 
-        ?ModuleCustomInterface $module = null
+        string $github_repo,
+        string $tag_prefix, 
+        string $zip_folder,
+        string $module_name = '',
+        string $asset_name = '',
+        ?AbstractModule $module = null
     ) {
         $this->github_repo = $github_repo;
         $this->tag_prefix  = $tag_prefix;
-        $this->installation_folder_name = $installation_folder_name;
-        $this->module_name = $module_name !== '' ? $module_name : parent::defaultModuleName($installation_folder_name);
-        $this->asset_name  = $asset_name !== '' ? $asset_name : $this->defaultAssetName($installation_folder_name);
+        $this->zip_folder  = $zip_folder;
+        $this->module_name = $module_name !== '' ? $module_name : self::defaultModuleName($zip_folder);
+        $this->asset_name  = $asset_name !== '' ? $asset_name : $this->defaultAssetName($zip_folder);
         $this->module      = $module;
     }
 
     /**
      * Alternative constructor for an installed custom module
      * 
-     * @param ModuleCustomInterface $module       The custom module
+     * @param AbstractModule $module       The custom module
      * @param string                $github_repo  The Github repository of the module, e.g. Jefferson49/CustomModuleManager
      * @param string                $tag_prefix   The tag prefix, which is used for Github releases, e.g. "v" in "v1.2.3"
      * @param string                $asset_name   The asset name (without tag and tag prefix), which the module uses for downloads in Github releases
+     * @param string                $zip_folder   The top level folder in the ZIP file of the custom module
      * 
      * @return GithubModuleUpdate
      */    
-    public static function constructFromModule(ModuleCustomInterface $module, string $github_repo, $tag_prefix, $asset_name = '')
+    public static function constructFromModule(
+        AbstractModule $module,
+        string $github_repo,
+        string $tag_prefix,
+        string $zip_folder = '',
+        string $asset_name = ''
+    ): GithubModuleUpdate 
     {
-        $installation_folder_name = parent::getInstallationFolderFromModuleName($module->name());
+        $installation_folder = self::getInstallationFolderFromModuleName($module->name());
 
         return new self(
             $github_repo, 
             $tag_prefix, 
-            $installation_folder_name,
+            $zip_folder !== '' ? $zip_folder : $installation_folder,
             $module->name(),
-            self::defaultAssetName($installation_folder_name),
+            $asset_name !== '' ? $asset_name  : self::defaultAssetName($installation_folder),
             $module
         );
     }
@@ -117,10 +129,24 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      *
      * @return string
      */
-    final public function name(): string
+    public function name(): string
     {
         return $this->module_name;
     }
+
+    /**
+     * The version of this module.
+     *
+     * @return string
+     */
+    public function customModuleVersion(): string
+    {
+        if ($this->module === null) {
+            return '';
+        }
+
+        return $this->module->customModuleVersion();
+    }  
 
     /**
      * A URL that will provide the latest version of this module.
@@ -129,9 +155,13 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function customModuleLatestVersionUrl(): string
     {
-        //If the installed module is available, get URL from the module
+        //If the installed module is available, try to get the URL from the module
         if ($this->module !== null) {
-            return $this->module->customModuleLatestVersionUrl();
+            $url = $this->module->customModuleLatestVersionUrl();
+
+            if ($url !== '') {
+                return $url;
+            }
         }
 
         //As default, use the generic Github API
@@ -161,7 +191,21 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function getInstallationFolder(): string {
 
-        return $this->installation_folder_name;
+        if ($this->module === null ) {
+            return '';
+        }
+
+        return self::getInstallationFolderFromModuleName($this->module->name());
+    }
+
+    /**
+     * The top level folder in the ZIP file of the custom module
+     *
+     * @return string
+     */
+    public function getZipFolder(): string {
+
+        return $this->zip_folder;
     }
 
     /**
@@ -171,9 +215,13 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function customModuleLatestVersion(): string
     {
-        //If the installed module is available, get latest version from the module
+        //If the installed module is available, try to get latest version from the module
         if ($this->module !== null) {
-            return $this->module->customModuleLatestVersion();
+            $version = $this->module->customModuleLatestVersion();
+
+            if ($version !== '') {
+                return $version;
+            }
         }
 
         //As default, try to get the latest version from Github
@@ -181,7 +229,6 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         if ($this->github_repo = '') {
             return '';
         }
-
 
         return Registry::cache()->file()->remember(
             $this->module_name . '-latest-version',
@@ -221,14 +268,127 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     }
 
     /**
+     * Whether an upgrade is available for the custom module
+     *
+     * @return bool
+     */
+    public function upgradeAvailable(): bool
+    {
+        if ($this->module === null) {
+            return false;
+        }
+        
+        $latest_version  = $this->module->customModuleLatestVersion();
+        $current_version = $this->module->customModuleVersion();
+
+        return version_compare($latest_version, $current_version) > 0;
+    }
+
+    /**
      * The default asset name for a Github release (based on the installation folder name)
      * 
-     * @param string $installation_folder_name
+     * @param string $installation_folder The installation folder of the custom module
      * 
      * @return string
      */
-    public static function defaultAssetName(string $installation_folder_name): string
+    public static function defaultAssetName(string $installation_folder): string
     {
-        return $installation_folder_name . '_';
+        return $installation_folder . '_';
     }
+
+    /**
+     * Get params for this custom module update service
+     * 
+     * @param GithubModuleUpdate $github_module_update
+     * 
+     * @return array<string>
+     */
+    public static function getParams(GithubModuleUpdate $github_module_update): array
+    {
+        return [
+            'module_name' => $github_module_update->module_name,
+            'github_repo' => $github_module_update->github_repo,
+            'tag_prefix'  => $github_module_update->tag_prefix,
+            'zip_folder'  => $github_module_update->zip_folder,
+            'asset_name'  => $github_module_update->asset_name,
+        ];
+    }
+
+    /**
+     * Create a custom module upgrade service from a request
+     * 
+     * @param ServerRequestInterface $request         T
+     *
+     * @return GithubModuleUpdate
+     */    
+    public static function getModuleUpdateServiceFromRequest(ServerRequestInterface $request) : GithubModuleUpdate {
+
+        $module_name         = Validator::queryParams($request)->string('module_name', '');
+        $github_repo         = Validator::queryParams($request)->string('github_repo', '');
+        $tag_prefix          = Validator::queryParams($request)->string('tag_prefix', '');
+        $zip_folder          = Validator::queryParams($request)->string('zip_folder', '');
+        $asset_name          = Validator::queryParams($request)->string('asset_name', '');
+
+        $module_service = New ModuleService();
+        $module = $module_service->findByName($module_name);
+
+        //Create the upgrade service for the module
+        if ($module !== null) {
+            return GithubModuleUpdate::constructFromModule(
+                $module,
+                $github_repo,
+                $tag_prefix,
+                $zip_folder,
+                $asset_name 
+            );
+        }
+        else {
+            return new GithubModuleUpdate(
+                $github_repo,
+                $tag_prefix,
+                $zip_folder,
+                $module_name,
+                $asset_name
+            );           
+        }
+    }
+
+    /**
+     * Get installation folder name from custom module name
+     * 
+     * @param string $module_name  A custom module name
+     * 
+     * @return string
+     */
+    public static function getInstallationFolderFromModuleName(string $module_name): string
+    {
+        if (preg_match("/_.*_/", $module_name) === false) {
+            return '';
+        }
+
+        //Return module name without leading and trailing '_'
+        return substr($module_name, 1, strlen($module_name) -2);
+    }
+
+    /**
+     * A collection of folder names within the module, which shall be cleaned after an upgrade
+     *
+     * @return Collection<int,string>
+     */
+    public function getFoldersToClean(): Collection
+    {
+        return new Collection([]);
+    }       
+
+    /**
+     * A default name for a custom module
+     * 
+     * @param string $installation_folder_name  The installation folder in modules_v4
+     * 
+     * @return string
+     */
+    public static function defaultModuleName(string $installation_folder_name): string
+    {
+        return '_' . $installation_folder_name . '_';
+    }  
 }

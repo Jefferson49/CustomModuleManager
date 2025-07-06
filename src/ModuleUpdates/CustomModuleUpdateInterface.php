@@ -31,6 +31,7 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
+use Illuminate\Support\Collection;
 
 /**
  * Interface for custom module updates 
@@ -42,7 +43,14 @@ interface CustomModuleUpdateInterface
      *
      * @return string
      */
-    final public function name(): string;
+    public function name(): string;
+
+    /**
+     * The version of this module.
+     *
+     * @return string
+     */
+    public function customModuleVersion(): string;    
 
     /**
      * A URL that will provide the latest version of this module.
@@ -50,6 +58,13 @@ interface CustomModuleUpdateInterface
      * @return string
      */
     public function customModuleLatestVersionUrl(): string;
+
+    /**
+     * Fetch the latest version of this module
+     *
+     * @return string
+     */
+    public function customModuleLatestVersion(): string;
 
     /**
      * Where can we download the latest version of the module.
@@ -64,4 +79,25 @@ interface CustomModuleUpdateInterface
      * @return string
      */
     public function getInstallationFolder(): string;
+
+    /**
+     * The top level folder in the ZIP file of the custom module
+     *
+     * @return string
+     */
+    public function getZipFolder(): string;
+    
+    /**
+     * A collection of folder names within the module, which shall be cleaned after an upgrade
+     *
+     * @return Collection<int,string>
+     */
+    public function getFoldersToClean(): Collection;
+
+    /**
+     * Whether an upgrade is available for the custom module
+     *
+     * @return bool
+     */
+    public function upgradeAvailable(): bool;
 }

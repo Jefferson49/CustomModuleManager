@@ -1,0 +1,56 @@
+<?php
+
+declare(strict_types=1);
+
+use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
+use Fisharebest\Webtrees\I18N;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardConfirm;
+
+/**
+ * @var string $current_version
+ * @var string $latest_version
+ * @var string $title
+ * @var string $module_name
+ * @var string $github_repo
+ * @var string $tag_prefix
+ * @var string $zip_folder
+ * @var string $asset_name
+ */
+
+?>
+
+<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => I18N::translate('Control panel'), $title]]) ?>
+
+<h1><?= $title ?></h1>
+
+<?php if ($latest_version === '') : ?>
+    <div class="alert alert-warning">
+        <?= I18N::translate('No upgrade information is available.') ?>
+    </div>
+<?php elseif (version_compare($current_version, $latest_version) >= 0) : ?>
+    <div class="alert alert-info">
+        <?= I18N::translate('This is the latest version of the custom module. No upgrade is available.') ?>
+    </div>
+<?php else : ?>
+    <p>
+        <?= I18N::translate('A new version of the custom module is available.') ?>
+    </p>
+
+    <p>
+        <?= I18N::translate('Depending on your server configuration, you may be able to upgrade automatically.') ?>
+    </p>
+
+    <form method="post" action="<?= e(route(ModuleUpgradeWizardConfirm::class, [
+                'module_name' => $module_name,
+                'github_repo' => $github_repo,
+                'tag_prefix'  => $tag_prefix,
+                'zip_folder'  => $zip_folder,
+                'asset_name'  => $asset_name,
+            ])) ?>" class="form-horizontal">
+        <button type="submit" class="btn btn-primary" name="continue" value="1">
+            <?= I18N::translate('continue') ?>
+        </button>
+
+        <?= csrf_field() ?>
+    </form>
+<?php endif ?>

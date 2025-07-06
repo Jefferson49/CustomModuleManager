@@ -31,6 +31,8 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
+use Illuminate\Support\Collection;
+
 
 /**
  * Abstract class with common functions for custom module updates
@@ -71,5 +73,15 @@ abstract class AbstractModuleUpdate
 
         //Return module name without leading and trailing '_'
         return substr($module_name, 1, strlen($module_name) -2);
+    }
+
+    /**
+     * A collection of folder names within the module, which shall be cleaned after an upgrade
+     *
+     * @return Collection<int,string>
+     */
+    public function getFoldersToClean(): Collection
+    {
+        return new Collection([]);
     }    
 }

@@ -5,15 +5,23 @@ declare(strict_types=1);
 namespace Jefferson49\Webtrees\Module\CustomModuleManager;
 
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
+use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\View;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 
 
 /**
  * @var string $title
  * @var string $setting
  */
+
+$module_service = New ModuleService();
+$custom_updates = $module_service
+	->findByInterface(ModuleCustomInterface::class)
+	->filter(static fn (ModuleCustomInterface $module): bool => version_compare($module->customModuleLatestVersion(), $module->customModuleVersion()) > 0);
 
 ?>
 
@@ -45,6 +53,18 @@ use Jefferson49\Webtrees\Internationalization\MoreI18N;
 		</div>
 	</fieldset>
 
+    <div class="row mb-3">
+		<div class="col">	
+			<a href="<?= e(route(ModuleUpgradeWizardPage::class, [
+					'module_name' => '_change_language_with_url_',
+					'github_repo' => 'Jefferson49/ChangeLanguageWithURL',
+					'tag_prefix'  => 'v',
+					'zip_folder'  => 'change_language_with_url',
+					'asset_name'  => '',
+				])) ?>" type="submit" class="btn btn-secondary">
+				<?= I18N::translate('Upgrade module') ?>
+			</a>
+		</div>
     <div class="row mb-3">
 		<div class="col">
 			<p></p>
