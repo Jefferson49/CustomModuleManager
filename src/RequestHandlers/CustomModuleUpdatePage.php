@@ -33,6 +33,10 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers;
 
 use Fisharebest\Webtrees\Http\ViewResponseTrait;
 use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Module\ModuleCustomInterface;
+use Fisharebest\Webtrees\Module\ModuleThemeInterface;
+use Fisharebest\Webtrees\Services\ModuleService;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -54,9 +58,14 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $this->layout = 'layouts/administration';
+        
+        $module_service = New ModuleService();
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::module_update', [
-            'title' => I18N::translate('Custom Module Updates'),
+            'title'                => I18N::translate('Custom Module Updates'),
+            'custom_modules'       => $module_service->findByInterface(ModuleCustomInterface::class, true),
+            'themes'               => $module_service->findByInterface(ModuleThemeInterface::class, true),
+            'module_update_config' => ModuleUpdateServiceConfiguration::getModuleUpdateServiceConfiguration(),
         ]);
     }
 }

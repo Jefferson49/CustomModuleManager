@@ -3,22 +3,13 @@
 declare(strict_types=1);
 
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
-use Fisharebest\Webtrees\Module\ModuleCustomInterface;
-use Fisharebest\Webtrees\Module\ModuleThemeInterface;
-use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\I18N;
-use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 
 /**
  * @var string $title
  */
-
-$module_service       = New ModuleService();
-$custom_modules       = $module_service->findByInterface(ModuleCustomInterface::class, true);
-$themes               = $module_service->findByInterface(ModuleThemeInterface::class, true);
-$module_update_config = ModuleUpdateServiceConfiguration::getModuleUpdateServiceConfiguration();
 
 ?>
 
