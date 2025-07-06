@@ -60,7 +60,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     public function __construct(string $module_name, array  $params) {
 
         $module_service = New ModuleService();
-        $module = $module_service->findByName($module_name);
+        $module = $module_service->findByName($module_name, true);
         $installation_folder = self::getInstallationFolderFromModuleName($module_name);
 
         $this->module_name = $module_name;
@@ -158,7 +158,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
         //As default, try to get the latest version from Github
 
-        if ($this->github_repo = '') {
+        if ($this->github_repo === '') {
             return '';
         }
 
@@ -191,4 +191,18 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
         return $tag_name;
     }
+
+
+    /**
+     * Whether an upgrade is available for the custom module
+     *
+     * @return bool
+     */
+    public function upgradeAvailable(): bool
+    {
+        $latest_version  = $this->customModuleLatestVersion();
+        $current_version = $this->customModuleVersion();
+
+        return version_compare($latest_version, $current_version) > 0;
+    }    
 }

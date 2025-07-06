@@ -20,7 +20,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 
 $module_service = New ModuleService();
 $custom_updates = $module_service
-	->findByInterface(ModuleCustomInterface::class)
+	->findByInterface(ModuleCustomInterface::class, true)
 	->filter(static fn (ModuleCustomInterface $module): bool => version_compare($module->customModuleLatestVersion(), $module->customModuleVersion()) > 0);
 
 ?>

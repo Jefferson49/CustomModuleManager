@@ -450,7 +450,7 @@ class CustomModuleManager extends AbstractModule implements
     private function checkCustomViewAvailability() : void {
 
         $module_service = new ModuleService();
-        $custom_modules = $module_service->findByInterface(ModuleCustomInterface::class);
+        $custom_modules = $module_service->findByInterface(ModuleCustomInterface::class, true);
         $alternative_view_found = false;
 
         foreach($this->custom_view_list as $custom_view) {

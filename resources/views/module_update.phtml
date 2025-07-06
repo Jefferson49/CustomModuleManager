@@ -16,14 +16,39 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModule
 
 
 $module_service = New ModuleService();
-$custom_modules = $module_service->findByInterface(ModuleCustomInterface::class);
-$themes         = $module_service->findByInterface(ModuleThemeInterface::class);
+$custom_modules = $module_service->findByInterface(ModuleCustomInterface::class, true);
+$themes         = $module_service->findByInterface(ModuleThemeInterface::class, true);
 
 $module_update_config = [
-	'_change_language_with_url_' =>  'Jefferson49/ChangeLanguageWithURL',
-	'_extended_import_export_'   =>  'Jefferson49/ExtendedImportExport',
-	'_oauth2_client_'            =>  'Jefferson49/webtrees-oauth2-client',
-	'_repository_hierarchy_'     =>  'Jefferson49/RepositoryHierarchy',
+	'_change_language_with_url_'      =>  'Jefferson49/ChangeLanguageWithURL',
+	'_extended_import_export_'        =>  'Jefferson49/ExtendedImportExport',
+	'_oauth2_client_'                 =>  'Jefferson49/webtrees-oauth2-client',
+	'_repository_hierarchy_'          =>  'Jefferson49/RepositoryHierarchy',
+
+	'_jc-fancy-imagebar'              =>  'JustCarmen/webtrees-fancy-imagebar',
+	'_jc-fancy-research-links_'       =>  'JustCarmen/webtrees-fancy-research-links',
+	'_jc-fancy-treeview_'             =>  'JustCarmen/webtrees-fancy-treeview',
+	'_webtrees-simple-footer_'         =>  'JustCarmen/webtrees-simple-footer',
+	'_webtrees-simple-media-display_' =>  'JustCarmen/webtrees-simple-media-display',
+	'_webtrees-simple-menu_'          =>  'JustCarmen/webtrees-simple-menu',
+	'_jc-theme-justlight_'            =>  'JustCarmen/webtrees-theme-justlight',    
+
+    '_webtrees-primer-theme_'         =>  'ekdahl/webtrees-primer-theme',
+
+    '_GVExport_'                      =>  'Neriderc/GVExport',
+
+	'_webtrees-descendants-chart_'    =>  'magicsunday/webtrees-descendants-chart',
+    '_webtrees-fan-chart_'            =>  'magicsunday/webtrees-fan-chart',
+	'_webtrees-pedigree-chart_'       =>  'magicsunday/webtrees-pedigree-chart',
+
+	'_myartjaub_ruraltheme_'          =>  'jon48/webtrees-theme-rural',
+
+	'_huhwt-cce_'                     =>  'huhwt/huhwt-cce',
+	'_huhwt-xtv_'                     =>  'huhwt/huhwt-xtv',
+	'_huhwt-wttam_'                   =>  'huhwt/huhwt-wttam',
+	'_huhwt-wtlin_'                   =>  'huhwt/huhwt-wtlin',
+	'_huhwt-tsm_'                     =>  'huhwt/huhwt-tsm',
+	'_huhwt-mtv_'                     =>  'huhwt/huhwt-mtv',
 ];
 
 ?>
