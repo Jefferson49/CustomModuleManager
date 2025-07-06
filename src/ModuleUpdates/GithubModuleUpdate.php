@@ -115,6 +115,10 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             }
         } catch (GuzzleException $ex) {
             // Can't connect to the server?
+
+            //ToDo
+            //Code from: UpgradeService
+            //Site::setPreference('LATEST_WT_VERSION_ERROR', $ex->getMessage());
         }
 
         return $download_url;
@@ -179,6 +183,10 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             }
         } catch (GuzzleException $ex) {
             // Can't connect to the server?
+
+            //ToDo
+            //Code from: UpgradeService
+            //Site::setPreference('LATEST_WT_VERSION_ERROR', $ex->getMessage());            
         }
 
         return $tag_name;
