@@ -34,24 +34,6 @@ $custom_updates = $module_service
 <form method="post" id="settings-form">
 	<?= csrf_field() ?>
 	<input type="hidden" name="save" id="save" value="1">
-  
-	<div class="h4">
-		<?= I18N::translate('Settings') ?>	
-	</div>
-
-	<fieldset class="mb-3">
-		<div class="row">
-			<legend class="col-form-label col-sm-3">
-				<?= I18N::translate('Setting') ?>
-			</legend>
-			<div class="col-sm-9">
-				<?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_SETTING, 'checked' => $setting]) ?>
-				<div class="form-text">
-					<?= I18N::translate('By selecting/unselecting this option, ....'); ?>
-				</div>
-			</div>
-		</div>
-	</fieldset>
 
     <div class="row mb-3">
 		<div class="col">	
@@ -59,16 +41,7 @@ $custom_updates = $module_service
 				<?= I18N::translate('Update custom modules') ?>
 			</a>
 		</div>
-    <div class="row mb-3">
-		<div class="col">
-			<p></p>
-			<button type="submit" class="btn btn-primary">
-				<?= view('icons/save') ?>
-				<?= MoreI18N::xlate('save') ?>
-			</button>
-		</div>		
 	</div>
-
 </form>	
 
 <?php View::push('javascript') ?>
