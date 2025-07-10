@@ -213,7 +213,6 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         if ($this->module_update_service instanceof(VestaModuleUpdate::class)) {
 
             $vesta_module_names = ModuleUpdateServiceConfiguration::getModuleNames(true);
-            $this->webtrees_upgrade_service->startMaintenanceMode();
 
             foreach ($vesta_module_names as $standard_module_name => $module_name) {
                 $vesta_installation_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name);
@@ -222,8 +221,6 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
                 self::copyFiles($source_filesystem, $destination_filesystem);
             }
-
-            $this->webtrees_upgrade_service->endMaintenanceMode();
         }
         else {
             $source_filesystem      = Registry::filesystem()->root($installation_folder);
@@ -302,11 +299,29 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      */
     private function wizardStepCopyAndCleanUp(string $zip_file, string $zip_folder, string $installation_folder, Collection $folders_to_clean = new Collection([])): ResponseInterface
     {
-        $source_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . $zip_folder);
-        $destination_filesystem = Registry::filesystem()->root($installation_folder);
-
         $this->webtrees_upgrade_service->startMaintenanceMode();
-        $this->webtrees_upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
+
+        //If Vesta
+        if ($this->module_update_service instanceof(VestaModuleUpdate::class)) {
+
+            $vesta_module_names = ModuleUpdateServiceConfiguration::getModuleNames(true);
+
+            foreach ($vesta_module_names as $standard_module_name => $module_name) {
+                $vesta_installation_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name);
+                $standard_vesta_folder     = AbstractModuleUpdate::getInstallationFolderFromModuleName($standard_module_name);
+                $source_filesystem         = Registry::filesystem()->root(self::UPGRADE_FOLDER . Webtrees::MODULES_PATH . $standard_vesta_folder);
+                $destination_filesystem    = Registry::filesystem()->root(Webtrees::MODULES_PATH . $vesta_installation_folder);
+
+                $this->webtrees_upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
+            }
+        }
+        else {
+            $source_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . $zip_folder);
+            $destination_filesystem = Registry::filesystem()->root($installation_folder);
+
+            $this->webtrees_upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
+        }
+
         $this->webtrees_upgrade_service->endMaintenanceMode();
 
         // While we have time, clean up any old files.

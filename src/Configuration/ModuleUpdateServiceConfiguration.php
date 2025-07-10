@@ -90,10 +90,12 @@ class ModuleUpdateServiceConfiguration
 
     private const MODULE_TITLES = [
         '_extended_import_export_'        =>  'Extended Import/Export',
+        '_vesta_common_'                  =>  '⚶ Vesta Common'
     ];
 
     private const MODULE_DESCRIPTIONS = [
         '_extended_import_export_'        =>  'A custom module for advanced GEDCOM import, export, and filter operations. The module also supports remote downloads/uploads/filters via URL requests.',
+        '_vesta_common_'                  =>  'A module providing common classes and translations for other "Vesta" custom modules. Make sure to enable this module if any other Vesta module is enabled.'
     ];
 
     /**
@@ -115,7 +117,9 @@ class ModuleUpdateServiceConfiguration
         foreach($module_update_service_config as $module_name => $config) {
             if ($getVesta) {
                 //Only add to list if has Vesta update service 
-                if (isset($module_update_service_config[$module_name]['update_service']) && $module_update_service_config[$module_name]['update_service'] === 'VestaModuleUpdate') {
+                if (    isset($module_update_service_config[$module_name]['update_service'])
+                     && $module_update_service_config[$module_name]['update_service'] === 'VestaModuleUpdate') {
+
                     $module_names[$module_name] = $module_name;
                 }
             }
@@ -129,18 +133,20 @@ class ModuleUpdateServiceConfiguration
             $module_name = $custom_module->name();
 
             if (!array_key_exists($module_name, $module_names)) {
+
+                $standard_module_name = self::getStandardModuleName($module_name);
+
                 if ($getVesta) {
-                    //Only add to list if has Vesta update service 
-                    if (isset($module_update_service_config[$module_name]['update_service']) && $module_update_service_config[$module_name]['update_service'] === 'VestaModuleUpdate') {
+                    //Only add to list if has Vesta update service                    
+                    if (    isset($module_update_service_config[$standard_module_name]['update_service'])
+                         && $module_update_service_config[$standard_module_name]['update_service'] === 'VestaModuleUpdate') {
 
                         //Add (or replace) module name to list
-                        $standard_module_name = self::getStandardModuleName($module_name);
                         $module_names[$standard_module_name] = $module_name;
                     }
                 }
                 else {
                     //Add (or replace) module name to list
-                    $standard_module_name = self::getStandardModuleName($module_name);
                     $module_names[$standard_module_name] = $module_name;
                 }
             }
