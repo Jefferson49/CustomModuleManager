@@ -57,6 +57,9 @@ use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\VestaModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardConfirm;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
@@ -444,26 +447,38 @@ class CustomModuleManager extends AbstractModule implements
             //If we are not already in the middle of an ongoing rollback
             if (!$rollback_ongoing) {
 
-                //If test for the updated module fails
-                if (ModuleUpgradeWizardStep::testModule($updated_module_name) !== '') {
+                $module_names = [];
+                $module_upgrade_service = CustomModuleUpdateFactory::make($updated_module_name);
 
-                    //Trigger rollback of the udpated module                
-                    $this->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '1');
-
-                    $this->layout = 'layouts/administration';
-
-                    return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
-                        'title' => I18N::translate('Rollback Custom Module Update'),
-                        'steps' => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ROLLBACK, 'module_name' => $updated_module_name]) => I18N::translate('Rollback')],
-                    ]);
+                //If Vesta module, add all Vesta module names to list
+                if ($module_upgrade_service->name() === VestaModuleUpdate::NAME) {
+                    $module_names = ModuleUpdateServiceConfiguration::getModuleNames(true);
                 }
+                //Otherwise, add only the specific module name to list
                 else {
-                    //Reset update information
-                    $this->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, '');
+                    $module_names = [$updated_module_name => $updated_module_name];
                 }
+
+                foreach ($module_names as $standard_module_name => $module_name) {
+
+                    //If test for the updated module fails
+                    if (ModuleUpgradeWizardStep::testModule($module_name) !== '') {
+
+                        //Trigger rollback of the udpated module                
+                        $this->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '1');
+
+                        $this->layout = 'layouts/administration';
+
+                        return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
+                            'title' => I18N::translate('Rollback Custom Module Update'),
+                            'steps' => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ROLLBACK, 'module_name' => $module_name]) => I18N::translate('Rollback')],
+                        ]);
+                    }
+                }
+                //After successful test, reset update information
+                $this->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, '');
             }
         }
-
         return $handler->handle($request);
     }
 

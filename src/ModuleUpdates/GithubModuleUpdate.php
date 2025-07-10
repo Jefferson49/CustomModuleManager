@@ -35,6 +35,7 @@ use Fig\Http\Message\StatusCodeInterface;
 use Fisharebest\Webtrees\I18N;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
 
 
@@ -42,7 +43,9 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManag
  * Update API for a custom module, which is hosted in a Github repository
  */
 class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdateInterface 
-{
+{#
+    const NAME = 'Github';
+
     //The Github repository of the module, e.g. Jefferson49/CustomModuleManager
     protected string $github_repo;
 
@@ -54,10 +57,9 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function __construct(string $module_name, array  $params) {
 
-        $installation_folder = self::getInstallationFolderFromModuleName($module_name);
-
-        $this->module_name = $module_name;
-        $this->zip_folder  = $installation_folder;
+        $this->module_name    = $module_name;
+        $standard_module_name = ModuleUpdateServiceConfiguration::getStandardModuleName($module_name);
+        $this->zip_folder     = self::getInstallationFolderFromModuleName($standard_module_name);
 
         if (array_key_exists('github_repo', $params)) {
             $this->github_repo = $params['github_repo'];
@@ -74,7 +76,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function name(): string {
 
-        return 'Github';
+        return self::NAME;
     }    
 
     /**

@@ -35,14 +35,16 @@ use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 
-use Throwable;
 
 /**
  * Abstract class with common functions for custom module updates
  */
 abstract class AbstractModuleUpdate
 {
+    public const DEFAULT_LANGUAGE_PREFIX = '[English:] ';
+
     //The custom module name
     protected string $module_name; 
 
@@ -83,6 +85,52 @@ abstract class AbstractModuleUpdate
         return null;
     }
 
+    /**
+     * How should the module be identified in the control panel, etc.?
+     *
+     * @return string
+     */
+    public function title(): string {
+
+        $module = $this->getModule();
+
+        if ($module !== null) {
+            return $module->title();
+        }
+        else {
+            $default_title = ModuleUpdateServiceConfiguration::getDefaultTitle($this->module_name);
+
+            if ($default_title !== '') {
+                return self::DEFAULT_LANGUAGE_PREFIX . $default_title;
+            }
+        }
+
+        return '';
+    }
+
+    /**
+     * A description of the module
+     *
+     * @return string
+     */
+    public function description(): string {
+
+        $module = $this->getModule();
+
+        if ($module !== null) {
+            return $module->description();
+        }
+        else {
+            $default_description = ModuleUpdateServiceConfiguration::getDefaultDescription($this->module_name);
+
+            if ($default_description !== '') {
+                return self::DEFAULT_LANGUAGE_PREFIX . $default_description;
+            }
+        }
+
+        return '';
+    }
+    
     /**
      * The version of this module.
      *

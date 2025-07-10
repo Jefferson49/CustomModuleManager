@@ -31,6 +31,11 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\Configuration;
 
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Module\ModuleCustomInterface;
+use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Session;
+
 
 /**
  * Configuration of the module update services
@@ -83,15 +88,65 @@ class ModuleUpdateServiceConfiguration
         '_vesta_location_data_'           =>  ['update_service' => 'VestaModuleUpdate', 'params' => []],
     ];
 
+    private const MODULE_TITLES = [
+        '_extended_import_export_'        =>  'Extended Import/Export',
+    ];
+
+    private const MODULE_DESCRIPTIONS = [
+        '_extended_import_export_'        =>  'A custom module for advanced GEDCOM import, export, and filter operations. The module also supports remote downloads/uploads/filters via URL requests.',
+    ];
 
     /**
      * Get the configuration for the module updates services
      * 
+     * @param bool $getVesta Whether to get Vesta modules only
+     * 
      * @return array
      */
-    public static function getModuleUpdateServiceConfiguration(): array
+    public static function getModuleNames(bool $getVesta = false): array
     {
-        return self::MODULE_UPDATE_SERVICE_CONFIG;
+        $module_names = [];
+        $module_service = new ModuleService();
+        $custom_modules = $module_service->findByInterface(ModuleCustomInterface::class, true);
+
+        //Initialize list with standard module names
+        $module_update_service_config = self::MODULE_UPDATE_SERVICE_CONFIG;
+
+        foreach($module_update_service_config as $module_name => $config) {
+            if ($getVesta) {
+                //Only add to list if has Vesta update service 
+                if (isset($module_update_service_config[$module_name]['update_service']) && $module_update_service_config[$module_name]['update_service'] === 'VestaModuleUpdate') {
+                    $module_names[$module_name] = $module_name;
+                }
+            }
+            else {
+                $module_names[$module_name] = $module_name;
+            }
+        }
+
+        //Add non-standard module names (with non-standard folder names) to list
+        foreach ($custom_modules as $custom_module) {
+            $module_name = $custom_module->name();
+
+            if (!array_key_exists($module_name, $module_names)) {
+                if ($getVesta) {
+                    //Only add to list if has Vesta update service 
+                    if (isset($module_update_service_config[$module_name]['update_service']) && $module_update_service_config[$module_name]['update_service'] === 'VestaModuleUpdate') {
+
+                        //Add (or replace) module name to list
+                        $standard_module_name = self::getStandardModuleName($module_name);
+                        $module_names[$standard_module_name] = $module_name;
+                    }
+                }
+                else {
+                    //Add (or replace) module name to list
+                    $standard_module_name = self::getStandardModuleName($module_name);
+                    $module_names[$standard_module_name] = $module_name;
+                }
+            }
+        }
+
+        return $module_names;
     }
 
     /**
@@ -104,9 +159,10 @@ class ModuleUpdateServiceConfiguration
     public static function getParams(string $module_name): array
     {
         $config = self::MODULE_UPDATE_SERVICE_CONFIG;
+        $standard_module_name = self::getStandardModuleName($module_name);
 
-        if (array_key_exists($module_name, $config)) {
-            return $config[$module_name]['params'];
+        if (array_key_exists($standard_module_name, $config)) {
+            return $config[$standard_module_name]['params'];
         }
 
         return [];
@@ -122,12 +178,92 @@ class ModuleUpdateServiceConfiguration
     public static function getUpdateServiceName(string $module_name): string
     {
         $config = self::MODULE_UPDATE_SERVICE_CONFIG;
+        $standard_module_name = self::getStandardModuleName($module_name);
 
-        if (array_key_exists($module_name, $config)) {
-            return $config[$module_name]['update_service'];
+        if (array_key_exists($standard_module_name, $config)) {
+            return $config[$standard_module_name]['update_service'];
         }
 
         return '';
-    }      
+    }
 
+    /**
+     * Get the standard module name; if not in list, match name by the module title
+     * 
+     * @param string $module_name
+     *  
+     * @return string
+     */
+    public static function getStandardModuleName(string $module_name): string
+    {
+        $config = self::MODULE_UPDATE_SERVICE_CONFIG;
+
+        //Take module name if is in list
+        if (array_key_exists($module_name, $config)) {
+            return $module_name;
+        }
+
+        //Otherwise try to get the standard module name by matching the module titles
+        $module_service = new ModuleService();
+        $module = $module_service->findByName($module_name, true);
+
+        if ($module !== null) {
+
+            $map_titles_to_names = array_flip(self::MODULE_TITLES);
+            $current_language = Session::get('language', '');
+
+            //Set language to default language, i.e. en-US
+            $default_language = 'en-US';
+            I18N::init($default_language);
+            Session::put('language', $default_language);
+
+            $english_title = $module->title();
+
+            //Reset language
+            I18N::init($current_language);
+            Session::put('language', $current_language);
+
+            if (array_key_exists($english_title, $map_titles_to_names)) {
+                return $map_titles_to_names[$english_title];
+            }
+        }
+
+        return '';    
+    }
+
+    /**
+     * Get the default title
+     * 
+     * @param string $module_name
+     *  
+     * @return string
+     */
+    public static function getDefaultTitle(string $module_name): string {
+
+        $module_titles = self::MODULE_TITLES;
+
+        if (array_key_exists($module_name, $module_titles)) {
+            return $module_titles[$module_name];
+        }
+
+        else return '';
+    }
+
+    /**
+     * Get the default description
+     * 
+     * @param string $module_name
+     *  
+     * @return string
+     */
+    public static function getDefaultDescription(string $module_name): string {
+
+        $module_descriptions = self::MODULE_DESCRIPTIONS;
+
+        if (array_key_exists($module_name, $module_descriptions)) {
+            return $module_descriptions[$module_name];
+        }
+
+        else return '';
+    }
 }

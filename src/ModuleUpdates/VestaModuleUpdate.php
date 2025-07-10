@@ -38,6 +38,8 @@ use Fisharebest\Webtrees\Webtrees;
  */
 class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdateInterface
 {
+    const NAME = 'Vesta';
+
     //The Github repository of the module, e.g. Jefferson49/CustomModuleManager
     protected string $github_repo;
 
@@ -63,7 +65,7 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
      */
     public function name(): string {
 
-        return 'Vesta';
+        return self::NAME;
     }
 
     /**

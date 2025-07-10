@@ -207,21 +207,20 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     private function wizardStepBackup(string $installation_folder): ResponseInterface
     {
         $start_time = Registry::timeFactory()->now();
+        $this->webtrees_upgrade_service->startMaintenanceMode();
 
         //If Vesta
         if ($this->module_update_service instanceof(VestaModuleUpdate::class)) {
 
-            $module_update_config = ModuleUpdateServiceConfiguration::getModuleUpdateServiceConfiguration();
+            $vesta_module_names = ModuleUpdateServiceConfiguration::getModuleNames(true);
             $this->webtrees_upgrade_service->startMaintenanceMode();
 
-            foreach ($module_update_config as $module_name => $update_service_config) {
-                if ($update_service_config['update_service'] === 'VestaModuleUpdate') {
-                    $vesta_installation_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name);
-                    $source_filesystem         = Registry::filesystem()->root(Webtrees::MODULES_PATH . $vesta_installation_folder);
-                    $destination_filesystem    = Registry::filesystem()->root(self::BACKUP_FOLDER . $vesta_installation_folder);
+            foreach ($vesta_module_names as $standard_module_name => $module_name) {
+                $vesta_installation_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name);
+                $source_filesystem         = Registry::filesystem()->root(Webtrees::MODULES_PATH . $vesta_installation_folder);
+                $destination_filesystem    = Registry::filesystem()->root(self::BACKUP_FOLDER . $vesta_installation_folder);
 
-                    self::copyFiles($source_filesystem, $destination_filesystem);
-                }
+                self::copyFiles($source_filesystem, $destination_filesystem);
             }
 
             $this->webtrees_upgrade_service->endMaintenanceMode();
@@ -230,10 +229,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $source_filesystem      = Registry::filesystem()->root($installation_folder);
             $destination_filesystem = Registry::filesystem()->root(self::BACKUP_FOLDER . str_replace(Webtrees::MODULES_PATH, '', $installation_folder));
 
-            $this->webtrees_upgrade_service->startMaintenanceMode();
             self::copyFiles($source_filesystem, $destination_filesystem);
-            $this->webtrees_upgrade_service->endMaintenanceMode();
         }
+
+        $this->webtrees_upgrade_service->endMaintenanceMode();
 
         $end_time = Registry::timeFactory()->now();
         $seconds  = MoreI18N::number($end_time - $start_time, 2);
@@ -336,20 +335,22 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      */
     private function wizardStepRollback(string $installation_folder): ResponseInterface
     {
+        $this->webtrees_upgrade_service->startMaintenanceMode();
+
         //If Vesta module
         if ($this->module_update_service instanceof(VestaModuleUpdate::class)) {
-            $module_update_config = ModuleUpdateServiceConfiguration::getModuleUpdateServiceConfiguration();
+            $vesta_module_names = ModuleUpdateServiceConfiguration::getModuleNames(true);
 
-            foreach ($module_update_config as $module_name => $update_service_config) {
-                if ($update_service_config['update_service'] === 'VestaModuleUpdate') {
-                    $installation_folder = Webtrees::MODULES_PATH . AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name);
-                    $this->rollback($installation_folder);
-                }
+            foreach ($vesta_module_names as $standard_module_name => $module_name) {
+                $installation_folder = Webtrees::MODULES_PATH . AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name);
+                $this->rollback($installation_folder);
             }
         }
         else {
             $this->rollback($installation_folder);
         }
+
+        $this->webtrees_upgrade_service->endMaintenanceMode();
 
         //Reset update information
         $module_service = New ModuleService();
@@ -373,8 +374,6 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      */
     private function rollback($installation_folder): void
     {
-        $this->webtrees_upgrade_service->startMaintenanceMode();
-
         //Delete files of updated module
         $root_filesystem = Registry::filesystem()->root();
         $root_filesystem->deleteDirectory($installation_folder);
@@ -383,8 +382,6 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $source_filesystem      = Registry::filesystem()->root(self::BACKUP_FOLDER . str_replace(Webtrees::MODULES_PATH, '', $installation_folder));
         $destination_filesystem = Registry::filesystem()->root($installation_folder);
         self::copyFiles($source_filesystem, $destination_filesystem);
-
-        $this->webtrees_upgrade_service->endMaintenanceMode();
 
         return;
     }
@@ -451,16 +448,11 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         //If Vesta module
         if ($this->module_update_service instanceof(VestaModuleUpdate::class)) {
 
-            $module_update_config = ModuleUpdateServiceConfiguration::getModuleUpdateServiceConfiguration();
+            $vesta_module_names = ModuleUpdateServiceConfiguration::getModuleNames(true);
 
-            foreach ($module_update_config as $module_name => $update_service_config) {
-
-                if ($update_service_config['update_service'] === 'VestaModuleUpdate') {
-
-                    $test_result = self::testModule($module_name);
-
-                    if ($test_result !== '') break;
-                }
+            foreach ($vesta_module_names as $standard_module_name => $module_name) {
+                $test_result = self::testModule($module_name);
+                if ($test_result !== '') break;
             }
         }
         else {

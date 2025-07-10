@@ -63,9 +63,9 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::module_update', [
             'title'                => I18N::translate('Custom Module Updates'),
+            'module_names'         => ModuleUpdateServiceConfiguration::getModuleNames(),
             'custom_modules'       => $module_service->findByInterface(ModuleCustomInterface::class, true),
             'themes'               => $module_service->findByInterface(ModuleThemeInterface::class, true),
-            'module_update_config' => ModuleUpdateServiceConfiguration::getModuleUpdateServiceConfiguration(),
         ]);
     }
 }

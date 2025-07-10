@@ -48,6 +48,20 @@ interface CustomModuleUpdateInterface
     public function name(): string;
   
     /**
+     * How should the module be identified in the control panel, etc.?
+     *
+     * @return string
+     */
+    public function title(): string;
+
+    /**
+     * A description of the module
+     *
+     * @return string
+     */
+    public function description(): string;
+
+    /**
      * A unique internal name for the module (during runtime, based on the installation folder).
      *
      * @return string
