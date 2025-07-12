@@ -35,7 +35,6 @@ use Fig\Http\Message\StatusCodeInterface;
 use Fisharebest\Webtrees\I18N;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
 
 
@@ -82,6 +81,8 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      * 
      * @param string $tag  The tag of the release 
      * 
+     * @throws CustomModuleManagerException
+     * 
      * @return string
      */
     public function downloadUrl(string $tag = ''): string
@@ -117,10 +118,8 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             }
         } catch (GuzzleException $ex) {
             // Can't connect to the server?
-
-            //ToDo
-            //Code from: UpgradeService
-            //Site::setPreference('LATEST_WT_VERSION_ERROR', $ex->getMessage());
+            $message = I18N::translate('Communication error with %s', $this->name()) . ': ' . I18N::translate('Cannot retrieve download URL.');
+            throw new CustomModuleManagerException($message);
         }
 
         return $download_url;
@@ -172,10 +171,6 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             }
         } catch (GuzzleException $ex) {
             // Can't connect to the server?
-
-            //ToDo
-            //Code from: UpgradeService
-            //Site::setPreference('LATEST_WT_VERSION_ERROR', $ex->getMessage());            
         }
 
         return $tag_name;

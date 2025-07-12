@@ -44,9 +44,10 @@ use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
-use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CustomModuleUpdateInterface;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CustomModuleUpdateInterface;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\VestaModuleUpdate;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemException;
@@ -80,6 +81,8 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     public const STEP_UNZIP    = 'Unzip';
     public const STEP_COPY     = 'Copy';
     public const STEP_ROLLBACK = 'Rollback';
+    public const STEP_ERROR    = 'Error';
+
 
     // Where to store our temporary files.
     private const UPGRADE_FOLDER = 'data/tmp/upgrade/';
@@ -116,14 +119,21 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     {
         $step           = Validator::queryParams($request)->string('step', self::STEP_CHECK);
         $module_name    = Validator::queryParams($request)->string('module_name', '');
+        $message        = Validator::queryParams($request)->string('message', '');
  
         $this->module_update_service = CustomModuleUpdateFactory::make($module_name);
 
         $zip_file         = Webtrees::ROOT_DIR . self::ZIP_FILENAME;
         $module_names     = $this->module_update_service->getModuleNamesToUpdate();
-        $download_url     = $this->module_update_service->downloadUrl();
         $unzip_folder     = $this->module_update_service->getUnzipFolder();
         $folders_to_clean = $this->module_update_service->getFoldersToClean();
+
+        try {
+            $download_url = $this->module_update_service->downloadUrl();
+        }
+        catch (CustomModuleManagerException $exception) {
+            $this->wizardStepError($exception->getMessage());
+        }
 
         switch ($step) {
             case self::STEP_CHECK:
@@ -146,6 +156,9 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
             case self::STEP_ROLLBACK:
                 return $this->wizardStepRollback($module_names);
+
+            case self::STEP_ERROR:
+                return $this->wizardStepError($message);
 
             default:
                 return response('', StatusCodeInterface::STATUS_NO_CONTENT);
@@ -241,7 +254,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         try {
             $bytes = $this->webtrees_upgrade_service->downloadFile($download_url, $root_filesystem, self::ZIP_FILENAME);
         } catch (Throwable $exception) {
-            throw new HttpServerErrorException($exception->getMessage());
+            $this->wizardStepError(I18N::translate('Error during download of module zip file.'));
         }
 
         $kb       = I18N::number(intdiv($bytes + 1023, 1024));
@@ -349,6 +362,20 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
         $url    = route(CustomModuleUpdatePage::class);
         $alert  = I18N::translate('The module was rolled back to the current version, because the update creates errors.');
+        $button = '<a href="' . e($url) . '" class="btn btn-primary">' . MoreI18N::xlate('continue') . '</a>';
+
+        return response(view('components/alert-danger', [
+            'alert' => $alert . ' ' . $button,
+        ]));    
+    }
+
+    /**
+     * @return ResponseInterface
+     */
+    private function wizardStepError(string $message): ResponseInterface
+    {
+        $url    = route(CustomModuleUpdatePage::class);
+        $alert  = $message;
         $button = '<a href="' . e($url) . '" class="btn btn-primary">' . MoreI18N::xlate('continue') . '</a>';
 
         return response(view('components/alert-danger', [

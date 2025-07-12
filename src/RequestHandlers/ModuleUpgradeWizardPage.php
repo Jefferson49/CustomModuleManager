@@ -37,8 +37,9 @@ use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Services\UpgradeService;
 use Fisharebest\Webtrees\Validator;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
-use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -88,9 +89,19 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
 
         $upgrade_available = $module_upgrade_service->upgradeAvailable();
 
+        try {
+            $download_url = $module_upgrade_service->downloadUrl();
+        }
+        catch (CustomModuleManagerException $exception) {
+            return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
+                'steps'       => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ERROR, 'module_name' => $module_name, 'message' => $exception->getMessage()])    => MoreI18N::xlate('Error')],
+                'title'       => $title,
+            ]);
+        }
+
         if ($upgrade_available && $continue === '1') {
             return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
-                'steps'       => $this->wizardSteps($module_name, $module_upgrade_service->downloadUrl()),
+                'steps'       => $this->wizardSteps($module_name, $download_url),
                 'title'       => $title,
             ]);
         }
