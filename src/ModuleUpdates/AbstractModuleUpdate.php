@@ -31,11 +31,13 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
+use Exception;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
+use Throwable;
 
 
 /**
@@ -245,5 +247,49 @@ abstract class AbstractModuleUpdate
         $standard_module_name = ModuleUpdateServiceConfiguration::getStandardModuleName($this->module_name);
 
         return [$standard_module_name => $this->module_name];
+    }
+
+    /**
+     * Test a module update
+     * 
+     * @return string Error message or empty string if no error
+     */
+    public function testModuleUpdate(string $module_name): string
+    {
+        $module_names = $this->getModuleNamesToUpdate();
+
+        foreach ($module_names as $standard_module_name => $module_name) {
+
+            //If test for the updated module fails
+            $error = self::testModule($module_name);
+            if ($error !== '') {
+                return $error;
+            }
+        }
+
+        return '';
+    }
+
+    /**
+     * Test a custom module by loading it in a static scope
+     * 
+     * Code from: Fisharebest\Webtrees\Services\ModuleService
+     * 
+     * @param  string $module_name
+     *  
+     * @return string Error message or empty string if no error
+     */
+    public static function testModule(string $module_name): string
+    {
+        $filename = Webtrees::ROOT_DIR . Webtrees::MODULES_PATH . AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name) . '/module.php';
+        $message = '';
+
+        try {
+            $module = include $filename;
+        } catch (Throwable $exception) {
+            $message = 'Fatal error in module: ' . $module_name . '<br>' . $exception;
+        }
+
+        return $message;
     }
 }

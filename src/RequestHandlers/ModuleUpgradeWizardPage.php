@@ -122,13 +122,15 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
      */
     private function wizardSteps(string $module_name, string $download_url): array
     {
+        $params = ['module_name' => $module_name, 'download_url' => $download_url];
+
         return [
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_CHECK, 'module_name' => $module_name])    => MoreI18N::xlate('Upgrade wizard'),
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_PREPARE, 'module_name' => $module_name])  => I18N::translate('Create temporary folders…'),
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_BACKUP, 'module_name' => $module_name])   => I18N::translate('Backup…'),
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_DOWNLOAD, 'module_name' => $module_name]) => MoreI18N::xlate('Download %s…', e($download_url)),
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_UNZIP, 'module_name' => $module_name])    => MoreI18N::xlate('Unzip %s to a temporary folder…', e(basename($download_url))),
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_COPY, 'module_name' => $module_name])     => MoreI18N::xlate('Copy files…'),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_CHECK] + $params)    => MoreI18N::xlate('Upgrade wizard'),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_PREPARE] + $params)  => I18N::translate('Create temporary folders…'),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_BACKUP] + $params)   => I18N::translate('Backup…'),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_DOWNLOAD] + $params) => MoreI18N::xlate('Download %s…', e($download_url)),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_UNZIP] + $params)    => MoreI18N::xlate('Unzip %s to a temporary folder…', e(basename($download_url))),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_COPY] + $params)     => MoreI18N::xlate('Copy files…'),
             ];
     }
 }

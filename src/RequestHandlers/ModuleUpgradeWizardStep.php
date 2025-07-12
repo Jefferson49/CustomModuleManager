@@ -42,13 +42,10 @@ use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
-use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
-use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CustomModuleUpdateInterface;
-use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\VestaModuleUpdate;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
@@ -82,7 +79,11 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     public const STEP_COPY     = 'Copy';
     public const STEP_ROLLBACK = 'Rollback';
     public const STEP_ERROR    = 'Error';
-
+    
+    // Alert types
+    public const ALERT_DANGER  = 'alert-danger';
+    public const ALERT_SUCCESS = 'alert-success';
+    
 
     // Where to store our temporary files.
     private const UPGRADE_FOLDER = 'data/tmp/upgrade/';
@@ -119,21 +120,15 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     {
         $step           = Validator::queryParams($request)->string('step', self::STEP_CHECK);
         $module_name    = Validator::queryParams($request)->string('module_name', '');
+        $download_url   = Validator::queryParams($request)->string('download_url', '');
         $message        = Validator::queryParams($request)->string('message', '');
- 
+
         $this->module_update_service = CustomModuleUpdateFactory::make($module_name);
 
         $zip_file         = Webtrees::ROOT_DIR . self::ZIP_FILENAME;
         $module_names     = $this->module_update_service->getModuleNamesToUpdate();
         $unzip_folder     = $this->module_update_service->getUnzipFolder();
         $folders_to_clean = $this->module_update_service->getFoldersToClean();
-
-        try {
-            $download_url = $this->module_update_service->downloadUrl();
-        }
-        catch (CustomModuleManagerException $exception) {
-            $this->wizardStepError($exception->getMessage());
-        }
 
         switch ($step) {
             case self::STEP_CHECK:
@@ -184,9 +179,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         /* I18N: %s is a version number, such as 1.2.3 */
         $alert = MoreI18N::xlate('Upgrade the module to version %s.', e($latest_version));
 
-        return response(view('components/alert-success', [
-            'alert' => $alert,
-        ]));
+        return self::viewAlert($alert);
     }
 
     /**
@@ -196,16 +189,23 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      */
     private function wizardStepPrepare(): ResponseInterface
     {
-        $root_filesystem = Registry::filesystem()->root();
-        $root_filesystem->deleteDirectory(self::UPGRADE_FOLDER);
-        $root_filesystem->createDirectory(self::UPGRADE_FOLDER);
-        $root_filesystem->deleteDirectory(self::BACKUP_FOLDER);
-        $root_filesystem->createDirectory(self::BACKUP_FOLDER);
+        try {
+            $root_filesystem = Registry::filesystem()->root();
+            $root_filesystem->deleteDirectory(self::UPGRADE_FOLDER);
+            $root_filesystem->createDirectory(self::UPGRADE_FOLDER);
+            $root_filesystem->deleteDirectory(self::BACKUP_FOLDER);
+            $root_filesystem->createDirectory(self::BACKUP_FOLDER);
 
-        return response(view('components/alert-success', [
-            'alert' =>  MoreI18N::xlate('The folder %s has been created.', e(self::UPGRADE_FOLDER)) . "\n" . 
-                        MoreI18N::xlate('The folder %s has been created.', e(self::BACKUP_FOLDER)),
-        ]));
+            $alert_type = self::ALERT_SUCCESS;
+            $alert      = MoreI18N::xlate('The folder %s has been created.', e(self::UPGRADE_FOLDER)) . "\n" . 
+                          MoreI18N::xlate('The folder %s has been created.', e(self::BACKUP_FOLDER));
+        } 
+        catch (Throwable $exception) {
+            $alert_type = self::ALERT_DANGER;
+            $alert      = MoreI18N::xlate('Error during creating the temporary backup and upgrade folders'); 
+        }
+
+        return self::viewAlert($alert, $alert_type);
     }
 
     /**
@@ -221,24 +221,26 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $module_update_service = $this->module_update_service;
         $start_time = Registry::timeFactory()->now();
 
-        $this->webtrees_upgrade_service->startMaintenanceMode();
+        try {
+            foreach ($module_names as $standard_module_name => $module_name) {
+                $installation_folder    = $module_update_service::getInstallationFolderFromModuleName($module_name);
+                $source_filesystem      = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
+                $destination_filesystem = Registry::filesystem()->root(self::BACKUP_FOLDER . Webtrees::MODULES_PATH . $installation_folder);
 
-        foreach ($module_names as $standard_module_name => $module_name) {
-            $installation_folder    = $module_update_service::getInstallationFolderFromModuleName($module_name);
-            $source_filesystem      = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
-            $destination_filesystem = Registry::filesystem()->root(self::BACKUP_FOLDER . Webtrees::MODULES_PATH . $installation_folder);
+                self::copyFiles($source_filesystem, $destination_filesystem);
+            }
 
-            self::copyFiles($source_filesystem, $destination_filesystem);
+            $end_time   = Registry::timeFactory()->now();
+            $seconds    = MoreI18N::number($end_time - $start_time, 2);
+            $alert      = I18N::translate('A backup of the current module was created in %s seconds.', $seconds);
+            $alert_type = self::ALERT_SUCCESS;
+        } 
+        catch (Throwable $exception) {
+            $alert_type = self::ALERT_DANGER;
+            $alert      = I18N::translate('Failed to create a backup of the current module.');
         }
 
-        $this->webtrees_upgrade_service->endMaintenanceMode();
-
-        $end_time = Registry::timeFactory()->now();
-        $seconds  = MoreI18N::number($end_time - $start_time, 2);
-
-        return response(view('components/alert-success', [
-            'alert' => I18N::translate('A backup of the current module was created in %s seconds.', $seconds),
-        ]));
+        return self::viewAlert($alert, $alert_type);
     }
     
     /**
@@ -252,18 +254,19 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $start_time      = Registry::timeFactory()->now();
 
         try {
-            $bytes = $this->webtrees_upgrade_service->downloadFile($download_url, $root_filesystem, self::ZIP_FILENAME);
-        } catch (Throwable $exception) {
-            $this->wizardStepError(I18N::translate('Error during download of module zip file.'));
+            $bytes      = $this->webtrees_upgrade_service->downloadFile($download_url, $root_filesystem, self::ZIP_FILENAME);
+            $kb         = I18N::number(intdiv($bytes + 1023, 1024));
+            $end_time   = Registry::timeFactory()->now();
+            $seconds    = I18N::number($end_time - $start_time, 2);
+            $alert      = MoreI18N::xlate('%1$s KB were downloaded in %2$s seconds.', $kb, $seconds);
+            $alert_type = self::ALERT_SUCCESS;
+        }
+        catch (Throwable $exception) {
+            $alert      = I18N::translate('Error during downloading the module zip file.');
+            $alert_type = self::ALERT_DANGER;
         }
 
-        $kb       = I18N::number(intdiv($bytes + 1023, 1024));
-        $end_time = Registry::timeFactory()->now();
-        $seconds  = I18N::number($end_time - $start_time, 2);
-
-        return response(view('components/alert-success', [
-            'alert' => MoreI18N::xlate('%1$s KB were downloaded in %2$s seconds.', $kb, $seconds),
-        ]));
+        return self::viewAlert($alert, $alert_type);
     }
 
     /**
@@ -277,17 +280,23 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     private function wizardStepUnzip(string $zip_file, string $unzip_folder): ResponseInterface
     {
         $start_time = Registry::timeFactory()->now();
-        $this->webtrees_upgrade_service->extractWebtreesZip($zip_file, Webtrees::ROOT_DIR . self::UPGRADE_FOLDER . $unzip_folder);
-        $count    = $this->customModuleZipContents($zip_file)->count();
-        $end_time = Registry::timeFactory()->now();
-        $seconds  = I18N::number($end_time - $start_time, 2);
 
-        /* I18N: …from the .ZIP file, %2$s is a (fractional) number of seconds */
-        $alert = I18N::plural('%1$s file was extracted in %2$s seconds.', '%1$s files were extracted in %2$s seconds.', $count, I18N::number($count), $seconds);
+        try{
+            $this->webtrees_upgrade_service->extractWebtreesZip($zip_file, Webtrees::ROOT_DIR . self::UPGRADE_FOLDER . $unzip_folder);
+            $count    = $this->customModuleZipContents($zip_file)->count();
+            $end_time = Registry::timeFactory()->now();
+            $seconds  = I18N::number($end_time - $start_time, 2);
 
-        return response(view('components/alert-success', [
-            'alert' => $alert,
-        ]));
+            /* I18N: …from the .ZIP file, %2$s is a (fractional) number of seconds */
+            $alert      = I18N::plural('%1$s file was extracted in %2$s seconds.', '%1$s files were extracted in %2$s seconds.', $count, I18N::number($count), $seconds);
+            $alert_type = self::ALERT_SUCCESS;
+        }
+        catch (Throwable $exception) {
+            $alert      = I18N::translate('Error during unzipping the module zip file.');
+            $alert_type = self::ALERT_DANGER;
+        }
+
+        return self::viewAlert($alert, $alert_type);
     }
 
     /**
@@ -301,37 +310,40 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     {
         /** @var AbstractModuleUpdate $module_update_service  To avoid IDE warnings */
         $module_update_service = $this->module_update_service;
+        $module_service = New ModuleService();
+        $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());        
 
-        $this->webtrees_upgrade_service->startMaintenanceMode();
+        try {
+            foreach ($module_names as $standard_module_name => $module_name) {
+                $installation_folder    = $module_update_service::getInstallationFolderFromModuleName($module_name);
+                $standard_folder        = $module_update_service::getInstallationFolderFromModuleName($standard_module_name);
+                $source_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . Webtrees::MODULES_PATH . $standard_folder);
+                $destination_filesystem = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
 
-        foreach ($module_names as $standard_module_name => $module_name) {
-            $installation_folder    = $module_update_service::getInstallationFolderFromModuleName($module_name);
-            $standard_folder        = $module_update_service::getInstallationFolderFromModuleName($standard_module_name);
-            $source_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . Webtrees::MODULES_PATH . $standard_folder);
-            $destination_filesystem = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
-
-            $this->webtrees_upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
+                $this->webtrees_upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
+            }
+            $alert      = MoreI18N::xlate('The upgrade is complete.');
+            $alert_type = self::ALERT_SUCCESS;
         }
+        catch (Throwable $exception) {
+            //Force rollback 
+            $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_FORCED, '1');
 
-        $this->webtrees_upgrade_service->endMaintenanceMode();
+            $alert      = I18N::translate('Error during copying the updated module files.');
+            $alert_type = self::ALERT_DANGER;
+        }
 
         // While we have time, clean up any old files.
         $files_to_keep = $this->customModuleZipContents($zip_file);
         $this->webtrees_upgrade_service->cleanFiles($destination_filesystem, $folders_to_clean, $files_to_keep);
 
         //Remember updated module name for potential rollback
-        $module_service = New ModuleService();
-        $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
         $custom_module_manager->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, $this->module_update_service->getModuleName());
         $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
 
-        $url    = route(CustomModuleUpdatePage::class);
-        $alert  = MoreI18N::xlate('The upgrade is complete.');
-        $button = '<a href="' . e($url) . '" class="btn btn-primary">' . MoreI18N::xlate('continue') . '</a>';
+        $url = route(CustomModuleUpdatePage::class);
 
-        return response(view('components/alert-success', [
-            'alert' => $alert . ' ' . $button,
-        ]));
+        return self::viewAlert($alert, $alert_type, $url);
     }
 
     /**
@@ -345,28 +357,28 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $module_update_service = $this->module_update_service;
         $this->webtrees_upgrade_service->startMaintenanceMode();
 
-        $this->webtrees_upgrade_service->startMaintenanceMode();
-
-        foreach ($module_names as $standard_module_name => $module_name) {
-            $installation_folder = $module_update_service::getInstallationFolderFromModuleName($module_name);
-            $this->rollback($installation_folder);
+        try {
+            foreach ($module_names as $standard_module_name => $module_name) {
+                $installation_folder = $module_update_service::getInstallationFolderFromModuleName($module_name);
+                $this->rollback($installation_folder);
+            }
+            $alert = I18N::translate('The module was rolled back to the current version, because the update creates errors.');
         }
-
-        $this->webtrees_upgrade_service->endMaintenanceMode();
+        catch (Throwable $exception) {
+            $alert =    I18N::translate('A roll back of the module to the current version failed.') . "\n" .
+                        I18N::translate('Please try to manually roll back by copying the files from "/data/tmp/backup/modules_4" to "/modules_v4".');
+        }
 
         //Reset update information
         $module_service = New ModuleService();
         $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
         $custom_module_manager->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, '');
         $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
+        $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_FORCED, '0');
 
-        $url    = route(CustomModuleUpdatePage::class);
-        $alert  = I18N::translate('The module was rolled back to the current version, because the update creates errors.');
-        $button = '<a href="' . e($url) . '" class="btn btn-primary">' . MoreI18N::xlate('continue') . '</a>';
-
-        return response(view('components/alert-danger', [
-            'alert' => $alert . ' ' . $button,
-        ]));    
+        $url = route(CustomModuleUpdatePage::class);
+        
+        return self::viewAlert($alert, self::ALERT_DANGER, $url);
     }
 
     /**
@@ -375,12 +387,8 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     private function wizardStepError(string $message): ResponseInterface
     {
         $url    = route(CustomModuleUpdatePage::class);
-        $alert  = $message;
-        $button = '<a href="' . e($url) . '" class="btn btn-primary">' . MoreI18N::xlate('continue') . '</a>';
 
-        return response(view('components/alert-danger', [
-            'alert' => $alert . ' ' . $button,
-        ]));    
+        return self::viewAlert($message, self::ALERT_DANGER, $url);
     }
 
     /**
@@ -452,51 +460,28 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     }
 
     /**
-     * Test the downloaded code of the updated module.
-     *
-     * @return string 
-     */
-    private function testUpdate(): string
-    {
-        $test_result = '';
-
-        //If Vesta module
-        if ($this->module_update_service instanceof(VestaModuleUpdate::class)) {
-
-            $vesta_module_names = ModuleUpdateServiceConfiguration::getModuleNames(true);
-
-            foreach ($vesta_module_names as $standard_module_name => $module_name) {
-                $test_result = self::testModule($module_name);
-                if ($test_result !== '') break;
-            }
-        }
-        else {
-            $test_result = self::testModule($this->module_update_service->getModuleName());
-        }
-
-        return $test_result;
-    }    
-
-    /**
-     * Test the custom module by loading it in a static scope
-     * 
-     * Code from: Fisharebest\Webtrees\Services\ModuleService
-     * 
-     * @param  string $module_name
+     * Alert view as response
+     *      
+     * @param string $alert       The alert text
+     * @param string $alert_type  The alert type, e.g. danger, sucess
+     * @param string $url         The URL to be called if button is pressed
      *  
-     * @return string Error message or empty string if no error
+     * @return ResponseInterface
      */
-    public static function testModule(string $module_name): string
-    {
-        $filename = Webtrees::ROOT_DIR . Webtrees::MODULES_PATH . AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name) . '/module.php';
-        $message = '';
-
-        try {
-            $module = include $filename;
-        } catch (Throwable $exception) {
-            $message = 'Fatal error in module: ' . $module_name . '<br>' . $exception;
+    public static function viewAlert(string $alert, string $alert_type = self::ALERT_SUCCESS, string $url = ''): ResponseInterface
+    {    
+        if (!in_array($alert_type, [self::ALERT_DANGER, self::ALERT_SUCCESS])) {
+            $alert_type = self::ALERT_SUCCESS;
         }
 
-        return $message;
-    }    
+        //If URL is provided, include a continue button
+        if ($url !== '') {
+            $button = '<a href="' . e($url) . '" class="btn btn-primary">' . MoreI18N::xlate('continue') . '</a>';
+            $alert.= ' ' . $button;
+        }
+
+        return response(view('components/' . $alert_type, [
+            'alert' => $alert,
+        ]));
+    }
 }
