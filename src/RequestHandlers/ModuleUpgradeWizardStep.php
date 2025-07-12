@@ -355,7 +355,6 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     {
         /** @var AbstractModuleUpdate $module_update_service  To avoid IDE warnings */
         $module_update_service = $this->module_update_service;
-        $this->webtrees_upgrade_service->startMaintenanceMode();
 
         try {
             foreach ($module_names as $standard_module_name => $module_name) {
