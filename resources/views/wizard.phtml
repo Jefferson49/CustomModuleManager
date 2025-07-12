@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 use Fisharebest\Webtrees\I18N;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
+use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardConfirm;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
 
@@ -14,6 +15,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
  * @var string $latest_version
  * @var string $title
  * @var string $module_name
+ * @var string $action
  */
 
 ?>
@@ -22,25 +24,28 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 
 <h1><?= $title ?></h1>
 
-<?php if ($latest_version === '') : ?>
+<?php if ($action === CustomModuleManager::ACTION_UPDATE && $latest_version === '') : ?>
     <div class="alert alert-warning">
         <?= MoreI18N::xlate('No upgrade information is available.') ?>
     </div>
-<?php elseif (version_compare($current_version, $latest_version) >= 0) : ?>
+<?php elseif ($action === CustomModuleManager::ACTION_UPDATE && version_compare($current_version, $latest_version) >= 0) : ?>
     <div class="alert alert-info">
         <?= I18N::translate('This is the latest version of the custom module. No upgrade is available.') ?>
     </div>
 <?php else : ?>
-    <p>
-        <?= I18N::translate('A new version of the custom module is available.') ?>
-    </p>
+    <?php if ($action === CustomModuleManager::ACTION_UPDATE) : ?>
+        <p>
+            <?= I18N::translate('A new version of the custom module is available.') ?>
+        </p>
+    <?php endif ?>
 
     <p>
         <?= MoreI18N::xlate('Depending on your server configuration, you may be able to upgrade automatically.') ?>
     </p>
 
     <form method="post" action="<?= e(route(ModuleUpgradeWizardConfirm::class, [
-                'module_name'    => $module_name,
+                'module_name' => $module_name,
+                'action'      => $action,
             ])) ?>" class="form-horizontal">
         <button type="submit" class="btn btn-primary" name="continue" value="1">
             <?= MoreI18N::xlate('continue') ?>

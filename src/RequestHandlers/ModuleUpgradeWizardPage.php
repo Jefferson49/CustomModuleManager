@@ -82,6 +82,7 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
 
         $continue       = Validator::queryParams($request)->string('continue', '');
         $module_name    = Validator::queryParams($request)->string('module_name', '');
+        $action         = Validator::queryParams($request)->string('action', '');
 
         $module_upgrade_service = CustomModuleUpdateFactory::make($module_name);
 
@@ -89,7 +90,7 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
 
         $upgrade_available = $module_upgrade_service->upgradeAvailable();
 
-        if ($upgrade_available && $continue === '1') {
+        if (($action === CustomModuleManager::ACTION_INSTALL OR $upgrade_available) && $continue === '1') {
 
             try {
                 $download_url = $module_upgrade_service->downloadUrl();
@@ -102,7 +103,7 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
             }
 
             return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
-                'steps'       => $this->wizardSteps($module_name, $download_url),
+                'steps'       => $this->wizardSteps($module_name, $download_url, $action),
                 'title'       => $title,
             ]);
         }
@@ -112,26 +113,53 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
             'current_version' => $module_upgrade_service->customModuleVersion(),
             'latest_version'  => $module_upgrade_service->customModuleLatestVersion(),
             'title'           => $title,
+            'action'          => $action
         ]);
     }
 
     /**
      * @param string $download_url
      * @param string $module_name
+     * @param string $action         The action to be performed, i.e. update or install
      * 
      * @return array<string>
      */
-    private function wizardSteps(string $module_name, string $download_url): array
+    private function wizardSteps(string $module_name, string $download_url, string $action = CustomModuleManager::ACTION_UPDATE): array
     {
-        $params = ['module_name' => $module_name, 'download_url' => $download_url];
+        if (!in_array($action, [CustomModuleManager::ACTION_UPDATE, CustomModuleManager::ACTION_INSTALL])) {
+            $action = CustomModuleManager::ACTION_UPDATE;
+        }
 
-        return [
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_CHECK] + $params)    => MoreI18N::xlate('Upgrade wizard'),
+        $params = [
+            'module_name'  => $module_name,
+            'download_url' => $download_url,
+            'action'       => $action
+        ];
+
+        $steps = [];
+
+        if ($action === CustomModuleManager::ACTION_UPDATE) {
+            $steps+= [
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_CHECK] + $params)    => MoreI18N::xlate('Check version...'),
+            ];
+        }
+
+        $steps+= [
                 route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_PREPARE] + $params)  => I18N::translate('Create temporary folders…'),
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_BACKUP] + $params)   => I18N::translate('Backup…'),
+        ];
+        
+        if ($action === CustomModuleManager::ACTION_UPDATE) {
+            $steps+= [
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_BACKUP] + $params)   => I18N::translate('Backup…')
+            ];
+        }
+
+        $steps += [
                 route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_DOWNLOAD] + $params) => MoreI18N::xlate('Download %s…', e($download_url)),
                 route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_UNZIP] + $params)    => MoreI18N::xlate('Unzip %s to a temporary folder…', e(basename($download_url))),
                 route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_COPY] + $params)     => MoreI18N::xlate('Copy files…'),
-            ];
+        ];
+
+        return $steps;
     }
 }

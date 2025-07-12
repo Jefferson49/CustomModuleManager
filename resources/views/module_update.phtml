@@ -148,17 +148,21 @@ $module_service = New ModuleService();
 
                 <!--Action -->
                 <?php $action = '' ?>
+                <?php $action_label = '' ?>
                 <?php if ($module !== null && version_compare($latest_version, $current_version) > 0) : ?>
-    				<?php $action = I18N::translate('Update module') ?>
+    				<?php $action = CustomModuleManager::ACTION_UPDATE ?>
+    				<?php $action_label = I18N::translate('Update module') ?>
                 <?php elseif ($module_status === I18N::translate('not installed')) : ?>
-    				<?php $action = I18N::translate('Install module') ?>
+    				<?php $action = CustomModuleManager::ACTION_INSTALL ?>
+    				<?php $action_label = I18N::translate('Install module') ?>
                 <?php endif ?>						
-                <td data-sort="<?= $action ?>">
-                    <?php if ($action !== '' && $update_service_available) : ?>
+                <td data-sort="<?= $action_label ?>">
+                    <?php if ($action_label !== '' && $update_service_available) : ?>
                         <a href="<?= e(route(ModuleUpgradeWizardPage::class, [
-                                'module_name'    => $module_name,
+                                'module_name' => $module_name,
+                                'action'      => $action,
                             ])) ?>" type="submit" class="btn btn-secondary">
-                            <?= $action ?>
+                            <?= $action_label ?>
                         </a>
                     <?php endif ?>						
                 </td>

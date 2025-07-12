@@ -122,6 +122,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $module_name    = Validator::queryParams($request)->string('module_name', '');
         $download_url   = Validator::queryParams($request)->string('download_url', '');
         $message        = Validator::queryParams($request)->string('message', '');
+        $action         = Validator::queryParams($request)->string('action', '');
 
         $this->module_update_service = CustomModuleUpdateFactory::make($module_name);
 
@@ -135,7 +136,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 return $this->wizardStepCheck();
 
             case self::STEP_PREPARE:
-                return $this->wizardStepPrepare();
+                return $this->wizardStepPrepare($action);
 
             case self::STEP_BACKUP:
                 return $this->wizardStepBackup($module_names);
@@ -147,7 +148,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 return $this->wizardStepUnzip($zip_file, $unzip_folder);
 
             case self::STEP_COPY:
-                return $this->wizardStepCopyAndCleanUp($module_names, $zip_file,$folders_to_clean);
+                return $this->wizardStepCopyAndCleanUp($module_names, $zip_file,$folders_to_clean, $action);
 
             case self::STEP_ROLLBACK:
                 return $this->wizardStepRollback($module_names);
@@ -184,21 +185,32 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
     /**
      * Make sure the temporary folder exists.
+     * 
+     * @param string $action The action to be performed, i.e. update or install
      *
      * @return ResponseInterface
      */
-    private function wizardStepPrepare(): ResponseInterface
+    private function wizardStepPrepare(string $action = CustomModuleManager::ACTION_UPDATE): ResponseInterface
     {
+        if (!in_array($action, [CustomModuleManager::ACTION_UPDATE, CustomModuleManager::ACTION_INSTALL])) {
+            $action = CustomModuleManager::ACTION_UPDATE;
+        }
+
         try {
             $root_filesystem = Registry::filesystem()->root();
             $root_filesystem->deleteDirectory(self::UPGRADE_FOLDER);
             $root_filesystem->createDirectory(self::UPGRADE_FOLDER);
-            $root_filesystem->deleteDirectory(self::BACKUP_FOLDER);
-            $root_filesystem->createDirectory(self::BACKUP_FOLDER);
+
+            $alert = MoreI18N::xlate('The folder %s has been created.', e(self::UPGRADE_FOLDER));
+
+            if ($action === CustomModuleManager::ACTION_UPDATE) {
+                $root_filesystem->deleteDirectory(self::BACKUP_FOLDER);
+                $root_filesystem->createDirectory(self::BACKUP_FOLDER);
+                $alert.= "\n" . MoreI18N::xlate('The folder %s has been created.', e(self::BACKUP_FOLDER));
+            }
 
             $alert_type = self::ALERT_SUCCESS;
-            $alert      = MoreI18N::xlate('The folder %s has been created.', e(self::UPGRADE_FOLDER)) . "\n" . 
-                          MoreI18N::xlate('The folder %s has been created.', e(self::BACKUP_FOLDER));
+                          
         } 
         catch (Throwable $exception) {
             $alert_type = self::ALERT_DANGER;
@@ -303,11 +315,21 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      * @param array                  $module_names         A list with all module names, which shall be updated
      * @param string                 $zip_file             The ZIP file name
      * @param Collection<int,string> $folders_to_clean     A collection of folder names within the module, which shall be cleaned 
+     * @param string                 $action               The action to be performed, i.e. update or install
      *
      * @return ResponseInterface
      */
-    private function wizardStepCopyAndCleanUp(array $module_names, string $zip_file, Collection $folders_to_clean = new Collection([])): ResponseInterface
-    {
+    private function wizardStepCopyAndCleanUp(
+        array      $module_names, 
+        string     $zip_file, 
+        Collection $folders_to_clean = new Collection([]),
+        string     $action = CustomModuleManager::ACTION_UPDATE 
+    ): ResponseInterface {
+
+        if (!in_array($action, [CustomModuleManager::ACTION_UPDATE, CustomModuleManager::ACTION_INSTALL])) {
+            $action = CustomModuleManager::ACTION_UPDATE;
+        }        
+
         /** @var AbstractModuleUpdate $module_update_service  To avoid IDE warnings */
         $module_update_service = $this->module_update_service;
         $module_service = New ModuleService();
@@ -326,20 +348,29 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $alert_type = self::ALERT_SUCCESS;
         }
         catch (Throwable $exception) {
-            //Force rollback 
-            $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_FORCED, '1');
+            if ($action === CustomModuleManager::ACTION_UPDATE) {
+                //Force rollback 
+                $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_FORCED, '1');
+            }
+            else {
+                //Force deletion ??
+                //ToDo
+            }
 
-            $alert      = I18N::translate('Error during copying the updated module files.');
+            $alert      = I18N::translate('Error during copying the module files into /modules_v4.');
             $alert_type = self::ALERT_DANGER;
         }
 
-        // While we have time, clean up any old files.
-        $files_to_keep = $this->customModuleZipContents($zip_file);
-        $this->webtrees_upgrade_service->cleanFiles($destination_filesystem, $folders_to_clean, $files_to_keep);
+        if ($action === CustomModuleManager::ACTION_UPDATE) {
 
-        //Remember updated module name for potential rollback
-        $custom_module_manager->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, $this->module_update_service->getModuleName());
-        $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
+            // While we have time, clean up any old files.
+            $files_to_keep = $this->customModuleZipContents($zip_file);
+            $this->webtrees_upgrade_service->cleanFiles($destination_filesystem, $folders_to_clean, $files_to_keep);
+
+            //Remember updated module name for potential rollback
+            $custom_module_manager->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, $this->module_update_service->getModuleName());
+            $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
+        }
 
         $url = route(CustomModuleUpdatePage::class);
 

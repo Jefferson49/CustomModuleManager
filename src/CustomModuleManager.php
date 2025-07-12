@@ -113,6 +113,10 @@ class CustomModuleManager extends AbstractModule implements
     public const PREF_ROLLBACK_ONGOING    = 'rollback_ongoing';
     public const PREF_ROLLBACK_FORCED     = 'rollback_foced';
 
+    //Actions
+    public const ACTION_UPDATE            = 'action_update';
+    public const ACTION_INSTALL           = 'action_install';
+
     //Routes
     public const ROUTE_WIZARD_PAGE        = '/module_upgrade_wizard_page';
     public const ROUTE_WIZARD_STEP        = '/module_upgrade_wizard_step';
