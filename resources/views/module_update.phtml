@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 use Fisharebest\Webtrees\I18N;
-use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
+use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
@@ -20,8 +20,8 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateSe
  * @var Collection $themes
  * @var array      $module_names
 
- * @var AbstractModuleUpdate  $module_update_service
- * @var ModuleCustomInterface $module
+ * @var AbstractModuleUpdate $module_update_service
+ * @var CustomModuleManager  $module
  */
 
 $module_service = New ModuleService();
@@ -85,6 +85,7 @@ $module_service = New ModuleService();
                 <?php $module_description = $module_update_service->description() ?>
 				<?php $current_version = $module_update_service->customModuleVersion() ?>
 				<?php $latest_version = $module_update_service->customModuleLatestVersion() ?>
+				<?php $documentation_url = $module_update_service->documentationUrl() ?>
             <?php else : ?>						
                 <?php $module_update_service_name = I18N::translate('not available') ?>
                 <?php $module_title = $module->title() ?>
@@ -96,7 +97,13 @@ $module_service = New ModuleService();
             <tr>
                 <!-- Title -->
                 <td data-sort="<?= e($module_title) ?>">
-                    <?= e($module_title) ?>
+                    <?php if ($documentation_url !== '') : ?>
+                        <a href="<?= e($documentation_url) ?>" target="blank">
+                            <?= e($module_title) ?>
+                        </a>
+                    <?php else : ?>		
+                        <?= e($module_title) ?>		
+                    <?php endif ?>						
                 </td>
 
                 <!-- Description -->

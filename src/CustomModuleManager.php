@@ -449,7 +449,7 @@ class CustomModuleManager extends AbstractModule implements
 
                 $rollback_forced = boolval($this->getPreference(CustomModuleManager::PREF_ROLLBACK_FORCED, '0'));
                 $module_update_service = CustomModuleUpdateFactory::make($updated_module_name);
-                $test_result = $module_update_service->testModuleUpdate($updated_module_name);
+                $test_result = $module_update_service->testModuleUpdate();
 
                 if ($rollback_forced OR $test_result !== '') {
                     //Trigger rollback of the udpated module                

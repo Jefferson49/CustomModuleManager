@@ -57,6 +57,9 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
         if (array_key_exists('github_repo', $params)) {
             $this->github_repo = $params['github_repo'];
         }
+        else {
+            $this->github_repo = '';
+        }
     }
 
     /**
@@ -79,6 +82,20 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
     public function downloadUrl(string $tag = ''): string
     {
         return 'https://cissee.de/vesta.latest.zip';
+    }
+
+    /**
+     * Where can we find a documentation for the module
+     * 
+     * @return string
+     */
+    public function documentationUrl(): string
+    {
+        if ($this->github_repo === '') {
+            return '';
+        }
+
+        return 'https://github.com/'. $this->github_repo;
     }
 
     /**

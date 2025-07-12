@@ -96,6 +96,13 @@ interface CustomModuleUpdateInterface
     public function downloadUrl(): string;
 
     /**
+     * Where can we find a documentation for the module
+     * 
+     * @return string
+     */
+    public function documentationUrl(): string;
+
+    /**
      * Get the custom module installation folder name within webtrees, i.e. including the "modules_v4" custom modules folder
      *
      * @return string
@@ -130,4 +137,11 @@ interface CustomModuleUpdateInterface
      * @return array<string> standard_module_name => module_name
      */
     public function getModuleNamesToUpdate(): array;
+
+    /**
+     * Test a module update
+     * 
+     * @return string Error message or empty string if no error
+     */
+    public function testModuleUpdate(): string;
 }

@@ -126,6 +126,16 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     }
 
     /**
+     * Where can we find a documentation for the module
+     * 
+     * @return string
+     */
+    public function documentationUrl(): string
+    {
+        return 'https://github.com/'. $this->github_repo;
+    }
+
+    /**
      * Fetch the latest version of this module
      *
      * @return string

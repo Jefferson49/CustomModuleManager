@@ -254,7 +254,7 @@ abstract class AbstractModuleUpdate
      * 
      * @return string Error message or empty string if no error
      */
-    public function testModuleUpdate(string $module_name): string
+    public function testModuleUpdate(): string
     {
         $module_names = $this->getModuleNamesToUpdate();
 

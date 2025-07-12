@@ -83,5 +83,15 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
     public function downloadUrl(string $tag = ''): string
     {
         return $this->download_url;
-    }    
+    }
+
+    /**
+     * Where can we find a documentation for the module
+     * 
+     * @return string
+     */
+    public function documentationUrl(): string 
+    {
+        return '';
+    }
 }
