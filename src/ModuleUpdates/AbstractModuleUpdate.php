@@ -190,16 +190,6 @@ abstract class AbstractModuleUpdate
     }
 
     /**
-     * Get the custom module installation folder name within webtrees, i.e. including the modules_v4 custom modules folder
-     *
-     * @return string
-     */
-    public function getInstallationFolder(): string 
-    {
-        return Webtrees::MODULES_PATH . self::getInstallationFolderFromModuleName($this->module_name);
-    }
-
-    /**
      * Get installation folder name from custom module name
      * 
      * @param string $module_name  A custom module name
@@ -281,7 +271,7 @@ abstract class AbstractModuleUpdate
      */
     public static function testModule(string $module_name): string
     {
-        $filename = Webtrees::ROOT_DIR . Webtrees::MODULES_PATH . AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name) . '/module.php';
+        $filename = Webtrees::ROOT_DIR . Webtrees::MODULES_PATH . self::getInstallationFolderFromModuleName($module_name) . '/module.php';
         $message = '';
 
         try {

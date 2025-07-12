@@ -103,13 +103,6 @@ interface CustomModuleUpdateInterface
     public function documentationUrl(): string;
 
     /**
-     * Get the custom module installation folder name within webtrees, i.e. including the "modules_v4" custom modules folder
-     *
-     * @return string
-     */
-    public function getInstallationFolder(): string;
-
-    /**
      * Get the folder, into which the module zip-file shalled be unzipped
      *
      * @return string
