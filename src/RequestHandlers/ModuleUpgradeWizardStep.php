@@ -119,13 +119,11 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
  
         $this->module_update_service = CustomModuleUpdateFactory::make($module_name);
 
-        $zip_file            = Webtrees::ROOT_DIR . self::ZIP_FILENAME;
-        $upgrade_folder      = Webtrees::ROOT_DIR . self::UPGRADE_FOLDER;
-
-        $download_url        = $this->module_update_service->downloadUrl();
-        $zip_folder          = $this->module_update_service->getZipFolder();
-        $installation_folder = $this->module_update_service->getInstallationFolder();
-        $folders_to_clean    = $this->module_update_service->getFoldersToClean();
+        $zip_file         = Webtrees::ROOT_DIR . self::ZIP_FILENAME;
+        $module_names     = $this->module_update_service->getModuleNamesToUpdate();
+        $download_url     = $this->module_update_service->downloadUrl();
+        $unzip_folder     = $this->module_update_service->getUnzipFolder();
+        $folders_to_clean = $this->module_update_service->getFoldersToClean();
 
         switch ($step) {
             case self::STEP_CHECK:
@@ -135,19 +133,19 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 return $this->wizardStepPrepare();
 
             case self::STEP_BACKUP:
-                return $this->wizardStepBackup($installation_folder);
+                return $this->wizardStepBackup($module_names);
 
             case self::STEP_DOWNLOAD:
                 return $this->wizardStepDownload($download_url);
 
             case self::STEP_UNZIP:
-                return $this->wizardStepUnzip($zip_file, $upgrade_folder, $zip_folder);
+                return $this->wizardStepUnzip($zip_file, $unzip_folder);
 
             case self::STEP_COPY:
-                return $this->wizardStepCopyAndCleanUp($zip_file, $zip_folder, $installation_folder, $folders_to_clean);
+                return $this->wizardStepCopyAndCleanUp($module_names, $zip_file,$folders_to_clean);
 
             case self::STEP_ROLLBACK:
-                return $this->wizardStepRollback($installation_folder);
+                return $this->wizardStepRollback($module_names);
 
             default:
                 return response('', StatusCodeInterface::STATUS_NO_CONTENT);
@@ -200,31 +198,22 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     /**
      * Create a backup of the current module
      * 
-     * @param string $installation_folder  The installation folder of the custom module
+     * @param array  $module_names         A list with all module names, which shall be updated
      *
      * @return ResponseInterface
      */
-    private function wizardStepBackup(string $installation_folder): ResponseInterface
+    private function wizardStepBackup(array $module_names): ResponseInterface
     {
+        /** @var AbstractModuleUpdate $module_update_service  To avoid IDE warnings */
+        $module_update_service = $this->module_update_service;
         $start_time = Registry::timeFactory()->now();
+
         $this->webtrees_upgrade_service->startMaintenanceMode();
 
-        //If Vesta
-        if ($this->module_update_service instanceof(VestaModuleUpdate::class)) {
-
-            $vesta_module_names = ModuleUpdateServiceConfiguration::getModuleNames(true);
-
-            foreach ($vesta_module_names as $standard_module_name => $module_name) {
-                $vesta_installation_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name);
-                $source_filesystem         = Registry::filesystem()->root(Webtrees::MODULES_PATH . $vesta_installation_folder);
-                $destination_filesystem    = Registry::filesystem()->root(self::BACKUP_FOLDER . $vesta_installation_folder);
-
-                self::copyFiles($source_filesystem, $destination_filesystem);
-            }
-        }
-        else {
-            $source_filesystem      = Registry::filesystem()->root($installation_folder);
-            $destination_filesystem = Registry::filesystem()->root(self::BACKUP_FOLDER . str_replace(Webtrees::MODULES_PATH, '', $installation_folder));
+        foreach ($module_names as $standard_module_name => $module_name) {
+            $installation_folder    = $module_update_service::getInstallationFolderFromModuleName($module_name);
+            $source_filesystem      = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
+            $destination_filesystem = Registry::filesystem()->root(self::BACKUP_FOLDER . Webtrees::MODULES_PATH . $installation_folder);
 
             self::copyFiles($source_filesystem, $destination_filesystem);
         }
@@ -268,16 +257,15 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      * For performance reasons, we use direct filesystem access for this step.
      *
      * @param string $zip_file
-     * @param string $upgrade_folder     * 
-     * @param string $zip_folder
+     * @param string $unzip_folder
      *
      * @return ResponseInterface
      */
-    private function wizardStepUnzip(string $zip_file, $upgrade_folder, string $zip_folder): ResponseInterface
+    private function wizardStepUnzip(string $zip_file, string $unzip_folder): ResponseInterface
     {
         $start_time = Registry::timeFactory()->now();
-        $this->webtrees_upgrade_service->extractWebtreesZip($zip_file, $upgrade_folder);
-        $count    = $this->customModuleZipContents($zip_file, $zip_folder)->count();
+        $this->webtrees_upgrade_service->extractWebtreesZip($zip_file, Webtrees::ROOT_DIR . self::UPGRADE_FOLDER . $unzip_folder);
+        $count    = $this->customModuleZipContents($zip_file)->count();
         $end_time = Registry::timeFactory()->now();
         $seconds  = I18N::number($end_time - $start_time, 2);
 
@@ -290,34 +278,24 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     }
 
     /**
+     * @param array                  $module_names         A list with all module names, which shall be updated
      * @param string                 $zip_file             The ZIP file name
-     * @param string                 $zip_folder           The top level folder in the ZIP file of the custom module
-     * @param string                 $installation_folder  The installation folder of the custom module
      * @param Collection<int,string> $folders_to_clean     A collection of folder names within the module, which shall be cleaned 
      *
      * @return ResponseInterface
      */
-    private function wizardStepCopyAndCleanUp(string $zip_file, string $zip_folder, string $installation_folder, Collection $folders_to_clean = new Collection([])): ResponseInterface
+    private function wizardStepCopyAndCleanUp(array $module_names, string $zip_file, Collection $folders_to_clean = new Collection([])): ResponseInterface
     {
+        /** @var AbstractModuleUpdate $module_update_service  To avoid IDE warnings */
+        $module_update_service = $this->module_update_service;
+
         $this->webtrees_upgrade_service->startMaintenanceMode();
 
-        //If Vesta
-        if ($this->module_update_service instanceof(VestaModuleUpdate::class)) {
-
-            $vesta_module_names = ModuleUpdateServiceConfiguration::getModuleNames(true);
-
-            foreach ($vesta_module_names as $standard_module_name => $module_name) {
-                $vesta_installation_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name);
-                $standard_vesta_folder     = AbstractModuleUpdate::getInstallationFolderFromModuleName($standard_module_name);
-                $source_filesystem         = Registry::filesystem()->root(self::UPGRADE_FOLDER . Webtrees::MODULES_PATH . $standard_vesta_folder);
-                $destination_filesystem    = Registry::filesystem()->root(Webtrees::MODULES_PATH . $vesta_installation_folder);
-
-                $this->webtrees_upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
-            }
-        }
-        else {
-            $source_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . $zip_folder);
-            $destination_filesystem = Registry::filesystem()->root($installation_folder);
+        foreach ($module_names as $standard_module_name => $module_name) {
+            $installation_folder    = $module_update_service::getInstallationFolderFromModuleName($module_name);
+            $standard_folder        = $module_update_service::getInstallationFolderFromModuleName($standard_module_name);
+            $source_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . Webtrees::MODULES_PATH . $standard_folder);
+            $destination_filesystem = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
 
             $this->webtrees_upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
         }
@@ -325,7 +303,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $this->webtrees_upgrade_service->endMaintenanceMode();
 
         // While we have time, clean up any old files.
-        $files_to_keep = $this->customModuleZipContents($zip_file, $zip_folder);
+        $files_to_keep = $this->customModuleZipContents($zip_file);
         $this->webtrees_upgrade_service->cleanFiles($destination_filesystem, $folders_to_clean, $files_to_keep);
 
         //Remember updated module name for potential rollback
@@ -344,24 +322,20 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     }
 
     /**
-     * @param string $installation_folder  The installation folder of the custom module
+     * @param array  $module_names         A list with all module names, which shall be updated
      *
      * @return ResponseInterface
      */
-    private function wizardStepRollback(string $installation_folder): ResponseInterface
+    private function wizardStepRollback(array  $module_names): ResponseInterface
     {
+        /** @var AbstractModuleUpdate $module_update_service  To avoid IDE warnings */
+        $module_update_service = $this->module_update_service;
         $this->webtrees_upgrade_service->startMaintenanceMode();
 
-        //If Vesta module
-        if ($this->module_update_service instanceof(VestaModuleUpdate::class)) {
-            $vesta_module_names = ModuleUpdateServiceConfiguration::getModuleNames(true);
+        $this->webtrees_upgrade_service->startMaintenanceMode();
 
-            foreach ($vesta_module_names as $standard_module_name => $module_name) {
-                $installation_folder = Webtrees::MODULES_PATH . AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name);
-                $this->rollback($installation_folder);
-            }
-        }
-        else {
+        foreach ($module_names as $standard_module_name => $module_name) {
+            $installation_folder = $module_update_service::getInstallationFolderFromModuleName($module_name);
             $this->rollback($installation_folder);
         }
 
@@ -391,11 +365,11 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     {
         //Delete files of updated module
         $root_filesystem = Registry::filesystem()->root();
-        $root_filesystem->deleteDirectory($installation_folder);
+        $root_filesystem->deleteDirectory(Webtrees::MODULES_PATH . $installation_folder);
 
         //Restore files from backup to modules_v4
-        $source_filesystem      = Registry::filesystem()->root(self::BACKUP_FOLDER . str_replace(Webtrees::MODULES_PATH, '', $installation_folder));
-        $destination_filesystem = Registry::filesystem()->root($installation_folder);
+        $source_filesystem      = Registry::filesystem()->root(self::BACKUP_FOLDER . Webtrees::MODULES_PATH . $installation_folder);
+        $destination_filesystem = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
         self::copyFiles($source_filesystem, $destination_filesystem);
 
         return;
@@ -407,15 +381,14 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      * Code from: Fisharebest\Webtrees\Services\UpgradeService
      *
      * @param string $zip_file
-     * @param string $zip_folder
      *
      * @return Collection<int,string>
      * @throws FilesystemException
      */
-    public function customModuleZipContents(string $zip_file, string $zip_folder): Collection
+    public function customModuleZipContents(string $zip_file): Collection
     {
         $zip_provider   = new FilesystemZipArchiveProvider($zip_file, 0755);
-        $zip_adapter    = new ZipArchiveAdapter($zip_provider, $zip_folder);
+        $zip_adapter    = new ZipArchiveAdapter($zip_provider);
         $zip_filesystem = new Filesystem($zip_adapter);
 
         $files = $zip_filesystem->listContents('', FilesystemReader::LIST_DEEP)

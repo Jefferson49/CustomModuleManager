@@ -99,11 +99,11 @@ class ModuleUpdateServiceConfiguration
     ];
 
     /**
-     * Get the configuration for the module updates services
+     * Get a list of all module names
      * 
      * @param bool $getVesta Whether to get Vesta modules only
      * 
-     * @return array
+     * @return array<string> standard_module_name => module_name
      */
     public static function getModuleNames(bool $getVesta = false): array
     {

@@ -103,11 +103,11 @@ interface CustomModuleUpdateInterface
     public function getInstallationFolder(): string;
 
     /**
-     * The top level folder in the ZIP file of the custom module
+     * Get the folder, into which the module zip-file shalled be unzipped
      *
      * @return string
      */
-    public function getZipFolder(): string;
+    public function getUnzipFolder(): string;
     
     /**
      * A collection of folder names within the module, which shall be cleaned after an upgrade
@@ -122,4 +122,12 @@ interface CustomModuleUpdateInterface
      * @return bool
      */
     public function upgradeAvailable(): bool;
+
+    /**
+     * Get a list of all module names, which are needed to perform updates with this update service
+     * Background: Update services like Vesta might need several modules in parallel
+     * 
+     * @return array<string> standard_module_name => module_name
+     */
+    public function getModuleNamesToUpdate(): array;
 }

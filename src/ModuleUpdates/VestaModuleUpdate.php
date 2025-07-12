@@ -32,6 +32,7 @@ declare(strict_types=1);
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
 use Fisharebest\Webtrees\Webtrees;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 
 /**
  * Update API for Vesta custom modules
@@ -91,12 +92,25 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
     }
 
     /**
-     * The top level folder in the ZIP file of the custom module
+     * Get the folder, into which the module zip-file shalled be unzipped
      *
      * @return string
      */
-    public function getZipFolder(): string {
+    public function getUnzipFolder(): string {
 
-        return str_replace('/', '', Webtrees::MODULES_PATH);
-    }    
+        return '';
+    }
+
+    /**
+     * Get a list of all module names, which are needed to perform updates with this update service
+     * Background: Update services like Vesta might need several modules in parallel
+     * 
+     * @return array<string> standard_module_name => module_name
+     */
+    public function getModuleNamesToUpdate(): array {
+
+        $getVesta = true; 
+
+        return ModuleUpdateServiceConfiguration::getModuleNames($getVesta);
+    }
 }

@@ -58,8 +58,6 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     public function __construct(string $module_name, array  $params) {
 
         $this->module_name    = $module_name;
-        $standard_module_name = ModuleUpdateServiceConfiguration::getStandardModuleName($module_name);
-        $this->zip_folder     = self::getInstallationFolderFromModuleName($standard_module_name);
 
         if (array_key_exists('github_repo', $params)) {
             $this->github_repo = $params['github_repo'];
@@ -181,5 +179,5 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         }
 
         return $tag_name;
-    }  
+    }
 }

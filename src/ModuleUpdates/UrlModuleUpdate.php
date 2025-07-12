@@ -32,7 +32,6 @@ declare(strict_types=1);
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
 use Fisharebest\Webtrees\I18N;
-use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
 
 
@@ -55,8 +54,6 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
     public function __construct(string $module_name, array  $params) {
 
         $this->module_name    = $module_name;
-        $standard_module_name = ModuleUpdateServiceConfiguration::getStandardModuleName($module_name);
-        $this->zip_folder     = self::getInstallationFolderFromModuleName($standard_module_name);
 
         if (array_key_exists('download_url', $params)) {
             $this->download_url = $params['download_url'];
