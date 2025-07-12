@@ -108,7 +108,7 @@ class CustomModuleManager extends AbstractModule implements
     //Prefences, Settings
 	public const PREF_MODULE_VERSION      = 'module_version';
     public const PREF_DEBUGGING_ACTIVATED = 'debugging_activated';
-	public const PREF_SETTING             = 'setting';
+	public const PREF_GITHUB_API_TOKEN    = 'github_api_token';
 	public const PREF_LAST_UPDATED_MODULE = 'last_updated_module';
     public const PREF_ROLLBACK_ONGOING    = 'rollback_ongoing';
     public const PREF_ROLLBACK_FORCED     = 'rollback_foced';
@@ -395,8 +395,8 @@ class CustomModuleManager extends AbstractModule implements
         return $this->viewResponse(
             self::viewsNamespace() . '::settings',
             [
-                'title'              => $this->title(),
-                self::PREF_SETTING   => boolval($this->getPreference(self::PREF_SETTING, '1')),
+                'title'                     => $this->title(),
+                self::PREF_GITHUB_API_TOKEN => $this->getPreference(self::PREF_GITHUB_API_TOKEN, ''),
             ]
         );
     }
@@ -410,13 +410,12 @@ class CustomModuleManager extends AbstractModule implements
      */
     public function postAdminAction(ServerRequestInterface $request): ResponseInterface
     {
-        $save      = Validator::parsedBody($request)->string('save', '');
-		
-        $setting   = Validator::parsedBody($request)->boolean(self::PREF_SETTING, false);
+        $save             = Validator::parsedBody($request)->string('save', '');
+        $github_api_token = Validator::parsedBody($request)->string(self::PREF_GITHUB_API_TOKEN, '');
 
         //Save the received settings to the user preferences
         if ($save === '1') {
-			$this->setPreference(self::PREF_SETTING, $setting ? '1' : '0');
+			$this->setPreference(self::PREF_GITHUB_API_TOKEN, $github_api_token);
         }
 
         //Finally, show a success message

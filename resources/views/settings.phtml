@@ -16,7 +16,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 
 /**
  * @var string $title
- * @var string $setting
+ * @var string $github_api_token
  */
 
 $module_service = New ModuleService();
@@ -42,6 +42,30 @@ $custom_updates = $module_service
 				<?= I18N::translate('Manage custom modules') ?>
 			</a>
 		</div>
+	</div>
+
+	<div class="row mb-3"><?= view('icons/spacer') ?></div>
+
+	<div class="h4">
+		<?= I18N::translate('Github API token') ?>	
+	</div>
+
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label wt-page-options-label" for="new_secret_key">
+			<?= I18N::translate('Github API token') ?>
+		</label>
+		<div class="col-sm-9 wt-page-options-value">
+			<input class="form-control" id="github_api_token" name="github_api_token" type="text" value="<?= e($github_api_token) ?>">
+		</div>
+	</div>
+	<div class="row mb-3">
+		<div class="col">
+			<p></p>
+			<button type="submit" class="btn btn-primary">
+				<?= view('icons/save') ?>
+				<?= MoreI18N::xlate('save') ?>
+			</button>
+		</div>		
 	</div>
 </form>	
 

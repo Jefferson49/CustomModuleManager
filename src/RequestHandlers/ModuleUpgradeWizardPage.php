@@ -89,17 +89,18 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
 
         $upgrade_available = $module_upgrade_service->upgradeAvailable();
 
-        try {
-            $download_url = $module_upgrade_service->downloadUrl();
-        }
-        catch (CustomModuleManagerException $exception) {
-            return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
-                'steps'       => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ERROR, 'module_name' => $module_name, 'message' => $exception->getMessage()])    => MoreI18N::xlate('Error')],
-                'title'       => $title,
-            ]);
-        }
-
         if ($upgrade_available && $continue === '1') {
+
+            try {
+                $download_url = $module_upgrade_service->downloadUrl();
+            }
+            catch (CustomModuleManagerException $exception) {
+                return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
+                    'steps'       => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ERROR, 'module_name' => $module_name, 'message' => $exception->getMessage()])    => MoreI18N::xlate('Error')],
+                    'title'       => $title,
+                ]);
+            }
+
             return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
                 'steps'       => $this->wizardSteps($module_name, $download_url),
                 'title'       => $title,

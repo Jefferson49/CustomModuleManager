@@ -33,8 +33,10 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
 use Fig\Http\Message\StatusCodeInterface;
 use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Services\ModuleService;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
 
 
@@ -103,11 +105,20 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         try {
             $client = new Client(
                 [
-                'timeout' => 3,
+                'timeout'       => 3,
                 ]
             );
 
-            $response = $client->get($url);
+            $options = [];
+            $module_service = New ModuleService();
+            $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
+            $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
+
+            if ($github_api_token !== '') {
+                $options['headers'] = ['Authorization' => 'Bearer ' . $github_api_token];
+            }
+
+            $response = $client->get($url, $options);
 
             if ($response->getStatusCode() === StatusCodeInterface::STATUS_OK) {
                 $content = $response->getBody()->getContents();
@@ -118,7 +129,9 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             }
         } catch (GuzzleException $ex) {
             // Can't connect to the server?
-            $message = I18N::translate('Communication error with %s', $this->name()) . ': ' . I18N::translate('Cannot retrieve download URL.');
+            $message =  I18N::translate('Communication error with %s', $this->name()) . ': ' . 
+                        I18N::translate('Cannot retrieve download URL.') . "\n" .
+                        $ex->getMessage();
             throw new CustomModuleManagerException($message);
         }
 
