@@ -90,6 +90,7 @@ $module_service = New ModuleService();
                 <?php $module_update_service_name = I18N::translate('not available') ?>
                 <?php $module_title = $module->title() ?>
                 <?php $module_description = $module->description() ?>
+                <?php /** @var CustomModuleManager $module To avoid IDE warnings */ ?>
 				<?php $current_version = $module->customModuleVersion() ?>
 				<?php $latest_version = $module->customModuleLatestVersion() ?>
             <?php endif ?>						
