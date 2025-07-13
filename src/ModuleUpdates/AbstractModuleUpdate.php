@@ -275,7 +275,7 @@ abstract class AbstractModuleUpdate
         $message = '';
 
         try {
-            $module = include $filename;
+            $module = include_once $filename;
         } catch (Throwable $exception) {
             $message = 'Fatal error in module: ' . $module_name . '<br>' . $exception;
         }

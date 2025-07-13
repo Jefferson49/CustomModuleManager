@@ -361,16 +361,13 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $alert_type = self::ALERT_DANGER;
         }
 
-        if ($action === CustomModuleManager::ACTION_UPDATE) {
+        // While we have time, clean up any old files.
+        $files_to_keep = $this->customModuleZipContents($zip_file);
+        $this->webtrees_upgrade_service->cleanFiles($destination_filesystem, $folders_to_clean, $files_to_keep);
 
-            // While we have time, clean up any old files.
-            $files_to_keep = $this->customModuleZipContents($zip_file);
-            $this->webtrees_upgrade_service->cleanFiles($destination_filesystem, $folders_to_clean, $files_to_keep);
-
-            //Remember updated module name for potential rollback
-            $custom_module_manager->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, $this->module_update_service->getModuleName());
-            $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
-        }
+        //Remember updated module name for potential rollback
+        $custom_module_manager->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, $this->module_update_service->getModuleName());
+        $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
 
         $url = route(CustomModuleUpdatePage::class);
 
