@@ -1,14 +1,15 @@
 [![Latest Release](https://img.shields.io/github/v/release/Jefferson49/CustomModuleManager?display_name=tag)](https://github.com/Jefferson49/CustomModuleManager/releases/latest)
-[![webtrees major version](https://img.shields.io/badge/webtrees-v2.1.x-green)](https://webtrees.net/download)
 [![webtrees major version](https://img.shields.io/badge/webtrees-v2.2.x-green)](https://webtrees.net/download)
 
 # Custom Module Manager for webtrees
-A [webtrees](https://webtrees.net) 2.1/2.2 custom module to manage custom modules.
+A [webtrees](https://webtrees.net) 2.2 custom module to manage custom modules.
 
 ##  Table of contents
 This README file contains the following main sections:
 +   [What are the benefits of this module?](#what-are-the-benefits-of-this-module)
 +   [Installation](#installation)
++   [Github API Token](#github-api-token)
+*   [**How to use the module?**](#how-to-use-the-module)
 +   [Webtrees Version](#webtrees-version)
 +   [Translation](#translation)
 +   [Bugs and Feature Requests](#bugs-and-feature-requests)
@@ -16,17 +17,19 @@ This README file contains the following main sections:
 +   [Github Repository](#github-repository)
 
 ## What are the benefits of this module?
-**Planned features:**
-+ Support download of custom modules
+**Features:**
++ Support the download of custom modules
 + Support the installation of custom modules
-+ Support update of custom modules
++ Support the update of custom modules
 
 **Optionally planned features:**
++ Provide a full list of all available webtrees custom modules
 + Check the compatibility of custom modules with the webtrees versions
 + Enable/Disable custom modules
 + Save and restore the settings of a custom module
-+ Provide a full list of available custom modules
-+ Show the compatibility of custom modules to webtrees versions
+
+##  Screenshot
+![Screenshot](resources/img/screenshot.jpg)
 
 ## Installation
 + Download the [latest release](https://github.com/Jefferson49/CustomModuleManager/releases/latest) of the module by downloading the "**custom_module_manager_v\*.zip**" file from "Assets". Do not download "Source code.zip".
@@ -36,8 +39,33 @@ This README file contains the following main sections:
 	+ Go to "Control Panel/All Modules", and find the module called "Custom Module anager"
 	+ Check if it has a tick for "Enabled"
 
+## Github API Token
+
+The custom module makes intensive use of the Github API to retrieve module versions and download URLs. However, Github limits the frequency of API calls for a certain IP address. In order to significantly increase the allowed frequency of Github API calls, Github requires to use a Github API token.
+
+The module allows to provide a Github API token in the module settings. In order to get an API token from Github, the following steps need to be taken:
+
++ Open the [Github](https://github.com/) page and log into your Github account
++ Click on the symbol for your user account on the top right side of the browser
++ Choose "Settings" from the profile menu
++ Choose "Developer settings" on the bottom left side
++ Choose "Personal access tokens"
++ Choose "Tokens (classic)"
++ Click on "Generate new token" button on the right side
++ Choose "Generate new token (classic)"
++ Enter a note, e.g. "API token for webtrees Custom Module Manager"
++ Choose an expiration date. Since the provide rights are unspecific (if you do not select any options), it is acceptable to choose "No expiration" (even if Github does not recommend this).
++ Do NOT select any options
++ Press "Generate token" button at the bottom of the page
+
+##  How to use the module?
+
++ Got to the module settings
++ Optionally, enter a [Github API token](#github-api-token)
++ Press the "**Manage custom modules**" button
+
 ## Webtrees Version
-The module was developed and tested with [webtrees 2.1.22 and 2.2.1](https://webtrees.net/download), but should also run with any other 2.1/2.2 versions.
+The module was developed and tested with [webtrees 2.1.22 and 2.2.1](https://webtrees.net/download), but should also run with any other 2.2 version.
 
 ## Translation
 Currently, the following languages are available:
