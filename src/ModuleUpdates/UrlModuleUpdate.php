@@ -45,6 +45,14 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
     //The download URL
     protected string $download_url;
 
+    //The documentation URL
+    protected string $documentation_url;
+
+    //The latest version of the module
+
+    protected string $latest_version;
+
+
     /**
      * @param string $module_name  The custom module name
      * @param array  $params       The configuration parameters of the update service
@@ -60,6 +68,20 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
         }
         else {
             throw new CustomModuleManagerException(I18N::translate('Could not create the %s update service. Configuration parameter "%s" missing.', basename(str_replace('\\', '/', __CLASS__)) , 'download_url'));
+        }
+
+        if (array_key_exists('documentation_url', $params)) {
+            $this->documentation_url = $params['documentation_url'];
+        }
+        else {
+            $this->documentation_url = '';
+        }
+
+        if (array_key_exists('latest_version', $params)) {
+            $this->latest_version = $params['latest_version'];
+        }
+        else {
+            $this->latest_version = '';
         }
     }
 
@@ -92,6 +114,22 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
      */
     public function documentationUrl(): string 
     {
-        return '';
+        return $this->documentation_url;
+    }
+
+    /**
+     * Get the latest version of this module
+     *
+     * @return string
+     */
+    public function customModuleLatestVersion(): string
+    {
+        $module = $this->getModule();
+
+        if ($module !== null) {
+            return $module->customModuleLatestVersion();
+        }
+
+        return $this->latest_version;
     }
 }
