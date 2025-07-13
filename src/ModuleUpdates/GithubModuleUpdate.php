@@ -183,7 +183,16 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
                 ]
             );
 
-            $response = $client->get($github_api_url);
+            $options = [];
+            $module_service = New ModuleService();
+            $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
+            $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
+
+            if ($github_api_token !== '') {
+                $options['headers'] = ['Authorization' => 'Bearer ' . $github_api_token];
+            }
+
+            $response = $client->get($github_api_url, $options);
 
             if ($response->getStatusCode() === StatusCodeInterface::STATUS_OK) {
                 $content = $response->getBody()->getContents();
