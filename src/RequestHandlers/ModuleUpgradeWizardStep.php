@@ -46,6 +46,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CustomModuleUpdateInterface;
+use League\Flysystem\DirectoryAttribute;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
@@ -338,8 +339,9 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         try {
             foreach ($module_names as $standard_module_name => $module_name) {
                 $installation_folder    = $module_update_service::getInstallationFolderFromModuleName($module_name);
-                $standard_folder        = $module_update_service::getInstallationFolderFromModuleName($standard_module_name);
-                $source_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . Webtrees::MODULES_PATH . $standard_folder);
+                $update_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . Webtrees::MODULES_PATH);
+                $update_folder          = self::getInstallationFolder($update_filesystem);
+                $source_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . Webtrees::MODULES_PATH . $update_folder);
                 $destination_filesystem = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
 
                 $this->webtrees_upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
@@ -526,5 +528,33 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         return response(view('components/' . $alert_type, [
             'alert' => $alert,
         ]));
+    }
+
+    /**
+     * Get the installation folder 
+     *      
+     * @param FilesystemOperator $file_system
+     *  
+     * @return string
+     */
+    public static function getInstallationFolder(FilesystemOperator $file_system): string
+    {
+        $directory_name = '';
+        
+        try {
+            $listing = $file_system->listContents('');
+
+            /** @var StorageAttributes $item */
+            foreach ($listing as $item) {
+
+                if ($item->type() === 'dir') {
+                    $directory_name = $item->path();
+                }
+            }
+        } catch (FilesystemException $exception) {
+            // do nothing
+        }
+
+        return $directory_name;
     }
 }
