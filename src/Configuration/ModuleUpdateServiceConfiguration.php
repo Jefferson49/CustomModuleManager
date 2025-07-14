@@ -55,6 +55,9 @@ class ModuleUpdateServiceConfiguration
         '_jc-fancy-research-links_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-research-links']],
         '_jc-fancy-treeview_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-treeview']],
         '_jc-theme-justlight_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-theme-justlight']],    
+        '_webtrees-simple-footer_'        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-footer']],        
+        '_webtrees-simple-media-display_' =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-media-display']],
+        '_webtrees-simple-menu_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-menu']],          
 
         '_webtrees-primer-theme_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ekdahl/webtrees-primer-theme']],
 
@@ -86,17 +89,72 @@ class ModuleUpdateServiceConfiguration
         '_vesta_location_data_'           =>  ['update_service' => 'VestaModuleUpdate',  'params' => []],
 
         '_sosa20_'                        =>  ['update_service' => 'UrlModuleUpdate',    'params' => ['download_url' => 'https://gustine.eu/mode_emploi/sosa/sosa20-variant-2025-06b.zip', 'documentation_url' => 'https://gustine.eu/mode_emploi/sosa.php', 'latest_version' => '2025.06.06']],
+
+        '_hh_extended_family_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/hh_extended_family']],
+        '_hh_legal_notice_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/hh_legal_notice']],
+        '_german-chancellors-presidents_' =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/german-chancellors-presidents']],
+        '_german-wars-battles-worldwide_' =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/german-wars-battles-worldwide']],
+        '_gramps-historical-facts_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/gramps-historical-facts']],
+
+        '_family-tree-home_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'miqrogroove/family-tree-home']],
+
+        '_Argon-Light_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => '06Games/Webtrees-ArgonLight', 'is_theme' => true]],       
+
+        '_webtrees-branch-statistics_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'squatteur/webtrees-branch-statistics']],       
+
+        '_topola_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'PeWu/topola-webtrees']],
+
+        '_mitalteli-show-xref_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'elysch/webtrees-mitalteli-show-xref']], 
+        '_mitalteli-chart-family-book_'   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'elysch/webtrees-mitalteli-chart-family-book']],
+
+        '_webtrees-HTML-block-advanced_'  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'photon-flip/webtrees-HTML-block-advanced']], 
+        '_watermark-module_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'photon-flip/watermark-module']],
+
+        '_webtrees-faces_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'UksusoFF/webtrees-faces']],   
+        '_webtrees-photos_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'UksusoFF/webtrees-photos']],
+        '_webtrees-reminder_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'UksusoFF/webtrees-reminder']],
+        '_webtrees-tree_view_full_screen_'=>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'UksusoFF/webtrees-tree_view_full_screen']],
+        '_webtrees-mdi_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'UksusoFF/webtrees-mdi']],
+        
+        '_jp-theme-colors_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'jpretired/jp-theme-colors', 'is_theme' => true]],       
+        '_jp-main-menu-manual_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'jpretired/jp-main-menu-manual']],
+
+        '_telegram_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'Tywed/telegram']],        
+        '_news-menu_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'Tywed/news-menu']],
+
     ];
 
-    private const MODULES_TO_CHECK = [
-        '_webtrees-simple-media-display_' =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-media-display']],
-        '_webtrees-simple-footer_'        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-footer']],
-        '_webtrees-simple-menu_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-menu']],
+    private const MODULES_INSTALLATION_FAILS = [
+
+        '_swiss-historic-events_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/swiss-historic-events']],
+        '_hh_relation_is_descriptor_'     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/hh_relation_is_descriptor']],
+
+        '_SA-history-4-webtrees_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'tronsmit/SA-history-4-webtrees']],
+
+        '_custom-css_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'makitso/custom-css']],
+
     ];
 
-    private const MODULE_TITLES = [
-        '_extended_import_export_'        =>  'Extended Import/Export',
-        '_vesta_common_'                  =>  '⚶ Vesta Common'
+    private const MODULES_NOT_RELEASED = [
+
+        '_finnish-historical-facts_'      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ardhtu/finnish-historical-facts']],
+        '_fam-nav-parents-last_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'tronsmit/fam-nav-parents-last']],
+        '_my_custom_tags_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Jefferson49/MyCustomTags']],
+        '_webtrees-lantmateriet_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'ekdahl/webtrees-lantmateriet']],       
+
+    ];
+
+    private const MODULES_TO_CLARIFY = [
+
+        //"Changes" module (?)
+
+        //No module, but substitute of webtrees core code
+        '_new_modules_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'sevtor/modules']],
+        '_new_reports_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'sevtor/modules']],
+
+        //No top level folder
+        '_evang_mailsystem_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => '06Games/Webtrees-MailSystem']],       
+
     ];
 
     private const MODULE_TITLE_JSON       = '{"_change_language_with_url_":"ChangeLanguageWithURL module","_custom_module_manager_":"Custom Module Manager","_extended_import_export_":"Extended Import\/Export","_GVExport_":"GVExport","_huhwt-cce_":"\u210d Clippings cart enhanced","_huhwt-mtv_":"\u210d&\u210dwt MultTreeView","_huhwt-tsm_":"\u210d&\u210dwt Tagging service manager","_huhwt-wtlin_":"\u210d&\u210dwt LINchart","_huhwt-wttam_":"\u210d&\u210dwt TAMchart","_huhwt-xtv_":"Interactive tree XT \u210d&\u210dwt","_jc-fancy-imagebar_":"Fancy Imagebar","_jc-fancy-research-links_":"Fancy Research Links","_jc-fancy-treeview_":"Fancy Treeview","_jc-theme-justlight_":"JustLight","_myartjaub_ruraltheme_":"Rural","_my_custom_tags_":"My Custom Tags","_oauth2_client_":"OAuth2 Client","_ourfamilies-changes_":"Changes","_repository_hierarchy_":"Repository Hierarchy","_sosa20_":"Sosa-Stradonitz (Ahnentafel)","_sources_reference_numbers_list_":"Sources Ref.Nr.","_vesta_classic_look_and_feel_":"\u26b6 Vesta Classic Look & Feel","_vesta_clippings_cart_":"\u26b6 Vesta Clippings Cart","_vesta_common_":"\u26b6 Vesta Common","_vesta_extended_relationships_":"\u26b6 Vesta Extended Relationships","_vesta_gov4webtrees_":"\u26b6 Vesta Gov4Webtrees","_vesta_location_data_":"\u26b6 Vesta Webtrees Location Data Provider","_vesta_personal_facts_":"\u26b6 Vesta Facts and events","_vesta_places_and_pedigree_map_":"\u26b6 Vesta Places and Pedigree map","_vesta_relatives_":"\u26b6 Vesta Families","_vesta_research_suggestions_":"\u26b6 Vesta Research Suggestions","_vesta_shared_places_":"\u26b6 Vesta Shared Places","_webtrees-branch-statistics_":"Branch statistics","_webtrees-descendants-chart_":"Descendants chart","_webtrees-fan-chart_":"Fan chart","_webtrees-pedigree-chart_":"Pedigree chart","_webtrees-primer-theme_":"Primer"}';
@@ -220,7 +278,7 @@ class ModuleUpdateServiceConfiguration
 
         if ($module !== null) {
 
-            $map_titles_to_names = array_flip(self::MODULE_TITLES);
+            $map_titles_to_names = array_flip( json_decode(self::MODULE_TITLE_JSON, true));
             $current_language = Session::get('language', '');
 
             //Set language to default language, i.e. en-US
