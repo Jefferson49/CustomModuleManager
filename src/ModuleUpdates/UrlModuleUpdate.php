@@ -83,6 +83,8 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
         else {
             $this->latest_version = '';
         }
+
+        $this->is_theme = self::identifyThemeFromConfig($module_name, $params);
     }
 
     /**

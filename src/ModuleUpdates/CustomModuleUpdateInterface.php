@@ -137,4 +137,11 @@ interface CustomModuleUpdateInterface
      * @return string Error message or empty string if no error
      */
     public function testModuleUpdate(): string;
+
+    /**
+     * Whether the module is a Theme
+     * 
+     * @return bool
+     */
+    public function moduleIsTheme(): bool;
 }

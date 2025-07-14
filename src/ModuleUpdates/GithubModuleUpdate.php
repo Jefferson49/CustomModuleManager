@@ -33,6 +33,7 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
 use Fig\Http\Message\StatusCodeInterface;
 use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Module\ModuleThemeInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -56,9 +57,9 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      * 
      * @return void
      */
-    public function __construct(string $module_name, array  $params) {
+    public function __construct(string $module_name, array $params) {
 
-        $this->module_name    = $module_name;
+        $this->module_name = $module_name;
 
         if (array_key_exists('github_repo', $params)) {
             $this->github_repo = $params['github_repo'];
@@ -66,6 +67,8 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         else {
             throw new CustomModuleManagerException(I18N::translate('Could not create the %s update service. Configuration parameter "%s" missing.', basename(str_replace('\\', '/', __CLASS__)) , 'github_repo'));
         }
+
+        $this->is_theme = self::identifyThemeFromConfig($module_name, $params);
     }
 
     /**

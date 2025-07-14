@@ -31,8 +31,8 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
-use Exception;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
+use Fisharebest\Webtrees\Module\ModuleThemeInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
@@ -49,6 +49,9 @@ abstract class AbstractModuleUpdate
 
     //The custom module name
     protected string $module_name; 
+
+    //Whether the custom module is a theme
+    protected bool $is_theme; 
 
 
     /**
@@ -129,6 +132,16 @@ abstract class AbstractModuleUpdate
         }
 
         return '';
+    }
+
+    /**
+     * Whether the module is a Theme
+     * 
+     * @return bool
+     */
+    public function moduleIsTheme(): bool {
+
+        return $this->is_theme ?? false;
     }
     
     /**
@@ -237,7 +250,7 @@ abstract class AbstractModuleUpdate
         $standard_module_name = ModuleUpdateServiceConfiguration::getStandardModuleName($this->module_name);
 
         return [$standard_module_name => $this->module_name];
-    }
+    }    
 
     /**
      * Test a module update
@@ -281,5 +294,41 @@ abstract class AbstractModuleUpdate
         }
 
         return $message;
+    }
+
+
+    /**
+     * Identify whether a module is a them
+     * 
+     * Code from: Fisharebest\Webtrees\Services\ModuleService
+     * 
+     * @param string $module_name
+     * @param array  $configuratio parameters
+     *  
+     * @return string Error message or empty string if no error
+     */
+    public static function identifyThemeFromConfig(string $module_name, $params): bool {
+
+        $is_theme = false;
+
+        if (array_key_exists('is_theme', $params)) {
+            if ($params['is_theme'] === true) {
+                $is_theme = true;
+            }
+        }
+        else {
+            $module_service = New ModuleService();
+            $module = $module_service->findByName($module_name);
+            
+            if ($module !== null) {
+                $interfaces = class_implements($module);
+
+                if (isset($interfaces[ModuleThemeInterface::class])) {
+                    $is_theme = true;
+                }            
+            } 
+        }
+
+        return $is_theme;
     }
 }
