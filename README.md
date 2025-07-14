@@ -36,7 +36,7 @@ This README file contains the following main sections:
 + Unzip the downloaded file and copy the included folder custom_module_manager" into the "module_v4" folder of your webtrees installation
 + Check if the module is activated in the control panel:
   + Login to webtrees as an administrator
-	+ Go to "Control Panel/All Modules", and find the module called "Custom Module anager"
+	+ Go to "Control Panel/All Modules", and find the module called "Custom Module Manager"
 	+ Check if it has a tick for "Enabled"
 
 ## Github API Token
@@ -60,7 +60,8 @@ The module allows to provide a Github API token in the module settings. In order
 
 ##  How to use the module?
 
-+ Got to the module settings
++ Go to "Control Panel/All Modules" and find the "Custom Module Manager" module
++ Go to the module settings
 + Optionally, enter a [Github API token](#github-api-token)
 + Press the "**Manage custom modules**" button
 
