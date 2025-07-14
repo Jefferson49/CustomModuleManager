@@ -122,7 +122,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $module_name    = Validator::queryParams($request)->string('module_name', '');
         $download_url   = Validator::queryParams($request)->string('download_url', '');
         $message        = Validator::queryParams($request)->string('message', '');
-        $action         = Validator::queryParams($request)->string('action', '');
+        $action         = Validator::queryParams($request)->string('action', '');      
 
         $this->module_update_service = CustomModuleUpdateFactory::make($module_name);
 
@@ -151,7 +151,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 return $this->wizardStepCopyAndCleanUp($module_names, $zip_file,$folders_to_clean, $action);
 
             case self::STEP_ROLLBACK:
-                return $this->wizardStepRollback($module_names);
+                return $this->wizardStepRollback($module_names, CustomModuleManager::ACTION_UPDATE);
 
             case self::STEP_ERROR:
                 return $this->wizardStepError($message);
@@ -348,39 +348,44 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $alert_type = self::ALERT_SUCCESS;
         }
         catch (Throwable $exception) {
-            if ($action === CustomModuleManager::ACTION_UPDATE) {
-                //Force rollback 
-                $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_FORCED, '1');
-            }
-            else {
-                //Force deletion ??
-                //ToDo
-            }
-
-            $alert      = I18N::translate('Error during copying the module files into /modules_v4.');
-            $alert_type = self::ALERT_DANGER;
+            //Rollback
+            return $this->wizardStepRollback($module_names, $action);
         }
 
         // While we have time, clean up any old files.
         $files_to_keep = $this->customModuleZipContents($zip_file);
         $this->webtrees_upgrade_service->cleanFiles($destination_filesystem, $folders_to_clean, $files_to_keep);
 
-        //Remember updated module name for potential rollback
-        $custom_module_manager->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, $this->module_update_service->getModuleName());
-        $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
+        //If module has just been installed, we can immediately test it
+        if ($action === CustomModuleManager::ACTION_INSTALL) {
+            $test_result = $module_update_service->testModuleUpdate();
+            
+            if ($test_result !== '') {
+                return $this->wizardStepRollback($module_names, $action);
+            }
+        }
+        else {
+            //If module was updated, remember the module name for a test and potential rollback at the next start of webtrees
+            $custom_module_manager->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, $this->module_update_service->getModuleName());
+            $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
+        }
 
         $url = route(CustomModuleUpdatePage::class);
-
         return self::viewAlert($alert, $alert_type, $url);
     }
 
     /**
-     * @param array  $module_names         A list with all module names, which shall be updated
+     * @param array  $module_names  A list with all module names, which shall be updated
+     * @param string $action        The action to be performed, i.e. update or install
      *
      * @return ResponseInterface
      */
-    private function wizardStepRollback(array  $module_names): ResponseInterface
+    private function wizardStepRollback(array $module_names,string $action): ResponseInterface
     {
+        if (!in_array($action, [CustomModuleManager::ACTION_UPDATE, CustomModuleManager::ACTION_INSTALL])) {
+            $action = CustomModuleManager::ACTION_UPDATE;
+        }
+
         /** @var AbstractModuleUpdate $module_update_service  To avoid IDE warnings */
         $module_update_service = $this->module_update_service;
 
@@ -389,11 +394,23 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 $installation_folder = $module_update_service::getInstallationFolderFromModuleName($module_name);
                 $this->rollback($installation_folder);
             }
-            $alert = I18N::translate('The module was rolled back to the current version, because the update creates errors.');
+
+            if ($action === CustomModuleManager::ACTION_UPDATE) {
+                $alert = I18N::translate('The module was rolled back to the current version, because the update created errors.');
+            } 
+            else {
+                $alert = I18N::translate('The module installation was rolled back, because the module created errors.');
+            }
         }
         catch (Throwable $exception) {
-            $alert =    I18N::translate('A roll back of the module to the current version failed.') . "\n" .
-                        I18N::translate('Please try to manually roll back by copying the files from "/data/tmp/backup/modules_4" to "/modules_v4".');
+            if ($action === CustomModuleManager::ACTION_UPDATE) {
+                $alert =    I18N::translate('A roll back of the module to the current version failed.') . "\n" .
+                            I18N::translate('Please try to manually roll back by copying the files from "/data/tmp/backup/modules_4" to "/modules_v4".');
+            } 
+            else {
+                $alert =    I18N::translate('A roll back of the module installation failed.') . "\n" .
+                            I18N::translate('Please try to manually roll back by deleting the files from "/modules_v4".');
+            }
         }
 
         //Reset update information
@@ -401,7 +418,6 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
         $custom_module_manager->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, '');
         $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
-        $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_FORCED, '0');
 
         $url = route(CustomModuleUpdatePage::class);
         

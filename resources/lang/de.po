@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2025-07-12 22:07+0200\n"
-"PO-Revision-Date: 2025-07-12 22:07+0200\n"
+"POT-Creation-Date: 2025-07-14 06:44+0200\n"
+"PO-Revision-Date: 2025-07-14 06:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,30 +15,30 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:186
+#: src/CustomModuleManager.php:185
 msgid "Custom Module Manager"
 msgstr "Management von benutzerdefinierten Modulen"
 
-#: src/CustomModuleManager.php:199
+#: src/CustomModuleManager.php:198
 msgid "A custom module to manage webtrees custom modules."
 msgstr ""
 "Ein benutzerdefiniertes Modul zum Verwalten von benutzerdefinierten webtrees-"
 "Modulen."
 
-#: src/CustomModuleManager.php:426
+#: src/CustomModuleManager.php:425
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:464
+#: src/CustomModuleManager.php:462
 msgid "Rollback Custom Module Update"
 msgstr "Aktualisierung des benutzerdefinierten Moduls rückgängig machen"
 
-#: src/CustomModuleManager.php:465
+#: src/CustomModuleManager.php:463
 msgid "Rollback"
 msgstr "Rückgängig machen"
 
-#: src/CustomModuleManager.php:492
+#: src/CustomModuleManager.php:490
 #, php-format
 msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
@@ -47,7 +47,7 @@ msgstr ""
 "Die Einstellungen für das benutzerdefinierte Modul \"%s\" wurden für die "
 "neue Modul-Version %s aktualisiert."
 
-#: src/CustomModuleManager.php:524
+#: src/CustomModuleManager.php:522
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -61,7 +61,7 @@ msgstr ""
 "deaktivieren, weil die identische Funktion ebenfalls im Modul %s integriert "
 "ist."
 
-#: src/CustomModuleManager.php:529
+#: src/CustomModuleManager.php:527
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -74,7 +74,7 @@ msgstr ""
 "beide Module die gleiche Custom View \"%s\" registriert haben. Es wird "
 "dringend empfohlen eines der beiden Module zu deaktivieren."
 
-#: src/CustomModuleManager.php:553
+#: src/CustomModuleManager.php:551
 #, php-format
 msgid ""
 "The custom module view \"%s\" is not registered as replacement for the "
@@ -90,7 +90,7 @@ msgstr ""
 "Pfad für den Custom View ist: %s"
 
 #: src/ModuleUpdates/GithubModuleUpdate.php:67
-#: src/ModuleUpdates/UrlModuleUpdate.php:62
+#: src/ModuleUpdates/UrlModuleUpdate.php:70
 #, php-format
 msgid ""
 "Could not create the %s update service. Configuration parameter \"%s\" "
@@ -145,29 +145,43 @@ msgstr "Fehler beim Herunterladen der ZIP-Datei des Moduls."
 msgid "Error during unzipping the module zip file."
 msgstr "Fehler beim Entpacken der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:360
-msgid "Error during copying the module files into /modules_v4."
-msgstr "Fehler beim Kopieren der Moduldateien nach /modules_v4."
-
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:395
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:399
 msgid ""
 "The module was rolled back to the current version, because the update "
-"creates errors."
+"created errors."
 msgstr ""
 "Das Modul wurde auf die aktuelle Version zurückgesetzt, weil das Update "
-"Fehler verursacht."
+"Fehler verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:398
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:402
+msgid ""
+"The module installation was rolled back, because the module created errors."
+msgstr ""
+"Die Modulinstallation wurde rückgängig gemacht, weil das Modul Fehler "
+"verursachte."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:407
 msgid "A roll back of the module to the current version failed."
 msgstr "Ein Rollback des Moduls auf die aktuelle Version ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:399
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:408
 msgid ""
 "Please try to manually roll back by copying the files from \"/data/tmp/"
 "backup/modules_4\" to \"/modules_v4\"."
 msgstr ""
 "Bitte versuchen Sie, die Dateien manuell zurückzusetzen, indem Sie die "
 "Dateien von \"/data/tmp/backup/modules_4\" nach \"/modules_v4\" kopieren."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:411
+msgid "A roll back of the module installation failed."
+msgstr "Ein Rollback der Modulinstallation ist fehlgeschlagen."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:412
+msgid ""
+"Please try to manually roll back by deleting the files from \"/modules_v4\"."
+msgstr ""
+"Bitte versuchen Sie, die Dateien manuell zurückzusetzen, indem Sie die "
+"Dateien von \"/modules_4\" löschen."
 
 #: resources/views/module_update.phtml:53
 msgid "Module Updates"
@@ -229,6 +243,9 @@ msgstr "Eine neue Version des benutzerdefinierten Moduls ist verfügbar."
 #: resources/views/wizard.phtml:54
 msgid "quit"
 msgstr "Abbrechen"
+
+#~ msgid "Error during copying the module files into /modules_v4."
+#~ msgstr "Fehler beim Kopieren der Moduldateien nach /modules_v4."
 
 #, php-format
 #~ msgid ""

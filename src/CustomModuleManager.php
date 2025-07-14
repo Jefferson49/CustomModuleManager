@@ -111,7 +111,6 @@ class CustomModuleManager extends AbstractModule implements
 	public const PREF_GITHUB_API_TOKEN    = 'github_api_token';
 	public const PREF_LAST_UPDATED_MODULE = 'last_updated_module';
     public const PREF_ROLLBACK_ONGOING    = 'rollback_ongoing';
-    public const PREF_ROLLBACK_FORCED     = 'rollback_foced';
 
     //Actions
     public const ACTION_UPDATE            = 'action_update';
@@ -450,11 +449,10 @@ class CustomModuleManager extends AbstractModule implements
             //If we are not already in the middle of an ongoing rollback
             if (!$rollback_ongoing) {
 
-                $rollback_forced = boolval($this->getPreference(CustomModuleManager::PREF_ROLLBACK_FORCED, '0'));
                 $module_update_service = CustomModuleUpdateFactory::make($updated_module_name);
                 $test_result = $module_update_service->testModuleUpdate();
 
-                if ($rollback_forced OR $test_result !== '') {
+                if ($test_result !== '') {
                     //Trigger rollback of the udpated module                
                     $this->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '1');
 
