@@ -129,6 +129,9 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
                 if (preg_match('/"browser_download_url":"([^"]+?)"/', $content, $matches) === 1) {
                     $download_url = $matches[1];
                 }
+                elseif (preg_match('/"tag_name":"([^"]+?)"/', $content, $matches) === 1) {
+                    $download_url = 'https://github.com/' . $this->github_repo . '/archive/refs/tags/' . $matches[1] . '.zip';
+                }
             }
         } catch (GuzzleException $ex) {
             // Can't connect to the server?
