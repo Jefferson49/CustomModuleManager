@@ -124,6 +124,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $download_url   = Validator::queryParams($request)->string('download_url', '');
         $message        = Validator::queryParams($request)->string('message', '');
         $action         = Validator::queryParams($request)->string('action', '');      
+        $error_message  = Validator::queryParams($request)->string('error_message', '');
 
         $this->module_update_service = CustomModuleUpdateFactory::make($module_name);
 
@@ -152,7 +153,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 return $this->wizardStepCopyAndCleanUp($module_names, $zip_file,$folders_to_clean, $action);
 
             case self::STEP_ROLLBACK:
-                return $this->wizardStepRollback($module_names, CustomModuleManager::ACTION_UPDATE);
+                return $this->wizardStepRollback($module_names, CustomModuleManager::ACTION_UPDATE, $error_message);
 
             case self::STEP_ERROR:
                 return $this->wizardStepError($message);
@@ -351,7 +352,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         }
         catch (Throwable $exception) {
             //Rollback
-            return $this->wizardStepRollback($module_names, $action);
+            return $this->wizardStepRollback($module_names, $action, $exception->getMessage());
         }
 
         // While we have time, clean up any old files.
@@ -363,7 +364,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $test_result = $module_update_service->testModuleUpdate();
             
             if ($test_result !== '') {
-                return $this->wizardStepRollback($module_names, $action);
+                return $this->wizardStepRollback($module_names, $action, $test_result);
             }
         }
         else {
@@ -379,10 +380,11 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     /**
      * @param array  $module_names  A list with all module names, which shall be updated
      * @param string $action        The action to be performed, i.e. update or install
+     * @param string $error         An error message to show
      *
      * @return ResponseInterface
      */
-    private function wizardStepRollback(array $module_names,string $action): ResponseInterface
+    private function wizardStepRollback(array $module_names,string $action, string $error = ''): ResponseInterface
     {
         if (!in_array($action, [CustomModuleManager::ACTION_UPDATE, CustomModuleManager::ACTION_INSTALL])) {
             $action = CustomModuleManager::ACTION_UPDATE;
@@ -402,6 +404,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             } 
             else {
                 $alert = I18N::translate('The module installation was rolled back, because the module created errors.');
+            }
+
+            if ($error !== '') {
+                $alert .= "\n" . substr($error, 0, 500). "\n";
             }
         }
         catch (Throwable $exception) {

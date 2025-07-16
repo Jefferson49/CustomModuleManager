@@ -452,7 +452,7 @@ class CustomModuleManager extends AbstractModule implements
 
                     return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
                         'title' => I18N::translate('Rollback Custom Module Update'),
-                        'steps' => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ROLLBACK, 'module_name' => $updated_module_name]) => I18N::translate('Rollback')],
+                        'steps' => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ROLLBACK, 'module_name' => $updated_module_name, 'error_message' => $test_result]) => I18N::translate('Rollback')],
                     ]);
                 }
                 //After successful test, reset update information
