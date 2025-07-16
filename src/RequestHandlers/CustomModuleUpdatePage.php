@@ -50,6 +50,8 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
 {
     use ViewResponseTrait;
 
+    private const GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS = false;
+
     /**
      * @param ServerRequestInterface $request
      *
@@ -60,6 +62,11 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
         $this->layout = 'layouts/administration';
         
         $module_service = New ModuleService();
+
+        //If a specific switch is turn on, we generate default titles and descriptions.
+        if (self::GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS) {
+            CustomModuleManager::generateDefaultTitlesAndDescriptions();
+        }
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::module_update', [
             'title'                => I18N::translate('Custom Module Updates'),

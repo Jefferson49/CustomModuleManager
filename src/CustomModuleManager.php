@@ -53,6 +53,7 @@ use Fisharebest\Webtrees\Module\ModuleMenuTrait;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Validator;
+use Fisharebest\Webtrees\Session;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
@@ -69,11 +70,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Throwable;
 
 use RuntimeException;
-
-use function substr;
 
 
 class CustomModuleManager extends AbstractModule implements
@@ -121,6 +119,9 @@ class CustomModuleManager extends AbstractModule implements
     public const ROUTE_WIZARD_STEP        = '/module_upgrade_wizard_step';
     public const ROUTE_WIZARD_CONFIRM     = '/module_upgrade_wizard_confirm';
     public const ROUTE_MODULE_UPDATE_PAGE = '/module_update_page';
+
+    //Language
+    public const DEFAULT_LANGUAGE         = 'en-US';
 
 
     /**
@@ -547,5 +548,73 @@ class CustomModuleManager extends AbstractModule implements
         }
         
         return;
-    }   
+    }
+
+    /**
+     * Gemerate default titles and descriptions for all custom modules, which are available in this webtrees installation
+     * 
+     * If a (complete) list of modules is installed, we can use the generate a (complete) list of default values for all languages,
+     * The default values are written to a PHP file, which is delivered with the Custom Module Manager code.
+     *
+     * @return void
+     */
+    public static function generateDefaultTitlesAndDescriptions(): void {
+
+        $module_service = New ModuleService();
+        $custom_modules = $module_service->findByInterface(ModuleCustomInterface::class, true);
+
+        //Set language to default language, i.e. en-US
+        $current_language = Session::get('language', '');
+
+        //Generate English titles and descriptions
+        $language_tag = CustomModuleManager::DEFAULT_LANGUAGE;
+        I18N::init($language_tag);
+        Session::put('language', $language_tag);
+
+        foreach ($custom_modules as $module) {
+
+            $titles[$module->name()]       = $module->title();
+            $descriptions[$module->name()] = $module->description();
+        }
+
+        //Reset language
+        I18N::init($current_language);
+        Session::put('language', $current_language);
+
+        //Generate JSON for titles and descriptions
+        $title_json       = json_encode($titles);
+        $title_json       = str_replace("'", "\'", $title_json);
+        $description_json = json_encode($descriptions);
+        $description_json = str_replace("'", "\'", $description_json);
+
+        $json_file = __DIR__ . '/Configuration/DefaultTitlesAndDescriptions.php';
+
+        //Delete file if already existing
+        if (file_exists($json_file)) {
+            unlink($json_file);
+        }
+
+        //Open stream
+        if (!$stream = fopen($json_file, "c")) {
+            throw new RuntimeException('Cannot open file: ' . $json_file);
+        }
+
+        if (fwrite($stream, "<?php\n\n") === false) {
+            throw new RuntimeException('Cannot write to file: ' . $json_file);
+        }        
+
+        fwrite($stream, "declare(strict_types=1);\n\n");
+        fwrite($stream, "namespace Jefferson49\Webtrees\Module\CustomModuleManager\Configuration;\n\n");
+        fwrite($stream, "/**\n");
+        fwrite($stream, " * Default titles and descriptions\n");
+        fwrite($stream, " */\n");
+        fwrite($stream, "class DefaultTitlesAndDescriptions \n");
+        fwrite($stream, "{\n");
+        fwrite($stream, "    public const MODULE_TITLES_JSON = '");
+        fwrite($stream, $title_json . "';\n\n");
+        fwrite($stream, "    public const MODULE_DESCRIPTIONS_JSON = '");
+        fwrite($stream, $description_json . "';\n\n");
+        fwrite($stream, "}\n");
+        fclose($stream);
+    }    
 }

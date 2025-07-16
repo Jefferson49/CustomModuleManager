@@ -35,6 +35,7 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Session;
+use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 
 
 /**
@@ -157,10 +158,6 @@ class ModuleUpdateServiceConfiguration
 
     ];
 
-    private const MODULE_TITLE_JSON       = '{"_change_language_with_url_":"ChangeLanguageWithURL module","_custom_module_manager_":"Custom Module Manager","_extended_import_export_":"Extended Import\/Export","_GVExport_":"GVExport","_huhwt-cce_":"\u210d Clippings cart enhanced","_huhwt-mtv_":"\u210d&\u210dwt MultTreeView","_huhwt-tsm_":"\u210d&\u210dwt Tagging service manager","_huhwt-wtlin_":"\u210d&\u210dwt LINchart","_huhwt-wttam_":"\u210d&\u210dwt TAMchart","_huhwt-xtv_":"Interactive tree XT \u210d&\u210dwt","_jc-fancy-imagebar_":"Fancy Imagebar","_jc-fancy-research-links_":"Fancy Research Links","_jc-fancy-treeview_":"Fancy Treeview","_jc-theme-justlight_":"JustLight","_myartjaub_ruraltheme_":"Rural","_my_custom_tags_":"My Custom Tags","_oauth2_client_":"OAuth2 Client","_ourfamilies-changes_":"Changes","_repository_hierarchy_":"Repository Hierarchy","_sosa20_":"Sosa-Stradonitz (Ahnentafel)","_sources_reference_numbers_list_":"Sources Ref.Nr.","_vesta_classic_look_and_feel_":"\u26b6 Vesta Classic Look & Feel","_vesta_clippings_cart_":"\u26b6 Vesta Clippings Cart","_vesta_common_":"\u26b6 Vesta Common","_vesta_extended_relationships_":"\u26b6 Vesta Extended Relationships","_vesta_gov4webtrees_":"\u26b6 Vesta Gov4Webtrees","_vesta_location_data_":"\u26b6 Vesta Webtrees Location Data Provider","_vesta_personal_facts_":"\u26b6 Vesta Facts and events","_vesta_places_and_pedigree_map_":"\u26b6 Vesta Places and Pedigree map","_vesta_relatives_":"\u26b6 Vesta Families","_vesta_research_suggestions_":"\u26b6 Vesta Research Suggestions","_vesta_shared_places_":"\u26b6 Vesta Shared Places","_webtrees-branch-statistics_":"Branch statistics","_webtrees-descendants-chart_":"Descendants chart","_webtrees-fan-chart_":"Fan chart","_webtrees-pedigree-chart_":"Pedigree chart","_webtrees-primer-theme_":"Primer"}';
-
-    private const MODULE_DESCRIPTION_JSON = '{"_change_language_with_url_":"ChangeLanguageWithURL module","_custom_module_manager_":"A custom module to manage webtrees custom modules.","_extended_import_export_":"A custom module for advanced GEDCOM import, export, and filter operations. The module also supports remote downloads\/uploads\/filters via URL requests.","_GVExport_":"This is the \"GVExport\" module","_huhwt-cce_":"Add records from your family tree to the clippings cart and execute an action on them.","_huhwt-mtv_":"A treeview-diagram, showing the ancestors and descendants of an individual.","_huhwt-tsm_":"View and manage Tags for better structuring your Family Tree","_huhwt-wtlin_":"Download Gedcom information to client-side for postprocessing in LINEAGE.","_huhwt-wttam_":"Download Gedcom information to client-side for postprocessing in TAM.","_huhwt-xtv_":"An interactive tree, showing all the ancestors and descendants of an individual.","_jc-fancy-imagebar_":"An imagebar with small images between header and content.","_jc-fancy-research-links_":"A sidebar tool to provide quick links to popular research web sites.","_jc-fancy-treeview_":"A narrative overview of the descendants or ancestors of one family (branch).","_jc-theme-justlight_":"Theme \u2014 JustLight","_myartjaub_ruraltheme_":"Theme \u2014 Rural","_my_custom_tags_":"A module to provide custom tags, types, relationship descriptors, and roles in events","_oauth2_client_":"A custom module to implement a OAuth2 client for webtrees.","_ourfamilies-changes_":"A tab showing recent GEDCOM data changes for an individual.","_repository_hierarchy_":"A hierarchical structured list of the sources of an archive based on the call numbers of the sources","_sosa20_":"A sidebar showing Sosa-Stradonitz number of individuals.","_sources_reference_numbers_list_":"A list of reference numbers\/types for all sources in a repository","_vesta_classic_look_and_feel_":"A module adjusting all themes and other features, providing a look & feel closer to the webtrees 1.x version.","_vesta_clippings_cart_":"Select records from your family tree and save them as a GEDCOM file. Replacement for the original \'Clippings Cart\' module.","_vesta_common_":"A module providing common classes and translations for other \'Vesta\' custom modules. Make sure to enable this module if any other Vesta module is enabled.","_vesta_extended_relationships_":"A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original \'Relationships\' module. Also includes an extended \'Who is online\' block.","_vesta_gov4webtrees_":"A module integrating GOV (historic gazetteer) data.","_vesta_location_data_":"A module providing (non-GEDCOM-based) webtrees location data to other modules.","_vesta_personal_facts_":"A tab showing the facts and events of an individual. Replacement for the original \'Facts and events\' module.  Also extends facts and events on the family page. Also provides additional map links.","_vesta_places_and_pedigree_map_":"The Place hierarchy. Also show the location of events and the birthplace of ancestors on a map. Replacement for the original \'Place hierarchy\', \'Places\' and  \'Pedigree map\' modules.","_vesta_relatives_":"A tab showing the close relatives of an individual. Replacement for the original \'Families\' module.","_vesta_research_suggestions_":"A module providing suggestions for additional research, based on available sources.","_vesta_shared_places_":"A module providing support for shared places.","_webtrees-branch-statistics_":"Statistics of an individual\u2019s ancestors.","_webtrees-descendants-chart_":"An overview of an individual\u2019s descendants.","_webtrees-fan-chart_":"A fan chart of an individual\u2019s ancestors.","_webtrees-pedigree-chart_":"A pedigree chart of an individual\u2019s ancestors.","_webtrees-primer-theme_":"Theme \u2014 Primer"}';
-
     /**
      * Get a list of all module names
      * 
@@ -278,11 +275,11 @@ class ModuleUpdateServiceConfiguration
 
         if ($module !== null) {
 
-            $map_titles_to_names = array_flip( json_decode(self::MODULE_TITLE_JSON, true));
+            $map_titles_to_names = array_flip( json_decode(DefaultTitlesAndDescriptions::MODULE_TITLES_JSON, true));
             $current_language = Session::get('language', '');
 
             //Set language to default language, i.e. en-US
-            $default_language = 'en-US';
+            $default_language = CustomModuleManager::DEFAULT_LANGUAGE;
             I18N::init($default_language);
             Session::put('language', $default_language);
 
@@ -309,7 +306,8 @@ class ModuleUpdateServiceConfiguration
      */
     public static function getDefaultTitle(string $module_name): string {
 
-        $module_titles = json_decode(self::MODULE_TITLE_JSON, true);
+        $module_titles = json_decode(DefaultTitlesAndDescriptions::MODULE_TITLES_JSON, true);
+        $language_tag  = CustomModuleManager::DEFAULT_LANGUAGE;
 
         if (array_key_exists($module_name, $module_titles)) {
             return $module_titles[$module_name];
@@ -327,7 +325,8 @@ class ModuleUpdateServiceConfiguration
      */
     public static function getDefaultDescription(string $module_name): string {
 
-        $module_descriptions = json_decode(self::MODULE_DESCRIPTION_JSON, true);
+        $module_descriptions = json_decode(DefaultTitlesAndDescriptions::MODULE_DESCRIPTIONS_JSON, true);
+        $language_tag = CustomModuleManager::DEFAULT_LANGUAGE;
 
         if (array_key_exists($module_name, $module_descriptions)) {
             return $module_descriptions[$module_name];
