@@ -50,8 +50,6 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
 {
     use ViewResponseTrait;
 
-    private const GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS = false;
-
     /**
      * @param ServerRequestInterface $request
      *
@@ -64,7 +62,7 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
         $module_service = New ModuleService();
 
         //If a specific switch is turn on, we generate default titles and descriptions.
-        if (self::GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS) {
+        if (CustomModuleManager::GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS) {
             CustomModuleManager::generateDefaultTitlesAndDescriptions();
         }
 

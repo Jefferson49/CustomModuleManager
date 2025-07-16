@@ -123,6 +123,9 @@ class CustomModuleManager extends AbstractModule implements
     //Language
     public const DEFAULT_LANGUAGE         = 'en-US';
 
+    //Switch to generate new default titles and description (in class DefaultTitlesAndDescriptions.php)
+    public const GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS = false;
+
 
     /**
      * CustomModuleManager constructor.
