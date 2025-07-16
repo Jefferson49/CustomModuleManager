@@ -32,8 +32,8 @@ declare(strict_types=1);
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
 use Fig\Http\Message\StatusCodeInterface;
+use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\I18N;
-use Fisharebest\Webtrees\Module\ModuleThemeInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -208,7 +208,15 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
                 }
             }
         } catch (GuzzleException $ex) {
-            // Can't connect to the server?
+            $module_service = New ModuleService();
+            $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
+
+            if (!boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '0'))) {
+                FlashMessages::addMessage(I18N::translate('Communication error with %s', self::NAME), 'danger');
+
+                //Set flag in order to avoid multiple flash messages
+                $custom_module_manager->setPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '1');
+            }
         }
 
         return $tag_name;

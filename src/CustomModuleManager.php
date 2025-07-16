@@ -59,6 +59,7 @@ use Fisharebest\Webtrees\View;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardConfirm;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
@@ -109,6 +110,7 @@ class CustomModuleManager extends AbstractModule implements
 	public const PREF_GITHUB_API_TOKEN    = 'github_api_token';
 	public const PREF_LAST_UPDATED_MODULE = 'last_updated_module';
     public const PREF_ROLLBACK_ONGOING    = 'rollback_ongoing';
+    public const PREF_GITHUB_COM_ERROR    = 'Github_communication_error';
 
     //Actions
     public const ACTION_UPDATE            = 'action_update';
@@ -148,6 +150,9 @@ class CustomModuleManager extends AbstractModule implements
 
         //Initialize custom view list
         $this->custom_view_list = new Collection;
+
+        //Reset Github communication error
+        $this->setPreference(self::PREF_GITHUB_COM_ERROR, '0');
 
 		// Register a namespace for the views.
 		View::registerNamespace(self::viewsNamespace(), $this->resourcesFolder() . 'views/');
@@ -281,7 +286,15 @@ class CustomModuleManager extends AbstractModule implements
                         }
                     }
                 } catch (GuzzleException $ex) {
-                    // Can't connect to the server?
+                    $module_service = New ModuleService();
+                    $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
+
+                    if (!boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '0'))) {
+                        FlashMessages::addMessage(I18N::translate('Communication error with %s', GithubModuleUpdate::NAME), 'danger');
+
+                        //Set flag in order to avoid multiple flash messages
+                        $custom_module_manager->setPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '1');
+                    }
                 }
 
                 return $this->customModuleVersion();
