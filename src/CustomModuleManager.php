@@ -271,19 +271,10 @@ class CustomModuleManager extends AbstractModule implements
 
                     if ($response->getStatusCode() === StatusCodeInterface::STATUS_OK) {
                         $content = $response->getBody()->getContents();
-                        preg_match_all('/' . self::GITHUB_API_TAG_NAME_PREFIX . '([^"]+?)"/', $content, $matches, PREG_OFFSET_CAPTURE);
 
-						if(!empty($matches[0]))
-						{
-							$version = $matches[0][0][0];
-							$version = substr($version, strlen(self::GITHUB_API_TAG_NAME_PREFIX));	
-						}
-						else
-						{
-							$version = $this->customModuleVersion();
-						}
-
-                        return $version;
+                        if (preg_match('/"tag_name":"([^"]+?)"/', $content, $matches) === 1) {
+                            return $matches[1];
+                        }
                     }
                 } catch (GuzzleException $ex) {
                     // Can't connect to the server?
