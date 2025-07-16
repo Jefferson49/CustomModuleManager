@@ -264,18 +264,13 @@ class ModuleUpdateServiceConfiguration
     {
         $config = self::MODULE_UPDATE_SERVICE_CONFIG;
 
-        //Take module name if is in list
-        if (array_key_exists($module_name, $config)) {
-            return $module_name;
-        }
-
-        //Otherwise try to get the standard module name by matching the module titles
         $module_service = new ModuleService();
         $module = $module_service->findByName($module_name, true);
 
         if ($module !== null) {
 
             $map_titles_to_names = array_flip( json_decode(DefaultTitlesAndDescriptions::MODULE_TITLES_JSON, true));
+            $map_description_to_names = array_flip( json_decode(DefaultTitlesAndDescriptions::MODULE_TITLES_JSON, true));
             $current_language = Session::get('language', '');
 
             //Set language to default language, i.e. en-US
@@ -284,14 +279,25 @@ class ModuleUpdateServiceConfiguration
             Session::put('language', $default_language);
 
             $english_title = $module->title();
+            $english_description = $module->title();
 
             //Reset language
             I18N::init($current_language);
             Session::put('language', $current_language);
 
-            if (array_key_exists($english_title, $map_titles_to_names)) {
+            //Try to identify by title (if different from default title in AbstractModule)
+            if ($module->title() !== 'Module name goes here'  && array_key_exists($english_title, $map_titles_to_names)) {
                 return $map_titles_to_names[$english_title];
             }
+            //Try to identify by description (if different from default description in AbstractModule)
+            elseif ($module->description() !== $module->title() && array_key_exists($english_description, $map_description_to_names)) {
+                return $map_description_to_names[$english_description];
+            }
+        }
+
+        //Try to identify by module name (e.g. based on folder in modules_v4)
+        if (array_key_exists($module_name, $config)) {
+            return $module_name;
         }
 
         return '';    
