@@ -51,13 +51,17 @@ class ModuleUpgradeWizardConfirm implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $module_name = Validator::queryParams($request)->string('module_name', '');
-        $action      = Validator::queryParams($request)->string('action', '');
+        $module_name       = Validator::queryParams($request)->string('module_name', '');
+        $current_version   = Validator::queryParams($request)->string('current_version', '');
+        $latest_version    = Validator::queryParams($request)->string('latest_version', '');
+        $action            = Validator::queryParams($request)->string('action', '');
 
         return redirect(route(ModuleUpgradeWizardPage::class, [
-            'continue'       => 1,
-            'module_name'    => $module_name,
-            'action'         => $action,
+            'continue'        => 1,
+            'module_name'     => $module_name,
+            'current_version' => $current_version,
+            'latest_version'  => $latest_version,
+            'action'          => $action,
         ]));
     }
 }

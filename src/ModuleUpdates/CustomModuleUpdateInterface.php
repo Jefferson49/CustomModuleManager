@@ -117,11 +117,14 @@ interface CustomModuleUpdateInterface
     public function getFoldersToClean(): Collection;
 
     /**
-     * Whether an upgrade is available for the custom module
+     * Compare two module version number strings
      *
+     * @param string $version1,
+     * @param string $version2,
+     * 
      * @return bool
      */
-    public function upgradeAvailable(): bool;
+    public static function versionCompare(string $version1, $version2): bool;
 
     /**
      * Get a list of all module names, which are needed to perform updates with this update service

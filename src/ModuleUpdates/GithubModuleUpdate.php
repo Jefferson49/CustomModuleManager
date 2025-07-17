@@ -51,6 +51,9 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     //The Github repository of the module, e.g. Jefferson49/CustomModuleManager
     protected string $github_repo;
 
+    //Whether we shall get the latest version from Github instead from the module itself
+    protected bool $get_latest_version_from_github;
+
     /**
      * @param string $module_name  The custom module name
      * @param array  $params       The configuration parameters of the update service
@@ -66,6 +69,13 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         }
         else {
             throw new CustomModuleManagerException(I18N::translate('Could not create the %s update service. Configuration parameter "%s" missing.', basename(str_replace('\\', '/', __CLASS__)) , 'github_repo'));
+        }
+
+        if (array_key_exists('get_latest_version_from_github', $params)) {
+            $this->get_latest_version_from_github = $params['get_latest_version_from_github'];
+        }
+        else {
+            $this->get_latest_version_from_github = false;
         }
 
         $this->is_theme = self::identifyThemeFromConfig($module_name, $params);
@@ -164,8 +174,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         $module = $this->getModule();
 
         //If the installed module is available, try to get latest version from the module
-        if ($module !== null) {
-
+        if ($module !== null && !$this->get_latest_version_from_github) {
             $version = $module->customModuleLatestVersion();
 
             if ($version !== '') {
@@ -174,51 +183,48 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         }
 
         //As default, try to get the latest version from Github
+        if ($this->github_repo !== '') {
 
-        if ($this->github_repo === '') {
-            return '';
-        }
+            $github_api_url = 'https://api.github.com/repos/'. $this->github_repo . '/releases/latest';
 
-        $tag_name = '';
-        $github_api_url = 'https://api.github.com/repos/'. $this->github_repo . '/releases/latest';
+            try {
+                $client = new Client(
+                    [
+                    'timeout' => 3,
+                    ]
+                );
 
-        try {
-            $client = new Client(
-                [
-                'timeout' => 3,
-                ]
-            );
+                $options = [];
+                $module_service = New ModuleService();
+                $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
+                $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
 
-            $options = [];
-            $module_service = New ModuleService();
-            $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
-            $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
+                if ($github_api_token !== '') {
+                    $options['headers'] = ['Authorization' => 'Bearer ' . $github_api_token];
+                }
 
-            if ($github_api_token !== '') {
-                $options['headers'] = ['Authorization' => 'Bearer ' . $github_api_token];
-            }
+                $response = $client->get($github_api_url, $options);
 
-            $response = $client->get($github_api_url, $options);
+                if ($response->getStatusCode() === StatusCodeInterface::STATUS_OK) {
+                    $content = $response->getBody()->getContents();
+                    
+                    if (preg_match('/"tag_name":"([^"]+?)"/', $content, $matches) === 1) {
+                        return $matches[1];
+                    }
+                }
+            } catch (GuzzleException $ex) {
+                $module_service = New ModuleService();
+                $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
 
-            if ($response->getStatusCode() === StatusCodeInterface::STATUS_OK) {
-                $content = $response->getBody()->getContents();
-                
-                if (preg_match('/"tag_name":"([^"]+?)"/', $content, $matches) === 1) {
-                    $tag_name = $matches[1];
+                if (!boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '0'))) {
+                    FlashMessages::addMessage(I18N::translate('Communication error with %s', self::NAME), 'danger');
+
+                    //Set flag in order to avoid multiple flash messages
+                    $custom_module_manager->setPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '1');
                 }
             }
-        } catch (GuzzleException $ex) {
-            $module_service = New ModuleService();
-            $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
-
-            if (!boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '0'))) {
-                FlashMessages::addMessage(I18N::translate('Communication error with %s', self::NAME), 'danger');
-
-                //Set flag in order to avoid multiple flash messages
-                $custom_module_manager->setPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '1');
-            }
         }
 
-        return $tag_name;
+        return '';
     }
 }

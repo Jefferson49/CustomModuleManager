@@ -80,17 +80,17 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
     {
         $this->layout = 'layouts/administration';
 
-        $continue       = Validator::queryParams($request)->string('continue', '');
-        $module_name    = Validator::queryParams($request)->string('module_name', '');
-        $action         = Validator::queryParams($request)->string('action', '');
+        $continue          = Validator::queryParams($request)->string('continue', '');
+        $module_name       = Validator::queryParams($request)->string('module_name', '');
+        $current_version   = Validator::queryParams($request)->string('current_version', '');
+        $latest_version    = Validator::queryParams($request)->string('latest_version', '');
+        $action            = Validator::queryParams($request)->string('action', '');
 
         $module_upgrade_service = CustomModuleUpdateFactory::make($module_name);
 
         $title = MoreI18N::xlate('Upgrade wizard');
 
-        $upgrade_available = $module_upgrade_service->upgradeAvailable();
-
-        if (($action === CustomModuleManager::ACTION_INSTALL OR $upgrade_available) && $continue === '1') {
+        if ($continue === '1') {
 
             try {
                 $download_url = $module_upgrade_service->downloadUrl();
@@ -110,8 +110,8 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::wizard', [
             'module_name'     => $module_name,
-            'current_version' => $module_upgrade_service->customModuleVersion(),
-            'latest_version'  => $module_upgrade_service->customModuleLatestVersion(),
+            'current_version' => $current_version,
+            'latest_version'  => $latest_version,
             'title'           => $title,
             'action'          => $action
         ]);

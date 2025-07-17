@@ -177,18 +177,34 @@ abstract class AbstractModuleUpdate
     }
 
     /**
-     * Whether an upgrade is available for the custom module
+     * Compare two module version number strings
      *
+     * @param string $version1,
+     * @param string $version2,
+     * 
      * @return bool
      */
-    public function upgradeAvailable(): bool
+    public static function versionCompare(string $version1, $version2): bool
     {
-        $latest_version  = $this->customModuleLatestVersion();
-        $current_version = $this->customModuleVersion();
-
-        return version_compare($latest_version, $current_version) > 0;
+        return version_compare(self::normalizeVersion($version1), self::normalizeVersion($version2)) > 0;
     }      
 
+    /**
+     * Normalize a module version number strings
+     *
+     * @param string $version,
+     * 
+     * @return bool
+     */
+    public static function normalizeVersion(string $version): string
+    {
+        //If version starts with 'v', remove first character
+        if (strpos($version, 'v') === 0) {
+            $version = substr($version, 1);
+        }
+
+        return $version;
+    }
 
     /**
      * A default name for a custom module based on the installation folder
@@ -298,7 +314,7 @@ abstract class AbstractModuleUpdate
 
 
     /**
-     * Identify whether a module is a them
+     * Identify whether a module is a theme
      * 
      * Code from: Fisharebest\Webtrees\Services\ModuleService
      * 
