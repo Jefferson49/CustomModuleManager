@@ -117,16 +117,6 @@ interface CustomModuleUpdateInterface
     public function getFoldersToClean(): Collection;
 
     /**
-     * Compare two module version number strings
-     *
-     * @param string $version1,
-     * @param string $version2,
-     * 
-     * @return bool
-     */
-    public static function versionCompare(string $version1, $version2): bool;
-
-    /**
      * Get a list of all module names, which are needed to perform updates with this update service
      * Background: Update services like Vesta might need several modules in parallel
      * 

@@ -136,13 +136,13 @@ $module_service = New ModuleService();
                 </td>
 
                 <!-- Current version -->
-                <td data-sort="<?= e($current_version) ?>">
-                	<?= e($current_version) ?>
+                <td data-sort="<?= e(CustomModuleManager::normalizeVersion($current_version)) ?>">
+                	<?= e(CustomModuleManager::normalizeVersion($current_version)) ?>
                 </td>
 
                 <!-- Latest version -->
-                <td data-sort="<?= e($latest_version) ?>">
-                	<?= e($latest_version) ?>
+                <td data-sort="<?= e(CustomModuleManager::normalizeVersion($latest_version)) ?>">
+                	<?= e(CustomModuleManager::normalizeVersion($latest_version)) ?>
                 </td>
 
                 <!--Update Service -->
@@ -158,7 +158,7 @@ $module_service = New ModuleService();
                 <!--Action -->
                 <?php $action = '' ?>
                 <?php $action_label = '' ?>
-                <?php if ($module !== null && $module_update_service->versionCompare($latest_version, $current_version) > 0) : ?>
+                <?php if ($module !== null && CustomModuleManager::versionCompare($latest_version, $current_version) > 0) : ?>
     				<?php $action = CustomModuleManager::ACTION_UPDATE ?>
     				<?php $action_label = I18N::translate('Update module') ?>
                 <?php elseif ($module_status === I18N::translate('not installed')) : ?>
