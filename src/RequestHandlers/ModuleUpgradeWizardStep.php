@@ -337,7 +337,9 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $module_service = New ModuleService();
         $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());        
 
-        try {
+        $this->webtrees_upgrade_service->endMaintenanceMode();
+
+        try {            
             foreach ($module_names as $standard_module_name => $module_name) {
                 $installation_folder    = $module_update_service::getInstallationFolderFromModuleName($module_name);
                 $update_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . Webtrees::MODULES_PATH);
@@ -352,8 +354,11 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         }
         catch (Throwable $exception) {
             //Rollback
+            $this->webtrees_upgrade_service->endMaintenanceMode();        
             return $this->wizardStepRollback($module_names, $action, $exception->getMessage());
         }
+
+        $this->webtrees_upgrade_service->endMaintenanceMode();        
 
         // While we have time, clean up any old files.
         $files_to_keep = $this->customModuleZipContents($zip_file);
@@ -393,6 +398,8 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         /** @var AbstractModuleUpdate $module_update_service  To avoid IDE warnings */
         $module_update_service = $this->module_update_service;
 
+        $this->webtrees_upgrade_service->startMaintenanceMode();
+                
         try {
             foreach ($module_names as $standard_module_name => $module_name) {
                 $installation_folder = $module_update_service::getInstallationFolderFromModuleName($module_name);
@@ -411,6 +418,8 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             }
         }
         catch (Throwable $exception) {
+            $this->webtrees_upgrade_service->endMaintenanceMode();    
+    
             if ($action === CustomModuleManager::ACTION_UPDATE) {
                 $alert =    I18N::translate('A roll back of the module to the current version failed.') . "\n" .
                             I18N::translate('Please try to manually roll back by copying the files from "/data/tmp/backup/modules_4" to "/modules_v4".');
@@ -420,6 +429,8 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                             I18N::translate('Please try to manually roll back by deleting the files from "/modules_v4".');
             }
         }
+
+        $this->webtrees_upgrade_service->endMaintenanceMode();        
 
         //Reset update information
         $module_service = New ModuleService();
