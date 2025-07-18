@@ -56,6 +56,7 @@ use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\Session;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
+use Fisharebest\Webtrees\Webtrees;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
@@ -125,9 +126,11 @@ class CustomModuleManager extends AbstractModule implements
     //Language
     public const DEFAULT_LANGUAGE         = 'en-US';
 
+    //Supported webtrees version
+    public const SUPPORTED_WEBTREES_VERSION = '2.2';
+
     //Switch to generate new default titles and description (in class DefaultTitlesAndDescriptions.php)
     public const GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS = false;
-
 
     /**
      * CustomModuleManager constructor.
@@ -359,6 +362,10 @@ class CustomModuleManager extends AbstractModule implements
      */
     public function getMenu(Tree $tree): ?Menu
     {
+        if (self::runsWithInstalledWebtreesVersion()) {
+            return null;
+        }
+
 		return null;
     }  
 
@@ -406,6 +413,7 @@ class CustomModuleManager extends AbstractModule implements
         return $this->viewResponse(
             self::viewsNamespace() . '::settings',
             [
+                'activated'                 => CustomModuleManager::runsWithInstalledWebtreesVersion(),
                 'title'                     => $this->title(),
                 self::PREF_GITHUB_API_TOKEN => $this->getPreference(self::PREF_GITHUB_API_TOKEN, ''),
             ]
@@ -652,7 +660,7 @@ class CustomModuleManager extends AbstractModule implements
      *
      * @param string $version,
      * 
-     * @return bool
+     * @return string
      */
     public static function normalizeVersion(string $version): string
     {
@@ -662,5 +670,19 @@ class CustomModuleManager extends AbstractModule implements
         }
 
         return $version;
+    }
+
+    /**
+     * Whether the module runs with the webtrees version of this installation
+     *
+     * @return bool
+     */
+    public static function runsWithInstalledWebtreesVersion(): bool
+    {
+        if (substr(Webtrees::VERSION, 0, 3) === self::SUPPORTED_WEBTREES_VERSION) {
+            return true;
+        }
+
+        return false;
     }
 }

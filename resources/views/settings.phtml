@@ -10,11 +10,11 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\View;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
-use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleInstallPage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
 
 
 /**
+ * @var string $activated
  * @var string $title
  * @var string $github_api_token
  */
@@ -36,18 +36,25 @@ $custom_updates = $module_service
 	<?= csrf_field() ?>
 	<input type="hidden" name="save" id="save" value="1">
 
-    <div class="row mb-3">
-		<div class="col">	
-			<a href="<?= e(route(CustomModuleUpdatePage::class)) ?>" type="submit" class="btn btn-secondary">
-				<?= I18N::translate('Manage custom modules') ?>
-			</a>
+	<?php if ($activated) : ?>
+		<div class="row mb-3">
+			<div class="col">	
+				<a href="<?= e(route(CustomModuleUpdatePage::class)) ?>" type="submit" class="btn btn-secondary">
+					<?= I18N::translate('Manage custom modules') ?>
+				</a>
+			</div>
 		</div>
-	</div>
-
-	<div class="row mb-3"><?= view('icons/spacer') ?></div>
+		<div class="row mb-3"><?= view('icons/spacer') ?></div>
+	<?php else  : ?>
+		<?= view('components/' . 'alert-danger', [
+            'alert' => I18N::translate('This custom module can only be used with webtrees %s', CustomModuleManager::SUPPORTED_WEBTREES_VERSION),
+        ]) ?>;
+	<?php endif	?>
 
 	<div class="h4">
-		<?= I18N::translate('Github API token') ?>	
+		<div class="row mb-3">
+			<?= I18N::translate('Github API token') ?>	
+		</div>
 	</div>
 
 	<div class="row mb-3">
