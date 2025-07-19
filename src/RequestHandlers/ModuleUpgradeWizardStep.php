@@ -47,6 +47,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CustomModuleUpdateInterface;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\VestaModuleUpdate;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
@@ -359,13 +360,22 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $module_service = New ModuleService();
         $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());        
 
-        $this->webtrees_upgrade_service->endMaintenanceMode();
+        $this->webtrees_upgrade_service->startMaintenanceMode();
 
         try {            
             foreach ($module_names as $standard_module_name => $module_name) {
                 $installation_folder    = $module_update_service::getInstallationFolderFromModuleName($module_name);
                 $update_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . Webtrees::MODULES_PATH);
-                $update_folder          = self::getInstallationFolder($update_filesystem);
+
+                //If Vesta, take standard Vesta folder
+                if ($module_update_service->name() === VestaModuleUpdate::NAME) {
+                    $update_folder = $module_update_service::getInstallationFolderFromModuleName($standard_module_name);
+                }
+                //Otherwise get top level folder from unzipped file
+                else {
+                    $update_folder = self::getInstallationFolder($update_filesystem);
+                }
+
                 $source_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . Webtrees::MODULES_PATH . $update_folder);
                 $destination_filesystem = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
 
@@ -596,7 +606,13 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             /** @var StorageAttributes $item */
             foreach ($listing as $item) {
 
-                if ($item->type() === 'dir') {
+                //If we find the module file, return with empty directory
+                if ($item->isFile() && str_contains($item->path(), 'module.php')) {
+                    $directory_name = '';
+                    break;
+                }
+                //If we find a directory, take it
+                elseif ($item->isDir()) {
                     $directory_name = $item->path();
                 }
             }
