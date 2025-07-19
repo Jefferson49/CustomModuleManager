@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2025-07-19 13:56+0200\n"
-"PO-Revision-Date: 2025-07-19 13:57+0200\n"
+"POT-Creation-Date: 2025-07-19 21:02+0200\n"
+"PO-Revision-Date: 2025-07-19 21:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -121,36 +121,41 @@ msgstr "Temporäre Ordner anlegen…"
 msgid "Backup…"
 msgstr "Sicherung…"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:122
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:123
 msgid "Update Wizard was aborted"
 msgstr "Der Aktualisierungsassistent wurde abgebrochen"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:190
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:191
 msgid ""
 "This is the latest version of the custom module. No upgrade is available."
 msgstr ""
 "Dies ist die neueste Version des benutzerdefinierten Moduls. Es ist keine "
 "Aktualisierung verfügbar."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:266
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:197
+#, php-format
+msgid "Upgrade the module to version %s."
+msgstr "Aktualisieren des Moduls auf Version %s."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:267
 #, php-format
 msgid "A backup of the current module was created in %s seconds."
 msgstr ""
 "Eine Sicherungskopie des aktuellen Moduls wurde in %s Sekunden erstellt."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:271
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:272
 msgid "Failed to create a backup of the current module."
 msgstr "Es konnte keine Sicherungskopie des aktuellen Moduls erstellt werden."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:298
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:299
 msgid "Error during downloading the module zip file."
 msgstr "Fehler beim Herunterladen der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:330
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:331
 msgid "Error during unzipping the module zip file."
 msgstr "Fehler beim Entpacken der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:432
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:442
 msgid ""
 "The module was rolled back to the current version, because the update "
 "created errors."
@@ -158,18 +163,18 @@ msgstr ""
 "Das Modul wurde auf die aktuelle Version zurückgesetzt, weil das Update "
 "Fehler verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:435
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:445
 msgid ""
 "The module installation was rolled back, because the module created errors."
 msgstr ""
 "Die Modulinstallation wurde rückgängig gemacht, weil das Modul Fehler "
 "verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:446
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:456
 msgid "A roll back of the module to the current version failed."
 msgstr "Ein Rollback des Moduls auf die aktuelle Version ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:447
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:457
 msgid ""
 "Please try to manually roll back by copying the files from \"/data/tmp/"
 "backup/modules_4\" to \"/modules_v4\"."
@@ -177,11 +182,11 @@ msgstr ""
 "Bitte versuchen Sie, die Dateien manuell zurückzusetzen, indem Sie die "
 "Dateien von \"/data/tmp/backup/modules_4\" nach \"/modules_v4\" kopieren."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:450
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:460
 msgid "A roll back of the module installation failed."
 msgstr "Ein Rollback der Modulinstallation ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:451
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:461
 msgid ""
 "Please try to manually roll back by deleting the files from \"/modules_v4\"."
 msgstr ""

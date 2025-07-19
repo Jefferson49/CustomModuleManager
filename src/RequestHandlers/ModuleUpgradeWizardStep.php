@@ -194,7 +194,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         else {
             /* I18N: %s is a version number, such as 1.2.3 */
             $alert_type = self::ALERT_SUCCESS;
-            $alert       = MoreI18N::xlate('Upgrade the module to version %s.', e($latest_version));
+            $alert       = I18N::translate('Upgrade the module to version %s.', e($latest_version));
         }
 
         return self::viewAlert($alert, $alert_type, '', $abort);
