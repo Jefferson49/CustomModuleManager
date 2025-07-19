@@ -90,7 +90,7 @@ class CustomModuleManager extends AbstractModule implements
     use ModuleListTrait;
 
 	//Custom module version
-	public const CUSTOM_VERSION = '1.0.0-alpha.1';
+	public const CUSTOM_VERSION = 'v1.0.0-alpha.1';
 
 	//Github repository
 	public const GITHUB_REPO = 'Jefferson49/CustomModuleManager';
@@ -675,11 +675,11 @@ class CustomModuleManager extends AbstractModule implements
      * @param string $version1,
      * @param string $version2,
      * 
-     * @return bool
+     * @return int|bool
      */
-    public static function versionCompare(string $version1, $version2): bool
+    public static function versionCompare(string $version1, $version2): int|bool
     {
-        return version_compare(self::normalizeVersion($version1), self::normalizeVersion($version2)) > 0;
+        return version_compare(self::normalizeVersion($version1), self::normalizeVersion($version2));
     }      
 
     /**

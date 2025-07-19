@@ -89,11 +89,12 @@ interface CustomModuleUpdateInterface
     public function customModuleLatestVersion(): string;
 
     /**
-     * Where can we download the latest version of the module.
+     * Where can we download the module
      * 
+     * @param  string $version  The version of the module; latest version if empty
      * @return string
      */
-    public function downloadUrl(): string;
+    public function downloadUrl(string $version = ''): string;
 
     /**
      * Where can we find a documentation for the module

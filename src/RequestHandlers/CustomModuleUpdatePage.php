@@ -61,7 +61,7 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
         
         $module_service = New ModuleService();
 
-        //If a specific switch is turn on, we generate default titles and descriptions.
+        //If a specific switch is turned on, we generate default titles and descriptions.
         if (CustomModuleManager::GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS) {
             CustomModuleManager::generateDefaultTitlesAndDescriptions();
         }

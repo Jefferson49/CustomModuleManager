@@ -63,7 +63,6 @@ use function e;
 use function intdiv;
 use function response;
 use function route;
-use function version_compare;
 use function view;
 
 /**
@@ -119,12 +118,14 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $step           = Validator::queryParams($request)->string('step', self::STEP_CHECK);
-        $module_name    = Validator::queryParams($request)->string('module_name', '');
-        $download_url   = Validator::queryParams($request)->string('download_url', '');
-        $message        = Validator::queryParams($request)->string('message', '');
-        $action         = Validator::queryParams($request)->string('action', '');      
-        $error_message  = Validator::queryParams($request)->string('error_message', '');
+        $step            = Validator::queryParams($request)->string('step', self::STEP_CHECK);
+        $module_name     = Validator::queryParams($request)->string('module_name', '');
+        $current_version = Validator::queryParams($request)->string('current_version', '');
+        $latest_version  = Validator::queryParams($request)->string('latest_version', '');
+        $download_url    = Validator::queryParams($request)->string('download_url', '');
+        $message         = Validator::queryParams($request)->string('message', '');
+        $action          = Validator::queryParams($request)->string('action', '');      
+        $error_message   = Validator::queryParams($request)->string('error_message', '');
 
         $this->module_update_service = CustomModuleUpdateFactory::make($module_name);
 
@@ -135,7 +136,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
         switch ($step) {
             case self::STEP_CHECK:
-                return $this->wizardStepCheck();
+                return $this->wizardStepCheck($current_version, $latest_version);
 
             case self::STEP_PREPARE:
                 return $this->wizardStepPrepare($action);
@@ -165,24 +166,29 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
     /**
      * @return ResponseInterface
+     * 
+     * @param string $current_version
+     * @param string $latest_version
+     * 
+     * @return ResponseInterface
      */
-    private function wizardStepCheck(): ResponseInterface
+    private function wizardStepCheck(string $current_version, string $latest_version): ResponseInterface
     {
-        $latest_version = $this->module_update_service->customModuleLatestVersion();
-
         if ($latest_version === '') {
-            throw new HttpServerErrorException(MoreI18N::xlate('No upgrade information is available.'));
+            $alert_type = self::ALERT_DANGER;
+            $alert      = MoreI18N::xlate('No upgrade information is available.'); 
+        }
+        elseif (CustomModuleManager::versionCompare($current_version, $latest_version) >= 0) {
+            $alert_type = self::ALERT_DANGER;
+            $alert      = I18N::translate('This is the latest version of the custom module. No upgrade is available.');
+        }
+        else {
+            /* I18N: %s is a version number, such as 1.2.3 */
+            $alert_type = self::ALERT_SUCCESS;
+            $alert       = MoreI18N::xlate('Upgrade the module to version %s.', e($latest_version));
         }
 
-        if (version_compare($this->module_update_service->customModuleVersion(), $latest_version) >= 0) {
-            $message = I18N::translate('This is the latest version of the custom module. No upgrade is available.');
-            throw new HttpServerErrorException($message);
-        }
-
-        /* I18N: %s is a version number, such as 1.2.3 */
-        $alert = MoreI18N::xlate('Upgrade the module to version %s.', e($latest_version));
-
-        return self::viewAlert($alert);
+        return self::viewAlert($alert, $alert_type);
     }
 
     /**

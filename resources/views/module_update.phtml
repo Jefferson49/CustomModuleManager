@@ -137,12 +137,12 @@ $module_service = New ModuleService();
 
                 <!-- Current version -->
                 <td data-sort="<?= e(CustomModuleManager::normalizeVersion($current_version)) ?>">
-                	<?= e(CustomModuleManager::normalizeVersion($current_version)) ?>
+                	<?= e($current_version) ?>
                 </td>
 
                 <!-- Latest version -->
                 <td data-sort="<?= e(CustomModuleManager::normalizeVersion($latest_version)) ?>">
-                	<?= e(CustomModuleManager::normalizeVersion($latest_version)) ?>
+                	<?= e($latest_version) ?>
                 </td>
 
                 <!--Update Service -->

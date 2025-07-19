@@ -73,13 +73,12 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
     }
 
     /**
-     * Where can we download a certain version of the module. Latest release if no tag is provided
+     * Where can we download the module
      * 
-     * @param string $tag  The tag of the release 
-     * 
+     * @param  string $version  The version of the module; latest version if empty
      * @return string
      */
-    public function downloadUrl(string $tag = ''): string
+    public function downloadUrl(string $version = ''): string
     {
         return 'https://cissee.de/vesta.latest.zip';
     }

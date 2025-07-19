@@ -54,6 +54,9 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     //Whether we shall get the latest version from Github instead from the module itself
     protected bool $get_latest_version_from_github;
 
+    //A tag prefix for the module version, e.g. 'v' ('1.2.3' => 'v1.2.3')
+    protected string $tag_prefix;
+
     /**
      * @param string $module_name  The custom module name
      * @param array  $params       The configuration parameters of the update service
@@ -78,6 +81,13 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             $this->get_latest_version_from_github = false;
         }
 
+        if (array_key_exists('tag_prefix', $params)) {
+            $this->tag_prefix = $params['tag_prefix'];
+        }
+        else {
+            $this->tag_prefix = '';
+        }
+
         $this->is_theme = self::identifyThemeFromConfig($module_name, $params);
     }
 
@@ -89,29 +99,35 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     public function name(): string {
 
         return self::NAME;
-    }    
+    }
 
     /**
-     * Where can we download a certain version of the module. Latest release if no tag is provided
+     * Where can we download the module
      * 
-     * @param string $tag  The tag of the release 
-     * 
-     * @throws CustomModuleManagerException
-     * 
+     * @param  string $version  The version of the module; latest version if empty
      * @return string
      */
-    public function downloadUrl(string $tag = ''): string
+    public function downloadUrl(string $version = ''): string
     {
+        //Add prefix, if module tags have a prefix
+        if ($version !== '' && strlen($version) > strlen($this->tag_prefix)) {
+
+            //If version does not start with prefix, add prefix
+            if (substr($version, 0, strlen($this->tag_prefix)) !== $this->tag_prefix) {
+                $version = $this->tag_prefix . $version;
+            } 
+        }
+
         $download_url   = '';
         $github_api_url = 'https://api.github.com/repos/'. $this->github_repo . '/releases/';
 
         // If no tag is provided get the download URL of the latest release
-        if ($tag === '') {
+        if ($version === '') {
             $url = $github_api_url . 'latest';
         }
         // Get the download URL for a certain tag
         else {
-            $url = $github_api_url . 'tags/' . $tag;
+            $url = $github_api_url . 'tags/' . $version;
         }
 
         // Get the download URL from Github

@@ -93,7 +93,7 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
         if ($continue === '1') {
 
             try {
-                $download_url = $module_upgrade_service->downloadUrl();
+                $download_url = $module_upgrade_service->downloadUrl($latest_version);
             }
             catch (CustomModuleManagerException $exception) {
                 return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
@@ -103,8 +103,8 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
             }
 
             return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
-                'steps'       => $this->wizardSteps($module_name, $download_url, $action),
-                'title'       => $title,
+                'steps'           => $this->wizardSteps($module_name, $download_url, $action, $current_version, $latest_version),
+                'title'           => $title,
             ]);
         }
 
@@ -121,19 +121,23 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
      * @param string $download_url
      * @param string $module_name
      * @param string $action         The action to be performed, i.e. update or install
+     * @param string $current_version
+     * @param string $latest_version
      * 
      * @return array<string>
      */
-    private function wizardSteps(string $module_name, string $download_url, string $action = CustomModuleManager::ACTION_UPDATE): array
+    private function wizardSteps(string $module_name, string $download_url, string $action = CustomModuleManager::ACTION_UPDATE, $current_version, $latest_version): array
     {
         if (!in_array($action, [CustomModuleManager::ACTION_UPDATE, CustomModuleManager::ACTION_INSTALL])) {
             $action = CustomModuleManager::ACTION_UPDATE;
         }
 
         $params = [
-            'module_name'  => $module_name,
-            'download_url' => $download_url,
-            'action'       => $action
+            'module_name'     => $module_name,
+            'download_url'    => $download_url,
+            'action'          => $action,
+            'current_version' => $current_version,
+            'latest_version'  => $latest_version,
         ];
 
         $steps = [];
