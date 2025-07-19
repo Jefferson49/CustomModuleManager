@@ -126,11 +126,15 @@ class CustomModuleManager extends AbstractModule implements
     //Language
     public const DEFAULT_LANGUAGE         = 'en-US';
 
+    //Session
+    public const SESSION_WIZARD_ABORTED   = 'wizard_aborted';
+
     //Supported webtrees version
     public const SUPPORTED_WEBTREES_VERSION = '2.2';
 
     //Switch to generate new default titles and description (in class DefaultTitlesAndDescriptions.php)
     public const GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS = false;
+    
 
     /**
      * CustomModuleManager constructor.

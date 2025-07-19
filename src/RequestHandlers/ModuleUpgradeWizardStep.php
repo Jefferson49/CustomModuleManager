@@ -38,6 +38,7 @@ use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Services\TimeoutService;
 use Fisharebest\Webtrees\Services\UpgradeService;
+use Fisharebest\Webtrees\Session;
 use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
@@ -46,7 +47,6 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CustomModuleUpdateInterface;
-use League\Flysystem\DirectoryAttribute;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
@@ -118,6 +118,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        if (Session::get(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED, false)) {
+            return self::viewAlert(I18N::translate('Update Wizard was aborted'), self::ALERT_DANGER, '', true);
+        }
+
         $step            = Validator::queryParams($request)->string('step', self::STEP_CHECK);
         $module_name     = Validator::queryParams($request)->string('module_name', '');
         $current_version = Validator::queryParams($request)->string('current_version', '');
@@ -174,13 +178,17 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      */
     private function wizardStepCheck(string $current_version, string $latest_version): ResponseInterface
     {
+        $abort = false;
+        
         if ($latest_version === '') {
             $alert_type = self::ALERT_DANGER;
-            $alert      = MoreI18N::xlate('No upgrade information is available.'); 
+            $alert      = MoreI18N::xlate('No upgrade information is available.');
+            $abort      = true;
         }
         elseif (CustomModuleManager::versionCompare($current_version, $latest_version) >= 0) {
             $alert_type = self::ALERT_DANGER;
             $alert      = I18N::translate('This is the latest version of the custom module. No upgrade is available.');
+            $abort      = true;
         }
         else {
             /* I18N: %s is a version number, such as 1.2.3 */
@@ -188,7 +196,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $alert       = MoreI18N::xlate('Upgrade the module to version %s.', e($latest_version));
         }
 
-        return self::viewAlert($alert, $alert_type);
+        return self::viewAlert($alert, $alert_type, '', $abort);
     }
 
     /**
@@ -200,6 +208,8 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      */
     private function wizardStepPrepare(string $action = CustomModuleManager::ACTION_UPDATE): ResponseInterface
     {
+        $abort      = false;                          
+        
         if (!in_array($action, [CustomModuleManager::ACTION_UPDATE, CustomModuleManager::ACTION_INSTALL])) {
             $action = CustomModuleManager::ACTION_UPDATE;
         }
@@ -218,14 +228,14 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             }
 
             $alert_type = self::ALERT_SUCCESS;
-                          
         } 
         catch (Throwable $exception) {
             $alert_type = self::ALERT_DANGER;
-            $alert      = MoreI18N::xlate('Error during creating the temporary backup and upgrade folders'); 
+            $alert      = MoreI18N::xlate('Error during creating the temporary backup and upgrade folders');
+            $abort      = true;
         }
 
-        return self::viewAlert($alert, $alert_type);
+        return self::viewAlert($alert, $alert_type, '', $abort);
     }
 
     /**
@@ -240,6 +250,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         /** @var AbstractModuleUpdate $module_update_service  To avoid IDE warnings */
         $module_update_service = $this->module_update_service;
         $start_time = Registry::timeFactory()->now();
+        $abort      = false;
 
         try {
             foreach ($module_names as $standard_module_name => $module_name) {
@@ -258,9 +269,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         catch (Throwable $exception) {
             $alert_type = self::ALERT_DANGER;
             $alert      = I18N::translate('Failed to create a backup of the current module.');
+            $abort      = true;
         }
 
-        return self::viewAlert($alert, $alert_type);
+        return self::viewAlert($alert, $alert_type,'', $abort);
     }
     
     /**
@@ -272,6 +284,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     {
         $root_filesystem = Registry::filesystem()->root();
         $start_time      = Registry::timeFactory()->now();
+        $abort      = false;
 
         try {
             $bytes      = $this->webtrees_upgrade_service->downloadFile($download_url, $root_filesystem, self::ZIP_FILENAME);
@@ -284,9 +297,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         catch (Throwable $exception) {
             $alert      = I18N::translate('Error during downloading the module zip file.');
             $alert_type = self::ALERT_DANGER;
+            $abort      = true;
         }
 
-        return self::viewAlert($alert, $alert_type);
+        return self::viewAlert($alert, $alert_type, '', $abort);
     }
 
     /**
@@ -300,6 +314,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     private function wizardStepUnzip(string $zip_file, string $unzip_folder): ResponseInterface
     {
         $start_time = Registry::timeFactory()->now();
+        $abort      = false;
 
         try{
             $this->webtrees_upgrade_service->extractWebtreesZip($zip_file, Webtrees::ROOT_DIR . self::UPGRADE_FOLDER . $unzip_folder);
@@ -314,9 +329,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         catch (Throwable $exception) {
             $alert      = I18N::translate('Error during unzipping the module zip file.');
             $alert_type = self::ALERT_DANGER;
+            $abort      = true;
         }
 
-        return self::viewAlert($alert, $alert_type);
+        return self::viewAlert($alert, $alert_type, '', $abort);
     }
 
     /**
@@ -446,7 +462,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
         $url = route(CustomModuleUpdatePage::class);
         
-        return self::viewAlert($alert, self::ALERT_DANGER, $url);
+        return self::viewAlert($alert, self::ALERT_DANGER, $url, true);
     }
 
     /**
@@ -456,7 +472,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     {
         $url    = route(CustomModuleUpdatePage::class);
 
-        return self::viewAlert($message, self::ALERT_DANGER, $url);
+        return self::viewAlert($message, self::ALERT_DANGER, $url, true);
     }
 
     /**
@@ -533,13 +549,23 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      * @param string $alert       The alert text
      * @param string $alert_type  The alert type, e.g. danger, sucess
      * @param string $url         The URL to be called if button is pressed
+     * @param bool   $abort       Whether the status of the update wizard shall be set to aborted
      *  
      * @return ResponseInterface
      */
-    public static function viewAlert(string $alert, string $alert_type = self::ALERT_SUCCESS, string $url = ''): ResponseInterface
+    public static function viewAlert(string $alert, string $alert_type = self::ALERT_SUCCESS, string $url = '', bool $abort = false): ResponseInterface
     {    
         if (!in_array($alert_type, [self::ALERT_DANGER, self::ALERT_SUCCESS])) {
             $alert_type = self::ALERT_SUCCESS;
+        }
+
+        if ($abort) {
+            if (!Session::get(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED, false)) {
+
+                //If first time to abort, add a button with an URL to continue
+                $url = route(CustomModuleUpdatePage::class);
+            }
+            Session::put(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED, true);
         }
 
         //If URL is provided, include a continue button

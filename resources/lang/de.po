@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2025-07-19 12:01+0200\n"
-"PO-Revision-Date: 2025-07-19 12:02+0200\n"
+"POT-Creation-Date: 2025-07-19 13:56+0200\n"
+"PO-Revision-Date: 2025-07-19 13:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,36 +15,36 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:197
+#: src/CustomModuleManager.php:201
 msgid "Custom Module Manager"
 msgstr "Management von benutzerdefinierten Modulen"
 
-#: src/CustomModuleManager.php:210
+#: src/CustomModuleManager.php:214
 msgid "A custom module to manage webtrees custom modules."
 msgstr ""
 "Ein benutzerdefiniertes Modul zum Verwalten von benutzerdefinierten webtrees-"
 "Modulen."
 
-#: src/CustomModuleManager.php:296 src/ModuleUpdates/GithubModuleUpdate.php:164
+#: src/CustomModuleManager.php:300 src/ModuleUpdates/GithubModuleUpdate.php:164
 #: src/ModuleUpdates/GithubModuleUpdate.php:238
 #, php-format
 msgid "Communication error with %s"
 msgstr "Kommunikationsfehler mit %s"
 
-#: src/CustomModuleManager.php:468
+#: src/CustomModuleManager.php:472
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:505
+#: src/CustomModuleManager.php:509
 msgid "Rollback Custom Module Update"
 msgstr "Aktualisierung des benutzerdefinierten Moduls rückgängig machen"
 
-#: src/CustomModuleManager.php:506
+#: src/CustomModuleManager.php:510
 msgid "Rollback"
 msgstr "Rückgängig machen"
 
-#: src/CustomModuleManager.php:533
+#: src/CustomModuleManager.php:537
 #, php-format
 msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
@@ -53,7 +53,7 @@ msgstr ""
 "Die Einstellungen für das benutzerdefinierte Modul \"%s\" wurden für die "
 "neue Modul-Version %s aktualisiert."
 
-#: src/CustomModuleManager.php:565
+#: src/CustomModuleManager.php:569
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -67,7 +67,7 @@ msgstr ""
 "deaktivieren, weil die identische Funktion ebenfalls im Modul %s integriert "
 "ist."
 
-#: src/CustomModuleManager.php:570
+#: src/CustomModuleManager.php:574
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -80,7 +80,7 @@ msgstr ""
 "beide Module die gleiche Custom View \"%s\" registriert haben. Es wird "
 "dringend empfohlen eines der beiden Module zu deaktivieren."
 
-#: src/CustomModuleManager.php:594
+#: src/CustomModuleManager.php:598
 #, php-format
 msgid ""
 "The custom module view \"%s\" is not registered as replacement for the "
@@ -113,40 +113,44 @@ msgstr "Die Download-URL kann nicht abgerufen werden."
 msgid "Custom Module Updates"
 msgstr "Aktualisierung von benutzerdefinierten Modulen"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:152
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:156
 msgid "Create temporary folders…"
 msgstr "Temporäre Ordner anlegen…"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:157
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:161
 msgid "Backup…"
 msgstr "Sicherung…"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:183
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:122
+msgid "Update Wizard was aborted"
+msgstr "Der Aktualisierungsassistent wurde abgebrochen"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:190
 msgid ""
 "This is the latest version of the custom module. No upgrade is available."
 msgstr ""
 "Dies ist die neueste Version des benutzerdefinierten Moduls. Es ist keine "
 "Aktualisierung verfügbar."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:255
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:266
 #, php-format
 msgid "A backup of the current module was created in %s seconds."
 msgstr ""
 "Eine Sicherungskopie des aktuellen Moduls wurde in %s Sekunden erstellt."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:260
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:271
 msgid "Failed to create a backup of the current module."
 msgstr "Es konnte keine Sicherungskopie des aktuellen Moduls erstellt werden."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:285
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:298
 msgid "Error during downloading the module zip file."
 msgstr "Fehler beim Herunterladen der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:315
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:330
 msgid "Error during unzipping the module zip file."
 msgstr "Fehler beim Entpacken der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:416
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:432
 msgid ""
 "The module was rolled back to the current version, because the update "
 "created errors."
@@ -154,18 +158,18 @@ msgstr ""
 "Das Modul wurde auf die aktuelle Version zurückgesetzt, weil das Update "
 "Fehler verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:419
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:435
 msgid ""
 "The module installation was rolled back, because the module created errors."
 msgstr ""
 "Die Modulinstallation wurde rückgängig gemacht, weil das Modul Fehler "
 "verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:430
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:446
 msgid "A roll back of the module to the current version failed."
 msgstr "Ein Rollback des Moduls auf die aktuelle Version ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:431
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:447
 msgid ""
 "Please try to manually roll back by copying the files from \"/data/tmp/"
 "backup/modules_4\" to \"/modules_v4\"."
@@ -173,11 +177,11 @@ msgstr ""
 "Bitte versuchen Sie, die Dateien manuell zurückzusetzen, indem Sie die "
 "Dateien von \"/data/tmp/backup/modules_4\" nach \"/modules_v4\" kopieren."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:434
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:450
 msgid "A roll back of the module installation failed."
 msgstr "Ein Rollback der Modulinstallation ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:435
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:451
 msgid ""
 "Please try to manually roll back by deleting the files from \"/modules_v4\"."
 msgstr ""

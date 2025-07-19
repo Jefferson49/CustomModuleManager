@@ -35,6 +35,7 @@ use Fisharebest\Webtrees\Http\ViewResponseTrait;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Services\UpgradeService;
+use Fisharebest\Webtrees\Session;
 use Fisharebest\Webtrees\Validator;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
@@ -89,6 +90,9 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
         $module_upgrade_service = CustomModuleUpdateFactory::make($module_name);
 
         $title = MoreI18N::xlate('Upgrade wizard');
+
+        //Reset aborted flag before start of wizard
+        Session::put(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED, false);
 
         if ($continue === '1') {
 
