@@ -183,14 +183,16 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     /**
      * Fetch the latest version of this module
      *
+     * @param bool $fetch_latest  Whether to fetch the latest version, e.g. from a Github repository 
+     * 
      * @return string
      */
-    public function customModuleLatestVersion(): string
+    public function customModuleLatestVersion(bool $fetch_latest = false): string
     {
         $module = $this->getModule();
 
         //If the installed module is available, try to get latest version from the module
-        if ($module !== null && !$this->get_latest_version_from_github) {
+        if (!$fetch_latest && $module !== null && !$this->get_latest_version_from_github) {
             $version = $module->customModuleLatestVersion();
 
             if ($version !== '') {
@@ -198,7 +200,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             }
         }
 
-        //As default, try to get the latest version from Github
+        //Otherwise, try to get the latest version from Github
         if ($this->github_repo !== '') {
 
             $github_api_url = 'https://api.github.com/repos/'. $this->github_repo . '/releases/latest';

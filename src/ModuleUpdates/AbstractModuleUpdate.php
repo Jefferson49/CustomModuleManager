@@ -161,11 +161,13 @@ abstract class AbstractModuleUpdate
     }
 
     /**
-     * Get the latest version of this module
+     * Fetch the latest version of this module
      *
+     * @param bool $fetch_latest  Whether to fetch the latest version, e.g. from a Github repository 
+     * 
      * @return string
      */
-    public function customModuleLatestVersion(): string
+    public function customModuleLatestVersion(bool $fetch_latest = false): string
     {
         $module = $this->getModule();
 

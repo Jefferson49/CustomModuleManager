@@ -117,20 +117,4 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
     {
         return $this->documentation_url;
     }
-
-    /**
-     * Get the latest version of this module
-     *
-     * @return string
-     */
-    public function customModuleLatestVersion(): string
-    {
-        $module = $this->getModule();
-
-        if ($module !== null) {
-            return $module->customModuleLatestVersion();
-        }
-
-        return $this->latest_version;
-    }
 }

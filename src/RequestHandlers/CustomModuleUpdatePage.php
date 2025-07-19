@@ -36,6 +36,7 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleThemeInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Validator;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Psr\Http\Message\ResponseInterface;
@@ -57,6 +58,8 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        $fetch_latest = Validator::queryParams($request)->boolean('fetch_latest', false);
+
         $this->layout = 'layouts/administration';
         
         $module_service = New ModuleService();
@@ -67,10 +70,11 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
         }
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::module_update', [
-            'title'                => I18N::translate('Custom Module Updates'),
-            'module_names'         => ModuleUpdateServiceConfiguration::getModuleNames(),
-            'custom_modules'       => $module_service->findByInterface(ModuleCustomInterface::class, true),
-            'themes'               => $module_service->findByInterface(ModuleThemeInterface::class, true),
+            'title'          => I18N::translate('Custom Module Updates'),
+            'module_names'   => ModuleUpdateServiceConfiguration::getModuleNames(),
+            'custom_modules' => $module_service->findByInterface(ModuleCustomInterface::class, true),
+            'themes'         => $module_service->findByInterface(ModuleThemeInterface::class, true),
+            'fetch_latest'   => $fetch_latest,
         ]);
     }
 }

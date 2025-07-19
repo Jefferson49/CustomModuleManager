@@ -10,6 +10,7 @@ use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 
@@ -19,6 +20,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateSe
  * @var Collection $custom_modules
  * @var Collection $themes
  * @var array      $module_names
+ * @var bool       $fetch_latest
 
  * @var AbstractModuleUpdate $module_update_service
  * @var CustomModuleManager  $module
@@ -31,6 +33,11 @@ $module_service = New ModuleService();
 <?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => MoreI18N::xlate('Control panel'), $title]]) ?>
 
 <h1><?= $title ?></h1>
+<?= I18N::translate('Usually, the module versions are updated every 24 hours. You can fetch the latest versions from the internet.') ?><?= view('icons/spacer') ?></div><a href="<?= e(route(CustomModuleUpdatePage::class, [
+        'fetch_latest' => true,
+    ])) ?>" type="submit" class="btn btn-primary">
+    <?= MoreI18N::xlate('check now') ?>
+</a>
 
 <div class="row mb-3"><?= view('icons/spacer') ?></div>
 
@@ -85,7 +92,7 @@ $module_service = New ModuleService();
                 <?php $module_description = $module_update_service->description() ?>
                 <?php $is_theme = $module_update_service->moduleIsTheme() ?>
 				<?php $current_version = $module_update_service->customModuleVersion() ?>
-				<?php $latest_version = $module_update_service->customModuleLatestVersion() ?>
+				<?php $latest_version = $module_update_service->customModuleLatestVersion($fetch_latest) ?>
 				<?php $latest_version = $latest_version !== '' ? $latest_version : I18N::translate('not received') ?>
 				<?php $documentation_url = $module_update_service->documentationUrl() ?>
             <?php else : ?>						
@@ -137,12 +144,12 @@ $module_service = New ModuleService();
 
                 <!-- Current version -->
                 <td data-sort="<?= e(CustomModuleManager::normalizeVersion($current_version)) ?>">
-                	<?= e($current_version) ?>
+                	<?= e(CustomModuleManager::normalizeVersion($current_version)) ?>
                 </td>
 
                 <!-- Latest version -->
                 <td data-sort="<?= e(CustomModuleManager::normalizeVersion($latest_version)) ?>">
-                	<?= e($latest_version) ?>
+                	<?= e(CustomModuleManager::normalizeVersion($latest_version)) ?>
                 </td>
 
                 <!--Update Service -->
