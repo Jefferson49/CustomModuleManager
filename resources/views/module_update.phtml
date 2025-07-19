@@ -33,7 +33,7 @@ $module_service = New ModuleService();
 <?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => MoreI18N::xlate('Control panel'), $title]]) ?>
 
 <h1><?= $title ?></h1>
-<?= I18N::translate('Usually, the module versions are updated every 24 hours. You can fetch the latest versions from the internet.') ?><?= view('icons/spacer') ?></div><a href="<?= e(route(CustomModuleUpdatePage::class, [
+<?= I18N::translate('Typically, custom modules versions are updated every 24 hours. You can check if later versions are available.') ?><?= view('icons/spacer') ?></div><a href="<?= e(route(CustomModuleUpdatePage::class, [
         'fetch_latest' => true,
     ])) ?>" type="submit" class="btn btn-primary">
     <?= MoreI18N::xlate('check now') ?>
