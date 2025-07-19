@@ -179,7 +179,7 @@ $module_service = New ModuleService();
                                 'current_version' => $current_version,
                                 'latest_version'  => $latest_version,
                                 'action'          => $action,
-                            ])) ?>" type="submit" class="btn btn-secondary">
+                            ])) ?>" type="submit" class="btn btn-<?= $action === CustomModuleManager::ACTION_UPDATE ? 'primary' : 'secondary' ?>">
                             <?= $action_label ?>
                         </a>
                     <?php endif ?>						
