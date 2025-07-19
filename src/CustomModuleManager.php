@@ -48,8 +48,8 @@ use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleCustomTrait;
 use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
 use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
-use Fisharebest\Webtrees\Module\ModuleMenuInterface;
-use Fisharebest\Webtrees\Module\ModuleMenuTrait;
+use Fisharebest\Webtrees\Module\ModuleListInterface;
+use Fisharebest\Webtrees\Module\ModuleListTrait;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Validator;
@@ -81,13 +81,13 @@ class CustomModuleManager extends AbstractModule implements
     ModuleCustomInterface,
 	ModuleConfigInterface,
     ModuleGlobalInterface,
-    ModuleMenuInterface,
+    ModuleListInterface,
     CustomModuleLogInterface
 {
     use ModuleCustomTrait;
     use ModuleConfigTrait;
     use ModuleGlobalTrait;
-    use ModuleMenuTrait;
+    use ModuleListTrait;
 
 	//Custom module version
 	public const CUSTOM_VERSION = '1.0.0-alpha.1';
@@ -356,18 +356,45 @@ class CustomModuleManager extends AbstractModule implements
     /**
      * {@inheritDoc}
      *
+     * @param Tree  $tree
+     * @param array $parameters
+     *
      * @return string
      *
-     * @see \Fisharebest\Webtrees\Module\ModuleMenuInterface::getMenu()
+     * @see \Fisharebest\Webtrees\Module\ModuleListInterface::listUrl()
      */
-    public function getMenu(Tree $tree): ?Menu
-    {
-        if (self::runsWithInstalledWebtreesVersion()) {
-            return null;
-        }
 
-		return null;
-    }  
+    public function listUrl(Tree $tree, array $parameters = []): string
+    {
+        return route(CustomModuleUpdatePage::class);
+    }    
+
+    /**
+     * {@inheritDoc}
+     *
+     * @param Tree  $tree
+     *
+     * @return string
+     *
+     * @see \Fisharebest\Webtrees\Module\ModuleListInterface::listIsEmpty()
+     */    
+    public function listIsEmpty(Tree $tree): bool
+    {
+        return !self::runsWithInstalledWebtreesVersion();
+    }    
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return string
+     *
+     * @see \Fisharebest\Webtrees\Module\ModuleListInterface::listMenuClass()
+     */
+    public function listMenuClass(): string
+    {
+        //CSS class for module Icon (included in CSS file) is returned to be shown in the list menu
+        return 'menu-list-custom-module-manager';
+    }
 
     /**
      * Get the prefix for custom module specific logs
