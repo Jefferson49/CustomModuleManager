@@ -38,9 +38,9 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager;
 use Fig\Http\Message\RequestMethodInterface;
 use Fig\Http\Message\StatusCodeInterface;
 use Fisharebest\Localization\Translation;
+use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\I18N;
-use Fisharebest\Webtrees\Menu;
 use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleConfigTrait;
@@ -391,7 +391,7 @@ class CustomModuleManager extends AbstractModule implements
      */    
     public function listIsEmpty(Tree $tree): bool
     {
-        return !self::runsWithInstalledWebtreesVersion();
+        return (!self::runsWithInstalledWebtreesVersion() OR !Auth::isAdmin());
     }    
 
     /**
