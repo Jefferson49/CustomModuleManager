@@ -117,7 +117,6 @@ class CustomModuleManager extends AbstractModule implements
     public const PREF_SHOW_INSTALLED      = 'show_installed_modules';
     public const PREF_SHOW_NOT_INSTALLED  = 'show_not_installed_modules';
 
-
     //Actions
     public const ACTION_UPDATE            = 'action_update';
     public const ACTION_INSTALL           = 'action_install';
@@ -133,6 +132,9 @@ class CustomModuleManager extends AbstractModule implements
 
     //Session
     public const SESSION_WIZARD_ABORTED   = 'wizard_aborted';
+
+    //Errors
+    public const ERROR_MAX_LENGTH         = 500;
 
     //Supported webtrees version
     public const SUPPORTED_WEBTREES_VERSION = '2.2';
@@ -505,7 +507,7 @@ class CustomModuleManager extends AbstractModule implements
             if (!$rollback_ongoing) {
 
                 $module_update_service = CustomModuleUpdateFactory::make($updated_module_name);
-                $test_result = $module_update_service->testModuleUpdate();
+                $test_result = substr($module_update_service->testModuleUpdate(), 0, self::ERROR_MAX_LENGTH);
 
                 if ($test_result !== '') {
                     //Trigger rollback of the udpated module                

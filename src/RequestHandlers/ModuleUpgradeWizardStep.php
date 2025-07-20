@@ -446,7 +446,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             }
 
             if ($error !== '') {
-                $alert .= "\n" . substr($error, 0, 500). "\n";
+                $alert .= "\n" . substr($error, 0, CustomModuleManager::ERROR_MAX_LENGTH). "\n";
             }
         }
         catch (Throwable $exception) {
