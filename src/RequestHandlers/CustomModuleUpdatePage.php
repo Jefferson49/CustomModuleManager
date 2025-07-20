@@ -58,7 +58,8 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $fetch_latest = Validator::queryParams($request)->boolean('fetch_latest', false);
+        $fetch_latest    = Validator::queryParams($request)->boolean('fetch_latest', false);
+        $modules_to_show = Validator::queryParams($request)->string('modules_to_show', CustomModuleManager::PREF_SHOW_ALL);
 
         $this->layout = 'layouts/administration';
         
@@ -70,11 +71,12 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
         }
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::module_update', [
-            'title'          => I18N::translate('Custom Module Updates'),
-            'module_names'   => ModuleUpdateServiceConfiguration::getModuleNames(),
-            'custom_modules' => $module_service->findByInterface(ModuleCustomInterface::class, true),
-            'themes'         => $module_service->findByInterface(ModuleThemeInterface::class, true),
-            'fetch_latest'   => $fetch_latest,
+            'title'           => I18N::translate('Custom Module Updates'),
+            'module_names'    => ModuleUpdateServiceConfiguration::getModuleNames(),
+            'custom_modules'  => $module_service->findByInterface(ModuleCustomInterface::class, true),
+            'themes'          => $module_service->findByInterface(ModuleThemeInterface::class, true),
+            'fetch_latest'    => $fetch_latest,
+            'modules_to_show' => $modules_to_show,
         ]);
     }
 }

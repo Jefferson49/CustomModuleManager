@@ -112,6 +112,11 @@ class CustomModuleManager extends AbstractModule implements
 	public const PREF_LAST_UPDATED_MODULE = 'last_updated_module';
     public const PREF_ROLLBACK_ONGOING    = 'rollback_ongoing';
     public const PREF_GITHUB_COM_ERROR    = 'Github_communication_error';
+    public const PREF_MODULES_TO_SHOW     = 'modules_to_show';
+    public const PREF_SHOW_ALL            = 'show_all_modules';
+    public const PREF_SHOW_INSTALLED      = 'show_installed_modules';
+    public const PREF_SHOW_NOT_INSTALLED  = 'show_not_installed_modules';
+
 
     //Actions
     public const ACTION_UPDATE            = 'action_update';
@@ -447,6 +452,7 @@ class CustomModuleManager extends AbstractModule implements
                 'activated'                 => CustomModuleManager::runsWithInstalledWebtreesVersion(),
                 'title'                     => $this->title(),
                 self::PREF_GITHUB_API_TOKEN => $this->getPreference(self::PREF_GITHUB_API_TOKEN, ''),
+                self::PREF_MODULES_TO_SHOW  => $this->getPreference(self::PREF_MODULES_TO_SHOW, self::PREF_SHOW_ALL),
             ]
         );
     }
@@ -462,10 +468,12 @@ class CustomModuleManager extends AbstractModule implements
     {
         $save             = Validator::parsedBody($request)->string('save', '');
         $github_api_token = Validator::parsedBody($request)->string(self::PREF_GITHUB_API_TOKEN, '');
+        $modules_to_show  = Validator::parsedBody($request)->string(self::PREF_MODULES_TO_SHOW, self::PREF_SHOW_ALL);
 
         //Save the received settings to the user preferences
         if ($save === '1') {
 			$this->setPreference(self::PREF_GITHUB_API_TOKEN, $github_api_token);
+			$this->setPreference(self::PREF_MODULES_TO_SHOW, $modules_to_show);
         }
 
         //Finally, show a success message

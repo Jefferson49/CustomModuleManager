@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Jefferson49\Webtrees\Module\CustomModuleManager;
 
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
-use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\I18N;
-use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\View;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
@@ -17,6 +15,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
  * @var string $activated
  * @var string $title
  * @var string $github_api_token
+ * @var string $modules_to_show
  */
 
 ?>
@@ -27,24 +26,61 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 
 <div class="row mb-3"><?= view('icons/spacer') ?></div>
 
+<?php if ($activated) : ?>
+	<div class="row mb-3">
+		<div class="col">
+			<a href="<?= e(route(CustomModuleUpdatePage::class, [
+				'modules_to_show' => $modules_to_show,
+			])) ?>" type="submit" class="btn btn-secondary">
+				<?= I18N::translate('Manage custom modules') ?>
+			</a>
+		</div>
+	</div>
+	<div class="row mb-3"><?= view('icons/spacer') ?></div>
+<?php else  : ?>
+	<?= view('components/' . 'alert-danger', [
+		'alert' => I18N::translate('This custom module can only be used with webtrees %s', CustomModuleManager::SUPPORTED_WEBTREES_VERSION),
+	]) ?>;
+<?php endif	?>
+
 <form method="post" id="settings-form">
 	<?= csrf_field() ?>
 	<input type="hidden" name="save" id="save" value="1">
 
-	<?php if ($activated) : ?>
+	<div class="h4">
 		<div class="row mb-3">
-			<div class="col">
-				<a href="<?= e(route(CustomModuleUpdatePage::class)) ?>" type="submit" class="btn btn-secondary">
-					<?= I18N::translate('Manage custom modules') ?>
-				</a>
+			<?= I18N::translate('Selection of the custom modules to show') ?>	
+		</div>
+	</div>
+
+	<div class="row mb-3">
+		<label class="col-sm-3" for="modules_to_show">
+			<?= I18N::translate('Modules to show') ?>
+		</label>
+		<div class="col-sm-9">
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="modules_to_show" id="modules-show-all" value="<?= CustomModuleManager::PREF_SHOW_ALL ?>" <?= $modules_to_show === CustomModuleManager::PREF_SHOW_ALL ? 'checked="checked"' : '' ?>>
+
+				<label class="form-check-label" for="modules-show-all">
+					<?= I18N::translate('Show all custom modules') ?>
+				</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="modules_to_show" id="modules-show-installed" value="<?= CustomModuleManager::PREF_SHOW_INSTALLED ?>" <?= $modules_to_show === CustomModuleManager::PREF_SHOW_INSTALLED ? 'checked="checked"' : '' ?>>
+
+				<label class="form-check-label" for="modules-show-installed">
+					<?= I18N::translate('Show installed custom modules (in order to update modules)') ?>
+				</label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="modules_to_show" id="modules-show-not-installed" value="<?= CustomModuleManager::PREF_SHOW_NOT_INSTALLED ?>" <?= $modules_to_show === CustomModuleManager::PREF_SHOW_NOT_INSTALLED ? 'checked="checked"' : '' ?>>
+
+				<label class="form-check-label" for="modules-show-not-installed">
+					<?= I18N::translate('Show not installed custom modules (in order to install new modules)') ?>
+				</label>
 			</div>
 		</div>
-		<div class="row mb-3"><?= view('icons/spacer') ?></div>
-	<?php else  : ?>
-		<?= view('components/' . 'alert-danger', [
-            'alert' => I18N::translate('This custom module can only be used with webtrees %s', CustomModuleManager::SUPPORTED_WEBTREES_VERSION),
-        ]) ?>;
-	<?php endif	?>
+	</div>	
 
 	<div class="h4">
 		<div class="row mb-3">

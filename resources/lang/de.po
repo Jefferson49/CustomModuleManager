@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2025-07-19 21:02+0200\n"
-"PO-Revision-Date: 2025-07-19 21:03+0200\n"
+"POT-Creation-Date: 2025-07-20 05:24+0200\n"
+"PO-Revision-Date: 2025-07-20 05:25+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,36 +15,36 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:201
+#: src/CustomModuleManager.php:206
 msgid "Custom Module Manager"
 msgstr "Management von benutzerdefinierten Modulen"
 
-#: src/CustomModuleManager.php:214
+#: src/CustomModuleManager.php:219
 msgid "A custom module to manage webtrees custom modules."
 msgstr ""
 "Ein benutzerdefiniertes Modul zum Verwalten von benutzerdefinierten webtrees-"
 "Modulen."
 
-#: src/CustomModuleManager.php:300 src/ModuleUpdates/GithubModuleUpdate.php:164
+#: src/CustomModuleManager.php:305 src/ModuleUpdates/GithubModuleUpdate.php:164
 #: src/ModuleUpdates/GithubModuleUpdate.php:238
 #, php-format
 msgid "Communication error with %s"
 msgstr "Kommunikationsfehler mit %s"
 
-#: src/CustomModuleManager.php:472
+#: src/CustomModuleManager.php:480
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:509
+#: src/CustomModuleManager.php:517
 msgid "Rollback Custom Module Update"
 msgstr "Aktualisierung des benutzerdefinierten Moduls rückgängig machen"
 
-#: src/CustomModuleManager.php:510
+#: src/CustomModuleManager.php:518
 msgid "Rollback"
 msgstr "Rückgängig machen"
 
-#: src/CustomModuleManager.php:537
+#: src/CustomModuleManager.php:545
 #, php-format
 msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
@@ -53,7 +53,7 @@ msgstr ""
 "Die Einstellungen für das benutzerdefinierte Modul \"%s\" wurden für die "
 "neue Modul-Version %s aktualisiert."
 
-#: src/CustomModuleManager.php:569
+#: src/CustomModuleManager.php:577
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -67,7 +67,7 @@ msgstr ""
 "deaktivieren, weil die identische Funktion ebenfalls im Modul %s integriert "
 "ist."
 
-#: src/CustomModuleManager.php:574
+#: src/CustomModuleManager.php:582
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -80,7 +80,7 @@ msgstr ""
 "beide Module die gleiche Custom View \"%s\" registriert haben. Es wird "
 "dringend empfohlen eines der beiden Module zu deaktivieren."
 
-#: src/CustomModuleManager.php:598
+#: src/CustomModuleManager.php:606
 #, php-format
 msgid ""
 "The custom module view \"%s\" is not registered as replacement for the "
@@ -251,17 +251,40 @@ msgstr "Modul aktualisieren"
 msgid "Install module"
 msgstr "Modul installieren"
 
-#: resources/views/settings.phtml:38
+#: resources/views/settings.phtml:35
 msgid "Manage custom modules"
 msgstr "Benutzerdefinierte Module aktualisieren"
 
-#: resources/views/settings.phtml:45
+#: resources/views/settings.phtml:42
 #, php-format
 msgid "This custom module can only be used with webtrees %s"
 msgstr ""
 "Dieses benutzerdefinierte Modul kann nur mit webtrees %s genutzt werden."
 
-#: resources/views/settings.phtml:51 resources/views/settings.phtml:57
+#: resources/views/settings.phtml:52
+msgid "Selection of the custom modules to show"
+msgstr "Auswahl der angezeigten benutzerdefinierten Modulen"
+
+#: resources/views/settings.phtml:58
+msgid "Modules to show"
+msgstr "Angezeigte Module"
+
+#: resources/views/settings.phtml:65
+msgid "Show all custom modules"
+msgstr "Alle benutzerdefinierte Module anzeigen"
+
+#: resources/views/settings.phtml:72
+msgid "Show installed custom modules (in order to update modules)"
+msgstr ""
+"Installierte benutzerdefinierte Module anzeigen (um Module zu aktualisieren)"
+
+#: resources/views/settings.phtml:79
+msgid "Show not installed custom modules (in order to install new modules)"
+msgstr ""
+"Nicht installierte benutzerdefinierte Module anzeigen (um neue Module zu "
+"installieren)"
+
+#: resources/views/settings.phtml:87 resources/views/settings.phtml:93
 msgid "Github API token"
 msgstr "Github API Token"
 
