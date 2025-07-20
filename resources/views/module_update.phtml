@@ -21,13 +21,15 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateSe
  * @var Collection $themes
  * @var array      $module_names
  * @var bool       $fetch_latest
- * @var string     $modules_to_show
 
  * @var AbstractModuleUpdate $module_update_service
  * @var CustomModuleManager  $module
  */
 
 $module_service = New ModuleService();
+
+$custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
+$modules_to_show = $custom_module_manager->getPreference(CustomModuleManager::PREF_MODULES_TO_SHOW, CustomModuleManager::PREF_SHOW_ALL);
 
 ?>
 
@@ -112,7 +114,7 @@ $module_service = New ModuleService();
                     <?php $is_theme = $themes->contains($module) ?>
                 <?php else : ?>						
                     <?php $is_theme = false ?>
-                <?php endif ?>	
+                <?php endif ?>
                 <?php /** @var CustomModuleManager $module To avoid IDE warnings */ ?>
 				<?php $current_version = $module->customModuleVersion() ?>
 				<?php $latest_version = $module->customModuleLatestVersion() ?>
