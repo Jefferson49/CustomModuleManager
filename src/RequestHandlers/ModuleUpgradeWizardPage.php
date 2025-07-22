@@ -92,7 +92,7 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
         $title = MoreI18N::xlate('Upgrade wizard');
 
         //Reset aborted flag before start of wizard
-        Session::put(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED, false);
+        Session::forget(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED);
 
         if ($continue === '1') {
 
