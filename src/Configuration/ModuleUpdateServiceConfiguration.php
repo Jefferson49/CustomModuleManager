@@ -78,16 +78,16 @@ class ModuleUpdateServiceConfiguration
         '_huhwt-mtv_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-mtv']],
 
         '_vesta_classic_look_and_feel_'   =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_classic_laf']],
-        '_vesta_clippings_cart_'          =>  ['update_service' => 'VestaModuleUpdate',  'params' => []],
-        '_vesta_common_'                  =>  ['update_service' => 'VestaModuleUpdate',  'params' => []],
+        '_vesta_clippings_cart_'          =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_clippings_cart']],
+        '_vesta_common_'                  =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_common']],
         '_vesta_extended_relationships_'  =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_extended_relationships']],
-        '_vesta_personal_facts_'          =>  ['update_service' => 'VestaModuleUpdate',  'params' => []],
-        '_vesta_relatives_'               =>  ['update_service' => 'VestaModuleUpdate',  'params' => []],
+        '_vesta_personal_facts_'          =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_personal_facts']],
+        '_vesta_relatives_'               =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_relatives']],
         '_vesta_gov4webtrees_'            =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_gov4webtrees']],
-        '_vesta_places_and_pedigree_map_' =>  ['update_service' => 'VestaModuleUpdate',  'params' => []],
+        '_vesta_places_and_pedigree_map_' =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_places_and_pedigree_map']],
         '_vesta_research_suggestions_'    =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_research_suggestions']],
         '_vesta_shared_places_'           =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_shared_places']],
-        '_vesta_location_data_'           =>  ['update_service' => 'VestaModuleUpdate',  'params' => []],
+        '_vesta_location_data_'           =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_location_data']],
 
         '_sosa20_'                        =>  ['update_service' => 'UrlModuleUpdate',    'params' => ['download_url' => 'https://gustine.eu/mode_emploi/sosa/sosa20-variant-2025-06b.zip', 'documentation_url' => 'https://gustine.eu/mode_emploi/sosa.php', 'latest_version' => '2025.06.06']],
 
