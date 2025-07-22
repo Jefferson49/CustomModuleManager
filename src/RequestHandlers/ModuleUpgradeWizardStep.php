@@ -254,7 +254,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $abort      = false;
 
         try {
-            foreach ($module_names as $standard_module_name => $module_name) {
+            foreach ($module_names as $module_name => $standard_module_name) {
                 $installation_folder    = $module_update_service::getInstallationFolderFromModuleName($module_name);
                 $source_filesystem      = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
                 $destination_filesystem = Registry::filesystem()->root(self::BACKUP_FOLDER . Webtrees::MODULES_PATH . $installation_folder);
@@ -363,7 +363,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $this->webtrees_upgrade_service->startMaintenanceMode();
 
         try {            
-            foreach ($module_names as $standard_module_name => $module_name) {
+            foreach ($module_names as $module_name => $standard_module_name) {
                 $installation_folder    = $module_update_service::getInstallationFolderFromModuleName($module_name);
                 $update_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . Webtrees::MODULES_PATH);
 
@@ -433,7 +433,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $this->webtrees_upgrade_service->startMaintenanceMode();
                 
         try {
-            foreach ($module_names as $standard_module_name => $module_name) {
+            foreach ($module_names as $module_name => $standard_module_name) {
                 $installation_folder = $module_update_service::getInstallationFolderFromModuleName($module_name);
                 $this->rollback($installation_folder);
 

@@ -232,13 +232,13 @@ abstract class AbstractModuleUpdate
      * Get a list of all module names, which are needed to perform updates with this update service
      * Background: Update services like Vesta might need several modules in parallel
      * 
-     * @return array<string> standard_module_name => module_name
+     * @return array<string> module_name => standard_module_name
      */
     public function getModuleNamesToUpdate(): array {
 
         $standard_module_name = ModuleUpdateServiceConfiguration::getStandardModuleName($this->module_name);
 
-        return [$standard_module_name => $this->module_name];
+        return [$this->module_name => $standard_module_name];
     }    
 
     /**
@@ -250,7 +250,7 @@ abstract class AbstractModuleUpdate
     {
         $module_names = $this->getModuleNamesToUpdate();
 
-        foreach ($module_names as $standard_module_name => $module_name) {
+        foreach ($module_names as $module_name => $standard_module_name) {
 
             //If test for the updated module fails
             $error = self::testModule($module_name);

@@ -163,7 +163,7 @@ class ModuleUpdateServiceConfiguration
      * 
      * @param bool $getVesta Whether to get Vesta modules only
      * 
-     * @return array<string> standard_module_name => module_name
+     * @return array<string> module_name => standard_module_name
      */
     public static function getModuleNames(bool $getVesta = false): array
     {
@@ -198,16 +198,16 @@ class ModuleUpdateServiceConfiguration
 
                 if ($getVesta) {
                     //Only add to list if has Vesta update service                    
-                    if (    isset($module_update_service_config[$standard_module_name]['update_service'])
-                         && $module_update_service_config[$standard_module_name]['update_service'] === 'VestaModuleUpdate') {
+                    if (   isset($module_update_service_config[$standard_module_name]['update_service'])
+                        && $module_update_service_config[$standard_module_name]['update_service'] === 'VestaModuleUpdate') {
 
                         //Add (or replace) module name to list
-                        $module_names[$standard_module_name] = $module_name;
+                        $module_names[$module_name] = $standard_module_name;
                     }
                 }
                 else {
                     //Add (or replace) module name to list
-                    $module_names[$standard_module_name] = $module_name;
+                    $module_names[$module_name] = $standard_module_name;
                 }
             }
         }

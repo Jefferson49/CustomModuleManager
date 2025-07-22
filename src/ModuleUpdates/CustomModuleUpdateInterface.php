@@ -123,7 +123,7 @@ interface CustomModuleUpdateInterface
      * Get a list of all module names, which are needed to perform updates with this update service
      * Background: Update services like Vesta might need several modules in parallel
      * 
-     * @return array<string> standard_module_name => module_name
+     * @return array<string> module_name => standard_module_name
      */
     public function getModuleNamesToUpdate(): array;
 
