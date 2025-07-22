@@ -30,172 +30,180 @@ $module_service = New ModuleService();
 
 $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
 $modules_to_show = $custom_module_manager->getPreference(CustomModuleManager::PREF_MODULES_TO_SHOW, CustomModuleManager::PREF_SHOW_ALL);
+$activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
 
 ?>
 
 <?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => MoreI18N::xlate('Control panel'), $title]]) ?>
 
 <h1><?= $title ?></h1>
-<?= I18N::translate('Typically, custom modules versions are updated every 24 hours. You can check if later versions are available.') ?><?= view('icons/spacer') ?></div><a href="<?= e(route(CustomModuleUpdatePage::class, [
-        'fetch_latest' => true,
-    ])) ?>" type="submit" class="btn btn-primary">
-    <?= MoreI18N::xlate('check now') ?>
-</a>
 
-<div class="row mb-3"><?= view('icons/spacer') ?></div>
+<?php if (!$activated) : ?>
+	<?= view('components/' . 'alert-danger', [
+		'alert' => I18N::translate('This custom module can only be used with webtrees %s', CustomModuleManager::SUPPORTED_WEBTREES_VERSION),
+	]) ?>;
+<?php else : ?>
+    <?= I18N::translate('Typically, custom modules versions are updated every 24 hours. You can check if later versions are available.') ?><?= view('icons/spacer') ?></div><a href="<?= e(route(CustomModuleUpdatePage::class, [
+            'fetch_latest' => true,
+        ])) ?>" type="submit" class="btn btn-primary">
+        <?= MoreI18N::xlate('check now') ?>
+    </a>
+    <div class="row mb-3"><?= view('icons/spacer') ?></div>
 
-<table
-    class="table table-bordered table-sm wt-table-module-updates datatables d-none"
-    <?= view('lists/datatables-attributes') ?>
-    data-columns="<?= e(json_encode([
-        ['type' => 'html'],
-        ['type' => 'html'],
-        null,
-        ['searchable' => false],
-        null,
-        null,
-        null,
-        ['searchable' => false],
-        ['type' => 'html', 'searchable' => false],
-    ], JSON_THROW_ON_ERROR)) ?>"
->
-    <caption class="visually-hidden">
-        <?= $caption ?? I18N::translate('Module Updates') ?>
-    </caption>
+    <table
+        class="table table-bordered table-sm wt-table-module-updates datatables d-none"
+        <?= view('lists/datatables-attributes') ?>
+        data-columns="<?= e(json_encode([
+            ['type' => 'html'],
+            ['type' => 'html'],
+            null,
+            ['searchable' => false],
+            null,
+            null,
+            null,
+            ['searchable' => false],
+            ['type' => 'html', 'searchable' => false],
+        ], JSON_THROW_ON_ERROR)) ?>"
+    >
+        <caption class="visually-hidden">
+            <?= $caption ?? I18N::translate('Module Updates') ?>
+        </caption>
 
-    <thead>
-        <tr>
-            <th><?= MoreI18N::xlate('Title') ?></th>
-            <th><?= MoreI18N::xlate('Description') ?></th>
-            <th><?= I18N::translate('Folder (within modules_v4)') ?></th>
-            <th><?= MoreI18N::xlate('Theme') ?></th>
-            <th><?= I18N::translate('Current Version') ?></th>
-            <th><?= I18N::translate('Latest Version') ?></th>
-            <th><?= I18N::translate('Update Service') ?></th>
-            <th><?= MoreI18N::xlate('Status') ?></th>
-            <th><?= MoreI18N::xlate('Action') ?></th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <?php foreach ($module_names as $standard_module_name => $module_name) : ?>
-            <?php $module = $module_service->findByName($module_name, true) ?>
-            <?php if ($module === null) : ?>
-                <?php if ($modules_to_show === CustomModuleManager::PREF_SHOW_INSTALLED) : ?>
-                    <?php continue ?>
-                <?php endif ?>				
-                <?php $module_status = I18N::translate('not installed') ?>
-            <?php else : ?>
-                <?php if ($modules_to_show === CustomModuleManager::PREF_SHOW_NOT_INSTALLED) : ?>
-                    <?php continue ?>
-                <?php endif ?>						
-                <?php if ($module->isEnabled()) : ?>
-                    <?php $module_status = I18N::translate('enabled') ?>
-                <?php else : ?>
-                    <?php $module_status = I18N::translate('disabled') ?>
-                <?php endif ?>						
-            <?php endif ?>						
-            <?php $update_service_available = ModuleUpdateServiceConfiguration::getUpdateServiceName($module_name) !== '' ?>
-            <?php if ($update_service_available) : ?>
-                <?php $module_update_service = CustomModuleUpdateFactory::make($module_name) ?>
-                <?php $module_update_service_name = $module_update_service->name() ?>
-                <?php $module_title = $module_update_service->title() ?>
-                <?php $module_description = $module_update_service->description() ?>
-                <?php $is_theme = $module_update_service->moduleIsTheme() ?>
-				<?php $current_version = $module_update_service->customModuleVersion() ?>
-				<?php $latest_version = $module_update_service->customModuleLatestVersion($fetch_latest) ?>
-				<?php $latest_version = $latest_version !== '' ? $latest_version : I18N::translate('not received') ?>
-				<?php $documentation_url = $module_update_service->documentationUrl() ?>
-            <?php else : ?>						
-                <?php $module_update_service_name = I18N::translate('not available') ?>
-                <?php $module_title = $module->title() ?>
-                <?php $module_description = $module->description() ?>
-                <?php if ($module !== null) : ?>
-                    <?php $is_theme = $themes->contains($module) ?>
-                <?php else : ?>						
-                    <?php $is_theme = false ?>
-                <?php endif ?>
-                <?php /** @var CustomModuleManager $module To avoid IDE warnings */ ?>
-				<?php $current_version = $module->customModuleVersion() ?>
-				<?php $latest_version = $module->customModuleLatestVersion() ?>
-            <?php endif ?>	
-            <?php if ($module !== null) : ?>
-                <?php $current_version = $current_version !== '' ? $current_version : I18N::translate('not received') ?>
-            <?php endif ?>						
-
+        <thead>
             <tr>
-                <!-- Title -->
-                <td data-sort="<?= e($module_title) ?>">
-                    <?php if ($documentation_url !== '') : ?>
-                        <a href="<?= e($documentation_url) ?>" target="blank">
-                            <?= e($module_title) ?>
-                        </a>
-                    <?php else : ?>		
-                        <?= e($module_title) ?>		
-                    <?php endif ?>						
-                </td>
-
-                <!-- Description -->
-               <td data-sort="<?= e($module_description) ?>">
-                    <?= e($module_description) ?>
-                </td>
-
-                <!-- Folder -->
-				<?php $installation_folder = $module_update_service::getInstallationFolderFromModuleName($module_name) ?>
-                <td data-sort="<?= e($installation_folder) ?>">
-					<?= e($installation_folder) ?>
-                </td>
-
-                <!-- Is theme? -->
-                <td class="text-center" data-sort="<?= $is_theme === true ? '1' : '0' ?>">
-					<?php if ($is_theme) : ?>
-						<?= MoreI18N::xlate('yes') ?>
-					<?php endif ?>				
-                </td>
-
-                <!-- Current version -->
-                <td data-sort="<?= e(CustomModuleManager::normalizeVersion($current_version)) ?>">
-                	<?= e(CustomModuleManager::normalizeVersion($current_version)) ?>
-                </td>
-
-                <!-- Latest version -->
-                <td data-sort="<?= e(CustomModuleManager::normalizeVersion($latest_version)) ?>">
-                	<?= e(CustomModuleManager::normalizeVersion($latest_version)) ?>
-                </td>
-
-                <!--Update Service -->
-                <td class="text-center" data-sort="<?= $module_update_service_name ?>">
-                    <?= $module_update_service_name ?>
-                </td>
-
-                <!-- Status -->
-                <td data-sort="<?= $module_status ?>">
-                	<?= $module_status ?>
-                </td>
-
-                <!--Action -->
-                <?php $action = '' ?>
-                <?php $action_label = '' ?>
-                <?php if ($module !== null && CustomModuleManager::versionCompare($latest_version, $current_version) > 0) : ?>
-    				<?php $action = CustomModuleManager::ACTION_UPDATE ?>
-    				<?php $action_label = I18N::translate('Update module') ?>
-                <?php elseif ($module_status === I18N::translate('not installed')) : ?>
-    				<?php $action = CustomModuleManager::ACTION_INSTALL ?>
-    				<?php $action_label = I18N::translate('Install module') ?>
-                <?php endif ?>						
-                <td data-sort="<?= $action_label ?>">
-                    <?php if ($action_label !== '' && $update_service_available) : ?>
-                        <a href="<?= e(route(ModuleUpgradeWizardPage::class, [
-                                'module_name'     => $module_name,
-                                'current_version' => $current_version,
-                                'latest_version'  => $latest_version,
-                                'action'          => $action,
-                            ])) ?>" type="submit" class="btn btn-<?= $action === CustomModuleManager::ACTION_UPDATE ? 'primary' : 'secondary' ?>">
-                            <?= $action_label ?>
-                        </a>
-                    <?php endif ?>						
-                </td>
+                <th><?= MoreI18N::xlate('Title') ?></th>
+                <th><?= MoreI18N::xlate('Description') ?></th>
+                <th><?= I18N::translate('Folder (within modules_v4)') ?></th>
+                <th><?= MoreI18N::xlate('Theme') ?></th>
+                <th><?= I18N::translate('Current Version') ?></th>
+                <th><?= I18N::translate('Latest Version') ?></th>
+                <th><?= I18N::translate('Update Service') ?></th>
+                <th><?= MoreI18N::xlate('Status') ?></th>
+                <th><?= MoreI18N::xlate('Action') ?></th>
             </tr>
-        <?php endforeach ?>
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            <?php foreach ($module_names as $standard_module_name => $module_name) : ?>
+                <?php $module = $module_service->findByName($module_name, true) ?>
+                <?php if ($module === null) : ?>
+                    <?php if ($modules_to_show === CustomModuleManager::PREF_SHOW_INSTALLED) : ?>
+                        <?php continue ?>
+                    <?php endif ?>				
+                    <?php $module_status = I18N::translate('not installed') ?>
+                <?php else : ?>
+                    <?php if ($modules_to_show === CustomModuleManager::PREF_SHOW_NOT_INSTALLED) : ?>
+                        <?php continue ?>
+                    <?php endif ?>						
+                    <?php if ($module->isEnabled()) : ?>
+                        <?php $module_status = I18N::translate('enabled') ?>
+                    <?php else : ?>
+                        <?php $module_status = I18N::translate('disabled') ?>
+                    <?php endif ?>						
+                <?php endif ?>						
+                <?php $update_service_available = ModuleUpdateServiceConfiguration::getUpdateServiceName($module_name) !== '' ?>
+                <?php if ($update_service_available) : ?>
+                    <?php $module_update_service = CustomModuleUpdateFactory::make($module_name) ?>
+                    <?php $module_update_service_name = $module_update_service->name() ?>
+                    <?php $module_title = $module_update_service->title() ?>
+                    <?php $module_description = $module_update_service->description() ?>
+                    <?php $is_theme = $module_update_service->moduleIsTheme() ?>
+                    <?php $current_version = $module_update_service->customModuleVersion() ?>
+                    <?php $latest_version = $module_update_service->customModuleLatestVersion($fetch_latest) ?>
+                    <?php $latest_version = $latest_version !== '' ? $latest_version : I18N::translate('not received') ?>
+                    <?php $documentation_url = $module_update_service->documentationUrl() ?>
+                <?php else : ?>						
+                    <?php $module_update_service_name = I18N::translate('not available') ?>
+                    <?php $module_title = $module->title() ?>
+                    <?php $module_description = $module->description() ?>
+                    <?php if ($module !== null) : ?>
+                        <?php $is_theme = $themes->contains($module) ?>
+                    <?php else : ?>						
+                        <?php $is_theme = false ?>
+                    <?php endif ?>
+                    <?php /** @var CustomModuleManager $module To avoid IDE warnings */ ?>
+                    <?php $current_version = $module->customModuleVersion() ?>
+                    <?php $latest_version = $module->customModuleLatestVersion() ?>
+                <?php endif ?>	
+                <?php if ($module !== null) : ?>
+                    <?php $current_version = $current_version !== '' ? $current_version : I18N::translate('not received') ?>
+                <?php endif ?>						
+
+                <tr>
+                    <!-- Title -->
+                    <td data-sort="<?= e($module_title) ?>">
+                        <?php if ($documentation_url !== '') : ?>
+                            <a href="<?= e($documentation_url) ?>" target="blank">
+                                <?= e($module_title) ?>
+                            </a>
+                        <?php else : ?>		
+                            <?= e($module_title) ?>		
+                        <?php endif ?>						
+                    </td>
+
+                    <!-- Description -->
+                <td data-sort="<?= e($module_description) ?>">
+                        <?= e($module_description) ?>
+                    </td>
+
+                    <!-- Folder -->
+                    <?php $installation_folder = $module_update_service::getInstallationFolderFromModuleName($module_name) ?>
+                    <td data-sort="<?= e($installation_folder) ?>">
+                        <?= e($installation_folder) ?>
+                    </td>
+
+                    <!-- Is theme? -->
+                    <td class="text-center" data-sort="<?= $is_theme === true ? '1' : '0' ?>">
+                        <?php if ($is_theme) : ?>
+                            <?= MoreI18N::xlate('yes') ?>
+                        <?php endif ?>				
+                    </td>
+
+                    <!-- Current version -->
+                    <td data-sort="<?= e(CustomModuleManager::normalizeVersion($current_version)) ?>">
+                        <?= e(CustomModuleManager::normalizeVersion($current_version)) ?>
+                    </td>
+
+                    <!-- Latest version -->
+                    <td data-sort="<?= e(CustomModuleManager::normalizeVersion($latest_version)) ?>">
+                        <?= e(CustomModuleManager::normalizeVersion($latest_version)) ?>
+                    </td>
+
+                    <!--Update Service -->
+                    <td class="text-center" data-sort="<?= $module_update_service_name ?>">
+                        <?= $module_update_service_name ?>
+                    </td>
+
+                    <!-- Status -->
+                    <td data-sort="<?= $module_status ?>">
+                        <?= $module_status ?>
+                    </td>
+
+                    <!--Action -->
+                    <?php $action = '' ?>
+                    <?php $action_label = '' ?>
+                    <?php if ($module !== null && CustomModuleManager::versionCompare($latest_version, $current_version) > 0) : ?>
+                        <?php $action = CustomModuleManager::ACTION_UPDATE ?>
+                        <?php $action_label = I18N::translate('Update module') ?>
+                    <?php elseif ($module_status === I18N::translate('not installed')) : ?>
+                        <?php $action = CustomModuleManager::ACTION_INSTALL ?>
+                        <?php $action_label = I18N::translate('Install module') ?>
+                    <?php endif ?>						
+                    <td data-sort="<?= $action_label ?>">
+                        <?php if ($action_label !== '' && $update_service_available) : ?>
+                            <a href="<?= e(route(ModuleUpgradeWizardPage::class, [
+                                    'module_name'     => $module_name,
+                                    'current_version' => $current_version,
+                                    'latest_version'  => $latest_version,
+                                    'action'          => $action,
+                                ])) ?>" type="submit" class="btn btn-<?= $action === CustomModuleManager::ACTION_UPDATE ? 'primary' : 'secondary' ?>">
+                                <?= $action_label ?>
+                            </a>
+                        <?php endif ?>						
+                    </td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+
+<?php endif	?>
