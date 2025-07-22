@@ -436,6 +436,9 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             foreach ($module_names as $standard_module_name => $module_name) {
                 $installation_folder = $module_update_service::getInstallationFolderFromModuleName($module_name);
                 $this->rollback($installation_folder);
+
+                //Reset flash error messages for the module
+                $module_update_service::pullFlashErrorMessage($module_name);                
             }
 
             if ($action === CustomModuleManager::ACTION_UPDATE) {

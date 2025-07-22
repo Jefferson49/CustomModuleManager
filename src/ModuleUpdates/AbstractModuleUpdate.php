@@ -31,6 +31,7 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
+use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleThemeInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
@@ -264,26 +265,29 @@ abstract class AbstractModuleUpdate
     /**
      * Test a custom module by loading it in a static scope
      * 
-     * Code from: Fisharebest\Webtrees\Services\ModuleService
-     * 
      * @param  string $module_name
      *  
      * @return string Error message or empty string if no error
      */
     public static function testModule(string $module_name): string
     {
-        $filename = Webtrees::ROOT_DIR . Webtrees::MODULES_PATH . self::getInstallationFolderFromModuleName($module_name) . '/module.php';
         $message = '';
+        $filename = Webtrees::ROOT_DIR . Webtrees::MODULES_PATH . self::getInstallationFolderFromModuleName($module_name) . '/module.php';
 
+        //Try to load module (if not already loaded by webtrees)
+        //Code from: Fisharebest\Webtrees\Services\ModuleService
         try {
             $module = include_once $filename;
         } catch (Throwable $exception) {
             $message = 'Fatal error in module: ' . $module_name . '<br>' . $exception;
+            return $message;
         }
+
+        //Check flash messages for custom module errors
+        $message = self::pullFlashErrorMessage($module_name);
 
         return $message;
     }
-
 
     /**
      * Identify whether a module is a theme
@@ -318,5 +322,31 @@ abstract class AbstractModuleUpdate
         }
 
         return $is_theme;
+    }
+
+    /**
+     * Retrieve a flash error message for a certain module
+     * 
+     * @param string $module_name
+     *  
+     * @return string Error message or empty string if no error
+     */
+    public static function pullFlashErrorMessage(string $module_name): string {
+
+        $message = '';
+        $module_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name);
+        $flash_error_text = 'Fatal error in module: ' . $module_folder . '<br>';
+
+        foreach(FlashMessages::getMessages() as $flash_message) {
+            //If specific error is founmd
+            if (strpos($flash_message->text, $flash_error_text, 0) !== false) {
+                $message = $flash_message->text;
+            }
+            //Else write back flash message, since FlashMessages::getMessages() removes all flash messages from session
+            else {
+                FlashMessages::addMessage($flash_message->text, $flash_message->status);
+            }
+        }
+        return $message;
     }
 }
