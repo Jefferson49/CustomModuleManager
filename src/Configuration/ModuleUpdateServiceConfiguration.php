@@ -60,6 +60,7 @@ class ModuleUpdateServiceConfiguration
         '_webtrees-simple-media-display_' =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-media-display']],
         '_webtrees-simple-menu_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-menu']],          
 
+        '_webtrees-lantmateriet_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ekdahl/webtrees-lantmateriet', 'no_release' => true, 'default_branch' => 'main']],       
         '_webtrees-primer-theme_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ekdahl/webtrees-primer-theme']],
 
         '_GVExport_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Neriderc/GVExport']],
@@ -100,6 +101,7 @@ class ModuleUpdateServiceConfiguration
         '_family-tree-home_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'miqrogroove/family-tree-home', 'get_latest_version_from_github' => true]],
 
         '_Argon-Light_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => '06Games/Webtrees-ArgonLight', 'is_theme' => true]],       
+        '_evang_mailsystem_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => '06Games/Webtrees-MailSystem', 'no_release' => true, 'default_branch' => 'main']],
 
         '_webtrees-branch-statistics_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'squatteur/webtrees-branch-statistics']],       
 
@@ -123,6 +125,10 @@ class ModuleUpdateServiceConfiguration
         '_telegram_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'Tywed/telegram']],        
         '_news-menu_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'Tywed/news-menu']],
 
+        '_finnish-historical-facts_'      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ardhtu/finnish-historical-facts', 'no_release' => true, 'default_branch' => 'master']],
+
+        '_fam-nav-parents-last_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'tronsmit/fam-nav-parents-last', 'no_release' => true, 'default_branch' => 'main']],
+
     ];
 
     private const MODULES_INSTALLATION_FAILS = [
@@ -138,10 +144,7 @@ class ModuleUpdateServiceConfiguration
 
     private const MODULES_NOT_RELEASED = [
 
-        '_finnish-historical-facts_'      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ardhtu/finnish-historical-facts']],
-        '_fam-nav-parents-last_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'tronsmit/fam-nav-parents-last']],
         '_my_custom_tags_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Jefferson49/MyCustomTags']],
-        '_webtrees-lantmateriet_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'ekdahl/webtrees-lantmateriet']],       
 
     ];
 
@@ -154,7 +157,6 @@ class ModuleUpdateServiceConfiguration
         '_new_reports_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'sevtor/modules']],
 
         //No top level folder
-        '_evang_mailsystem_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => '06Games/Webtrees-MailSystem']],       
 
     ];
 
@@ -192,9 +194,10 @@ class ModuleUpdateServiceConfiguration
         foreach ($custom_modules as $custom_module) {
             $module_name = $custom_module->name();
 
-            if (!array_key_exists($module_name, $module_names)) {
+            if (!in_array($module_name, $module_names)) {
 
                 $standard_module_name = self::getStandardModuleName($module_name);
+                unset($module_names[$standard_module_name]);
 
                 if ($getVesta) {
                     //Only add to list if has Vesta update service                    
@@ -279,7 +282,10 @@ class ModuleUpdateServiceConfiguration
             Session::put('language', $default_language);
 
             $english_title = $module->title();
-            $english_description = $module->title();
+            $english_title = json_encode($english_title) !== false ? $english_title : mb_convert_encoding($english_title, 'UTF-8');
+
+            $english_description = $module->description();
+            $english_description = json_encode($english_description) !== false ? $english_description : mb_convert_encoding($english_description, 'UTF-8');
 
             //Reset language
             I18N::init($current_language);
@@ -289,8 +295,8 @@ class ModuleUpdateServiceConfiguration
             if ($module->title() !== 'Module name goes here'  && array_key_exists($english_title, $map_titles_to_names)) {
                 return $map_titles_to_names[$english_title];
             }
-            //Try to identify by description (if different from default description in AbstractModule)
-            elseif ($module->description() !== $module->title() && array_key_exists($english_description, $map_description_to_names)) {
+            //Try to identify by description
+            elseif (array_key_exists($english_description, $map_description_to_names)) {
                 return $map_description_to_names[$english_description];
             }
         }

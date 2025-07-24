@@ -638,8 +638,14 @@ class CustomModuleManager extends AbstractModule implements
 
         foreach ($custom_modules as $module) {
 
-            $titles[$module->name()]       = $module->title();
-            $descriptions[$module->name()] = $module->description();
+            $title = $module->title();
+            $title = json_encode($title) !== false ? $title : mb_convert_encoding($title, 'UTF-8');
+
+            $description = $module->description();
+            $description = json_encode($description) !== false ? $description : mb_convert_encoding($description, 'UTF-8');
+
+            $titles[$module->name()]       = $title;
+            $descriptions[$module->name()] = $description;
         }
 
         //Reset language

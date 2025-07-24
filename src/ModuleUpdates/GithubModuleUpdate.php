@@ -57,6 +57,13 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     //A tag prefix for the module version, e.g. 'v' ('1.2.3' => 'v1.2.3')
     protected string $tag_prefix;
 
+    //Whether the Github repository does not have a release
+    protected bool $no_release;
+
+    //The default branch of the Github repository. Used to download the source ZIP file for some modules, which do not provide a release
+    protected string $default_branch;
+
+    
     /**
      * @param string $module_name  The custom module name
      * @param array  $params       The configuration parameters of the update service
@@ -88,6 +95,20 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             $this->tag_prefix = '';
         }
 
+        if (array_key_exists('no_release', $params)) {
+            $this->no_release = $params['no_release'];
+        }
+        else {
+            $this->no_release = false;
+        }
+
+        if (array_key_exists('default_branch', $params)) {
+            $this->default_branch = $params['default_branch'];
+        }
+        else {
+            $this->default_branch = '';
+        }
+
         $this->is_theme = self::identifyThemeFromConfig($module_name, $params);
     }
 
@@ -109,6 +130,11 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function downloadUrl(string $version = ''): string
     {
+        //For certain module, which do not provide a release, we take the source code ZIP file of the default branch
+        if ($this->no_release) {
+            return 'https://github.com/' . $this->github_repo . '/archive/refs/heads/' . $this->default_branch . '.zip';
+        }
+
         //Add prefix, if module tags have a prefix
         if ($version !== '' && strlen($version) > strlen($this->tag_prefix)) {
 
@@ -198,6 +224,11 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             if ($version !== '') {
                 return $version;
             }
+        }
+
+        //For certain module, which do not provide a release, it is not possible to retrieve the latest version from Github
+        if ($this->no_release) {
+            return '';
         }
 
         //Otherwise, try to get the latest version from Github
