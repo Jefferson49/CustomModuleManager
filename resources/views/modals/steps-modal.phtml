@@ -1,0 +1,31 @@
+<?php
+
+namespace Jefferson49\Webtrees\Module\CustomModuleManager;
+
+use Fisharebest\Webtrees\I18N;
+
+use function view;
+
+
+/**
+ * @var array<string,string> $steps
+ * @var string               $title
+ */
+
+?>
+
+<?= view('modals/header', ['title' => $title]) ?>
+
+
+<div class="modal-body">
+    <?= view(CustomModuleManager::viewsNamespace() . '::steps', [
+            'steps'       => $steps,
+            'title'       => $title,
+    ]) ?>    
+</div>
+
+<?= view('modals/footer-close') ?>
+
+<script>
+    document.getElementById('wt-modal-form').addEventListener('submit', webtrees.createRecordModalSubmit);
+</script>

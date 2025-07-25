@@ -101,7 +101,7 @@ class CustomModuleManager extends AbstractModule implements
 	public const GITHUB_API_TAG_NAME_PREFIX = '"tag_name":"v';
 
 	//Author of custom module
-	public const CUSTOM_AUTHOR                  = 'Markus Hemprich';
+	public const CUSTOM_AUTHOR = 'Markus Hemprich';
 
     //A list of custom views, which are registered by the module
     private Collection $custom_view_list;
@@ -130,13 +130,13 @@ class CustomModuleManager extends AbstractModule implements
     public const ROUTE_MODULE_INFO_MODAL  = '/module_info_modal';
 
     //Language
-    public const DEFAULT_LANGUAGE               = 'en-US';
+    public const DEFAULT_LANGUAGE         = 'en-US';
 
     //Session
-    public const SESSION_WIZARD_ABORTED         = 'wizard_aborted';
+    public const SESSION_WIZARD_ABORTED   = 'wizard_aborted';
 
     //Errors
-    public const ERROR_MAX_LENGTH         = 500;
+    public const ERROR_MAX_LENGTH = 500;
 
     //Supported webtrees version
     public const SUPPORTED_WEBTREES_VERSION = '2.2';

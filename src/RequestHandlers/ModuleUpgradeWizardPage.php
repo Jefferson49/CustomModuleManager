@@ -48,6 +48,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 use function basename;
 use function e;
 use function route;
+use function response;
+use function view;
 
 /**
  * Upgrade to a new version of webtrees.
@@ -56,19 +58,15 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
 {
     use ViewResponseTrait;
 
-    private TreeService $tree_service;
-
     // The webtrees upgrade service
     private UpgradeService $upgrade_service;
 
 
     /**
-     * @param TreeService                 $tree_service
      * @param UpgradeService              $upgrade_service
      */
-    public function __construct(TreeService $tree_service, UpgradeService $upgrade_service)
+    public function __construct(UpgradeService $upgrade_service)
     {
-        $this->tree_service           = $tree_service;
         $this->upgrade_service        = $upgrade_service;
     }
 
@@ -79,9 +77,8 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $this->layout = 'layouts/administration';
+        $this->layout = 'layouts/ajax';
 
-        $continue          = Validator::queryParams($request)->string('continue', '');
         $module_name       = Validator::queryParams($request)->string('module_name', '');
         $current_version   = Validator::queryParams($request)->string('current_version', '');
         $latest_version    = Validator::queryParams($request)->string('latest_version', '');
@@ -94,30 +91,19 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
         //Reset aborted flag before start of wizard
         Session::forget(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED);
 
-        if ($continue === '1') {
-
-            try {
-                $download_url = $module_upgrade_service->downloadUrl($latest_version);
-            }
-            catch (CustomModuleManagerException $exception) {
-                return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
-                    'steps'       => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ERROR, 'module_name' => $module_name, 'message' => $exception->getMessage()])    => MoreI18N::xlate('Error')],
-                    'title'       => $title,
-                ]);
-            }
-
-            return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
-                'steps'           => $this->wizardSteps($module_name, $download_url, $action, $current_version, $latest_version),
-                'title'           => $title,
+        try {
+            $download_url = $module_upgrade_service->downloadUrl($latest_version);
+        }
+        catch (CustomModuleManagerException $exception) {
+            return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/steps-modal', [
+                'steps'       => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ERROR, 'module_name' => $module_name, 'message' => $exception->getMessage()])    => MoreI18N::xlate('Error')],
+                'title'       => $title,
             ]);
         }
 
-        return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::wizard', [
-            'module_name'     => $module_name,
-            'current_version' => $current_version,
-            'latest_version'  => $latest_version,
+        return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/steps-modal', [
+            'steps'           => $this->wizardSteps($module_name, $download_url, $action, $current_version, $latest_version),
             'title'           => $title,
-            'action'          => $action
         ]);
     }
 

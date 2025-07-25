@@ -31,6 +31,8 @@ use function view;
 
 ?>
 
+<?= view('modals/header', ['title' => $title]) ?>
+
 <div class="modal-body">
 
     <div class="h4">
@@ -56,6 +58,13 @@ use function view;
             <?= MoreI18N::xlate('Documentation') ?>	
         </div>
         <div class="wt-custom-module-info">
+            <?php if ($module_update_service_name === VestaModuleUpdate::NAME) : ?>
+            <?= view('icons/help') ?>
+                <a href="<?= e($module_update_service->homePageUrl()) ?>" target="blank">
+                    <?= e($module_update_service->homePageUrl()) ?>
+                </a>
+                <br>
+            <?php endif ?>
             <?= view('icons/help') ?>
             <a href="<?= e($documentation_url) ?>" target="blank">
                 <?= e($documentation_url) ?>
@@ -95,7 +104,7 @@ use function view;
         <br>
         <?php if ($module_update_service_name === VestaModuleUpdate::NAME) : ?>
             <?= view('icons/link') ?>
-            <?= I18N::translate('Vesta Homepage' . ': ') ?>
+            <?= I18N::translate('⚶ Vesta homepage' . ': ') ?>
             <a href="<?= e($module_update_service->homePageUrl()) ?>" target="blank">
                 <?= e($module_update_service->homePageUrl()) ?>
             </a>

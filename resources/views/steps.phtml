@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
+namespace Jefferson49\Webtrees\Module\CustomModuleManager;
+
 use Fisharebest\Webtrees\View;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 
@@ -13,10 +14,6 @@ use Jefferson49\Webtrees\Internationalization\MoreI18N;
  */
 
 ?>
-
-<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => MoreI18N::xlate('Control panel'), $title]]) ?>
-
-<h1><?= $title ?></h1>
 
 <p>
     <?= MoreI18N::xlate('It can take several minutes to download and install the upgrade. Be patient.') ?>

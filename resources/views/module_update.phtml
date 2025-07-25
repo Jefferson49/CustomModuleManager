@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Jefferson49\Webtrees\Module\CustomModuleManager;
+
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Services\ModuleService;
@@ -198,7 +200,7 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
                     <?php endif ?>						
                     <td data-sort="<?= $action_label ?>">
                         <?php if ($action_label !== '' && $update_service_available) : ?>
-                            <a href="<?= e(route(ModuleUpgradeWizardPage::class, [
+                            <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ModuleUpgradeWizardPage::class, [
                                     'module_name'     => $module_name,
                                     'current_version' => $current_version,
                                     'latest_version'  => $latest_version,

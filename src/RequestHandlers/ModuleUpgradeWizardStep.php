@@ -438,7 +438,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 $this->rollback($installation_folder);
 
                 //Reset flash error messages for the module
-                $module_update_service::pullFlashErrorMessage($module_name);                
+                $module_update_service::pullFlashErrorMessage($module_name);             
             }
 
             if ($action === CustomModuleManager::ACTION_UPDATE) {
@@ -453,8 +453,6 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             }
         }
         catch (Throwable $exception) {
-            $this->webtrees_upgrade_service->endMaintenanceMode();    
-    
             if ($action === CustomModuleManager::ACTION_UPDATE) {
                 $alert =    I18N::translate('A roll back of the module to the current version failed.') . "\n" .
                             I18N::translate('Please try to manually roll back by copying the files from "/data/tmp/backup/modules_4" to "/modules_v4".');
