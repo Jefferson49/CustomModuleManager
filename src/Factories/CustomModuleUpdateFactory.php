@@ -45,7 +45,7 @@ class CustomModuleUpdateFactory
      * 
      * @param string $module_name  Name of the custom module
      * 
-     * @return CustomModuleUpdateInterface   A configured authorization provider. Null, if error 
+     * @return CustomModuleUpdateInterface   A configured update service. Null, if not found
      */
     public static function make(string $module_name) : ?CustomModuleUpdateInterface
     {

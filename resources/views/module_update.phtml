@@ -11,6 +11,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleInformationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 
@@ -102,8 +103,8 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
                     <?php endif ?>						
                 <?php endif ?>						
                 <?php $update_service_available = ModuleUpdateServiceConfiguration::getUpdateServiceName($module_name) !== '' ?>
+                <?php $module_update_service = CustomModuleUpdateFactory::make($module_name) ?>
                 <?php if ($update_service_available) : ?>
-                    <?php $module_update_service = CustomModuleUpdateFactory::make($module_name) ?>
                     <?php $module_update_service_name = $module_update_service->name() ?>
                     <?php $module_title = $module_update_service->title() ?>
                     <?php $module_description = $module_update_service->description() ?>
@@ -120,30 +121,40 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
                     <?php /** @var CustomModuleManager $module To avoid IDE warnings */ ?>
                     <?php $current_version = $module->customModuleVersion() ?>
                     <?php $latest_version = $module->customModuleLatestVersion() ?>
+                    <?php $documentation_url = '' ?>
                 <?php endif ?>	
                 <?php if ($module !== null) : ?>
                     <?php $current_version = $current_version !== '' ? $current_version : I18N::translate('not received') ?>
-                <?php endif ?>						
+                <?php endif ?>					
+                <?php $installation_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name) ?>
 
                 <tr>
                     <!-- Title -->
                     <td data-sort="<?= e($module_title) ?>">
-                        <?php if ($documentation_url !== '') : ?>
-                            <a href="<?= e($documentation_url) ?>" target="blank">
-                                <?= e($module_title) ?>
-                            </a>
-                        <?php else : ?>		
-                            <?= e($module_title) ?>		
-                        <?php endif ?>						
+                    <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ModuleInformationModal::class, [
+                            'module_name'                => $module_name,
+                            'module'                     => $module,
+                            'module_update_service'      => $module_update_service,
+                            'module_update_service_name' => $module_update_service_name,
+                            'module_title'               => $module_title,
+                            'module_description'         => $module_description,
+                            'module_status'              => $module_status,
+                            'is_theme'                   => $is_theme,
+                            'current_version'            => $current_version,
+                            'latest_version'             => $latest_version,
+                            'installation_folder'        => $installation_folder,
+                            'documentation_url'          => $documentation_url,
+                        ])) ?>">
+                            <?= e($module_title) ?>
+                    </a>
                     </td>
 
                     <!-- Description -->
-                <td data-sort="<?= e($module_description) ?>">
+                    <td data-sort="<?= e($module_description) ?>">
                         <?= e($module_description) ?>
                     </td>
 
                     <!-- Folder -->
-                    <?php $installation_folder = $module_update_service::getInstallationFolderFromModuleName($module_name) ?>
                     <td data-sort="<?= e($installation_folder) ?>">
                         <?= e($installation_folder) ?>
                     </td>
@@ -203,3 +214,5 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
     </table>
 
 <?php endif	?>
+
+<?= view('modals/ajax') ?>

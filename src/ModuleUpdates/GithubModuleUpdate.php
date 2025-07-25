@@ -207,6 +207,16 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     }
 
     /**
+     * Get the Github repository
+     * 
+     * @return string
+     */
+    public function getGithubRepo(): string
+    {
+        return $this->github_repo;
+    }
+
+    /**
      * Fetch the latest version of this module
      *
      * @param bool $fetch_latest  Whether to fetch the latest version, e.g. from a Github repository 

@@ -98,6 +98,26 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
     }
 
     /**
+     * Get the Github repository
+     * 
+     * @return string
+     */
+    public function getGithubRepo(): string
+    {
+        return $this->github_repo;
+    }
+
+    /**
+     * The Vesta homepage URL
+     * 
+     * @return string
+     */
+    public function homePageUrl(): string
+    {
+        return 'https://cissee.de';
+    }
+
+    /**
      * Get the folder, into which the module zip-file shalled be unzipped
      *
      * @return string

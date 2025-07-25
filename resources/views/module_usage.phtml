@@ -1,0 +1,221 @@
+<?php
+
+declare(strict_types=1);
+
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Module\ModuleAnalyticsInterface;
+use Fisharebest\Webtrees\Module\ModuleBlockInterface;
+use Fisharebest\Webtrees\Module\ModuleChartInterface;
+use Fisharebest\Webtrees\Module\ModuleConfigInterface;
+use Fisharebest\Webtrees\Module\ModuleCustomInterface;
+use Fisharebest\Webtrees\Module\ModuleDataFixInterface;
+use Fisharebest\Webtrees\Module\ModuleExternalUrlInterface;
+use Fisharebest\Webtrees\Module\ModuleFooterInterface;
+use Fisharebest\Webtrees\Module\ModuleHistoricEventsInterface;
+use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
+use Fisharebest\Webtrees\Module\ModuleListInterface;
+use Fisharebest\Webtrees\Module\ModuleMenuInterface;
+use Fisharebest\Webtrees\Module\ModuleReportInterface;
+use Fisharebest\Webtrees\Module\ModuleSidebarInterface;
+use Fisharebest\Webtrees\Module\ModuleTabInterface;
+use Fisharebest\Webtrees\Module\ModuleThemeInterface;
+
+
+/**
+ * Code from: /resources/views/admin/modules.phmtl
+ * 
+ * @var ModuleCustomInterface       $module,
+ */
+
+?>
+
+<table class="table table-bordered table-hover table-sm table-module-administration"
+    <?= view('lists/datatables-attributes') ?>
+    data-info="false"
+    data-paging="false"
+    data-filter="false"
+>
+    <caption class="visually-hidden">
+        <?= I18N::translate('Module usage') ?>
+    </caption>
+    <thead>
+        <tr>
+            <th class="text-center" title="<?= I18N::translate('Menus') ?>">
+                <?= view('icons/menu') ?>
+                <span class="visually-hidden"><?= I18N::translate('Menus') ?></span>
+            </th>
+            <th class="text-center" title="<?= I18N::translate('Tabs') ?>">
+                <?= view('icons/tab') ?>
+                <span class="visually-hidden"><?= I18N::translate('Tabs') ?></span>
+            </th>
+            <th class="text-center" title="<?= I18N::translate('Sidebars') ?>">
+                <?= view('icons/sidebar') ?>
+                <span class="visually-hidden"><?= I18N::translate('Sidebars') ?></span>
+            </th>
+            <th class="text-center" title="<?= I18N::translate('Blocks') ?>">
+                <?= view('icons/block') ?>
+                <span class="visually-hidden"><?= I18N::translate('Blocks') ?></span>
+            </th>
+            <th class="text-center" title="<?= I18N::translate('Data fixes') ?>">
+                <?= view('icons/data-fix') ?>
+                <span class="visually-hidden"><?= I18N::translate('Data fixes') ?></span>
+            </th>
+            <th class="text-center" title="<?= I18N::translate('Charts') ?>">
+                <?= view('icons/chart') ?>
+                <span class="visually-hidden"><?= I18N::translate('Charts') ?></span>
+            </th>
+            <th class="text-center" title="<?= I18N::translate('Lists') ?>">
+                <?= view('icons/list') ?>
+                <span class="visually-hidden"><?= I18N::translate('Lists') ?></span>
+            </th>
+            <th class="text-center" title="<?= I18N::translate('Reports') ?>">
+                <?= view('icons/report') ?>
+                <span class="visually-hidden"><?= I18N::translate('Reports') ?></span>
+            </th>
+            <th class="text-center" title="<?= I18N::translate('Footers') ?>">
+                <?= view('icons/footer') ?>
+                <span class="visually-hidden"><?= I18N::translate('Footers') ?></span>
+            </th>
+            <th class="text-center" title="<?= I18N::translate('Tracking and analytics') ?>">
+                <?= view('icons/analytics') ?>
+                <span class="visually-hidden"><?= I18N::translate('Tracking and analytics') ?></span>
+            </th>
+            <th class="text-center" title="<?= I18N::translate('Historic events') ?>">
+                <?= view('icons/history') ?>
+                <span class="visually-hidden"><?= I18N::translate('Historic events') ?></span>
+            </th>
+            <th class="text-center" title="<?= I18N::translate('Themes') ?>">
+                <?= view('icons/theme') ?>
+                <span class="visually-hidden"><?= I18N::translate('Themes') ?></span>
+            </th>
+            <th class="text-center" title="<?= I18N::translate('Languages') ?>">
+                <?= view('icons/language') ?>
+                <span class="visually-hidden"><?= I18N::translate('Languages') ?></span>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td class="text-center" title="<?= I18N::translate('Menu') ?>">
+                <?php if ($module instanceof ModuleMenuInterface) : ?>
+                    <?= view('icons/tab') ?>
+                    <span class="visually-hidden"><?= I18N::translate('Menu') ?></span>
+                <?php else : ?>
+                    -
+                <?php endif ?>
+            </td>
+            <td class="text-center" title="<?= I18N::translate('Tab') ?>">
+                <?php if ($module instanceof ModuleTabInterface) : ?>
+                    <?= view('icons/tab') ?>
+                    <span class="visually-hidden"><?= I18N::translate('Tab') ?></span>
+                <?php else : ?>
+                    -
+                <?php endif ?>
+            </td>
+            <td class="text-center" title="<?= I18N::translate('Sidebar') ?>">
+                <?php if ($module instanceof ModuleSidebarInterface) : ?>
+                    <?= view('icons/sidebar') ?>
+                    <span class="visually-hidden"><?= I18N::translate('Sidebar') ?></span>
+                <?php else : ?>
+                    -
+                <?php endif ?>
+            </td>
+            <td class="text-center">
+                <?php if ($module instanceof ModuleBlockInterface) : ?>
+                    <?php if ($module->isUserBlock()) : ?>
+                        <span title="<?= I18N::translate('My page') ?>">
+                            <?= view('icons/block-user') ?>
+                        </span>
+                        <span class="visually-hidden">
+                            <?= I18N::translate('My page') ?>
+                        </span>
+                    <?php endif ?>
+
+                    <?php if ($module->isTreeBlock()) : ?>
+                        <span title="<?= I18N::translate('Home page') ?>">
+                            <?= view('icons/block-tree') ?>
+                        </span>
+                        <span class="visually-hidden">
+                            <?= I18N::translate('Home page') ?>
+                        </span>
+                    <?php endif ?>
+                <?php else : ?>
+                    -
+                <?php endif ?>
+            </td>
+            <td class="text-center" title="<?= I18N::translate('Data fix') ?>">
+                <?php if ($module instanceof ModuleDataFixInterface) : ?>
+                    <?= view('icons/data-fix') ?>
+                    <span class="visually-hidden"><?= I18N::translate('Data fix') ?></span>
+                <?php else : ?>
+                    -
+                <?php endif ?>
+            </td>
+            <td class="text-center" title="<?= I18N::translate('Chart') ?>">
+                <?php if ($module instanceof ModuleChartInterface) : ?>
+                    <?= view('icons/chart') ?>
+                    <span class="visually-hidden"><?= I18N::translate('Chart') ?></span>
+                <?php else : ?>
+                    -
+                <?php endif ?>
+            </td>
+            <td class="text-center" title="<?= I18N::translate('List') ?>">
+                <?php if ($module instanceof ModuleListInterface) : ?>
+                    <?= view('icons/list') ?>
+                    <span class="visually-hidden"><?= I18N::translate('List') ?></span>
+                <?php else : ?>
+                    -
+                <?php endif ?>
+            </td>
+            <td class="text-center" title="<?= I18N::translate('Report') ?>">
+                <?php if ($module instanceof ModuleReportInterface) : ?>
+                    <?= view('icons/report') ?>
+                    <span class="visually-hidden"><?= I18N::translate('Report') ?></span>
+                <?php else : ?>
+                    -
+                <?php endif ?>
+            </td>
+            <td class="text-center" title="<?= I18N::translate('Footer') ?>">
+                <?php if ($module instanceof ModuleFooterInterface) : ?>
+                    <?= view('icons/footer') ?>
+                    <span class="visually-hidden"><?= I18N::translate('Footer') ?></span>
+                <?php else : ?>
+                    -
+                <?php endif ?>
+            </td>
+            <td class="text-center" title="<?= I18N::translate('Tracking and analytics') ?>">
+                <?php if ($module instanceof ModuleAnalyticsInterface) : ?>
+                    <?= view('icons/analytics') ?>
+                    <span class="visually-hidden"><?= I18N::translate('Tracking and analytics') ?></span>
+                <?php else : ?>
+                    -
+                <?php endif ?>
+            </td>
+            <td class="text-center" title="<?= I18N::translate('Historic events') ?>">
+                <?php if ($module instanceof ModuleHistoricEventsInterface) : ?>
+                    <?= view('icons/history') ?>
+                    <span class="visually-hidden"><?= I18N::translate('Historic events') ?></span>
+                <?php else : ?>
+                    -
+                <?php endif ?>
+            </td>
+            <td class="text-center" title="<?= I18N::translate('Theme') ?>">
+                <?php if ($module instanceof ModuleThemeInterface) : ?>
+                    <?= view('icons/theme') ?>
+                    <span class="visually-hidden"><?= I18N::translate('Theme') ?></span>
+                <?php else : ?>
+                    -
+                <?php endif ?>
+            </td>
+            <td class="text-center" title="<?= I18N::translate('Language') ?>">
+                <?php if ($module instanceof ModuleLanguageInterface) : ?>
+                    <?= view('icons/language') ?>
+                    <span class="visually-hidden"><?= I18N::translate('Language') ?></span>
+                <?php else : ?>
+                    -
+                <?php endif ?>
+            </td>
+        </tr>
+    </tbody>
+</table>

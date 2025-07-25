@@ -62,6 +62,7 @@ use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleInformationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardConfirm;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardStep;
@@ -100,7 +101,7 @@ class CustomModuleManager extends AbstractModule implements
 	public const GITHUB_API_TAG_NAME_PREFIX = '"tag_name":"v';
 
 	//Author of custom module
-	public const CUSTOM_AUTHOR = 'Markus Hemprich';
+	public const CUSTOM_AUTHOR                  = 'Markus Hemprich';
 
     //A list of custom views, which are registered by the module
     private Collection $custom_view_list;
@@ -126,12 +127,13 @@ class CustomModuleManager extends AbstractModule implements
     public const ROUTE_WIZARD_STEP        = '/module_upgrade_wizard_step';
     public const ROUTE_WIZARD_CONFIRM     = '/module_upgrade_wizard_confirm';
     public const ROUTE_MODULE_UPDATE_PAGE = '/module_update_page';
+    public const ROUTE_MODULE_INFO_MODAL  = '/module_info_modal';
 
     //Language
-    public const DEFAULT_LANGUAGE         = 'en-US';
+    public const DEFAULT_LANGUAGE               = 'en-US';
 
     //Session
-    public const SESSION_WIZARD_ABORTED   = 'wizard_aborted';
+    public const SESSION_WIZARD_ABORTED         = 'wizard_aborted';
 
     //Errors
     public const ERROR_MAX_LENGTH         = 500;
@@ -193,6 +195,12 @@ class CustomModuleManager extends AbstractModule implements
         $router = Registry::routeFactory()->routeMap();                 
         $router
         ->get(CustomModuleUpdatePage::class, self::ROUTE_MODULE_UPDATE_PAGE)
+        ->allows(RequestMethodInterface::METHOD_POST);
+
+        //Register a route for the module information modal
+        $router = Registry::routeFactory()->routeMap();                 
+        $router
+        ->get(ModuleInformationModal::class, self::ROUTE_MODULE_INFO_MODAL)
         ->allows(RequestMethodInterface::METHOD_POST);
     }
 	

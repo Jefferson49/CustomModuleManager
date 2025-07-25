@@ -1,0 +1,155 @@
+<?php
+
+namespace Jefferson49\Webtrees\Module\CustomModuleManager;
+
+
+use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Module\ModuleConfigInterface;
+use Jefferson49\Webtrees\Internationalization\MoreI18N;
+use Fisharebest\Webtrees\Module\ModuleCustomInterface;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CustomModuleUpdateInterface;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\VestaModuleUpdate;
+use function view;
+
+
+/**
+ * @var string                      $title
+ * @var string                      $module_name,
+ * @var ModuleCustomInterface       $module,
+ * @var CustomModuleUpdateInterface $module_update_service
+ * @var string                      $module_update_service_name
+ * @var string                      $module_title
+ * @var string                      $module_description
+ * @var string                      $module_status
+ * @var bool                        $is_theme
+ * @var string                      $current_version
+ * @var string                      $latest_version
+ * @var string                      $installation_folder
+ * @var string                      $documentation_url
+ */
+
+?>
+
+<div class="modal-body">
+
+    <div class="h4">
+        <?= MoreI18N::xlate('Title') ?>	
+    </div>
+    <div class="row mb-3">
+        <p>
+            <?= e($module_title) ?>
+        </p>
+    </div>
+
+    <div class="h4">
+        <?= MoreI18N::xlate('Description') ?>	
+    </div>
+    <div class="row mb-3">
+        <p>
+            <?= e($module_description) ?>	
+        </p>
+    </div>
+    
+    <?php if ($documentation_url !== '') : ?>
+        <div class="h4">
+            <?= MoreI18N::xlate('Documentation') ?>	
+        </div>
+        <div class="wt-custom-module-info">
+            <?= view('icons/help') ?>
+            <a href="<?= e($documentation_url) ?>" target="blank">
+                <?= e($documentation_url) ?>
+            </a>
+        </div>
+        <br>
+    <?php endif ?>        
+
+    <div class="h4">
+        <?= MoreI18N::xlate('Module Information') ?>	
+    </div>
+
+    <div class="wt-custom-module-info">
+        <?= view('icons/information') ?>
+        <?= I18N::translate('Status' . ': ') ?>
+        <?= e($module_status) ?>
+        <br>
+        <?php if ($module_update_service_name !== '') : ?>
+            <?= view('icons/information') ?>
+            <?= I18N::translate('Update Service' . ': ') ?>
+            <?= e($module_update_service_name) ?>
+            <br>
+        <?php endif ?>
+        <?= view('icons/folder') ?>
+        <?= I18N::translate('Module folder') . ': '?>
+        <?= '/modules_v4/' . e($installation_folder) ?>
+        <br>
+        <?php if ($module !== null) : ?>
+            <?= view('icons/module') ?>
+            <?= I18N::translate('Current Version' . ': ') ?>
+            <?= e($current_version) ?>
+            <br>
+        <?php endif ?>
+        <?= view('icons/module') ?>
+        <?= I18N::translate('Latest Version' . ': ') ?>
+        <?= e($latest_version) ?>
+        <br>
+        <?php if ($module_update_service_name === VestaModuleUpdate::NAME) : ?>
+            <?= view('icons/link') ?>
+            <?= I18N::translate('Vesta Homepage' . ': ') ?>
+            <a href="<?= e($module_update_service->homePageUrl()) ?>" target="blank">
+                <?= e($module_update_service->homePageUrl()) ?>
+            </a>
+            <br>
+        <?php endif ?>
+        <?php if ($module_update_service_name === GithubModuleUpdate::NAME OR $module_update_service_name === VestaModuleUpdate::NAME) : ?>
+            <?= view('icons/link') ?>
+            <?= I18N::translate('Github repository' . ': ') ?>
+            <a href="<?= e($documentation_url) ?>" target="blank">
+                <?= e($module_update_service->getGithubRepo()) ?>
+            </a>
+            <br>
+            <?= view('icons/link') ?>
+            <?= 'Github ' ?>
+            <a href="<?= e($documentation_url . '/issues') ?>" target="blank">
+                <?= MoreI18N::xlate('Issues') ?>
+            </a>
+            <br>
+        <?php endif ?>
+        <?php if ($is_theme) : ?>
+            <?= view('icons/theme') ?>
+            <?= I18N::translate('Theme') ?>
+            <br>
+        <?php endif ?>
+        <?php if ($module !== null && $module->customModuleAuthorName() !== '') : ?>
+            <?= view('icons/individual') ?>
+            <?= MoreI18N::xlate('Author' . ': ') ?>
+            <?= $module->customModuleAuthorName() ?>
+            <br>
+        <?php endif ?>
+        <?php if ($module !== null && ($module instanceof ModuleConfigInterface) && $module->isEnabled()) : ?>
+            <?= view('icons/preferences') ?>
+            <a href="<?= e($module->getConfigLink()) ?>">
+                <?= I18N::translate('Preferences') ?>
+            </a>
+            <br>
+        <?php endif ?>
+    </div>
+
+    <div class="row mb-3"><?= view('icons/spacer') ?></div>
+
+    <?php if ($module !== null) : ?>
+        <div class="h4">
+            <?= MoreI18N::xlate('Module Usage') ?>
+        </div>
+
+        <?= view(CustomModuleManager::viewsNamespace() . '::module_usage', [
+            'title'  => I18N::translate('Module Information'),
+            'module'                     => $module,
+        ]) ?>
+    <?php endif ?>
+
+</div>    
+
+<?= view('modals/footer-close') ?>
+
+<?= view('modals/ajax') ?>
