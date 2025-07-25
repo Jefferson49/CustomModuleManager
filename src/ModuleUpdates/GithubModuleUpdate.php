@@ -135,6 +135,11 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             return 'https://github.com/' . $this->github_repo . '/archive/refs/heads/' . $this->default_branch . '.zip';
         }
 
+        //Remove line feed at end of version
+        if (strpos($version, "\n", -1)) {
+            $version = substr($version, 0, strlen($version) - 1);
+        }
+
         //Add prefix, if module tags have a prefix
         if ($version !== '' && strlen($version) > strlen($this->tag_prefix)) {
 
