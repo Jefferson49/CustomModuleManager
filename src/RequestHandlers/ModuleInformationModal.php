@@ -71,7 +71,7 @@ class ModuleInformationModal implements RequestHandlerInterface
         $module = $module_service->findByName($module_name, true);
         $module_update_service = CustomModuleUpdateFactory::make($module_name);
 
-        $this->layout = 'layouts/administration';
+        $this->layout = 'layouts/ajax';
         
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/module_information', [
                 'title'                      => I18N::translate('Module Information'),
