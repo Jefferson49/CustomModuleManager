@@ -43,6 +43,7 @@ use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
@@ -102,7 +103,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     // The custom module update service
     private CustomModuleUpdateInterface $module_update_service;
 
-    // Whether we operate in the context of a modal
+    // Wether we operate in the context of a modal
     private bool $modal;
 
 
@@ -587,8 +588,19 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
         //If URL is provided, include continue buttons
         if ($url !== '') {
+            /** @var AbstractModuleUpdate $module_update_service  To avoid IDE warnings */
+            $module_update_service = $this->module_update_service;
+            $module_service = new ModuleService;
+            $module = $module_service->findByName($module_update_service->getModuleName());      
+            
+            if ($module !== null && (get_class($module) ===  CustomModuleManager::class)) {
+                $update_own_module_code = true;
+            }
+
+            $add_modal_button = $this->modal && !$update_own_module_code;
+    
             $button1 = '<a href="' . e($url) . '" class="btn btn-primary"';
-            if ($this->modal) {
+            if ($add_modal_button) {
                 $button1 .= ' data-bs-dismiss="modal"';
             }
             $button1 .= '>' . MoreI18N::xlate('continue') . '</a>';
@@ -596,7 +608,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $button2 = '<a href="' . e($url) . '" class="btn btn-secondary">' . I18N::translate('continue (reload)') . '</a>';
 
             $alert .= ' ' . $button1;
-            if ($this->modal) {
+            if ($add_modal_button) {
                 $alert .= ' ' . $button2;
             }
         }
