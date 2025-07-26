@@ -63,7 +63,6 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdate
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleInformationModal;
-use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardConfirm;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardStep;
 use GuzzleHttp\Client;
@@ -125,7 +124,6 @@ class CustomModuleManager extends AbstractModule implements
     //Routes
     public const ROUTE_WIZARD_PAGE        = '/module_upgrade_wizard_page';
     public const ROUTE_WIZARD_STEP        = '/module_upgrade_wizard_step';
-    public const ROUTE_WIZARD_CONFIRM     = '/module_upgrade_wizard_confirm';
     public const ROUTE_MODULE_UPDATE_PAGE = '/module_update_page';
     public const ROUTE_MODULE_INFO_MODAL  = '/module_info_modal';
 
@@ -183,12 +181,6 @@ class CustomModuleManager extends AbstractModule implements
         $router = Registry::routeFactory()->routeMap();                 
         $router
         ->get(ModuleUpgradeWizardStep::class, self::ROUTE_WIZARD_STEP)
-        ->allows(RequestMethodInterface::METHOD_POST);
-
-        //Register a route for upgrade wizard confirm
-        $router = Registry::routeFactory()->routeMap();                 
-        $router
-        ->get(ModuleUpgradeWizardConfirm::class, self::ROUTE_WIZARD_CONFIRM)
         ->allows(RequestMethodInterface::METHOD_POST);
 
         //Register a route for the custom module update page
