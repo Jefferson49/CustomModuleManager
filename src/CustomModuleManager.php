@@ -521,11 +521,20 @@ class CustomModuleManager extends AbstractModule implements
                     //Trigger rollback of the udpated module                
                     $this->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '1');
 
-                    $this->layout = 'layouts/administration';
+                    $modal = Validator::queryParams($request)->boolean('modal', false);
 
-                    return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
-                        'title' => I18N::translate('Rollback Custom Module Update'),
-                        'steps' => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ROLLBACK, 'module_name' => $updated_module_name, 'error_message' => $test_result]) => I18N::translate('Rollback')],
+                    if ($modal) {
+                        $this->layout = 'layouts/ajax';
+                        $view         = '::modals/steps-modal';
+                    }
+                    else{
+                        $this->layout = 'layouts/administration';
+                        $view         = '::steps';
+                    }
+
+                    return $this->viewResponse(CustomModuleManager::viewsNamespace() . $view, [
+                        'title'    => I18N::translate('Rollback Custom Module Update'),
+                        'steps'    => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ROLLBACK, 'module_name' => $updated_module_name, 'error_message' => $test_result]) => I18N::translate('Rollback')],
                     ]);
                 }
                 //After successful test, reset update information

@@ -93,15 +93,17 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
             $download_url = $module_upgrade_service->downloadUrl($latest_version);
         }
         catch (CustomModuleManagerException $exception) {
-            return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
+            return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/steps-modal', [
                 'steps' => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ERROR, 'module_name' => $module_name, 'message' => $exception->getMessage()])    => MoreI18N::xlate('Error')],
                 'title' => I18N::translate('Error during retrieving download URL'),
+                'modal' => true,
             ]);
         }
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/steps-modal', [
             'steps' => $this->wizardSteps($module_name, $download_url, $action, $current_version, $latest_version),
             'title' => MoreI18N::xlate('Upgrade wizard'),
+            'modal' => true,
         ]);
     }
 
