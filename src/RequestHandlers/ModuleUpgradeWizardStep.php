@@ -218,10 +218,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $alert_type = self::ALERT_SUCCESS;
 
             if ($action === CustomModuleManager::ACTION_INSTALL) {
-                $alert .= I18N::translate('Installing version %s',e($latest_version));
+                $alert .= I18N::translate('Installing version: "%s"',e($latest_version));
             }
             else {
-                $alert .= I18N::translate('Upgrading the module from version %s to version %s', e($current_version), e($latest_version));
+                $alert .= I18N::translate('Upgrading the module from version "%s" to version "%s"', e($current_version), e($latest_version));
             }
         }
 

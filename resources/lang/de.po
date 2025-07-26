@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2025-07-26 13:08+0200\n"
-"PO-Revision-Date: 2025-07-26 13:08+0200\n"
+"POT-Creation-Date: 2025-07-26 13:56+0200\n"
+"PO-Revision-Date: 2025-07-26 13:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -121,15 +121,15 @@ msgstr "Modul-Informationen"
 msgid "Error during retrieving download URL"
 msgstr "Fehler beim abrufen der Download-URL"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:136
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:135
 msgid "Check version..."
 msgstr "Version prüfen..."
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:140
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:136
 msgid "Create temporary folders…"
 msgstr "Temporäre Ordner anlegen…"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:145
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:141
 msgid "Backup…"
 msgstr "Sicherung…"
 
@@ -157,13 +157,13 @@ msgstr ""
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:221
 #, php-format
-msgid "Installing version %s"
-msgstr "Installiere Version %s"
+msgid "Installing version: \"%s\""
+msgstr "Installiere Version \"%s\""
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:224
 #, php-format
-msgid "Upgrading the module from version %s to version %s"
-msgstr "Aktualisieren des Moduls von Version %s auf Version %s"
+msgid "Upgrading the module from version \"%s\" to version \"%s\""
+msgstr "Aktualisieren des Moduls von Version \"%s\" auf Version \"%s\""
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:295
 #, php-format
@@ -289,7 +289,7 @@ msgid "Folder (within modules_v4)"
 msgstr "Ordner (in modules_v4)"
 
 #: resources/views/module_update.phtml:96
-#: resources/views/module_update.phtml:202
+#: resources/views/module_update.phtml:205
 msgid "not installed"
 msgstr "nicht installiert"
 
@@ -310,11 +310,11 @@ msgstr "nicht empfangen"
 msgid "not available"
 msgstr "nicht verfügbar"
 
-#: resources/views/module_update.phtml:201
+#: resources/views/module_update.phtml:204
 msgid "Update module"
 msgstr "Modul aktualisieren"
 
-#: resources/views/module_update.phtml:204
+#: resources/views/module_update.phtml:207
 msgid "Install module"
 msgstr "Modul installieren"
 
