@@ -102,6 +102,9 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     // The custom module update service
     private CustomModuleUpdateInterface $module_update_service;
 
+    // Whether we operate in the context of a modal
+    private bool $modal;
+
 
     /**
      * @param UpgradeService $webtrees_upgrade_service
@@ -120,7 +123,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         if (Session::get(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED, false)) {
-            return self::viewAlert(I18N::translate('Update Wizard was aborted'), self::ALERT_DANGER, '', true);
+            return $this->viewAlert(I18N::translate('Update Wizard was aborted'), self::ALERT_DANGER, '', true);
         }
 
         $step            = Validator::queryParams($request)->string('step', self::STEP_CHECK);
@@ -131,8 +134,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $message         = Validator::queryParams($request)->string('message', '');
         $action          = Validator::queryParams($request)->string('action', '');      
         $error_message   = Validator::queryParams($request)->string('error_message', '');
+        $modal           = Validator::queryParams($request)->boolean('modal', false);
 
         $this->module_update_service = CustomModuleUpdateFactory::make($module_name);
+        $this->modal = $modal;
 
         $zip_file         = Webtrees::ROOT_DIR . self::ZIP_FILENAME;
         $module_names     = $this->module_update_service->getModuleNamesToUpdate();
@@ -197,7 +202,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $alert       = I18N::translate('Upgrade the module to version %s.', e($latest_version));
         }
 
-        return self::viewAlert($alert, $alert_type, '', $abort);
+        return $this->viewAlert($alert, $alert_type, '', $abort);
     }
 
     /**
@@ -236,7 +241,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $abort      = true;
         }
 
-        return self::viewAlert($alert, $alert_type, '', $abort);
+        return $this->viewAlert($alert, $alert_type, '', $abort);
     }
 
     /**
@@ -273,7 +278,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $abort      = true;
         }
 
-        return self::viewAlert($alert, $alert_type,'', $abort);
+        return $this->viewAlert($alert, $alert_type,'', $abort);
     }
     
     /**
@@ -301,7 +306,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $abort      = true;
         }
 
-        return self::viewAlert($alert, $alert_type, '', $abort);
+        return $this->viewAlert($alert, $alert_type, '', $abort);
     }
 
     /**
@@ -333,7 +338,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $abort      = true;
         }
 
-        return self::viewAlert($alert, $alert_type, '', $abort);
+        return $this->viewAlert($alert, $alert_type, '', $abort);
     }
 
     /**
@@ -411,7 +416,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         }
 
         $url = route(CustomModuleUpdatePage::class);
-        return self::viewAlert($alert, $alert_type, $url);
+        return $this->viewAlert($alert, $alert_type, $url);
     }
 
     /**
@@ -474,7 +479,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
         $url = route(CustomModuleUpdatePage::class);
         
-        return self::viewAlert($alert, self::ALERT_DANGER, $url, true);
+        return $this->viewAlert($alert, self::ALERT_DANGER, $url, true);
     }
 
     /**
@@ -484,7 +489,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     {
         $url    = route(CustomModuleUpdatePage::class);
 
-        return self::viewAlert($message, self::ALERT_DANGER, $url, true);
+        return $this->viewAlert($message, self::ALERT_DANGER, $url, true);
     }
 
     /**
@@ -565,7 +570,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      *  
      * @return ResponseInterface
      */
-    public static function viewAlert(string $alert, string $alert_type = self::ALERT_SUCCESS, string $url = '', bool $abort = false): ResponseInterface
+    private function viewAlert(string $alert, string $alert_type = self::ALERT_SUCCESS, string $url = '', bool $abort = false): ResponseInterface
     {    
         if (!in_array($alert_type, [self::ALERT_DANGER, self::ALERT_SUCCESS])) {
             $alert_type = self::ALERT_SUCCESS;
@@ -580,10 +585,20 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             Session::put(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED, true);
         }
 
-        //If URL is provided, include a continue button
+        //If URL is provided, include continue buttons
         if ($url !== '') {
-            $button = '<a href="' . e($url) . '" class="btn btn-primary">' . MoreI18N::xlate('continue') . '</a>';
-            $alert.= ' ' . $button;
+            $button1 = '<a href="' . e($url) . '" class="btn btn-primary"';
+            if ($this->modal) {
+                $button1 .= ' data-bs-dismiss="modal"';
+            }
+            $button1 .= '>' . MoreI18N::xlate('continue') . '</a>';
+
+            $button2 = '<a href="' . e($url) . '" class="btn btn-secondary">' . MoreI18N::xlate('continue (reload)') . '</a>';
+
+            $alert .= ' ' . $button1;
+            if ($this->modal) {
+                $alert .= ' ' . $button2;
+            }
         }
 
         return response(view('components/' . $alert_type, [

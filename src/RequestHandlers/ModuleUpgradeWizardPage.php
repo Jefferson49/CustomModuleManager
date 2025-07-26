@@ -94,7 +94,7 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
         }
         catch (CustomModuleManagerException $exception) {
             return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/steps-modal', [
-                'steps' => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ERROR, 'module_name' => $module_name, 'message' => $exception->getMessage()])    => MoreI18N::xlate('Error')],
+                'steps' => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ERROR, 'module_name' => $module_name, 'message' => $exception->getMessage(), 'modal' => true]) => MoreI18N::xlate('Error')],
                 'title' => I18N::translate('Error during retrieving download URL'),
                 'modal' => true,
             ]);
@@ -128,6 +128,7 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
             'action'          => $action,
             'current_version' => $current_version,
             'latest_version'  => $latest_version,
+            'modal'           => true,
         ];
 
         $steps = [];

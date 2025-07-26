@@ -16,15 +16,12 @@ use function view;
 
 <?= view('modals/header', ['title' => $title]) ?>
 
-
 <div class="modal-body">
     <?= view(CustomModuleManager::viewsNamespace() . '::steps', [
             'steps'       => $steps,
             'title'       => '',
     ]) ?>    
 </div>
-
-<?= view('modals/footer-close') ?>
 
 <script>
     document.getElementById('wt-modal-form').addEventListener('submit', webtrees.createRecordModalSubmit);
