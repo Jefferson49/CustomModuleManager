@@ -1,0 +1,293 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CustomModuleManager\n"
+"POT-Creation-Date: 2025-07-20 05:24+0200\n"
+"PO-Revision-Date: 2025-07-26 14:30+0200\n"
+"Last-Translator: Carmen <carmen@justcarmen.nl>\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.6\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-KeywordsList: translate\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: src/CustomModuleManager.php:206
+msgid "Custom Module Manager"
+msgstr "Custom Module Manager"
+
+#: src/CustomModuleManager.php:219
+msgid "A custom module to manage webtrees custom modules."
+msgstr ""
+"Een niet-standaard module om webtrees niet-standaard modules te beheren."
+
+#: src/CustomModuleManager.php:305 src/ModuleUpdates/GithubModuleUpdate.php:164
+#: src/ModuleUpdates/GithubModuleUpdate.php:238
+#, php-format
+msgid "Communication error with %s"
+msgstr "Communicatiefout met %s"
+
+#: src/CustomModuleManager.php:480
+#, php-format
+msgid "The preferences for the module \"%s\" were updated."
+msgstr "De voorkeuren voor de module \"%s\" zijn bijgewerkt."
+
+#: src/CustomModuleManager.php:517
+msgid "Rollback Custom Module Update"
+msgstr "Het bijwerken van niet-standaard module terugdraaien"
+
+#: src/CustomModuleManager.php:518
+msgid "Rollback"
+msgstr "Terugdraaien"
+
+#: src/CustomModuleManager.php:545
+#, php-format
+msgid ""
+"The preferences for the custom module \"%s\" were sucessfully updated to the "
+"new module version %s."
+msgstr ""
+"De voorkeuren voor de niet-standaard module \"%s\" zijn succesvol bijgewerkt "
+"naar de nieuwe moduleversie %s."
+
+#: src/CustomModuleManager.php:577
+#, php-format
+msgid ""
+"The custom module \"%s\" is activated in parallel to the %s custom module. "
+"This can lead to unintended behavior. If using the %s module, it is strongly "
+"recommended to deactivate the \"%s\" module, because the identical "
+"functionality is also integrated in the %s module."
+msgstr ""
+"De niet-standaard module \"%s\" is parallel met de niet-standaard module %s "
+"geactiveerd. Dit kan leiden tot onbedoeld gedrag. Als je de module %s "
+"gebruikt, is het sterk aan te raden om de module \"%s\" te deactiveren, "
+"omdat de identieke functionaliteit ook in de module %s is geïntegreerd."
+
+#: src/CustomModuleManager.php:582
+#, php-format
+msgid ""
+"The custom module \"%s\" is activated in parallel to the %s custom module. "
+"This can lead to unintended behavior, because both of the modules have "
+"registered the same custom view \"%s\". It is strongly recommended to "
+"deactivate one of the modules."
+msgstr ""
+"De niet-standaard module \"%s\" is parallel aan de niet-standaard module %s "
+"geactiveerd. Dit kan leiden tot onbedoeld gedrag, omdat beide modules "
+"dezelfde aangepaste weergave \"%s\" hebben geregistreerd. Het wordt sterk "
+"aangeraden om een van de modules te deactiveren."
+
+#: src/CustomModuleManager.php:606
+#, php-format
+msgid ""
+"The custom module view \"%s\" is not registered as replacement for the "
+"standard webtrees view. There might be another module installed, which "
+"registered the same custom view. This can lead to unintended behavior. It is "
+"strongly recommended to deactivate one of the modules. The path of the "
+"parallel view is: %s"
+msgstr ""
+"De aangepaste moduleweergave \"%s\" is niet geregistreerd als vervanging "
+"voor de standaard webtrees-weergave. Er kan een andere module geïnstalleerd "
+"zijn die dezelfde aangepaste weergave heeft geregistreerd. Dit kan leiden "
+"tot onbedoeld gedrag. Het wordt sterk aangeraden om een van de modules te "
+"deactiveren. Het pad van de parallelle weergave is: %s"
+
+#: src/ModuleUpdates/GithubModuleUpdate.php:74
+#: src/ModuleUpdates/UrlModuleUpdate.php:70
+#, php-format
+msgid ""
+"Could not create the %s update service. Configuration parameter \"%s\" "
+"missing."
+msgstr ""
+"Kon de bijwerk-service %s niet aanmaken. Configuratieparameter \"%s\" "
+"ontbreekt."
+
+#: src/ModuleUpdates/GithubModuleUpdate.php:165
+msgid "Cannot retrieve download URL."
+msgstr "Kan download-URL niet ophalen."
+
+#: src/RequestHandlers/CustomModuleUpdatePage.php:73
+msgid "Custom Module Updates"
+msgstr "Bijwerken van niet-standaard modules"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:156
+msgid "Create temporary folders…"
+msgstr "Tijdelijke mappen maken…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:161
+msgid "Backup…"
+msgstr "Back-up…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:123
+msgid "Update Wizard was aborted"
+msgstr "Update Wizard is afgebroken"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:191
+msgid ""
+"This is the latest version of the custom module. No upgrade is available."
+msgstr ""
+"Dit is de nieuwste versie van de niet-standaard module. Er is geen upgrade "
+"beschikbaar."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:197
+#, php-format
+msgid "Upgrade the module to version %s."
+msgstr "Upgrade de module naar versie %s."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:267
+#, php-format
+msgid "A backup of the current module was created in %s seconds."
+msgstr "Een back-up van de huidige module is gemaakt in %s seconden."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:272
+msgid "Failed to create a backup of the current module."
+msgstr "Het is niet gelukt om een back-up van de huidige module te maken."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:299
+msgid "Error during downloading the module zip file."
+msgstr "Fout tijdens het downloaden van het module zip-bestand."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:331
+msgid "Error during unzipping the module zip file."
+msgstr "Fout tijdens het uitpakken van het module zip-bestand."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:442
+msgid ""
+"The module was rolled back to the current version, because the update "
+"created errors."
+msgstr ""
+"De module is teruggezet naar de huidige versie omdat de update fouten "
+"veroorzaakte."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:445
+msgid ""
+"The module installation was rolled back, because the module created errors."
+msgstr ""
+"De installatie van de module werd teruggedraaid omdat de module fouten "
+"veroorzaakte."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:456
+msgid "A roll back of the module to the current version failed."
+msgstr "Het terugdraaien van de module naar de huidige versie is mislukt."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:457
+msgid ""
+"Please try to manually roll back by copying the files from \"/data/tmp/"
+"backup/modules_4\" to \"/modules_v4\"."
+msgstr ""
+"Probeer handmatig terug te gaan door de bestanden te kopiëren van \"/data/"
+"tmp/backup/modules_4\" naar \"/modules_v4\"."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:460
+msgid "A roll back of the module installation failed."
+msgstr "Het terugdraaien van de module-installatie is mislukt."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:461
+msgid ""
+"Please try to manually roll back by deleting the files from \"/modules_v4\"."
+msgstr ""
+"Probeer de bestanden handmatig terug te draaien door de bestanden in de \"/"
+"modules_v4\" map te verwijderen."
+
+#: resources/views/module_update.phtml:36
+msgid ""
+"Typically, custom modules versions are updated every 24 hours. You can check "
+"if later versions are available."
+msgstr ""
+"Gewoonlijk worden de versies van niet-standaard modules iedere 24 uur "
+"bijgewerkt. U kunt controleren of er latere versies beschikbaar zijn."
+
+#: resources/views/module_update.phtml:60
+msgid "Module Updates"
+msgstr "Module-updates"
+
+#: resources/views/module_update.phtml:67
+msgid "Folder (within modules_v4)"
+msgstr "Map (in modules_v4)"
+
+#: resources/views/module_update.phtml:69
+msgid "Current Version"
+msgstr "Huidige versie"
+
+#: resources/views/module_update.phtml:70
+msgid "Latest Version"
+msgstr "Laatste versie"
+
+#: resources/views/module_update.phtml:71
+msgid "Update Service"
+msgstr "Update service"
+
+#: resources/views/module_update.phtml:81
+#: resources/views/module_update.phtml:171
+msgid "not installed"
+msgstr "niet geïnstalleerd"
+
+#: resources/views/module_update.phtml:83
+msgid "enabled"
+msgstr "ingeschakeld"
+
+#: resources/views/module_update.phtml:85
+msgid "disabled"
+msgstr "uitgeschakeld"
+
+#: resources/views/module_update.phtml:96
+#: resources/views/module_update.phtml:112
+msgid "not received"
+msgstr "niet ontvangen"
+
+#: resources/views/module_update.phtml:99
+msgid "not available"
+msgstr "niet beschikbaar"
+
+#: resources/views/module_update.phtml:170
+msgid "Update module"
+msgstr "Module bijwerken"
+
+#: resources/views/module_update.phtml:173
+msgid "Install module"
+msgstr "Module installeren"
+
+#: resources/views/settings.phtml:35
+msgid "Manage custom modules"
+msgstr "Beheer niet-standaard modules"
+
+#: resources/views/settings.phtml:42
+#, php-format
+msgid "This custom module can only be used with webtrees %s"
+msgstr "Deze niet-standaard module kan alleen worden gebruikt met webtrees %s"
+
+#: resources/views/settings.phtml:52
+msgid "Selection of the custom modules to show"
+msgstr "Selectie van niet-standaard modules om te tonen"
+
+#: resources/views/settings.phtml:58
+msgid "Modules to show"
+msgstr "Modules om te tonen"
+
+#: resources/views/settings.phtml:65
+msgid "Show all custom modules"
+msgstr "Toon alle niet-standaard modules"
+
+#: resources/views/settings.phtml:72
+msgid "Show installed custom modules (in order to update modules)"
+msgstr ""
+"Geïnstalleerde niet-standaard modules weergeven (om modules bij te werken)"
+
+#: resources/views/settings.phtml:79
+msgid "Show not installed custom modules (in order to install new modules)"
+msgstr ""
+"Toon niet geïnstalleerde niet-standaard modules (om nieuwe modules te "
+"installeren)"
+
+#: resources/views/settings.phtml:87 resources/views/settings.phtml:93
+msgid "Github API token"
+msgstr "Github API token"
+
+#: resources/views/wizard.phtml:38
+msgid "A new version of the custom module is available."
+msgstr "Er is een nieuwe versie van de niet-standaard module beschikbaar."
+
+#: resources/views/wizard.phtml:56
+msgid "quit"
+msgstr "stop"
