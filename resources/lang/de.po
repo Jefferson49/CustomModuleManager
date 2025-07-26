@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2025-07-26 09:03+0200\n"
-"PO-Revision-Date: 2025-07-26 09:04+0200\n"
+"POT-Creation-Date: 2025-07-26 09:15+0200\n"
+"PO-Revision-Date: 2025-07-26 09:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -120,6 +120,10 @@ msgstr "Modul-Informationen"
 #: src/RequestHandlers/ModuleUpgradeWizardPage.php:98
 msgid "Error during retrieving download URL"
 msgstr "Fehler beim abrufen der Download-URL"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:138
+msgid "Check version..."
+msgstr "Version prüfen..."
 
 #: src/RequestHandlers/ModuleUpgradeWizardPage.php:143
 msgid "Create temporary folders…"

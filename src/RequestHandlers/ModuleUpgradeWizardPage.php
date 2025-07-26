@@ -135,7 +135,7 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
 
         if ($action === CustomModuleManager::ACTION_UPDATE) {
             $steps+= [
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_CHECK] + $params)    => MoreI18N::xlate('Check version...'),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_CHECK] + $params)    => I18N::translate('Check version...'),
             ];
         }
 
