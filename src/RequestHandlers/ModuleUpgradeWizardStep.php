@@ -596,6 +596,9 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             if ($module !== null && (get_class($module) ===  CustomModuleManager::class)) {
                 $update_own_module_code = true;
             }
+            else {
+                $update_own_module_code = false;
+            }
 
             $add_modal_button = $this->modal && !$update_own_module_code;
     
