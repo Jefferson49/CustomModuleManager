@@ -131,18 +131,11 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
             'modal'           => true,
         ];
 
-        $steps = [];
-
-        if ($action === CustomModuleManager::ACTION_UPDATE) {
-            $steps+= [
+        $steps = [
                 route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_CHECK] + $params)    => I18N::translate('Check version...'),
-            ];
-        }
-
-        $steps+= [
                 route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_PREPARE] + $params)  => I18N::translate('Create temporary folders…'),
-        ];
-        
+            ];
+
         if ($action === CustomModuleManager::ACTION_UPDATE) {
             $steps+= [
                 route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_BACKUP] + $params)   => I18N::translate('Backup…')
