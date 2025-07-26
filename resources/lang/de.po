@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2025-07-26 13:56+0200\n"
-"PO-Revision-Date: 2025-07-26 16:46+0200\n"
+"POT-Creation-Date: 2025-07-26 17:13+0200\n"
+"PO-Revision-Date: 2025-07-26 17:13+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -230,6 +230,10 @@ msgstr ""
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:633
 msgid "continue (reload)"
 msgstr "Weiter (neu laden)"
+
+#: resources/views/modals/module_information.phtml:58
+msgid "Documentation"
+msgstr "Dokumentation"
 
 #: resources/views/modals/module_information.phtml:87
 #: resources/views/module_update.phtml:83
