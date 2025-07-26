@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
 "POT-Creation-Date: 2025-07-26 13:56+0200\n"
-"PO-Revision-Date: 2025-07-26 13:56+0200\n"
+"PO-Revision-Date: 2025-07-26 16:46+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -17,13 +17,11 @@ msgstr ""
 
 #: src/CustomModuleManager.php:210
 msgid "Custom Module Manager"
-msgstr "Management von benutzerdefinierten Modulen"
+msgstr "Management von Erweiterungsmodulen"
 
 #: src/CustomModuleManager.php:223
 msgid "A custom module to manage webtrees custom modules."
-msgstr ""
-"Ein benutzerdefiniertes Modul zum Verwalten von benutzerdefinierten webtrees-"
-"Modulen."
+msgstr "Ein Erweiterungsmodul zum Verwalten von webtrees-Erweiterungsmodulen."
 
 #: src/CustomModuleManager.php:309 src/ModuleUpdates/GithubModuleUpdate.php:195
 #: src/ModuleUpdates/GithubModuleUpdate.php:284
@@ -38,7 +36,7 @@ msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
 #: src/CustomModuleManager.php:530
 msgid "Rollback Custom Module Update"
-msgstr "Aktualisierung des benutzerdefinierten Moduls rückgängig machen"
+msgstr "Aktualisierung des Erweiterungsmoduls rückgängig machen"
 
 #: src/CustomModuleManager.php:531
 msgid "Rollback"
@@ -50,8 +48,8 @@ msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
 "new module version %s."
 msgstr ""
-"Die Einstellungen für das benutzerdefinierte Modul \"%s\" wurden für die "
-"neue Modul-Version %s aktualisiert."
+"Die Einstellungen für das Erweiterungsmodul \"%s\" wurden für die neue Modul-"
+"Version %s aktualisiert."
 
 #: src/CustomModuleManager.php:590
 #, php-format
@@ -61,11 +59,10 @@ msgid ""
 "recommended to deactivate the \"%s\" module, because the identical "
 "functionality is also integrated in the %s module."
 msgstr ""
-"Das benutzerspezifische Modul \"%s\" ist parallel zum benutzerspezifische "
-"Modul %s aktiviert. Dies kann zu unbeabsichtigtem Verhalten führen. Bei "
-"Verwendung des Moduls %s wird dringend empfohlen, das Modul \"%s\" zu "
-"deaktivieren, weil die identische Funktion ebenfalls im Modul %s integriert "
-"ist."
+"Das Erweiterungsmodul \"%s\" ist parallel zum Erweiterungsmodul %s "
+"aktiviert. Dies kann zu unbeabsichtigtem Verhalten führen. Bei Verwendung "
+"des Moduls %s wird dringend empfohlen, das Modul \"%s\" zu deaktivieren, "
+"weil die identische Funktion ebenfalls im Modul %s integriert ist."
 
 #: src/CustomModuleManager.php:595
 #, php-format
@@ -75,10 +72,10 @@ msgid ""
 "registered the same custom view \"%s\". It is strongly recommended to "
 "deactivate one of the modules."
 msgstr ""
-"Das benutzerspezifische Modul \"%s\" ist parallel zum benutzerspezifische "
-"Modul %s aktiviert. Dies kann zu unbeabsichtigtem Verhalten führen, weil "
-"beide Module die gleiche Custom View \"%s\" registriert haben. Es wird "
-"dringend empfohlen eines der beiden Module zu deaktivieren."
+"Das Erweiterungsmodul \"%s\" ist parallel zum Modul %s aktiviert. Dies kann "
+"zu unbeabsichtigtem Verhalten führen, weil beide Module die gleiche Custom "
+"View \"%s\" registriert haben. Es wird dringend empfohlen eines der beiden "
+"Module zu deaktivieren."
 
 #: src/CustomModuleManager.php:619
 #, php-format
@@ -111,7 +108,7 @@ msgstr "Die Download-URL kann nicht abgerufen werden."
 
 #: src/RequestHandlers/CustomModuleUpdatePage.php:73
 msgid "Custom Module Updates"
-msgstr "Aktualisierung von benutzerdefinierten Modulen"
+msgstr "Aktualisierung von Erweiterungsmodulen"
 
 #: src/RequestHandlers/ModuleInformationModal.php:77
 msgid "Module Information"
@@ -269,15 +266,14 @@ msgstr "Modul-Verwendung"
 #: resources/views/module_update.phtml:46 resources/views/settings.phtml:42
 #, php-format
 msgid "This custom module can only be used with webtrees %s"
-msgstr ""
-"Dieses benutzerdefinierte Modul kann nur mit webtrees %s genutzt werden"
+msgstr "Dieses Erweiterungsmodul kann nur mit webtrees %s genutzt werden"
 
 #: resources/views/module_update.phtml:49
 msgid ""
 "Typically, custom modules versions are updated every 24 hours. You can check "
 "if later versions are available."
 msgstr ""
-"Die Versionen benutzerdefinierter Module werden in der Regel alle 24 Stunden "
+"Die Versionen von Erweiterungsmodulen werden in der Regel alle 24 Stunden "
 "aktualisiert. Sie können prüfen, ob neuere Versionen verfügbar sind."
 
 #: resources/views/module_update.phtml:72
@@ -320,11 +316,11 @@ msgstr "Modul installieren"
 
 #: resources/views/settings.phtml:35
 msgid "Manage custom modules"
-msgstr "Benutzerdefinierte Module aktualisieren"
+msgstr "Erweiterungsmodule aktualisieren"
 
 #: resources/views/settings.phtml:52
 msgid "Selection of the custom modules to show"
-msgstr "Auswahl der angezeigten benutzerdefinierten Modulen"
+msgstr "Auswahl der angezeigten Erweiterungsmodule"
 
 #: resources/views/settings.phtml:58
 msgid "Modules to show"
@@ -332,17 +328,16 @@ msgstr "Angezeigte Module"
 
 #: resources/views/settings.phtml:65
 msgid "Show all custom modules"
-msgstr "Alle benutzerdefinierte Module anzeigen"
+msgstr "Alle Erweiterungsmodule anzeigen"
 
 #: resources/views/settings.phtml:72
 msgid "Show installed custom modules (in order to update modules)"
-msgstr ""
-"Installierte benutzerdefinierte Module anzeigen (um Module zu aktualisieren)"
+msgstr "Installierte Erweiterungsmodule anzeigen (um Module zu aktualisieren)"
 
 #: resources/views/settings.phtml:79
 msgid "Show not installed custom modules (in order to install new modules)"
 msgstr ""
-"Nicht installierte benutzerdefinierte Module anzeigen (um neue Module zu "
+"Nicht installierte Erweiterungsmodule anzeigen (um neue Module zu "
 "installieren)"
 
 #: resources/views/settings.phtml:87 resources/views/settings.phtml:93
