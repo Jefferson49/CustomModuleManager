@@ -129,10 +129,15 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
                     <?php $current_version = $current_version !== '' ? $current_version : I18N::translate('not received') ?>
                 <?php endif ?>					
                 <?php $installation_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name) ?>
+                <?php if (strpos($module_title, CustomModuleManager::DEFAULT_LANGUAGE_PREFIX) !== false) : ?>
+                    <?php $module_title_sort = str_replace(CustomModuleManager::DEFAULT_LANGUAGE_PREFIX, '', $module_title) ?>
+                <?php else : ?>						
+                    <?php $module_title_sort = $module_title ?>
+                <?php endif ?>	
 
                 <tr>
                     <!-- Title -->
-                    <td data-sort="<?= e($module_title) ?>">
+                    <td data-sort="<?= e($module_title_sort) ?>">
                     <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ModuleInformationModal::class, [
                             'module_name'                => $module_name,
                             'module'                     => $module,

@@ -38,6 +38,7 @@ use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
+use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Throwable;
 
 
@@ -46,8 +47,6 @@ use Throwable;
  */
 abstract class AbstractModuleUpdate
 {
-    public const DEFAULT_LANGUAGE_PREFIX = '[English:] ';
-
     //The custom module name
     protected string $module_name; 
 
@@ -105,7 +104,7 @@ abstract class AbstractModuleUpdate
             $default_title = ModuleUpdateServiceConfiguration::getDefaultTitle($this->module_name);
 
             if ($default_title !== '') {
-                return self::DEFAULT_LANGUAGE_PREFIX . $default_title;
+                return CustomModuleManager::DEFAULT_LANGUAGE_PREFIX . $default_title;
             }
         }
 
@@ -128,7 +127,7 @@ abstract class AbstractModuleUpdate
             $default_description = ModuleUpdateServiceConfiguration::getDefaultDescription($this->module_name);
 
             if ($default_description !== '') {
-                return self::DEFAULT_LANGUAGE_PREFIX . $default_description;
+                return CustomModuleManager::DEFAULT_LANGUAGE_PREFIX . $default_description;
             }
         }
 

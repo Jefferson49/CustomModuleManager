@@ -129,6 +129,8 @@ class CustomModuleManager extends AbstractModule implements
 
     //Language
     public const DEFAULT_LANGUAGE         = 'en-US';
+    public const DEFAULT_LANGUAGE_PREFIX  = '[English:] ';
+
 
     //Session
     public const SESSION_WIZARD_ABORTED   = 'wizard_aborted';
