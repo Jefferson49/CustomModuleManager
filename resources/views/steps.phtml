@@ -15,6 +15,12 @@ use Jefferson49\Webtrees\Internationalization\MoreI18N;
 
 ?>
 
+<?php if ($title !== '') : ?>
+    <h3>
+        <?= $title ?>
+    </h3>
+<?php endif ?>
+
 <p>
     <?= MoreI18N::xlate('It can take several minutes to download and install the upgrade. Be patient.') ?>
 </p>

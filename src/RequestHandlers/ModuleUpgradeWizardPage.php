@@ -86,8 +86,6 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
 
         $module_upgrade_service = CustomModuleUpdateFactory::make($module_name);
 
-        $title = MoreI18N::xlate('Upgrade wizard');
-
         //Reset aborted flag before start of wizard
         Session::forget(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED);
 
@@ -95,15 +93,15 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
             $download_url = $module_upgrade_service->downloadUrl($latest_version);
         }
         catch (CustomModuleManagerException $exception) {
-            return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/steps-modal', [
-                'steps'       => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ERROR, 'module_name' => $module_name, 'message' => $exception->getMessage()])    => MoreI18N::xlate('Error')],
-                'title'       => $title,
+            return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::steps', [
+                'steps' => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ERROR, 'module_name' => $module_name, 'message' => $exception->getMessage()])    => MoreI18N::xlate('Error')],
+                'title' => I18N::translate('Error during retrieving download URL'),
             ]);
         }
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/steps-modal', [
-            'steps'           => $this->wizardSteps($module_name, $download_url, $action, $current_version, $latest_version),
-            'title'           => $title,
+            'steps' => $this->wizardSteps($module_name, $download_url, $action, $current_version, $latest_version),
+            'title' => MoreI18N::xlate('Upgrade wizard'),
         ]);
     }
 
