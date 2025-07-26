@@ -442,10 +442,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             }
 
             if ($action === CustomModuleManager::ACTION_UPDATE) {
-                $alert = I18N::translate('The module was rolled back to the current version, because the update created errors.');
+                $alert = I18N::translate('The module %s was rolled back to the current version, because the update created errors.', $module_update_service->getModuleName());
             } 
             else {
-                $alert = I18N::translate('The module installation was rolled back, because the module created errors.');
+                $alert = I18N::translate('The installation of module %s was rolled back, because the module created errors.', $module_update_service->getModuleName());
             }
 
             if ($error !== '') {
@@ -453,13 +453,14 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             }
         }
         catch (Throwable $exception) {
+            $folder_name = $module_update_service::getInstallationFolderFromModuleName($module_update_service->getModuleName());
             if ($action === CustomModuleManager::ACTION_UPDATE) {
-                $alert =    I18N::translate('A roll back of the module to the current version failed.') . "\n" .
-                            I18N::translate('Please try to manually roll back by copying the files from "/data/tmp/backup/modules_4" to "/modules_v4".');
+                $alert =    I18N::translate('A roll back of the module %s to the current version failed.', $module_update_service->getModuleName()) . "\n" .
+                            I18N::translate('Please try to manually roll back by copying the files from "/data/tmp/backup/modules_4" to "/modules_v4/%s".', $folder_name);
             } 
             else {
-                $alert =    I18N::translate('A roll back of the module installation failed.') . "\n" .
-                            I18N::translate('Please try to manually roll back by deleting the files from "/modules_v4".');
+                $alert =    I18N::translate('A roll back of the installation of module %s failed.', $module_update_service->getModuleName()) . "\n" .
+                            I18N::translate('Please try to manually roll back by deleting the files from "/modules_v4/%s"',$folder_name);
             }
         }
 
