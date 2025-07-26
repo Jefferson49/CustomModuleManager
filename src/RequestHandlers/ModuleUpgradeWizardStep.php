@@ -461,11 +461,11 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $folder_name = $module_update_service::getInstallationFolderFromModuleName($module_update_service->getModuleName());
             if ($action === CustomModuleManager::ACTION_UPDATE) {
                 $alert =    I18N::translate('A roll back of the module %s to the current version failed.', $module_update_service->getModuleName()) . "\n" .
-                            I18N::translate('Please try to manually roll back by copying the files from "/data/tmp/backup/modules_4" to "/modules_v4/%s".', $folder_name);
+                            I18N::translate('Please try to manually roll back by copying the files from "/data/tmp/backup/modules_4/%s" to "/modules_v4/%s".', $folder_name, $folder_name);
             } 
             else {
                 $alert =    I18N::translate('A roll back of the installation of module %s failed.', $module_update_service->getModuleName()) . "\n" .
-                            I18N::translate('Please try to manually roll back by deleting the files from "/modules_v4/%s"',$folder_name);
+                            I18N::translate('Please try to manually roll back by deleting the folder "/modules_v4/%s"',$folder_name);
             }
         }
 
@@ -593,7 +593,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             }
             $button1 .= '>' . MoreI18N::xlate('continue') . '</a>';
 
-            $button2 = '<a href="' . e($url) . '" class="btn btn-secondary">' . MoreI18N::xlate('continue (reload)') . '</a>';
+            $button2 = '<a href="' . e($url) . '" class="btn btn-secondary">' . I18N::translate('continue (reload)') . '</a>';
 
             $alert .= ' ' . $button1;
             if ($this->modal) {

@@ -79,12 +79,12 @@ use function view;
 
     <div class="wt-custom-module-info">
         <?= view('icons/information') ?>
-        <?= I18N::translate('Status' . ': ') ?>
+        <?= MoreI18N::xlate('Status') . ': ' ?>
         <?= e($module_status) ?>
         <br>
         <?php if ($module_update_service_name !== '') : ?>
             <?= view('icons/information') ?>
-            <?= I18N::translate('Update Service' . ': ') ?>
+            <?= I18N::translate('Update Service') . ': ' ?>
             <?= e($module_update_service_name) ?>
             <br>
         <?php endif ?>
@@ -94,17 +94,17 @@ use function view;
         <br>
         <?php if ($module !== null) : ?>
             <?= view('icons/module') ?>
-            <?= I18N::translate('Current Version' . ': ') ?>
+            <?= I18N::translate('Current Version') . ': ' ?>
             <?= e($current_version) ?>
             <br>
         <?php endif ?>
         <?= view('icons/module') ?>
-        <?= I18N::translate('Latest Version' . ': ') ?>
+        <?= I18N::translate('Latest Version') . ': ' ?>
         <?= e($latest_version) ?>
         <br>
         <?php if ($module_update_service_name === VestaModuleUpdate::NAME) : ?>
             <?= view('icons/link') ?>
-            <?= I18N::translate('⚶ Vesta homepage' . ': ') ?>
+            <?= I18N::translate('⚶ Vesta homepage') . ': ' ?>
             <a href="<?= e($module_update_service->homePageUrl()) ?>" target="blank">
                 <?= e($module_update_service->homePageUrl()) ?>
             </a>
@@ -112,7 +112,7 @@ use function view;
         <?php endif ?>
         <?php if ($module_update_service_name === GithubModuleUpdate::NAME OR $module_update_service_name === VestaModuleUpdate::NAME) : ?>
             <?= view('icons/link') ?>
-            <?= I18N::translate('Github repository' . ': ') ?>
+            <?= I18N::translate('Github repository') . ': ' ?>
             <a href="<?= e($documentation_url) ?>" target="blank">
                 <?= e($module_update_service->getGithubRepo()) ?>
             </a>
@@ -126,7 +126,7 @@ use function view;
         <?php endif ?>
         <?php if ($is_theme) : ?>
             <?= view('icons/theme') ?>
-            <?= I18N::translate('Theme') ?>
+            <?= MoreI18N::xlate('Theme') ?>
             <br>
         <?php endif ?>
         <?php if ($module !== null && $module->customModuleAuthorName() !== '') : ?>
@@ -138,7 +138,7 @@ use function view;
         <?php if ($module !== null && ($module instanceof ModuleConfigInterface) && $module->isEnabled()) : ?>
             <?= view('icons/preferences') ?>
             <a href="<?= e($module->getConfigLink()) ?>">
-                <?= I18N::translate('Preferences') ?>
+                <?= MoreI18N::xlate('Preferences') ?>
             </a>
             <br>
         <?php endif ?>
@@ -148,7 +148,7 @@ use function view;
 
     <?php if ($module !== null) : ?>
         <div class="h4">
-            <?= MoreI18N::xlate('Module Usage') ?>
+            <?= I18N::translate('Module Usage') ?>
         </div>
 
         <?= view(CustomModuleManager::viewsNamespace() . '::module_usage', [
