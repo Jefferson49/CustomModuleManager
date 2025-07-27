@@ -34,6 +34,7 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleThemeInterface;
+use Fisharebest\Webtrees\Session;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
@@ -97,14 +98,16 @@ abstract class AbstractModuleUpdate
 
         $module = $this->getModule();
 
+        $current_language = Session::get('language', '');
+        $default_title = ModuleUpdateServiceConfiguration::getDefaultTitle($this->module_name);
+        $prefix = strpos($current_language, 'en', 0) === false ? CustomModuleManager::DEFAULT_LANGUAGE_PREFIX : '';
+
         if ($module !== null) {
             return $module->title();
         }
         else {
-            $default_title = ModuleUpdateServiceConfiguration::getDefaultTitle($this->module_name);
-
             if ($default_title !== '') {
-                return CustomModuleManager::DEFAULT_LANGUAGE_PREFIX . $default_title;
+                return $prefix . $default_title;
             }
         }
 
@@ -120,14 +123,16 @@ abstract class AbstractModuleUpdate
 
         $module = $this->getModule();
 
+        $current_language = Session::get('language', '');
+        $default_description = ModuleUpdateServiceConfiguration::getDefaultDescription($this->module_name);
+        $prefix = strpos($current_language, 'en', 0) === false ? CustomModuleManager::DEFAULT_LANGUAGE_PREFIX : '';
+
         if ($module !== null) {
             return $module->description();
         }
         else {
-            $default_description = ModuleUpdateServiceConfiguration::getDefaultDescription($this->module_name);
-
             if ($default_description !== '') {
-                return CustomModuleManager::DEFAULT_LANGUAGE_PREFIX . $default_description;
+                return $prefix . $default_description;
             }
         }
 
