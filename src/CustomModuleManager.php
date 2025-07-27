@@ -116,6 +116,7 @@ class CustomModuleManager extends AbstractModule implements
     public const PREF_SHOW_ALL            = 'show_all_modules';
     public const PREF_SHOW_INSTALLED      = 'show_installed_modules';
     public const PREF_SHOW_NOT_INSTALLED  = 'show_not_installed_modules';
+    public const PREF_SHOW_MENU_LIST_ITEM = 'show_menu_list_item';
 
     //Actions
     public const ACTION_UPDATE            = 'action_update';
@@ -453,10 +454,11 @@ class CustomModuleManager extends AbstractModule implements
         return $this->viewResponse(
             self::viewsNamespace() . '::settings',
             [
-                'activated'                 => CustomModuleManager::runsWithInstalledWebtreesVersion(),
-                'title'                     => $this->title(),
-                self::PREF_GITHUB_API_TOKEN => $this->getPreference(self::PREF_GITHUB_API_TOKEN, ''),
-                self::PREF_MODULES_TO_SHOW  => $this->getPreference(self::PREF_MODULES_TO_SHOW, self::PREF_SHOW_ALL),
+                'activated'                    => CustomModuleManager::runsWithInstalledWebtreesVersion(),
+                'title'                        => $this->title(),
+                self::PREF_GITHUB_API_TOKEN    => $this->getPreference(self::PREF_GITHUB_API_TOKEN, ''),
+                self::PREF_MODULES_TO_SHOW     => $this->getPreference(self::PREF_MODULES_TO_SHOW, self::PREF_SHOW_ALL),
+				self::PREF_SHOW_MENU_LIST_ITEM => boolval($this->getPreference(self::PREF_SHOW_MENU_LIST_ITEM, '1')),
             ]
         );
     }
@@ -470,14 +472,16 @@ class CustomModuleManager extends AbstractModule implements
      */
     public function postAdminAction(ServerRequestInterface $request): ResponseInterface
     {
-        $save             = Validator::parsedBody($request)->string('save', '');
-        $github_api_token = Validator::parsedBody($request)->string(self::PREF_GITHUB_API_TOKEN, '');
-        $modules_to_show  = Validator::parsedBody($request)->string(self::PREF_MODULES_TO_SHOW, self::PREF_SHOW_ALL);
+        $save                = Validator::parsedBody($request)->string('save', '');
+        $github_api_token    = Validator::parsedBody($request)->string(self::PREF_GITHUB_API_TOKEN, '');
+        $modules_to_show     = Validator::parsedBody($request)->string(self::PREF_MODULES_TO_SHOW, self::PREF_SHOW_ALL);
+        $show_menu_list_item = Validator::parsedBody($request)->boolean(self::PREF_SHOW_MENU_LIST_ITEM, false);
 
         //Save the received settings to the user preferences
         if ($save === '1') {
 			$this->setPreference(self::PREF_GITHUB_API_TOKEN, $github_api_token);
 			$this->setPreference(self::PREF_MODULES_TO_SHOW, $modules_to_show);
+			$this->setPreference(self::PREF_SHOW_MENU_LIST_ITEM, $show_menu_list_item ? '1' : '0');
         }
 
         //Finally, show a success message

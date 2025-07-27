@@ -48,6 +48,23 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 	<input type="hidden" name="save" id="save" value="1">
 
 	<div class="h4">
+		<?= I18N::translate('Settings for List Menu') ?>	
+	</div>
+	<fieldset class="mb-3">
+		<div class="row">
+			<legend class="col-form-label col-sm-3">
+				<?= I18N::translate('Show menu item in list menu') ?>
+			</legend>
+			<div class="col-sm-9">
+				<?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_SHOW_MENU_LIST_ITEM, 'checked' => $show_menu_list_item]) ?>
+				<div class="form-text">
+					<?= I18N::translate('If this option is selected, a link to the %s page will be shown as a list menu item.', e($title)); ?>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<div class="h4">
 		<div class="row mb-3">
 			<?= I18N::translate('Selection of the custom modules to show') ?>	
 		</div>
