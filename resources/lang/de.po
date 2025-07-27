@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2025-07-27 07:07+0200\n"
-"PO-Revision-Date: 2025-07-27 07:07+0200\n"
+"POT-Creation-Date: 2025-07-27 07:18+0200\n"
+"PO-Revision-Date: 2025-07-27 07:18+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -259,8 +259,8 @@ msgid "⚶ Vesta homepage"
 msgstr "⚶ Vesta-Homepage"
 
 #: resources/views/modals/module_information.phtml:115
-msgid "Github repository"
-msgstr "Github-Repository"
+msgid "GitHub repository"
+msgstr "GitHub-Repository"
 
 #: resources/views/modals/module_information.phtml:151
 #: resources/views/module_usage.phtml:38
@@ -362,13 +362,13 @@ msgstr ""
 "installieren)"
 
 #: resources/views/settings.phtml:101 resources/views/settings.phtml:107
-msgid "Github API token"
-msgstr "Github API Token"
+msgid "GitHub API token"
+msgstr "GitHub API Token"
 
 #: resources/views/settings.phtml:103
 msgid ""
 "The custom module makes intensive use of the GitHub API to retrieve module "
-"versions and download URLs. However, Github limits the frequency of API "
+"versions and download URLs. However, GitHub limits the frequency of API "
 "calls for a certain IP address. In order to significantly increase the "
 "allowed frequency of GitHub API calls, GitHub requires to use a GitHub API "
 "token."
@@ -381,9 +381,9 @@ msgstr ""
 
 #: resources/views/settings.phtml:104
 msgid ""
-"Using a Github API token is recommended, if GitHub communication errors occur"
+"Using a GitHub API token is recommended, if GitHub communication errors occur"
 msgstr ""
-"Die Verwendung eines Github-API Tokens wird empfohlen, wenn GitHub-"
+"Die Verwendung eines GitHub-API Tokens wird empfohlen, wenn GitHub-"
 "Kommunikationsfehler auftreten."
 
 #, fuzzy

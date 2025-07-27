@@ -98,7 +98,7 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
     }
 
     /**
-     * Get the Github repository
+     * Get the GitHub repository
      * 
      * @return string
      */

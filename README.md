@@ -9,13 +9,13 @@ This README file contains the following main sections:
 +   [What are the benefits of this module?](#what-are-the-benefits-of-this-module)
 +   [Installation](#installation)
 +   [Screenshot](#screenshot)
-+   [Github API Token](#github-api-token)
++   [GitHub API Token](#github-api-token)
 *   [**How to use the module?**](#how-to-use-the-module)
 +   [Webtrees Version](#webtrees-version)
 +   [Translation](#translation)
 +   [Bugs and Feature Requests](#bugs-and-feature-requests)
 +   [License](#license)
-+   [Github Repository](#github-repository)
++   [GitHub Repository](#github-repository)
 
 ## What are the benefits of this module?
 **Features:**
@@ -40,13 +40,13 @@ This README file contains the following main sections:
 	+ Go to "Control Panel/All Modules", and find the module called "Custom Module Manager"
 	+ Check if it has a tick for "Enabled"
 
-## Github API Token
+## GitHub API Token
 
-The custom module makes intensive use of the Github API to retrieve module versions and download URLs. However, Github limits the frequency of API calls for a certain IP address. In order to significantly increase the allowed frequency of Github API calls, Github requires to use a Github API token.
+The custom module makes intensive use of the GitHub API to retrieve module versions and download URLs. However, GitHub limits the frequency of API calls for a certain IP address. In order to significantly increase the allowed frequency of GitHub API calls, GitHub requires to use a GitHub API token.
 
-The module allows to provide a Github API token in the module settings. In order to get an API token from Github, the following steps need to be taken:
+The module allows to provide a GitHub API token in the module settings. In order to get an API token from GitHub, the following steps need to be taken:
 
-+ Open the [Github](https://github.com/) page and log into your Github account
++ Open the [GitHub](https://github.com/) page and log into your GitHub account
 + Click on the symbol for your user account on the top right side of the browser
 + Choose "Settings" from the profile menu
 + Choose "Developer settings" on the bottom left side
@@ -55,7 +55,7 @@ The module allows to provide a Github API token in the module settings. In order
 + Click on "Generate new token" button on the right side
 + Choose "Generate new token (classic)"
 + Enter a note, e.g. "API token for webtrees Custom Module Manager"
-+ Choose an expiration date. Since the provide rights are unspecific (if you do not select any options), it is acceptable to choose "No expiration" (even if Github does not recommend this).
++ Choose an expiration date. Since the provide rights are unspecific (if you do not select any options), it is acceptable to choose "No expiration" (even if GitHub does not recommend this).
 + Do NOT select any options
 + Press "Generate token" button at the bottom of the page
 
@@ -63,7 +63,7 @@ The module allows to provide a Github API token in the module settings. In order
 
 + Go to "Control Panel/All Modules" and find the "Custom Module Manager" module
 + Go to the module settings
-+ Optionally, enter a [Github API token](#github-api-token)
++ Optionally, enter a [GitHub API token](#github-api-token)
 + Press the "**Manage custom modules**" button
 + Optionally: Activate list menu item in the module settings
 + If activated: **Select menu "Lists" => "Custom Module Manager"**
@@ -88,7 +88,7 @@ Currently, the following languages are available:
 
 You can help to translate this module. The language files are available on [POEditor](https://poeditor.com/projects/view?id=795232), where you can update or add a language.
 
-Alternatively, you can directly edit the .po translation text files, which can be found in [/resources/lang/](resources/lang). You can use a specific editor like [Poedit](https://poedit.net/) or a text editor like notepad++ to work on translations and provide them in the [Github repository](https://github.com/Jefferson49/CustomModuleManager) of the module. You can do this via a pull request (if you know how to do), or by opening a new issue and attaching a .po file. 
+Alternatively, you can directly edit the .po translation text files, which can be found in [/resources/lang/](resources/lang). You can use a specific editor like [Poedit](https://poedit.net/) or a text editor like notepad++ to work on translations and provide them in the [GitHub repository](https://github.com/Jefferson49/CustomModuleManager) of the module. You can do this via a pull request (if you know how to do), or by opening a new issue and attaching a .po file. 
 
 Updated translations will be included in the next release of this module.
 
@@ -112,5 +112,5 @@ You should have received a copy of the GNU General Public License along with thi
     + [Cissee\WebtreesExt\More18N](https://github.com/vesta-webtrees-2-custom-modules/vesta_common/blob/master/patchedWebtrees/MoreI18N.php)
         + Copyright (c) 2019 – 2025 Richard Cissée
 
-## Github Repository
+## GitHub Repository
 https://github.com/Jefferson49/CustomModuleManager

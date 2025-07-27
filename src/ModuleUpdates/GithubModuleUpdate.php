@@ -46,7 +46,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManag
  */
 class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdateInterface 
 {#
-    const NAME = 'Github';
+    const NAME = 'GitHub';
 
     //The Github repository of the module, e.g. Jefferson49/CustomModuleManager
     protected string $github_repo;
@@ -212,7 +212,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     }
 
     /**
-     * Get the Github repository
+     * Get the GitHub repository
      * 
      * @return string
      */
@@ -224,7 +224,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     /**
      * Fetch the latest version of this module
      *
-     * @param bool $fetch_latest  Whether to fetch the latest version, e.g. from a Github repository 
+     * @param bool $fetch_latest  Whether to fetch the latest version, e.g. from a GitHub repository 
      * 
      * @return string
      */

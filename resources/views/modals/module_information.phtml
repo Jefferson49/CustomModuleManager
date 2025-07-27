@@ -112,13 +112,13 @@ use function view;
         <?php endif ?>
         <?php if ($module_update_service_name === GithubModuleUpdate::NAME OR $module_update_service_name === VestaModuleUpdate::NAME) : ?>
             <?= view('icons/link') ?>
-            <?= I18N::translate('Github repository') . ': ' ?>
+            <?= I18N::translate('GitHub repository') . ': ' ?>
             <a href="<?= e($documentation_url) ?>" target="blank">
                 <?= e($module_update_service->getGithubRepo()) ?>
             </a>
             <br>
             <?= view('icons/link') ?>
-            <?= 'Github ' ?>
+            <?= 'GitHub '?>
             <a href="<?= e($documentation_url . '/issues') ?>" target="blank">
                 <?= MoreI18N::xlate('Issues') ?>
             </a>

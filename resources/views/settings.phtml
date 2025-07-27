@@ -98,13 +98,13 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 	</div>	
 
 	<div class="h4">
-		<?= I18N::translate('Github API token') ?>	
+		<?= I18N::translate('GitHub API token') ?>	
 	</div>
-	<p><?= I18N::translate('The custom module makes intensive use of the GitHub API to retrieve module versions and download URLs. However, Github limits the frequency of API calls for a certain IP address. In order to significantly increase the allowed frequency of GitHub API calls, GitHub requires to use a GitHub API token.'); ?></p>
-	<p><?= I18N::translate('Using a Github API token is recommended, if GitHub communication errors occur') ?></p>
+	<p><?= I18N::translate('The custom module makes intensive use of the GitHub API to retrieve module versions and download URLs. However, GitHub limits the frequency of API calls for a certain IP address. In order to significantly increase the allowed frequency of GitHub API calls, GitHub requires to use a GitHub API token.'); ?></p>
+	<p><?= I18N::translate('Using a GitHub API token is recommended, if GitHub communication errors occur') ?></p>
 	<div class="row">
 		<label class="col-sm-3 col-form-label wt-page-options-label" for="new_secret_key">
-			<?= I18N::translate('Github API token') ?>
+			<?= I18N::translate('GitHub API token') ?>
 		</label>
 		<div class="col-sm-9 wt-page-options-value">
 			<input class="form-control" id="github_api_token" name="github_api_token" type="text" value="<?= e($github_api_token) ?>">
