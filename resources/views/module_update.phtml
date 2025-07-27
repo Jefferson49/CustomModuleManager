@@ -134,8 +134,8 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
                 <?php else : ?>						
                     <?php $module_title_sort = $module_title ?>
                 <?php endif ?>
-                <?php foreach (["\u26b6 ", "\u210d ", "\u210d&\u210dwt "] as $special_prefix) : ?>
-                    <?php str_replace($special_prefix, '', $module_title_sort) ?>
+                <?php foreach (["\u26b6 ", "\u210d ", "\u210d&\u210dwt ", '⚶ ', 'ℍ ', 'ℍ&ℍwt ', ] as $special_prefix) : ?>
+                    <?php $module_title_sort = str_replace($special_prefix, '', $module_title_sort) ?>
                 <?php endforeach ?>
 
                 <tr>
