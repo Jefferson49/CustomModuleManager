@@ -8,6 +8,7 @@ A [webtrees](https://webtrees.net) 2.2 custom module to manage custom modules.
 This README file contains the following main sections:
 +   [What are the benefits of this module?](#what-are-the-benefits-of-this-module)
 +   [Installation](#installation)
++   [Screenshot](#screenshot)
 +   [Github API Token](#github-api-token)
 *   [**How to use the module?**](#how-to-use-the-module)
 +   [Webtrees Version](#webtrees-version)
@@ -21,9 +22,9 @@ This README file contains the following main sections:
 + Support the download of custom modules
 + Support the installation of custom modules
 + Support the update of custom modules
++ Provide a list of available custom modules (for webtrees 2.2)
 
 **Optionally planned features:**
-+ Provide a full list of all available webtrees custom modules
 + Check the compatibility of custom modules with the webtrees versions
 + Enable/Disable custom modules
 + Save and restore the settings of a custom module
@@ -58,22 +59,34 @@ The module allows to provide a Github API token in the module settings. In order
 + Do NOT select any options
 + Press "Generate token" button at the bottom of the page
 
-##  How to use the module?
+## How to use the module?
 
 + Go to "Control Panel/All Modules" and find the "Custom Module Manager" module
 + Go to the module settings
 + Optionally, enter a [Github API token](#github-api-token)
 + Press the "**Manage custom modules**" button
++ Optionally: Activate list menu item in the module settings
++ If activated: **Select menu "Lists" => "Custom Module Manager"**
+
+### View: Custom Module List
+![Screenshot](resources/img/screenshot.jpg)
+
+### View: Upgrade Wizard
+![Screenshot](resources/img/upgrade_wizard.jpg)
+
+### View: Module Information
+![Screenshot](resources/img/module_information.jpg)
 
 ## Webtrees Version
-The module was developed and tested with [webtrees 2.1.22 and 2.2.1](https://webtrees.net/download), but should also run with any other 2.2 version.
+The module was developed and tested with [webtrees 2.2.1](https://webtrees.net/download), but should also run with any other 2.2 version.
 
 ## Translation
 Currently, the following languages are available:
++ Dutch
 + English
 + German
 
-You can help to translate this module. The language files are available on [POEditor](https://poeditor.com/join/project/xyz), where you can update them or add new languages.
+You can help to translate this module. The language files are available on [POEditor](https://poeditor.com/projects/view?id=795232), where you can update or add a language.
 
 Alternatively, you can directly edit the .po translation text files, which can be found in [/resources/lang/](resources/lang). You can use a specific editor like [Poedit](https://poedit.net/) or a text editor like notepad++ to work on translations and provide them in the [Github repository](https://github.com/Jefferson49/CustomModuleManager) of the module. You can do this via a pull request (if you know how to do), or by opening a new issue and attaching a .po file. 
 
