@@ -58,19 +58,17 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 			<div class="col-sm-9">
 				<?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_SHOW_MENU_LIST_ITEM, 'checked' => $show_menu_list_item]) ?>
 				<div class="form-text">
-					<?= I18N::translate('If this option is selected, a link to the %s page will be shown as a list menu item.', e($title)); ?>
+					<?= I18N::translate('If this option is selected, a link to the page "%s" will be shown as a list menu item.', I18N::translate('Custom Module Updates')); ?>
 				</div>
 			</div>
 		</div>
 	</fieldset>
 
 	<div class="h4">
-		<div class="row mb-3">
-			<?= I18N::translate('Selection of the custom modules to show') ?>	
-		</div>
+		<?= I18N::translate('Selection of the custom modules to show') ?>	
 	</div>
 
-	<div class="row mb-3">
+	<div class="row">
 		<label class="col-sm-3" for="modules_to_show">
 			<?= I18N::translate('Modules to show') ?>
 		</label>
@@ -100,20 +98,20 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 	</div>	
 
 	<div class="h4">
-		<div class="row mb-3">
-			<?= I18N::translate('Github API token') ?>	
-		</div>
+		<?= I18N::translate('Github API token') ?>	
 	</div>
-
-	<div class="row mb-3">
+	<p><?= I18N::translate('The custom module makes intensive use of the GitHub API to retrieve module versions and download URLs. However, Github limits the frequency of API calls for a certain IP address. In order to significantly increase the allowed frequency of GitHub API calls, GitHub requires to use a GitHub API token.'); ?></p>
+	<p><?= I18N::translate('Using a Github API token is recommended, if GitHub communication errors occur') ?></p>
+	<div class="row">
 		<label class="col-sm-3 col-form-label wt-page-options-label" for="new_secret_key">
 			<?= I18N::translate('Github API token') ?>
 		</label>
 		<div class="col-sm-9 wt-page-options-value">
 			<input class="form-control" id="github_api_token" name="github_api_token" type="text" value="<?= e($github_api_token) ?>">
 		</div>
+
 	</div>
-	<div class="row mb-3">
+	<div class="row">
 		<div class="col">
 			<p></p>
 			<button type="submit" class="btn btn-primary">
