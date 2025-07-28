@@ -24,20 +24,21 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateSe
  * @var Collection $themes
  * @var array      $module_names
  * @var bool       $fetch_latest
-
- * @var AbstractModuleUpdate $module_update_service
- * @var CustomModuleManager  $module
  */
 
 $module_service = New ModuleService();
-
+/** @var CustomModuleManager $custom_module_manager To avoid IDE warnings */
 $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
 $modules_to_show = $custom_module_manager->getPreference(CustomModuleManager::PREF_MODULES_TO_SHOW, CustomModuleManager::PREF_SHOW_ALL);
 $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
 
 ?>
 
-<?= view('components/breadcrumbs', ['links' => [route(ControlPanel::class) => MoreI18N::xlate('Control panel'), $title]]) ?>
+<?= view('components/breadcrumbs', ['links' => [
+    route(ControlPanel::class) => MoreI18N::xlate('Control panel'),
+    $custom_module_manager->getConfigLink() => $custom_module_manager->title(),
+    $title
+    ]]) ?>
 
 <h1><?= $title ?></h1>
 
