@@ -394,7 +394,7 @@ class CustomModuleManager extends AbstractModule implements
      */    
     public function listIsEmpty(Tree $tree): bool
     {
-        return (!self::runsWithInstalledWebtreesVersion() OR !Auth::isAdmin());
+        return (!self::runsWithInstalledWebtreesVersion() OR !Auth::isAdmin() OR !boolval($this->getPreference(self::PREF_SHOW_MENU_LIST_ITEM, '1')));
     }    
 
     /**
