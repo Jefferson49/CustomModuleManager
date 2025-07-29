@@ -1,0 +1,26 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Jefferson49\Webtrees\Module\CustomModuleManager;
+
+use Fisharebest\Webtrees\I18N;
+
+
+/**
+ * @var bool $runs_with_webtrees_version
+ * @var bool $php_extension_zip_missing
+ */
+
+?>
+
+<?php if (!$runs_with_webtrees_version) : ?>
+	<?= view('components/' . 'alert-danger', [
+		'alert' => I18N::translate('This custom module can only be used with webtrees %s', CustomModuleManager::SUPPORTED_WEBTREES_VERSION),
+	]) ?>
+<?php endif	?>
+<?php if ($php_extension_zip_missing) : ?>
+	<?= view('components/' . 'alert-danger', [
+		'alert' => I18N::translate('The PHP extension "zip" is not installed. In order to use the custom module, your PHP installation needs to include the "zip" extension. You have to activate the extension in your "php.ini" file.'),
+	]) ?>
+<?php endif	?>

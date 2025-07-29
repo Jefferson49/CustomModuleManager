@@ -213,6 +213,16 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $alert      .= I18N::translate('Version % is the latest version of the custom module. No upgrade is available.', e($current_version));
             $abort      = true;
         }
+        elseif (!CustomModuleManager::runsWithInstalledWebtreesVersion()) {
+            $alert_type = self::ALERT_DANGER;
+            $alert      .= I18N::translate('This custom module can only be used with webtrees %s', CustomModuleManager::SUPPORTED_WEBTREES_VERSION);
+            $abort      = true;
+        }        
+        elseif (!extension_loaded('zip')) {
+            $alert_type = self::ALERT_DANGER;
+            $alert      .= I18N::translate('The PHP extension "zip" is not installed. In order to use the custom module, your PHP installation needs to include the "zip" extension. You have to activate the extension in your "php.ini" file.');
+            $abort      = true;
+        }        
         else {
             /* I18N: %s is a version number, such as 1.2.3 */
             $alert_type = self::ALERT_SUCCESS;

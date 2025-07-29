@@ -12,8 +12,9 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 
 
 /**
- * @var string $activated
  * @var string $title
+ * @var bool   $runs_with_webtrees_version
+ * @var bool   $php_extension_zip_missing
  * @var string $github_api_token
  * @var string $modules_to_show
  */
@@ -26,22 +27,23 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 
 <div class="row mb-3"><?= view('icons/spacer') ?></div>
 
-<?php if ($activated) : ?>
-	<div class="row mb-3">
-		<div class="col">
-			<a href="<?= e(route(CustomModuleUpdatePage::class, [
-				'modules_to_show' => $modules_to_show,
-			])) ?>" type="submit" class="btn btn-secondary">
-				<?= I18N::translate('Manage custom modules') ?>
-			</a>
-		</div>
+<?= view(CustomModuleManager::viewsNamespace() . '::deactivated', [
+		'runs_with_webtrees_version' => $runs_with_webtrees_version,
+		'php_extension_zip_missing'  => $php_extension_zip_missing,
+]) ?>
+<div class="row mb-3">
+	<div class="col">
+		<a href="<?= e(route(CustomModuleUpdatePage::class, [
+			'modules_to_show' => $modules_to_show,
+			'runs_with_webtrees_version' => $runs_with_webtrees_version,
+			'php_extension_zip_missing'  => $php_extension_zip_missing,				
+		])) ?>" type="submit" class="btn btn-secondary">
+			<?= I18N::translate('Manage custom modules') ?>
+		</a>
 	</div>
-	<div class="row mb-3"><?= view('icons/spacer') ?></div>
-<?php else  : ?>
-	<?= view('components/' . 'alert-danger', [
-		'alert' => I18N::translate('This custom module can only be used with webtrees %s', CustomModuleManager::SUPPORTED_WEBTREES_VERSION),
-	]) ?>;
-<?php endif	?>
+</div>
+
+<div class="row mb-3"><?= view('icons/spacer') ?></div>
 
 <form method="post" id="settings-form">
 	<?= csrf_field() ?>

@@ -394,7 +394,9 @@ class CustomModuleManager extends AbstractModule implements
      */    
     public function listIsEmpty(Tree $tree): bool
     {
-        return (!self::runsWithInstalledWebtreesVersion() OR !Auth::isAdmin() OR !boolval($this->getPreference(self::PREF_SHOW_MENU_LIST_ITEM, '1')));
+        return (   !Auth::isAdmin() 
+                OR !boolval($this->getPreference(self::PREF_SHOW_MENU_LIST_ITEM, '1'))
+        );
     }    
 
     /**
@@ -454,7 +456,8 @@ class CustomModuleManager extends AbstractModule implements
         return $this->viewResponse(
             self::viewsNamespace() . '::settings',
             [
-                'activated'                    => CustomModuleManager::runsWithInstalledWebtreesVersion(),
+                'runs_with_webtrees_version'   => CustomModuleManager::runsWithInstalledWebtreesVersion(),
+                'php_extension_zip_missing'    => !extension_loaded('zip'),
                 'title'                        => $this->title(),
                 self::PREF_GITHUB_API_TOKEN    => $this->getPreference(self::PREF_GITHUB_API_TOKEN, ''),
                 self::PREF_MODULES_TO_SHOW     => $this->getPreference(self::PREF_MODULES_TO_SHOW, self::PREF_SHOW_ALL),
