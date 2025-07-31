@@ -48,6 +48,7 @@ use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleCustomTrait;
 use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
 use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
+use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
 use Fisharebest\Webtrees\Module\ModuleListInterface;
 use Fisharebest\Webtrees\Module\ModuleListTrait;
 use Fisharebest\Webtrees\Registry;
@@ -130,7 +131,7 @@ class CustomModuleManager extends AbstractModule implements
 
     //Language
     public const DEFAULT_LANGUAGE         = 'en-US';
-    public const DEFAULT_LANGUAGE_PREFIX  = '[English:] ';
+    public const DEFAULT_LANGUAGE_PREFIX  = "[English:]";
 
 
     //Session
@@ -645,36 +646,69 @@ class CustomModuleManager extends AbstractModule implements
 
         $module_service = New ModuleService();
         $custom_modules = $module_service->findByInterface(ModuleCustomInterface::class, true);
+        $titles = [];
+        $descriptions = [];
 
-        //Set language to default language, i.e. en-US
+        //Remember current language
         $current_language = Session::get('language', '');
 
-        //Generate English titles and descriptions
-        $language_tag = CustomModuleManager::DEFAULT_LANGUAGE;
-        I18N::init($language_tag);
-        Session::put('language', $language_tag);
+        $languages = $module_service->findByInterface(ModuleLanguageInterface::class, true, true)
+            ->mapWithKeys(static function (ModuleLanguageInterface $module): array {
+                $locale = $module->locale();
 
-        foreach ($custom_modules as $module) {
+                return [$locale->languageTag() => $locale->endonym()];
+            });
 
-            $title = $module->title();
-            $title = json_encode($title) !== false ? $title : mb_convert_encoding($title, 'UTF-8');
+        foreach ($languages as $language_tag => $language_name) {
 
-            $description = $module->description();
-            $description = json_encode($description) !== false ? $description : mb_convert_encoding($description, 'UTF-8');
+            //Activate the language
+            I18N::init($language_tag);
+            Session::put('language', $language_tag);
 
-            $titles[$module->name()]       = $title;
-            $descriptions[$module->name()] = $description;
+            foreach ($custom_modules as $module) {
+
+                $title = $module->title();
+                $title = json_encode($title) !== false ? $title : mb_convert_encoding($title, 'UTF-8');
+
+                $description = $module->description();
+                $description = json_encode($description) !== false ? $description : mb_convert_encoding($description, 'UTF-8');
+
+                $titles[$language_tag][$module->name()]       = $title;
+                $descriptions[$language_tag][$module->name()] = $description;
+            }
         }
-
+ 
         //Reset language
         I18N::init($current_language);
         Session::put('language', $current_language);
 
-        //Generate JSON for titles and descriptions
-        $title_json       = json_encode($titles);
-        $title_json       = str_replace("'", "\'", $title_json);
-        $description_json = json_encode($descriptions);
-        $description_json = str_replace("'", "\'", $description_json);
+        //Delete values, which are identical to default language
+        $titles_for_default_language = $titles[CustomModuleManager::DEFAULT_LANGUAGE];
+        $descriptions_for_default_language = $descriptions[CustomModuleManager::DEFAULT_LANGUAGE];
+
+        foreach ($languages as $language_tag => $language_name) {
+
+            //Skip default language
+            if ($language_tag === CustomModuleManager::DEFAULT_LANGUAGE) continue;
+
+            $titles_for_language = $titles[$language_tag];
+
+            foreach ($titles_for_language as $module_name => $title) {
+                
+                if ($title === $titles_for_default_language[$module_name]) {
+                    unset($titles[$language_tag][$module_name]);
+                }
+            }
+
+            $descriptions_for_language = $descriptions[$language_tag];
+
+            foreach ($descriptions_for_language as $module_name => $description) {
+                
+                if ($description === $descriptions_for_default_language[$module_name]) {
+                    unset($descriptions[$language_tag][$module_name]);
+                }
+            }
+        }
 
         $json_file = __DIR__ . '/Configuration/DefaultTitlesAndDescriptions.php';
 
@@ -699,10 +733,34 @@ class CustomModuleManager extends AbstractModule implements
         fwrite($stream, " */\n");
         fwrite($stream, "class DefaultTitlesAndDescriptions \n");
         fwrite($stream, "{\n");
-        fwrite($stream, "    public const MODULE_TITLES_JSON = '");
-        fwrite($stream, $title_json . "';\n\n");
-        fwrite($stream, "    public const MODULE_DESCRIPTIONS_JSON = '");
-        fwrite($stream, $description_json . "';\n\n");
+        fwrite($stream, "    public const MODULE_TITLES = [\n");
+
+        foreach ($languages as $language_tag => $language_name) {
+
+            //Generate JSON
+            $titles_for_language = $titles[$language_tag];
+            $title_json = json_encode($titles_for_language);
+            $title_json = str_replace("'", "\'", $title_json);
+
+            fwrite($stream, "        '" . $language_tag . "' => '");
+            fwrite($stream, $title_json . "',\n");
+        }
+
+        fwrite($stream, "    ];\n\n");
+        fwrite($stream, "    public const MODULE_DESCRIPTIONS = [\n");
+
+        foreach ($languages as $language_tag => $language_name) {
+
+            //Generate JSON
+            $descriptions_for_language = $descriptions[$language_tag];
+            $description_json = json_encode($descriptions_for_language);
+            $description_json = str_replace("'", "\'", $description_json);
+
+            fwrite($stream, "        '" . $language_tag . "' => '");
+            fwrite($stream, $description_json . "',\n");
+        }
+
+        fwrite($stream, "    ];\n\n");
         fwrite($stream, "}\n");
         fclose($stream);
     }

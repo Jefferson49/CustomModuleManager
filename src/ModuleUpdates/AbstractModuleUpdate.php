@@ -32,6 +32,7 @@ declare(strict_types=1);
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
 use Fisharebest\Webtrees\FlashMessages;
+use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleThemeInterface;
 use Fisharebest\Webtrees\Session;
@@ -92,51 +93,73 @@ abstract class AbstractModuleUpdate
     /**
      * How should the module be identified in the control panel, etc.?
      *
+     * @param string $language_tag
+     * 
      * @return string
      */
-    public function title(): string {
+    public function title(string $language_tag = CustomModuleManager::DEFAULT_LANGUAGE): string {
+
+        $title = '';
+
+        //Remember current language
+        $current_language = Session::get('language', '');
+
+        //Activate language
+        I18N::init($language_tag);
+        Session::put('language', $language_tag);
 
         $module = $this->getModule();
 
-        $current_language = Session::get('language', '');
-        $default_title = ModuleUpdateServiceConfiguration::getDefaultTitle($this->module_name);
-        $prefix = strpos($current_language, 'en', 0) === false ? CustomModuleManager::DEFAULT_LANGUAGE_PREFIX : '';
-
         if ($module !== null) {
-            return $module->title();
+            //Get descripton from module
+            $title = $module->title();
         }
         else {
-            if ($default_title !== '') {
-                return $prefix . $default_title;
-            }
+            //Get descripton from configuration
+            $title = ModuleUpdateServiceConfiguration::getTitle($this->module_name, $language_tag);
         }
 
-        return '';
+        //Reset to current language
+        I18N::init($current_language);
+        Session::put('language', $current_language);
+
+        return $title;
     }
 
     /**
      * A description of the module
      *
+     * @param string $language_tag
+     * 
      * @return string
      */
-    public function description(): string {
+    public function description(string $language_tag = CustomModuleManager::DEFAULT_LANGUAGE): string {
+
+        $description = '';
+
+        //Remember current language
+        $current_language = Session::get('language', '');
+
+        //Activate language
+        I18N::init($language_tag);
+        Session::put('language', $language_tag);
 
         $module = $this->getModule();
 
-        $current_language = Session::get('language', '');
-        $default_description = ModuleUpdateServiceConfiguration::getDefaultDescription($this->module_name);
-        $prefix = strpos($current_language, 'en', 0) === false ? CustomModuleManager::DEFAULT_LANGUAGE_PREFIX : '';
-
         if ($module !== null) {
-            return $module->description();
+            //Get descripton from module
+            $description = $module->description();
         }
         else {
-            if ($default_description !== '') {
-                return $prefix . $default_description;
-            }
+            //Get descripton from configuration
+            $description = ModuleUpdateServiceConfiguration::getDescription($this->module_name, $language_tag);
         }
 
-        return '';
+        //Reset to current language
+        I18N::init($current_language);
+        Session::put('language', $current_language);
+
+        return $description;
     }
 
     /**

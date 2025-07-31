@@ -50,16 +50,20 @@ interface CustomModuleUpdateInterface
     /**
      * How should the module be identified in the control panel, etc.?
      *
+     * @param string $language_tag
+     * 
      * @return string
      */
-    public function title(): string;
+    public function title(string $language_tag): string;
 
     /**
      * A description of the module
      *
+     * @param string $language_tag
+     * 
      * @return string
      */
-    public function description(): string;
+    public function description(string $language_tag): string;
 
     /**
      * A unique internal name for the module (during runtime, based on the installation folder).

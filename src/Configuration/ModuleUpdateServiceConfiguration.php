@@ -43,6 +43,16 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
  */
 class ModuleUpdateServiceConfiguration 
 {
+    //The language used
+    private static $language = '';
+
+    //The (default) titles corresponding to the current language
+    private static $titles = [];
+
+    //The (default) descriptions corresponding to the current language
+    private static $descriptions = [];
+
+
     //The configuration for the module update services
     private const MODULE_UPDATE_SERVICE_CONFIG = [
 
@@ -265,15 +275,18 @@ class ModuleUpdateServiceConfiguration
      */
     public static function getStandardModuleName(string $module_name): string
     {
+        $default_language = CustomModuleManager::DEFAULT_LANGUAGE;
         $config = self::MODULE_UPDATE_SERVICE_CONFIG;
-
         $module_service = new ModuleService();
         $module = $module_service->findByName($module_name, true);
 
         if ($module !== null) {
 
-            $map_titles_to_names = array_flip( json_decode(DefaultTitlesAndDescriptions::MODULE_TITLES_JSON, true));
-            $map_description_to_names = array_flip( json_decode(DefaultTitlesAndDescriptions::MODULE_TITLES_JSON, true));
+            $titles_all_languages = DefaultTitlesAndDescriptions::MODULE_TITLES;
+            $descriptions_all_languages = DefaultTitlesAndDescriptions::MODULE_TITLES;
+
+            $map_titles_to_names = array_flip( json_decode($titles_all_languages[$default_language], true));
+            $map_description_to_names = array_flip( json_decode($descriptions_all_languages[$default_language], true));
             $current_language = Session::get('language', '');
 
             //Set language to default language, i.e. en-US
@@ -310,40 +323,80 @@ class ModuleUpdateServiceConfiguration
     }
 
     /**
-     * Get the default title
+     * Get a title from the stored configuration
      * 
      * @param string $module_name
+     * @param string $language_tag
      *  
      * @return string
      */
-    public static function getDefaultTitle(string $module_name): string {
+    public static function getTitle(string $module_name, string $language_tag = CustomModuleManager::DEFAULT_LANGUAGE): string {
 
-        $module_titles = json_decode(DefaultTitlesAndDescriptions::MODULE_TITLES_JSON, true);
-        $language_tag  = CustomModuleManager::DEFAULT_LANGUAGE;
+        self::initializeTitlesAndDescriptions();
 
-        if (array_key_exists($module_name, $module_titles)) {
-            return $module_titles[$module_name];
-        }
-
-        else return '';
+        return self::$titles[$language_tag][$module_name] ?? '';
     }
 
     /**
-     * Get the default description
+     * Get a description from the stored configuration
      * 
      * @param string $module_name
+     * @param string $language_tag
      *  
      * @return string
      */
-    public static function getDefaultDescription(string $module_name): string {
+    public static function getDescription(string $module_name, string $language_tag = CustomModuleManager::DEFAULT_LANGUAGE): string {
 
-        $module_descriptions = json_decode(DefaultTitlesAndDescriptions::MODULE_DESCRIPTIONS_JSON, true);
-        $language_tag = CustomModuleManager::DEFAULT_LANGUAGE;
+        self::initializeTitlesAndDescriptions();
 
-        if (array_key_exists($module_name, $module_descriptions)) {
-            return $module_descriptions[$module_name];
+        return self::$descriptions[$language_tag][$module_name] ?? '';
+    }
+
+    /**
+     * Initialize the values (i.e. titles, descriptions) for a certain language
+     */
+    public static function initializeTitlesAndDescriptions() {
+
+        $current_language = Session::get('language', CustomModuleManager::DEFAULT_LANGUAGE);
+
+        //If language has changed or not initialied yet
+        if (!in_array($current_language, [self::$language, CustomModuleManager::DEFAULT_LANGUAGE]) OR self::$titles === []) {
+
+            //Set language
+            self::$language = $current_language;
+
+            $titles_all_languages = DefaultTitlesAndDescriptions::MODULE_TITLES;
+            $descriptions_all_languages = DefaultTitlesAndDescriptions::MODULE_DESCRIPTIONS;
+
+            //Values for default language
+            $titles = json_decode($titles_all_languages[CustomModuleManager::DEFAULT_LANGUAGE]);
+            $descriptions = json_decode($descriptions_all_languages[CustomModuleManager::DEFAULT_LANGUAGE]);
+
+            foreach ($titles as $module_name => $title) {
+                self::$titles[CustomModuleManager::DEFAULT_LANGUAGE][$module_name] = $title;
+            }
+
+            foreach ($descriptions as $module_name => $description) {
+                self::$descriptions[CustomModuleManager::DEFAULT_LANGUAGE][$module_name] = $description;
+            }
+
+            //Values for current language
+            if (array_key_exists($current_language, $titles_all_languages)) {
+                $titles = json_decode($titles_all_languages[$current_language]);
+
+                foreach ($titles as $module_name => $title) {
+                    self::$titles[$current_language][$module_name] = $title;
+                }
+            }
+            if (array_key_exists($current_language, $descriptions_all_languages)) {
+                $descriptions = json_decode($descriptions_all_languages[$current_language]);
+
+                foreach ($descriptions as $module_name => $description) {
+                    self::$descriptions[$current_language][$module_name] = $description;
+                }
+            }
         }
 
-        else return '';
+        return;
     }
 }

@@ -59,7 +59,9 @@ class ModuleInformationModal implements RequestHandlerInterface
         $module_name                = Validator::queryParams($request)->string('module_name', '');
         $module_update_service_name = Validator::queryParams($request)->string('module_update_service_name', '');
         $module_title               = Validator::queryParams($request)->string('module_title', '');
+        $show_default_title         = Validator::queryParams($request)->boolean('show_default_title', false);
         $module_description         = Validator::queryParams($request)->string('module_description', '');
+        $show_default_description   = Validator::queryParams($request)->boolean('show_default_description', false);
         $module_status              = Validator::queryParams($request)->string('module_status', '');
         $is_theme                   = Validator::queryParams($request)->boolean('is_theme', false);
         $current_version            = Validator::queryParams($request)->string('current_version', '');
@@ -80,7 +82,9 @@ class ModuleInformationModal implements RequestHandlerInterface
                 'module_update_service'      => $module_update_service,
                 'module_update_service_name' => $module_update_service_name,
                 'module_title'               => $module_title,
+                'show_default_title'         => $show_default_title,
                 'module_description'         => $module_description,
+                'show_default_description'   => $show_default_description,
                 'module_status'              => $module_status,
                 'is_theme'                   => $is_theme,
                 'current_version'            => $current_version,

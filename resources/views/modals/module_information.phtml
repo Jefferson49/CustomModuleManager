@@ -8,19 +8,21 @@ use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CustomModuleUpdateInterface;
-use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\VestaModuleUpdate;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
 use function view;
 
 
 /**
  * @var string                      $title
  * @var string                      $module_name,
- * @var ModuleCustomInterface       $module,
+ * @var ModuleCustomInterface       $module
  * @var CustomModuleUpdateInterface $module_update_service
  * @var string                      $module_update_service_name
  * @var string                      $module_title
+ * @var bool                        $show_default_title
  * @var string                      $module_description
+ * @var bool                        $show_default_description
  * @var string                      $module_status
  * @var bool                        $is_theme
  * @var string                      $current_version
@@ -40,6 +42,9 @@ use function view;
     </div>
     <div class="row mb-3">
         <p>
+            <?php if ($show_default_title) : ?>
+                <?= CustomModuleManager::DEFAULT_LANGUAGE_PREFIX ?><br>
+            <?php endif ?>	
             <?= e($module_title) ?>
         </p>
     </div>
@@ -49,7 +54,10 @@ use function view;
     </div>
     <div class="row mb-3">
         <p>
-            <?= e($module_description) ?>	
+            <?php if ($show_default_description) : ?>
+                <?= CustomModuleManager::DEFAULT_LANGUAGE_PREFIX ?><br>
+            <?php endif ?>	
+            <?= e($module_description) ?>
         </p>
     </div>
     
@@ -60,6 +68,8 @@ use function view;
         <div class="wt-custom-module-info">
             <?php if ($module_update_service_name === VestaModuleUpdate::NAME) : ?>
             <?= view('icons/help') ?>
+             * @var CustomModuleUpdateInterface $module_update_service
+                <?php /** @var VestaModuleUpdate $module_update_service To avoid IDE warnings */  ?>
                 <a href="<?= e($module_update_service->homePageUrl()) ?>" target="blank">
                     <?= e($module_update_service->homePageUrl()) ?>
                 </a>
@@ -105,6 +115,7 @@ use function view;
         <?php if ($module_update_service_name === VestaModuleUpdate::NAME) : ?>
             <?= view('icons/link') ?>
             <?= I18N::translate('⚶ Vesta homepage') . ': ' ?>
+            <?php /** @var VestaModuleUpdate $module_update_service To avoid IDE warnings */  ?>
             <a href="<?= e($module_update_service->homePageUrl()) ?>" target="blank">
                 <?= e($module_update_service->homePageUrl()) ?>
             </a>

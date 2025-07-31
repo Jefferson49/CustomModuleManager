@@ -7,6 +7,7 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager;
 use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Session;
 use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
@@ -92,35 +93,42 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
         <?php foreach ($module_names as $module_name => $standard_module_name) : ?>
             <?php $module = $module_service->findByName($module_name, true) ?>
             <?php if ($module === null) : ?>
-                <?php if ($modules_to_show === CustomModuleManager::PREF_SHOW_INSTALLED) : ?>
-                    <?php continue ?>
-                <?php endif ?>				
+                <?php if ($modules_to_show === CustomModuleManager::PREF_SHOW_INSTALLED) : ?><?php continue ?><?php endif ?>			
                 <?php $module_status = I18N::translate('not installed') ?>
             <?php else : ?>
-                <?php if ($modules_to_show === CustomModuleManager::PREF_SHOW_NOT_INSTALLED) : ?>
-                    <?php continue ?>
-                <?php endif ?>						
+                <?php if ($modules_to_show === CustomModuleManager::PREF_SHOW_NOT_INSTALLED) : ?><?php continue ?><?php endif ?>						
                 <?php if ($module->isEnabled()) : ?>
                     <?php $module_status = I18N::translate('enabled') ?>
                 <?php else : ?>
                     <?php $module_status = I18N::translate('disabled') ?>
                 <?php endif ?>						
             <?php endif ?>						
+            <?php $current_language = Session::get('language', '') ?>
             <?php $update_service_available = ModuleUpdateServiceConfiguration::getUpdateServiceName($module_name) !== '' ?>
             <?php $module_update_service = CustomModuleUpdateFactory::make($module_name) ?>
             <?php if ($update_service_available) : ?>
                 <?php $module_update_service_name = $module_update_service->name() ?>
-                <?php $module_title = $module_update_service->title() ?>
-                <?php $module_description = $module_update_service->description() ?>
+                <?php $module_title = $module_update_service->title($current_language) ?>
+                <?php $default_module_title = $module_update_service->title() ?>
+                <?php $module_description = $module_update_service->description($current_language) ?>
+                <?php $default_module_description = $module_update_service->description() ?>
                 <?php $is_theme = $module_update_service->moduleIsTheme() ?>
                 <?php $current_version = $module_update_service->customModuleVersion() ?>
                 <?php $latest_version = $module_update_service->customModuleLatestVersion($fetch_latest) ?>
                 <?php $latest_version = $latest_version !== '' ? $latest_version : I18N::translate('not received') ?>
                 <?php $documentation_url = $module_update_service->documentationUrl() ?>
-            <?php else : ?>						
+            <?php else : ?>
                 <?php $module_update_service_name = I18N::translate('not available') ?>
                 <?php $module_title = $module->title() ?>
                 <?php $module_description = $module->description() ?>
+                <?php I18N::init(CustomModuleManager::DEFAULT_LANGUAGE) ?>
+                <?php Session::put('language', CustomModuleManager::DEFAULT_LANGUAGE) ?>
+                <?php $default_module_title = $module->title() ?>
+                <?php $default_module_description = $module->description() ?>
+                <?php I18N::init($current_language) ?>
+                <?php Session::put('language', $current_language) ?>
+                <?php $default_module_title = $module_title ?>
+                <?php $default_module_description = $module_description ?>
                 <?php $is_theme = $themes->contains($module) ?>
                 <?php /** @var CustomModuleManager $module To avoid IDE warnings */ ?>
                 <?php $current_version = $module->customModuleVersion() ?>
@@ -129,16 +137,17 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
             <?php endif ?>	
             <?php if ($module !== null) : ?>
                 <?php $current_version = $current_version !== '' ? $current_version : I18N::translate('not received') ?>
-            <?php endif ?>					
+            <?php endif ?>				
             <?php $installation_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name) ?>
-            <?php if (strpos($module_title, CustomModuleManager::DEFAULT_LANGUAGE_PREFIX) !== false) : ?>
-                <?php $module_title_sort = str_replace(CustomModuleManager::DEFAULT_LANGUAGE_PREFIX, '', $module_title) ?>
-            <?php else : ?>						
-                <?php $module_title_sort = $module_title ?>
+            <?php $show_default_title = ($module_title === '' OR $module_title === $default_module_title) && strpos($current_language, 'en', 0) === false ?>
+            <?php $show_default_description = ($module_description === '' OR $module_description === $default_module_description) && strpos($current_language, 'en', 0) === false ?>
+            <?php if ($show_default_title) : ?>
+                <?php $module_title = $default_module_title ?>
+            <?php endif ?>				
+            <?php if ($show_default_description) : ?>
+                <?php $module_description = $default_module_description ?>
             <?php endif ?>
-            <?php foreach (["\u26b6 ", "\u210d ", "\u210d&\u210dwt ", '⚶ ', 'ℍ ', 'ℍ&ℍwt ', ] as $special_prefix) : ?>
-                <?php $module_title_sort = str_replace($special_prefix, '', $module_title_sort) ?>
-            <?php endforeach ?>
+            <?php $module_title_sort = str_replace(["\u26b6 ", "\u210d ", "\u210d&\u210dwt ", '⚶ ', 'ℍ ', 'ℍ&ℍwt ', ], '', $module_title) ?>
 
             <tr>
                 <!-- Title -->
@@ -149,7 +158,9 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
                         'module_update_service'      => $module_update_service,
                         'module_update_service_name' => $module_update_service_name,
                         'module_title'               => $module_title,
+                        'show_default_title'         => $show_default_title,
                         'module_description'         => $module_description,
+                        'show_default_description'   => $show_default_description,
                         'module_status'              => $module_status,
                         'is_theme'                   => $is_theme,
                         'current_version'            => $current_version,
@@ -157,12 +168,18 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
                         'installation_folder'        => $installation_folder,
                         'documentation_url'          => $documentation_url,
                     ])) ?>">
-                        <?= e($module_title) ?>
+                    <?php if ($show_default_title) : ?>
+                        <?= CustomModuleManager::DEFAULT_LANGUAGE_PREFIX ?><br>
+                    <?php endif ?>
+                    <?= e($module_title) ?>
                 </a>
                 </td>
 
                 <!-- Description -->
                 <td data-sort="<?= e($module_description) ?>">
+                    <?php if ($show_default_description) : ?>
+                        <?= CustomModuleManager::DEFAULT_LANGUAGE_PREFIX ?><br>
+                    <?php endif ?>
                     <?= e($module_description) ?>
                 </td>
 
