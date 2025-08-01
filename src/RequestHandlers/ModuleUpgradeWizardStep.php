@@ -35,7 +35,9 @@ use Fig\Http\Message\StatusCodeInterface;
 use Fisharebest\Webtrees\Http\Exceptions\HttpServerErrorException;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Registry;
+use Fisharebest\Webtrees\Services\MaintenanceModeService;
 use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Services\PhpService;
 use Fisharebest\Webtrees\Services\TimeoutService;
 use Fisharebest\Webtrees\Services\UpgradeService;
 use Fisharebest\Webtrees\Session;
@@ -100,6 +102,9 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     // The webtrees upgrade service
     private UpgradeService $webtrees_upgrade_service;
 
+    // The webtrees upgrade service
+    private MaintenanceModeService $maintenance_mode_service;
+
     // The custom module update service
     private CustomModuleUpdateInterface $module_update_service;
 
@@ -111,7 +116,8 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      * @param UpgradeService $webtrees_upgrade_service
      */
     public function __construct() {
-        $this->webtrees_upgrade_service = new UpgradeService(new TimeoutService());
+        $this->webtrees_upgrade_service = new UpgradeService(new TimeoutService(new PhpService));
+        $this->maintenance_mode_service = new MaintenanceModeService();
     }
 
     /**
@@ -215,7 +221,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         }
         elseif (!CustomModuleManager::runsWithInstalledWebtreesVersion()) {
             $alert_type = self::ALERT_DANGER;
-            $alert      .= I18N::translate('This custom module can only be used with webtrees %s', CustomModuleManager::SUPPORTED_WEBTREES_VERSION);
+            $alert      .= I18N::translate('This custom module can only be used with a webtrees version greater or equal than %s', CustomModuleManager::MINIMUM_WEBTREES_VERSION);
             $abort      = true;
         }        
         elseif (!extension_loaded('zip')) {
@@ -398,7 +404,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $module_service = New ModuleService();
         $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());        
 
-        $this->webtrees_upgrade_service->startMaintenanceMode();
+        $this->maintenance_mode_service->offline();
 
         try {            
             foreach ($module_names as $module_name => $standard_module_name) {
@@ -424,11 +430,11 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         }
         catch (Throwable $exception) {
             //Rollback
-            $this->webtrees_upgrade_service->endMaintenanceMode();        
+            $this->maintenance_mode_service->online();
             return $this->wizardStepRollback($module_names, $action, $exception->getMessage());
         }
 
-        $this->webtrees_upgrade_service->endMaintenanceMode();        
+        $this->maintenance_mode_service->online();
 
         // While we have time, clean up any old files.
         $files_to_keep = $this->customModuleZipContents($zip_file);
@@ -468,7 +474,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         /** @var AbstractModuleUpdate $module_update_service  To avoid IDE warnings */
         $module_update_service = $this->module_update_service;
 
-        $this->webtrees_upgrade_service->startMaintenanceMode();
+        $this->maintenance_mode_service->offline();
                 
         try {
             foreach ($module_names as $module_name => $standard_module_name) {
@@ -502,7 +508,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             }
         }
 
-        $this->webtrees_upgrade_service->endMaintenanceMode();        
+        $this->maintenance_mode_service->online();    
 
         //Reset update information
         $module_service = New ModuleService();
@@ -580,7 +586,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      */
     public static function copyFiles(FilesystemOperator $source, FilesystemOperator $destination): void
     {
-        $timeout_service = new TimeoutService();
+        $timeout_service = new TimeoutService(new PhpService);
 
         foreach ($source->listContents('', FilesystemReader::LIST_DEEP) as $attributes) {
             if ($attributes->isFile()) {

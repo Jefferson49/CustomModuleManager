@@ -141,7 +141,7 @@ class CustomModuleManager extends AbstractModule implements
     public const ERROR_MAX_LENGTH = 500;
 
     //Supported webtrees version
-    public const SUPPORTED_WEBTREES_VERSION = '2.2';
+    public const MINIMUM_WEBTREES_VERSION = '2.2.3';
 
     //Switch to generate new default titles and description (in class DefaultTitlesAndDescriptions.php)
     public const GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS = false;
@@ -802,7 +802,7 @@ class CustomModuleManager extends AbstractModule implements
      */
     public static function runsWithInstalledWebtreesVersion(): bool
     {
-        if (substr(Webtrees::VERSION, 0, 3) === self::SUPPORTED_WEBTREES_VERSION) {
+        if (version_compare(Webtrees::VERSION, self::MINIMUM_WEBTREES_VERSION, '>=')) {
             return true;
         }
 

@@ -16,7 +16,7 @@ use Fisharebest\Webtrees\I18N;
 
 <?php if (!$runs_with_webtrees_version) : ?>
 	<?= view('components/' . 'alert-danger', [
-		'alert' => I18N::translate('This custom module can only be used with webtrees %s', CustomModuleManager::SUPPORTED_WEBTREES_VERSION),
+		'alert' => I18N::translate('This custom module can only be used with a webtrees version greater or equal than %s' , CustomModuleManager::MINIMUM_WEBTREES_VERSION),
 	]) ?>
 <?php endif	?>
 <?php if ($php_extension_zip_missing) : ?>
