@@ -19,10 +19,10 @@ This README file contains the following main sections:
 
 ## What are the benefits of this module?
 **Features:**
++ Provide a list of available custom modules (for webtrees 2.2)
 + Support the download of custom modules
 + Support the installation of custom modules
 + Support the update of custom modules
-+ Provide a list of available custom modules (for webtrees 2.2)
 
 **Optionally planned features:**
 + Check the compatibility of custom modules with the webtrees versions
@@ -78,7 +78,7 @@ The module allows to provide a GitHub API token in the module settings. In order
 ![Screenshot](resources/img/module_information.jpg)
 
 ## Webtrees Version
-The module was developed and tested with [webtrees 2.2.1](https://webtrees.net/download), but should also run with any other 2.2 version.
+The module requires a [webtrees version](https://webtrees.net/download) greater or even to 2.2.3.
 
 ## Translation
 Currently, the following languages are available:
