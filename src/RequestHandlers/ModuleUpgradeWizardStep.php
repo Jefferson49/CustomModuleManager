@@ -442,7 +442,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
         //If module has just been installed, we can immediately test it
         if ($action === CustomModuleManager::ACTION_INSTALL) {
-            $test_result = $module_update_service->testModuleUpdate();
+            $test_result = $module_update_service->testModuleInstallation();
             
             if ($test_result !== '') {
                 return $this->wizardStepRollback($module_names, $action, $test_result);

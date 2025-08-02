@@ -132,6 +132,13 @@ interface CustomModuleUpdateInterface
     public function getModuleNamesToUpdate(): array;
 
     /**
+     * Test a module after installation
+     * 
+     * @return string Error message or empty string if no error
+     */
+    public function testModuleInstallation(): string;
+
+    /**
      * Test a module update
      * 
      * @return string Error message or empty string if no error

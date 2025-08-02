@@ -275,12 +275,15 @@ abstract class AbstractModuleUpdate
      */
     public function testModuleUpdate(): string
     {
+        //ToDo: How to check updates of themes
+
         $module_names = $this->getModuleNamesToUpdate();
 
         foreach ($module_names as $module_name => $standard_module_name) {
 
-            //If test for the updated module fails
-            $error = self::testModule($module_name);
+            //If error message detected within flash messages
+            $error = self::pullFlashErrorMessage($module_name);
+
             if ($error !== '') {
                 return $error;
             }
@@ -290,30 +293,34 @@ abstract class AbstractModuleUpdate
     }
 
     /**
-     * Test a custom module by loading it in a static scope
+     * Test a module after installation
      * 
-     * @param  string $module_name
-     *  
      * @return string Error message or empty string if no error
      */
-    public static function testModule(string $module_name): string
+    public function testModuleInstallation(): string
     {
-        $message = '';
-        $filename = Webtrees::ROOT_DIR . Webtrees::MODULES_PATH . self::getInstallationFolderFromModuleName($module_name) . '/module.php';
+        $module_names = $this->getModuleNamesToUpdate();
 
-        //Try to load module (if not already loaded by webtrees)
-        //Code from: Fisharebest\Webtrees\Services\ModuleService
-        try {
-            $module = include_once $filename;
-        } catch (Throwable $exception) {
-            $message = 'Fatal error in module: ' . $module_name . '<br>' . $exception;
-            return $message;
+        foreach ($module_names as $module_name => $standard_module_name) {
+
+            $message = '';
+            $filename = Webtrees::ROOT_DIR . Webtrees::MODULES_PATH . self::getInstallationFolderFromModuleName($module_name) . '/module.php';
+
+            //Code from: Fisharebest\Webtrees\Services\ModuleService
+            try {
+                //Try to load module
+                $module = include_once $filename;
+
+                //Try to boot module
+                $module->boot();
+                
+            } catch (Throwable $exception) {
+                $message = 'Fatal error in module: ' . $module_name . '<br>' . $exception;
+                return $message;
+            }
         }
 
-        //Check flash messages for custom module errors
-        $message = self::pullFlashErrorMessage($module_name);
-
-        return $message;
+        return '';
     }
 
     /**
