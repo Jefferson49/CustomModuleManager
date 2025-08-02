@@ -82,9 +82,11 @@ The module was developed and tested with [webtrees 2.2.1](https://webtrees.net/d
 
 ## Translation
 Currently, the following languages are available:
++ Catalan
 + Dutch
 + English
 + German
++ Spanish
 
 You can help to translate this module. The language files are available on [POEditor](https://poeditor.com/projects/view?id=795232), where you can update or add a language.
 

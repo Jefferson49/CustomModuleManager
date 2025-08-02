@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager for webtrees 2\n"
-"POT-Creation-Date: 2025-08-02 12:53+0200\n"
+"POT-Creation-Date: 2025-08-02 12:54+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: nl\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,30 +16,31 @@ msgstr ""
 
 #: src/CustomModuleManager.php:212
 msgid "Custom Module Manager"
-msgstr "Uitbreidingsmodulebeheerder"
+msgstr "Gestor de mòduls personalitzats"
 
 #: src/CustomModuleManager.php:225
 msgid "A custom module to manage webtrees custom modules."
-msgstr "Een uitbreidingsmodule om webtreesuitbreidingsmodules te beheren."
+msgstr ""
+"Un mòdul personalitzat per gestionar els mòduls personalitzats d'arbres web."
 
 #: src/CustomModuleManager.php:311 src/ModuleUpdates/GithubModuleUpdate.php:195
 #: src/ModuleUpdates/GithubModuleUpdate.php:284
 #, php-format
 msgid "Communication error with %s"
-msgstr "Communicatiefout met %s"
+msgstr "Error de comunicació amb %s"
 
 #: src/CustomModuleManager.php:492
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
-msgstr "De voorkeuren voor de module \"%s\" zijn bijgewerkt."
+msgstr "S'han actualitzat les preferències del mòdul \"%s\"."
 
 #: src/CustomModuleManager.php:538
 msgid "Rollback Custom Module Update"
-msgstr "Het bijwerken van uitbreidingsmodule terugdraaien"
+msgstr "Revertir l'actualització del mòdul personalitzat"
 
 #: src/CustomModuleManager.php:539
 msgid "Rollback"
-msgstr "Terugdraaien"
+msgstr "Tornar enrere"
 
 #: src/CustomModuleManager.php:566
 #, php-format
@@ -47,8 +48,8 @@ msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
 "new module version %s."
 msgstr ""
-"De voorkeuren voor de uitbreidingsmodule \"%s\" zijn succesvol bijgewerkt "
-"naar de nieuwe moduleversie %s."
+"Les preferències per al mòdul personalitzat \"%s\" s'han actualitzat amb "
+"èxit a la nova versió del mòdul %s."
 
 #: src/CustomModuleManager.php:598
 #, php-format
@@ -58,10 +59,10 @@ msgid ""
 "recommended to deactivate the \"%s\" module, because the identical "
 "functionality is also integrated in the %s module."
 msgstr ""
-"De uitbreidingsmodule \"%s\" is parallel met de uitbreidingsmodule %s "
-"geactiveerd. Dit kan leiden tot onbedoeld gedrag. Als u de module %s "
-"gebruikt, wordt het sterk aangeraden om de module \"%s\" te deactiveren, "
-"omdat de identieke functionaliteit ook in de module %s is geïntegreerd."
+"El mòdul personalitzat \"%s\" s'activa en paral·lel al mòdul personalitzat "
+"%s. Això pot conduir a un comportament no desitjat. Si utilitzeu el mòdul "
+"%s, es recomana desactivar el mòdul \"%s\", ja que la funcionalitat idèntica "
+"també està integrada al mòdul %s."
 
 #: src/CustomModuleManager.php:603
 #, php-format
@@ -71,10 +72,10 @@ msgid ""
 "registered the same custom view \"%s\". It is strongly recommended to "
 "deactivate one of the modules."
 msgstr ""
-"De uitbreidingsmodule \"%s\" is parallel aan de uitbreidingsmodule %s "
-"geactiveerd. Dit kan leiden tot onbedoeld gedrag, omdat beide modules "
-"dezelfde aangepaste weergave \"%s\" hebben geregistreerd. Het wordt sterk "
-"aangeraden om een van de modules te deactiveren."
+"El mòdul personalitzat \"%s\" s'activa en paral·lel al mòdul personalitzat "
+"%s. Això pot provocar un comportament no desitjat, ja que els dos mòduls han "
+"registrat la mateixa visualització personalitzada \"%s\". Es recomana "
+"desactivar un dels mòduls."
 
 #: src/CustomModuleManager.php:627
 #, php-format
@@ -85,11 +86,11 @@ msgid ""
 "strongly recommended to deactivate one of the modules. The path of the "
 "parallel view is: %s"
 msgstr ""
-"De uitbreidingsmoduleweergave \"%s\" is niet geregistreerd als vervanging "
-"voor de standaard webtreesweergave. Er kan een andere module geïnstalleerd "
-"zijn die dezelfde aangepaste weergave heeft geregistreerd. Dit kan leiden "
-"tot onbedoeld gedrag. Het wordt sterk aangeraden om een van de modules te "
-"deactiveren. Het pad van de parallelle weergave is: %s"
+"La visualització del mòdul personalitzat \"%s\" no es registra com a "
+"substitut de la visualització estàndard d'arbres web. Pot ser que hi hagi un "
+"altre mòdul instal·lat, que registri la mateixa vista personalitzada. Això "
+"pot conduir a un comportament no desitjat. Es recomana desactivar un dels "
+"mòduls. El camí de la vista paral·és: %s"
 
 #: src/ModuleUpdates/GithubModuleUpdate.php:81
 #: src/ModuleUpdates/UrlModuleUpdate.php:70
@@ -98,58 +99,58 @@ msgid ""
 "Could not create the %s update service. Configuration parameter \"%s\" "
 "missing."
 msgstr ""
-"Kon de bijwerk-service %s niet aanmaken. Configuratieparameter \"%s\" "
-"ontbreekt."
+"No s'ha pogut crear el servei d'actualització %s. Falta el paràmetre de "
+"configuració \"%s\"."
 
 #: src/ModuleUpdates/GithubModuleUpdate.php:196
 msgid "Cannot retrieve download URL."
-msgstr "Kan download-URL niet ophalen."
+msgstr "No es pot recuperar l'URL de descàrrega."
 
 #: src/RequestHandlers/CustomModuleUpdatePage.php:73
 msgid "Custom Module Updates"
-msgstr "Bijwerken van uitbreidingsmodules"
+msgstr "Actualitzacions de mòduls personalitzats"
 
 #: src/RequestHandlers/ModuleInformationModal.php:79
 msgid "Module Information"
-msgstr "Module-informatie"
+msgstr "Informació del mòdul"
 
 #: src/RequestHandlers/ModuleUpgradeWizardPage.php:98
 msgid "Error during retrieving download URL"
-msgstr "Fout tijdens ophalen download-URL"
+msgstr "Error en recuperar l'URL de descàrrega"
 
 #: src/RequestHandlers/ModuleUpgradeWizardPage.php:135
 msgid "Check version..."
-msgstr "Controleer versie..."
+msgstr "Comprova la versió..."
 
 #: src/RequestHandlers/ModuleUpgradeWizardPage.php:136
 msgid "Create temporary folders…"
-msgstr "Tijdelijke mappen maken…"
+msgstr "Crea carpetes temporals..."
 
 #: src/RequestHandlers/ModuleUpgradeWizardPage.php:141
 msgid "Backup…"
-msgstr "Back-up…"
+msgstr "Reserva..."
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:133
 msgid "Update Wizard was aborted"
-msgstr "Update Wizard is afgebroken"
+msgstr "L'auxiliar d'actualització s'ha avortat"
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:206
 #, php-format
 msgid "Installing module \"%s\" (to folder: \"/module_v4/%s\")"
-msgstr "Installeren module \"%s\"  (naar map: \"/module_v4/%s\")"
+msgstr "S'està instal·lant el mòdul \"%s\" (a la carpeta: \"/module_v4/%s\")"
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:209
 #, php-format
 msgid "Upgrading module \"%s\" (in folder: \"/module_v4/%s\")"
-msgstr "Bijwerken module \"%s\"  (in map: \"/module_v4/%s\")"
+msgstr "S'està actualitzant el mòdul \"%s\" (a la carpeta: \"/module_v4/%s\")"
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:219
 msgid ""
 "Version % is the latest version of the custom module. No upgrade is "
 "available."
 msgstr ""
-"Versie % is de nieuwste versie van de uitbreidingsmodule. Er is geen upgrade "
-"beschikbaar."
+"Versió % és la última versió del mòdul personalitzat. No hi ha cap "
+"actualització disponible."
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:224
 #, php-format
@@ -164,36 +165,33 @@ msgid ""
 "module, your PHP installation needs to include the \"zip\" extension. You "
 "have to activate the extension in your \"php.ini\" file."
 msgstr ""
-"De PHP-extensie \"zip\" is niet geïnstalleerd. Om de uitbreidingsmodule te "
-"kunnen gebruiken, moet uw PHP-installatie de extensie \"zip\" bevatten. U "
-"moet de extensie activeren in uw \"php.ini\"bestand."
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:237
 #, php-format
 msgid "Installing version: \"%s\""
-msgstr "Installeren versie: \"%s\""
+msgstr "Versió d'instal·lació: \"%s\""
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:240
 #, php-format
 msgid "Upgrading the module from version \"%s\" to version \"%s\""
-msgstr "De module bijwerken van versie \"%s\" naar versie \"%s\""
+msgstr "S'està actualitzant el mòdul de la versió \"%s\" a la versió \"%s\""
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:311
 #, php-format
 msgid "A backup of the current module was created in %s seconds."
-msgstr "Een back-up van de huidige module is gemaakt in %s seconden."
+msgstr "S'ha creat una còpia de seguretat del mòdul actual en %s segons."
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:316
 msgid "Failed to create a backup of the current module."
-msgstr "Het is niet gelukt om een back-up van de huidige module te maken."
+msgstr "No s'ha pogut crear una còpia de seguretat del mòdul actual."
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:343
 msgid "Error during downloading the module zip file."
-msgstr "Fout tijdens het downloaden van het module zip-bestand."
+msgstr "Error durant la descàrrega del fitxer zip del mòdul."
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:375
 msgid "Error during unzipping the module zip file."
-msgstr "Fout tijdens het uitpakken van het module zip-bestand."
+msgstr "Error en descomprimir el fitxer zip del mòdul."
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:489
 #, php-format
@@ -201,8 +199,8 @@ msgid ""
 "The module %s was rolled back to the current version, because the update "
 "created errors."
 msgstr ""
-"De module %s is teruggezet naar de huidige versie, omdat de update fouten "
-"veroorzaakte."
+"El mòdul %s s'ha revertit a la versió actual, perquè l'actualització ha "
+"creat errors."
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:492
 #, php-format
@@ -210,13 +208,12 @@ msgid ""
 "The installation of module %s was rolled back, because the module created "
 "errors."
 msgstr ""
-"De installatie van module %s is teruggedraaid omdat de module fouten "
-"veroorzaakte."
+"La instal·lació del mòdul %s s'ha revertit, perquè el mòdul ha creat errors."
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:502
 #, php-format
 msgid "A roll back of the module %s to the current version failed."
-msgstr "Het terugdraaien van de module %s naar de huidige versie is mislukt."
+msgstr "S'ha produït un error en la reversió del mòdul %s a la versió actual."
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:503
 #, php-format
@@ -224,119 +221,117 @@ msgid ""
 "Please try to manually roll back by copying the files from \"/data/tmp/"
 "backup/modules_4/%s\" to \"/modules_v4/%s\"."
 msgstr ""
-"Probeer handmatig terug te zetten door de bestanden te kopiëren van \"/data/"
-"tmp/backup/modules_4/%s\" naar \"/modules_v4/%s\"."
+"Si us plau, intenteu revertir manualment copiant els fitxers de \"/data/tmp/"
+"backup/modules_4/%s\" a \"/modules_v4/%s\"."
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:506
 #, php-format
 msgid "A roll back of the installation of module %s failed."
-msgstr "Het terugdraaien van de installatie van module %s is mislukt."
+msgstr "S'ha produït un error en la reversió de la instal·lació del mòdul %s."
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:507
 #, php-format
 msgid ""
 "Please try to manually roll back by deleting the folder \"/modules_v4/%s\""
-msgstr ""
-"Probeer handmatig terug te zetten door de map \"/modules_v4/%s\" te "
-"verwijderen."
+msgstr "Proveu de revertir manualment suprimint la carpeta \"/modules_v4/%s\""
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:649
 msgid "continue (reload)"
-msgstr "doorgaan (opnieuw laden)"
+msgstr "continuar (recarregar)"
 
 #: resources/views/modals/module_information.phtml:66
 msgid "Documentation"
-msgstr "Documentatie"
+msgstr "Documentació"
 
 #: resources/views/modals/module_information.phtml:97
 #: resources/views/module_update.phtml:86
 msgid "Update Service"
-msgstr "Update service"
+msgstr "Servei d'actualització"
 
 #: resources/views/modals/module_information.phtml:102
 msgid "Module folder"
-msgstr "Modulemap"
+msgstr "Carpeta del mòdul"
 
 #: resources/views/modals/module_information.phtml:107
 #: resources/views/module_update.phtml:84
 msgid "Current Version"
-msgstr "Huidige versie"
+msgstr "Versió actual"
 
 #: resources/views/modals/module_information.phtml:112
 #: resources/views/module_update.phtml:85
 msgid "Latest Version"
-msgstr "Laatste versie"
+msgstr "Última versió"
 
 #: resources/views/modals/module_information.phtml:117
 msgid "⚶ Vesta homepage"
-msgstr "⚶ Vesta-startpagina"
+msgstr "⚶ Pàgina d'inici de Vesta"
 
 #: resources/views/modals/module_information.phtml:126
 msgid "GitHub repository"
-msgstr "GitHub-repository"
+msgstr ""
 
 #: resources/views/modals/module_information.phtml:162
 #: resources/views/module_usage.phtml:38
 msgid "Module Usage"
-msgstr "Modulegebruik"
+msgstr "Ús del mòdul"
 
 #: resources/views/module_update.phtml:52
 msgid ""
 "Typically, custom modules versions are updated every 24 hours. You can check "
 "if later versions are available."
 msgstr ""
-"Gewoonlijk worden de versies van uitbreidingsmodules iedere 24 uur "
-"bijgewerkt. U kunt controleren of er latere versies beschikbaar zijn."
+"Normalment, les versions dels mòduls personalitzats s'actualitzen cada 24 "
+"hores. Podeu comprovar si hi ha versions posteriors disponibles."
 
 #: resources/views/module_update.phtml:75
 msgid "Module Updates"
-msgstr "Module-updates"
+msgstr "Actualitzacions de mòduls"
 
 #: resources/views/module_update.phtml:82
 msgid "Folder (within modules_v4)"
-msgstr "Map (in modules_v4)"
+msgstr "Carpeta (dins del modules_v4)"
 
 #: resources/views/module_update.phtml:97
 #: resources/views/module_update.phtml:224
 msgid "not installed"
-msgstr "niet geïnstalleerd"
+msgstr "no instal·lat"
 
 #: resources/views/module_update.phtml:101
 msgid "enabled"
-msgstr "ingeschakeld"
+msgstr "Permès"
 
 #: resources/views/module_update.phtml:103
 msgid "disabled"
-msgstr "uitgeschakeld"
+msgstr "discapacitat"
 
 #: resources/views/module_update.phtml:118
 #: resources/views/module_update.phtml:139
 msgid "not received"
-msgstr "niet ontvangen"
+msgstr "no rebut"
 
 #: resources/views/module_update.phtml:121
 msgid "not available"
-msgstr "niet beschikbaar"
+msgstr "no disponible"
 
 #: resources/views/module_update.phtml:223
 msgid "Update module"
-msgstr "Module bijwerken"
+msgstr "Mòdul d'actualització"
 
 #: resources/views/module_update.phtml:226
 msgid "Install module"
-msgstr "Module installeren"
+msgstr "Mòdul d'instal·lació"
 
 #: resources/views/settings.phtml:41
 msgid "Manage custom modules"
-msgstr "Beheer uitbreidingsmodules"
+msgstr "Gestionar els mòduls personalitzats"
 
 #: resources/views/settings.phtml:53
 msgid "Settings for List Menu"
-msgstr "Instellingen voor Lijstenmenu"
+msgstr ""
 
 #: resources/views/settings.phtml:58
 msgid "Show menu item in list menu"
-msgstr "Menu-item in Lijstenmenu tonen"
+msgstr ""
 
 #: resources/views/settings.phtml:63
 #, php-format
@@ -344,35 +339,32 @@ msgid ""
 "If this option is selected, a link to the page \"%s\" will be shown as a "
 "list menu item."
 msgstr ""
-"Als deze optie is geselecteerd, wordt een link naar de pagina \"%s\" "
-"weergegeven als een item in het lijstmenu."
 
 #: resources/views/settings.phtml:70
 msgid "Selection of the custom modules to show"
-msgstr "Selectie van uitbreidingsmodules om te tonen"
+msgstr "Selecció dels mòduls personalitzats a mostrar"
 
 #: resources/views/settings.phtml:75
 msgid "Modules to show"
-msgstr "Modules om te tonen"
+msgstr "Mòduls a mostrar"
 
 #: resources/views/settings.phtml:82
 msgid "Show all custom modules"
-msgstr "Toon alle uitbreidingsmodules"
+msgstr "Mostra tots els mòduls personalitzats"
 
 #: resources/views/settings.phtml:89
 msgid "Show installed custom modules (in order to update modules)"
 msgstr ""
-"Geïnstalleerde uitbreidingsmodules weergeven (om modules bij te werken)"
+"Mostra els mòduls personalitzats instal·lats (per actualitzar els mòduls)"
 
 #: resources/views/settings.phtml:96
 msgid "Show not installed custom modules (in order to install new modules)"
 msgstr ""
-"Toon niet geïnstalleerde uitbreidingsmodules (om nieuwe modules te "
-"installeren)"
+"Mostra els mòduls personalitzats no instal·lats (per instal·lar nous mòduls)"
 
 #: resources/views/settings.phtml:103 resources/views/settings.phtml:109
 msgid "GitHub API token"
-msgstr "GitHub API token"
+msgstr ""
 
 #: resources/views/settings.phtml:105
 msgid ""
@@ -382,15 +374,8 @@ msgid ""
 "allowed frequency of GitHub API calls, GitHub requires to use a GitHub API "
 "token."
 msgstr ""
-"De uitbreidingsmodule maakt intensief gebruik van de GitHub API om "
-"moduleversies op te halen en URL's te downloaden. GitHub beperkt echter de "
-"frequentie van API-aanroepen voor een bepaald IP-adres. Om de toegestane "
-"frequentie van GitHub API-aanroepen aanzienlijk te verhogen, vereist GitHub "
-"het gebruik van een GitHub API-token."
 
 #: resources/views/settings.phtml:106
 msgid ""
 "Using a GitHub API token is recommended, if GitHub communication errors occur"
 msgstr ""
-"Het gebruik van een GitHub API-token wordt aanbevolen als er GitHub-"
-"communicatiefouten optreden"
