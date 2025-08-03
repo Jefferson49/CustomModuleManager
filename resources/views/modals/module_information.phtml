@@ -20,7 +20,6 @@ use function view;
  * @var CustomModuleUpdateInterface $module_update_service
  * @var string                      $module_update_service_name
  * @var string                      $module_title
- * @var bool                        $show_default_title
  * @var string                      $module_description
  * @var bool                        $show_default_description
  * @var string                      $module_status
@@ -42,9 +41,6 @@ use function view;
     </div>
     <div class="row mb-3">
         <p>
-            <?php if ($show_default_title) : ?>
-                <?= CustomModuleManager::DEFAULT_LANGUAGE_PREFIX ?><br>
-            <?php endif ?>	
             <?= e($module_title) ?>
         </p>
     </div>

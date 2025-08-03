@@ -13,6 +13,7 @@ use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleInformationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
@@ -109,6 +110,7 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
             <?php if ($update_service_available) : ?>
                 <?php $module_update_service_name = $module_update_service->name() ?>
                 <?php $module_title = $module_update_service->title($current_language) ?>
+                <?php /** @var GithubModuleUpdate $module_update_service To avoid IDE warnings */ ?>
                 <?php $default_module_title = $module_update_service->title() ?>
                 <?php $module_description = $module_update_service->description($current_language) ?>
                 <?php $default_module_description = $module_update_service->description() ?>
@@ -139,9 +141,8 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
                 <?php $current_version = $current_version !== '' ? $current_version : I18N::translate('not received') ?>
             <?php endif ?>				
             <?php $installation_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name) ?>
-            <?php $show_default_title = ($module_title === '' OR $module_title === $default_module_title) && strpos($current_language, 'en', 0) === false ?>
             <?php $show_default_description = ($module_description === '' OR $module_description === $default_module_description) && strpos($current_language, 'en', 0) === false ?>
-            <?php if ($show_default_title) : ?>
+            <?php if ($module_title === '') : ?>
                 <?php $module_title = $default_module_title ?>
             <?php endif ?>				
             <?php if ($show_default_description) : ?>
@@ -158,7 +159,6 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
                         'module_update_service'      => $module_update_service,
                         'module_update_service_name' => $module_update_service_name,
                         'module_title'               => $module_title,
-                        'show_default_title'         => $show_default_title,
                         'module_description'         => $module_description,
                         'show_default_description'   => $show_default_description,
                         'module_status'              => $module_status,
@@ -168,9 +168,6 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
                         'installation_folder'        => $installation_folder,
                         'documentation_url'          => $documentation_url,
                     ])) ?>">
-                    <?php if ($show_default_title) : ?>
-                        <?= CustomModuleManager::DEFAULT_LANGUAGE_PREFIX ?><br>
-                    <?php endif ?>
                     <?= e($module_title) ?>
                 </a>
                 </td>
