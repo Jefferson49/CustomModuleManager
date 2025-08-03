@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager for webtrees 2\n"
-"POT-Creation-Date: 2025-08-02 12:53+0200\n"
+"POT-Creation-Date: 2025-08-03 13:32+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,7 +20,7 @@ msgstr "Uitbreidingsmodulebeheerder"
 
 #: src/CustomModuleManager.php:225
 msgid "A custom module to manage webtrees custom modules."
-msgstr "Een uitbreidingsmodule om webtreesuitbreidingsmodules te beheren."
+msgstr "Een module om uitbreidingsmodules in webtrees te beheren."
 
 #: src/CustomModuleManager.php:311 src/ModuleUpdates/GithubModuleUpdate.php:195
 #: src/ModuleUpdates/GithubModuleUpdate.php:284
@@ -35,7 +35,7 @@ msgstr "De voorkeuren voor de module \"%s\" zijn bijgewerkt."
 
 #: src/CustomModuleManager.php:538
 msgid "Rollback Custom Module Update"
-msgstr "Het bijwerken van uitbreidingsmodule terugdraaien"
+msgstr "Het bijwerken van de uitbreidingsmodule terugdraaien"
 
 #: src/CustomModuleManager.php:539
 msgid "Rollback"
@@ -61,7 +61,7 @@ msgstr ""
 "De uitbreidingsmodule \"%s\" is parallel met de uitbreidingsmodule %s "
 "geactiveerd. Dit kan leiden tot onbedoeld gedrag. Als u de module %s "
 "gebruikt, wordt het sterk aangeraden om de module \"%s\" te deactiveren, "
-"omdat de identieke functionaliteit ook in de module %s is geïntegreerd."
+"omdat identieke functionaliteit ook in de module %s is geïntegreerd."
 
 #: src/CustomModuleManager.php:603
 #, php-format
@@ -157,6 +157,8 @@ msgid ""
 "This custom module can only be used with a webtrees version greater or equal "
 "than %s"
 msgstr ""
+"Deze uitbreidingsmodule kan alleen worden gebruikt met een webtreesversie "
+"groter dan of gelijk aan %s"
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:229
 msgid ""
@@ -244,43 +246,43 @@ msgstr ""
 msgid "continue (reload)"
 msgstr "doorgaan (opnieuw laden)"
 
-#: resources/views/modals/module_information.phtml:66
+#: resources/views/modals/module_information.phtml:62
 msgid "Documentation"
 msgstr "Documentatie"
 
-#: resources/views/modals/module_information.phtml:97
-#: resources/views/module_update.phtml:86
+#: resources/views/modals/module_information.phtml:93
+#: resources/views/module_update.phtml:87
 msgid "Update Service"
 msgstr "Update service"
 
-#: resources/views/modals/module_information.phtml:102
+#: resources/views/modals/module_information.phtml:98
 msgid "Module folder"
 msgstr "Modulemap"
 
-#: resources/views/modals/module_information.phtml:107
-#: resources/views/module_update.phtml:84
+#: resources/views/modals/module_information.phtml:103
+#: resources/views/module_update.phtml:85
 msgid "Current Version"
 msgstr "Huidige versie"
 
-#: resources/views/modals/module_information.phtml:112
-#: resources/views/module_update.phtml:85
+#: resources/views/modals/module_information.phtml:108
+#: resources/views/module_update.phtml:86
 msgid "Latest Version"
 msgstr "Laatste versie"
 
-#: resources/views/modals/module_information.phtml:117
+#: resources/views/modals/module_information.phtml:113
 msgid "⚶ Vesta homepage"
 msgstr "⚶ Vesta-startpagina"
 
-#: resources/views/modals/module_information.phtml:126
+#: resources/views/modals/module_information.phtml:122
 msgid "GitHub repository"
 msgstr "GitHub-repository"
 
-#: resources/views/modals/module_information.phtml:162
+#: resources/views/modals/module_information.phtml:158
 #: resources/views/module_usage.phtml:38
 msgid "Module Usage"
 msgstr "Modulegebruik"
 
-#: resources/views/module_update.phtml:52
+#: resources/views/module_update.phtml:53
 msgid ""
 "Typically, custom modules versions are updated every 24 hours. You can check "
 "if later versions are available."
@@ -288,41 +290,41 @@ msgstr ""
 "Gewoonlijk worden de versies van uitbreidingsmodules iedere 24 uur "
 "bijgewerkt. U kunt controleren of er latere versies beschikbaar zijn."
 
-#: resources/views/module_update.phtml:75
+#: resources/views/module_update.phtml:76
 msgid "Module Updates"
 msgstr "Module-updates"
 
-#: resources/views/module_update.phtml:82
+#: resources/views/module_update.phtml:83
 msgid "Folder (within modules_v4)"
 msgstr "Map (in modules_v4)"
 
-#: resources/views/module_update.phtml:97
-#: resources/views/module_update.phtml:224
+#: resources/views/module_update.phtml:98
+#: resources/views/module_update.phtml:221
 msgid "not installed"
 msgstr "niet geïnstalleerd"
 
-#: resources/views/module_update.phtml:101
+#: resources/views/module_update.phtml:102
 msgid "enabled"
 msgstr "ingeschakeld"
 
-#: resources/views/module_update.phtml:103
+#: resources/views/module_update.phtml:104
 msgid "disabled"
 msgstr "uitgeschakeld"
 
-#: resources/views/module_update.phtml:118
-#: resources/views/module_update.phtml:139
+#: resources/views/module_update.phtml:120
+#: resources/views/module_update.phtml:141
 msgid "not received"
 msgstr "niet ontvangen"
 
-#: resources/views/module_update.phtml:121
+#: resources/views/module_update.phtml:123
 msgid "not available"
 msgstr "niet beschikbaar"
 
-#: resources/views/module_update.phtml:223
+#: resources/views/module_update.phtml:220
 msgid "Update module"
 msgstr "Module bijwerken"
 
-#: resources/views/module_update.phtml:226
+#: resources/views/module_update.phtml:223
 msgid "Install module"
 msgstr "Module installeren"
 
@@ -345,7 +347,7 @@ msgid ""
 "list menu item."
 msgstr ""
 "Als deze optie is geselecteerd, wordt een link naar de pagina \"%s\" "
-"weergegeven als een item in het lijstmenu."
+"weergegeven als een item in het lijstenmenu."
 
 #: resources/views/settings.phtml:70
 msgid "Selection of the custom modules to show"
