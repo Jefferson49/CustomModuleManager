@@ -111,7 +111,7 @@ class ModuleUpdateServiceConfiguration
 
         '_family-tree-home_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'miqrogroove/family-tree-home', 'get_latest_version_from_github' => true]],
 
-        '_Argon-Light_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => '06Games/Webtrees-ArgonLight', 'is_theme' => true]],       
+        '_ArgonLight_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => '06Games/Webtrees-ArgonLight', 'is_theme' => true]],       
         '_evang_mailsystem_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => '06Games/Webtrees-MailSystem', 'no_release' => true, 'default_branch' => 'main']],
 
         '_webtrees-branch-statistics_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'squatteur/webtrees-branch-statistics']],       
