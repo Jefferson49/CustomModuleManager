@@ -58,6 +58,7 @@ use Fisharebest\Webtrees\Session;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Webtrees;
+use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
@@ -93,12 +94,8 @@ class CustomModuleManager extends AbstractModule implements
 	//Custom module version
 	public const CUSTOM_VERSION = 'v1.0.1';
 
-	//Github repository
+	//GitHub repository
 	public const GITHUB_REPO = 'Jefferson49/CustomModuleManager';
-
-	//Github API URL to get the information about the latest releases
-	public const GITHUB_API_LATEST_VERSION = 'https://api.github.com/repos/'. self::GITHUB_REPO . '/releases/latest';
-	public const GITHUB_API_TAG_NAME_PREFIX = '"tag_name":"v';
 
 	//Author of custom module
 	public const CUSTOM_AUTHOR = 'Markus Hemprich';
@@ -112,7 +109,7 @@ class CustomModuleManager extends AbstractModule implements
 	public const PREF_GITHUB_API_TOKEN    = 'github_api_token';
 	public const PREF_LAST_UPDATED_MODULE = 'last_updated_module';
     public const PREF_ROLLBACK_ONGOING    = 'rollback_ongoing';
-    public const PREF_GITHUB_COM_ERROR    = 'Github_communication_error';
+    public const PREF_GITHUB_COM_ERROR    = 'github_communication_error';
     public const PREF_MODULES_TO_SHOW     = 'modules_to_show';
     public const PREF_SHOW_ALL            = 'show_all_modules';
     public const PREF_SHOW_INSTALLED      = 'show_installed_modules';
@@ -169,7 +166,7 @@ class CustomModuleManager extends AbstractModule implements
         //Initialize custom view list
         $this->custom_view_list = new Collection;
 
-        //Reset Github communication error
+        //Reset GitHub communication error
         $this->setPreference(self::PREF_GITHUB_COM_ERROR, '0');
 
 		// Register a namespace for the views.
@@ -280,38 +277,26 @@ class CustomModuleManager extends AbstractModule implements
      */
     public function customModuleLatestVersion(): string
     {
-        // No update URL provided.
-        if (self::GITHUB_API_LATEST_VERSION === '') {
+        // If no GitHub repo is available
+        if (self::GITHUB_REPO === '') {
             return $this->customModuleVersion();
         }
+
         return Registry::cache()->file()->remember(
             $this->name() . '-latest-version',
             function (): string {
+
                 try {
-                    $client = new Client(
-                        [
-                        'timeout' => 3,
-                        ]
-                    );
-
-                    $response = $client->get(self::GITHUB_API_LATEST_VERSION);
-
-                    if ($response->getStatusCode() === StatusCodeInterface::STATUS_OK) {
-                        $content = $response->getBody()->getContents();
-
-                        if (preg_match('/"tag_name":"([^"]+?)"/', $content, $matches) === 1) {
-                            return $matches[1];
-                        }
-                    }
-                } catch (GuzzleException $ex) {
-                    $module_service = New ModuleService();
-                    $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
-
-                    if (!boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '0'))) {
+                    //Get latest release from GitHub
+                    return GithubService::getLatestReleaseTag(self::GITHUB_REPO, $this->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, ''));
+                }
+                catch (GuzzleException $ex) {
+                    // Can't connect to the GitHub?
+                    if (!boolval($this->getPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '0'))) {
                         FlashMessages::addMessage(I18N::translate('Communication error with %s', GithubModuleUpdate::NAME), 'danger');
 
                         //Set flag in order to avoid multiple flash messages
-                        $custom_module_manager->setPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '1');
+                        $this->setPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '1');
                     }
                 }
 

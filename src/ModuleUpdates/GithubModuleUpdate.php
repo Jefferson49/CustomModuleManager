@@ -31,12 +31,11 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
-use Fig\Http\Message\StatusCodeInterface;
 use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Services\ModuleService;
-use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
 
@@ -126,72 +125,28 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      * Where can we download the module
      * 
      * @param  string $version  The version of the module; latest version if empty
+     * 
      * @return string
      */
     public function downloadUrl(string $version = ''): string
     {
-        //For certain module, which do not provide a release, we take the source code ZIP file of the default branch
+        $download_url = '';
+
+        //For certain modules, which do not provide a release, we take the URL of the source code ZIP file of the default branch
         if ($this->no_release) {
             return 'https://github.com/' . $this->github_repo . '/archive/refs/heads/' . $this->default_branch . '.zip';
         }
 
-        //Remove line feed at end of version
-        if (strpos($version, "\n", -1)) {
-            $version = substr($version, 0, strlen($version) - 1);
-        }
-
-        //Add prefix, if module tags have a prefix
-        if ($version !== '' && strlen($version) > strlen($this->tag_prefix)) {
-
-            //If version does not start with prefix, add prefix
-            if (substr($version, 0, strlen($this->tag_prefix)) !== $this->tag_prefix) {
-                $version = $this->tag_prefix . $version;
-            } 
-        }
-
-        $download_url   = '';
-        $github_api_url = 'https://api.github.com/repos/'. $this->github_repo . '/releases/';
-
-        // If no tag is provided get the download URL of the latest release
-        if ($version === '') {
-            $url = $github_api_url . 'latest';
-        }
-        // Get the download URL for a certain tag
-        else {
-            $url = $github_api_url . 'tags/' . $version;
-        }
+        $module_service = New ModuleService();
+        $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
+        $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');       
 
         // Get the download URL from Github
         try {
-            $client = new Client(
-                [
-                'timeout'       => 3,
-                ]
-            );
-
-            $options = [];
-            $module_service = New ModuleService();
-            $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
-            $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
-
-            if ($github_api_token !== '') {
-                $options['headers'] = ['Authorization' => 'Bearer ' . $github_api_token];
-            }
-
-            $response = $client->get($url, $options);
-
-            if ($response->getStatusCode() === StatusCodeInterface::STATUS_OK) {
-                $content = $response->getBody()->getContents();
-                
-                if (preg_match('/"browser_download_url":"([^"]+?)"/', $content, $matches) === 1) {
-                    $download_url = $matches[1];
-                }
-                elseif (preg_match('/"tag_name":"([^"]+?)"/', $content, $matches) === 1) {
-                    $download_url = 'https://github.com/' . $this->github_repo . '/archive/refs/tags/' . $matches[1] . '.zip';
-                }
-            }
-        } catch (GuzzleException $ex) {
-            // Can't connect to the server?
+            $download_url = GithubService::downloadUrl($this->github_repo, $version, $this->tag_prefix, $github_api_token);
+        } 
+        catch (GuzzleException $ex) {
+            // Can't connect to GitHub?
             $message =  I18N::translate('Communication error with %s', $this->name()) . ': ' . 
                         I18N::translate('Cannot retrieve download URL.') . "\n" .
                         $ex->getMessage();
@@ -249,37 +204,15 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         //Otherwise, try to get the latest version from Github
         if ($this->github_repo !== '') {
 
-            $github_api_url = 'https://api.github.com/repos/'. $this->github_repo . '/releases/latest';
+            $module_service = New ModuleService();
+            $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
+            $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');       
 
             try {
-                $client = new Client(
-                    [
-                    'timeout' => 3,
-                    ]
-                );
-
-                $options = [];
-                $module_service = New ModuleService();
-                $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
-                $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
-
-                if ($github_api_token !== '') {
-                    $options['headers'] = ['Authorization' => 'Bearer ' . $github_api_token];
-                }
-
-                $response = $client->get($github_api_url, $options);
-
-                if ($response->getStatusCode() === StatusCodeInterface::STATUS_OK) {
-                    $content = $response->getBody()->getContents();
-                    
-                    if (preg_match('/"tag_name":"([^"]+?)"/', $content, $matches) === 1) {
-                        return $matches[1];
-                    }
-                }
-            } catch (GuzzleException $ex) {
-                $module_service = New ModuleService();
-                $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
-
+                return GithubService::getLatestReleaseTag($this->github_repo, $github_api_token);
+            } 
+            catch (GuzzleException $ex) {
+                // Can't connect to GitHub? 
                 if (!boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '0'))) {
                     FlashMessages::addMessage(I18N::translate('Communication error with %s', self::NAME), 'danger');
 
