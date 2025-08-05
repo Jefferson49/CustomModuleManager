@@ -41,6 +41,8 @@ use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
+
 use Throwable;
 
 
@@ -305,14 +307,18 @@ abstract class AbstractModuleUpdate
 
             $message = '';
             $filename = Webtrees::ROOT_DIR . Webtrees::MODULES_PATH . self::getInstallationFolderFromModuleName($module_name) . '/module.php';
+            $module_upgrade_service = CustomModuleUpdateFactory::make($module_name);
 
             //Code from: Fisharebest\Webtrees\Services\ModuleService
             try {
                 //Try to load module
                 $module = include_once $filename;
 
-                //Try to boot module
-                $module->boot();
+                //Try to boot the module; we cannot boot themes, because many themes throw errors if booted in parallel to another theme
+                if ($module_upgrade_service !== null && !$module_upgrade_service->moduleIsTheme())
+                {
+                    $module->boot();
+                }
                 
             } catch (Throwable $exception) {
                 $message = 'Fatal error in module: ' . $module_name . '<br>' . $exception;
