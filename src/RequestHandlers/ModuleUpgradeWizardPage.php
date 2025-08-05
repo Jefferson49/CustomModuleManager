@@ -90,6 +90,10 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
         Session::forget(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED);
 
         try {
+            if ($module_upgrade_service === null) {
+                throw new CustomModuleManagerException(I18N::translate('Could not identify a suitable module upgrade service for custom module'));
+            }
+
             $download_url = $module_upgrade_service->downloadUrl($latest_version);
         }
         catch (CustomModuleManagerException $exception) {

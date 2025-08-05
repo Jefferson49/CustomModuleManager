@@ -502,7 +502,7 @@ class CustomModuleManager extends AbstractModule implements
             if (!$rollback_ongoing) {
 
                 $module_update_service = CustomModuleUpdateFactory::make($updated_module_name);
-                $test_result = substr($module_update_service->testModuleUpdate(), 0, self::ERROR_MAX_LENGTH);
+                $test_result = $module_update_service !== null ? substr($module_update_service->testModuleUpdate(), 0, self::ERROR_MAX_LENGTH) : 'Error';
 
                 if ($test_result !== '') {
                     //Trigger rollback of the udpated module                
