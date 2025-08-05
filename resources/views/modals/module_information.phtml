@@ -101,12 +101,12 @@ use function view;
         <?php if ($module !== null) : ?>
             <?= view('icons/module') ?>
             <?= I18N::translate('Current Version') . ': ' ?>
-            <?= e($current_version) ?>
+            <?=  e(CustomModuleManager::normalizeVersion($current_version)) ?>
             <br>
         <?php endif ?>
         <?= view('icons/module') ?>
         <?= I18N::translate('Latest Version') . ': ' ?>
-        <?= e($latest_version) ?>
+        <?=  e(CustomModuleManager::normalizeVersion($latest_version)) ?>
         <br>
         <?php if ($module_update_service_name === VestaModuleUpdate::NAME) : ?>
             <?= view('icons/link') ?>
