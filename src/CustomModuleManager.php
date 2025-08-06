@@ -36,7 +36,6 @@ declare(strict_types=1);
 namespace Jefferson49\Webtrees\Module\CustomModuleManager;
 
 use Fig\Http\Message\RequestMethodInterface;
-use Fig\Http\Message\StatusCodeInterface;
 use Fisharebest\Localization\Translation;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\FlashMessages;
@@ -58,6 +57,7 @@ use Fisharebest\Webtrees\Session;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Webtrees;
+use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
 use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
@@ -67,9 +67,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleInformationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardStep;
-use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -290,8 +288,8 @@ class CustomModuleManager extends AbstractModule implements
                     //Get latest release from GitHub
                     return GithubService::getLatestReleaseTag(self::GITHUB_REPO, $this->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, ''));
                 }
-                catch (GuzzleException $ex) {
-                    // Can't connect to the GitHub?
+                catch (GithubCommunicationError $ex) {
+                    // Can't connect to GitHub?
                     if (!boolval($this->getPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '0'))) {
                         FlashMessages::addMessage(I18N::translate('Communication error with %s', GithubModuleUpdate::NAME), 'danger');
 
