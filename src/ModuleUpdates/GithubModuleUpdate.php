@@ -34,7 +34,7 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Services\ModuleService;
-use GuzzleHttp\Exception\GuzzleException;
+use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
 use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
@@ -145,7 +145,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         try {
             $download_url = GithubService::downloadUrl($this->github_repo, $version, $this->tag_prefix, $github_api_token);
         } 
-        catch (GuzzleException $ex) {
+        catch (GithubCommunicationError $ex) {
             // Can't connect to GitHub?
             $message =  I18N::translate('Communication error with %s', $this->name()) . ': ' . 
                         I18N::translate('Cannot retrieve download URL.') . "\n" .
@@ -211,7 +211,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             try {
                 return GithubService::getLatestReleaseTag($this->github_repo, $github_api_token);
             } 
-            catch (GuzzleException $ex) {
+            catch (GithubCommunicationError $ex) {
                 // Can't connect to GitHub? 
                 if (!boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '0'))) {
                     FlashMessages::addMessage(I18N::translate('Communication error with %s', self::NAME), 'danger');
