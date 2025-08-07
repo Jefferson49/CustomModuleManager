@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2025-08-05 19:05+0200\n"
-"PO-Revision-Date: 2025-08-05 19:06+0200\n"
+"POT-Creation-Date: 2025-08-07 17:57+0200\n"
+"PO-Revision-Date: 2025-08-07 17:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,34 +15,34 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:209
+#: src/CustomModuleManager.php:207
 msgid "Custom Module Manager"
 msgstr "Management von Erweiterungsmodulen"
 
-#: src/CustomModuleManager.php:222
+#: src/CustomModuleManager.php:220
 msgid "A custom module to manage webtrees custom modules."
 msgstr "Ein Erweiterungsmodul zum Verwalten von webtrees-Erweiterungsmodulen."
 
-#: src/CustomModuleManager.php:296 src/ModuleUpdates/GithubModuleUpdate.php:150
+#: src/CustomModuleManager.php:294 src/ModuleUpdates/GithubModuleUpdate.php:150
 #: src/ModuleUpdates/GithubModuleUpdate.php:217
 #, php-format
 msgid "Communication error with %s"
 msgstr "Kommunikationsfehler mit %s"
 
-#: src/CustomModuleManager.php:477
+#: src/CustomModuleManager.php:475
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:523
+#: src/CustomModuleManager.php:521
 msgid "Rollback Custom Module Update"
 msgstr "Aktualisierung des Erweiterungsmoduls rückgängig machen"
 
-#: src/CustomModuleManager.php:524
+#: src/CustomModuleManager.php:522
 msgid "Rollback"
 msgstr "Rückgängig machen"
 
-#: src/CustomModuleManager.php:551
+#: src/CustomModuleManager.php:549
 #, php-format
 msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
@@ -51,7 +51,7 @@ msgstr ""
 "Die Einstellungen für das Erweiterungsmodul \"%s\" wurden für die neue Modul-"
 "Version %s aktualisiert."
 
-#: src/CustomModuleManager.php:583
+#: src/CustomModuleManager.php:581
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -64,7 +64,7 @@ msgstr ""
 "des Moduls %s wird dringend empfohlen, das Modul \"%s\" zu deaktivieren, "
 "weil die identische Funktion ebenfalls im Modul %s integriert ist."
 
-#: src/CustomModuleManager.php:588
+#: src/CustomModuleManager.php:586
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -77,7 +77,7 @@ msgstr ""
 "View \"%s\" registriert haben. Es wird dringend empfohlen eines der beiden "
 "Module zu deaktivieren."
 
-#: src/CustomModuleManager.php:612
+#: src/CustomModuleManager.php:610
 #, php-format
 msgid ""
 "The custom module view \"%s\" is not registered as replacement for the "
@@ -106,7 +106,7 @@ msgstr ""
 msgid "Cannot retrieve download URL."
 msgstr "Die Download-URL kann nicht abgerufen werden."
 
-#: src/RequestHandlers/CustomModuleUpdatePage.php:73
+#: src/RequestHandlers/CustomModuleUpdatePage.php:78
 msgid "Custom Module Updates"
 msgstr "Aktualisierung von Erweiterungsmodulen"
 
@@ -261,7 +261,7 @@ msgid "Documentation"
 msgstr "Dokumentation"
 
 #: resources/views/modals/module_information.phtml:93
-#: resources/views/module_update.phtml:87
+#: resources/views/module_update.phtml:94
 msgid "Update Service"
 msgstr "Aktualisierungs-Dienst"
 
@@ -270,12 +270,12 @@ msgid "Module folder"
 msgstr "Modul-Ordner"
 
 #: resources/views/modals/module_information.phtml:103
-#: resources/views/module_update.phtml:85
+#: resources/views/module_update.phtml:92
 msgid "Current Version"
 msgstr "Aktuelle Version"
 
 #: resources/views/modals/module_information.phtml:108
-#: resources/views/module_update.phtml:86
+#: resources/views/module_update.phtml:93
 msgid "Latest Version"
 msgstr "Neueste Version"
 
@@ -292,7 +292,17 @@ msgstr "GitHub-Repository"
 msgid "Module Usage"
 msgstr "Modul-Verwendung"
 
-#: resources/views/module_update.phtml:53
+#: resources/views/module_update.phtml:57
+#, php-format
+msgid ""
+"A new version of \"%s\" is available. It is recommended to upgrade to the "
+"latest version before other custom modules are installed/upgradeed."
+msgstr ""
+"Eine neue Version von \"%s\" ist verfügbar. Es wird empfohlen, auf die "
+"neueste Version zu aktualisieren bevor andere Erweiterungsmodule installiert/"
+"aktualisiert werden."
+
+#: resources/views/module_update.phtml:60
 msgid ""
 "Typically, custom modules versions are updated every 24 hours. You can check "
 "if later versions are available."
@@ -300,41 +310,41 @@ msgstr ""
 "Die Versionen von Erweiterungsmodulen werden in der Regel alle 24 Stunden "
 "aktualisiert. Sie können prüfen, ob neuere Versionen verfügbar sind."
 
-#: resources/views/module_update.phtml:76
+#: resources/views/module_update.phtml:83
 msgid "Module Updates"
 msgstr "Aktualisierungen für Module"
 
-#: resources/views/module_update.phtml:83
+#: resources/views/module_update.phtml:90
 msgid "Folder (within modules_v4)"
 msgstr "Ordner (in modules_v4)"
 
-#: resources/views/module_update.phtml:98
-#: resources/views/module_update.phtml:221
+#: resources/views/module_update.phtml:105
+#: resources/views/module_update.phtml:228
 msgid "not installed"
 msgstr "nicht installiert"
 
-#: resources/views/module_update.phtml:102
+#: resources/views/module_update.phtml:109
 msgid "enabled"
 msgstr "aktiviert"
 
-#: resources/views/module_update.phtml:104
+#: resources/views/module_update.phtml:111
 msgid "disabled"
 msgstr "deaktiviert"
 
-#: resources/views/module_update.phtml:120
-#: resources/views/module_update.phtml:141
+#: resources/views/module_update.phtml:127
+#: resources/views/module_update.phtml:148
 msgid "not received"
 msgstr "nicht empfangen"
 
-#: resources/views/module_update.phtml:123
+#: resources/views/module_update.phtml:130
 msgid "not available"
 msgstr "nicht verfügbar"
 
-#: resources/views/module_update.phtml:220
+#: resources/views/module_update.phtml:227
 msgid "Update module"
 msgstr "Modul aktualisieren"
 
-#: resources/views/module_update.phtml:223
+#: resources/views/module_update.phtml:230
 msgid "Install module"
 msgstr "Modul installieren"
 

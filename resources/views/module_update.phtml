@@ -22,6 +22,8 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateSe
 
 /**
  * @var string     $title
+ * @var string     $cmm_title
+ * @var bool       $cmm_update
  * @var bool       $runs_with_webtrees_version
  * @var bool       $php_extension_zip_missing
  * @var Collection $custom_modules
@@ -50,6 +52,11 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
         'runs_with_webtrees_version' => $runs_with_webtrees_version,
         'php_extension_zip_missing'  => $php_extension_zip_missing,
 ]) ?>
+
+<?php if ($cmm_update) : ?>
+    <div class="alert alert-warning" role="alert" style="white-space: pre-wrap;"><?= I18N::translate('A new version of "%s" is available. It is recommended to upgrade to the latest version before other custom modules are installed/upgradeed.', $cmm_title) ?></div>
+<?php endif ?>
+
 <?= I18N::translate('Typically, custom modules versions are updated every 24 hours. You can check if later versions are available.') ?><?= view('icons/spacer') ?></div><a href="<?= e(route(CustomModuleUpdatePage::class, [
         'fetch_latest' => true,
     ])) ?>" type="submit" class="btn btn-primary">

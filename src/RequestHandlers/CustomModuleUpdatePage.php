@@ -39,6 +39,8 @@ use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Validator;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -62,7 +64,12 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
 
         $this->layout = 'layouts/administration';
         
-        $module_service = New ModuleService();
+        $module_service        = New ModuleService();
+        /** @var AbstractModuleUpdate $module_update_service To avoid IDE warnings */
+        $module_update_service = CustomModuleUpdateFactory::make(CustomModuleManager::activeModuleName());
+        $current_cmm_version   = $module_update_service->customModuleVersion();
+        $latest_cmm_version    = $module_update_service->customModuleLatestVersion(true);
+        $cmm_update            = CustomModuleManager::versionCompare($latest_cmm_version, $current_cmm_version);
 
         //If a specific switch is turned on, we generate default titles and descriptions.
         if (CustomModuleManager::GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS) {
@@ -71,6 +78,8 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::module_update', [
             'title'                      => I18N::translate('Custom Module Updates'),
+            'cmm_title'                  => $module_update_service->title(),
+            'cmm_update'                 => $cmm_update,
             'runs_with_webtrees_version' => CustomModuleManager::runsWithInstalledWebtreesVersion(),
             'php_extension_zip_missing'  => !extension_loaded('zip'),
             'module_names'               => ModuleUpdateServiceConfiguration::getModuleNames(),
