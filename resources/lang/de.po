@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2025-08-07 17:57+0200\n"
-"PO-Revision-Date: 2025-08-07 17:58+0200\n"
+"POT-Creation-Date: 2025-08-07 21:01+0200\n"
+"PO-Revision-Date: 2025-08-07 21:02+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -106,7 +106,7 @@ msgstr ""
 msgid "Cannot retrieve download URL."
 msgstr "Die Download-URL kann nicht abgerufen werden."
 
-#: src/RequestHandlers/CustomModuleUpdatePage.php:78
+#: src/RequestHandlers/CustomModuleUpdatePage.php:80
 msgid "Custom Module Updates"
 msgstr "Aktualisierung von Erweiterungsmodulen"
 
@@ -296,7 +296,7 @@ msgstr "Modul-Verwendung"
 #, php-format
 msgid ""
 "A new version of \"%s\" is available. It is recommended to upgrade to the "
-"latest version before other custom modules are installed/upgradeed."
+"latest version before other custom modules are installed/upgraded."
 msgstr ""
 "Eine neue Version von \"%s\" ist verfügbar. Es wird empfohlen, auf die "
 "neueste Version zu aktualisieren bevor andere Erweiterungsmodule installiert/"
@@ -414,7 +414,7 @@ msgid ""
 "Using a GitHub API token is recommended, if GitHub communication errors occur"
 msgstr ""
 "Die Verwendung eines GitHub-API Tokens wird empfohlen, wenn GitHub-"
-"Kommunikationsfehler auftreten."
+"Kommunikationsfehler auftreten"
 
 #, fuzzy
 #~| msgid "Update Service"

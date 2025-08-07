@@ -54,7 +54,7 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
 ]) ?>
 
 <?php if ($cmm_update) : ?>
-    <div class="alert alert-warning" role="alert" style="white-space: pre-wrap;"><?= I18N::translate('A new version of "%s" is available. It is recommended to upgrade to the latest version before other custom modules are installed/upgradeed.', $cmm_title) ?></div>
+    <div class="alert alert-warning" role="alert" style="white-space: pre-wrap;"><?= I18N::translate('A new version of "%s" is available. It is recommended to upgrade to the latest version before other custom modules are installed/upgraded.', $cmm_title) ?></div>
 <?php endif ?>
 
 <?= I18N::translate('Typically, custom modules versions are updated every 24 hours. You can check if later versions are available.') ?><?= view('icons/spacer') ?></div><a href="<?= e(route(CustomModuleUpdatePage::class, [
