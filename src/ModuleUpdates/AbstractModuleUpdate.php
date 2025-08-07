@@ -302,9 +302,6 @@ abstract class AbstractModuleUpdate
     public function testModuleInstallation(): string
     {
         $module_names = $this->getModuleNamesToUpdate();
-        $false_errors = [
-            'Cannot register the default namespace',
-        ];
 
         foreach ($module_names as $module_name => $standard_module_name) {
 
@@ -317,20 +314,9 @@ abstract class AbstractModuleUpdate
                 //Try to load module
                 $module = include_once $filename;
 
-                //Try to boot the module
-                $module->boot();
-                
             } catch (Throwable $exception) {
                 //Code from Fisharebest\Webtrees\Services\ModuleService
                 $message = 'Fatal error in module: ' . $module_name . '<br>' . $exception;
-
-                //If we identify a false error, we reset the error message
-                foreach ($false_errors as $false_error) {
-                    if (strpos($exception->getMessage(), $false_error) !== false) {
-                        $message = '';
-                        break;
-                    }
-                }
                 return $message;
             }
         }
