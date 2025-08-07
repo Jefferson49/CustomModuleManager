@@ -6,7 +6,7 @@
         }
     ],
     "require": {
-        "jefferson49/webtrees-common": ">=1.2.12"
+        "jefferson49/webtrees-common": ">=1.2.13"
     },
     "replace": {
     }    
