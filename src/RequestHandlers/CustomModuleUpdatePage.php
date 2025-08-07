@@ -69,7 +69,7 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
         $module_update_service = CustomModuleUpdateFactory::make(CustomModuleManager::activeModuleName());
         $current_cmm_version   = $module_update_service->customModuleVersion();
         $latest_cmm_version    = $module_update_service->customModuleLatestVersion(true);
-        $cmm_update            = CustomModuleManager::versionCompare($latest_cmm_version, $current_cmm_version);
+        $cmm_update            = CustomModuleManager::versionCompare($latest_cmm_version, $current_cmm_version) > 0;
 
         //If a specific switch is turned on, we generate default titles and descriptions.
         if (CustomModuleManager::GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS) {

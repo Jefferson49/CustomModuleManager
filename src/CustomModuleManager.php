@@ -754,9 +754,9 @@ class CustomModuleManager extends AbstractModule implements
      * @param string $version1,
      * @param string $version2,
      * 
-     * @return int|bool
+     * @return int Returns -1 if the first version is lower than the second, 0 if they are equal, and 1 if the second is lower
      */
-    public static function versionCompare(string $version1, $version2): int|bool
+    public static function versionCompare(string $version1, $version2): int
     {
         return version_compare(self::normalizeVersion($version1), self::normalizeVersion($version2));
     }      
