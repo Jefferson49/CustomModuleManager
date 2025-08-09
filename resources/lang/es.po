@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager for webtrees 2\n"
-"POT-Creation-Date: 2025-08-02 12:55+0200\n"
+"POT-Creation-Date: 2025-08-09 11:58+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: Bernat Josep Banyuls i Sala <bernatbanyuls@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -14,36 +14,36 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:212
+#: src/CustomModuleManager.php:207
 msgid "Custom Module Manager"
 msgstr "Administrador de módulos personalizados"
 
-#: src/CustomModuleManager.php:225
+#: src/CustomModuleManager.php:220
 msgid "A custom module to manage webtrees custom modules."
 msgstr ""
 "Un módulo personalizado para administrar módulos personalizados de árboles "
 "web."
 
-#: src/CustomModuleManager.php:311 src/ModuleUpdates/GithubModuleUpdate.php:195
-#: src/ModuleUpdates/GithubModuleUpdate.php:284
+#: src/CustomModuleManager.php:294 src/ModuleUpdates/GithubModuleUpdate.php:150
+#: src/ModuleUpdates/GithubModuleUpdate.php:217
 #, php-format
 msgid "Communication error with %s"
 msgstr "Error de comunicación con %s"
 
-#: src/CustomModuleManager.php:492
+#: src/CustomModuleManager.php:475
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Se actualizaron las preferencias para el módulo \"%s\"."
 
-#: src/CustomModuleManager.php:538
+#: src/CustomModuleManager.php:521
 msgid "Rollback Custom Module Update"
 msgstr "Revertir actualización de módulo personalizado"
 
-#: src/CustomModuleManager.php:539
+#: src/CustomModuleManager.php:522
 msgid "Rollback"
 msgstr "Revertir"
 
-#: src/CustomModuleManager.php:566
+#: src/CustomModuleManager.php:549
 #, php-format
 msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
@@ -52,13 +52,8 @@ msgstr ""
 "Las preferencias del módulo personalizado \"%s\" se actualizaron "
 "correctamente a la nueva versión del módulo %s."
 
-#: src/CustomModuleManager.php:598
-#, fuzzy, php-format
-#| msgid ""
-#| "The custom module \"%s\" is activated in parallel to the %s custom "
-#| "module. This can lead to unintended behavior. If using the %s module, it "
-#| "is strongly recommended to deactivate the \"%s\" module, because the "
-#| "identical functionality is also integrated in the %s module."
+#: src/CustomModuleManager.php:581
+#, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
 "This can lead to unintended behavior. If using the %s module, it is strongly "
@@ -66,11 +61,11 @@ msgid ""
 "functionality is also integrated in the %s module."
 msgstr ""
 "El módulo personalizado \"%s\" se activa en paralelo al módulo personalizado "
-"%s. Esto puede provocar un comportamiento no deseado. Si se utiliza el "
-"módulo %s, se recomienda encarecidamente desactivarlo, ya que este último "
-"también integra la misma funcionalidad."
+"%s. Esto puede dar lugar a comportamientos no deseados. Si se utiliza el "
+"módulo %s, se recomienda encarecidamente desactivar el módulo \"%s\", ya que "
+"la funcionalidad idéntica también está integrada en el módulo %s."
 
-#: src/CustomModuleManager.php:603
+#: src/CustomModuleManager.php:586
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -83,7 +78,7 @@ msgstr ""
 "ambos módulos han registrado la misma vista personalizada \"%s\". Se "
 "recomienda encarecidamente desactivar uno de los módulos."
 
-#: src/CustomModuleManager.php:627
+#: src/CustomModuleManager.php:610
 #, php-format
 msgid ""
 "The custom module view \"%s\" is not registered as replacement for the "
@@ -98,7 +93,7 @@ msgstr ""
 "comportamiento inesperado. Se recomienda encarecidamente desactivar uno de "
 "los módulos. La ruta de la vista paralela es: %s"
 
-#: src/ModuleUpdates/GithubModuleUpdate.php:81
+#: src/ModuleUpdates/GithubModuleUpdate.php:80
 #: src/ModuleUpdates/UrlModuleUpdate.php:70
 #, php-format
 msgid ""
@@ -108,11 +103,11 @@ msgstr ""
 "No se pudo crear el servicio de actualización %s. Falta el parámetro de "
 "configuración \"%s\"."
 
-#: src/ModuleUpdates/GithubModuleUpdate.php:196
+#: src/ModuleUpdates/GithubModuleUpdate.php:151
 msgid "Cannot retrieve download URL."
 msgstr "No se puede recuperar la URL de descarga."
 
-#: src/RequestHandlers/CustomModuleUpdatePage.php:73
+#: src/RequestHandlers/CustomModuleUpdatePage.php:80
 msgid "Custom Module Updates"
 msgstr "Actualizaciones de módulos personalizados"
 
@@ -120,19 +115,23 @@ msgstr "Actualizaciones de módulos personalizados"
 msgid "Module Information"
 msgstr "Información del módulo"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:98
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:94
+msgid "Could not identify a suitable module upgrade service for custom module"
+msgstr ""
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:102
 msgid "Error during retrieving download URL"
 msgstr "Error al recuperar la URL de descarga"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:135
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:139
 msgid "Check version..."
 msgstr "Comprobar versión..."
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:136
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:140
 msgid "Create temporary folders…"
 msgstr "Crear carpetas temporales…"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:141
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:145
 msgid "Backup…"
 msgstr "Respaldo…"
 
@@ -164,6 +163,8 @@ msgid ""
 "This custom module can only be used with a webtrees version greater or equal "
 "than %s"
 msgstr ""
+"Este módulo personalizado sólo puede utilizarse con una versión de webtrees "
+"mayor o igual que %s"
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:229
 msgid ""
@@ -171,6 +172,9 @@ msgid ""
 "module, your PHP installation needs to include the \"zip\" extension. You "
 "have to activate the extension in your \"php.ini\" file."
 msgstr ""
+"La extensión PHP \"zip\" no está instalada. Para poder utilizar el módulo "
+"personalizado, su instalación de PHP debe incluir la extensión \"zip\". "
+"Tiene que activar la extensión en su archivo \"php.ini\"."
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:237
 #, php-format
@@ -245,43 +249,50 @@ msgstr "Intente revertir manualmente eliminando la carpeta \"/modules_v4/%s\"."
 msgid "continue (reload)"
 msgstr "continuar (recargar)"
 
-#: resources/views/modals/module_information.phtml:66
+#: resources/views/modals/module_information.phtml:62
 msgid "Documentation"
 msgstr "Documentación"
 
-#: resources/views/modals/module_information.phtml:97
-#: resources/views/module_update.phtml:86
+#: resources/views/modals/module_information.phtml:93
+#: resources/views/module_update.phtml:94
 msgid "Update Service"
 msgstr "Servicio de actualización"
 
-#: resources/views/modals/module_information.phtml:102
+#: resources/views/modals/module_information.phtml:98
 msgid "Module folder"
 msgstr "Carpeta del módulo"
 
-#: resources/views/modals/module_information.phtml:107
-#: resources/views/module_update.phtml:84
+#: resources/views/modals/module_information.phtml:103
+#: resources/views/module_update.phtml:92
 msgid "Current Version"
 msgstr "Versión actual"
 
-#: resources/views/modals/module_information.phtml:112
-#: resources/views/module_update.phtml:85
+#: resources/views/modals/module_information.phtml:108
+#: resources/views/module_update.phtml:93
 msgid "Latest Version"
 msgstr "Última versión"
 
-#: resources/views/modals/module_information.phtml:117
+#: resources/views/modals/module_information.phtml:113
 msgid "⚶ Vesta homepage"
 msgstr "⚶ Página de inicio de Vesta"
 
-#: resources/views/modals/module_information.phtml:126
+#: resources/views/modals/module_information.phtml:122
 msgid "GitHub repository"
-msgstr ""
+msgstr "Repositorio GitHub"
 
-#: resources/views/modals/module_information.phtml:162
+#: resources/views/modals/module_information.phtml:158
 #: resources/views/module_usage.phtml:38
 msgid "Module Usage"
 msgstr "Uso del módulo"
 
-#: resources/views/module_update.phtml:52
+#: resources/views/module_update.phtml:57
+#, php-format
+msgid ""
+"A new version of \"%s\" is available. It is recommended to upgrade to the "
+"latest version before other custom modules are installed/upgraded."
+msgstr ""
+
+#: resources/views/module_update.phtml:60
 msgid ""
 "Typically, custom modules versions are updated every 24 hours. You can check "
 "if later versions are available."
@@ -289,41 +300,41 @@ msgstr ""
 "Normalmente, las versiones de los módulos personalizados se actualizan cada "
 "24 horas. Puedes comprobar si hay versiones posteriores disponibles."
 
-#: resources/views/module_update.phtml:75
+#: resources/views/module_update.phtml:83
 msgid "Module Updates"
 msgstr "Actualizaciones del módulo"
 
-#: resources/views/module_update.phtml:82
+#: resources/views/module_update.phtml:90
 msgid "Folder (within modules_v4)"
 msgstr "Carpeta (dentro de modules_v4)"
 
-#: resources/views/module_update.phtml:97
-#: resources/views/module_update.phtml:224
+#: resources/views/module_update.phtml:105
+#: resources/views/module_update.phtml:228
 msgid "not installed"
 msgstr "no instalado"
 
-#: resources/views/module_update.phtml:101
+#: resources/views/module_update.phtml:109
 msgid "enabled"
 msgstr "activado"
 
-#: resources/views/module_update.phtml:103
+#: resources/views/module_update.phtml:111
 msgid "disabled"
 msgstr "desactivado"
 
-#: resources/views/module_update.phtml:118
-#: resources/views/module_update.phtml:139
+#: resources/views/module_update.phtml:127
+#: resources/views/module_update.phtml:148
 msgid "not received"
 msgstr "no recibido"
 
-#: resources/views/module_update.phtml:121
+#: resources/views/module_update.phtml:130
 msgid "not available"
 msgstr "No disponible"
 
-#: resources/views/module_update.phtml:223
+#: resources/views/module_update.phtml:227
 msgid "Update module"
 msgstr "Módulo de actualización"
 
-#: resources/views/module_update.phtml:226
+#: resources/views/module_update.phtml:230
 msgid "Install module"
 msgstr "Instalar módulo"
 
@@ -333,11 +344,11 @@ msgstr "Administrar módulos personalizados"
 
 #: resources/views/settings.phtml:53
 msgid "Settings for List Menu"
-msgstr ""
+msgstr "Configuración del menú Lista"
 
 #: resources/views/settings.phtml:58
 msgid "Show menu item in list menu"
-msgstr ""
+msgstr "Mostrar elemento de menú en el menú de lista"
 
 #: resources/views/settings.phtml:63
 #, php-format
@@ -345,6 +356,8 @@ msgid ""
 "If this option is selected, a link to the page \"%s\" will be shown as a "
 "list menu item."
 msgstr ""
+"Si se selecciona esta opción, se mostrará un enlace a la página \"%s\" como "
+"elemento del menú de la lista."
 
 #: resources/views/settings.phtml:70
 msgid "Selection of the custom modules to show"
@@ -370,7 +383,7 @@ msgstr ""
 
 #: resources/views/settings.phtml:103 resources/views/settings.phtml:109
 msgid "GitHub API token"
-msgstr ""
+msgstr "Identificador de la API de GitHub"
 
 #: resources/views/settings.phtml:105
 msgid ""
@@ -380,8 +393,16 @@ msgid ""
 "allowed frequency of GitHub API calls, GitHub requires to use a GitHub API "
 "token."
 msgstr ""
+"El módulo personalizado hace un uso intensivo de la API de GitHub para "
+"recuperar las versiones de los módulos y las URL de descarga. Sin embargo, "
+"GitHub limita la frecuencia de las llamadas a la API para una determinada "
+"dirección IP. Para aumentar significativamente la frecuencia permitida de "
+"llamadas a la API de GitHub, GitHub requiere el uso de un token de API de "
+"GitHub."
 
 #: resources/views/settings.phtml:106
 msgid ""
 "Using a GitHub API token is recommended, if GitHub communication errors occur"
 msgstr ""
+"Si se producen errores de comunicación con GitHub, se recomienda utilizar un "
+"token de la API de GitHub"

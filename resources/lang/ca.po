@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager for webtrees 2\n"
-"POT-Creation-Date: 2025-08-02 12:54+0200\n"
+"POT-Creation-Date: 2025-08-09 11:59+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: Bernat Josep Banyuls i Sala <bernatbanyuls@gmail.com>\n"
 "Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -14,35 +14,35 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:212
+#: src/CustomModuleManager.php:207
 msgid "Custom Module Manager"
 msgstr "Gestor de mòduls personalitzats"
 
-#: src/CustomModuleManager.php:225
+#: src/CustomModuleManager.php:220
 msgid "A custom module to manage webtrees custom modules."
 msgstr ""
 "Un mòdul personalitzat per gestionar els mòduls personalitzats d'arbres web."
 
-#: src/CustomModuleManager.php:311 src/ModuleUpdates/GithubModuleUpdate.php:195
-#: src/ModuleUpdates/GithubModuleUpdate.php:284
+#: src/CustomModuleManager.php:294 src/ModuleUpdates/GithubModuleUpdate.php:150
+#: src/ModuleUpdates/GithubModuleUpdate.php:217
 #, php-format
 msgid "Communication error with %s"
 msgstr "Error de comunicació amb %s"
 
-#: src/CustomModuleManager.php:492
+#: src/CustomModuleManager.php:475
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "S'han actualitzat les preferències del mòdul \"%s\"."
 
-#: src/CustomModuleManager.php:538
+#: src/CustomModuleManager.php:521
 msgid "Rollback Custom Module Update"
 msgstr "Revertir l'actualització del mòdul personalitzat"
 
-#: src/CustomModuleManager.php:539
+#: src/CustomModuleManager.php:522
 msgid "Rollback"
 msgstr "Tornar enrere"
 
-#: src/CustomModuleManager.php:566
+#: src/CustomModuleManager.php:549
 #, php-format
 msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
@@ -51,7 +51,7 @@ msgstr ""
 "Les preferències per al mòdul personalitzat \"%s\" s'han actualitzat amb "
 "èxit a la nova versió del mòdul %s."
 
-#: src/CustomModuleManager.php:598
+#: src/CustomModuleManager.php:581
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -64,7 +64,7 @@ msgstr ""
 "%s, es recomana desactivar el mòdul \"%s\", ja que la funcionalitat idèntica "
 "també està integrada al mòdul %s."
 
-#: src/CustomModuleManager.php:603
+#: src/CustomModuleManager.php:586
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -77,7 +77,7 @@ msgstr ""
 "registrat la mateixa visualització personalitzada \"%s\". Es recomana "
 "desactivar un dels mòduls."
 
-#: src/CustomModuleManager.php:627
+#: src/CustomModuleManager.php:610
 #, php-format
 msgid ""
 "The custom module view \"%s\" is not registered as replacement for the "
@@ -92,7 +92,7 @@ msgstr ""
 "pot conduir a un comportament no desitjat. Es recomana desactivar un dels "
 "mòduls. El camí de la vista paral·és: %s"
 
-#: src/ModuleUpdates/GithubModuleUpdate.php:81
+#: src/ModuleUpdates/GithubModuleUpdate.php:80
 #: src/ModuleUpdates/UrlModuleUpdate.php:70
 #, php-format
 msgid ""
@@ -102,11 +102,11 @@ msgstr ""
 "No s'ha pogut crear el servei d'actualització %s. Falta el paràmetre de "
 "configuració \"%s\"."
 
-#: src/ModuleUpdates/GithubModuleUpdate.php:196
+#: src/ModuleUpdates/GithubModuleUpdate.php:151
 msgid "Cannot retrieve download URL."
 msgstr "No es pot recuperar l'URL de descàrrega."
 
-#: src/RequestHandlers/CustomModuleUpdatePage.php:73
+#: src/RequestHandlers/CustomModuleUpdatePage.php:80
 msgid "Custom Module Updates"
 msgstr "Actualitzacions de mòduls personalitzats"
 
@@ -114,19 +114,23 @@ msgstr "Actualitzacions de mòduls personalitzats"
 msgid "Module Information"
 msgstr "Informació del mòdul"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:98
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:94
+msgid "Could not identify a suitable module upgrade service for custom module"
+msgstr ""
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:102
 msgid "Error during retrieving download URL"
 msgstr "Error en recuperar l'URL de descàrrega"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:135
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:139
 msgid "Check version..."
 msgstr "Comprova la versió..."
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:136
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:140
 msgid "Create temporary folders…"
 msgstr "Crea carpetes temporals..."
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:141
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:145
 msgid "Backup…"
 msgstr "Reserva..."
 
@@ -158,6 +162,8 @@ msgid ""
 "This custom module can only be used with a webtrees version greater or equal "
 "than %s"
 msgstr ""
+"Aquest mòdul personalitzat només es pot utilitzar amb una versió de webtrees "
+"superior o igual a %s"
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:229
 msgid ""
@@ -165,6 +171,9 @@ msgid ""
 "module, your PHP installation needs to include the \"zip\" extension. You "
 "have to activate the extension in your \"php.ini\" file."
 msgstr ""
+"L'extensió PHP \"zip\" no està instal·lada. Per utilitzar el mòdul "
+"personalitzat, la instal·lació de PHP ha d'incloure l'extensió \"zip\". Heu "
+"d'activar l'extensió al fitxer \"php.ini\"."
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:237
 #, php-format
@@ -239,43 +248,50 @@ msgstr "Proveu de revertir manualment suprimint la carpeta \"/modules_v4/%s\""
 msgid "continue (reload)"
 msgstr "continuar (recarregar)"
 
-#: resources/views/modals/module_information.phtml:66
+#: resources/views/modals/module_information.phtml:62
 msgid "Documentation"
 msgstr "Documentació"
 
-#: resources/views/modals/module_information.phtml:97
-#: resources/views/module_update.phtml:86
+#: resources/views/modals/module_information.phtml:93
+#: resources/views/module_update.phtml:94
 msgid "Update Service"
 msgstr "Servei d'actualització"
 
-#: resources/views/modals/module_information.phtml:102
+#: resources/views/modals/module_information.phtml:98
 msgid "Module folder"
 msgstr "Carpeta del mòdul"
 
-#: resources/views/modals/module_information.phtml:107
-#: resources/views/module_update.phtml:84
+#: resources/views/modals/module_information.phtml:103
+#: resources/views/module_update.phtml:92
 msgid "Current Version"
 msgstr "Versió actual"
 
-#: resources/views/modals/module_information.phtml:112
-#: resources/views/module_update.phtml:85
+#: resources/views/modals/module_information.phtml:108
+#: resources/views/module_update.phtml:93
 msgid "Latest Version"
 msgstr "Última versió"
 
-#: resources/views/modals/module_information.phtml:117
+#: resources/views/modals/module_information.phtml:113
 msgid "⚶ Vesta homepage"
 msgstr "⚶ Pàgina d'inici de Vesta"
 
-#: resources/views/modals/module_information.phtml:126
+#: resources/views/modals/module_information.phtml:122
 msgid "GitHub repository"
-msgstr ""
+msgstr "Repositori de GitHub"
 
-#: resources/views/modals/module_information.phtml:162
+#: resources/views/modals/module_information.phtml:158
 #: resources/views/module_usage.phtml:38
 msgid "Module Usage"
 msgstr "Ús del mòdul"
 
-#: resources/views/module_update.phtml:52
+#: resources/views/module_update.phtml:57
+#, php-format
+msgid ""
+"A new version of \"%s\" is available. It is recommended to upgrade to the "
+"latest version before other custom modules are installed/upgraded."
+msgstr ""
+
+#: resources/views/module_update.phtml:60
 msgid ""
 "Typically, custom modules versions are updated every 24 hours. You can check "
 "if later versions are available."
@@ -283,41 +299,41 @@ msgstr ""
 "Normalment, les versions dels mòduls personalitzats s'actualitzen cada 24 "
 "hores. Podeu comprovar si hi ha versions posteriors disponibles."
 
-#: resources/views/module_update.phtml:75
+#: resources/views/module_update.phtml:83
 msgid "Module Updates"
 msgstr "Actualitzacions de mòduls"
 
-#: resources/views/module_update.phtml:82
+#: resources/views/module_update.phtml:90
 msgid "Folder (within modules_v4)"
 msgstr "Carpeta (dins del modules_v4)"
 
-#: resources/views/module_update.phtml:97
-#: resources/views/module_update.phtml:224
+#: resources/views/module_update.phtml:105
+#: resources/views/module_update.phtml:228
 msgid "not installed"
 msgstr "no instal·lat"
 
-#: resources/views/module_update.phtml:101
+#: resources/views/module_update.phtml:109
 msgid "enabled"
 msgstr "Permès"
 
-#: resources/views/module_update.phtml:103
+#: resources/views/module_update.phtml:111
 msgid "disabled"
 msgstr "discapacitat"
 
-#: resources/views/module_update.phtml:118
-#: resources/views/module_update.phtml:139
+#: resources/views/module_update.phtml:127
+#: resources/views/module_update.phtml:148
 msgid "not received"
 msgstr "no rebut"
 
-#: resources/views/module_update.phtml:121
+#: resources/views/module_update.phtml:130
 msgid "not available"
 msgstr "no disponible"
 
-#: resources/views/module_update.phtml:223
+#: resources/views/module_update.phtml:227
 msgid "Update module"
 msgstr "Mòdul d'actualització"
 
-#: resources/views/module_update.phtml:226
+#: resources/views/module_update.phtml:230
 msgid "Install module"
 msgstr "Mòdul d'instal·lació"
 
@@ -327,11 +343,11 @@ msgstr "Gestionar els mòduls personalitzats"
 
 #: resources/views/settings.phtml:53
 msgid "Settings for List Menu"
-msgstr ""
+msgstr "Configuració del menú de llista"
 
 #: resources/views/settings.phtml:58
 msgid "Show menu item in list menu"
-msgstr ""
+msgstr "Mostra l'element del menú al menú de llista"
 
 #: resources/views/settings.phtml:63
 #, php-format
@@ -339,6 +355,8 @@ msgid ""
 "If this option is selected, a link to the page \"%s\" will be shown as a "
 "list menu item."
 msgstr ""
+"Si seleccioneu aquesta opció, es mostrarà un enllaç a la pàgina \"%s\" com a "
+"element del menú de llista."
 
 #: resources/views/settings.phtml:70
 msgid "Selection of the custom modules to show"
@@ -364,7 +382,7 @@ msgstr ""
 
 #: resources/views/settings.phtml:103 resources/views/settings.phtml:109
 msgid "GitHub API token"
-msgstr ""
+msgstr "Testimoni de l'API de GitHub"
 
 #: resources/views/settings.phtml:105
 msgid ""
@@ -374,8 +392,15 @@ msgid ""
 "allowed frequency of GitHub API calls, GitHub requires to use a GitHub API "
 "token."
 msgstr ""
+"El mòdul personalitzat fa un ús intensiu de l'API de GitHub per recuperar "
+"versions de mòduls i descarregar URL. Tanmateix, GitHub limita la freqüència "
+"de les crides a l'API per a una determinada adreça IP. Per tal d'augmentar "
+"significativament la freqüència permesa de crides a l'API de GitHub, GitHub "
+"requereix utilitzar un token de l'API de GitHub."
 
 #: resources/views/settings.phtml:106
 msgid ""
 "Using a GitHub API token is recommended, if GitHub communication errors occur"
 msgstr ""
+"Es recomana utilitzar un token de l'API de GitHub si es produeixen errors de "
+"comunicació de GitHub."
