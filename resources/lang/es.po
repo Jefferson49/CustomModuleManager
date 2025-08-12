@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager for webtrees 2\n"
-"POT-Creation-Date: 2025-08-09 11:58+0200\n"
+"POT-Creation-Date: 2025-08-12 19:21+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Bernat Josep Banyuls i Sala <bernatbanyuls@gmail.com>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -14,36 +14,36 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:207
+#: src/CustomModuleManager.php:208
 msgid "Custom Module Manager"
 msgstr "Administrador de módulos personalizados"
 
-#: src/CustomModuleManager.php:220
+#: src/CustomModuleManager.php:221
 msgid "A custom module to manage webtrees custom modules."
 msgstr ""
 "Un módulo personalizado para administrar módulos personalizados de árboles "
 "web."
 
-#: src/CustomModuleManager.php:294 src/ModuleUpdates/GithubModuleUpdate.php:150
+#: src/CustomModuleManager.php:295 src/ModuleUpdates/GithubModuleUpdate.php:150
 #: src/ModuleUpdates/GithubModuleUpdate.php:217
 #, php-format
 msgid "Communication error with %s"
 msgstr "Error de comunicación con %s"
 
-#: src/CustomModuleManager.php:475
+#: src/CustomModuleManager.php:476
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Se actualizaron las preferencias para el módulo \"%s\"."
 
-#: src/CustomModuleManager.php:521
+#: src/CustomModuleManager.php:522
 msgid "Rollback Custom Module Update"
 msgstr "Revertir actualización de módulo personalizado"
 
-#: src/CustomModuleManager.php:522
+#: src/CustomModuleManager.php:523
 msgid "Rollback"
 msgstr "Revertir"
 
-#: src/CustomModuleManager.php:549
+#: src/CustomModuleManager.php:550
 #, php-format
 msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
@@ -52,7 +52,7 @@ msgstr ""
 "Las preferencias del módulo personalizado \"%s\" se actualizaron "
 "correctamente a la nueva versión del módulo %s."
 
-#: src/CustomModuleManager.php:581
+#: src/CustomModuleManager.php:582
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -65,7 +65,7 @@ msgstr ""
 "módulo %s, se recomienda encarecidamente desactivar el módulo \"%s\", ya que "
 "la funcionalidad idéntica también está integrada en el módulo %s."
 
-#: src/CustomModuleManager.php:586
+#: src/CustomModuleManager.php:587
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -78,7 +78,7 @@ msgstr ""
 "ambos módulos han registrado la misma vista personalizada \"%s\". Se "
 "recomienda encarecidamente desactivar uno de los módulos."
 
-#: src/CustomModuleManager.php:610
+#: src/CustomModuleManager.php:611
 #, php-format
 msgid ""
 "The custom module view \"%s\" is not registered as replacement for the "
@@ -118,6 +118,8 @@ msgstr "Información del módulo"
 #: src/RequestHandlers/ModuleUpgradeWizardPage.php:94
 msgid "Could not identify a suitable module upgrade service for custom module"
 msgstr ""
+"No se pudo identificar un servicio de actualización de módulo adecuado para "
+"el módulo personalizado"
 
 #: src/RequestHandlers/ModuleUpgradeWizardPage.php:102
 msgid "Error during retrieving download URL"
@@ -291,6 +293,8 @@ msgid ""
 "A new version of \"%s\" is available. It is recommended to upgrade to the "
 "latest version before other custom modules are installed/upgraded."
 msgstr ""
+"Hay una nueva versión de \"%s\" disponible. Se recomienda actualizar a la "
+"última versión antes de instalar o actualizar otros módulos personalizados."
 
 #: resources/views/module_update.phtml:60
 msgid ""

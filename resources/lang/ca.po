@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager for webtrees 2\n"
-"POT-Creation-Date: 2025-08-09 11:59+0200\n"
+"POT-Creation-Date: 2025-08-12 19:20+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Bernat Josep Banyuls i Sala <bernatbanyuls@gmail.com>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -14,35 +14,35 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:207
+#: src/CustomModuleManager.php:208
 msgid "Custom Module Manager"
 msgstr "Gestor de mòduls personalitzats"
 
-#: src/CustomModuleManager.php:220
+#: src/CustomModuleManager.php:221
 msgid "A custom module to manage webtrees custom modules."
 msgstr ""
 "Un mòdul personalitzat per gestionar els mòduls personalitzats d'arbres web."
 
-#: src/CustomModuleManager.php:294 src/ModuleUpdates/GithubModuleUpdate.php:150
+#: src/CustomModuleManager.php:295 src/ModuleUpdates/GithubModuleUpdate.php:150
 #: src/ModuleUpdates/GithubModuleUpdate.php:217
 #, php-format
 msgid "Communication error with %s"
 msgstr "Error de comunicació amb %s"
 
-#: src/CustomModuleManager.php:475
+#: src/CustomModuleManager.php:476
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "S'han actualitzat les preferències del mòdul \"%s\"."
 
-#: src/CustomModuleManager.php:521
+#: src/CustomModuleManager.php:522
 msgid "Rollback Custom Module Update"
 msgstr "Revertir l'actualització del mòdul personalitzat"
 
-#: src/CustomModuleManager.php:522
+#: src/CustomModuleManager.php:523
 msgid "Rollback"
 msgstr "Tornar enrere"
 
-#: src/CustomModuleManager.php:549
+#: src/CustomModuleManager.php:550
 #, php-format
 msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
@@ -51,7 +51,7 @@ msgstr ""
 "Les preferències per al mòdul personalitzat \"%s\" s'han actualitzat amb "
 "èxit a la nova versió del mòdul %s."
 
-#: src/CustomModuleManager.php:581
+#: src/CustomModuleManager.php:582
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -64,7 +64,7 @@ msgstr ""
 "%s, es recomana desactivar el mòdul \"%s\", ja que la funcionalitat idèntica "
 "també està integrada al mòdul %s."
 
-#: src/CustomModuleManager.php:586
+#: src/CustomModuleManager.php:587
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -77,7 +77,7 @@ msgstr ""
 "registrat la mateixa visualització personalitzada \"%s\". Es recomana "
 "desactivar un dels mòduls."
 
-#: src/CustomModuleManager.php:610
+#: src/CustomModuleManager.php:611
 #, php-format
 msgid ""
 "The custom module view \"%s\" is not registered as replacement for the "
@@ -117,6 +117,8 @@ msgstr "Informació del mòdul"
 #: src/RequestHandlers/ModuleUpgradeWizardPage.php:94
 msgid "Could not identify a suitable module upgrade service for custom module"
 msgstr ""
+"No s'ha pogut identificar un servei d'actualització de mòduls adequat per al "
+"mòdul personalitzat."
 
 #: src/RequestHandlers/ModuleUpgradeWizardPage.php:102
 msgid "Error during retrieving download URL"
@@ -290,6 +292,8 @@ msgid ""
 "A new version of \"%s\" is available. It is recommended to upgrade to the "
 "latest version before other custom modules are installed/upgraded."
 msgstr ""
+"Hi ha disponible una nova versió de \"%s\". Es recomana actualitzar a la "
+"darrera versió abans d'instal·lar/actualitzar altres mòduls personalitzats."
 
 #: resources/views/module_update.phtml:60
 msgid ""
