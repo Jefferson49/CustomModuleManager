@@ -36,6 +36,7 @@ use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Session;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
 
 
 /**
@@ -52,6 +53,8 @@ class ModuleUpdateServiceConfiguration
     //The (default) descriptions corresponding to the current language
     private static $descriptions = [];
 
+    //A list with all tag prefixes, which module use at GitHub
+    private static $tag_prefixes = [];
 
     //The configuration for the module update services
     private const MODULE_UPDATE_SERVICE_CONFIG = [
@@ -74,7 +77,7 @@ class ModuleUpdateServiceConfiguration
         '_webtrees-lantmateriet_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ekdahl/webtrees-lantmateriet', 'no_release' => true, 'default_branch' => 'main']],       
         '_webtrees-primer-theme_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ekdahl/webtrees-primer-theme', 'is_theme' => true]],
 
-        '_GVExport_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Neriderc/GVExport']],
+        '_GVExport_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Neriderc/GVExport', 'tag_prefix' => 'v']],
 
         '_webtrees-descendants-chart_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-descendants-chart']],
         '_webtrees-fan-chart_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-fan-chart']],
@@ -82,12 +85,12 @@ class ModuleUpdateServiceConfiguration
 
         '_myartjaub_ruraltheme_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jon48/webtrees-theme-rural', 'is_theme' => true]],
 
-        '_huhwt-cce_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-cce']],
-        '_huhwt-xtv_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-xtv']],
-        '_huhwt-wttam_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-wttam']],
-        '_huhwt-wtlin_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-wtlin']],
-        '_huhwt-tsm_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-tsm']],
-        '_huhwt-mtv_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-mtv']],
+        '_huhwt-cce_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-cce', 'tag_prefix' => 'v']],
+        '_huhwt-xtv_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-xtv', 'tag_prefix' => 'v']],
+        '_huhwt-wttam_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-wttam', 'tag_prefix' => 'v']],
+        '_huhwt-wtlin_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-wtlin', 'tag_prefix' => 'v']],
+        '_huhwt-tsm_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-tsm', 'tag_prefix' => 'v']],
+        '_huhwt-mtv_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-mtv', 'tag_prefix' => 'v']],
 
         '_vesta_classic_look_and_feel_'   =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_classic_laf']],
         '_vesta_clippings_cart_'          =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_clippings_cart']],
@@ -103,38 +106,38 @@ class ModuleUpdateServiceConfiguration
 
         '_sosa20_'                        =>  ['update_service' => 'UrlModuleUpdate',    'params' => ['download_url' => 'https://gustine.eu/mode_emploi/sosa/sosa20-variant-2025-06b.zip', 'documentation_url' => 'https://gustine.eu/mode_emploi/sosa.php', 'latest_version' => '2025.06.06']],
 
-        '_hh_extended_family_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/hh_extended_family']],
-        '_hh_legal_notice_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/hh_legal_notice']],
-        '_german-chancellors-presidents_' =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/german-chancellors-presidents']],
-        '_german-wars-battles-worldwide_' =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/german-wars-battles-worldwide']],
-        '_gramps-historical-facts_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/gramps-historical-facts']],
+        '_hh_extended_family_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/hh_extended_family', 'tag_prefix' => 'v']],
+        '_hh_legal_notice_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/hh_legal_notice', 'tag_prefix' => 'v']],
+        '_german-chancellors-presidents_' =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/german-chancellors-presidents', 'tag_prefix' => 'v']],
+        '_german-wars-battles-worldwide_' =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/german-wars-battles-worldwide', 'tag_prefix' => 'v']],
+        '_gramps-historical-facts_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'hartenthaler/gramps-historical-facts', 'tag_prefix' => 'v']],
 
         '_family-tree-home_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'miqrogroove/family-tree-home', 'get_latest_version_from_github' => true]],
 
-        '_ArgonLight_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => '06Games/Webtrees-ArgonLight', 'is_theme' => true]],       
+        '_ArgonLight_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => '06Games/Webtrees-ArgonLight', 'is_theme' => true]],       
         '_evang_mailsystem_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => '06Games/Webtrees-MailSystem', 'no_release' => true, 'default_branch' => 'main']],
 
-        '_webtrees-branch-statistics_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'squatteur/webtrees-branch-statistics']],       
+        '_webtrees-branch-statistics_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'squatteur/webtrees-branch-statistics', 'tag_prefix' => 'v']],       
 
         '_topola_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'PeWu/topola-webtrees']],
 
         '_mitalteli-show-xref_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'elysch/webtrees-mitalteli-show-xref']], 
         '_mitalteli-chart-family-book_'   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'elysch/webtrees-mitalteli-chart-family-book']],
 
-        '_webtrees-HTML-block-advanced_'  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'photon-flip/webtrees-HTML-block-advanced']], 
-        '_watermark-module_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'photon-flip/watermark-module']],
+        '_webtrees-HTML-block-advanced_'  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'photon-flip/webtrees-HTML-block-advanced', 'tag_prefix' => 'v']], 
+        '_watermark-module_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'photon-flip/watermark-module', 'tag_prefix' => 'v']],
 
-        '_webtrees-faces_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'UksusoFF/webtrees-faces']],   
-        '_webtrees-photos_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'UksusoFF/webtrees-photos']],
-        '_webtrees-reminder_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'UksusoFF/webtrees-reminder']],
-        '_webtrees-tree_view_full_screen_'=>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'UksusoFF/webtrees-tree_view_full_screen']],
-        '_webtrees-mdi_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'UksusoFF/webtrees-mdi']],
+        '_webtrees-faces_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'UksusoFF/webtrees-faces', 'tag_prefix' => 'v']],   
+        '_webtrees-photos_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'UksusoFF/webtrees-photos', 'tag_prefix' => 'v']],
+        '_webtrees-reminder_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'UksusoFF/webtrees-reminder', 'tag_prefix' => 'v']],
+        '_webtrees-tree_view_full_screen_'=>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'UksusoFF/webtrees-tree_view_full_screen', 'tag_prefix' => 'v']],
+        '_webtrees-mdi_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'UksusoFF/webtrees-mdi', 'tag_prefix' => 'v']],
         
-        '_jp-theme-colors_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'jpretired/jp-theme-colors', 'is_theme' => true, 'get_latest_version_from_github' => true ]],       
-        '_jp-main-menu-manual_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'jpretired/jp-main-menu-manual']],
+        '_jp-theme-colors_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'jpretired/jp-theme-colors', 'is_theme' => true, 'get_latest_version_from_github' => true , 'tag_prefix' => 'v']],       
+        '_jp-main-menu-manual_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'jpretired/jp-main-menu-manual', 'tag_prefix' => 'v']],
 
-        '_telegram_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'Tywed/telegram']],        
-        '_news-menu_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'Tywed/news-menu']],
+        '_telegram_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'Tywed/telegram', 'tag_prefix' => 'v.']],        
+        '_news-menu_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'Tywed/news-menu', 'tag_prefix' => 'v']],
 
         '_finnish-historical-facts_'      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ardhtu/finnish-historical-facts', 'no_release' => true, 'default_branch' => 'master']],
 
@@ -399,5 +402,38 @@ class ModuleUpdateServiceConfiguration
         }
 
         return;
+    }
+
+    /**
+     * Get a list with all tag prefixes used by the custom modules
+     * 
+     * @return array
+     */
+    public static function getPrefixList(): array {
+
+        self::initializePrefixList();
+
+        return self::$tag_prefixes;
+    }
+
+    /**
+     * Initialize the prefix list for GitHub tags
+     */
+    public static function initializePrefixList() {
+
+        if (self::$tag_prefixes !== []) {
+            return;
+        }
+
+        foreach (self::MODULE_UPDATE_SERVICE_CONFIG as $module_name => $module_config) {
+
+            if (isset($module_config['params']['tag_prefix'])) {
+                $tag_prefix = $module_config['params']['tag_prefix'];
+
+                if (!in_array($tag_prefix, self::$tag_prefixes)) {
+                    self::$tag_prefixes[] = $tag_prefix;
+                }
+            }
+        }
     }
 }

@@ -61,6 +61,7 @@ use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
 use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
@@ -770,9 +771,11 @@ class CustomModuleManager extends AbstractModule implements
      */
     public static function normalizeVersion(string $version): string
     {
-        //If version starts with 'v', remove first character
-        if (strpos($version, 'v') === 0) {
-            $version = substr($version, 1);
+        //Remove prefix
+        foreach (ModuleUpdateServiceConfiguration::getPrefixList() as $prefix) {
+            if (strpos($version, $prefix) === 0) {
+                $version = str_replace($prefix, '', $version);
+            }
         }
 
         return $version;
