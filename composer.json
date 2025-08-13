@@ -9,5 +9,8 @@
         "jefferson49/webtrees-common": ">=1.2.16"
     },
     "replace": {
+    },
+    "config": {
+        "prepend-autoloader": false
     }    
 }
