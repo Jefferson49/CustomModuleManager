@@ -205,7 +205,7 @@ class ModuleUpdateServiceConfiguration
             //If we use a module version, which ist suitable to the remote module update service configuration on GitHub
             if (!$custom_module_manager->isLowerThanLatestVersion()) {
                 try {
-                    $json_config = GithubService::getFileContent(CustomModuleManager::GITHUB_REPO, CustomModuleManager::CONFIG_GITHUB_BRANCH, CustomModuleManager::CONFIG_GITHUB_PATH, $github_api_token);
+                    $json_config = GithubService::getTextFileContent(CustomModuleManager::GITHUB_REPO, CustomModuleManager::CONFIG_GITHUB_BRANCH, CustomModuleManager::CONFIG_GITHUB_PATH, $github_api_token);
                     self::$module_update_service_config = json_decode($json_config);
                 }
                 catch (GithubCommunicationError $ex) {
