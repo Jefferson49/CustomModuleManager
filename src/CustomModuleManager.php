@@ -75,6 +75,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 use RuntimeException;
+use Throwable;
 
 
 class CustomModuleManager extends AbstractModule implements
@@ -105,6 +106,9 @@ class CustomModuleManager extends AbstractModule implements
     //Whether a GiHub communication error occured
     private static bool $github_communication_error = false;
 
+    //Whether the current version is lower than the latest version of the module
+    private static bool $is_lower_than_latest_version;
+
     //Prefences, Settings
 	public const PREF_MODULE_VERSION      = 'module_version';
     public const PREF_DEBUGGING_ACTIVATED = 'debugging_activated';
@@ -116,6 +120,12 @@ class CustomModuleManager extends AbstractModule implements
     public const PREF_SHOW_INSTALLED      = 'show_installed_modules';
     public const PREF_SHOW_NOT_INSTALLED  = 'show_not_installed_modules';
     public const PREF_SHOW_MENU_LIST_ITEM = 'show_menu_list_item';
+
+    //Configuraton
+    public const CONFIG_GITHUB_BRANCH     = 'config';
+    public const CONFIG_LOCAL_PATH        = 'module_update_service_configuration.json';
+    public const CONFIG_GITHUB_PATH       = 'module_update_service_configuration.json';
+    public const CONFIG_FILE_NAME         = '';
 
     //Actions
     public const ACTION_UPDATE            = 'action_update';
@@ -143,6 +153,9 @@ class CustomModuleManager extends AbstractModule implements
 
     //Switch to generate new default titles and description (in class DefaultTitlesAndDescriptions.php)
     public const GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS = false;
+
+    //Switch to generate a json file with the custom module update configuration (in module_update_service_configuration.json)
+    public const GENERATE_CUSTOM_MODULE_UPDATE_CONFIG = false;
     
 
     /**
@@ -166,6 +179,16 @@ class CustomModuleManager extends AbstractModule implements
 
         //Initialize custom view list
         $this->custom_view_list = new Collection;
+
+        //If a specific switch is turned on, we generate default titles and descriptions
+        if (self::GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS) {
+            self::generateDefaultTitlesAndDescriptions();
+        }        
+
+        //If a specific switch is turned on, we generate a json file for custom module update configuration
+        if (self::GENERATE_CUSTOM_MODULE_UPDATE_CONFIG) {
+            CustomModuleManager::generateModuleUpdateServiceConfig();
+        }        
 
 		// Register a namespace for the views.
 		View::registerNamespace(self::viewsNamespace(), $this->resourcesFolder() . 'views/');
@@ -746,6 +769,38 @@ class CustomModuleManager extends AbstractModule implements
     }
 
     /**
+     * Gemerate a JSON file from the module update service configuration
+     *
+     * @return void
+     */
+    public static function generateModuleUpdateServiceConfig(): void {
+
+        $json_file = __DIR__ . '/Configuration/module_update_service_configuration.json';
+
+        //Delete file if already existing
+        if (file_exists($json_file)) {
+            unlink($json_file);
+        }
+
+        //Open stream
+        if (!$stream = fopen($json_file, "c")) {
+            throw new RuntimeException('Cannot open file: ' . $json_file);
+        }
+
+        //Create JSON
+        $json_config = json_encode(ModuleUpdateServiceConfiguration::getModuleUpdateServiceConfig(true));
+
+        try {
+            fwrite($stream, $json_config);
+        }
+        catch (Throwable $th) {
+            throw new RuntimeException('Cannot write to file: ' . $json_file);
+        }
+
+        return;
+    }
+
+    /**
      * Compare two module version number strings
      *
      * @param string $version1,
@@ -807,5 +862,36 @@ class CustomModuleManager extends AbstractModule implements
         self::$github_communication_error = true;
 
         return false;
-    }    
+    }
+
+    /**
+     * Whether the current version is the latest version of the module
+     *
+     * @return bool
+     */
+    public function isLowerThanLatestVersion(): bool {
+
+        //If latest version information is already available
+        if (isset(self::$is_lower_than_latest_version)) {
+            return self::$is_lower_than_latest_version;
+        }
+        else {
+            $current_version = self::CUSTOM_VERSION;
+
+            //Get the latest release from GitHub
+            $github_api_token = $this->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
+
+            try {
+                $latest_version = GithubService::getLatestReleaseTag(self::GITHUB_REPO, $github_api_token);
+            }
+            catch (GithubCommunicationError $ex) {
+                //Cant connect to GitHub
+            }
+
+            //Remember in static variable
+            self::$is_lower_than_latest_version = self::versionCompare($current_version, $latest_version) < 0;
+        }
+
+        return self::$is_lower_than_latest_version ?? false;
+    }
 }

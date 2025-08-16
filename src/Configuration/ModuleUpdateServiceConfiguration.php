@@ -35,9 +35,13 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Session;
+use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
+use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
-use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
+use League\Flysystem\Filesystem;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 
+use RuntimeException;
 
 /**
  * Configuration of the module update services
@@ -55,6 +59,9 @@ class ModuleUpdateServiceConfiguration
 
     //A list with all tag prefixes, which module use at GitHub
     private static $tag_prefixes = [];
+
+    //The module update service configuration
+    private static $module_update_service_config = [];
 
     //The configuration for the module update services
     private const MODULE_UPDATE_SERVICE_CONFIG = [
@@ -175,6 +182,69 @@ class ModuleUpdateServiceConfiguration
     ];
 
     /**
+     * Get the module update service configuration
+     * 
+     * @param bool $use_local Use the local configuraton
+     * 
+     * @return array<string> module_name => module_config
+     */
+    public static function getModuleUpdateServiceConfig(bool $use_local = false): array {
+
+        //If we shall use the local configuration
+        if ($use_local) {
+            return self::getLocalConfiguration();
+        }
+
+        //If the config is not already available, try to load the configuration from GitHub
+        if (self::$module_update_service_config === []) {
+            $module_service = New ModuleService();
+            /** @var CustomModuleManager $custom_module_manager To avoid IDE warnings */
+            $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
+            $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');            
+
+            //If we use a module version, which ist suitable to the remote module update service configuration on GitHub
+            if (!$custom_module_manager->isLowerThanLatestVersion()) {
+                try {
+                    $json_config = GithubService::getFileContent(CustomModuleManager::GITHUB_REPO, CustomModuleManager::CONFIG_GITHUB_BRANCH, CustomModuleManager::CONFIG_GITHUB_PATH, $github_api_token);
+                    self::$module_update_service_config = json_decode($json_config);
+                }
+                catch (GithubCommunicationError $ex) {
+                    //Take local configuration if we cannot download it from GitHub
+                    self::$module_update_service_config = self::getLocalConfiguration();
+                }
+            }
+        }
+
+        //If we still dont have a configuration, take the local one
+        if (self::$module_update_service_config === []) {
+            self::$module_update_service_config = self::getLocalConfiguration();
+        }
+
+        return (array) self::$module_update_service_config;
+    }
+
+    /**
+     * Get the local configuration (from a JSON file in the module)
+     *
+     * @return array<string> module_name => module_config
+     */
+    public static function getLocalConfiguration(bool $load_from_internet = true): array {
+
+        $json_file = __DIR__ . '/' . CustomModuleManager::CONFIG_LOCAL_PATH;
+
+        //Open file
+        $file_system = new Filesystem(new LocalFilesystemAdapter(__DIR__));
+        if (!$file_system->fileExists(CustomModuleManager::CONFIG_LOCAL_PATH)) {
+             throw new RuntimeException('Cannot open file: ' . $json_file);
+        }
+
+        $local_json_config = $file_system->read(CustomModuleManager::CONFIG_LOCAL_PATH);
+        $local_config = (array) json_decode($local_json_config);
+
+        return $local_config;
+    }
+
+    /**
      * Get a list of all module names
      * 
      * @param bool $getVesta Whether to get Vesta modules only
@@ -188,7 +258,7 @@ class ModuleUpdateServiceConfiguration
         $custom_modules = $module_service->findByInterface(ModuleCustomInterface::class, true);
 
         //Initialize list with standard module names
-        $module_update_service_config = self::MODULE_UPDATE_SERVICE_CONFIG;
+        $module_update_service_config = self::getModuleUpdateServiceConfig();
 
         foreach($module_update_service_config as $module_name => $config) {
             if ($getVesta) {
@@ -241,11 +311,13 @@ class ModuleUpdateServiceConfiguration
      */
     public static function getParams(string $module_name): array
     {
-        $config = self::MODULE_UPDATE_SERVICE_CONFIG;
+        $config = self::getModuleUpdateServiceConfig();
         $standard_module_name = self::getStandardModuleName($module_name);
 
         if (array_key_exists($standard_module_name, $config)) {
-            return $config[$standard_module_name]['params'];
+            $module_config = (array) $config[$standard_module_name];
+            $params = (array) $module_config['params'];
+            return $params;
         }
 
         return [];
@@ -260,11 +332,13 @@ class ModuleUpdateServiceConfiguration
      */
     public static function getUpdateServiceName(string $module_name): string
     {
-        $config = self::MODULE_UPDATE_SERVICE_CONFIG;
+        $config = self::getModuleUpdateServiceConfig();
         $standard_module_name = self::getStandardModuleName($module_name);
 
         if (array_key_exists($standard_module_name, $config)) {
-            return $config[$standard_module_name]['update_service'];
+            $module_config = (array) $config[$standard_module_name];
+            $update_service = (string) $module_config['update_service'];
+            return $update_service;
         }
 
         return '';
@@ -280,7 +354,7 @@ class ModuleUpdateServiceConfiguration
     public static function getStandardModuleName(string $module_name): string
     {
         $default_language = CustomModuleManager::DEFAULT_LANGUAGE;
-        $config = self::MODULE_UPDATE_SERVICE_CONFIG;
+        $config = self::getModuleUpdateServiceConfig();
         $module_service = new ModuleService();
         $module = $module_service->findByName($module_name, true);
 
@@ -421,14 +495,17 @@ class ModuleUpdateServiceConfiguration
      */
     public static function initializePrefixList() {
 
-        if (self::$tag_prefixes !== []) {
+        //If prefixes are already initialized or no config is available (at early module start)
+        if (self::$tag_prefixes !== [] OR self::$module_update_service_config === []) {
             return;
         }
 
-        foreach (self::MODULE_UPDATE_SERVICE_CONFIG as $module_name => $module_config) {
+        foreach (self::getModuleUpdateServiceConfig() as $module_name => $module_config) {
 
-            if (isset($module_config['params']['tag_prefix'])) {
-                $tag_prefix = $module_config['params']['tag_prefix'];
+            $module_config = (array) $module_config;
+            $params = (array) $module_config['params'];
+            if (isset($params['tag_prefix'])) {
+                $tag_prefix = $params['tag_prefix'];
 
                 if (!in_array($tag_prefix, self::$tag_prefixes)) {
                     self::$tag_prefixes[] = $tag_prefix;

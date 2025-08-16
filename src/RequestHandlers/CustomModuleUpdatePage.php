@@ -65,20 +65,13 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
         $this->layout = 'layouts/administration';
         
         $module_service        = New ModuleService();
-        /** @var AbstractModuleUpdate $module_update_service To avoid IDE warnings */
-        $module_update_service = CustomModuleUpdateFactory::make(CustomModuleManager::activeModuleName());
-        $current_cmm_version   = $module_update_service->customModuleVersion();
-        $latest_cmm_version    = $module_update_service->customModuleLatestVersion(true);
-        $cmm_update            = CustomModuleManager::versionCompare($latest_cmm_version, $current_cmm_version) > 0;
-
-        //If a specific switch is turned on, we generate default titles and descriptions.
-        if (CustomModuleManager::GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS) {
-            CustomModuleManager::generateDefaultTitlesAndDescriptions();
-        }
+        /** @var CustomModuleManager $custom_module_manager To avoid IDE warnings */
+        $custom_module_manager = $module_service->findByName(module_name: CustomModuleManager::activeModuleName());        
+        $cmm_update            = $custom_module_manager->isLowerThanLatestVersion();
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::module_update', [
             'title'                      => I18N::translate('Custom Module Updates'),
-            'cmm_title'                  => $module_update_service->title(),
+            'cmm_title'                  => $custom_module_manager->title(),
             'cmm_update'                 => $cmm_update,
             'runs_with_webtrees_version' => CustomModuleManager::runsWithInstalledWebtreesVersion(),
             'php_extension_zip_missing'  => !extension_loaded('zip'),
