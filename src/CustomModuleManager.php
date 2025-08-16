@@ -102,13 +102,15 @@ class CustomModuleManager extends AbstractModule implements
     //A list of custom views, which are registered by the module
     private Collection $custom_view_list;
 
+    //Whether a GiHub communication error occured
+    private static bool $github_communication_error = false;
+
     //Prefences, Settings
 	public const PREF_MODULE_VERSION      = 'module_version';
     public const PREF_DEBUGGING_ACTIVATED = 'debugging_activated';
 	public const PREF_GITHUB_API_TOKEN    = 'github_api_token';
 	public const PREF_LAST_UPDATED_MODULE = 'last_updated_module';
     public const PREF_ROLLBACK_ONGOING    = 'rollback_ongoing';
-    public const PREF_GITHUB_COM_ERROR    = 'github_communication_error';
     public const PREF_MODULES_TO_SHOW     = 'modules_to_show';
     public const PREF_SHOW_ALL            = 'show_all_modules';
     public const PREF_SHOW_INSTALLED      = 'show_installed_modules';
@@ -164,9 +166,6 @@ class CustomModuleManager extends AbstractModule implements
 
         //Initialize custom view list
         $this->custom_view_list = new Collection;
-
-        //Reset GitHub communication error
-        $this->setPreference(self::PREF_GITHUB_COM_ERROR, '0');
 
 		// Register a namespace for the views.
 		View::registerNamespace(self::viewsNamespace(), $this->resourcesFolder() . 'views/');
@@ -291,11 +290,8 @@ class CustomModuleManager extends AbstractModule implements
                 }
                 catch (GithubCommunicationError $ex) {
                     // Can't connect to GitHub?
-                    if (!boolval($this->getPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '0'))) {
+                    if (!self::rememberGithubCommunciationError()) {
                         FlashMessages::addMessage(I18N::translate('Communication error with %s', GithubModuleUpdate::NAME), 'danger');
-
-                        //Set flag in order to avoid multiple flash messages
-                        $this->setPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '1');
                     }
                 }
 
@@ -794,4 +790,22 @@ class CustomModuleManager extends AbstractModule implements
 
         return false;
     }
+
+    /**
+     * Remember if a GitHub communication occured. Return true if it is the force occurance
+     *
+     * @return bool
+     */
+    public static function rememberGithubCommunciationError(): bool {
+
+        //If GitHub communication has already occured before
+        if (self::$github_communication_error) {
+            return true;
+        }
+
+        //Remember error for further requests
+        self::$github_communication_error = true;
+
+        return false;
+    }    
 }

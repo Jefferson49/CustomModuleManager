@@ -210,14 +210,11 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
             try {
                 return GithubService::getLatestReleaseTag($this->github_repo, $github_api_token);
-            } 
+            }
             catch (GithubCommunicationError $ex) {
                 // Can't connect to GitHub? 
-                if (!boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '0'))) {
+                    if (!CustomModuleManager::rememberGithubCommunciationError()) {
                     FlashMessages::addMessage(I18N::translate('Communication error with %s', self::NAME), 'danger');
-
-                    //Set flag in order to avoid multiple flash messages
-                    $custom_module_manager->setPreference(CustomModuleManager::PREF_GITHUB_COM_ERROR, '1');
                 }
             }
         }
