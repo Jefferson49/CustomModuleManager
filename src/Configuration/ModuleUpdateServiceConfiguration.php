@@ -515,5 +515,10 @@ class ModuleUpdateServiceConfiguration
                 }
             }
         }
+
+        // Sort by string length (to avoid shorter prefixes to be substituted before longer prefixes)
+        usort(self::$tag_prefixes, function($a, $b) {
+            return strlen($b) - strlen($a); // Descending order
+        });
     }
 }
