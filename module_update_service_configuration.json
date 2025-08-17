@@ -423,5 +423,12 @@
             "no_release": true,
             "default_branch": "main"
         }
+    },
+    "_linkenhancer_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "bschwede\/linkenhancer",
+            "tag_prefix": "v"
+        }
     }
 }
