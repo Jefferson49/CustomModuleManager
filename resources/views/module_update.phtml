@@ -144,6 +144,9 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
                 <?php $latest_version = $module->customModuleLatestVersion() ?>
                 <?php $documentation_url = '' ?>
             <?php endif ?>	
+            <?php if (CustomModuleManager::versionCompare($latest_version, $current_version) < 0) : ?>
+                <?php $latest_version = $current_version ?>
+            <?php endif ?>
             <?php if ($module !== null) : ?>
                 <?php $current_version = $current_version !== '' ? $current_version : I18N::translate('not received') ?>
             <?php endif ?>				
