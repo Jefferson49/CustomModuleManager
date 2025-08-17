@@ -788,7 +788,8 @@ class CustomModuleManager extends AbstractModule implements
         }
 
         //Create JSON
-        $json_config = json_encode(ModuleUpdateServiceConfiguration::getModuleUpdateServiceConfig(true));
+		$config = ModuleUpdateServiceConfiguration::MODULE_UPDATE_SERVICE_CONFIG;
+        $json_config = json_encode($config);
 
         try {
             fwrite($stream, $json_config);
