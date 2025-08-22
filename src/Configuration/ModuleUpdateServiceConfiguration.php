@@ -205,8 +205,9 @@ class ModuleUpdateServiceConfiguration
             $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
             $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');            
 
-            //If we use a module version, which ist suitable to the remote module update service configuration on GitHub
+            //If we use a module version, which is suitable to the remote module update service configuration on GitHub.
             if (!$custom_module_manager->isLowerThanLatestVersion()) {
+                //Rational: The remote configuration file on GitHub might not be compatible with the local code if the module is not updated to the latest version
                 try {
                     $json_config = GithubService::getTextFileContent(CustomModuleManager::GITHUB_REPO, CustomModuleManager::CONFIG_GITHUB_BRANCH, CustomModuleManager::CONFIG_GITHUB_PATH, $github_api_token);
                     self::$module_update_service_config = json_decode($json_config);
