@@ -31,16 +31,17 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers;
 
+use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Http\RequestHandlers\HomePage;
 use Fisharebest\Webtrees\Http\ViewResponseTrait;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleThemeInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\User;
 use Fisharebest\Webtrees\Validator;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
-use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
-use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -60,7 +61,14 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $fetch_latest    = Validator::queryParams($request)->boolean('fetch_latest', false);
+        $tree         = Validator::attributes($request)->treeOptional();
+        $user         = Validator::attributes($request)->user();
+        $fetch_latest = Validator::queryParams($request)->boolean('fetch_latest', false);
+
+        // If no administrator, redirect to home page
+        if (!($user instanceof User) OR !Auth::isAdmin($user)) {
+            return redirect(route(HomePage::class, ['tree' => $tree?->name()]));
+        }
 
         $this->layout = 'layouts/administration';
         

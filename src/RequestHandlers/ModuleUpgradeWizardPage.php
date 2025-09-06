@@ -31,11 +31,13 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers;
 
+use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\Http\RequestHandlers\HomePage;
 use Fisharebest\Webtrees\Http\ViewResponseTrait;
 use Fisharebest\Webtrees\I18N;
-use Fisharebest\Webtrees\Services\TreeService;
 use Fisharebest\Webtrees\Services\UpgradeService;
 use Fisharebest\Webtrees\Session;
+use Fisharebest\Webtrees\User;
 use Fisharebest\Webtrees\Validator;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
@@ -48,8 +50,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 use function basename;
 use function e;
 use function route;
-use function response;
-use function view;
+
 
 /**
  * Upgrade to a new version of webtrees.
@@ -79,10 +80,17 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
     {
         $this->layout = 'layouts/ajax';
 
-        $module_name       = Validator::queryParams($request)->string('module_name', '');
-        $current_version   = Validator::queryParams($request)->string('current_version', '');
-        $latest_version    = Validator::queryParams($request)->string('latest_version', '');
-        $action            = Validator::queryParams($request)->string('action', '');
+        $tree            = Validator::attributes($request)->treeOptional();
+        $user            = Validator::attributes($request)->user();
+        $module_name     = Validator::queryParams($request)->string('module_name', '');
+        $current_version = Validator::queryParams($request)->string('current_version', '');
+        $latest_version  = Validator::queryParams($request)->string('latest_version', '');
+        $action          = Validator::queryParams($request)->string('action', '');
+
+        // If no administrator, redirect to home page
+        if (!($user instanceof User) OR !Auth::isAdmin($user)) {
+            return redirect(route(HomePage::class, ['tree' => $tree?->name()]));
+        }
 
         $module_upgrade_service = CustomModuleUpdateFactory::make($module_name);
 

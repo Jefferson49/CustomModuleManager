@@ -32,7 +32,9 @@ declare(strict_types=1);
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers;
 
 use Fig\Http\Message\StatusCodeInterface;
+use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Http\Exceptions\HttpServerErrorException;
+use Fisharebest\Webtrees\Http\RequestHandlers\HomePage;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\MaintenanceModeService;
@@ -41,11 +43,11 @@ use Fisharebest\Webtrees\Services\PhpService;
 use Fisharebest\Webtrees\Services\TimeoutService;
 use Fisharebest\Webtrees\Services\UpgradeService;
 use Fisharebest\Webtrees\Session;
+use Fisharebest\Webtrees\User;
 use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
-use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
@@ -133,6 +135,8 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             return $this->viewAlert(I18N::translate('Update Wizard was aborted'), self::ALERT_DANGER, '', true);
         }
 
+        $tree            = Validator::attributes($request)->treeOptional();
+        $user            = Validator::attributes($request)->user();
         $step            = Validator::queryParams($request)->string('step', self::STEP_CHECK);
         $module_name     = Validator::queryParams($request)->string('module_name', '');
         $current_version = Validator::queryParams($request)->string('current_version', '');
@@ -142,6 +146,11 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $action          = Validator::queryParams($request)->string('action', '');      
         $error_message   = Validator::queryParams($request)->string('error_message', '');
         $modal           = Validator::queryParams($request)->boolean('modal', false);
+
+        // If no administrator, redirect to home page
+        if (!($user instanceof User) OR !Auth::isAdmin($user)) {
+            return redirect(route(HomePage::class, ['tree' => $tree?->name()]));
+        }        
 
         $this->module_update_service = CustomModuleUpdateFactory::make($module_name);
         $this->modal = $modal;
