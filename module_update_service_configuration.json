@@ -240,11 +240,9 @@
         }
     },
     "_sosa20_": {
-        "update_service": "UrlModuleUpdate",
+        "update_service": "GithubModuleUpdate",
         "params": {
-            "download_url": "https:\/\/gustine.eu\/mode_emploi\/sosa\/sosa20-variant-2025-06b.zip",
-            "documentation_url": "https:\/\/gustine.eu\/mode_emploi\/sosa.php",
-            "latest_version": "2025.06.06"
+            "github_repo": "gustine\/webtrees-sosa20"
         }
     },
     "_hh_extended_family_": {
