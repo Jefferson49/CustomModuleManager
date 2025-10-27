@@ -242,7 +242,7 @@
     "_sosa20_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "gustine\/webtrees-sosa20"
+            "github_repo": "gustine\/sosa20"
         }
     },
     "_hh_extended_family_": {
