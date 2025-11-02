@@ -113,7 +113,8 @@ class ModuleUpdateServiceConfiguration
         '_vesta_shared_places_'           =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_shared_places']],
         '_vesta_location_data_'           =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_location_data']],
 
-        '_sosa20_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'gustine/webtrees-sosa20']],
+        '_sosa20_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'gustine/sosa20']],
+
         '_hh_extended_family_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_extended_family', 'tag_prefix' => 'v']],
         '_hh_legal_notice_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_legal_notice', 'tag_prefix' => 'v']],
         '_german-chancellors-presidents_' =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/german-chancellors-presidents', 'tag_prefix' => 'v']],
