@@ -6,6 +6,13 @@
             "tag_prefix": "v"
         }
     },
+    "_custom_filesystem_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "Jefferson49\/CustomFilesystem",
+            "tag_prefix": "v"
+        }
+    },
     "_custom_module_manager_": {
         "update_service": "GithubModuleUpdate",
         "params": {
