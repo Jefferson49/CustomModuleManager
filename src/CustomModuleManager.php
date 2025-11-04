@@ -187,7 +187,7 @@ class CustomModuleManager extends AbstractModule implements
 
         //If a specific switch is turned on, we generate a json file for custom module update configuration
         if (self::GENERATE_CUSTOM_MODULE_UPDATE_CONFIG) {
-            CustomModuleManager::generateModuleUpdateServiceConfig();
+            self::generateModuleUpdateServiceConfig();
         }        
 
 		// Register a namespace for the views.
