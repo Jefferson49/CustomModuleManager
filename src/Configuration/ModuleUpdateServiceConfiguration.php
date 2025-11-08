@@ -63,6 +63,10 @@ class ModuleUpdateServiceConfiguration
     //The module update service configuration
     private static $module_update_service_config = [];
 
+    //Categories for custom modules
+    public const CATEGORY       = 'category';
+    public const CATEGORY_THEME = 'theme';
+
     //The configuration for the module update services
 	//Note: Still needed to generate the JSON configuration file!
     public const MODULE_UPDATE_SERVICE_CONFIG = [
@@ -78,13 +82,13 @@ class ModuleUpdateServiceConfiguration
         '_jc-fancy-imagebar_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-imagebar']],
         '_jc-fancy-research-links_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-research-links']],
         '_jc-fancy-treeview_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-treeview']],
-        '_jc-theme-justlight_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-theme-justlight', 'is_theme' => true]],
+        '_jc-theme-justlight_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-theme-justlight', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
         '_jc-simple-footer_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-footer']],        
         '_jc-simple-media-display_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-media-display']],
         '_jc-simple-menu_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-menu']],          
 
         '_webtrees-lantmateriet_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ekdahl/webtrees-lantmateriet', 'no_release' => true, 'default_branch' => 'main']],       
-        '_webtrees-primer-theme_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ekdahl/webtrees-primer-theme', 'is_theme' => true]],
+        '_webtrees-primer-theme_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ekdahl/webtrees-primer-theme', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
 
         '_GVExport_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Neriderc/GVExport', 'tag_prefix' => 'v']],
 
@@ -92,7 +96,7 @@ class ModuleUpdateServiceConfiguration
         '_webtrees-fan-chart_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-fan-chart']],
         '_webtrees-pedigree-chart_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-pedigree-chart']],
 
-        '_myartjaub_ruraltheme_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jon48/webtrees-theme-rural', 'is_theme' => true]],
+        '_myartjaub_ruraltheme_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jon48/webtrees-theme-rural', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
 
         '_huhwt-cce_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-cce', 'tag_prefix' => 'v']],
         '_huhwt-xtv_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-xtv', 'tag_prefix' => 'v']],
@@ -123,7 +127,7 @@ class ModuleUpdateServiceConfiguration
 
         '_family-tree-home_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'miqrogroove/family-tree-home', 'get_latest_version_from_github' => true]],
 
-        '_ArgonLight_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '06Games/Webtrees-ArgonLight', 'is_theme' => true]],       
+        '_ArgonLight_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '06Games/Webtrees-ArgonLight', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],       
         '_evang_mailsystem_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '06Games/Webtrees-MailSystem', 'no_release' => true, 'default_branch' => 'main']],
 
         '_webtrees-branch-statistics_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'squatteur/webtrees-branch-statistics', 'tag_prefix' => 'v']],       
@@ -142,7 +146,7 @@ class ModuleUpdateServiceConfiguration
         '_webtrees-tree_view_full_screen_'=>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-tree_view_full_screen', 'tag_prefix' => 'v']],
         '_webtrees-mdi_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-mdi', 'tag_prefix' => 'v']],
         
-        '_jp-theme-colors_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jpretired/jp-theme-colors', 'is_theme' => true, 'get_latest_version_from_github' => true , 'tag_prefix' => 'v']],       
+        '_jp-theme-colors_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jpretired/jp-theme-colors', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME, 'get_latest_version_from_github' => true , 'tag_prefix' => 'v']],       
         '_jp-main-menu-manual_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jpretired/jp-main-menu-manual', 'tag_prefix' => 'v']],
 
         '_telegram_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Tywed/telegram', 'tag_prefix' => 'v.']],       

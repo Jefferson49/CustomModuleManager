@@ -91,6 +91,7 @@
         "params": {
             "github_repo": "JustCarmen\/webtrees-theme-justlight",
             "is_theme": true,
+            "category": "theme",
             "title": "JustLight",
             "description": "Theme \u2014 JustLight"
         }
@@ -134,6 +135,7 @@
         "params": {
             "github_repo": "ekdahl\/webtrees-primer-theme",
             "is_theme": true,
+            "category": "theme",
             "title": "Primer",
             "description": "Theme \u2014 Primer"
         }
@@ -176,6 +178,7 @@
         "params": {
             "github_repo": "jon48\/webtrees-theme-rural",
             "is_theme": true,
+            "category": "theme",
             "title": "Rural",
             "description": "Theme \u2014 Rural"
         }
@@ -389,6 +392,7 @@
         "params": {
             "github_repo": "06Games\/Webtrees-ArgonLight",
             "is_theme": true,
+            "category": "theme",
             "title": "Argon Light",
             "description": "A light theme for Webtrees based on Argon Design System"
         }
@@ -504,6 +508,7 @@
         "params": {
             "github_repo": "jpretired\/jp-theme-colors",
             "is_theme": true,
+            "category": "theme",
             "get_latest_version_from_github": true,
             "tag_prefix": "v",
             "title": "Jp-barvy",

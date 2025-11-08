@@ -24,6 +24,7 @@ use function view;
  * @var bool                        $show_default_description
  * @var string                      $module_status
  * @var bool                        $is_theme
+ * @var string                      $category
  * @var string                      $current_version
  * @var string                      $latest_version
  * @var string                      $installation_folder
@@ -134,6 +135,10 @@ use function view;
         <?php if ($is_theme) : ?>
             <?= view('icons/theme') ?>
             <?= MoreI18N::xlate('Theme') ?>
+            <br>
+        <?php elseif ($category !== '') : ?>
+            <?= view('icons/module') ?>
+            <?= MoreI18N::xlate('Category') . ': ' .  e($category) ?>
             <br>
         <?php endif ?>
         <?php if ($module !== null && $module->customModuleAuthorName() !== '') : ?>

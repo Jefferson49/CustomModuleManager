@@ -108,7 +108,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             $this->default_branch = '';
         }
 
-        $this->is_theme = self::identifyThemeFromConfig($module_name, $params);
+        $this->category = self::identifyCategoryFromConfig($module_name, $params);
     }
 
     /**

@@ -151,4 +151,11 @@ interface CustomModuleUpdateInterface
      * @return bool
      */
     public function moduleIsTheme(): bool;
+
+    /**
+     * Get the module category
+     * 
+     * @return string
+     */
+    public function getCategory(): string;
 }

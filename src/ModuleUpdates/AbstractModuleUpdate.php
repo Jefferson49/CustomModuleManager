@@ -34,11 +34,11 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
-use Fisharebest\Webtrees\Module\ModuleThemeInterface;
 use Fisharebest\Webtrees\Session;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
+use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
@@ -54,8 +54,8 @@ abstract class AbstractModuleUpdate
     //The custom module name
     protected string $module_name; 
 
-    //Whether the custom module is a theme
-    protected bool $is_theme; 
+    //The category of the custom module
+    protected string $category = '';
 
 
     /**
@@ -171,9 +171,24 @@ abstract class AbstractModuleUpdate
      */
     public function moduleIsTheme(): bool {
 
-        return $this->is_theme ?? false;
+        return $this->category === ModuleUpdateServiceConfiguration::CATEGORY_THEME;
     }
     
+    /**
+     * Get the module category
+     * 
+     * @return string
+     */
+    public function getCategory(): string {
+
+        switch ($this->category) {
+            case ModuleUpdateServiceConfiguration::CATEGORY_THEME: 
+                return MoreI18N::xlate('Theme');
+            default:
+                return  '';
+        }
+    }
+
     /**
      * The version of this module.
      *
@@ -325,38 +340,21 @@ abstract class AbstractModuleUpdate
     }
 
     /**
-     * Identify whether a module is a theme
-     * 
-     * Code from: Fisharebest\Webtrees\Services\ModuleService
+     * Identify the module category from the configuration
      * 
      * @param string $module_name
-     * @param array  $configuratio parameters
+     * @param array  $params        config parameters
      *  
-     * @return string Error message or empty string if no error
+     * @return string
      */
-    public static function identifyThemeFromConfig(string $module_name, $params): bool {
+    public function identifyCategoryFromConfig(string $module_name, $params): string {
 
-        $is_theme = false;
-
-        if (array_key_exists('is_theme', $params)) {
-            if ($params['is_theme'] === true) {
-                $is_theme = true;
-            }
+        if (array_key_exists(ModuleUpdateServiceConfiguration::CATEGORY, $params)) {
+            return $params[ModuleUpdateServiceConfiguration::CATEGORY];
         }
         else {
-            $module_service = New ModuleService();
-            $module = $module_service->findByName($module_name);
-            
-            if ($module !== null) {
-                $interfaces = class_implements($module);
-
-                if (isset($interfaces[ModuleThemeInterface::class])) {
-                    $is_theme = true;
-                }            
-            } 
+            return '';
         }
-
-        return $is_theme;
     }
 
     /**
