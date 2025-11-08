@@ -884,13 +884,13 @@ class CustomModuleManager extends AbstractModule implements
 
             try {
                 $latest_version = GithubService::getLatestReleaseTag(self::GITHUB_REPO, $github_api_token);
+
+                //Remember in static variable
+                self::$is_lower_than_latest_version = self::versionCompare($current_version, $latest_version) < 0;
             }
             catch (GithubCommunicationError $ex) {
                 //Cant connect to GitHub
             }
-
-            //Remember in static variable
-            self::$is_lower_than_latest_version = self::versionCompare($current_version, $latest_version) < 0;
         }
 
         return self::$is_lower_than_latest_version ?? false;
