@@ -60,6 +60,8 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
         else {
             $this->github_repo = '';
         }
+
+        $this->category = self::identifyCategoryFromConfig($module_name, $params);        
     }
 
     /**

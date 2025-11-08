@@ -182,6 +182,36 @@ abstract class AbstractModuleUpdate
     public function getCategory(): string {
 
         switch ($this->category) {
+            case ModuleUpdateServiceConfiguration::CATEGORY_ADMIN:
+                return MoreI18N::xlate('Administrator');
+            case ModuleUpdateServiceConfiguration::CATEGORY_CHARTS: 
+                return MoreI18N::xlate('Charts');
+            case ModuleUpdateServiceConfiguration::CATEGORY_CLIPPINGS_CART: 
+                return MoreI18N::xlate('Clippings cart');
+            case ModuleUpdateServiceConfiguration::CATEGORY_FACT: 
+                return MoreI18N::xlate('Facts and events');
+            case ModuleUpdateServiceConfiguration::CATEGORY_FOOTER: 
+                return MoreI18N::xlate('Footer');
+            case ModuleUpdateServiceConfiguration::CATEGORY_FRONTEND: 
+                return I18N::translate('Frontend');
+            case ModuleUpdateServiceConfiguration::CATEGORY_GEDCOM:
+                return MoreI18N::xlate('GEDCOM');
+            case ModuleUpdateServiceConfiguration::CATEGORY_LANGUAGE: 
+                return MoreI18N::xlate('Language');
+            case ModuleUpdateServiceConfiguration::CATEGORY_MAP: 
+                return MoreI18N::xlate('Map');
+            case ModuleUpdateServiceConfiguration::CATEGORY_MEDIA: 
+                return MoreI18N::xlate('Media');
+            case ModuleUpdateServiceConfiguration::CATEGORY_MENU: 
+                return MoreI18N::xlate('Menu');
+            case ModuleUpdateServiceConfiguration::CATEGORY_NONE: 
+                return MoreI18N::xlate('None');
+            case ModuleUpdateServiceConfiguration::CATEGORY_PLACES: 
+                return MoreI18N::xlate('Places');
+            case ModuleUpdateServiceConfiguration::CATEGORY_SIGNIN: 
+                return MoreI18N::xlate('Sign in');
+            case ModuleUpdateServiceConfiguration::CATEGORY_SOURCES: 
+                return MoreI18N::xlate('Sources');
             case ModuleUpdateServiceConfiguration::CATEGORY_THEME: 
                 return MoreI18N::xlate('Theme');
             default:
