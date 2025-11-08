@@ -3,92 +3,120 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "Jefferson49\/ChangeLanguageWithURL",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "ChangeLanguageWithURL module",
+            "description": "ChangeLanguageWithURL module"
         }
     },
     "_custom_filesystem_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "Jefferson49\/CustomFilesystem",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Custom Filesystem",
+            "description": "Create a custom filesystem"
         }
     },
     "_custom_module_manager_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "Jefferson49\/CustomModuleManager",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Custom Module Manager",
+            "description": "A custom module to manage webtrees custom modules."
         }
     },
     "_extended_import_export_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "Jefferson49\/ExtendedImportExport",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Extended Import\/Export",
+            "description": "A custom module for advanced GEDCOM import, export, and filter operations. The module also supports remote downloads\/uploads\/filters via URL requests."
         }
     },
     "_my_custom_tags_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "Jefferson49\/MyCustomTags",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "My Custom Tags",
+            "description": "A module to provide custom tags, types, relationship descriptors, and roles in events"
         }
     },
     "_oauth2_client_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "Jefferson49\/webtrees-oauth2-client",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "OAuth2 Client",
+            "description": "A custom module to implement a OAuth2 client for webtrees."
         }
     },
     "_repository_hierarchy_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "Jefferson49\/RepositoryHierarchy",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Repository Hierarchy",
+            "description": "A hierarchical structured list of the sources of an archive based on the call numbers of the sources"
         }
     },
     "_jc-fancy-imagebar_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "JustCarmen\/webtrees-fancy-imagebar"
+            "github_repo": "JustCarmen\/webtrees-fancy-imagebar",
+            "title": "Fancy Imagebar",
+            "description": "An imagebar with small images between header and content."
         }
     },
     "_jc-fancy-research-links_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "JustCarmen\/webtrees-fancy-research-links"
+            "github_repo": "JustCarmen\/webtrees-fancy-research-links",
+            "title": "Fancy Research Links",
+            "description": "A sidebar tool to provide quick links to popular research web sites."
         }
     },
     "_jc-fancy-treeview_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "JustCarmen\/webtrees-fancy-treeview"
+            "github_repo": "JustCarmen\/webtrees-fancy-treeview",
+            "title": "Fancy Treeview",
+            "description": "A narrative overview of the descendants or ancestors of one family (branch)."
         }
     },
     "_jc-theme-justlight_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "JustCarmen\/webtrees-theme-justlight",
-            "is_theme": true
+            "is_theme": true,
+            "title": "JustLight",
+            "description": "Theme \u2014 JustLight"
         }
     },
     "_jc-simple-footer_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "JustCarmen\/webtrees-simple-footer"
+            "github_repo": "JustCarmen\/webtrees-simple-footer",
+            "title": "Simple footer module",
+            "description": "Add an extra footer and page."
         }
     },
     "_jc-simple-media-display_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "JustCarmen\/webtrees-simple-media-display"
+            "github_repo": "JustCarmen\/webtrees-simple-media-display",
+            "title": "Media Display (as in webtrees 2.0)",
+            "description": "Display media objects as in webtrees 2.0, showing multiple media items and additional notes belonging to the same object on the individual page."
         }
     },
     "_jc-simple-menu_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "JustCarmen\/webtrees-simple-menu"
+            "github_repo": "JustCarmen\/webtrees-simple-menu",
+            "title": "Simple menu module",
+            "description": "Add an extra mainmenu item and page."
         }
     },
     "_webtrees-lantmateriet_": {
@@ -96,209 +124,273 @@
         "params": {
             "github_repo": "ekdahl\/webtrees-lantmateriet",
             "no_release": true,
-            "default_branch": "main"
+            "default_branch": "main",
+            "title": "Lantm\u00e4teriet",
+            "description": "Create maps using <a href=\"https:\/\/www.lantmateriet.se\" dir=\"ltr\">www.lantmateriet.se<\/a>."
         }
     },
     "_webtrees-primer-theme_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "ekdahl\/webtrees-primer-theme",
-            "is_theme": true
+            "is_theme": true,
+            "title": "Primer",
+            "description": "Theme \u2014 Primer"
         }
     },
     "_GVExport_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "Neriderc\/GVExport",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "GVExport",
+            "description": "This is the \"GVExport\" module"
         }
     },
     "_webtrees-descendants-chart_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "magicsunday\/webtrees-descendants-chart"
+            "github_repo": "magicsunday\/webtrees-descendants-chart",
+            "title": "Descendants chart",
+            "description": "An overview of an individual\u2019s descendants."
         }
     },
     "_webtrees-fan-chart_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "magicsunday\/webtrees-fan-chart"
+            "github_repo": "magicsunday\/webtrees-fan-chart",
+            "title": "Fan chart",
+            "description": "A fan chart of an individual\u2019s ancestors."
         }
     },
     "_webtrees-pedigree-chart_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "magicsunday\/webtrees-pedigree-chart"
+            "github_repo": "magicsunday\/webtrees-pedigree-chart",
+            "title": "Pedigree chart",
+            "description": "A pedigree chart of an individual\u2019s ancestors."
         }
     },
     "_myartjaub_ruraltheme_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "jon48\/webtrees-theme-rural",
-            "is_theme": true
+            "is_theme": true,
+            "title": "Rural",
+            "description": "Theme \u2014 Rural"
         }
     },
     "_huhwt-cce_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "huhwt\/huhwt-cce",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "\u210d Clippings cart enhanced",
+            "description": "Add records from your family tree to the clippings cart and execute an action on them."
         }
     },
     "_huhwt-xtv_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "huhwt\/huhwt-xtv",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "\u210d&\u210dwt Interactive tree XT",
+            "description": "An interactive tree, showing all the ancestors and descendants of an individual."
         }
     },
     "_huhwt-wttam_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "huhwt\/huhwt-wttam",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "\u210d TAMchart",
+            "description": "Download Gedcom information to client-side for postprocessing in TAM."
         }
     },
     "_huhwt-wtlin_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "huhwt\/huhwt-wtlin",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "\u210d LINchart",
+            "description": "Download Gedcom information to client-side for postprocessing in LINEAGE."
         }
     },
     "_huhwt-tsm_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "huhwt\/huhwt-tsm",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "\u210d Tagging service manager",
+            "description": "View and manage Tags for better structuring your Family Tree"
         }
     },
     "_huhwt-mtv_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "huhwt\/huhwt-mtv",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "\u210d MultTreeView",
+            "description": "A treeview-diagram, showing the ancestors and descendants of an individual."
         }
     },
     "_vesta_classic_look_and_feel_": {
         "update_service": "VestaModuleUpdate",
         "params": {
-            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_classic_laf"
+            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_classic_laf",
+            "title": "\u26b6 Vesta Classic Look & Feel",
+            "description": "A module adjusting all themes and other features, providing a look & feel closer to the webtrees 1.x version."
         }
     },
     "_vesta_clippings_cart_": {
         "update_service": "VestaModuleUpdate",
         "params": {
-            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_clippings_cart"
+            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_clippings_cart",
+            "title": "\u26b6 Vesta Clippings Cart",
+            "description": "Select records from your family tree and save them as a GEDCOM file. Replacement for the original 'Clippings Cart' module."
         }
     },
     "_vesta_common_": {
         "update_service": "VestaModuleUpdate",
         "params": {
-            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_common"
+            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_common",
+            "title": "\u26b6 Vesta Common",
+            "description": "A module providing common classes and translations for other 'Vesta' custom modules. Make sure to enable this module if any other Vesta module is enabled."
         }
     },
     "_vesta_extended_relationships_": {
         "update_service": "VestaModuleUpdate",
         "params": {
-            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_extended_relationships"
+            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_extended_relationships",
+            "title": "\u26b6 Vesta Extended Relationships",
+            "description": "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module. Also includes an extended 'Who is online' block."
         }
     },
     "_vesta_personal_facts_": {
         "update_service": "VestaModuleUpdate",
         "params": {
-            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_personal_facts"
+            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_personal_facts",
+            "title": "\u26b6 Vesta Facts and events",
+            "description": "A tab showing the facts and events of an individual. Replacement for the original 'Facts and events' module.  Also extends facts and events on the family page. Also provides additional map links."
         }
     },
     "_vesta_relatives_": {
         "update_service": "VestaModuleUpdate",
         "params": {
-            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_relatives"
+            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_relatives",
+            "title": "\u26b6 Vesta Families",
+            "description": "A tab showing the close relatives of an individual. Replacement for the original 'Families' module."
         }
     },
     "_vesta_gov4webtrees_": {
         "update_service": "VestaModuleUpdate",
         "params": {
-            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_gov4webtrees"
+            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_gov4webtrees",
+            "title": "\u26b6 Vesta Gov4Webtrees",
+            "description": "A module integrating GOV (historic gazetteer) data."
         }
     },
     "_vesta_places_and_pedigree_map_": {
         "update_service": "VestaModuleUpdate",
         "params": {
-            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_places_and_pedigree_map"
+            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_places_and_pedigree_map",
+            "title": "\u26b6 Vesta Places and Pedigree map",
+            "description": "The Place hierarchy. Also show the location of events and the birthplace of ancestors on a map. Replacement for the original 'Place hierarchy', 'Places' and  'Pedigree map' modules."
         }
     },
     "_vesta_research_suggestions_": {
         "update_service": "VestaModuleUpdate",
         "params": {
-            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_research_suggestions"
+            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_research_suggestions",
+            "title": "\u26b6 Vesta Research Suggestions",
+            "description": "A module providing suggestions for additional research, based on available sources."
         }
     },
     "_vesta_shared_places_": {
         "update_service": "VestaModuleUpdate",
         "params": {
-            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_shared_places"
+            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_shared_places",
+            "title": "\u26b6 Vesta Shared Places",
+            "description": "A module providing support for shared places."
         }
     },
     "_vesta_location_data_": {
         "update_service": "VestaModuleUpdate",
         "params": {
-            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_location_data"
+            "github_repo": "vesta-webtrees-2-custom-modules\/vesta_location_data",
+            "title": "\u26b6 Vesta Webtrees Location Data Provider",
+            "description": "A module providing (non-GEDCOM-based) webtrees location data to other modules."
         }
     },
     "_sosa20_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "gustine\/sosa20"
+            "github_repo": "gustine\/sosa20",
+            "title": "Sosa-Stradonitz (Ahnentafel)",
+            "description": "A sidebar showing Sosa-Stradonitz number of individuals."
         }
     },
     "_hh_extended_family_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "hartenthaler\/hh_extended_family",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Extended family",
+            "description": "A tab showing the extended family of an individual."
         }
     },
     "_hh_legal_notice_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "hartenthaler\/hh_legal_notice",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Legal Notice and Privacy Policy",
+            "description": "Legal notice as a footer element for this site."
         }
     },
     "_german-chancellors-presidents_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "hartenthaler\/german-chancellors-presidents",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "German Chancellors Presidents",
+            "description": "Historical facts - Chancellors and Presidents of Germany (since 1949)"
         }
     },
     "_german-wars-battles-worldwide_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "hartenthaler\/german-wars-battles-worldwide",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Wars and Battles Worldwide \ud83c\udde9\ud83c\uddea",
+            "description": "Historical facts (in German) - Wars and Battles Worldwide (since 900)"
         }
     },
     "_gramps-historical-facts_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "hartenthaler\/gramps-historical-facts",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Gramps Historical Facts",
+            "description": "Historical facts (in several languages) - provided by Gramps"
         }
     },
     "_family-tree-home_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "miqrogroove\/family-tree-home",
-            "get_latest_version_from_github": true
+            "get_latest_version_from_github": true,
+            "title": "Family Tree Home Page",
+            "description": "This module changes the front page for signed-in users. After a sign in from the front page, users will go back to the Family Tree instead of redirecting to My Page."
         }
     },
     "_ArgonLight_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "06Games\/Webtrees-ArgonLight",
-            "is_theme": true
+            "is_theme": true,
+            "title": "Argon Light",
+            "description": "A light theme for Webtrees based on Argon Design System"
         }
     },
     "_evang_mailsystem_": {
@@ -306,81 +398,105 @@
         "params": {
             "github_repo": "06Games\/Webtrees-MailSystem",
             "no_release": true,
-            "default_branch": "main"
+            "default_branch": "main",
+            "title": "Mail System",
+            "description": "Sends out newsletters at regular intervals"
         }
     },
     "_webtrees-branch-statistics_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "squatteur\/webtrees-branch-statistics",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Branch statistics",
+            "description": "Statistics of an individual\u2019s ancestors."
         }
     },
     "_topola_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "PeWu\/topola-webtrees"
+            "github_repo": "PeWu\/topola-webtrees",
+            "title": "Interactive tree (Topola)",
+            "description": "Opens the Topola Genealogy Viewer interactive familty tree."
         }
     },
     "_mitalteli-show-xref_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "elysch\/webtrees-mitalteli-show-xref"
+            "github_repo": "elysch\/webtrees-mitalteli-show-xref",
+            "title": "XREF and UID values module.",
+            "description": "A sidebar to show XREF and UID values."
         }
     },
     "_mitalteli-chart-family-book_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "elysch\/webtrees-mitalteli-chart-family-book"
+            "github_repo": "elysch\/webtrees-mitalteli-chart-family-book",
+            "title": "Enhanced family book",
+            "description": "A chart of an individual\u2019s ancestors and descendants, as a family book (enhanced with marriages, images, and more)."
         }
     },
     "_webtrees-HTML-block-advanced_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "photon-flip\/webtrees-HTML-block-advanced",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "HTML Advanced",
+            "description": "An advanced HTML Block"
         }
     },
     "_watermark-module_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "photon-flip\/watermark-module",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Watermark Module",
+            "description": "Changes the size and position of the watermark"
         }
     },
     "_webtrees-faces_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "UksusoFF\/webtrees-faces",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Faces",
+            "description": "This module provide easy way to mark people on group photo."
         }
     },
     "_webtrees-photos_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "UksusoFF\/webtrees-photos",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Recent photos",
+            "description": "A list of photos that have been uploaded recently."
         }
     },
     "_webtrees-reminder_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "UksusoFF\/webtrees-reminder",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Reminder",
+            "description": "Daily e-mail & Slack digest with list of the anniversaries."
         }
     },
     "_webtrees-tree_view_full_screen_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "UksusoFF\/webtrees-tree_view_full_screen",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Tree View Full Screen",
+            "description": "This module allow switch tree view to full screen mode."
         }
     },
     "_webtrees-mdi_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "UksusoFF\/webtrees-mdi",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Material Design Icons",
+            "description": "This module replace icons with Material Design Icons."
         }
     },
     "_jp-theme-colors_": {
@@ -389,28 +505,36 @@
             "github_repo": "jpretired\/jp-theme-colors",
             "is_theme": true,
             "get_latest_version_from_github": true,
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Jp-barvy",
+            "description": "Theme \u2014 Jp-barvy"
         }
     },
     "_jp-main-menu-manual_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "jpretired\/jp-main-menu-manual",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Main menu manual",
+            "description": "Add an extra item to the main menu as a link to a webtrees manual."
         }
     },
     "_telegram_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "Tywed\/telegram",
-            "tag_prefix": "v."
+            "tag_prefix": "v.",
+            "title": "Telegram",
+            "description": "Sends Telegram notifications about family events, such as birthdays and anniversaries."
         }
     },
     "_news-menu_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "Tywed\/news-menu",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "News",
+            "description": "Add an extra item to the main menu as a link to a webtrees news."
         }
     },
     "_finnish-historical-facts_": {
@@ -418,7 +542,9 @@
         "params": {
             "github_repo": "ardhtu\/finnish-historical-facts",
             "no_release": true,
-            "default_branch": "master"
+            "default_branch": "master",
+            "title": "Suomen historialliset tapahtumat",
+            "description": "Historical facts (in Finnish) - p??ministerit, presidentit, suuriruhtinaat ja kuninkaat"
         }
     },
     "_fam-nav-parents-last_": {
@@ -426,14 +552,18 @@
         "params": {
             "github_repo": "tronsmit\/fam-nav-parents-last",
             "no_release": true,
-            "default_branch": "main"
+            "default_branch": "main",
+            "title": "Family navigator - show parent families last",
+            "description": "Family navigator - show parent families last"
         }
     },
     "_linkenhancer_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "bschwede\/linkenhancer",
-            "tag_prefix": "v"
+            "tag_prefix": "v",
+            "title": "Link-Enhancer",
+            "description": "Cross-references to Gedcom datasets, Markdown editor, context-sensitive link to the GenWiki webtrees manual"
         }
     }
 }

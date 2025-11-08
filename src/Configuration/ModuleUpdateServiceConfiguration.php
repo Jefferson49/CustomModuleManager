@@ -190,7 +190,7 @@ class ModuleUpdateServiceConfiguration
      * 
      * @param bool $use_local Use the local configuraton
      * 
-     * @return array<string> module_name => module_config
+     * @return array module_name => module_config
      */
     public static function getModuleUpdateServiceConfig(bool $use_local = false): array {
 
@@ -448,12 +448,12 @@ class ModuleUpdateServiceConfiguration
             //Set language
             self::$language = $current_language;
 
-            $titles_all_languages = DefaultTitlesAndDescriptions::MODULE_TITLES;
-            $descriptions_all_languages = DefaultTitlesAndDescriptions::MODULE_DESCRIPTIONS;
+            $titles_all_languages = (array) DefaultTitlesAndDescriptions::MODULE_TITLES;
+            $descriptions_all_languages = (array) DefaultTitlesAndDescriptions::MODULE_DESCRIPTIONS;
 
             //Values for default language
-            $titles = json_decode($titles_all_languages[CustomModuleManager::DEFAULT_LANGUAGE]);
-            $descriptions = json_decode($descriptions_all_languages[CustomModuleManager::DEFAULT_LANGUAGE]);
+            $titles = (array) json_decode($titles_all_languages[CustomModuleManager::DEFAULT_LANGUAGE]);
+            $descriptions = (array) json_decode($descriptions_all_languages[CustomModuleManager::DEFAULT_LANGUAGE]);
 
             foreach ($titles as $module_name => $title) {
                 self::$titles[CustomModuleManager::DEFAULT_LANGUAGE][$module_name] = $title;
@@ -461,6 +461,18 @@ class ModuleUpdateServiceConfiguration
 
             foreach ($descriptions as $module_name => $description) {
                 self::$descriptions[CustomModuleManager::DEFAULT_LANGUAGE][$module_name] = $description;
+            }
+
+            //Values for new modules from the module update configuration
+            $module_update_service_config = self::getModuleUpdateServiceConfig();
+
+            foreach($module_update_service_config as $module_name => $update_config) {
+                if(!isset(self::$titles[CustomModuleManager::DEFAULT_LANGUAGE][$module_name])) {
+                    $module_config = (array) $module_update_service_config[$module_name];
+                    $params = (array) $module_config['params'];                     
+                    self::$titles[CustomModuleManager::DEFAULT_LANGUAGE][$module_name] = $params['title'] ?? '';
+                    self::$descriptions[CustomModuleManager::DEFAULT_LANGUAGE][$module_name] = $params['description'] ?? '';
+                }
             }
 
             //Values for current language

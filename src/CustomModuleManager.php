@@ -61,6 +61,7 @@ use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
 use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\DefaultTitlesAndDescriptions;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
@@ -787,8 +788,21 @@ class CustomModuleManager extends AbstractModule implements
             throw new RuntimeException('Cannot open file: ' . $json_file);
         }
 
+        //Get configuration
+		$config = (array) ModuleUpdateServiceConfiguration::MODULE_UPDATE_SERVICE_CONFIG;
+
+        //Add titles and descriptions
+        $titles_all_languages = DefaultTitlesAndDescriptions::MODULE_TITLES;
+        $descriptions_all_languages = DefaultTitlesAndDescriptions::MODULE_DESCRIPTIONS;        
+        $titles = (array) json_decode($titles_all_languages[CustomModuleManager::DEFAULT_LANGUAGE]);
+        $descriptions = (array) json_decode($descriptions_all_languages[CustomModuleManager::DEFAULT_LANGUAGE]);
+
+        foreach ($config as $module_name => $module_config) {            $params = (array) $module_config['params'];
+            $config[$module_name]['params']['title']       = $titles[$module_name] ?? '';
+            $config[$module_name]['params']['description'] = $descriptions[$module_name] ?? '';
+        }
+        
         //Create JSON
-		$config = ModuleUpdateServiceConfiguration::MODULE_UPDATE_SERVICE_CONFIG;
         $json_config = json_encode($config);
 
         try {
