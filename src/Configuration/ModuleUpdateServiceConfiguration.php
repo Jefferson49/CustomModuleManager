@@ -231,7 +231,7 @@ class ModuleUpdateServiceConfiguration
                 try {
                     //throw new GithubCommunicationError('debug');
                     $json_config = GithubService::getTextFileContent(CustomModuleManager::GITHUB_REPO, CustomModuleManager::CONFIG_GITHUB_BRANCH, CustomModuleManager::CONFIG_GITHUB_PATH, $github_api_token);
-                    self::$module_update_service_config = json_decode($json_config);
+                    self::$module_update_service_config = json_decode($json_config, true);
                 }
                 catch (GithubCommunicationError $ex) {
                     //Take local configuration if we cannot download it from GitHub
@@ -245,7 +245,7 @@ class ModuleUpdateServiceConfiguration
             self::$module_update_service_config = self::getLocalConfiguration();
         }
 
-        return (array) self::$module_update_service_config;
+        return self::$module_update_service_config;
     }
 
     /**
@@ -264,7 +264,7 @@ class ModuleUpdateServiceConfiguration
         }
 
         $local_json_config = $file_system->read(CustomModuleManager::CONFIG_LOCAL_PATH);
-        $local_config = (array) json_decode($local_json_config);
+        $local_config = json_decode($local_json_config, true);
 
         return $local_config;
     }
@@ -472,8 +472,8 @@ class ModuleUpdateServiceConfiguration
             $descriptions_all_languages = (array) DefaultTitlesAndDescriptions::MODULE_DESCRIPTIONS;
 
             //Values for default language
-            $titles = (array) json_decode($titles_all_languages[CustomModuleManager::DEFAULT_LANGUAGE]);
-            $descriptions = (array) json_decode($descriptions_all_languages[CustomModuleManager::DEFAULT_LANGUAGE]);
+            $titles = json_decode($titles_all_languages[CustomModuleManager::DEFAULT_LANGUAGE], true);
+            $descriptions = json_decode($descriptions_all_languages[CustomModuleManager::DEFAULT_LANGUAGE], true);
 
             foreach ($titles as $module_name => $title) {
                 self::$titles[CustomModuleManager::DEFAULT_LANGUAGE][$module_name] = $title;
@@ -497,14 +497,14 @@ class ModuleUpdateServiceConfiguration
 
             //Values for current language
             if (array_key_exists($current_language, $titles_all_languages)) {
-                $titles = json_decode($titles_all_languages[$current_language]);
+                $titles = json_decode($titles_all_languages[$current_language], true);
 
                 foreach ($titles as $module_name => $title) {
                     self::$titles[$current_language][$module_name] = $title;
                 }
             }
             if (array_key_exists($current_language, $descriptions_all_languages)) {
-                $descriptions = json_decode($descriptions_all_languages[$current_language]);
+                $descriptions = json_decode($descriptions_all_languages[$current_language], true);
 
                 foreach ($descriptions as $module_name => $description) {
                     self::$descriptions[$current_language][$module_name] = $description;

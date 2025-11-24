@@ -794,8 +794,8 @@ class CustomModuleManager extends AbstractModule implements
         //Add titles and descriptions
         $titles_all_languages = DefaultTitlesAndDescriptions::MODULE_TITLES;
         $descriptions_all_languages = DefaultTitlesAndDescriptions::MODULE_DESCRIPTIONS;        
-        $titles = (array) json_decode($titles_all_languages[CustomModuleManager::DEFAULT_LANGUAGE]);
-        $descriptions = (array) json_decode($descriptions_all_languages[CustomModuleManager::DEFAULT_LANGUAGE]);
+        $titles = json_decode($titles_all_languages[CustomModuleManager::DEFAULT_LANGUAGE], true);
+        $descriptions = json_decode($descriptions_all_languages[CustomModuleManager::DEFAULT_LANGUAGE], true);
 
         foreach ($config as $module_name => $module_config) {            $params = (array) $module_config['params'];
             $config[$module_name]['params']['title']       = $titles[$module_name] ?? '';
