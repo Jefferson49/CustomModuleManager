@@ -200,6 +200,8 @@ abstract class AbstractModuleUpdate
                 return MoreI18N::xlate('Language');
             case ModuleUpdateServiceConfiguration::CATEGORY_MAP: 
                 return MoreI18N::xlate('Map');
+            case ModuleUpdateServiceConfiguration::CATEGORY_MESSAGES: 
+                return MoreI18N::xlate('Messages');
             case ModuleUpdateServiceConfiguration::CATEGORY_MEDIA: 
                 return MoreI18N::xlate('Media');
             case ModuleUpdateServiceConfiguration::CATEGORY_MENU: 
@@ -212,6 +214,8 @@ abstract class AbstractModuleUpdate
                 return MoreI18N::xlate('Sign in');
             case ModuleUpdateServiceConfiguration::CATEGORY_SOURCES: 
                 return MoreI18N::xlate('Sources');
+            case ModuleUpdateServiceConfiguration::CATEGORY_TAGS:
+                return I18N::translate('Tags');
             case ModuleUpdateServiceConfiguration::CATEGORY_THEME: 
                 return MoreI18N::xlate('Theme');
             default:

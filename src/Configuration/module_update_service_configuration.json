@@ -246,7 +246,7 @@
         "params": {
             "github_repo": "huhwt\/huhwt-tsm",
             "tag_prefix": "v",
-            "category": "clippings_cart",
+            "category": "tags",
             "title": "\u210d Tagging service manager",
             "description": "View and manage Tags for better structuring your Family Tree"
         }
@@ -445,7 +445,7 @@
             "github_repo": "06Games\/Webtrees-MailSystem",
             "no_release": true,
             "default_branch": "main",
-            "category": "admin",
+            "category": "messages",
             "title": "Mail System",
             "description": "Sends out newsletters at regular intervals"
         }
@@ -532,7 +532,7 @@
         "params": {
             "github_repo": "UksusoFF\/webtrees-reminder",
             "tag_prefix": "v",
-            "category": "admin",
+            "category": "messages",
             "title": "Reminder",
             "description": "Daily e-mail & Slack digest with list of the anniversaries."
         }
@@ -584,7 +584,7 @@
         "params": {
             "github_repo": "Tywed\/telegram",
             "tag_prefix": "v.",
-            "category": "menu",
+            "category": "messages",
             "title": "Telegram",
             "description": "Sends Telegram notifications about family events, such as birthdays and anniversaries."
         }

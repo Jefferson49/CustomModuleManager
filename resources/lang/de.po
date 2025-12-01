@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2025-11-24 06:37+0100\n"
-"PO-Revision-Date: 2025-11-24 06:37+0100\n"
+"POT-Creation-Date: 2025-12-01 06:03+0100\n"
+"PO-Revision-Date: 2025-12-01 06:03+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -95,6 +95,10 @@ msgstr ""
 #: src/ModuleUpdates/AbstractModuleUpdate.php:196
 msgid "Frontend"
 msgstr "Frontend"
+
+#: src/ModuleUpdates/AbstractModuleUpdate.php:218
+msgid "Tags"
+msgstr "Tags"
 
 #: src/ModuleUpdates/GithubModuleUpdate.php:80
 #: src/ModuleUpdates/UrlModuleUpdate.php:70
