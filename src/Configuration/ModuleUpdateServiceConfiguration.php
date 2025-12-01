@@ -209,14 +209,12 @@ class ModuleUpdateServiceConfiguration
     /**
      * Get the module update service configuration
      * 
-     * @param bool $use_local Use the local configuraton
-     * 
      * @return array module_name => module_config
      */
-    public static function getModuleUpdateServiceConfig(bool $use_local = false): array {
+    public static function getModuleUpdateServiceConfig(): array {
 
         //If we shall use the local configuration
-        if ($use_local) {
+        if (CustomModuleManager::USE_LOCAL_CONFIG) {
             return self::getLocalConfiguration();
         }
 

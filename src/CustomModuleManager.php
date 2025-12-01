@@ -158,6 +158,8 @@ class CustomModuleManager extends AbstractModule implements
     //Switch to generate a json file with the custom module update configuration (in module_update_service_configuration.json)
     public const GENERATE_CUSTOM_MODULE_UPDATE_CONFIG = false;
     
+    //Use the local json file for the custom module update configuration (in module_update_service_configuration.json)
+    public const USE_LOCAL_CONFIG = false;
 
     /**
      * CustomModuleManager constructor.
