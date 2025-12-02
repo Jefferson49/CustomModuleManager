@@ -256,7 +256,7 @@
         "params": {
             "github_repo": "huhwt\/huhwt-mtv",
             "tag_prefix": "v",
-            "category": "charts",
+            "category": "admin",
             "title": "\u210d MultTreeView",
             "description": "A treeview-diagram, showing the ancestors and descendants of an individual."
         }
@@ -593,7 +593,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "Tywed\/news-menu",
-            "tag_prefix": "v",
+            "tag_prefix": "v.",
             "category": "menu",
             "title": "News",
             "description": "Add an extra item to the main menu as a link to a webtrees news."

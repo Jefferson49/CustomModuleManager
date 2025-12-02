@@ -167,7 +167,7 @@ class ModuleUpdateServiceConfiguration
         '_jp-main-menu-manual_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jpretired/jp-main-menu-manual', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MENU]],
 
         '_telegram_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Tywed/telegram', 'tag_prefix' => 'v.', self::CATEGORY => self::CATEGORY_MESSAGES]],       
-        '_news-menu_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Tywed/news-menu', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MENU]],
+        '_news-menu_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Tywed/news-menu', 'tag_prefix' => 'v.', self::CATEGORY => self::CATEGORY_MENU]],
 
         '_finnish-historical-facts_'      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ardhtu/finnish-historical-facts', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_FACT]],
 
