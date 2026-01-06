@@ -647,7 +647,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 $update_own_module_code = false;
             }
 
-            $add_modal_button = $this->modal && !$update_own_module_code;
+            $add_modal_button = $this->modal && !$update_own_module_code && !($module_update_service->name() === VestaModuleUpdate::NAME);
     
             $button1 = '<a href="' . e($url) . '" class="btn btn-primary"';
             if ($add_modal_button) {
