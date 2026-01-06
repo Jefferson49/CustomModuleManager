@@ -210,6 +210,8 @@ abstract class AbstractModuleUpdate
                 return MoreI18N::xlate('None');
             case ModuleUpdateServiceConfiguration::CATEGORY_PLACES: 
                 return MoreI18N::xlate('Places');
+            case ModuleUpdateServiceConfiguration::CATEGORY_REPORTS: 
+                return MoreI18N::xlate('Reports');
             case ModuleUpdateServiceConfiguration::CATEGORY_SIGNIN: 
                 return MoreI18N::xlate('Sign in');
             case ModuleUpdateServiceConfiguration::CATEGORY_SOURCES: 
