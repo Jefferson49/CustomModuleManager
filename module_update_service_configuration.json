@@ -161,7 +161,7 @@
             "tag_prefix": "v",
             "category": "charts",
             "title": "GVExport",
-            "description": "This is the \"GVExport\" module"
+            "description": "Generate a diagram of everyone in your family tree. Highly customisable, with the ability to navigate in your browser or export the diagram to a file."
         }
     },
     "_webtrees-descendants-chart_": {
@@ -189,6 +189,17 @@
             "category": "charts",
             "title": "Pedigree chart",
             "description": "A pedigree chart of an individual\u2019s ancestors."
+        }
+    },
+    "_webtrees-statistics_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "magicsunday\/webtrees-statistics",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "charts",
+            "title": "Statistics",
+            "description": "Various statistics charts."
         }
     },
     "_myartjaub_ruraltheme_": {
@@ -369,6 +380,17 @@
             "description": "A sidebar showing Sosa-Stradonitz number of individuals."
         }
     },
+    "_gustine-history22_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "gustine\/gustine-history22",
+            "no_release": true,
+            "default_branch": "master",
+            "category": "fact",
+            "title": "Faits historiques de France et d\u2019ailleurs \ud83c\uddea\ud83c\uddfa",
+            "description": "Variante de FrenchHistory.php pour webtrees 2.2"
+        }
+    },
     "_hh_extended_family_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -485,6 +507,15 @@
             "category": "charts",
             "title": "Enhanced family book",
             "description": "A chart of an individual\u2019s ancestors and descendants, as a family book (enhanced with marriages, images, and more)."
+        }
+    },
+    "_mitalteli-report-researchtasks_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "elysch\/webtrees-mitalteli-report-researchtasks",
+            "category": "reports",
+            "title": "Research tasks report",
+            "description": "A research tasks Report with filters and other options."
         }
     },
     "_webtrees-HTML-block-advanced_": {
@@ -607,7 +638,7 @@
             "default_branch": "master",
             "category": "fact",
             "title": "Suomen historialliset tapahtumat",
-            "description": "Historical facts (in Finnish) - p??ministerit, presidentit, suuriruhtinaat ja kuninkaat"
+            "description": "Historical facts (in Finnish) - p\u00e4\u00e4ministerit, presidentit, suuriruhtinaat ja kuninkaat"
         }
     },
     "_fam-nav-parents-last_": {
@@ -629,6 +660,58 @@
             "category": "frontend",
             "title": "Link-Enhancer",
             "description": "Cross-references to Gedcom datasets, Markdown editor, context-sensitive link to the GenWiki webtrees manual"
+        }
+    },
+    "_polish-historic-events_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "p-ja\/polish-historic-events",
+            "tag_prefix": "v",
+            "category": "fact",
+            "title": "Historia Polski \ud83c\uddf5\ud83c\uddf1",
+            "description": "Historia Polski"
+        }
+    },
+    "_WeEt-main_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "08ah15\/WeEt",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "sources",
+            "title": "MyList module",
+            "description": "This module list sources in an archive you like to see during your next visit"
+        }
+    },
+    "_vytux_cousins_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "vytux-com\/vytux_cousins",
+            "category": "frontend",
+            "title": "Cousins",
+            "description": "A tab showing cousins of an individual."
+        }
+    },
+    "_svajana-master_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "baskar-yahoo\/webtrees-svajana",
+            "no_release": true,
+            "default_branch": "master",
+            "tag_prefix": "v",
+            "category": "theme",
+            "title": "Webtrees Svajana",
+            "description": "Seamless integration with WordPress Kadence Child Theme."
+        }
+    },
+    "_historic-events-belgium_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "Dirk-Everts\/webtrees-historic-events-belgium",
+            "tag_prefix": "v",
+            "category": "fact",
+            "title": "Historic events in present-day Belgium",
+            "description": "Historic events that took place on the territory of present-day Belgium since 1600, shown automatically on individual pages."
         }
     }
 }
