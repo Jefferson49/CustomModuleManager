@@ -713,5 +713,16 @@
             "title": "Historic events in present-day Belgium",
             "description": "Historic events that took place on the territory of present-day Belgium since 1600, shown automatically on individual pages."
         }
+    },
+    "_time-travel-map_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "gmarcon\/webtrees-time-travel-map",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "frontend",
+            "title": "",
+            "description": ""
+        }
     }
 }
