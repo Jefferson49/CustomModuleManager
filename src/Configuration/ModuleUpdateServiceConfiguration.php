@@ -189,15 +189,16 @@ class ModuleUpdateServiceConfiguration
 
         '_historic-events-belgium_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Dirk-Everts/webtrees-historic-events-belgium', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],        
 
-
+        '_time-travel-map_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'gmarcon/webtrees-time-travel-map', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
+ 
     ];
 
     private const MODULES_INSTALLATION_FAILS = [
 
-        '_custom-css_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'makitso/custom-css']],
+        '_custom-css_'                       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'makitso/custom-css']],
         //Unusual folder structure; disabled by default: modules_v4/custom-css-1.0.19/custom-css.disable/module.php
 
-        '_SA-history-4-webtrees_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'tronsmit/SA-history-4-webtrees']],
+        '_SA-history-4-webtrees_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'tronsmit/SA-history-4-webtrees']],
         //Creates errors if module folder is renamed (e.g. from "SA-history-4-webtrees-1.1.0" to "SA-history-4-webtrees")
         //Seems not to occur in control panel, even if installed manually
 
@@ -205,18 +206,23 @@ class ModuleUpdateServiceConfiguration
         //Last commit is 6 years ago; seemingly not compatible to webtrees 2.2
         //Main folder "paradiso-master" seems to contain 5 module in sub-directories
         //Included odules create PHP errors
+ 
+        '_jsonld_'                           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bmarwell/webtrees-jsonld', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
+        //Preliminary release; creates errors
     ];
 
     private const MODULES_TO_CLARIFY = [
 
-        //Specific folder structure
         '_OldNicknames_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bertkoor/wt-module-old-nicknames', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_NONE]],
+        //Specific folder structure
         
-        //No module, but substitution of webtrees core code
         '_new_modules_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'sevtor/modules']],
         '_new_reports_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'sevtor/modules']],
+        //No module, but substitution of webtrees core code
 
 
+        '_changes_'
+        //Does not have a GitHub or download link; creates PHP errors during use
     ];
 
     /**
