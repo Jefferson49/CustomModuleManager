@@ -799,7 +799,7 @@ class CustomModuleManager extends AbstractModule implements
         $titles = json_decode($titles_all_languages[CustomModuleManager::DEFAULT_LANGUAGE], true);
         $descriptions = json_decode($descriptions_all_languages[CustomModuleManager::DEFAULT_LANGUAGE], true);
 
-        foreach ($config as $module_name => $module_config) {            $params = (array) $module_config['params'];
+        foreach ($config as $module_name => $module_config) {
             $config[$module_name]['params']['title']       = $titles[$module_name] ?? '';
             $config[$module_name]['params']['description'] = $descriptions[$module_name] ?? '';
         }
