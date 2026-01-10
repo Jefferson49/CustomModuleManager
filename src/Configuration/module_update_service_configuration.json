@@ -721,8 +721,19 @@
             "no_release": true,
             "default_branch": "main",
             "category": "frontend",
-            "title": "",
-            "description": ""
+            "title": "Time Travel Map",
+            "description": "Pedigree\/Descendants map over time."
+        }
+    },
+    "_old_nicknames_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "bertkoor\/wt-module-old-nicknames",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "none",
+            "title": "Old Nicknames",
+            "description": "Put quoted nickname into the full display name."
         }
     }
 }

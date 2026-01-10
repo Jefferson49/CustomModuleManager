@@ -189,8 +189,9 @@ class ModuleUpdateServiceConfiguration
 
         '_historic-events-belgium_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Dirk-Everts/webtrees-historic-events-belgium', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],        
 
-        '_time-travel-map_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'gmarcon/webtrees-time-travel-map', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
- 
+        '_time-travel-map_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'gmarcon/webtrees-time-travel-map', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
+
+        '_old_nicknames_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bertkoor/wt-module-old-nicknames', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_NONE]],
     ];
 
     private const MODULES_INSTALLATION_FAILS = [
@@ -212,9 +213,6 @@ class ModuleUpdateServiceConfiguration
     ];
 
     private const MODULES_TO_CLARIFY = [
-
-        '_OldNicknames_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bertkoor/wt-module-old-nicknames', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_NONE]],
-        //Specific folder structure
         
         '_new_modules_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'sevtor/modules']],
         '_new_reports_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'sevtor/modules']],
