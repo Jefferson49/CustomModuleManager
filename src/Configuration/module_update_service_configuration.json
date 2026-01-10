@@ -725,7 +725,7 @@
             "description": "Pedigree\/Descendants map over time."
         }
     },
-    "_old_nicknames_": {
+    "_old-nicknames_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "bertkoor\/wt-module-old-nicknames",
