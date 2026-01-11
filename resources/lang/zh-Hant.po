@@ -1,0 +1,391 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CustomModuleManager for webtrees 2\n"
+"POT-Creation-Date: 2026-01-11 14:12+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-KeywordsList: translate\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: src/CustomModuleManager.php:233
+msgid "Custom Module Manager"
+msgstr "自定義模塊管理器"
+
+#: src/CustomModuleManager.php:246
+msgid "A custom module to manage webtrees custom modules."
+msgstr "一個用於管理webtrees自定義模塊的自定義模塊。"
+
+#: src/CustomModuleManager.php:320 src/ModuleUpdates/GithubModuleUpdate.php:150
+#: src/ModuleUpdates/GithubModuleUpdate.php:217
+#, php-format
+msgid "Communication error with %s"
+msgstr "與%s通信錯誤"
+
+#: src/CustomModuleManager.php:498
+#, php-format
+msgid "The preferences for the module \"%s\" were updated."
+msgstr "模塊\"%s\"的偏好設置已更新。"
+
+#: src/CustomModuleManager.php:544
+msgid "Rollback Custom Module Update"
+msgstr "撤銷自定義模塊更新"
+
+#: src/CustomModuleManager.php:545
+msgid "Rollback"
+msgstr "回滾"
+
+#: src/CustomModuleManager.php:572
+#, php-format
+msgid ""
+"The preferences for the custom module \"%s\" were sucessfully updated to the "
+"new module version %s."
+msgstr "自定義模塊\"%s\"的首選項已成功更新。新模塊版本：%s。"
+
+#: src/CustomModuleManager.php:604
+#, php-format
+msgid ""
+"The custom module \"%s\" is activated in parallel to the %s custom module. "
+"This can lead to unintended behavior. If using the %s module, it is strongly "
+"recommended to deactivate the \"%s\" module, because the identical "
+"functionality is also integrated in the %s module."
+msgstr ""
+"自定義模塊\"%s\"與自定義模塊%s同時啓用。這可能會導致意外行爲。如果使用%s模"
+"塊，強烈建議禁用\"%s\"模塊，因爲%s模塊已集成了相同的功能。"
+
+#: src/CustomModuleManager.php:609
+#, php-format
+msgid ""
+"The custom module \"%s\" is activated in parallel to the %s custom module. "
+"This can lead to unintended behavior, because both of the modules have "
+"registered the same custom view \"%s\". It is strongly recommended to "
+"deactivate one of the modules."
+msgstr ""
+"自定義模塊\"%s\"與自定義模塊\"%s\"同時啓用。這可能導致意外行爲，因爲這兩個模"
+"塊都註冊了相同的自定義視圖\"%s\"。強烈建議禁用其中一個模塊。"
+
+#: src/CustomModuleManager.php:633
+#, php-format
+msgid ""
+"The custom module view \"%s\" is not registered as replacement for the "
+"standard webtrees view. There might be another module installed, which "
+"registered the same custom view. This can lead to unintended behavior. It is "
+"strongly recommended to deactivate one of the modules. The path of the "
+"parallel view is: %s"
+msgstr ""
+"自定義模塊視圖\"%s\"未註冊爲標準webtrees視圖的替代項。可能已安裝了另一個模"
+"塊，並且該模塊註冊了相同的自定義視圖。這可能會導致意外行爲。強烈建議禁用其中"
+"一個模塊。並行視圖的路徑爲：%s"
+
+#: src/ModuleUpdates/AbstractModuleUpdate.php:196
+msgid "Frontend"
+msgstr ""
+
+#: src/ModuleUpdates/AbstractModuleUpdate.php:220
+msgid "Tags"
+msgstr ""
+
+#: src/ModuleUpdates/GithubModuleUpdate.php:80
+#: src/ModuleUpdates/UrlModuleUpdate.php:70
+#, php-format
+msgid ""
+"Could not create the %s update service. Configuration parameter \"%s\" "
+"missing."
+msgstr "無法創建%s更新服務。配置參數\"%s\"缺失。"
+
+#: src/ModuleUpdates/GithubModuleUpdate.php:151
+msgid "Cannot retrieve download URL."
+msgstr "無法獲取下載鏈接。"
+
+#: src/RequestHandlers/CustomModuleUpdatePage.php:81
+msgid "Custom Module Updates"
+msgstr "自定義模塊更新"
+
+#: src/RequestHandlers/ModuleInformationModal.php:80
+msgid "Module Information"
+msgstr "模塊信息"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:102
+msgid "Could not identify a suitable module upgrade service for custom module"
+msgstr "無法找到適用於自定義模塊的合適模塊升級服務"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:110
+msgid "Error during retrieving download URL"
+msgstr "獲取下載鏈接時出錯"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:147
+msgid "Check version..."
+msgstr "檢查版本..."
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:148
+msgid "Create temporary folders…"
+msgstr "創建臨時目錄…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:153
+msgid "Backup…"
+msgstr "備份…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:135
+msgid "Update Wizard was aborted"
+msgstr "更新嚮導已中止"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:215
+#, php-format
+msgid "Installing module \"%s\" (to folder: \"/module_v4/%s\")"
+msgstr "正在安裝模塊\"%s\"（到文件夾：\"/module_v4/%s\"）"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:218
+#, php-format
+msgid "Upgrading module \"%s\" (in folder: \"/module_v4/%s\")"
+msgstr "正在升級模塊\"%s\"（到文件夾：\"/module_v4/%s\"）"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:228
+msgid ""
+"Version % is the latest version of the custom module. No upgrade is "
+"available."
+msgstr "版本%是自定義模塊的最新版本。沒有可用的升級。"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:233
+#, php-format
+msgid ""
+"This custom module can only be used with a webtrees version greater or equal "
+"than %s"
+msgstr "此自定義模塊只能與版本高於或等於%s的webtrees版本一起使用"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:238
+msgid ""
+"The PHP extension \"zip\" is not installed. In order to use the custom "
+"module, your PHP installation needs to include the \"zip\" extension. You "
+"have to activate the extension in your \"php.ini\" file."
+msgstr ""
+"PHP的\"zip\"擴展未安裝。爲了使用自定義模塊，您的PHP安裝必須包含\"zip\"擴展。"
+"您需要在\"php.ini\"文件中啓用該擴展。"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:246
+#, php-format
+msgid "Installing version: \"%s\""
+msgstr "正在安裝版本：\"%s\""
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:249
+#, php-format
+msgid "Upgrading the module from version \"%s\" to version \"%s\""
+msgstr "正在將模塊從版本\"%s\"升級到版本\"%s\""
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:320
+#, php-format
+msgid "A backup of the current module was created in %s seconds."
+msgstr "當前模塊的備份已創建，耗時 %s 秒。"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:325
+msgid "Failed to create a backup of the current module."
+msgstr "創建當前模塊的備份失敗。"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:352
+msgid "Error during downloading the module zip file."
+msgstr "下載模塊壓縮文件時出錯。"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:384
+msgid "Error during unzipping the module zip file."
+msgstr "解壓縮模塊文件時出錯。"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:498
+#, php-format
+msgid ""
+"The module %s was rolled back to the current version, because the update "
+"created errors."
+msgstr "由於更新導致錯誤，模塊%s已回滾到當前版本。"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:501
+#, php-format
+msgid ""
+"The installation of module %s was rolled back, because the module created "
+"errors."
+msgstr "因爲模塊%s的安裝報錯，所以已回滾。"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:511
+#, php-format
+msgid "A roll back of the module %s to the current version failed."
+msgstr "模塊%s回滾到當前版本失敗。"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:512
+#, php-format
+msgid ""
+"Please try to manually roll back by copying the files from \"/data/tmp/"
+"backup/modules_4/%s\" to \"/modules_v4/%s\"."
+msgstr ""
+"請嘗試手動回滾，將文件從\"/data/tmp/backup/modules_4/%s\"複製到\"/"
+"modules_v4/%s\"。"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:515
+#, php-format
+msgid "A roll back of the installation of module %s failed."
+msgstr "模塊%s的安裝回滾失敗。"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:516
+#, php-format
+msgid ""
+"Please try to manually roll back by deleting the folder \"/modules_v4/%s\""
+msgstr "請嘗試手動回滾，方法是刪除文件夾\"/modules_v4/%s\"。"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:658
+msgid "continue (reload)"
+msgstr "繼續（重新加載）"
+
+#: resources/views/modals/module_information.phtml:63
+msgid "Documentation"
+msgstr "文檔"
+
+#: resources/views/modals/module_information.phtml:94
+#: resources/views/module_update.phtml:94
+msgid "Update Service"
+msgstr "升級服務"
+
+#: resources/views/modals/module_information.phtml:99
+msgid "Module folder"
+msgstr "模塊目錄"
+
+#: resources/views/modals/module_information.phtml:104
+#: resources/views/module_update.phtml:92
+msgid "Current Version"
+msgstr "當前版本"
+
+#: resources/views/modals/module_information.phtml:109
+#: resources/views/module_update.phtml:93
+msgid "Latest Version"
+msgstr "最新版本"
+
+#: resources/views/modals/module_information.phtml:114
+msgid "⚶ Vesta homepage"
+msgstr "⚶ Vesta首頁"
+
+#: resources/views/modals/module_information.phtml:123
+msgid "GitHub repository"
+msgstr "GitHub-repository"
+
+#: resources/views/modals/module_information.phtml:163
+#: resources/views/module_usage.phtml:38
+msgid "Module Usage"
+msgstr "模塊使用"
+
+#: resources/views/module_update.phtml:57
+#, php-format
+msgid ""
+"A new version of \"%s\" is available. It is recommended to upgrade to the "
+"latest version before other custom modules are installed/upgraded."
+msgstr ""
+"\"%s\"的新版本已發佈。建議在安裝/升級其他自定義模塊之前，先升級到最新版本。"
+
+#: resources/views/module_update.phtml:60
+msgid ""
+"Typically, custom modules versions are updated every 24 hours. You can check "
+"if later versions are available."
+msgstr ""
+"通常情況下，自定義模塊版本每24小時更新一次。您可以查看是否有更新的版本可用。"
+
+#: resources/views/module_update.phtml:83
+msgid "Module Updates"
+msgstr "模塊升級"
+
+#: resources/views/module_update.phtml:90
+msgid "Folder (within modules_v4)"
+msgstr "文件夾（位於modules_v4內）"
+
+#: resources/views/module_update.phtml:96
+msgid "Action"
+msgstr ""
+
+#: resources/views/module_update.phtml:105
+#: resources/views/module_update.phtml:232
+msgid "not installed"
+msgstr "沒有安裝"
+
+#: resources/views/module_update.phtml:109
+msgid "enabled"
+msgstr "啓用"
+
+#: resources/views/module_update.phtml:111
+msgid "disabled"
+msgstr "禁用"
+
+#: resources/views/module_update.phtml:128
+#: resources/views/module_update.phtml:153
+msgid "not received"
+msgstr "沒有收到"
+
+#: resources/views/module_update.phtml:131
+msgid "not available"
+msgstr "不可用"
+
+#: resources/views/module_update.phtml:231
+msgid "Update module"
+msgstr "升級模塊"
+
+#: resources/views/module_update.phtml:234
+msgid "Install module"
+msgstr "安裝模塊"
+
+#: resources/views/settings.phtml:41
+msgid "Manage custom modules"
+msgstr "管理自定義模塊"
+
+#: resources/views/settings.phtml:53
+msgid "Settings for List Menu"
+msgstr "列表菜單設置"
+
+#: resources/views/settings.phtml:58
+msgid "Show menu item in list menu"
+msgstr "在列表菜單中顯示菜單項"
+
+#: resources/views/settings.phtml:63
+#, php-format
+msgid ""
+"If this option is selected, a link to the page \"%s\" will be shown as a "
+"list menu item."
+msgstr "如果選中此選項，則指向頁面\"%s\"的鏈接將顯示爲列表菜單項。"
+
+#: resources/views/settings.phtml:70
+msgid "Selection of the custom modules to show"
+msgstr "選擇要顯示的自定義模塊"
+
+#: resources/views/settings.phtml:75
+msgid "Modules to show"
+msgstr "要顯示的模塊"
+
+#: resources/views/settings.phtml:82
+msgid "Show all custom modules"
+msgstr "顯示所有自定義模塊"
+
+#: resources/views/settings.phtml:89
+msgid "Show installed custom modules (in order to update modules)"
+msgstr "顯示已安裝的自定義模塊（以便更新模塊）"
+
+#: resources/views/settings.phtml:96
+msgid "Show not installed custom modules (in order to install new modules)"
+msgstr "顯示未安裝的自定義模塊（以便安裝新模塊）"
+
+#: resources/views/settings.phtml:103 resources/views/settings.phtml:109
+msgid "GitHub API token"
+msgstr "GitHub API 令牌"
+
+#: resources/views/settings.phtml:105
+msgid ""
+"The custom module makes intensive use of the GitHub API to retrieve module "
+"versions and download URLs. However, GitHub limits the frequency of API "
+"calls for a certain IP address. In order to significantly increase the "
+"allowed frequency of GitHub API calls, GitHub requires to use a GitHub API "
+"token."
+msgstr ""
+"該自定義模塊大量使用GitHub API來檢索模塊版本和下載URL。然而GitHub對特定IP地址"
+"的API調用頻率有限制。爲了顯著提高GitHub API的調用頻率，GitHub要求使用GitHub "
+"API令牌。"
+
+#: resources/views/settings.phtml:106
+msgid ""
+"Using a GitHub API token is recommended, if GitHub communication errors occur"
+msgstr "如果出現GitHub通信錯誤，建議使用GitHub API令牌"
