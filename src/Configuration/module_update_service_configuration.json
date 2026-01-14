@@ -718,11 +718,10 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "gmarcon\/webtrees-time-travel-map",
-            "no_release": true,
-            "default_branch": "main",
+            "tag_prefix": "v",
             "category": "charts",
             "title": "Time Travel Map",
-            "description": "Pedigree\/Descendants map over time."
+            "description": "Time Travel Map is a module to visualize the geographic history of a family over time."
         }
     },
     "_old-nicknames_": {
