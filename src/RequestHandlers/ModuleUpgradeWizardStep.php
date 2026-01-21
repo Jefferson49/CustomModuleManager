@@ -117,9 +117,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     /**
      * @param UpgradeService $webtrees_upgrade_service
      */
-    public function __construct() {
-        $this->webtrees_upgrade_service = new UpgradeService(new TimeoutService(new PhpService));
-        $this->maintenance_mode_service = new MaintenanceModeService();
+    public function __construct(UpgradeService $webtrees_upgrade_service, MaintenanceModeService $maintenance_mode_service) {
+
+        $this->webtrees_upgrade_service = $webtrees_upgrade_service;
+        $this->maintenance_mode_service = $maintenance_mode_service;
     }
 
     /**
@@ -285,7 +286,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         } 
         catch (Throwable $exception) {
             $alert_type = self::ALERT_DANGER;
-            $alert      = MoreI18N::xlate('Error during creating the temporary backup and upgrade folders');
+            $alert      = MoreI18N::xlate('Error during creating the temporary backup and upgrade folders') . "\n\n" . $exception->getMessage() . "\n\n";
             $abort      = true;
         }
 
@@ -322,7 +323,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         } 
         catch (Throwable $exception) {
             $alert_type = self::ALERT_DANGER;
-            $alert      = I18N::translate('Failed to create a backup of the current module.');
+            $alert      = I18N::translate('Failed to create a backup of the current module.') . "\n\n" . $exception->getMessage() . "\n\n";
             $abort      = true;
         }
 
@@ -349,7 +350,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $alert_type = self::ALERT_SUCCESS;
         }
         catch (Throwable $exception) {
-            $alert      = I18N::translate('Error during downloading the module zip file.');
+            $alert      = I18N::translate('Error during downloading the module zip file.') . "\n\n" . $exception->getMessage() . "\n\n";
             $alert_type = self::ALERT_DANGER;
             $abort      = true;
         }
@@ -381,7 +382,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $alert_type = self::ALERT_SUCCESS;
         }
         catch (Throwable $exception) {
-            $alert      = I18N::translate('Error during unzipping the module zip file.');
+            $alert      = I18N::translate('Error during unzipping the module zip file.') . "\n\n" . $exception->getMessage() . "\n\n";
             $alert_type = self::ALERT_DANGER;
             $abort      = true;
         }
@@ -502,18 +503,20 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             }
 
             if ($error !== '') {
-                $alert .= "\n" . substr($error, 0, CustomModuleManager::ERROR_MAX_LENGTH). "\n";
+                $alert .= "\n\n" . substr($error, 0, CustomModuleManager::ERROR_MAX_LENGTH) . "\n\n";
             }
         }
         catch (Throwable $exception) {
             $folder_name = $module_update_service::getInstallationFolderFromModuleName($module_update_service->getModuleName());
             if ($action === CustomModuleManager::ACTION_UPDATE) {
-                $alert =    I18N::translate('A roll back of the module %s to the current version failed.', $module_update_service->getModuleName()) . "\n" .
-                            I18N::translate('Please try to manually roll back by copying the files from "/data/tmp/backup/modules_4/%s" to "/modules_v4/%s".', $folder_name, $folder_name);
+                $alert =    I18N::translate('A roll back of the module %s to the current version failed.', $module_update_service->getModuleName()) . "\n\n" . 
+                            $exception->getMessage() . "\n\n" .
+                            I18N::translate('Please try to manually roll back by copying the files from "/data/tmp/backup/modules_4/%s" to "/modules_v4/%s".', $folder_name, $folder_name) . "\n\n";
             } 
             else {
-                $alert =    I18N::translate('A roll back of the installation of module %s failed.', $module_update_service->getModuleName()) . "\n" .
-                            I18N::translate('Please try to manually roll back by deleting the folder "/modules_v4/%s"',$folder_name);
+                $alert =    I18N::translate('A roll back of the installation of module %s failed.', $module_update_service->getModuleName()) . "\n\n" . 
+                            $exception->getMessage() . "\n\n" .
+                            I18N::translate('Please try to manually roll back by deleting the folder "/modules_v4/%s"',$folder_name) . "\n\n";
             }
         }
 

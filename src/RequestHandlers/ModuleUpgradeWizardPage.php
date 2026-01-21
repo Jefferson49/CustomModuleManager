@@ -68,7 +68,7 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
      */
     public function __construct(UpgradeService $upgrade_service)
     {
-        $this->upgrade_service        = $upgrade_service;
+        $this->upgrade_service = $upgrade_service;
     }
 
     /**
