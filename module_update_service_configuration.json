@@ -721,7 +721,7 @@
             "tag_prefix": "v",
             "category": "charts",
             "title": "Time Travel Map",
-            "description": "Pedigree\/Descendants map over time."
+            "description": "Time Travel Map is a module to visualize the geographic history of a family over time."
         }
     },
     "_old-nicknames_": {
@@ -733,6 +733,27 @@
             "category": "frontend",
             "title": "Old Nicknames",
             "description": "Put quoted nickname into the full display name."
+        }
+    },
+    "_custom-views_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "bertkoor\/wt-module-custom-views",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "frontend",
+            "title": "Custom views (and translations)",
+            "description": "Keep your customizations of .phtml files in a different directory, so upgrades do not overwrite them. It also supports customization of translations via .csv files."
+        }
+    },
+    "_insight-lens_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "godzil3\/webtrees-insight-lens",
+            "tag_prefix": "v",
+            "category": "charts",
+            "title": "Insight Lens",
+            "description": "Visualize genealogy change statistics with interactive charts"
         }
     }
 }
