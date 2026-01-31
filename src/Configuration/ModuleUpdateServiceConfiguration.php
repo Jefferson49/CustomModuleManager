@@ -192,6 +192,9 @@ class ModuleUpdateServiceConfiguration
         '_time-travel-map_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'gmarcon/webtrees-time-travel-map', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
         '_old-nicknames_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bertkoor/wt-module-old-nicknames', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_custom-views_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bertkoor/wt-module-custom-views', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
+
+        '_insight-lens_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'godzil3/webtrees-insight-lens', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
     ];
 
     private const MODULES_INSTALLATION_FAILS = [
