@@ -84,6 +84,7 @@ class ModuleUpdateServiceConfiguration
     public const CATEGORY_SOURCES        = 'sources';
     public const CATEGORY_TAGS           = 'tags';
     public const CATEGORY_THEME          = 'theme';
+    public const CATEGORY_DATA_CHECK     = 'data_check';
 
     //The configuration for the module update services
 	//Note: Still needed to generate the JSON configuration file!
@@ -195,6 +196,9 @@ class ModuleUpdateServiceConfiguration
         '_custom-views_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bertkoor/wt-module-custom-views', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
         '_insight-lens_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'godzil3/webtrees-insight-lens', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+
+        '_data-check_'                       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Vulfharban/webtrees-datencheck-plugin', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_DATA_CHECK]],
+
     ];
 
     private const MODULES_INSTALLATION_FAILS = [
