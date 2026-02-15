@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-01-11 13:44+0100\n"
-"PO-Revision-Date: 2026-01-11 13:44+0100\n"
+"POT-Creation-Date: 2026-02-15 07:05+0100\n"
+"PO-Revision-Date: 2026-02-15 07:05+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -100,6 +100,10 @@ msgstr "Frontend"
 msgid "Tags"
 msgstr "Tags"
 
+#: src/ModuleUpdates/AbstractModuleUpdate.php:224
+msgid "Data validation"
+msgstr "Daten Validierung"
+
 #: src/ModuleUpdates/GithubModuleUpdate.php:80
 #: src/ModuleUpdates/UrlModuleUpdate.php:70
 #, php-format
@@ -144,21 +148,21 @@ msgstr "Temporäre Ordner anlegen…"
 msgid "Backup…"
 msgstr "Sicherung…"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:135
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:136
 msgid "Update Wizard was aborted"
 msgstr "Der Aktualisierungsassistent wurde abgebrochen"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:215
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:216
 #, php-format
 msgid "Installing module \"%s\" (to folder: \"/module_v4/%s\")"
 msgstr "Installiere Modul \"%s\" (in Ordner: \"/module_v4/%s\")"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:218
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:219
 #, php-format
 msgid "Upgrading module \"%s\" (in folder: \"/module_v4/%s\")"
 msgstr "Aktualisierung von Modul \"%s\" (in Ordner: \"/module_v4/%s\")"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:228
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:229
 msgid ""
 "Version % is the latest version of the custom module. No upgrade is "
 "available."
@@ -166,7 +170,7 @@ msgstr ""
 "Die Version %s ist die neueste Version des Moduls. Es ist keine "
 "Aktualisierung verfügbar."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:233
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:234
 #, php-format
 msgid ""
 "This custom module can only be used with a webtrees version greater or equal "
@@ -175,7 +179,7 @@ msgstr ""
 "Dieses Erweiterungsmodul kann nur mit einer webtrees-Version größer oder "
 "gleich %s genutzt werden"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:238
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:239
 msgid ""
 "The PHP extension \"zip\" is not installed. In order to use the custom "
 "module, your PHP installation needs to include the \"zip\" extension. You "
@@ -185,35 +189,35 @@ msgstr ""
 "zu nutzen, muss Ihre PHP-Installation die \"zip\"-Erweiterung beinhalten. "
 "Sie müssen die die Erweiterung in der \"php.ini\"-Datei aktivieren."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:246
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:247
 #, php-format
 msgid "Installing version: \"%s\""
 msgstr "Installiere Version \"%s\""
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:249
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:250
 #, php-format
 msgid "Upgrading the module from version \"%s\" to version \"%s\""
 msgstr "Aktualisieren des Moduls von Version \"%s\" auf Version \"%s\""
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:320
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:321
 #, php-format
 msgid "A backup of the current module was created in %s seconds."
 msgstr ""
 "Eine Sicherungskopie des aktuellen Moduls wurde in %s Sekunden erstellt."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:325
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:326
 msgid "Failed to create a backup of the current module."
 msgstr "Es konnte keine Sicherungskopie des aktuellen Moduls erstellt werden."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:352
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:353
 msgid "Error during downloading the module zip file."
 msgstr "Fehler beim Herunterladen der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:384
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:385
 msgid "Error during unzipping the module zip file."
 msgstr "Fehler beim Entpacken der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:498
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:499
 #, php-format
 msgid ""
 "The module %s was rolled back to the current version, because the update "
@@ -222,7 +226,7 @@ msgstr ""
 "Das Modul %s wurde auf die bisherige Version zurückgesetzt, weil das Update "
 "Fehler verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:501
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:502
 #, php-format
 msgid ""
 "The installation of module %s was rolled back, because the module created "
@@ -231,13 +235,13 @@ msgstr ""
 "Die Installation von Modul %s wurde rückgängig gemacht, weil das Modul "
 "Fehler verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:511
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:512
 #, php-format
 msgid "A roll back of the module %s to the current version failed."
 msgstr ""
 "Ein Rollback des Moduls %s auf die bisherige Version ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:512
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:514
 #, php-format
 msgid ""
 "Please try to manually roll back by copying the files from \"/data/tmp/"
@@ -247,12 +251,12 @@ msgstr ""
 "Dateien von \"/data/tmp/backup/modules_4/%s\" nach \"/modules_v4/%s\" "
 "kopieren."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:515
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:517
 #, php-format
 msgid "A roll back of the installation of module %s failed."
 msgstr "Ein Rollback der Installation von Modul %s ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:516
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:519
 #, php-format
 msgid ""
 "Please try to manually roll back by deleting the folder \"/modules_v4/%s\""
@@ -260,7 +264,7 @@ msgstr ""
 "Bitte versuchen Sie, die Dateien manuell zurückzusetzen, indem Sie den "
 "Ordner \"/modules_4/%s\" löschen"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:658
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:661
 msgid "continue (reload)"
 msgstr "Weiter (neu laden)"
 

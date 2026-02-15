@@ -220,6 +220,8 @@ abstract class AbstractModuleUpdate
                 return I18N::translate('Tags');
             case ModuleUpdateServiceConfiguration::CATEGORY_THEME: 
                 return MoreI18N::xlate('Theme');
+            case ModuleUpdateServiceConfiguration::CATEGORY_DATA_VALIDATION: 
+                return I18N::translate('Data validation');
             default:
                 return  '';
         }

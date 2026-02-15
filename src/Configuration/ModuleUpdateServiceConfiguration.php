@@ -64,27 +64,27 @@ class ModuleUpdateServiceConfiguration
     private static $module_update_service_config = [];
 
     //Categories for custom modules
-    public const CATEGORY                = 'category';
-    public const CATEGORY_ADMIN          = 'admin';
-    public const CATEGORY_CHARTS         = 'charts';
-    public const CATEGORY_CLIPPINGS_CART = 'clippings_cart';
-    public const CATEGORY_FACT           = 'fact';
-    public const CATEGORY_FOOTER         = 'footer';
-    public const CATEGORY_FRONTEND       = 'frontend';
-    public const CATEGORY_GEDCOM         = 'gedcom';
-    public const CATEGORY_LANGUAGE       = 'language';
-    public const CATEGORY_MAP            = 'maps';
-    public const CATEGORY_MEDIA          = 'media';
-    public const CATEGORY_MENU           = 'menu';
-    public const CATEGORY_MESSAGES       = 'messages';
-    public const CATEGORY_NONE           = 'none';
-    public const CATEGORY_PLACES         = 'places';
-    public const CATEGORY_REPORTS        = 'reports';
-    public const CATEGORY_SIGNIN         = 'signin';
-    public const CATEGORY_SOURCES        = 'sources';
-    public const CATEGORY_TAGS           = 'tags';
-    public const CATEGORY_THEME          = 'theme';
-    public const CATEGORY_DATA_CHECK     = 'data_check';
+    public const CATEGORY                 = 'category';
+    public const CATEGORY_ADMIN           = 'admin';
+    public const CATEGORY_CHARTS          = 'charts';
+    public const CATEGORY_CLIPPINGS_CART  = 'clippings_cart';
+    public const CATEGORY_FACT            = 'fact';
+    public const CATEGORY_FOOTER          = 'footer';
+    public const CATEGORY_FRONTEND        = 'frontend';
+    public const CATEGORY_GEDCOM          = 'gedcom';
+    public const CATEGORY_LANGUAGE        = 'language';
+    public const CATEGORY_MAP             = 'maps';
+    public const CATEGORY_MEDIA           = 'media';
+    public const CATEGORY_MENU            = 'menu';
+    public const CATEGORY_MESSAGES        = 'messages';
+    public const CATEGORY_NONE            = 'none';
+    public const CATEGORY_PLACES          = 'places';
+    public const CATEGORY_REPORTS         = 'reports';
+    public const CATEGORY_SIGNIN          = 'signin';
+    public const CATEGORY_SOURCES         = 'sources';
+    public const CATEGORY_TAGS            = 'tags';
+    public const CATEGORY_THEME           = 'theme';
+    public const CATEGORY_DATA_VALIDATION = 'data_validation';
 
     //The configuration for the module update services
 	//Note: Still needed to generate the JSON configuration file!
@@ -198,7 +198,7 @@ class ModuleUpdateServiceConfiguration
 
         '_insight-lens_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'godzil3/webtrees-insight-lens', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
-        '_data-check_'                       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Vulfharban/webtrees-datencheck-plugin', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_DATA_CHECK]],
+        '_data-check_'                       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Vulfharban/webtrees-datencheck-plugin', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_DATA_VALIDATION]],
 
     ];
 
