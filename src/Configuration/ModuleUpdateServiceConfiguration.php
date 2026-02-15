@@ -97,6 +97,7 @@ class ModuleUpdateServiceConfiguration
         '_my_custom_tags_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Jefferson49/MyCustomTags', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_GEDCOM]],
         '_oauth2_client_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Jefferson49/webtrees-oauth2-client', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_SIGNIN]],
         '_repository_hierarchy_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Jefferson49/RepositoryHierarchy', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_SOURCES]],
+        '_api-mcp_'                          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Jefferson49/webtrees-API', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
 
         '_jc-fancy-imagebar_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-imagebar', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_jc-fancy-research-links_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-research-links', self::CATEGORY => self::CATEGORY_FRONTEND]],
