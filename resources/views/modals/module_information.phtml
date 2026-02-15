@@ -65,7 +65,6 @@ use function view;
         <div class="wt-custom-module-info">
             <?php if ($module_update_service_name === VestaModuleUpdate::NAME) : ?>
             <?= view('icons/help') ?>
-             * @var CustomModuleUpdateInterface $module_update_service
                 <?php /** @var VestaModuleUpdate $module_update_service To avoid IDE warnings */  ?>
                 <a href="<?= e($module_update_service->homePageUrl()) ?>" target="blank">
                     <?= e($module_update_service->homePageUrl()) ?>
