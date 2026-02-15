@@ -106,15 +106,15 @@ class ModuleUpdateServiceConfiguration
         '_jc-simple-media-display_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-media-display', self::CATEGORY => self::CATEGORY_MEDIA]],
         '_jc-simple-menu_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-menu', self::CATEGORY => self::CATEGORY_MENU]],          
 
-        '_webtrees-lantmateriet_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ekdahl/webtrees-lantmateriet', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_MAP]],       
-        '_webtrees-primer-theme_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ekdahl/webtrees-primer-theme', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
+        '_lantmateriet-maps_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ekdahl/webtrees-lantmateriet', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_MAP]],       
+        '_primer-theme_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ekdahl/webtrees-primer-theme', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
 
         '_GVExport_'                         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Neriderc/GVExport', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
-        '_webtrees-descendants-chart_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-descendants-chart', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_webtrees-fan-chart_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-fan-chart', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_webtrees-pedigree-chart_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-pedigree-chart', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_webtrees-statistics_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-statistics', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_descendants-chart_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-descendants-chart', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_fan-chart_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-fan-chart', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_pedigree-chart_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-pedigree-chart', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_svg-statistics_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-statistics', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_CHARTS]],
 
         '_myartjaub_ruraltheme_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jon48/webtrees-theme-rural', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
 
@@ -151,7 +151,7 @@ class ModuleUpdateServiceConfiguration
         '_ArgonLight_'                       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '06Games/Webtrees-ArgonLight', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],       
         '_evang_mailsystem_'                 =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '06Games/Webtrees-MailSystem', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_MESSAGES]],
 
-        '_webtrees-branch-statistics_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'squatteur/webtrees-branch-statistics', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],       
+        '_branch-statistics_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'squatteur/webtrees-branch-statistics', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],       
 
         '_topola_'                           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PeWu/topola-webtrees', self::CATEGORY => self::CATEGORY_CHARTS]],
 
@@ -159,14 +159,14 @@ class ModuleUpdateServiceConfiguration
         '_mitalteli-chart-family-book_'      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'elysch/webtrees-mitalteli-chart-family-book', self::CATEGORY => self::CATEGORY_CHARTS]],
         '_mitalteli-report-researchtasks_'   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'elysch/webtrees-mitalteli-report-researchtasks', self::CATEGORY => self::CATEGORY_REPORTS]],
 
-        '_webtrees-HTML-block-advanced_'     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'photon-flip/webtrees-HTML-block-advanced', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]], 
+        '_HTML-block-advanced_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'photon-flip/webtrees-HTML-block-advanced', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]], 
         '_watermark-module_'                 =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'photon-flip/watermark-module', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
 
-        '_webtrees-faces_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-faces', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],   
-        '_webtrees-photos_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-photos', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
-        '_webtrees-reminder_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-reminder', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MESSAGES]],
-        '_webtrees-tree_view_full_screen_'   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-tree_view_full_screen', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_webtrees-mdi_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-mdi', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_faces_'                            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-faces', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],   
+        '_photos_'                           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-photos', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
+        '_reminder_'                         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-reminder', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MESSAGES]],
+        '_tree-view-full-screen_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-tree_view_full_screen', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_material-design-icons_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-mdi', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
         
         '_jp-theme-colors_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jpretired/jp-theme-colors', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME, 'get_latest_version_from_github' => true , 'tag_prefix' => 'v']],       
         '_jp-main-menu-manual_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jpretired/jp-main-menu-manual', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MENU]],
