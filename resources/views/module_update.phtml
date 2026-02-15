@@ -146,7 +146,7 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
                 <?php $latest_version = $module->customModuleLatestVersion() ?>
                 <?php $documentation_url = '' ?>
             <?php endif ?>	
-            <?php if (CustomModuleManager::versionCompare($latest_version, $current_version) < 0) : ?>
+            <?php if (CustomModuleManager::versionCompare($module_name, $latest_version, $current_version) < 0) : ?>
                 <?php $latest_version = $current_version ?>
             <?php endif ?>
             <?php if ($module !== null) : ?>
@@ -204,13 +204,13 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
                 </td>
 
                 <!-- Current version -->
-                <td data-sort="<?= e(CustomModuleManager::normalizeVersion($current_version)) ?>">
-                    <?= e(CustomModuleManager::normalizeVersion($current_version)) ?>
+                <td data-sort="<?= e(CustomModuleManager::normalizeVersion($module_name, $current_version)) ?>">
+                    <?= e(CustomModuleManager::normalizeVersion($module_name, $current_version)) ?>
                 </td>
 
                 <!-- Latest version -->
-                <td data-sort="<?= e(CustomModuleManager::normalizeVersion($latest_version)) ?>">
-                    <?= e(CustomModuleManager::normalizeVersion($latest_version)) ?>
+                <td data-sort="<?= e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>">
+                    <?= e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>
                 </td>
 
                 <!--Update Service -->
@@ -226,7 +226,7 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
                 <!--Action -->
                 <?php $action = '' ?>
                 <?php $action_label = '' ?>
-                <?php if ($module !== null && CustomModuleManager::versionCompare($latest_version, $current_version) > 0) : ?>
+                <?php if ($module !== null && CustomModuleManager::versionCompare($module_name, $latest_version, $current_version) > 0) : ?>
                     <?php $action = CustomModuleManager::ACTION_UPDATE ?>
                     <?php $action_label = I18N::translate('Update module') ?>
                 <?php elseif ($module_status === I18N::translate('not installed')) : ?>

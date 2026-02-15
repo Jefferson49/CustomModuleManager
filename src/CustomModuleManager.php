@@ -589,7 +589,7 @@ class CustomModuleManager extends AbstractModule implements
 
             [[$namespace], $view_name] = explode(View::NAMESPACE_SEPARATOR, (string) $custom_view, 2);
 
-            foreach($custom_modules->forget($this->activeModuleName()) as $custom_module) {
+            foreach($custom_modules->forget(array(self::activeModuleName())) as $custom_module) {
 
                 $view = new View('test');
 
@@ -820,29 +820,40 @@ class CustomModuleManager extends AbstractModule implements
     /**
      * Compare two module version number strings
      *
+     * @param string $module_name
      * @param string $version1,
      * @param string $version2,
      * 
      * @return int Returns -1 if the first version is lower than the second, 0 if they are equal, and 1 if the second is lower
      */
-    public static function versionCompare(string $version1, $version2): int
+    public static function versionCompare(string $module_name, string $version1, $version2): int
     {
-        return version_compare(self::normalizeVersion($version1), self::normalizeVersion($version2));
+        return version_compare(self::normalizeVersion($module_name, $version1), self::normalizeVersion($module_name, $version2));
     }      
 
     /**
      * Normalize a module version number strings
      *
+     * @param string $module_name
      * @param string $version,
      * 
      * @return string
      */
-    public static function normalizeVersion(string $version): string
+    public static function normalizeVersion(string $module_name, string $version): string
     {
-        //Remove prefix
-        foreach (ModuleUpdateServiceConfiguration::getPrefixList() as $prefix) {
-            if (strpos($version, $prefix) === 0) {
-                $version = str_replace($prefix, '', $version);
+        $module_name = ModuleUpdateServiceConfiguration::getStandardModuleName($module_name);
+        $prefix_list = ModuleUpdateServiceConfiguration::getPrefixList();
+
+        //Only proceed, if prefix is found
+        if (array_key_exists($module_name, $prefix_list)) {
+
+            $replaced_version = str_replace($prefix_list[$module_name], '', $version, $count);
+
+            // Only replace if prefix found once at start of version string
+            if (strpos($version, $prefix_list[$module_name], 0) === 0 && $count === 1) {
+
+                // Replace 
+                $version = $replaced_version;
             }
         }
 
@@ -902,7 +913,7 @@ class CustomModuleManager extends AbstractModule implements
                 $latest_version = GithubService::getLatestReleaseTag(self::GITHUB_REPO, $github_api_token);
 
                 //Remember in static variable
-                self::$is_lower_than_latest_version = self::versionCompare($current_version, $latest_version) < 0;
+                self::$is_lower_than_latest_version = version_compare($current_version, $latest_version) < 0;
             }
             catch (GithubCommunicationError $ex) {
                 //Cant connect to GitHub

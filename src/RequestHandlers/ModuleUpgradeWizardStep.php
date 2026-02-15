@@ -224,7 +224,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $alert      .= MoreI18N::xlate('No upgrade information is available.');
             $abort      = true;
         }
-        elseif ($action === CustomModuleManager::ACTION_UPDATE && CustomModuleManager::versionCompare($current_version, $latest_version) >= 0) {
+        elseif ($action === CustomModuleManager::ACTION_UPDATE && CustomModuleManager::versionCompare($module_update_service->getModuleName(), $current_version, $latest_version) >= 0) {
             $alert_type = self::ALERT_DANGER;
             $alert      .= I18N::translate('Version % is the latest version of the custom module. No upgrade is available.', e($current_version));
             $abort      = true;

@@ -238,36 +238,37 @@ class ModuleUpdateServiceConfiguration
      */
     public static function getModuleUpdateServiceConfig(): array {
 
-        //If we shall use the local configuration
-        if (CustomModuleManager::USE_LOCAL_CONFIG) {
-            return self::getLocalConfiguration();
+        // If the config is already available, take it
+        if (!empty(self::$module_update_service_config)) {
+            return self::$module_update_service_config;
         }
 
-        //If the config is not already available, try to load the configuration from GitHub
-        if (self::$module_update_service_config === []) {
+        // Try to load the configuration from GitHub
+        if (!CustomModuleManager::USE_LOCAL_CONFIG) {
             $module_service = New ModuleService();
             /** @var CustomModuleManager $custom_module_manager To avoid IDE warnings */
             $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
             $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');            
 
-            //If we use a module version, which is suitable to the remote module update service configuration on GitHub.
+            // If we use a module version, which is suitable to the remote module update service configuration on GitHub.
             if (!$custom_module_manager->isLowerThanLatestVersion()) {
+
                 //Rational: The remote configuration file on GitHub might not be compatible with the local code if the module is not updated to the latest version
                 try {
-                    //throw new GithubCommunicationError('debug');
                     $json_config = GithubService::getTextFileContent(CustomModuleManager::GITHUB_REPO, CustomModuleManager::CONFIG_GITHUB_BRANCH, CustomModuleManager::CONFIG_GITHUB_PATH, $github_api_token);
                     self::$module_update_service_config = json_decode($json_config, true);
                 }
                 catch (GithubCommunicationError $ex) {
-                    //Take local configuration if we cannot download it from GitHub
-                    self::$module_update_service_config = self::getLocalConfiguration();
+                    // Fail gracefully (local configuration will be loaded below)
                 }
             }
         }
 
-        //If we still dont have a configuration, take the local one
+        // If we have no configuration yet, we take the local one
         if (self::$module_update_service_config === []) {
-            self::$module_update_service_config = self::getLocalConfiguration();
+            $local_config = self::getLocalConfiguration();
+            self::$module_update_service_config = $local_config;
+            return $local_config;
         }
 
         return self::$module_update_service_config;
@@ -543,7 +544,7 @@ class ModuleUpdateServiceConfiguration
     /**
      * Get a list with all tag prefixes used by the custom modules
      * 
-     * @return array
+     * @return array [module_name => tag_prefix]
      */
     public static function getPrefixList(): array {
 
@@ -569,15 +570,10 @@ class ModuleUpdateServiceConfiguration
             if (isset($params['tag_prefix'])) {
                 $tag_prefix = $params['tag_prefix'];
 
-                if (!in_array($tag_prefix, self::$tag_prefixes)) {
-                    self::$tag_prefixes[] = $tag_prefix;
-                }
+                self::$tag_prefixes[$module_name] = $tag_prefix;
             }
         }
 
-        // Sort by string length (to avoid shorter prefixes to be substituted before longer prefixes)
-        usort(self::$tag_prefixes, function($a, $b) {
-            return strlen($b) - strlen($a); // Descending order
-        });
+        return;
     }
 }
