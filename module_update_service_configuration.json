@@ -69,6 +69,16 @@
             "description": "A hierarchical structured list of the sources of an archive based on the call numbers of the sources"
         }
     },
+    "_webtrees-api_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "Jefferson49\/webtrees-API",
+            "tag_prefix": "v",
+            "category": "admin",
+            "title": "webtrees API",
+            "description": "A custom module to provide an API for webtrees."
+        }
+    },
     "_jc-fancy-imagebar_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -754,6 +764,16 @@
             "category": "charts",
             "title": "Insight Lens",
             "description": "Visualize genealogy change statistics with interactive charts"
+        }
+    },
+    "_data-check_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "Vulfharban\/webtrees-datencheck-plugin",
+            "tag_prefix": "v",
+            "category": "data_validation",
+            "title": "Data Check",
+            "description": "Checks for data inconsistencies."
         }
     }
 }
