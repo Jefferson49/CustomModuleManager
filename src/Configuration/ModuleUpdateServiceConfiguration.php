@@ -411,11 +411,6 @@ class ModuleUpdateServiceConfiguration
 
         if ($module !== null) {
 
-            $titles_all_languages = DefaultTitlesAndDescriptions::MODULE_TITLES;
-            $descriptions_all_languages = DefaultTitlesAndDescriptions::MODULE_TITLES;
-
-            $map_titles_to_names = array_flip( json_decode($titles_all_languages[$default_language], true));
-            $map_description_to_names = array_flip( json_decode($descriptions_all_languages[$default_language], true));
             $current_language = Session::get('language', '');
 
             //Set language to default language, i.e. en-US
@@ -433,13 +428,19 @@ class ModuleUpdateServiceConfiguration
             I18N::init($current_language);
             Session::put('language', $current_language);
 
+            // Initialize the mapping of module titles and descriptions to standard module names (if not done yet)
+            self::initializeTitlesAndDescriptions();
+
+            $map_default_titles_to_names       = array_flip( self::$titles[CustomModuleManager::DEFAULT_LANGUAGE]);
+            $map_default_descriptions_to_names = array_flip( self::$descriptions[CustomModuleManager::DEFAULT_LANGUAGE]);
+
             //Try to identify by title (if different from default title in AbstractModule)
-            if ($module->title() !== 'Module name goes here'  && array_key_exists($english_title, $map_titles_to_names)) {
-                return $map_titles_to_names[$english_title];
+            if ($module->title() !== 'Module name goes here'  && array_key_exists($english_title, $map_default_titles_to_names)) {
+                return $map_default_titles_to_names[$english_title];
             }
             //Try to identify by description
-            elseif (array_key_exists($english_description, $map_description_to_names)) {
-                return $map_description_to_names[$english_description];
+            elseif (array_key_exists($english_description, $map_default_descriptions_to_names)) {
+                return $map_default_descriptions_to_names[$english_description];
             }
         }
 
@@ -515,9 +516,14 @@ class ModuleUpdateServiceConfiguration
             foreach($module_update_service_config as $module_name => $update_config) {
                 if(!isset(self::$titles[CustomModuleManager::DEFAULT_LANGUAGE][$module_name])) {
                     $module_config = (array) $module_update_service_config[$module_name];
-                    $params = (array) $module_config['params'];                     
-                    self::$titles[CustomModuleManager::DEFAULT_LANGUAGE][$module_name] = $params['title'] ?? '';
-                    self::$descriptions[CustomModuleManager::DEFAULT_LANGUAGE][$module_name] = $params['description'] ?? '';
+                    $params        = (array) $module_config['params'];
+
+                    if (isset($params['title'])) {
+                        self::$titles[CustomModuleManager::DEFAULT_LANGUAGE][$module_name] = $params['title'];
+                    }
+                    if (isset($params['description'])) {
+                        self::$descriptions[CustomModuleManager::DEFAULT_LANGUAGE][$module_name] = $params['description'];
+                    }
                 }
             }
 
