@@ -97,7 +97,7 @@ class ModuleUpdateServiceConfiguration
         '_my_custom_tags_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Jefferson49/MyCustomTags', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_GEDCOM]],
         '_oauth2_client_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Jefferson49/webtrees-oauth2-client', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_SIGNIN]],
         '_repository_hierarchy_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Jefferson49/RepositoryHierarchy', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_SOURCES]],
-        '_api-mcp_'                          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Jefferson49/webtrees-API', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_webtrees-api_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Jefferson49/webtrees-API', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
 
         '_jc-fancy-imagebar_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-imagebar', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_jc-fancy-research-links_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-research-links', self::CATEGORY => self::CATEGORY_FRONTEND]],
@@ -167,7 +167,7 @@ class ModuleUpdateServiceConfiguration
         '_photos_'                           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-photos', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
         '_reminder_'                         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-reminder', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MESSAGES]],
         '_tree-view-full-screen_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-tree_view_full_screen', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_material-design-icons_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-mdi', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_webtrees-mdi_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-mdi', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
         
         '_jp-theme-colors_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jpretired/jp-theme-colors', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME, 'get_latest_version_from_github' => true , 'tag_prefix' => 'v']],       
         '_jp-main-menu-manual_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jpretired/jp-main-menu-manual', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MENU]],
