@@ -143,7 +143,7 @@
             "description": "Add an extra mainmenu item and page."
         }
     },
-    "_lantmateriet-maps_": {
+    "_webtrees-lantmateriet_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "ekdahl\/webtrees-lantmateriet",
@@ -154,7 +154,7 @@
             "description": "Create maps using <a href=\"https:\/\/www.lantmateriet.se\" dir=\"ltr\">www.lantmateriet.se<\/a>."
         }
     },
-    "_primer-theme_": {
+    "_webtrees-primer-theme_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "ekdahl\/webtrees-primer-theme",
@@ -174,7 +174,7 @@
             "description": "Generate a diagram of everyone in your family tree. Highly customisable, with the ability to navigate in your browser or export the diagram to a file."
         }
     },
-    "_descendants-chart_": {
+    "_webtrees-descendants-chart_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "magicsunday\/webtrees-descendants-chart",
@@ -183,7 +183,7 @@
             "description": "An overview of an individual\u2019s descendants."
         }
     },
-    "_fan-chart_": {
+    "_webtrees-fan-chart_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "magicsunday\/webtrees-fan-chart",
@@ -192,7 +192,7 @@
             "description": "A fan chart of an individual\u2019s ancestors."
         }
     },
-    "_pedigree-chart_": {
+    "_webtrees-pedigree-chart_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "magicsunday\/webtrees-pedigree-chart",
@@ -201,7 +201,7 @@
             "description": "A pedigree chart of an individual\u2019s ancestors."
         }
     },
-    "_svg-statistics_": {
+    "_webtrees-statistics_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "magicsunday\/webtrees-statistics",
@@ -482,7 +482,7 @@
             "description": "Sends out newsletters at regular intervals"
         }
     },
-    "_branch-statistics_": {
+    "_webtrees-branch-statistics_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "squatteur\/webtrees-branch-statistics",
@@ -528,7 +528,7 @@
             "description": "A research tasks Report with filters and other options."
         }
     },
-    "_HTML-block-advanced_": {
+    "_webtrees-HTML-block-advanced_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "photon-flip\/webtrees-HTML-block-advanced",
@@ -548,7 +548,7 @@
             "description": "Changes the size and position of the watermark"
         }
     },
-    "_faces_": {
+    "_webtrees-faces_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "UksusoFF\/webtrees-faces",
@@ -558,7 +558,7 @@
             "description": "This module provide easy way to mark people on group photo."
         }
     },
-    "_photos_": {
+    "_webtrees-photos_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "UksusoFF\/webtrees-photos",
@@ -568,7 +568,7 @@
             "description": "A list of photos that have been uploaded recently."
         }
     },
-    "_reminder_": {
+    "_webtrees-reminder_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "UksusoFF\/webtrees-reminder",
@@ -578,7 +578,7 @@
             "description": "Daily e-mail & Slack digest with list of the anniversaries."
         }
     },
-    "_tree-view-full-screen_": {
+    "_webtrees-tree_view_full_screen_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "UksusoFF\/webtrees-tree_view_full_screen",
