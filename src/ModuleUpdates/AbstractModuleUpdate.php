@@ -31,12 +31,14 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
+use Fig\Http\Message\StatusCodeInterface;
 use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Session;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Webtrees;
+use GuzzleHttp\Client;
 use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
@@ -419,5 +421,41 @@ abstract class AbstractModuleUpdate
             }
         }
         return $message;
+    }
+
+    /**
+     * Get the latest version of a module from an update URL.
+     * Code from: Fisharebest\Webtrees\Module\ModuleCustomTrait
+     *
+     * @param  ModuleCustomInterface $module
+     * @return string
+     */
+    public static function getLatestVersionByUpdateURL(ModuleCustomInterface $module): string
+    {
+        // No update URL provided.
+        if ($module->customModuleLatestVersionUrl() === '') {
+            return '';
+        }
+
+        try {
+            $client = new Client([
+                'timeout' => 3,
+            ]);
+
+            $response = $client->get($module->customModuleLatestVersionUrl());
+
+            if ($response->getStatusCode() === StatusCodeInterface::STATUS_OK) {
+                $version = $response->getBody()->getContents();
+
+                // Does the response look like a version?
+                if (preg_match('/^\d+\.\d+\.\d+/', $version)) {
+                    return $version;
+                }
+            }
+        } catch (GuzzleException) {
+            // Can't connect to the server?
+        }
+
+        return '';
     }
 }
