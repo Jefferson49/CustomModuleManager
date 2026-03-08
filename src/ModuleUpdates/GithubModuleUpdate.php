@@ -187,7 +187,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     {
         $module = $this->getModule();
 
-        //If the installed module is available, try to get latest version from the module
+        // If the installed module is available, try to get latest version from the module
         if (!$fetch_latest && $module !== null && !$this->get_latest_version_from_github) {
             $version = $module->customModuleLatestVersion();
 
@@ -196,12 +196,17 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             }
         }
 
-        //For certain module, which do not provide a release, it is not possible to retrieve the latest version from Github
+        // For certain modules, which do not provide a release, try to get the latest version by update URL
         if ($this->no_release) {
+
+            if ($module !== null) {
+                return self::getLatestVersionByUpdateURL($module);
+            }
+
             return '';
         }
 
-        //Otherwise, try to get the latest version from Github
+        // Otherwise, try to get the latest version from Github
         if ($this->github_repo !== '') {
 
             $module_service = New ModuleService();
