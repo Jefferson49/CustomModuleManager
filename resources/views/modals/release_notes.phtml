@@ -1,0 +1,45 @@
+<?php
+
+namespace Jefferson49\Webtrees\Module\CustomModuleManager;
+
+use Fisharebest\Webtrees\I18N;
+use Jefferson49\Webtrees\Internationalization\MoreI18N;
+use function view;
+
+/**
+ * @var string $title
+ * @var string $module_title
+ * @var string $latest_version
+ * @var string $release_url
+ * @var string $release_notes
+ */
+
+?>
+
+<?= view('modals/header', ['title' => $title]) ?>
+
+<div class="modal-body">
+
+    <div class="wt-custom-module-info">
+        <?= view('icons/information') ?>
+        <?= MoreI18N::xlate('Module') . ': ' ?>
+        <?= e($module_title) ?>
+        <br>
+        <?= view('icons/module') ?>
+        <?= I18N::translate('Latest Version') . ': ' ?>
+        <?=  e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>
+        <br>
+        <?= view('icons/link') ?>
+        <?= MoreI18N::xlate('Link') . ': ' ?>
+        <a href="<?= e($release_url) ?>" target="blank">
+            <?= I18N::translate('Release notes') ?>
+        </a>
+        <br>
+    </div>
+    <div class="row mb-3"><?= view('icons/spacer') ?></div>
+    <?= $release_notes ?>
+</div>    
+
+<?= view('modals/footer-close') ?>
+
+<?= view('modals/ajax') ?>

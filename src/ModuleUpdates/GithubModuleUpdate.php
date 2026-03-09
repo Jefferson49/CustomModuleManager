@@ -62,6 +62,8 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     //The default branch of the Github repository. Used to download the source ZIP file for some modules, which do not provide a release
     protected string $default_branch;
 
+    // The module service
+    protected ModuleService $module_service;
     
     /**
      * @param string $module_name  The custom module name
@@ -71,7 +73,8 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function __construct(string $module_name, array $params) {
 
-        $this->module_name = $module_name;
+        $this->module_name    = $module_name;
+        $this->module_service = new ModuleService();
 
         if (array_key_exists('github_repo', $params)) {
             $this->github_repo = $params['github_repo'];
@@ -137,8 +140,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             return 'https://github.com/' . $this->github_repo . '/archive/refs/heads/' . $this->default_branch . '.zip';
         }
 
-        $module_service = New ModuleService();
-        $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
+        $custom_module_manager = $this->module_service->findByName(CustomModuleManager::activeModuleName());
         $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');       
 
         // Get the download URL from Github
@@ -209,8 +211,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         // Otherwise, try to get the latest version from Github
         if ($this->github_repo !== '') {
 
-            $module_service = New ModuleService();
-            $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
+            $custom_module_manager = $this->module_service->findByName(CustomModuleManager::activeModuleName());
             $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');       
 
             try {
@@ -225,5 +226,44 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         }
 
         return '';
+    }
+
+    /**
+     * Get the release notes for the latest version of this module
+     *
+     * @return string
+     */
+    public function getLatestReleaseNotes(): string
+    {
+        $custom_module_manager = $this->module_service->findByName(CustomModuleManager::activeModuleName());
+        $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');       
+
+        //Get the latest releases note from GitHub
+        try {
+            return GithubService::getLatestReleaseNotes($this->github_repo, $github_api_token);
+        }
+        catch (GithubCommunicationError $ex) {
+            // Can't connect to GitHub?
+            return I18N::translate('Could not retrieve release notes due to a communication error with GitHub.');
+        }
+    }
+
+    /**
+     * Whether the module provides releases on GitHub
+     *
+     * @return bool
+     */
+    public function providesGithubReleases(): bool {
+        return !$this->no_release;
+    }
+
+    /**
+     * Get the latest release URL
+     *
+     * @return bool
+     */
+    public function getLatestReleaseURL(): string {
+
+        return 'https://github.com/' . $this->github_repo . '/releases/latest';
     }
 }

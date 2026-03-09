@@ -161,13 +161,11 @@ use function view;
         <div class="h4">
             <?= I18N::translate('Module Usage') ?>
         </div>
-
         <?= view(CustomModuleManager::viewsNamespace() . '::module_usage', [
             'title'  => I18N::translate('Module Information'),
-            'module'                     => $module,
+            'module' => $module,
         ]) ?>
     <?php endif ?>
-
 </div>    
 
 <?= view('modals/footer-close') ?>

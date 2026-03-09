@@ -43,7 +43,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 
 /**
- * Modal module information action
+ * Show module information modal
  */
 class ModuleInformationModal implements RequestHandlerInterface
 {

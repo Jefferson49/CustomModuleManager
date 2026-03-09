@@ -18,6 +18,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleInformationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotesModal;
 
 
 /**
@@ -145,7 +146,7 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
                 <?php $current_version = $module->customModuleVersion() ?>
                 <?php $latest_version = $module->customModuleLatestVersion() ?>
                 <?php $documentation_url = '' ?>
-            <?php endif ?>	
+            <?php endif ?>
             <?php if (CustomModuleManager::versionCompare($module_name, $latest_version, $current_version) < 0) : ?>
                 <?php $latest_version = $current_version ?>
             <?php endif ?>
@@ -210,7 +211,18 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
 
                 <!-- Latest version -->
                 <td data-sort="<?= e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>">
-                    <?= e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>
+                    <?php if (  CustomModuleManager::versionCompare($module_name, $latest_version, $current_version) === 1 
+                             && $module_update_service_name === GithubModuleUpdate::NAME && $module_update_service->providesGithubReleases()
+                             && $current_version !== '') : ?>
+                        <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ReleaseNotesModal::class, [
+                                'module_name'                => $module_name,
+                                'latest_version'             => $latest_version,
+                            ])) ?>" type="submit" class="btn btn-primary">
+                            <?= e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>
+                        </a>
+                    <?php else : ?>
+                        <?= e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>
+                    <?php endif ?>						
                 </td>
 
                 <!--Update Service -->

@@ -458,4 +458,13 @@ abstract class AbstractModuleUpdate
 
         return '';
     }
+
+    /**
+     * Get the release notes for the latest version of this module
+     *
+     * @return string
+     */
+    public function getLatestReleaseNotes(): string {
+        return '';
+    }
 }

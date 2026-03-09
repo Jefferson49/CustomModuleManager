@@ -158,4 +158,11 @@ interface CustomModuleUpdateInterface
      * @return string
      */
     public function getCategory(): string;
+
+    /**
+     * Get the release notes for the latest version of this module
+     *
+     * @return string
+     */
+    public function getLatestReleaseNotes(): string;
 }

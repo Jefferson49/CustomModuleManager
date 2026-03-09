@@ -57,6 +57,7 @@ use Fisharebest\Webtrees\Session;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Webtrees;
+use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
 use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
@@ -69,7 +70,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleInformationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardStep;
-use Illuminate\Support\Collection;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotesModal;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -133,10 +134,11 @@ class CustomModuleManager extends AbstractModule implements
     public const ACTION_INSTALL           = 'action_install';
 
     //Routes
-    public const ROUTE_WIZARD_PAGE        = '/module_upgrade_wizard_page';
-    public const ROUTE_WIZARD_STEP        = '/module_upgrade_wizard_step';
-    public const ROUTE_MODULE_UPDATE_PAGE = '/module_update_page';
-    public const ROUTE_MODULE_INFO_MODAL  = '/module_info_modal';
+    public const ROUTE_WIZARD_PAGE         = '/module_upgrade_wizard_page';
+    public const ROUTE_WIZARD_STEP         = '/module_upgrade_wizard_step';
+    public const ROUTE_MODULE_UPDATE_PAGE  = '/module_update_page';
+    public const ROUTE_MODULE_INFO_MODAL   = '/module_info_modal';
+    public const ROUTE_RELEASE_NOTES_MODAL = '/release_notes_modal';
 
     //Language
     public const DEFAULT_LANGUAGE         = 'en-US';
@@ -196,28 +198,31 @@ class CustomModuleManager extends AbstractModule implements
 		// Register a namespace for the views.
 		View::registerNamespace(self::viewsNamespace(), $this->resourcesFolder() . 'views/');
 
-        //Register a route for the upgrade wizard page
         $router = Registry::routeFactory()->routeMap();                 
+
+        //Register a route for the upgrade wizard page
         $router
         ->get(ModuleUpgradeWizardPage::class, self::ROUTE_WIZARD_PAGE)
         ->allows(RequestMethodInterface::METHOD_POST);
 
         //Register a route for a upgrade wizard step
-        $router = Registry::routeFactory()->routeMap();                 
         $router
         ->get(ModuleUpgradeWizardStep::class, self::ROUTE_WIZARD_STEP)
         ->allows(RequestMethodInterface::METHOD_POST);
 
         //Register a route for the custom module update page
-        $router = Registry::routeFactory()->routeMap();                 
         $router
         ->get(CustomModuleUpdatePage::class, self::ROUTE_MODULE_UPDATE_PAGE)
         ->allows(RequestMethodInterface::METHOD_POST);
 
         //Register a route for the module information modal
-        $router = Registry::routeFactory()->routeMap();                 
         $router
         ->get(ModuleInformationModal::class, self::ROUTE_MODULE_INFO_MODAL)
+        ->allows(RequestMethodInterface::METHOD_POST);
+
+        //Register a route for the release notes modal
+        $router
+        ->get(ReleaseNotesModal::class, self::ROUTE_RELEASE_NOTES_MODAL)
         ->allows(RequestMethodInterface::METHOD_POST);
     }
 	

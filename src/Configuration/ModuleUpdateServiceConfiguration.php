@@ -103,7 +103,7 @@ class ModuleUpdateServiceConfiguration
         '_jc-fancy-research-links_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-research-links', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_jc-fancy-treeview_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-treeview', self::CATEGORY => self::CATEGORY_CHARTS]],
         '_jc-theme-justlight_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-theme-justlight', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
-        '_jc-simple-footer_'                 =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-footer', self::CATEGORY => self::CATEGORY_FOOTER]],        
+        '_jc-simple-footer_'                 =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-footer', self::CATEGORY => self::CATEGORY_FOOTER]],
         '_jc-simple-media-display_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-media-display', self::CATEGORY => self::CATEGORY_MEDIA]],
         '_jc-simple-menu_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-menu', self::CATEGORY => self::CATEGORY_MENU]],          
 
