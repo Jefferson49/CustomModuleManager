@@ -130,6 +130,7 @@ class CustomModuleManager extends AbstractModule implements
     public const CONFIG_FILE_NAME         = '';
 
     //Actions
+    public const ACTION_DELETE            = 'action_delete';
     public const ACTION_UPDATE            = 'action_update';
     public const ACTION_INSTALL           = 'action_install';
 

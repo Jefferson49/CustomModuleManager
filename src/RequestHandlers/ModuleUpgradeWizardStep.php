@@ -84,6 +84,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     public const STEP_UNZIP    = 'Unzip';
     public const STEP_COPY     = 'Copy';
     public const STEP_ROLLBACK = 'Rollback';
+    public const STEP_DELETE   = 'Delete';
     public const STEP_ERROR    = 'Error';
     
     // Alert types
@@ -182,6 +183,9 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
             case self::STEP_ROLLBACK:
                 return $this->wizardStepRollback($module_names, CustomModuleManager::ACTION_UPDATE, $error_message);
+
+            case self::STEP_DELETE:
+                return $this->wizardStepDelete($module_names);
 
             case self::STEP_ERROR:
                 return $this->wizardStepError($message);
@@ -531,6 +535,44 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $url = route(CustomModuleUpdatePage::class);
         
         return $this->viewAlert($alert, self::ALERT_DANGER, $url, true);
+    }
+
+    /**
+     * Delete modules
+     *
+     * @param array $module_names
+     * 
+     * @return ResponseInterface
+     */
+    private function wizardStepDelete(array $module_names): ResponseInterface
+    {
+        $start_time = Registry::timeFactory()->now();
+        
+        try {
+            foreach ($module_names as $module_name => $standard_module_name) {
+
+                $installation_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name);
+
+                // Delete module files
+                $root_filesystem = Registry::filesystem()->root();
+                $root_filesystem->deleteDirectory(Webtrees::MODULES_PATH . $installation_folder);
+            }
+
+            $end_time   = Registry::timeFactory()->now();
+            $seconds    = I18N::number($end_time - $start_time, 2);
+            $alert      = I18N::translate('The module was successfully deleted in %s seconds.', $seconds);
+            $alert_type = self::ALERT_SUCCESS;
+            $abort      = false;
+        }
+        catch (Throwable $exception) {
+            $alert      = I18N::translate('Error during deleting the module.') . "\n\n" . $exception->getMessage() . "\n\n";
+            $alert_type = self::ALERT_DANGER;
+            $abort      = true;
+        }
+
+        $url = route(CustomModuleUpdatePage::class);
+
+        return $this->viewAlert($alert, $alert_type, $url, $abort);
     }
 
     /**

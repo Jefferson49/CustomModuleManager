@@ -92,24 +92,31 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
             return redirect(route(HomePage::class, ['tree' => $tree?->name()]));
         }
 
-        $module_upgrade_service = CustomModuleUpdateFactory::make($module_name);
-
-        //Reset aborted flag before start of wizard
+        // Reset aborted flag before start of wizard
         Session::forget(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED);
 
-        try {
-            if ($module_upgrade_service === null) {
-                throw new CustomModuleManagerException(I18N::translate('Could not identify a suitable module upgrade service for custom module'));
-            }
+        // Retrieve download URL
+        if ($action !== CustomModuleManager::ACTION_DELETE) {
 
-            $download_url = $module_upgrade_service->downloadUrl($latest_version);
+            $module_upgrade_service = CustomModuleUpdateFactory::make($module_name);
+
+            try {
+                if ($module_upgrade_service === null) {
+                    throw new CustomModuleManagerException(I18N::translate('Could not identify a suitable module upgrade service for custom module'));
+                }
+
+                $download_url = $module_upgrade_service->downloadUrl($latest_version);
+            }
+            catch (CustomModuleManagerException $exception) {
+                return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/steps-modal', [
+                    'steps' => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ERROR, 'module_name' => $module_name, 'message' => $exception->getMessage(), 'modal' => true]) => MoreI18N::xlate('Error')],
+                    'title' => I18N::translate('Error during retrieving download URL'),
+                    'modal' => true,
+                ]);
+            }
         }
-        catch (CustomModuleManagerException $exception) {
-            return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/steps-modal', [
-                'steps' => [route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_ERROR, 'module_name' => $module_name, 'message' => $exception->getMessage(), 'modal' => true]) => MoreI18N::xlate('Error')],
-                'title' => I18N::translate('Error during retrieving download URL'),
-                'modal' => true,
-            ]);
+        else {
+            $download_url = '';
         }
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/steps-modal', [
@@ -128,9 +135,10 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
      * 
      * @return array<string>
      */
-    private function wizardSteps(string $module_name, string $download_url, string $action = CustomModuleManager::ACTION_UPDATE, $current_version, $latest_version): array
+    private function wizardSteps(string $module_name, string $download_url = '', string $action = CustomModuleManager::ACTION_UPDATE, string $current_version = '', string $latest_version = ''): array
     {
-        if (!in_array($action, [CustomModuleManager::ACTION_UPDATE, CustomModuleManager::ACTION_INSTALL])) {
+        // Default action
+        if (!in_array($action, [CustomModuleManager::ACTION_UPDATE, CustomModuleManager::ACTION_INSTALL, CustomModuleManager::ACTION_DELETE])) {
             $action = CustomModuleManager::ACTION_UPDATE;
         }
 
@@ -143,8 +151,17 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
             'modal'           => true,
         ];
 
+        if ($action === CustomModuleManager::ACTION_DELETE) {
+            $steps = [
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_BACKUP] + $params)   => I18N::translate('Backup…'),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_DELETE] + $params)   => I18N::translate('Delete…'),
+            ];
+
+            return $steps;
+        }
+
         $steps = [
-                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_CHECK] + $params)    => I18N::translate('Check version...'),
+                route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_CHECK] + $params)    => I18N::translate('Check version…'),
                 route(ModuleUpgradeWizardStep::class, ['step' => ModuleUpgradeWizardStep::STEP_PREPARE] + $params)  => I18N::translate('Create temporary folders…'),
             ];
 

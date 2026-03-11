@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-03-09 06:05+0100\n"
-"PO-Revision-Date: 2026-03-09 06:06+0100\n"
+"POT-Creation-Date: 2026-03-11 05:39+0100\n"
+"PO-Revision-Date: 2026-03-11 05:40+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,34 +15,34 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:238
+#: src/CustomModuleManager.php:239
 msgid "Custom Module Manager"
 msgstr "Management von Erweiterungsmodulen"
 
-#: src/CustomModuleManager.php:251
+#: src/CustomModuleManager.php:252
 msgid "A custom module to manage webtrees custom modules."
 msgstr "Ein Erweiterungsmodul zum Verwalten von webtrees-Erweiterungsmodulen."
 
-#: src/CustomModuleManager.php:325 src/ModuleUpdates/GithubModuleUpdate.php:152
+#: src/CustomModuleManager.php:326 src/ModuleUpdates/GithubModuleUpdate.php:152
 #: src/ModuleUpdates/GithubModuleUpdate.php:223
 #, php-format
 msgid "Communication error with %s"
 msgstr "Kommunikationsfehler mit %s"
 
-#: src/CustomModuleManager.php:503
+#: src/CustomModuleManager.php:504
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:549
+#: src/CustomModuleManager.php:550
 msgid "Rollback Custom Module Update"
 msgstr "Aktualisierung des Erweiterungsmoduls rückgängig machen"
 
-#: src/CustomModuleManager.php:550
+#: src/CustomModuleManager.php:551
 msgid "Rollback"
 msgstr "Rückgängig machen"
 
-#: src/CustomModuleManager.php:577
+#: src/CustomModuleManager.php:578
 #, php-format
 msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
@@ -51,7 +51,7 @@ msgstr ""
 "Die Einstellungen für das Erweiterungsmodul \"%s\" wurden für die neue Modul-"
 "Version %s aktualisiert."
 
-#: src/CustomModuleManager.php:609
+#: src/CustomModuleManager.php:610
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -64,7 +64,7 @@ msgstr ""
 "des Moduls %s wird dringend empfohlen, das Modul \"%s\" zu deaktivieren, "
 "weil die identische Funktion ebenfalls im Modul %s integriert ist."
 
-#: src/CustomModuleManager.php:614
+#: src/CustomModuleManager.php:615
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -77,7 +77,7 @@ msgstr ""
 "View \"%s\" registriert haben. Es wird dringend empfohlen eines der beiden "
 "Module zu deaktivieren."
 
-#: src/CustomModuleManager.php:638
+#: src/CustomModuleManager.php:639
 #, php-format
 msgid ""
 "The custom module view \"%s\" is not registered as replacement for the "
@@ -133,43 +133,48 @@ msgstr "Aktualisierung von Erweiterungsmodulen"
 msgid "Module Information"
 msgstr "Modul-Informationen"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:102
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:105
 msgid "Could not identify a suitable module upgrade service for custom module"
 msgstr ""
 "Es konnte kein passender Aktualisierungsdienst für das Erweiterungsmodule "
 "identifiziert werden"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:110
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:113
 msgid "Error during retrieving download URL"
 msgstr "Fehler beim abrufen der Download-URL"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:147
-msgid "Check version..."
-msgstr "Version prüfen..."
-
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:148
-msgid "Create temporary folders…"
-msgstr "Temporäre Ordner anlegen…"
-
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:153
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:156
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:170
 msgid "Backup…"
 msgstr "Sicherung…"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:136
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:157
+msgid "Delete…"
+msgstr "Löschen…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:164
+msgid "Check version…"
+msgstr "Version prüfen…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:165
+msgid "Create temporary folders…"
+msgstr "Temporäre Ordner anlegen…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:137
 msgid "Update Wizard was aborted"
 msgstr "Der Aktualisierungsassistent wurde abgebrochen"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:216
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:220
 #, php-format
 msgid "Installing module \"%s\" (to folder: \"/module_v4/%s\")"
 msgstr "Installiere Modul \"%s\" (in Ordner: \"/module_v4/%s\")"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:219
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:223
 #, php-format
 msgid "Upgrading module \"%s\" (in folder: \"/module_v4/%s\")"
 msgstr "Aktualisierung von Modul \"%s\" (in Ordner: \"/module_v4/%s\")"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:229
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:233
 msgid ""
 "Version % is the latest version of the custom module. No upgrade is "
 "available."
@@ -177,7 +182,7 @@ msgstr ""
 "Die Version %s ist die neueste Version des Moduls. Es ist keine "
 "Aktualisierung verfügbar."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:234
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:238
 #, php-format
 msgid ""
 "This custom module can only be used with a webtrees version greater or equal "
@@ -186,7 +191,7 @@ msgstr ""
 "Dieses Erweiterungsmodul kann nur mit einer webtrees-Version größer oder "
 "gleich %s genutzt werden"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:239
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:243
 msgid ""
 "The PHP extension \"zip\" is not installed. In order to use the custom "
 "module, your PHP installation needs to include the \"zip\" extension. You "
@@ -196,35 +201,35 @@ msgstr ""
 "zu nutzen, muss Ihre PHP-Installation die \"zip\"-Erweiterung beinhalten. "
 "Sie müssen die die Erweiterung in der \"php.ini\"-Datei aktivieren."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:247
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:251
 #, php-format
 msgid "Installing version: \"%s\""
 msgstr "Installiere Version \"%s\""
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:250
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:254
 #, php-format
 msgid "Upgrading the module from version \"%s\" to version \"%s\""
 msgstr "Aktualisieren des Moduls von Version \"%s\" auf Version \"%s\""
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:321
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:325
 #, php-format
 msgid "A backup of the current module was created in %s seconds."
 msgstr ""
 "Eine Sicherungskopie des aktuellen Moduls wurde in %s Sekunden erstellt."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:326
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:330
 msgid "Failed to create a backup of the current module."
 msgstr "Es konnte keine Sicherungskopie des aktuellen Moduls erstellt werden."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:353
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:357
 msgid "Error during downloading the module zip file."
 msgstr "Fehler beim Herunterladen der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:385
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:389
 msgid "Error during unzipping the module zip file."
 msgstr "Fehler beim Entpacken der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:499
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:503
 #, php-format
 msgid ""
 "The module %s was rolled back to the current version, because the update "
@@ -233,7 +238,7 @@ msgstr ""
 "Das Modul %s wurde auf die bisherige Version zurückgesetzt, weil das Update "
 "Fehler verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:502
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:506
 #, php-format
 msgid ""
 "The installation of module %s was rolled back, because the module created "
@@ -242,13 +247,13 @@ msgstr ""
 "Die Installation von Modul %s wurde rückgängig gemacht, weil das Modul "
 "Fehler verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:512
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:516
 #, php-format
 msgid "A roll back of the module %s to the current version failed."
 msgstr ""
 "Ein Rollback des Moduls %s auf die bisherige Version ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:514
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:518
 #, php-format
 msgid ""
 "Please try to manually roll back by copying the files from \"/data/tmp/"
@@ -258,12 +263,12 @@ msgstr ""
 "Dateien von \"/data/tmp/backup/modules_4/%s\" nach \"/modules_v4/%s\" "
 "kopieren."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:517
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:521
 #, php-format
 msgid "A roll back of the installation of module %s failed."
 msgstr "Ein Rollback der Installation von Modul %s ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:519
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:523
 #, php-format
 msgid ""
 "Please try to manually roll back by deleting the folder \"/modules_v4/%s\""
@@ -271,7 +276,16 @@ msgstr ""
 "Bitte versuchen Sie, die Dateien manuell zurückzusetzen, indem Sie den "
 "Ordner \"/modules_4/%s\" löschen"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:661
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:563
+#, php-format
+msgid "The module was successfully deleted in %s seconds."
+msgstr "Das Modul wurde in %s Sekunden erfolgreich gelöscht."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:568
+msgid "Error during deleting the module."
+msgstr "Fehler beim Löschen des Moduls."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:703
 msgid "continue (reload)"
 msgstr "Weiter (neu laden)"
 
@@ -288,7 +302,7 @@ msgid "Documentation"
 msgstr "Dokumentation"
 
 #: resources/views/modals/module_information.phtml:93
-#: resources/views/module_update.phtml:95
+#: resources/views/module_update.phtml:96
 msgid "Update Service"
 msgstr "Aktualisierungs-Dienst"
 
@@ -297,13 +311,13 @@ msgid "Module folder"
 msgstr "Modul-Ordner"
 
 #: resources/views/modals/module_information.phtml:103
-#: resources/views/module_update.phtml:93
+#: resources/views/module_update.phtml:94
 msgid "Current Version"
 msgstr "Aktuelle Version"
 
 #: resources/views/modals/module_information.phtml:108
-#: resources/views/modals/release_notes.phtml:30
-#: resources/views/module_update.phtml:94
+#: resources/views/modals/release_notes.phtml:29
+#: resources/views/module_update.phtml:95
 msgid "Latest Version"
 msgstr "Neueste Version"
 
@@ -338,47 +352,47 @@ msgstr ""
 "Die Versionen von Erweiterungsmodulen werden in der Regel alle 24 Stunden "
 "aktualisiert. Sie können prüfen, ob neuere Versionen verfügbar sind."
 
-#: resources/views/module_update.phtml:84
+#: resources/views/module_update.phtml:85
 msgid "Module Updates"
 msgstr "Aktualisierungen für Module"
 
-#: resources/views/module_update.phtml:91
+#: resources/views/module_update.phtml:92
 msgid "Folder (within modules_v4)"
 msgstr "Ordner (in modules_v4)"
 
-#: resources/views/module_update.phtml:97
-msgid "Action"
-msgstr "Aktion"
-
-#: resources/views/module_update.phtml:106
-#: resources/views/module_update.phtml:244
+#: resources/views/module_update.phtml:108
+#: resources/views/module_update.phtml:247
 msgid "not installed"
 msgstr "nicht installiert"
 
-#: resources/views/module_update.phtml:110
+#: resources/views/module_update.phtml:112
 msgid "enabled"
 msgstr "aktiviert"
 
-#: resources/views/module_update.phtml:112
+#: resources/views/module_update.phtml:114
 msgid "disabled"
 msgstr "deaktiviert"
 
-#: resources/views/module_update.phtml:129
-#: resources/views/module_update.phtml:154
+#: resources/views/module_update.phtml:131
+#: resources/views/module_update.phtml:156
 msgid "not received"
 msgstr "nicht empfangen"
 
-#: resources/views/module_update.phtml:132
+#: resources/views/module_update.phtml:134
 msgid "not available"
 msgstr "nicht verfügbar"
 
-#: resources/views/module_update.phtml:243
+#: resources/views/module_update.phtml:246
 msgid "Update module"
 msgstr "Modul aktualisieren"
 
-#: resources/views/module_update.phtml:246
+#: resources/views/module_update.phtml:249
 msgid "Install module"
 msgstr "Modul installieren"
+
+#: resources/views/module_update.phtml:267
+msgid "Delete module"
+msgstr "Modul löschen"
 
 #: resources/views/settings.phtml:41
 msgid "Manage custom modules"
@@ -447,6 +461,9 @@ msgid ""
 msgstr ""
 "Die Verwendung eines GitHub-API Tokens wird empfohlen, wenn GitHub-"
 "Kommunikationsfehler auftreten"
+
+#~ msgid "Action"
+#~ msgstr "Aktion"
 
 #, fuzzy
 #~| msgid "Update Service"
