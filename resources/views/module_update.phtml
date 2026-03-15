@@ -22,22 +22,15 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
 
 
 /**
- * @var string     $title
- * @var string     $cmm_title
- * @var bool       $cmm_update
- * @var bool       $runs_with_webtrees_version
- * @var bool       $php_extension_zip_missing
- * @var Collection $custom_modules
- * @var Collection $themes
- * @var array      $module_names
- * @var bool       $fetch_latest
+ * @var string              $title
+ * @var CustomModuleManager $custom_module_manager
+ * @var ModuleService       $module_service
+ * @var Collection          $custom_modules
+ * @var Collection          $themes
+ * @var array               $module_names
+ * @var bool                $fetch_latest
+ * @var string              $modules_to_show
  */
-
-$module_service = New ModuleService();
-/** @var CustomModuleManager $custom_module_manager To avoid IDE warnings */
-$custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
-$modules_to_show = $custom_module_manager->getPreference(CustomModuleManager::PREF_MODULES_TO_SHOW, CustomModuleManager::PREF_SHOW_ALL);
-$activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
 
 ?>
 
@@ -50,12 +43,12 @@ $activated = CustomModuleManager::runsWithInstalledWebtreesVersion();
 <h1><?= $title ?></h1>
 
 <?= view(CustomModuleManager::viewsNamespace() . '::deactivated', [
-        'runs_with_webtrees_version' => $runs_with_webtrees_version,
-        'php_extension_zip_missing'  => $php_extension_zip_missing,
+        'runs_with_webtrees_version' => CustomModuleManager::runsWithInstalledWebtreesVersion(),
+        'php_extension_zip_missing'  => !extension_loaded('zip'),
 ]) ?>
 
-<?php if ($cmm_update) : ?>
-    <div class="alert alert-warning" role="alert" style="white-space: pre-wrap;"><?= I18N::translate('A new version of "%s" is available. It is recommended to upgrade to the latest version before other custom modules are installed/upgraded.', $cmm_title) ?></div>
+<?php if ($custom_module_manager->isLowerThanLatestVersion()) : ?>
+    <div class="alert alert-warning" role="alert" style="white-space: pre-wrap;"><?= I18N::translate('A new version of "%s" is available. It is recommended to upgrade to the latest version before other custom modules are installed/upgraded.', $custom_module_manager->title()) ?></div>
 <?php endif ?>
 
 <?= I18N::translate('Typically, custom modules versions are updated every 24 hours. You can check if later versions are available.') ?><?= view('icons/spacer') ?></div><a href="<?= e(route(CustomModuleUpdatePage::class, [

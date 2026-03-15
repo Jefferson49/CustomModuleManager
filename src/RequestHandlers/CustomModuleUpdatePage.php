@@ -74,19 +74,17 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
         
         $module_service        = New ModuleService();
         /** @var CustomModuleManager $custom_module_manager To avoid IDE warnings */
-        $custom_module_manager = $module_service->findByName(module_name: CustomModuleManager::activeModuleName());        
-        $cmm_update            = $custom_module_manager->isLowerThanLatestVersion();
+        $custom_module_manager = $module_service->findByName(module_name: CustomModuleManager::activeModuleName());    
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::module_update', [
             'title'                      => I18N::translate('Custom Module Updates'),
-            'cmm_title'                  => $custom_module_manager->title(),
-            'cmm_update'                 => $cmm_update,
-            'runs_with_webtrees_version' => CustomModuleManager::runsWithInstalledWebtreesVersion(),
-            'php_extension_zip_missing'  => !extension_loaded('zip'),
+            'custom_module_manager'      => $custom_module_manager,
+            'module_service'             => $module_service,
             'module_names'               => ModuleUpdateServiceConfiguration::getModuleNames(),
             'custom_modules'             => $module_service->findByInterface(ModuleCustomInterface::class, true),
             'themes'                     => $module_service->findByInterface(ModuleThemeInterface::class, true),
             'fetch_latest'               => $fetch_latest,
+            'modules_to_show'            => $custom_module_manager->getPreference(CustomModuleManager::PREF_MODULES_TO_SHOW, CustomModuleManager::PREF_SHOW_ALL),
         ]);
     }
 }
