@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-03-11 05:39+0100\n"
-"PO-Revision-Date: 2026-03-11 05:40+0100\n"
+"POT-Creation-Date: 2026-03-15 18:11+0100\n"
+"PO-Revision-Date: 2026-03-15 18:11+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,34 +15,34 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:239
+#: src/CustomModuleManager.php:246
 msgid "Custom Module Manager"
 msgstr "Management von Erweiterungsmodulen"
 
-#: src/CustomModuleManager.php:252
+#: src/CustomModuleManager.php:259
 msgid "A custom module to manage webtrees custom modules."
 msgstr "Ein Erweiterungsmodul zum Verwalten von webtrees-Erweiterungsmodulen."
 
-#: src/CustomModuleManager.php:326 src/ModuleUpdates/GithubModuleUpdate.php:152
+#: src/CustomModuleManager.php:333 src/ModuleUpdates/GithubModuleUpdate.php:152
 #: src/ModuleUpdates/GithubModuleUpdate.php:223
 #, php-format
 msgid "Communication error with %s"
 msgstr "Kommunikationsfehler mit %s"
 
-#: src/CustomModuleManager.php:504
+#: src/CustomModuleManager.php:511
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:550
+#: src/CustomModuleManager.php:557
 msgid "Rollback Custom Module Update"
 msgstr "Aktualisierung des Erweiterungsmoduls rückgängig machen"
 
-#: src/CustomModuleManager.php:551
+#: src/CustomModuleManager.php:558
 msgid "Rollback"
 msgstr "Rückgängig machen"
 
-#: src/CustomModuleManager.php:578
+#: src/CustomModuleManager.php:585
 #, php-format
 msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
@@ -51,7 +51,7 @@ msgstr ""
 "Die Einstellungen für das Erweiterungsmodul \"%s\" wurden für die neue Modul-"
 "Version %s aktualisiert."
 
-#: src/CustomModuleManager.php:610
+#: src/CustomModuleManager.php:617
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -64,7 +64,7 @@ msgstr ""
 "des Moduls %s wird dringend empfohlen, das Modul \"%s\" zu deaktivieren, "
 "weil die identische Funktion ebenfalls im Modul %s integriert ist."
 
-#: src/CustomModuleManager.php:615
+#: src/CustomModuleManager.php:622
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -77,7 +77,7 @@ msgstr ""
 "View \"%s\" registriert haben. Es wird dringend empfohlen eines der beiden "
 "Module zu deaktivieren."
 
-#: src/CustomModuleManager.php:639
+#: src/CustomModuleManager.php:646
 #, php-format
 msgid ""
 "The custom module view \"%s\" is not registered as replacement for the "
@@ -125,7 +125,7 @@ msgstr ""
 "Die Versionshinweise konnten aufgrund eines Kommunikationsfehlers mit GitHub "
 "nicht abgerufen werden."
 
-#: src/RequestHandlers/CustomModuleUpdatePage.php:81
+#: src/RequestHandlers/CustomModuleUpdatePage.php:80
 msgid "Custom Module Updates"
 msgstr "Aktualisierung von Erweiterungsmodulen"
 
@@ -289,11 +289,11 @@ msgstr "Fehler beim Löschen des Moduls."
 msgid "continue (reload)"
 msgstr "Weiter (neu laden)"
 
-#: src/RequestHandlers/ReleaseNotesModal.php:71
+#: src/RequestHandlers/ReleaseNotesModal.php:70
 msgid "No release notes available"
 msgstr "Keine Versionshinweise verfügbar"
 
-#: src/RequestHandlers/ReleaseNotesModal.php:80
+#: src/RequestHandlers/ReleaseNotesModal.php:79
 msgid "Release notes"
 msgstr "Versionshinweise"
 
@@ -302,7 +302,7 @@ msgid "Documentation"
 msgstr "Dokumentation"
 
 #: resources/views/modals/module_information.phtml:93
-#: resources/views/module_update.phtml:96
+#: resources/views/module_update.phtml:92
 msgid "Update Service"
 msgstr "Aktualisierungs-Dienst"
 
@@ -311,13 +311,13 @@ msgid "Module folder"
 msgstr "Modul-Ordner"
 
 #: resources/views/modals/module_information.phtml:103
-#: resources/views/module_update.phtml:94
+#: resources/views/module_update.phtml:90
 msgid "Current Version"
 msgstr "Aktuelle Version"
 
 #: resources/views/modals/module_information.phtml:108
 #: resources/views/modals/release_notes.phtml:29
-#: resources/views/module_update.phtml:95
+#: resources/views/module_update.phtml:91
 msgid "Latest Version"
 msgstr "Neueste Version"
 
@@ -334,7 +334,7 @@ msgstr "GitHub-Repository"
 msgid "Module Usage"
 msgstr "Modul-Verwendung"
 
-#: resources/views/module_update.phtml:58
+#: resources/views/module_update.phtml:52
 #, php-format
 msgid ""
 "A new version of \"%s\" is available. It is recommended to upgrade to the "
@@ -344,7 +344,7 @@ msgstr ""
 "neueste Version zu aktualisieren bevor andere Erweiterungsmodule installiert/"
 "aktualisiert werden."
 
-#: resources/views/module_update.phtml:61
+#: resources/views/module_update.phtml:55
 msgid ""
 "Typically, custom modules versions are updated every 24 hours. You can check "
 "if later versions are available."
@@ -352,33 +352,25 @@ msgstr ""
 "Die Versionen von Erweiterungsmodulen werden in der Regel alle 24 Stunden "
 "aktualisiert. Sie können prüfen, ob neuere Versionen verfügbar sind."
 
-#: resources/views/module_update.phtml:85
+#: resources/views/module_update.phtml:81
 msgid "Module Updates"
 msgstr "Aktualisierungen für Module"
 
-#: resources/views/module_update.phtml:92
+#: resources/views/module_update.phtml:88
 msgid "Folder (within modules_v4)"
 msgstr "Ordner (in modules_v4)"
 
-#: resources/views/module_update.phtml:108
+#: resources/views/module_update.phtml:104
 #: resources/views/module_update.phtml:247
 msgid "not installed"
 msgstr "nicht installiert"
 
-#: resources/views/module_update.phtml:112
-msgid "enabled"
-msgstr "aktiviert"
-
-#: resources/views/module_update.phtml:114
-msgid "disabled"
-msgstr "deaktiviert"
-
-#: resources/views/module_update.phtml:131
-#: resources/views/module_update.phtml:156
+#: resources/views/module_update.phtml:127
+#: resources/views/module_update.phtml:152
 msgid "not received"
 msgstr "nicht empfangen"
 
-#: resources/views/module_update.phtml:134
+#: resources/views/module_update.phtml:130
 msgid "not available"
 msgstr "nicht verfügbar"
 
@@ -393,6 +385,14 @@ msgstr "Modul installieren"
 #: resources/views/module_update.phtml:267
 msgid "Delete module"
 msgstr "Modul löschen"
+
+#: resources/views/module_update.phtml:292
+msgid ""
+"Press the save button to enable/disable modules according to the checkbox in "
+"the \"enabled\" column."
+msgstr ""
+"Drücken Sie den „Speichern“ Button, um Module entsprechend dem "
+"Kontrollkästchen in der Spalte „Aktiviert“ zu aktivieren/deaktivieren."
 
 #: resources/views/settings.phtml:41
 msgid "Manage custom modules"
@@ -461,6 +461,12 @@ msgid ""
 msgstr ""
 "Die Verwendung eines GitHub-API Tokens wird empfohlen, wenn GitHub-"
 "Kommunikationsfehler auftreten"
+
+#~ msgid "enabled"
+#~ msgstr "aktiviert"
+
+#~ msgid "disabled"
+#~ msgstr "deaktiviert"
 
 #~ msgid "Action"
 #~ msgstr "Aktion"

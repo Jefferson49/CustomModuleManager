@@ -66,6 +66,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\DefaultTitlesA
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleActivateAction;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleInformationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
@@ -135,11 +136,12 @@ class CustomModuleManager extends AbstractModule implements
     public const ACTION_INSTALL           = 'action_install';
 
     //Routes
-    public const ROUTE_WIZARD_PAGE         = '/module_upgrade_wizard_page';
-    public const ROUTE_WIZARD_STEP         = '/module_upgrade_wizard_step';
-    public const ROUTE_MODULE_UPDATE_PAGE  = '/module_update_page';
-    public const ROUTE_MODULE_INFO_MODAL   = '/module_info_modal';
-    public const ROUTE_RELEASE_NOTES_MODAL = '/release_notes_modal';
+    public const ROUTE_WIZARD_PAGE         = '/module-upgrade-wizard_page';
+    public const ROUTE_WIZARD_STEP         = '/module-upgrade-wizard-step';
+    public const ROUTE_MODULE_UPDATE_PAGE  = '/module-update-page';
+    public const ROUTE_MODULE_INFO_MODAL   = '/module-info-modal';
+    public const ROUTE_RELEASE_NOTES_MODAL = '/release-notes-modal';
+    public const ROUTE_ACTIVATE_ACTION     = '/activate-action';
 
     //Language
     public const DEFAULT_LANGUAGE         = 'en-US';
@@ -224,6 +226,11 @@ class CustomModuleManager extends AbstractModule implements
         //Register a route for the release notes modal
         $router
         ->get(ReleaseNotesModal::class, self::ROUTE_RELEASE_NOTES_MODAL)
+        ->allows(RequestMethodInterface::METHOD_POST);
+
+        //Register a route for the release notes modal
+        $router
+        ->get(CustomModuleActivateAction::class, self::ROUTE_ACTIVATE_ACTION)
         ->allows(RequestMethodInterface::METHOD_POST);
     }
 	
