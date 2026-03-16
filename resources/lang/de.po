@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-03-15 18:11+0100\n"
-"PO-Revision-Date: 2026-03-15 18:11+0100\n"
+"POT-Creation-Date: 2026-03-16 06:18+0100\n"
+"PO-Revision-Date: 2026-03-16 06:19+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -359,6 +359,10 @@ msgstr "Aktualisierungen für Module"
 #: resources/views/module_update.phtml:88
 msgid "Folder (within modules_v4)"
 msgstr "Ordner (in modules_v4)"
+
+#: resources/views/module_update.phtml:94
+msgid "Install"
+msgstr "Installieren"
 
 #: resources/views/module_update.phtml:104
 #: resources/views/module_update.phtml:247
