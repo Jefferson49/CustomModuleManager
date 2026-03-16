@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-03-16 06:18+0100\n"
-"PO-Revision-Date: 2026-03-16 06:19+0100\n"
+"POT-Creation-Date: 2026-03-16 06:35+0100\n"
+"PO-Revision-Date: 2026-03-16 06:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -201,35 +201,40 @@ msgstr ""
 "zu nutzen, muss Ihre PHP-Installation die \"zip\"-Erweiterung beinhalten. "
 "Sie müssen die die Erweiterung in der \"php.ini\"-Datei aktivieren."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:251
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:252
+msgid "Latest version"
+msgstr "Neueste Version"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:252
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:255
 #, php-format
 msgid "Installing version: \"%s\""
 msgstr "Installiere Version \"%s\""
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:254
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:259
 #, php-format
 msgid "Upgrading the module from version \"%s\" to version \"%s\""
 msgstr "Aktualisieren des Moduls von Version \"%s\" auf Version \"%s\""
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:325
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:330
 #, php-format
 msgid "A backup of the current module was created in %s seconds."
 msgstr ""
 "Eine Sicherungskopie des aktuellen Moduls wurde in %s Sekunden erstellt."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:330
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:335
 msgid "Failed to create a backup of the current module."
 msgstr "Es konnte keine Sicherungskopie des aktuellen Moduls erstellt werden."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:357
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:362
 msgid "Error during downloading the module zip file."
 msgstr "Fehler beim Herunterladen der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:389
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:394
 msgid "Error during unzipping the module zip file."
 msgstr "Fehler beim Entpacken der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:503
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:508
 #, php-format
 msgid ""
 "The module %s was rolled back to the current version, because the update "
@@ -238,7 +243,7 @@ msgstr ""
 "Das Modul %s wurde auf die bisherige Version zurückgesetzt, weil das Update "
 "Fehler verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:506
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:511
 #, php-format
 msgid ""
 "The installation of module %s was rolled back, because the module created "
@@ -247,13 +252,13 @@ msgstr ""
 "Die Installation von Modul %s wurde rückgängig gemacht, weil das Modul "
 "Fehler verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:516
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:521
 #, php-format
 msgid "A roll back of the module %s to the current version failed."
 msgstr ""
 "Ein Rollback des Moduls %s auf die bisherige Version ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:518
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:523
 #, php-format
 msgid ""
 "Please try to manually roll back by copying the files from \"/data/tmp/"
@@ -263,12 +268,12 @@ msgstr ""
 "Dateien von \"/data/tmp/backup/modules_4/%s\" nach \"/modules_v4/%s\" "
 "kopieren."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:521
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:526
 #, php-format
 msgid "A roll back of the installation of module %s failed."
 msgstr "Ein Rollback der Installation von Modul %s ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:523
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:528
 #, php-format
 msgid ""
 "Please try to manually roll back by deleting the folder \"/modules_v4/%s\""
@@ -276,16 +281,16 @@ msgstr ""
 "Bitte versuchen Sie, die Dateien manuell zurückzusetzen, indem Sie den "
 "Ordner \"/modules_4/%s\" löschen"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:563
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:568
 #, php-format
 msgid "The module was successfully deleted in %s seconds."
 msgstr "Das Modul wurde in %s Sekunden erfolgreich gelöscht."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:568
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:573
 msgid "Error during deleting the module."
 msgstr "Fehler beim Löschen des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:703
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:708
 msgid "continue (reload)"
 msgstr "Weiter (neu laden)"
 
@@ -365,32 +370,31 @@ msgid "Install"
 msgstr "Installieren"
 
 #: resources/views/module_update.phtml:104
-#: resources/views/module_update.phtml:247
+#: resources/views/module_update.phtml:251
 msgid "not installed"
 msgstr "nicht installiert"
 
-#: resources/views/module_update.phtml:127
-#: resources/views/module_update.phtml:152
-msgid "not received"
-msgstr "nicht empfangen"
-
-#: resources/views/module_update.phtml:130
+#: resources/views/module_update.phtml:139
 msgid "not available"
 msgstr "nicht verfügbar"
 
-#: resources/views/module_update.phtml:246
+#: resources/views/module_update.phtml:158
+msgid "not received"
+msgstr "nicht empfangen"
+
+#: resources/views/module_update.phtml:250
 msgid "Update module"
 msgstr "Modul aktualisieren"
 
-#: resources/views/module_update.phtml:249
+#: resources/views/module_update.phtml:253
 msgid "Install module"
 msgstr "Modul installieren"
 
-#: resources/views/module_update.phtml:267
+#: resources/views/module_update.phtml:271
 msgid "Delete module"
 msgstr "Modul löschen"
 
-#: resources/views/module_update.phtml:292
+#: resources/views/module_update.phtml:296
 msgid ""
 "Press the save button to enable/disable modules according to the checkbox in "
 "the \"enabled\" column."
@@ -465,6 +469,9 @@ msgid ""
 msgstr ""
 "Die Verwendung eines GitHub-API Tokens wird empfohlen, wenn GitHub-"
 "Kommunikationsfehler auftreten"
+
+#~ msgid "latest"
+#~ msgstr "neueste"
 
 #~ msgid "enabled"
 #~ msgstr "aktiviert"

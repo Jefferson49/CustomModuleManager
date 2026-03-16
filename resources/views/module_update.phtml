@@ -123,8 +123,17 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <?php $is_theme = $module_update_service->moduleIsTheme() ?>
                     <?php $category = $module_update_service->getCategory() ?>
                     <?php $current_version = $module_update_service->customModuleVersion() ?>
-                    <?php $latest_version = $module_update_service->customModuleLatestVersion($fetch_latest) ?>
-                    <?php $latest_version = $latest_version !== '' ? $latest_version : I18N::translate('not received') ?>
+                    <?php if ($module !== null) : ?>
+                        <?php $latest_version = $module_update_service->customModuleLatestVersion($fetch_latest) ?>
+                        <?php if (CustomModuleManager::versionCompare($module_name, $latest_version, $current_version) > 0) : ?>
+                            <?php $later_version_available = true ?>
+                        <?php else : ?>
+                            <?php $later_version_available = false ?>
+                            <?php $latest_version = $current_version ?>
+                        <?php endif ?>
+                    <?php else : ?>
+                        <?php $latest_version = '' ?>
+                    <?php endif ?>
                     <?php $documentation_url = $module_update_service->documentationUrl() ?>
                 <?php else : ?>
                     <?php $module_update_service_name = I18N::translate('not available') ?>
@@ -144,9 +153,6 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <?php $current_version = $module->customModuleVersion() ?>
                     <?php $latest_version = $module->customModuleLatestVersion() ?>
                     <?php $documentation_url = '' ?>
-                <?php endif ?>
-                <?php if (CustomModuleManager::versionCompare($module_name, $latest_version, $current_version) < 0) : ?>
-                    <?php $latest_version = $current_version ?>
                 <?php endif ?>
                 <?php if ($module !== null) : ?>
                     <?php $current_version = $current_version !== '' ? $current_version : I18N::translate('not received') ?>
@@ -209,9 +215,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
 
                     <!-- Latest version -->
                     <td data-sort="<?= e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>">
-                        <?php if (  CustomModuleManager::versionCompare($module_name, $latest_version, $current_version) === 1 
-                                && $module_update_service_name === GithubModuleUpdate::NAME && $module_update_service->providesGithubReleases()
-                                && $current_version !== '') : ?>
+                        <?php if ( $later_version_available && $current_version !== '' && $module_update_service_name === GithubModuleUpdate::NAME && $module_update_service->providesGithubReleases()) : ?>
                             <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ReleaseNotesModal::class, [
                                     'module_name'                => $module_name,
                                     'module_title'               => $module_title,
@@ -241,7 +245,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <!--Install -->
                     <?php $action = '' ?>
                     <?php $action_label = '' ?>
-                    <?php if ($module !== null && CustomModuleManager::versionCompare($module_name, $latest_version, $current_version) > 0) : ?>
+                    <?php if ($module !== null && $later_version_available) : ?>
                         <?php $action = CustomModuleManager::ACTION_UPDATE ?>
                         <?php $action_label = I18N::translate('Update module') ?>
                     <?php elseif ($module_status === I18N::translate('not installed')) : ?>
