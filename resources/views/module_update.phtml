@@ -133,18 +133,13 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                         <?php endif ?>
                     <?php else : ?>
                         <?php $latest_version = '' ?>
+                        <?php $later_version_available = false ?>
                     <?php endif ?>
                     <?php $documentation_url = $module_update_service->documentationUrl() ?>
                 <?php else : ?>
                     <?php $module_update_service_name = I18N::translate('not available') ?>
                     <?php $module_title = $module->title() ?>
                     <?php $module_description = $module->description() ?>
-                    <?php I18N::init(CustomModuleManager::DEFAULT_LANGUAGE) ?>
-                    <?php Session::put('language', CustomModuleManager::DEFAULT_LANGUAGE) ?>
-                    <?php $default_module_title = $module->title() ?>
-                    <?php $default_module_description = $module->description() ?>
-                    <?php I18N::init($current_language) ?>
-                    <?php Session::put('language', $current_language) ?>
                     <?php $default_module_title = $module_title ?>
                     <?php $default_module_description = $module_description ?>
                     <?php $is_theme = $themes->contains($module) ?>

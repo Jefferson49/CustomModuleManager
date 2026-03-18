@@ -49,19 +49,26 @@ use RuntimeException;
 class ModuleUpdateServiceConfiguration 
 {
     //The language used
-    private static $language = '';
+    private static string $language = '';
 
-    //The (default) titles corresponding to the current language
-    private static $titles = [];
+    //Titles [language][module_name]
+    private static array $titles = [];
 
-    //The (default) descriptions corresponding to the current language
-    private static $descriptions = [];
+    //Descriptions [language][module_name]
+    private static array $descriptions = [];
 
     //A list with all tag prefixes, which module use at GitHub
-    private static $tag_prefixes = [];
+    private static array $tag_prefixes = [];
 
     //The module update service configuration
-    private static $module_update_service_config = [];
+    private static array $module_update_service_config = [];
+
+    //A map from titles to standard module names
+    private static array $map_title_to_standard_module_name = [];
+
+    //A map from descriptions to standard module names
+    private static array $map_description_to_standard_module_name = [];
+
 
     //Categories for custom modules
     public const CATEGORY                 = 'category';
@@ -404,43 +411,21 @@ class ModuleUpdateServiceConfiguration
      */
     public static function getStandardModuleName(string $module_name): string
     {
-        $default_language = CustomModuleManager::DEFAULT_LANGUAGE;
+        self::initializeMapsForModuleNames();
         $config = self::getModuleUpdateServiceConfig();
         $module_service = new ModuleService();
         $module = $module_service->findByName($module_name, true);
 
+        //If module exists, try to identify by module title/description
         if ($module !== null) {
 
-            $current_language = Session::get('language', '');
-
-            //Set language to default language, i.e. en-US
-            $default_language = CustomModuleManager::DEFAULT_LANGUAGE;
-            I18N::init($default_language);
-            Session::put('language', $default_language);
-
-            $english_title = $module->title();
-            $english_title = json_encode($english_title) !== false ? $english_title : mb_convert_encoding($english_title, 'UTF-8');
-
-            $english_description = $module->description();
-            $english_description = json_encode($english_description) !== false ? $english_description : mb_convert_encoding($english_description, 'UTF-8');
-
-            //Reset language
-            I18N::init($current_language);
-            Session::put('language', $current_language);
-
-            // Initialize the mapping of module titles and descriptions to standard module names (if not done yet)
-            self::initializeTitlesAndDescriptions();
-
-            $map_default_titles_to_names       = array_flip( self::$titles[CustomModuleManager::DEFAULT_LANGUAGE]);
-            $map_default_descriptions_to_names = array_flip( self::$descriptions[CustomModuleManager::DEFAULT_LANGUAGE]);
-
             //Try to identify by title (if different from default title in AbstractModule)
-            if ($module->title() !== 'Module name goes here'  && array_key_exists($english_title, $map_default_titles_to_names)) {
-                return $map_default_titles_to_names[$english_title];
+            if ($module->title() !== 'Module name goes here'  && array_key_exists($module->title(), self::$map_title_to_standard_module_name)) {
+                return self::$map_title_to_standard_module_name[$module->title()];
             }
             //Try to identify by description
-            elseif (array_key_exists($english_description, $map_default_descriptions_to_names)) {
-                return $map_default_descriptions_to_names[$english_description];
+            elseif (array_key_exists($module->description(), self::$map_description_to_standard_module_name)) {
+                return self::$map_description_to_standard_module_name[$module->description()];
             }
         }
 
@@ -450,6 +435,59 @@ class ModuleUpdateServiceConfiguration
         }
 
         return '';    
+    }
+
+    /**
+     * Initialize the maps for default titles/descriptions to module names
+     * 
+     * @return string
+     */
+    public static function initializeMapsForModuleNames(): void
+    {
+        if (!empty(self::$map_title_to_standard_module_name)) {
+            return;
+        }
+
+        $default_language = CustomModuleManager::DEFAULT_LANGUAGE;
+        $current_language = Session::get('language', '');
+
+        //Set language to default language, i.e. en-US
+        $default_language = CustomModuleManager::DEFAULT_LANGUAGE;
+        I18N::init($default_language);
+        Session::put('language', $default_language);
+
+        // Initialize the mapping of module titles and descriptions to standard module names (if not done yet)
+        self::initializeTitlesAndDescriptions();
+
+        $map_default_titles_to_names       = array_flip( self::$titles[CustomModuleManager::DEFAULT_LANGUAGE]);
+        $map_default_descriptions_to_names = array_flip( self::$descriptions[CustomModuleManager::DEFAULT_LANGUAGE]);
+
+        $module_service = new ModuleService();
+        $modules = $module_service->findByInterface(ModuleCustomInterface::class);
+
+        foreach ($modules as $module) {
+
+            $english_title = $module->title();
+            $english_title = json_encode($english_title) !== false ? $english_title : mb_convert_encoding($english_title, 'UTF-8');
+
+            $english_description = $module->description();
+            $english_description = json_encode($english_description) !== false ? $english_description : mb_convert_encoding($english_description, 'UTF-8');
+
+            //Try to identify by title (if different from default title in AbstractModule)
+            if ($module->title() !== 'Module name goes here'  && array_key_exists($english_title, $map_default_titles_to_names)) {
+                self::$map_title_to_standard_module_name[$module->name()] = $map_default_titles_to_names[$english_title];
+            }
+            //Try to identify by description
+            elseif (array_key_exists($english_description, $map_default_descriptions_to_names)) {
+                self::$map_description_to_standard_module_name[$module->name()] = $map_default_descriptions_to_names[$english_description];
+            }
+        }
+
+        //Reset language
+        I18N::init($current_language);
+        Session::put('language', $current_language);
+
+        return;
     }
 
     /**
@@ -483,7 +521,7 @@ class ModuleUpdateServiceConfiguration
     }
 
     /**
-     * Initialize the values (i.e. titles, descriptions) for a certain language
+     * Initialize the titles and descriptions for current and default language
      */
     public static function initializeTitlesAndDescriptions() {
 

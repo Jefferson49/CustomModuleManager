@@ -103,31 +103,9 @@ abstract class AbstractModuleUpdate
      */
     public function title(string $language_tag = CustomModuleManager::DEFAULT_LANGUAGE): string {
 
-        $title = '';
+        $standard_module_name = ModuleUpdateServiceConfiguration::getStandardModuleName($this->module_name);
 
-        //Remember current language
-        $current_language = Session::get('language', '');
-
-        //Activate language
-        I18N::init($language_tag);
-        Session::put('language', $language_tag);
-
-        $module = $this->getModule();
-
-        if ($module !== null) {
-            //Get descripton from module
-            $title = $module->title();
-        }
-        else {
-            //Get descripton from configuration
-            $title = ModuleUpdateServiceConfiguration::getTitle($this->module_name, $language_tag);
-        }
-
-        //Reset to current language
-        I18N::init($current_language);
-        Session::put('language', $current_language);
-
-        return $title;
+        return ModuleUpdateServiceConfiguration::getTitle($standard_module_name, $language_tag);
     }
 
     /**
@@ -139,31 +117,9 @@ abstract class AbstractModuleUpdate
      */
     public function description(string $language_tag = CustomModuleManager::DEFAULT_LANGUAGE): string {
 
-        $description = '';
+        $standard_module_name = ModuleUpdateServiceConfiguration::getStandardModuleName($this->module_name);
 
-        //Remember current language
-        $current_language = Session::get('language', '');
-
-        //Activate language
-        I18N::init($language_tag);
-        Session::put('language', $language_tag);
-
-        $module = $this->getModule();
-
-        if ($module !== null) {
-            //Get descripton from module
-            $description = $module->description();
-        }
-        else {
-            //Get descripton from configuration
-            $description = ModuleUpdateServiceConfiguration::getDescription($this->module_name, $language_tag);
-        }
-
-        //Reset to current language
-        I18N::init($current_language);
-        Session::put('language', $current_language);
-
-        return $description;
+        return ModuleUpdateServiceConfiguration::getDescription($standard_module_name, $language_tag);
     }
 
     /**
