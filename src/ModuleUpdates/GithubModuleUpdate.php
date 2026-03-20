@@ -33,6 +33,7 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
 use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Module\ModuleInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
 use Jefferson49\Webtrees\Helpers\GithubService;
@@ -64,6 +65,9 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
     // The module service
     protected ModuleService $module_service;
+
+    // The Custom Module Manager module
+    protected ModuleInterface $custom_module_manager;
     
     /**
      * @param string $module_name  The custom module name
@@ -73,8 +77,10 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function __construct(string $module_name, array $params) {
 
-        $this->module_name    = $module_name;
-        $this->module_service = new ModuleService();
+        $this->module_name           = $module_name;
+        $this->module_service        = new ModuleService();
+        $this->custom_module_manager = $this->module_service->findByName(CustomModuleManager::activeModuleName());
+
 
         if (array_key_exists('github_repo', $params)) {
             $this->github_repo = $params['github_repo'];
@@ -140,8 +146,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             return 'https://github.com/' . $this->github_repo . '/archive/refs/heads/' . $this->default_branch . '.zip';
         }
 
-        $custom_module_manager = $this->module_service->findByName(CustomModuleManager::activeModuleName());
-        $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');       
+        $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');       
 
         // Get the download URL from Github
         try {
@@ -187,35 +192,36 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function customModuleLatestVersion(bool $fetch_latest = false): string
     {
+        $latest_version = '';
+        $stored_version = '';
         $module = $this->getModule();
 
         // If the installed module is available, try to get latest version from the module
-        if (!$fetch_latest && $module !== null && !$this->get_latest_version_from_github) {
-            $version = $module->customModuleLatestVersion();
+        if ($module !== null && !$fetch_latest && !$this->get_latest_version_from_github) {
 
-            if ($version !== '') {
-                return $version;
+            $latest_version = $module->customModuleLatestVersion();
+            $short_module_name = substr($module->name(), 0, 25) . '_';
+            $stored_version = $this->custom_module_manager->getPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, '');
+
+            // If we had retrieved and stored a later version before
+            if (CustomModuleManager::versionCompare($module->name(), $stored_version, $latest_version) > 0) {
+                $latest_version = $stored_version;
             }
         }
 
         // For certain modules, which do not provide a release, try to get the latest version by update URL
-        if ($this->no_release) {
+        if ($module !== null && $latest_version === '' && $this->no_release) {
 
-            if ($module !== null) {
-                return self::getLatestVersionByUpdateURL($module);
-            }
-
-            return '';
+            $latest_version =  self::getLatestVersionByUpdateURL($module);
         }
 
         // Otherwise, try to get the latest version from Github
-        if ($this->github_repo !== '') {
+        if ($latest_version === '' && $this->github_repo !== '') {
 
-            $custom_module_manager = $this->module_service->findByName(CustomModuleManager::activeModuleName());
-            $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');       
+            $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');       
 
             try {
-                return GithubService::getLatestReleaseTag($this->github_repo, $github_api_token);
+                $latest_version = GithubService::getLatestReleaseTag($this->github_repo, $github_api_token);
             }
             catch (GithubCommunicationError $ex) {
                 // Can't connect to GitHub? 
@@ -225,7 +231,21 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             }
         }
 
-        return '';
+        if ($module !== null) {
+            $short_module_name = substr($module->name(), 0, 25) . '_';
+
+            // If a later version was retrieved, store it 
+            if (CustomModuleManager::versionCompare($module->name(), $latest_version, $this->customModuleVersion()) > 0) {
+
+                $this->custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, $latest_version);
+            }
+            // Otherwise, reset stored version
+            elseif ($stored_version !== '') {
+                $this->custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, '');
+            } 
+        }
+
+        return $latest_version;
     }
 
     /**
@@ -235,8 +255,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function getLatestReleaseNotes(): string
     {
-        $custom_module_manager = $this->module_service->findByName(CustomModuleManager::activeModuleName());
-        $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');       
+        $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');       
 
         //Get the latest releases note from GitHub
         try {
