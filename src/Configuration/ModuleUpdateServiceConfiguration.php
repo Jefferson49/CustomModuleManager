@@ -64,7 +64,7 @@ class ModuleUpdateServiceConfiguration
     private static array $module_update_service_config = [];
 
     //A map from titles to standard module names
-    private static array $map_title_to_standard_module_name = [];
+    private static array $map_module_name_to_standard_module_name = [];
 
     //A map from descriptions to standard module names
     private static array $map_description_to_standard_module_name = [];
@@ -416,17 +416,10 @@ class ModuleUpdateServiceConfiguration
         $module_service = new ModuleService();
         $module = $module_service->findByName($module_name, true);
 
-        //If module exists, try to identify by module title/description
+        //If module exists, get standard name from map
         if ($module !== null) {
 
-            //Try to identify by title (if different from default title in AbstractModule)
-            if ($module->title() !== 'Module name goes here'  && array_key_exists($module->title(), self::$map_title_to_standard_module_name)) {
-                return self::$map_title_to_standard_module_name[$module->title()];
-            }
-            //Try to identify by description
-            elseif (array_key_exists($module->description(), self::$map_description_to_standard_module_name)) {
-                return self::$map_description_to_standard_module_name[$module->description()];
-            }
+            return self::$map_module_name_to_standard_module_name[$module_name] ?? $module_name;
         }
 
         //Try to identify by module name (e.g. based on folder in modules_v4)
@@ -444,7 +437,7 @@ class ModuleUpdateServiceConfiguration
      */
     public static function initializeMapsForModuleNames(): void
     {
-        if (!empty(self::$map_title_to_standard_module_name)) {
+        if (!empty(self::$map_module_name_to_standard_module_name)) {
             return;
         }
 
@@ -475,7 +468,7 @@ class ModuleUpdateServiceConfiguration
 
             //Try to identify by title (if different from default title in AbstractModule)
             if ($module->title() !== 'Module name goes here'  && array_key_exists($english_title, $map_default_titles_to_names)) {
-                self::$map_title_to_standard_module_name[$module->name()] = $map_default_titles_to_names[$english_title];
+                self::$map_module_name_to_standard_module_name[$module->name()] = $map_default_titles_to_names[$english_title];
             }
             //Try to identify by description
             elseif (array_key_exists($english_description, $map_default_descriptions_to_names)) {
