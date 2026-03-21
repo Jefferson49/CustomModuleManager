@@ -1,0 +1,315 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Custom Module Manager\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Reveritus <github.com/Reveritus>\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-KeywordsList: translate\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: src/CustomModuleManager.php:233
+msgid "Custom Module Manager"
+msgstr "Управление кастомными модулями"
+
+#: src/CustomModuleManager.php:246
+msgid "A custom module to manage webtrees custom modules."
+msgstr "Модуль для управления кастомными модулями Webtrees."
+
+#: src/CustomModuleManager.php:320 src/ModuleUpdates/GithubModuleUpdate.php:150
+#: src/ModuleUpdates/GithubModuleUpdate.php:217
+msgid "Communication error with %s"
+msgstr "Ошибка связи с %s"
+
+#: src/CustomModuleManager.php:498
+msgid "The preferences for the module \"%s\" were updated."
+msgstr "Настройки модуля \"%s\" были обновлены."
+
+#: src/CustomModuleManager.php:544
+msgid "Rollback Custom Module Update"
+msgstr "Откат обновления кастомного модуля"
+
+#: src/CustomModuleManager.php:545
+msgid "Rollback"
+msgstr "Откат"
+
+#: src/CustomModuleManager.php:572
+msgid "The preferences for the custom module \"%s\" were sucessfully updated to the new module version %s."
+msgstr "Настройки кастомного модуля \"%s\" были успешно обновлены до новой версии модуля %s."
+
+#: src/CustomModuleManager.php:604
+msgid "The custom module \"%s\" is activated in parallel to the %s custom module. This can lead to unintended behavior. If using the %s module, it is strongly recommended to deactivate the \"%s\" module, because the identical functionality is also integrated in the %s module."
+msgstr "Кастомный модуль \"%s\" активируется параллельно с модулем %s. Это может привести к нежелательному поведению. При использовании модуля %s настоятельно рекомендуется отключить модуль \"%s\", поскольку идентичная функциональность также встроена в модуль %s."
+
+#: src/CustomModuleManager.php:609
+msgid "The custom module \"%s\" is activated in parallel to the %s custom module. This can lead to unintended behavior, because both of the modules have registered the same custom view \"%s\". It is strongly recommended to deactivate one of the modules."
+msgstr "Кастомный модуль \"%s\" активируется параллельно с модулем %s. Это может привести к нежелательному поведению, поскольку оба модуля зарегистрировали одно и то же пользовательское представление \"%s\". Настоятельно рекомендуется отключить один из модулей."
+
+#: src/CustomModuleManager.php:633
+msgid "The custom module view \"%s\" is not registered as replacement for the standard webtrees view. There might be another module installed, which registered the same custom view. This can lead to unintended behavior. It is strongly recommended to deactivate one of the modules. The path of the parallel view is: %s"
+msgstr "Вид кастомного модуля \"%s\" не зарегистрировано в качестве замены стандартного вида Webtrees. Возможно, установлен другой модуль, в котором зарегистрирован такой же вид. Это может привести к нежелательному поведению. Настоятельно рекомендуется отключить один из модулей. Путь к параллельному виду  таков: %s"
+
+#: src/ModuleUpdates/AbstractModuleUpdate.php:196
+msgid "Frontend"
+msgstr "Интерфейс"
+
+#: src/ModuleUpdates/AbstractModuleUpdate.php:220
+msgid "Tags"
+msgstr "Метки"
+
+#: src/ModuleUpdates/AbstractModuleUpdate.php:224
+msgid "Data validation"
+msgstr "Проверка данных"
+
+#: src/ModuleUpdates/GithubModuleUpdate.php:80
+#: src/ModuleUpdates/UrlModuleUpdate.php:70
+msgid "Could not create the %s update service. Configuration parameter \"%s\" missing."
+msgstr "Не удалось создать службу обновления %s. Отсутствует параметр конфигурации \"%s\"."
+
+#: src/ModuleUpdates/GithubModuleUpdate.php:151
+msgid "Cannot retrieve download URL."
+msgstr "Не удается получить URL-адрес для загрузки."
+
+#: src/RequestHandlers/CustomModuleUpdatePage.php:81
+msgid "Custom Module Updates"
+msgstr "Обновления кастомных модулей"
+
+#: src/RequestHandlers/ModuleInformationModal.php:80
+msgid "Module Information"
+msgstr "Информация о модуле"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:102
+msgid "Could not identify a suitable module upgrade service for custom module"
+msgstr "Не удалось определить подходящую службу обновления для кастомного модуля"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:110
+msgid "Error during retrieving download URL"
+msgstr "Ошибка при получении URL-адреса для загрузки"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:147
+msgid "Check version..."
+msgstr "Проверка версии..."
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:148
+msgid "Create temporary folders…"
+msgstr "Создание временных папок…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:153
+msgid "Backup…"
+msgstr "Резервная копия…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:136
+msgid "Update Wizard was aborted"
+msgstr "Мастер обновления был прерван"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:216
+msgid "Installing module \"%s\" (to folder: \"/module_v4/%s\")"
+msgstr "Установка модуля \"%s\" (в папку: \"/module_v4/%s\")"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:219
+msgid "Upgrading module \"%s\" (in folder: \"/module_v4/%s\")"
+msgstr "Обновление модуля \"%s\" (в папке: \"/module_v4/%s\")"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:229
+msgid "Version % is the latest version of the custom module. No upgrade is available."
+msgstr "Версия % - последняя версия кастомного модуля. Обновление недоступно."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:234
+msgid "This custom module can only be used with a webtrees version greater or equal than %s"
+msgstr "Этот кастомный модуль можно использовать только с версией Webtrees, большей или равной %s"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:239
+msgid "The PHP extension \"zip\" is not installed. In order to use the custom module, your PHP installation needs to include the \"zip\" extension. You have to activate the extension in your \"php.ini\" file."
+msgstr "Расширение PHP \"zip\" не установлено. Чтобы использовать кастомный модуль, в вашей установке PHP должно быть установлено расширение \"zip\". Вам необходимо активировать расширение в вашем файле \"php.ini\"."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:247
+msgid "Installing version: \"%s\""
+msgstr "Установка версии: \"%s\""
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:250
+msgid "Upgrading the module from version \"%s\" to version \"%s\""
+msgstr "Обновление модуля с версии \"%s\" на версию \"%s\""
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:321
+msgid "A backup of the current module was created in %s seconds."
+msgstr "Резервная копия текущего модуля была создана за %s секунд."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:326
+msgid "Failed to create a backup of the current module."
+msgstr "Не удалось создать резервную копию текущего модуля."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:353
+msgid "Error during downloading the module zip file."
+msgstr "Ошибка при загрузке zip-файла модуля."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:385
+msgid "Error during unzipping the module zip file."
+msgstr "Ошибка при распаковке zip-файла модуля."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:499
+msgid "The module %s was rolled back to the current version, because the update created errors."
+msgstr "Модуль %s был возвращен к текущей версии, поскольку обновление привело к ошибкам."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:502
+msgid "The installation of module %s was rolled back, because the module created errors."
+msgstr "Установка модуля %s была отменена, так как модуль создавал ошибки."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:512
+msgid "A roll back of the module %s to the current version failed."
+msgstr "Не удалось выполнить откат модуля %s к текущей версии."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:514
+msgid "Please try to manually roll back by copying the files from \"/data/tmp/backup/modules_4/%s\" to \"/modules_v4/%s\"."
+msgstr "Пожалуйста, попробуйте выполнить откат вручную, скопировав файлы из \"/data/tmp/backup/modules_4/%s\" в \"/modules_v4/%s\"."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:517
+msgid "A roll back of the installation of module %s failed."
+msgstr "Не удалось выполнить откат установки модуля %s."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:519
+msgid "Please try to manually roll back by deleting the folder \"/modules_v4/%s\""
+msgstr "Пожалуйста, попробуйте выполнить откат вручную, удалив папку \"/modules_v4/%s\""
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:661
+msgid "continue (reload)"
+msgstr "продолжить (перезагрузить)"
+
+#: resources/views/modals/module_information.phtml:63
+msgid "Documentation"
+msgstr "Документация"
+
+#: resources/views/modals/module_information.phtml:94
+#: resources/views/module_update.phtml:94
+msgid "Update Service"
+msgstr "Служба обновления"
+
+#: resources/views/modals/module_information.phtml:99
+msgid "Module folder"
+msgstr "Папка модуля"
+
+#: resources/views/modals/module_information.phtml:104
+#: resources/views/module_update.phtml:92
+msgid "Current Version"
+msgstr "Текущая версия"
+
+#: resources/views/modals/module_information.phtml:109
+#: resources/views/module_update.phtml:93
+msgid "Latest Version"
+msgstr "Последняя версия"
+
+#: resources/views/modals/module_information.phtml:114
+msgid "⚶ Vesta homepage"
+msgstr "⚶ Домашняя страница Vesta"
+
+#: resources/views/modals/module_information.phtml:123
+msgid "GitHub repository"
+msgstr "Репозиторий GitHub"
+
+#: resources/views/modals/module_information.phtml:163
+#: resources/views/module_usage.phtml:38
+msgid "Module Usage"
+msgstr "Использование модуля"
+
+#: resources/views/module_update.phtml:57
+msgid "A new version of \"%s\" is available. It is recommended to upgrade to the latest version before other custom modules are installed/upgraded."
+msgstr "Доступна новая версия \"%s\". Рекомендуется выполнить обновление до последней версии, прежде чем устанавливать/обновлять другие пользовательские модули."
+
+#: resources/views/module_update.phtml:60
+msgid "Typically, custom modules versions are updated every 24 hours. You can check if later versions are available."
+msgstr "Как правило, версии пользовательских модулей обновляются каждые 24 часа. Вы можете проверить, доступны ли более поздние версии."
+
+#: resources/views/module_update.phtml:83
+msgid "Module Updates"
+msgstr "Обновления модулей"
+
+#: resources/views/module_update.phtml:90
+msgid "Folder (within modules_v4)"
+msgstr "Папка (внутри modules_v4)"
+
+#: resources/views/module_update.phtml:96
+msgid "Action"
+msgstr "Действие"
+
+#: resources/views/module_update.phtml:105
+#: resources/views/module_update.phtml:232
+msgid "not installed"
+msgstr "not installed"
+
+#: resources/views/module_update.phtml:109
+msgid "enabled"
+msgstr "включен"
+
+#: resources/views/module_update.phtml:111
+msgid "disabled"
+msgstr "отключен"
+
+#: resources/views/module_update.phtml:128
+#: resources/views/module_update.phtml:153
+msgid "not received"
+msgstr "не получено"
+
+#: resources/views/module_update.phtml:131
+msgid "not available"
+msgstr "недоступен"
+
+#: resources/views/module_update.phtml:231
+msgid "Update module"
+msgstr "Обновление модуля"
+
+#: resources/views/module_update.phtml:234
+msgid "Install module"
+msgstr "Установка модуля"
+
+#: resources/views/settings.phtml:41
+msgid "Manage custom modules"
+msgstr "Управление кастомными модулями"
+
+#: resources/views/settings.phtml:53
+msgid "Settings for List Menu"
+msgstr "Настройки для меню списков"
+
+#: resources/views/settings.phtml:58
+msgid "Show menu item in list menu"
+msgstr "Показать пункт меню в меню списков"
+
+#: resources/views/settings.phtml:63
+msgid "If this option is selected, a link to the page \"%s\" will be shown as a list menu item."
+msgstr "Если выбрана эта опция, ссылка на страницу \"%s\" будет отображаться в виде пункта меню списков."
+
+#: resources/views/settings.phtml:70
+msgid "Selection of the custom modules to show"
+msgstr "Выбор кастомных модулей для отображения"
+
+#: resources/views/settings.phtml:75
+msgid "Modules to show"
+msgstr "Модули для отображения"
+
+#: resources/views/settings.phtml:82
+msgid "Show all custom modules"
+msgstr "Показать все кастомные модули"
+
+#: resources/views/settings.phtml:89
+msgid "Show installed custom modules (in order to update modules)"
+msgstr "Показать установленные кастомные модули (по порядку обновления модулей)"
+
+#: resources/views/settings.phtml:96
+msgid "Show not installed custom modules (in order to install new modules)"
+msgstr "Показать не установленные кастомные модули (по порядку установки новых модулей)"
+
+#: resources/views/settings.phtml:103 resources/views/settings.phtml:109
+msgid "GitHub API token"
+msgstr "API-токен GitHub"
+
+#: resources/views/settings.phtml:105
+msgid "The custom module makes intensive use of the GitHub API to retrieve module versions and download URLs. However, GitHub limits the frequency of API calls for a certain IP address. In order to significantly increase the allowed frequency of GitHub API calls, GitHub requires to use a GitHub API token."
+msgstr "Кастомный модуль активно использует API GitHub для получения версий модулей и загрузки URL-адресов. Однако GitHub ограничивает частоту обращений к API для определенного IP-адреса. Чтобы значительно увеличить разрешенную частоту вызовов API,  GitHub требует использования токена."
+
+#: resources/views/settings.phtml:106
+msgid "Using a GitHub API token is recommended, if GitHub communication errors occur"
+msgstr "При возникновении ошибок связи с GitHub рекомендуется использовать API-токен GitHub"
