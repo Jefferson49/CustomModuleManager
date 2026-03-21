@@ -210,13 +210,12 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         }
 
         // For certain modules, which do not provide a release, try to get the latest version by update URL
-        if ($module !== null && $latest_version === '' && $this->no_release) {
+        if ($latest_version === '' && $module !== null && $this->no_release) {
 
             $latest_version =  self::getLatestVersionByUpdateURL($module);
         }
-
         // Otherwise, try to get the latest version from Github
-        if ($latest_version === '' && $this->github_repo !== '') {
+        elseif ($latest_version === '' && $this->github_repo !== '') {
 
             $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');       
 
