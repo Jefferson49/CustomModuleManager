@@ -125,12 +125,6 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <?php $current_version = $module_update_service->customModuleVersion() ?>
                     <?php if ($module !== null) : ?>
                         <?php $latest_version = $module_update_service->customModuleLatestVersion($fetch_latest) ?>
-                        <?php if (CustomModuleManager::versionCompare($module_name, $latest_version, $current_version) > 0) : ?>
-                            <?php $later_version_available = true ?>
-                        <?php else : ?>
-                            <?php $later_version_available = false ?>
-                            <?php $latest_version = $current_version ?>
-                        <?php endif ?>
                     <?php else : ?>
                         <?php $latest_version = '' ?>
                         <?php $later_version_available = false ?>
@@ -150,8 +144,14 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <?php $documentation_url = '' ?>
                 <?php endif ?>
                 <?php if ($module !== null) : ?>
-                    <?php $current_version = $current_version !== '' ? $current_version : I18N::translate('not received') ?>
-                <?php endif ?>				
+                    <?php $current_version = $current_version !== '' ? $current_version : I18N::translate('not available') ?>
+                    <?php $latest_version = $latest_version !== '' ? $latest_version : I18N::translate('not available') ?>
+                <?php endif ?>
+                <?php if (CustomModuleManager::versionCompare($module_name, $latest_version, $current_version) > 0) : ?>
+                    <?php $later_version_available = true ?>
+                <?php else : ?>
+                    <?php $later_version_available = false ?>
+                <?php endif ?>
                 <?php $installation_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name) ?>
                 <?php $show_default_description = ($module_description === '' OR $module_description === $default_module_description) && strpos($current_language, 'en', 0) === false ?>
                 <?php if ($module_title === '') : ?>
