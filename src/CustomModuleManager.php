@@ -96,7 +96,7 @@ class CustomModuleManager extends AbstractModule implements
     use ModuleListTrait;
 
 	//Custom module version
-	public const CUSTOM_VERSION = 'v1.0.11';
+	public const CUSTOM_VERSION = 'v2.0.0';
 
 	//GitHub repository
 	public const GITHUB_REPO = 'Jefferson49/CustomModuleManager';
