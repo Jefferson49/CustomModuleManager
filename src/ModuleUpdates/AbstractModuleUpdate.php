@@ -364,11 +364,14 @@ abstract class AbstractModuleUpdate
 
         $message = '';
         $module_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name);
-        $flash_error_text = 'Fatal error in module: ' . $module_folder . '<br>';
+        $flash_error_text1 = 'Fatal error in module: ' . $module_folder . '<br>';
+        $flash_error_text2 = 'Fatal error in module: ' . $module_name . '<br>';
 
         foreach(FlashMessages::getMessages() as $flash_message) {
             //If specific error is founmd
-            if (strpos($flash_message->text, $flash_error_text, 0) !== false) {
+            if (    strpos($flash_message->text, $flash_error_text1, 0) !== false
+                 OR strpos($flash_message->text, $flash_error_text2, 0) !== false ) {
+
                 $message = $flash_message->text;
             }
             //Else write back flash message, since FlashMessages::getMessages() removes all flash messages from session

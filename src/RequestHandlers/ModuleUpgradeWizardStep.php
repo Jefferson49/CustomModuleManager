@@ -459,7 +459,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $files_to_keep = $this->customModuleZipContents($zip_file);
         $this->webtrees_upgrade_service->cleanFiles($destination_filesystem, $folders_to_clean, $files_to_keep);
 
-        //If module has just been installed, we can immediately test it
+        //If the module has just been installed, we can immediately test (i.e. load the code) and rollback in case of errors
         if ($action === CustomModuleManager::ACTION_INSTALL) {
             $test_result = $module_update_service->testModuleInstallation();
             
@@ -467,11 +467,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 return $this->wizardStepRollback($module_names, $action, $test_result);
             }
         }
-        else {
-            //If module was updated, remember the module name for a test and potential rollback at the next start of webtrees
-            $custom_module_manager->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, $this->module_update_service->getModuleName());
-            $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
-        }
+
+        //Remember the module name for a test (i.e. load and boot) and potential rollback at the next start of webtrees
+        $custom_module_manager->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, $this->module_update_service->getModuleName());
+        $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
 
         $url = route(CustomModuleUpdatePage::class);
         return $this->viewAlert($alert, $alert_type, $url);
@@ -697,7 +696,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 $update_own_module_code = false;
             }
 
-            $add_modal_button = $this->modal && !$update_own_module_code && !($module_update_service->name() === VestaModuleUpdate::NAME);
+            // We do not use a second button ("continue") any more, since the loading time for the module update page was significantly reduced
+            // However, might be needed again later
+            //$add_modal_button = $this->modal && !$update_own_module_code && !($module_update_service->name() === VestaModuleUpdate::NAME);
+            $add_modal_button = false;
     
             $button1 = '<a href="' . e($url) . '" class="btn btn-primary"';
             if ($add_modal_button) {
