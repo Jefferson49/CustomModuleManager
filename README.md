@@ -23,10 +23,11 @@ This README file contains the following main sections:
 + Support the download of custom modules
 + Support the installation of custom modules
 + Support the update of custom modules
++ Support activating/deactivating of custom modules
++ Support deleting custom modules
 
 **Optionally planned features:**
 + Check the compatibility of custom modules with the webtrees versions
-+ Enable/Disable custom modules
 + Save and restore the settings of a custom module
 
 ##  Screenshot
