@@ -161,6 +161,8 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <?php $module_description = $default_module_description ?>
                 <?php endif ?>
                 <?php $module_title_sort = str_replace(["\u26b6 ", "\u210d ", "\u210d&\u210dwt ", '⚶ ', 'ℍ ', 'ℍ&ℍwt ', ], '', $module_title) ?>
+                <?php $short_module_name = substr($module_name, 0, 25) . '_' ?>
+                <?php $ignore_version = $custom_module_manager->getPreference($short_module_name . CustomModuleManager::PREF_IGNORE_VERSION, '') ?>
 
                 <tr>
                     <!-- Title -->
@@ -212,10 +214,11 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <td data-sort="<?= e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>">
                         <?php if ( $later_version_available && $current_version !== '' && $module_update_service_name === GithubModuleUpdate::NAME && $module_update_service->providesGithubReleases()) : ?>
                             <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ReleaseNotesModal::class, [
-                                    'module_name'                => $module_name,
-                                    'module_title'               => $module_title,
-                                    'latest_version'             => $latest_version,
-                                ])) ?>" type="submit" class="btn btn-primary">
+                                    'module_name'    => $module_name,
+                                    'module_title'   => $module_title,
+                                    'latest_version' => $latest_version,
+                                    'ignore_version' => $ignore_version,
+                                ])) ?>" type="submit" class="btn btn-<?= $latest_version === $ignore_version ? 'secondary' : 'primary' ?>">
                                 <?= e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>
                             </a>
                         <?php else : ?>
@@ -240,7 +243,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <!--Install -->
                     <?php $action = '' ?>
                     <?php $action_label = '' ?>
-                    <?php if ($module !== null && $later_version_available) : ?>
+                    <?php if ($module !== null && $later_version_available && !($latest_version === $ignore_version)) : ?>
                         <?php $action = CustomModuleManager::ACTION_UPDATE ?>
                         <?php $action_label = I18N::translate('Update module') ?>
                     <?php elseif ($module_status === I18N::translate('not installed')) : ?>

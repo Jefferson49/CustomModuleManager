@@ -4,12 +4,14 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager;
 
 use Fisharebest\Webtrees\I18N;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\IgnoreUpdateAction;
 use function view;
 
 /**
  * @var string $title
  * @var string $module_title
  * @var string $latest_version
+ * @var string $ignore_version
  * @var string $release_url
  * @var string $release_notes
  */
@@ -40,6 +42,18 @@ use function view;
     <?= $release_notes ?>
 </div>    
 
-<?= view('modals/footer-close') ?>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+        <?= view('icons/cancel') ?>
+        <?= MoreI18N::xlate('close') ?>
+    </button>
+    <a class="btn btn-secondary" href="<?= e(route(IgnoreUpdateAction::class, [
+            'module_name'    => $module_name,
+            'ignore_updates' => $latest_version !== $ignore_version,
+            'ignore_version' => $latest_version,
+        ])) ?>" >
+        <?= $latest_version === $ignore_version ? I18N::translate('activate update for this version') : I18N::translate('ignore update for this version') ?>
+    </a>
+</div>
 
 <?= view('modals/ajax') ?>

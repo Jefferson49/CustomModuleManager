@@ -68,6 +68,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdate
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleActivateAction;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\IgnoreUpdateAction;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleInformationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardStep;
@@ -124,7 +125,7 @@ class CustomModuleManager extends AbstractModule implements
     public const PREF_SHOW_NOT_INSTALLED  = 'show_not_installed_modules';
     public const PREF_SHOW_MENU_LIST_ITEM = 'show_menu_list_item';
     public const PREF_LATEST_VERSION      = 'latest';
-
+    public const PREF_IGNORE_VERSION      = 'ignore';
 
     //Configuraton
     public const CONFIG_GITHUB_BRANCH     = 'config';
@@ -144,6 +145,7 @@ class CustomModuleManager extends AbstractModule implements
     public const ROUTE_MODULE_INFO_MODAL   = '/module-info-modal';
     public const ROUTE_RELEASE_NOTES_MODAL = '/release-notes-modal';
     public const ROUTE_ACTIVATE_ACTION     = '/activate-action';
+    public const ROUTE_IGNORE_UPDATE       = '/ignore-update';
 
     //Language
     public const DEFAULT_LANGUAGE         = 'en-US';
@@ -233,6 +235,11 @@ class CustomModuleManager extends AbstractModule implements
         //Register a route for the release notes modal
         $router
         ->get(CustomModuleActivateAction::class, self::ROUTE_ACTIVATE_ACTION)
+        ->allows(RequestMethodInterface::METHOD_POST);
+
+        //Register a route for the update ignore action
+        $router
+        ->get(IgnoreUpdateAction::class, self::ROUTE_IGNORE_UPDATE)
         ->allows(RequestMethodInterface::METHOD_POST);
     }
 	
