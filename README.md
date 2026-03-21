@@ -83,9 +83,14 @@ The module requires a [webtrees version](https://webtrees.net/download) greater 
 ## Translation
 Currently, the following languages are available:
 + Catalan
++ Chinese
++ Danish
 + Dutch
 + English
++ French
 + German
++ Italian
++ Russian
 + Spanish
 
 You can help to translate this module. The language files are available on [POEditor](https://poeditor.com/join/project/bs8yRYqtme), where you can update or add a language.

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager for webtrees 2\n"
-"POT-Creation-Date: 2026-03-18 20:29+0100\n"
+"POT-Creation-Date: 2026-03-21 17:55+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,34 +14,34 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:246
+#: src/CustomModuleManager.php:255
 msgid "Custom Module Manager"
 msgstr "Uitbreidingsmodulebeheerder"
 
-#: src/CustomModuleManager.php:259
+#: src/CustomModuleManager.php:268
 msgid "A custom module to manage webtrees custom modules."
 msgstr "Een module om uitbreidingsmodules in webtrees te beheren."
 
-#: src/CustomModuleManager.php:333 src/ModuleUpdates/GithubModuleUpdate.php:152
-#: src/ModuleUpdates/GithubModuleUpdate.php:223
+#: src/CustomModuleManager.php:342 src/ModuleUpdates/GithubModuleUpdate.php:157
+#: src/ModuleUpdates/GithubModuleUpdate.php:228
 #, php-format
 msgid "Communication error with %s"
 msgstr "Communicatiefout met %s"
 
-#: src/CustomModuleManager.php:511
+#: src/CustomModuleManager.php:520
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "De voorkeuren voor de module \"%s\" zijn bijgewerkt."
 
-#: src/CustomModuleManager.php:557
+#: src/CustomModuleManager.php:566
 msgid "Rollback Custom Module Update"
 msgstr "Het bijwerken van de uitbreidingsmodule terugdraaien"
 
-#: src/CustomModuleManager.php:558
+#: src/CustomModuleManager.php:567
 msgid "Rollback"
 msgstr "Terugdraaien"
 
-#: src/CustomModuleManager.php:585
+#: src/CustomModuleManager.php:594
 #, php-format
 msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
@@ -50,7 +50,7 @@ msgstr ""
 "De voorkeuren voor de uitbreidingsmodule \"%s\" zijn succesvol bijgewerkt "
 "naar de nieuwe moduleversie %s."
 
-#: src/CustomModuleManager.php:617
+#: src/CustomModuleManager.php:626
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -63,7 +63,7 @@ msgstr ""
 "gebruikt, wordt het sterk aangeraden om de module \"%s\" te deactiveren, "
 "omdat identieke functionaliteit ook in de module %s is geïntegreerd."
 
-#: src/CustomModuleManager.php:622
+#: src/CustomModuleManager.php:631
 #, php-format
 msgid ""
 "The custom module \"%s\" is activated in parallel to the %s custom module. "
@@ -76,7 +76,7 @@ msgstr ""
 "dezelfde aangepaste weergave \"%s\" hebben geregistreerd. Het wordt sterk "
 "aangeraden om een van de modules te deactiveren."
 
-#: src/CustomModuleManager.php:646
+#: src/CustomModuleManager.php:655
 #, php-format
 msgid ""
 "The custom module view \"%s\" is not registered as replacement for the "
@@ -103,7 +103,7 @@ msgstr "Labels"
 msgid "Data validation"
 msgstr "Gegevensvalidatie"
 
-#: src/ModuleUpdates/GithubModuleUpdate.php:83
+#: src/ModuleUpdates/GithubModuleUpdate.php:89
 #: src/ModuleUpdates/UrlModuleUpdate.php:70
 #, php-format
 msgid ""
@@ -113,11 +113,11 @@ msgstr ""
 "Kon de bijwerk-service %s niet aanmaken. Configuratieparameter \"%s\" "
 "ontbreekt."
 
-#: src/ModuleUpdates/GithubModuleUpdate.php:153
+#: src/ModuleUpdates/GithubModuleUpdate.php:158
 msgid "Cannot retrieve download URL."
 msgstr "Kan download-URL niet ophalen."
 
-#: src/ModuleUpdates/GithubModuleUpdate.php:247
+#: src/ModuleUpdates/GithubModuleUpdate.php:265
 msgid ""
 "Could not retrieve release notes due to a communication error with GitHub."
 msgstr ""
@@ -290,11 +290,11 @@ msgstr "Fout bij het verwijderen van de module."
 msgid "continue (reload)"
 msgstr "doorgaan (opnieuw laden)"
 
-#: src/RequestHandlers/ReleaseNotesModal.php:70
+#: src/RequestHandlers/ReleaseNotesModal.php:76
 msgid "No release notes available"
 msgstr "Geen release-opmerkingen beschikbaar"
 
-#: src/RequestHandlers/ReleaseNotesModal.php:79
+#: src/RequestHandlers/ReleaseNotesModal.php:85
 msgid "Release notes"
 msgstr "Release-opmerkingen"
 
@@ -317,7 +317,7 @@ msgid "Current Version"
 msgstr "Huidige versie"
 
 #: resources/views/modals/module_information.phtml:108
-#: resources/views/modals/release_notes.phtml:29
+#: resources/views/modals/release_notes.phtml:31
 #: resources/views/module_update.phtml:91
 msgid "Latest Version"
 msgstr "Laatste versie"
@@ -334,6 +334,14 @@ msgstr "GitHub-repository"
 #: resources/views/module_usage.phtml:38
 msgid "Module Usage"
 msgstr "Modulegebruik"
+
+#: resources/views/modals/release_notes.phtml:55
+msgid "activate update for this version"
+msgstr "Activeer de update voor deze versie."
+
+#: resources/views/modals/release_notes.phtml:55
+msgid "ignore update for this version"
+msgstr "Negeer de update voor deze versie."
 
 #: resources/views/module_update.phtml:52
 #, php-format
@@ -366,31 +374,29 @@ msgid "Install"
 msgstr "Installeren"
 
 #: resources/views/module_update.phtml:104
-#: resources/views/module_update.phtml:246
+#: resources/views/module_update.phtml:249
 msgid "not installed"
 msgstr "niet geïnstalleerd"
 
-#: resources/views/module_update.phtml:140
+#: resources/views/module_update.phtml:134
+#: resources/views/module_update.phtml:147
+#: resources/views/module_update.phtml:148
 msgid "not available"
 msgstr "niet beschikbaar"
 
-#: resources/views/module_update.phtml:153
-msgid "not received"
-msgstr "niet ontvangen"
-
-#: resources/views/module_update.phtml:245
+#: resources/views/module_update.phtml:248
 msgid "Update module"
 msgstr "Module bijwerken"
 
-#: resources/views/module_update.phtml:248
+#: resources/views/module_update.phtml:251
 msgid "Install module"
 msgstr "Module installeren"
 
-#: resources/views/module_update.phtml:266
+#: resources/views/module_update.phtml:269
 msgid "Delete module"
 msgstr "Module verwijderen"
 
-#: resources/views/module_update.phtml:291
+#: resources/views/module_update.phtml:294
 msgid ""
 "Press the save button to enable/disable modules according to the checkbox in "
 "the \"enabled\" column."
