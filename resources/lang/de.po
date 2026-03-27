@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
 "POT-Creation-Date: 2026-03-21 10:40+0100\n"
-"PO-Revision-Date: 2026-03-21 10:40+0100\n"
+"PO-Revision-Date: 2026-03-26 06:23+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -141,7 +141,7 @@ msgstr ""
 
 #: src/RequestHandlers/ModuleUpgradeWizardPage.php:113
 msgid "Error during retrieving download URL"
-msgstr "Fehler beim abrufen der Download-URL"
+msgstr "Fehler beim Abrufen der Download-URL"
 
 #: src/RequestHandlers/ModuleUpgradeWizardPage.php:156
 #: src/RequestHandlers/ModuleUpgradeWizardPage.php:170
