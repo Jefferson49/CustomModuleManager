@@ -734,17 +734,6 @@
             "description": "Time Travel Map is a module to visualize the geographic history of a family over time."
         }
     },
-    "_old-nicknames_": {
-        "update_service": "GithubModuleUpdate",
-        "params": {
-            "github_repo": "bertkoor\/wt-module-old-nicknames",
-            "no_release": true,
-            "default_branch": "main",
-            "category": "frontend",
-            "title": "Old Nicknames",
-            "description": "Put quoted nickname into the full display name."
-        }
-    },
     "_custom-views_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -754,6 +743,39 @@
             "category": "frontend",
             "title": "Custom views (and translations)",
             "description": "Keep your customizations of .phtml files in a different directory, so upgrades do not overwrite them. It also supports customization of translations via .csv files."
+        }
+    },
+    "_datafix-add-married-names_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "bertkoor\/wt-datafix-add-married-names",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "gedcom",
+            "title": "",
+            "description": ""
+        }
+    },
+    "_module-bulk-delete_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "BertKoor\/wt-module-bulk-delete",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "gedcom",
+            "title": "",
+            "description": ""
+        }
+    },
+    "_old-nicknames_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "bertkoor\/wt-module-old-nicknames",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "frontend",
+            "title": "Old Nicknames",
+            "description": "Put quoted nickname into the full display name."
         }
     },
     "_insight-lens_": {
@@ -774,6 +796,42 @@
             "category": "data_validation",
             "title": "Data Check",
             "description": "Checks for data inconsistencies."
+        }
+    },
+    "_k-theme_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "mdkaleel\/k-theme",
+            "no_release": true,
+            "default_branch": "main",
+            "is_theme": true,
+            "category": "theme",
+            "title": "",
+            "description": ""
+        }
+    },
+    "_easy-tree_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "ahmadyaseen-pokkat\/EasyTree",
+            "no_release": true,
+            "default_branch": "main",
+            "is_theme": true,
+            "category": "theme",
+            "title": "",
+            "description": ""
+        }
+    },
+    "_full-diagram_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "AlexBocken\/WebtreesFullDiagram",
+            "no_release": true,
+            "default_branch": "master",
+            "tag_prefix": "v",
+            "category": "charts",
+            "title": "",
+            "description": ""
         }
     }
 }

@@ -75,6 +75,7 @@ class ModuleUpdateServiceConfiguration
     public const CATEGORY_ADMIN           = 'admin';
     public const CATEGORY_CHARTS          = 'charts';
     public const CATEGORY_CLIPPINGS_CART  = 'clippings_cart';
+    public const CATEGORY_DATA_VALIDATION = 'data_validation';
     public const CATEGORY_FACT            = 'fact';
     public const CATEGORY_FOOTER          = 'footer';
     public const CATEGORY_FRONTEND        = 'frontend';
@@ -91,7 +92,7 @@ class ModuleUpdateServiceConfiguration
     public const CATEGORY_SOURCES         = 'sources';
     public const CATEGORY_TAGS            = 'tags';
     public const CATEGORY_THEME           = 'theme';
-    public const CATEGORY_DATA_VALIDATION = 'data_validation';
+
 
     //The configuration for the module update services
 	//Note: Still needed to generate the JSON configuration file!
@@ -200,16 +201,30 @@ class ModuleUpdateServiceConfiguration
 
         '_time-travel-map_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'gmarcon/webtrees-time-travel-map', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
-        '_old-nicknames_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bertkoor/wt-module-old-nicknames', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_custom-views_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bertkoor/wt-module-custom-views', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
-
+        '_datafix-add-married-names_'        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bertkoor/wt-datafix-add-married-names', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
+        '_module-bulk-delete_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'BertKoor/wt-module-bulk-delete', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
+        '_old-nicknames_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bertkoor/wt-module-old-nicknames', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        
         '_insight-lens_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'godzil3/webtrees-insight-lens', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
         '_data-check_'                       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Vulfharban/webtrees-datencheck-plugin', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_DATA_VALIDATION]],
 
+        '_k-theme_'                          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'mdkaleel/k-theme', 'no_release' => true, 'default_branch' => 'main', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
+
+        '_easy-tree_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ahmadyaseen-pokkat/EasyTree', 'no_release' => true, 'default_branch' => 'main', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
+
+        '_full-diagram_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'AlexBocken/WebtreesFullDiagram', 'no_release' => true, 'default_branch' => 'master', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+
     ];
 
     private const MODULES_INSTALLATION_FAILS = [
+
+        '_theme-noctis_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'szporwolik/webtrees-theme-noctis', 'tag_prefix' => 'v', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
+        // No latest release available yet. CMM requests latest release with GitHub API
+
+        '_WebtreesChatBot_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'MABeatty1978/WebtreesChatBot', 'no_release' => true, 'default_branch' => 'master', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        // No standard custom module files; needs manual copying of specific files to webtrees core
 
         '_custom-css_'                       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'makitso/custom-css']],
         //Unusual folder structure; disabled by default: modules_v4/custom-css-1.0.19/custom-css.disable/module.php
