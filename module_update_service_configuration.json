@@ -232,14 +232,34 @@
             "description": "Add records from your family tree to the clippings cart and execute an action on them."
         }
     },
-    "_huhwt-xtv_": {
+    "_huhwt-fta_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "huhwt\/huhwt-xtv",
+            "github_repo": "huhwt\/huhwt-fta",
             "tag_prefix": "v",
-            "category": "charts",
-            "title": "\u210d&\u210dwt Interactive tree XT",
-            "description": "An interactive tree, showing all the ancestors and descendants of an individual."
+            "category": "frontend",
+            "title": "\u210d Family trees Assistant",
+            "description": "A treeview-diagram, showing the ancestors and descendants of an individual."
+        }
+    },
+    "_huhwt-mtv_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "huhwt\/huhwt-mtv",
+            "tag_prefix": "v",
+            "category": "admin",
+            "title": "\u210d MultTreeView",
+            "description": "A treeview-diagram, showing the ancestors and descendants of an individual."
+        }
+    },
+    "_huhwt-tsm_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "huhwt\/huhwt-tsm",
+            "tag_prefix": "v",
+            "category": "tags",
+            "title": "\u210d Tagging service manager",
+            "description": "View and manage Tags for better structuring your Family Tree"
         }
     },
     "_huhwt-wttam_": {
@@ -262,24 +282,14 @@
             "description": "Download Gedcom information to client-side for postprocessing in LINEAGE."
         }
     },
-    "_huhwt-tsm_": {
+    "_huhwt-xtv_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "huhwt\/huhwt-tsm",
+            "github_repo": "huhwt\/huhwt-xtv",
             "tag_prefix": "v",
-            "category": "tags",
-            "title": "\u210d Tagging service manager",
-            "description": "View and manage Tags for better structuring your Family Tree"
-        }
-    },
-    "_huhwt-mtv_": {
-        "update_service": "GithubModuleUpdate",
-        "params": {
-            "github_repo": "huhwt\/huhwt-mtv",
-            "tag_prefix": "v",
-            "category": "admin",
-            "title": "\u210d MultTreeView",
-            "description": "A treeview-diagram, showing the ancestors and descendants of an individual."
+            "category": "charts",
+            "title": "\u210d&\u210dwt Interactive tree XT",
+            "description": "An interactive tree, showing all the ancestors and descendants of an individual."
         }
     },
     "_vesta_classic_look_and_feel_": {
