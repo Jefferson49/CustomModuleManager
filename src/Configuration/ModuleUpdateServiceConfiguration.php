@@ -128,11 +128,12 @@ class ModuleUpdateServiceConfiguration
         '_myartjaub_ruraltheme_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jon48/webtrees-theme-rural', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
 
         '_huhwt-cce_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-cce', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CLIPPINGS_CART]],
-        '_huhwt-xtv_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-xtv', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_huhwt-fta_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-fta', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_huhwt-mtv_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-mtv', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_huhwt-tsm_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-tsm', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_TAGS]],
         '_huhwt-wttam_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-wttam', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
         '_huhwt-wtlin_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-wtlin', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_huhwt-tsm_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-tsm', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_TAGS]],
-        '_huhwt-mtv_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-mtv', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_huhwt-xtv_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-xtv', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
         '_vesta_classic_look_and_feel_'      =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_classic_laf', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_vesta_clippings_cart_'             =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_clippings_cart', self::CATEGORY => self::CATEGORY_CLIPPINGS_CART]],

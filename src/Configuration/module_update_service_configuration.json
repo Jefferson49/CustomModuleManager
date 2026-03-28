@@ -232,14 +232,34 @@
             "description": "Add records from your family tree to the clippings cart and execute an action on them."
         }
     },
-    "_huhwt-xtv_": {
+    "_huhwt-fta_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "huhwt\/huhwt-xtv",
+            "github_repo": "huhwt\/huhwt-fta",
             "tag_prefix": "v",
-            "category": "charts",
-            "title": "\u210d&\u210dwt Interactive tree XT",
-            "description": "An interactive tree, showing all the ancestors and descendants of an individual."
+            "category": "frontend",
+            "title": "\u210d Family trees Assistant",
+            "description": "A treeview-diagram, showing the ancestors and descendants of an individual."
+        }
+    },
+    "_huhwt-mtv_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "huhwt\/huhwt-mtv",
+            "tag_prefix": "v",
+            "category": "admin",
+            "title": "\u210d MultTreeView",
+            "description": "A treeview-diagram, showing the ancestors and descendants of an individual."
+        }
+    },
+    "_huhwt-tsm_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "huhwt\/huhwt-tsm",
+            "tag_prefix": "v",
+            "category": "tags",
+            "title": "\u210d Tagging service manager",
+            "description": "View and manage Tags for better structuring your Family Tree"
         }
     },
     "_huhwt-wttam_": {
@@ -262,24 +282,14 @@
             "description": "Download Gedcom information to client-side for postprocessing in LINEAGE."
         }
     },
-    "_huhwt-tsm_": {
+    "_huhwt-xtv_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "huhwt\/huhwt-tsm",
+            "github_repo": "huhwt\/huhwt-xtv",
             "tag_prefix": "v",
-            "category": "tags",
-            "title": "\u210d Tagging service manager",
-            "description": "View and manage Tags for better structuring your Family Tree"
-        }
-    },
-    "_huhwt-mtv_": {
-        "update_service": "GithubModuleUpdate",
-        "params": {
-            "github_repo": "huhwt\/huhwt-mtv",
-            "tag_prefix": "v",
-            "category": "admin",
-            "title": "\u210d MultTreeView",
-            "description": "A treeview-diagram, showing the ancestors and descendants of an individual."
+            "category": "charts",
+            "title": "\u210d&\u210dwt Interactive tree XT",
+            "description": "An interactive tree, showing all the ancestors and descendants of an individual."
         }
     },
     "_vesta_classic_look_and_feel_": {
@@ -752,8 +762,8 @@
             "no_release": true,
             "default_branch": "main",
             "category": "gedcom",
-            "title": "",
-            "description": ""
+            "title": "Add married names",
+            "description": "You can make it easier to search for married women by recording their married name. However not all women take their husband\u2019s surname, so beware of introducing incorrect information into your database.<p>This data-fix is full of assumptions - most of which are wrong."
         }
     },
     "_module-bulk-delete_": {
@@ -763,8 +773,8 @@
             "no_release": true,
             "default_branch": "main",
             "category": "gedcom",
-            "title": "",
-            "description": ""
+            "title": "Bulk delete objects",
+            "description": "This module can delete many objects. Got a backup? Use with caution at your own risk. "
         }
     },
     "_old-nicknames_": {
@@ -806,8 +816,8 @@
             "default_branch": "main",
             "is_theme": true,
             "category": "theme",
-            "title": "",
-            "description": ""
+            "title": "K-Theme",
+            "description": "A modern, premium theme with light and dark palettes."
         }
     },
     "_easy-tree_": {
@@ -818,8 +828,8 @@
             "default_branch": "main",
             "is_theme": true,
             "category": "theme",
-            "title": "",
-            "description": ""
+            "title": "EasyTree",
+            "description": "Theme \u2014 EasyTree"
         }
     },
     "_full-diagram_": {
@@ -830,8 +840,8 @@
             "default_branch": "master",
             "tag_prefix": "v",
             "category": "charts",
-            "title": "",
-            "description": ""
+            "title": "Full Diagram",
+            "description": "An interactive diagram showing ancestors, descendants, and siblings."
         }
     }
 }
