@@ -71,27 +71,29 @@ class ModuleUpdateServiceConfiguration
 
 
     //Categories for custom modules
-    public const CATEGORY                 = 'category';
-    public const CATEGORY_ADMIN           = 'admin';
-    public const CATEGORY_CHARTS          = 'charts';
-    public const CATEGORY_CLIPPINGS_CART  = 'clippings_cart';
-    public const CATEGORY_DATA_VALIDATION = 'data_validation';
-    public const CATEGORY_FACT            = 'fact';
-    public const CATEGORY_FOOTER          = 'footer';
-    public const CATEGORY_FRONTEND        = 'frontend';
-    public const CATEGORY_GEDCOM          = 'gedcom';
-    public const CATEGORY_LANGUAGE        = 'language';
-    public const CATEGORY_MAP             = 'maps';
-    public const CATEGORY_MEDIA           = 'media';
-    public const CATEGORY_MENU            = 'menu';
-    public const CATEGORY_MESSAGES        = 'messages';
-    public const CATEGORY_NONE            = 'none';
-    public const CATEGORY_PLACES          = 'places';
-    public const CATEGORY_REPORTS         = 'reports';
-    public const CATEGORY_SIGNIN          = 'signin';
-    public const CATEGORY_SOURCES         = 'sources';
-    public const CATEGORY_TAGS            = 'tags';
-    public const CATEGORY_THEME           = 'theme';
+    public const CATEGORY                  = 'category';
+    public const CATEGORY_ADMIN            = 'admin';
+    public const CATEGORY_CHARTS           = 'charts';
+    public const CATEGORY_CLIPPINGS_CART   = 'clippings_cart';
+    public const CATEGORY_DATA_VALIDATION  = 'data_validation';
+    public const CATEGORY_FACT             = 'fact';
+    public const CATEGORY_FOOTER           = 'footer';
+    public const CATEGORY_FRONTEND         = 'frontend';
+    public const CATEGORY_FRONTEND_TAB     = 'frontend_tab';
+    public const CATEGORY_FRONTEND_SIDEBAR = 'frontend_sidebar';
+    public const CATEGORY_GEDCOM           = 'gedcom';
+    public const CATEGORY_LANGUAGE         = 'language';
+    public const CATEGORY_MAP              = 'maps';
+    public const CATEGORY_MEDIA            = 'media';
+    public const CATEGORY_MENU             = 'menu';
+    public const CATEGORY_MESSAGES         = 'messages';
+    public const CATEGORY_NONE             = 'none';
+    public const CATEGORY_PLACES           = 'places';
+    public const CATEGORY_REPORTS          = 'reports';
+    public const CATEGORY_SIGNIN           = 'signin';
+    public const CATEGORY_SOURCES          = 'sources';
+    public const CATEGORY_TAGS             = 'tags';
+    public const CATEGORY_THEME            = 'theme';
 
 
     //The configuration for the module update services
@@ -108,7 +110,7 @@ class ModuleUpdateServiceConfiguration
         '_webtrees-api_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Jefferson49/webtrees-API', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
 
         '_jc-fancy-imagebar_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-imagebar', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_jc-fancy-research-links_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-research-links', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_jc-fancy-research-links_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-research-links', self::CATEGORY => self::CATEGORY_FRONTEND_SIDEBAR]],
         '_jc-fancy-treeview_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-treeview', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_jc-theme-justlight_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-theme-justlight', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
         '_jc-simple-footer_'                 =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-footer', self::CATEGORY => self::CATEGORY_FOOTER]],
@@ -139,18 +141,18 @@ class ModuleUpdateServiceConfiguration
         '_vesta_clippings_cart_'             =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_clippings_cart', self::CATEGORY => self::CATEGORY_CLIPPINGS_CART]],
         '_vesta_common_'                     =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_common', self::CATEGORY => self::CATEGORY_NONE]],
         '_vesta_extended_relationships_'     =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_extended_relationships', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_vesta_personal_facts_'             =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_personal_facts', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_vesta_relatives_'                  =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_relatives', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_vesta_personal_facts_'             =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_personal_facts', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_vesta_relatives_'                  =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_relatives', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
         '_vesta_gov4webtrees_'               =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_gov4webtrees', self::CATEGORY => self::CATEGORY_PLACES]],
         '_vesta_places_and_pedigree_map_'    =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_places_and_pedigree_map', self::CATEGORY => self::CATEGORY_PLACES]],
         '_vesta_research_suggestions_'       =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_research_suggestions', self::CATEGORY => self::CATEGORY_SOURCES]],
         '_vesta_shared_places_'              =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_shared_places', self::CATEGORY => self::CATEGORY_PLACES]],
         '_vesta_location_data_'              =>  ['update_service' => 'VestaModuleUpdate',  'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_location_data', self::CATEGORY => self::CATEGORY_PLACES]],
 
-        '_sosa20_'                           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'gustine/sosa20', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_sosa20_'                           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'gustine/sosa20', self::CATEGORY => self::CATEGORY_FRONTEND_SIDEBAR]],
         '_gustine-history22_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'gustine/gustine-history22', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_FACT]],
 
-        '_hh_extended_family_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_extended_family', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_hh_extended_family_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_extended_family', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
         '_hh_legal_notice_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_legal_notice', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FOOTER]],
         '_german-chancellors-presidents_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/german-chancellors-presidents', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
         '_german-wars-battles-worldwide_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/german-wars-battles-worldwide', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
@@ -165,7 +167,7 @@ class ModuleUpdateServiceConfiguration
 
         '_topola_'                           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PeWu/topola-webtrees', self::CATEGORY => self::CATEGORY_CHARTS]],
 
-        '_mitalteli-show-xref_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'elysch/webtrees-mitalteli-show-xref', self::CATEGORY => self::CATEGORY_FRONTEND]], 
+        '_mitalteli-show-xref_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'elysch/webtrees-mitalteli-show-xref', self::CATEGORY => self::CATEGORY_FRONTEND_SIDEBAR]],
         '_mitalteli-chart-family-book_'      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'elysch/webtrees-mitalteli-chart-family-book', self::CATEGORY => self::CATEGORY_CHARTS]],
         '_mitalteli-report-researchtasks_'   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'elysch/webtrees-mitalteli-report-researchtasks', self::CATEGORY => self::CATEGORY_REPORTS]],
 
@@ -186,7 +188,7 @@ class ModuleUpdateServiceConfiguration
 
         '_finnish-historical-facts_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ardhtu/finnish-historical-facts', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_FACT]],
 
-        '_fam-nav-parents-last_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'tronsmit/fam-nav-parents-last', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_fam-nav-parents-last_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'tronsmit/fam-nav-parents-last', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND_SIDEBAR]],
 
         '_linkenhancer_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bschwede/linkenhancer', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
@@ -194,7 +196,7 @@ class ModuleUpdateServiceConfiguration
 
         '_WeEt-main_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '08ah15/WeEt', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_SOURCES]],
 
-        '_vytux_cousins_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'vytux-com/vytux_cousins', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_vytux_cousins_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'vytux-com/vytux_cousins', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
 
         '_svajana-master_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'baskar-yahoo/webtrees-svajana', 'no_release' => true, 'default_branch' => 'master', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
 

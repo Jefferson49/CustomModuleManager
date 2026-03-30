@@ -153,6 +153,10 @@ abstract class AbstractModuleUpdate
                 return MoreI18N::xlate('Footer');
             case ModuleUpdateServiceConfiguration::CATEGORY_FRONTEND: 
                 return I18N::translate('Frontend');
+            case ModuleUpdateServiceConfiguration::CATEGORY_FRONTEND_TAB: 
+                return I18N::translate('Frontend') . ' ' . MoreI18N::xlate('Tab');
+            case ModuleUpdateServiceConfiguration::CATEGORY_FRONTEND_SIDEBAR: 
+                return I18N::translate('Frontend') . ' ' . MoreI18N::xlate('Sidebar');
             case ModuleUpdateServiceConfiguration::CATEGORY_GEDCOM:
                 return MoreI18N::xlate('GEDCOM');
             case ModuleUpdateServiceConfiguration::CATEGORY_LANGUAGE: 

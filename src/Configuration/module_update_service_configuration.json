@@ -92,7 +92,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "JustCarmen\/webtrees-fancy-research-links",
-            "category": "frontend",
+            "category": "frontend_sidebar",
             "title": "Fancy Research Links",
             "description": "A sidebar tool to provide quick links to popular research web sites."
         }
@@ -101,7 +101,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "JustCarmen\/webtrees-fancy-treeview",
-            "category": "charts",
+            "category": "frontend",
             "title": "Fancy Treeview",
             "description": "A narrative overview of the descendants or ancestors of one family (branch)."
         }
@@ -332,7 +332,7 @@
         "update_service": "VestaModuleUpdate",
         "params": {
             "github_repo": "vesta-webtrees-2-custom-modules\/vesta_personal_facts",
-            "category": "frontend",
+            "category": "frontend_tab",
             "title": "\u26b6 Vesta Facts and events",
             "description": "A tab showing the facts and events of an individual. Replacement for the original 'Facts and events' module.  Also extends facts and events on the family page. Also provides additional map links."
         }
@@ -341,7 +341,7 @@
         "update_service": "VestaModuleUpdate",
         "params": {
             "github_repo": "vesta-webtrees-2-custom-modules\/vesta_relatives",
-            "category": "frontend",
+            "category": "frontend_tab",
             "title": "\u26b6 Vesta Families",
             "description": "A tab showing the close relatives of an individual. Replacement for the original 'Families' module."
         }
@@ -395,7 +395,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "gustine\/sosa20",
-            "category": "frontend",
+            "category": "frontend_sidebar",
             "title": "Sosa-Stradonitz (Ahnentafel)",
             "description": "A sidebar showing Sosa-Stradonitz number of individuals."
         }
@@ -416,7 +416,7 @@
         "params": {
             "github_repo": "hartenthaler\/hh_extended_family",
             "tag_prefix": "v",
-            "category": "frontend",
+            "category": "frontend_tab",
             "title": "Extended family",
             "description": "A tab showing the extended family of an individual."
         }
@@ -515,7 +515,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "elysch\/webtrees-mitalteli-show-xref",
-            "category": "frontend",
+            "category": "frontend_sidebar",
             "title": "XREF and UID values module.",
             "description": "A sidebar to show XREF and UID values."
         }
@@ -667,7 +667,7 @@
             "github_repo": "tronsmit\/fam-nav-parents-last",
             "no_release": true,
             "default_branch": "main",
-            "category": "frontend",
+            "category": "frontend_sidebar",
             "title": "Family navigator - show parent families last",
             "description": "Family navigator - show parent families last"
         }
@@ -707,7 +707,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "vytux-com\/vytux_cousins",
-            "category": "frontend",
+            "category": "frontend_tab",
             "title": "Cousins",
             "description": "A tab showing cousins of an individual."
         }
