@@ -850,8 +850,8 @@
             "github_repo": "szporwolik\/webtrees-tree-explorer",
             "tag_prefix": "v",
             "category": "charts",
-            "title": "",
-            "description": ""
+            "title": "Tree Explorer",
+            "description": "An interactive tree explorer showing ancestors and descendants."
         }
     }
 }
