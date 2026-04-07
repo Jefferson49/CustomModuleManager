@@ -91,6 +91,7 @@ Currently, the following languages are available:
 + French
 + German
 + Italian
++ Polish
 + Russian
 + Spanish
 
