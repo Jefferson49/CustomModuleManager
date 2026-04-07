@@ -219,7 +219,7 @@ class ModuleUpdateServiceConfiguration
 
         '_full-diagram_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'AlexBocken/WebtreesFullDiagram', 'no_release' => true, 'default_branch' => 'master', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
-        '_webtrees-tree-explorer_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'szporwolik/webtrees-tree-explorer', 'no_release' => true, 'default_branch' => 'main', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_tree-explorer_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'szporwolik/webtrees-tree-explorer', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
     ];
 

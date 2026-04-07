@@ -844,16 +844,14 @@
             "description": "An interactive diagram showing ancestors, descendants, and siblings."
         }
     },
-    "_webtrees-tree-explorer_": {
+    "_tree-explorer_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "szporwolik\/webtrees-tree-explorer",
-            "no_release": true,
-            "default_branch": "main",
             "tag_prefix": "v",
             "category": "charts",
-            "title": "Tree Explorer",
-            "description": "An interactive tree explorer showing ancestors and descendants."
+            "title": "",
+            "description": ""
         }
     }
 }
