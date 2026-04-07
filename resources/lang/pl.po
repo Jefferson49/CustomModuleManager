@@ -1,0 +1,462 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CustomModuleManager for webtrees 2\n"
+"POT-Creation-Date: 2026-03-21 17:53+0100\n"
+"PO-Revision-Date: 2026-04-06 00:00+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: GitHub Copilot\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-KeywordsList: translate\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: src/CustomModuleManager.php:256
+msgid "Custom Module Manager"
+msgstr "Menedżer modułów niestandardowych"
+
+#: src/CustomModuleManager.php:269
+msgid "A custom module to manage webtrees custom modules."
+msgstr "Niestandardowy moduł do zarządzania modułami niestandardowymi webtrees."
+
+#: src/CustomModuleManager.php:343 src/ModuleUpdates/GithubModuleUpdate.php:157
+#: src/ModuleUpdates/GithubModuleUpdate.php:228
+#, php-format
+msgid "Communication error with %s"
+msgstr "Błąd komunikacji z %s"
+
+#: src/CustomModuleManager.php:521
+#, php-format
+msgid "The preferences for the module \"%s\" were updated."
+msgstr "Zaktualizowano ustawienia modułu \"%s\"."
+
+#: src/CustomModuleManager.php:567
+msgid "Rollback Custom Module Update"
+msgstr "Wycofanie aktualizacji modułu niestandardowego"
+
+#: src/CustomModuleManager.php:568
+msgid "Rollback"
+msgstr "Wycofaj"
+
+#: src/CustomModuleManager.php:595
+#, php-format
+msgid ""
+"The preferences for the custom module \"%s\" were sucessfully updated to the "
+"new module version %s."
+msgstr ""
+"Ustawienia modułu niestandardowego \"%s\" zostały pomyślnie zaktualizowane do "
+"nowej wersji modułu %s."
+
+#: src/CustomModuleManager.php:627
+#, php-format
+msgid ""
+"The custom module \"%s\" is activated in parallel to the %s custom module. "
+"This can lead to unintended behavior. If using the %s module, it is strongly "
+"recommended to deactivate the \"%s\" module, because the identical "
+"functionality is also integrated in the %s module."
+msgstr ""
+"Moduł niestandardowy \"%s\" jest aktywny równolegle z modułem niestandardowym %s. "
+"Może to prowadzić do niezamierzonego działania. Jeśli używasz modułu %s, "
+"zdecydowanie zaleca się wyłączenie modułu \"%s\", ponieważ identyczna "
+"funkcjonalność jest również zintegrowana z modułem %s."
+
+#: src/CustomModuleManager.php:632
+#, php-format
+msgid ""
+"The custom module \"%s\" is activated in parallel to the %s custom module. "
+"This can lead to unintended behavior, because both of the modules have "
+"registered the same custom view \"%s\". It is strongly recommended to "
+"deactivate one of the modules."
+msgstr ""
+"Moduł niestandardowy \"%s\" jest aktywny równolegle z modułem niestandardowym %s. "
+"Może to prowadzić do niezamierzonego działania, ponieważ oba moduły "
+"zarejestrowały ten sam widok niestandardowy \"%s\". Zdecydowanie zaleca się "
+"wyłączenie jednego z modułów."
+
+#: src/CustomModuleManager.php:656
+#, php-format
+msgid ""
+"The custom module view \"%s\" is not registered as replacement for the "
+"standard webtrees view. There might be another module installed, which "
+"registered the same custom view. This can lead to unintended behavior. It is "
+"strongly recommended to deactivate one of the modules. The path of the "
+"parallel view is: %s"
+msgstr ""
+"Widok modułu niestandardowego \"%s\" nie jest zarejestrowany jako zamiennik "
+"standardowego widoku webtrees. Może być zainstalowany inny moduł, który "
+"zarejestrował ten sam widok niestandardowy. Może to prowadzić do "
+"niezamierzonego działania. Zdecydowanie zaleca się wyłączenie jednego z "
+"modułów. Ścieżka równoległego widoku to: %s"
+
+#: src/ModuleUpdates/AbstractModuleUpdate.php:154
+msgid "Frontend"
+msgstr "Interfejs użytkownika"
+
+#: src/ModuleUpdates/AbstractModuleUpdate.php:178
+msgid "Tags"
+msgstr "Znaczniki"
+
+#: src/ModuleUpdates/AbstractModuleUpdate.php:182
+msgid "Data validation"
+msgstr "Walidacja danych"
+
+#: src/ModuleUpdates/GithubModuleUpdate.php:89
+#: src/ModuleUpdates/UrlModuleUpdate.php:70
+#, php-format
+msgid ""
+"Could not create the %s update service. Configuration parameter \"%s\" "
+"missing."
+msgstr ""
+"Nie udało się utworzyć usługi aktualizacji %s. Brakuje parametru konfiguracji "
+"\"%s\"."
+
+#: src/ModuleUpdates/GithubModuleUpdate.php:158
+msgid "Cannot retrieve download URL."
+msgstr "Nie można pobrać adresu URL pobierania."
+
+#: src/ModuleUpdates/GithubModuleUpdate.php:265
+msgid ""
+"Could not retrieve release notes due to a communication error with GitHub."
+msgstr ""
+"Nie udało się pobrać informacji o wydaniu z powodu błędu komunikacji z GitHubem."
+
+#: src/RequestHandlers/CustomModuleUpdatePage.php:80
+msgid "Custom Module Updates"
+msgstr "Aktualizacje modułów niestandardowych"
+
+#: src/RequestHandlers/ModuleInformationModal.php:80
+msgid "Module Information"
+msgstr "Informacje o module"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:105
+msgid "Could not identify a suitable module upgrade service for custom module"
+msgstr "Nie udało się zidentyfikować odpowiedniej usługi aktualizacji dla modułu niestandardowego"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:113
+msgid "Error during retrieving download URL"
+msgstr "Błąd podczas pobierania adresu URL"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:156
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:170
+msgid "Backup…"
+msgstr "Kopia zapasowa…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:157
+msgid "Delete…"
+msgstr "Usuń…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:164
+msgid "Check version…"
+msgstr "Sprawdź wersję…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:165
+msgid "Create temporary folders…"
+msgstr "Utwórz foldery tymczasowe…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:137
+msgid "Update Wizard was aborted"
+msgstr "Kreator aktualizacji został przerwany"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:220
+#, php-format
+msgid "Installing module \"%s\" (to folder: \"/module_v4/%s\")"
+msgstr "Instalowanie modułu \"%s\" (do folderu: \"/module_v4/%s\")"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:223
+#, php-format
+msgid "Upgrading module \"%s\" (in folder: \"/module_v4/%s\")"
+msgstr "Aktualizowanie modułu \"%s\" (w folderze: \"/module_v4/%s\")"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:233
+msgid ""
+"Version % is the latest version of the custom module. No upgrade is "
+"available."
+msgstr ""
+"Wersja %s jest najnowszą wersją modułu niestandardowego. Aktualizacja nie jest "
+"dostępna."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:238
+#, php-format
+msgid ""
+"This custom module can only be used with a webtrees version greater or equal "
+"than %s"
+msgstr ""
+"Ten moduł niestandardowy może być używany tylko z wersją webtrees większą lub "
+"równą %s"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:243
+msgid ""
+"The PHP extension \"zip\" is not installed. In order to use the custom "
+"module, your PHP installation needs to include the \"zip\" extension. You "
+"have to activate the extension in your \"php.ini\" file."
+msgstr ""
+"Rozszerzenie PHP \"zip\" nie jest zainstalowane. Aby używać tego modułu "
+"niestandardowego, Twoja instalacja PHP musi zawierać rozszerzenie \"zip\". "
+"Musisz je aktywować w pliku \"php.ini\"."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:252
+msgid "Latest version"
+msgstr "Najnowsza wersja"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:252
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:255
+#, php-format
+msgid "Installing version: \"%s\""
+msgstr "Instalowana wersja: \"%s\""
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:259
+#, php-format
+msgid "Upgrading the module from version \"%s\" to version \"%s\""
+msgstr "Aktualizowanie modułu z wersji \"%s\" do wersji \"%s\""
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:330
+#, php-format
+msgid "A backup of the current module was created in %s seconds."
+msgstr "Kopia zapasowa bieżącego modułu została utworzona w ciągu %s sekund."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:335
+msgid "Failed to create a backup of the current module."
+msgstr "Nie udało się utworzyć kopii zapasowej bieżącego modułu."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:362
+msgid "Error during downloading the module zip file."
+msgstr "Błąd podczas pobierania pliku ZIP modułu."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:394
+msgid "Error during unzipping the module zip file."
+msgstr "Błąd podczas rozpakowywania pliku ZIP modułu."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:508
+#, php-format
+msgid ""
+"The module %s was rolled back to the current version, because the update "
+"created errors."
+msgstr ""
+"Moduł %s został przywrócony do bieżącej wersji, ponieważ aktualizacja "
+"spowodowała błędy."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:511
+#, php-format
+msgid ""
+"The installation of module %s was rolled back, because the module created "
+"errors."
+msgstr ""
+"Instalacja modułu %s została wycofana, ponieważ moduł spowodował błędy."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:521
+#, php-format
+msgid "A roll back of the module %s to the current version failed."
+msgstr "Przywrócenie modułu %s do bieżącej wersji nie powiodło się."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:523
+#, php-format
+msgid ""
+"Please try to manually roll back by copying the files from \"/data/tmp/"
+"backup/modules_4/%s\" to \"/modules_v4/%s\"."
+msgstr ""
+"Spróbuj ręcznie przywrócić poprzedni stan, kopiując pliki z \"/data/tmp/"
+"backup/modules_4/%s\" do \"/modules_v4/%s\"."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:526
+#, php-format
+msgid "A roll back of the installation of module %s failed."
+msgstr "Wycofanie instalacji modułu %s nie powiodło się."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:528
+#, php-format
+msgid ""
+"Please try to manually roll back by deleting the folder \"/modules_v4/%s\""
+msgstr "Spróbuj ręcznie wycofać zmiany, usuwając folder \"/modules_v4/%s\""
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:568
+#, php-format
+msgid "The module was successfully deleted in %s seconds."
+msgstr "Moduł został pomyślnie usunięty w ciągu %s sekund."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:573
+msgid "Error during deleting the module."
+msgstr "Błąd podczas usuwania modułu."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:708
+msgid "continue (reload)"
+msgstr "kontynuuj (przeładuj)"
+
+#: src/RequestHandlers/ReleaseNotesModal.php:76
+msgid "No release notes available"
+msgstr "Brak informacji o wydaniu"
+
+#: src/RequestHandlers/ReleaseNotesModal.php:85
+msgid "Release notes"
+msgstr "Informacje o wydaniu"
+
+#: resources/views/modals/module_information.phtml:63
+msgid "Documentation"
+msgstr "Dokumentacja"
+
+#: resources/views/modals/module_information.phtml:93
+#: resources/views/module_update.phtml:92
+msgid "Update Service"
+msgstr "Usługa aktualizacji"
+
+#: resources/views/modals/module_information.phtml:98
+msgid "Module folder"
+msgstr "Folder modułu"
+
+#: resources/views/modals/module_information.phtml:103
+#: resources/views/module_update.phtml:90
+msgid "Current Version"
+msgstr "Aktualna wersja"
+
+#: resources/views/modals/module_information.phtml:108
+#: resources/views/modals/release_notes.phtml:31
+#: resources/views/module_update.phtml:91
+msgid "Latest Version"
+msgstr "Najnowsza wersja"
+
+#: resources/views/modals/module_information.phtml:113
+msgid "⚶ Vesta homepage"
+msgstr "⚶ Strona główna Vesta"
+
+#: resources/views/modals/module_information.phtml:122
+msgid "GitHub repository"
+msgstr "Repozytorium GitHub"
+
+#: resources/views/modals/module_information.phtml:162
+#: resources/views/module_usage.phtml:38
+msgid "Module Usage"
+msgstr "Sposób użycia modułu"
+
+#: resources/views/modals/release_notes.phtml:55
+msgid "activate update for this version"
+msgstr "włącz aktualizację dla tej wersji"
+
+#: resources/views/modals/release_notes.phtml:55
+msgid "ignore update for this version"
+msgstr "ignoruj aktualizację dla tej wersji"
+
+#: resources/views/module_update.phtml:52
+#, php-format
+msgid ""
+"A new version of \"%s\" is available. It is recommended to upgrade to the "
+"latest version before other custom modules are installed/upgraded."
+msgstr ""
+"Dostępna jest nowa wersja \"%s\". Zaleca się aktualizację do najnowszej "
+"wersji, zanim zostaną zainstalowane lub zaktualizowane inne moduły "
+"niestandardowe."
+
+#: resources/views/module_update.phtml:55
+msgid ""
+"Typically, custom modules versions are updated every 24 hours. You can check "
+"if later versions are available."
+msgstr ""
+"Zwykle wersje modułów niestandardowych są aktualizowane co 24 godziny. Możesz "
+"sprawdzić, czy są dostępne nowsze wersje."
+
+#: resources/views/module_update.phtml:81
+msgid "Module Updates"
+msgstr "Aktualizacje modułów"
+
+#: resources/views/module_update.phtml:88
+msgid "Folder (within modules_v4)"
+msgstr "Folder (w obrębie modules_v4)"
+
+#: resources/views/module_update.phtml:94
+msgid "Install"
+msgstr "Zainstaluj"
+
+#: resources/views/module_update.phtml:104
+#: resources/views/module_update.phtml:249
+msgid "not installed"
+msgstr "niezainstalowany"
+
+#: resources/views/module_update.phtml:134
+#: resources/views/module_update.phtml:147
+#: resources/views/module_update.phtml:148
+msgid "not available"
+msgstr "niedostępny"
+
+#: resources/views/module_update.phtml:248
+msgid "Update module"
+msgstr "Zaktualizuj moduł"
+
+#: resources/views/module_update.phtml:251
+msgid "Install module"
+msgstr "Zainstaluj moduł"
+
+#: resources/views/module_update.phtml:269
+msgid "Delete module"
+msgstr "Usuń moduł"
+
+#: resources/views/module_update.phtml:294
+msgid ""
+"Press the save button to enable/disable modules according to the checkbox in "
+"the \"enabled\" column."
+msgstr ""
+"Naciśnij przycisk zapisu, aby włączyć lub wyłączyć moduły zgodnie z polami "
+"wyboru w kolumnie \"włączone\"."
+
+#: resources/views/settings.phtml:41
+msgid "Manage custom modules"
+msgstr "Zarządzaj modułami niestandardowymi"
+
+#: resources/views/settings.phtml:53
+msgid "Settings for List Menu"
+msgstr "Ustawienia menu listy"
+
+#: resources/views/settings.phtml:58
+msgid "Show menu item in list menu"
+msgstr "Pokaż pozycję menu w menu listy"
+
+#: resources/views/settings.phtml:63
+#, php-format
+msgid ""
+"If this option is selected, a link to the page \"%s\" will be shown as a "
+"list menu item."
+msgstr ""
+"Jeśli ta opcja jest zaznaczona, link do strony \"%s\" zostanie pokazany jako "
+"pozycja menu listy."
+
+#: resources/views/settings.phtml:70
+msgid "Selection of the custom modules to show"
+msgstr "Wybór modułów niestandardowych do wyświetlenia"
+
+#: resources/views/settings.phtml:75
+msgid "Modules to show"
+msgstr "Moduły do wyświetlenia"
+
+#: resources/views/settings.phtml:82
+msgid "Show all custom modules"
+msgstr "Pokaż wszystkie moduły niestandardowe"
+
+#: resources/views/settings.phtml:89
+msgid "Show installed custom modules (in order to update modules)"
+msgstr "Pokaż zainstalowane moduły niestandardowe (aby aktualizować moduły)"
+
+#: resources/views/settings.phtml:96
+msgid "Show not installed custom modules (in order to install new modules)"
+msgstr "Pokaż niezainstalowane moduły niestandardowe (aby instalować nowe moduły)"
+
+#: resources/views/settings.phtml:103 resources/views/settings.phtml:109
+msgid "GitHub API token"
+msgstr "Token API GitHub"
+
+#: resources/views/settings.phtml:105
+msgid ""
+"The custom module makes intensive use of the GitHub API to retrieve module "
+"versions and download URLs. However, GitHub limits the frequency of API "
+"calls for a certain IP address. In order to significantly increase the "
+"allowed frequency of GitHub API calls, GitHub requires to use a GitHub API "
+"token."
+msgstr ""
+"Ten moduł niestandardowy intensywnie korzysta z API GitHub do pobierania "
+"wersji modułów i adresów URL pobierania. GitHub ogranicza jednak częstotliwość "
+"wywołań API dla danego adresu IP. Aby znacząco zwiększyć dozwoloną "
+"częstotliwość wywołań API GitHub, należy użyć tokenu API GitHub."
+
+#: resources/views/settings.phtml:106
+msgid "Using a GitHub API token is recommended, if GitHub communication errors occur"
+msgstr "Zaleca się używanie tokenu API GitHub, jeśli występują błędy komunikacji z GitHubem."
