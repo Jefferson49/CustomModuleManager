@@ -86,7 +86,13 @@ use function view;
     <div class="wt-custom-module-info">
         <?= view('icons/information') ?>
         <?= MoreI18N::xlate('Status') . ': ' ?>
-        <?= e($module_status) ?>
+            <?php if ($module_status === '0') : ?>
+                <?= I18N::translate('Disabled') ?>
+            <?php elseif ($module_status === '1') : ?>
+                <?= MoreI18N::xlate('Enabled') ?>
+            <?php else : ?>
+                <?= e($module_status) ?>
+            <?php endif ?>
         <br>
         <?php if ($module_update_service_name !== '') : ?>
             <?= view('icons/information') ?>

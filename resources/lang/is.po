@@ -1,117 +1,58 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager for webtrees 2\n"
-"POT-Creation-Date: 2026-02-12 18:07+0100\n"
+"POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: is_IS\n"
+"Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:233
+#: src/CustomModuleManager.php:249
 msgid "Custom Module Manager"
 msgstr "Sérsniðinn einingastjóri"
 
-#: src/CustomModuleManager.php:246
+#: src/CustomModuleManager.php:262
 msgid "A custom module to manage webtrees custom modules."
 msgstr "Sérsniðin eining til að stjórna sérsniðnum einingum webtrees."
 
-#: src/CustomModuleManager.php:320 src/ModuleUpdates/GithubModuleUpdate.php:150
-#: src/ModuleUpdates/GithubModuleUpdate.php:217
-#, php-format
+#: src/CustomModuleManager.php:336 src/ModuleUpdates/GithubModuleUpdate.php:157
+#: src/ModuleUpdates/GithubModuleUpdate.php:228
 msgid "Communication error with %s"
 msgstr "Samskiptavilla með %s"
 
-#: src/CustomModuleManager.php:498
-#, php-format
+#: src/CustomModuleManager.php:512
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Stillingarnar fyrir eininguna \"%s\" voru uppfærðar."
 
-#: src/CustomModuleManager.php:544
+#: src/CustomModuleManager.php:558
 msgid "Rollback Custom Module Update"
 msgstr "Afturkalla uppfærslu á sérsniðinni einingu"
 
-#: src/CustomModuleManager.php:545
+#: src/CustomModuleManager.php:559
 msgid "Rollback"
 msgstr "Afturköllun"
 
-#: src/CustomModuleManager.php:572
-#, php-format
-msgid ""
-"The preferences for the custom module \"%s\" were sucessfully updated to the "
-"new module version %s."
-msgstr ""
-"Stillingarnar fyrir sérsniðnu eininguna \"%s\" voru uppfærðar í nýju "
-"útgáfuna %s."
+#: src/CustomModuleManager.php:586
+msgid "The preferences for the custom module \"%s\" were sucessfully updated to the new module version %s."
+msgstr "Stillingarnar fyrir sérsniðnu eininguna \"%s\" voru uppfærðar í nýju útgáfuna %s."
 
-#: src/CustomModuleManager.php:604
-#, php-format
-msgid ""
-"The custom module \"%s\" is activated in parallel to the %s custom module. "
-"This can lead to unintended behavior. If using the %s module, it is strongly "
-"recommended to deactivate the \"%s\" module, because the identical "
-"functionality is also integrated in the %s module."
-msgstr ""
-"Sérsniðna einingin \"%s\" er virkjuð samhliða sérsniðnu einingunni %s. Þetta "
-"getur leitt til óæskilegrar hegðunar. Ef %s einingin er notuð er eindregið "
-"mælt með því að slökkva á \"%s\" einingunni, þar sem sami virkni er einnig "
-"innbyggð í %s einingunni."
+#: src/ModuleUpdates/GithubModuleUpdate.php:89
+#: src/ModuleUpdates/UrlModuleUpdate.php:65
+msgid "Could not create the %s update service. Configuration parameter \"%s\" missing."
+msgstr "Gat ekki búið til uppfærsluþjónustuna %s. Stillingarbreytuna \"%s\" vantar."
 
-#: src/CustomModuleManager.php:609
-#, php-format
-msgid ""
-"The custom module \"%s\" is activated in parallel to the %s custom module. "
-"This can lead to unintended behavior, because both of the modules have "
-"registered the same custom view \"%s\". It is strongly recommended to "
-"deactivate one of the modules."
-msgstr ""
-"Sérsniðna einingin \"%s\" er virkjuð samhliða sérsniðnu einingunni %s. Þetta "
-"getur leitt til óæskilegrar hegðunar, þar sem báðar einingarnar hafa skráð "
-"sama sérsniðna sýn \"%s\". Það er eindregið mælt með því að slökkva á "
-"annarri einingunni."
-
-#: src/CustomModuleManager.php:633
-#, php-format
-msgid ""
-"The custom module view \"%s\" is not registered as replacement for the "
-"standard webtrees view. There might be another module installed, which "
-"registered the same custom view. This can lead to unintended behavior. It is "
-"strongly recommended to deactivate one of the modules. The path of the "
-"parallel view is: %s"
-msgstr ""
-"Sérsniðna einingasýnin „%s“ er ekki skráð sem staðgengill fyrir staðlaða "
-"veftrésýnina. Það gæti verið önnur eining uppsett sem skráði sömu sérsniðnu "
-"sýn. Þetta getur leitt til óæskilegrar hegðunar. Það er eindregið mælt með "
-"því að slökkva á einni af einingunum. Slóð samsíða sýnarinnar er: %s"
-
-#: src/ModuleUpdates/AbstractModuleUpdate.php:196
-msgid "Frontend"
-msgstr "Viðmót"
-
-#: src/ModuleUpdates/AbstractModuleUpdate.php:220
-msgid "Tags"
-msgstr "Merki"
-
-#: src/ModuleUpdates/GithubModuleUpdate.php:80
-#: src/ModuleUpdates/UrlModuleUpdate.php:70
-#, php-format
-msgid ""
-"Could not create the %s update service. Configuration parameter \"%s\" "
-"missing."
-msgstr ""
-"Gat ekki búið til uppfærsluþjónustuna %s. Stillingarbreytuna \"%s\" vantar."
-
-#: src/ModuleUpdates/GithubModuleUpdate.php:151
+#: src/ModuleUpdates/GithubModuleUpdate.php:158
 msgid "Cannot retrieve download URL."
 msgstr "Get ekki sótt niðurhalsvefslóð."
 
-#: src/RequestHandlers/CustomModuleUpdatePage.php:81
+#: src/RequestHandlers/CustomModuleUpdatePage.php:80
 msgid "Custom Module Updates"
 msgstr "Uppfærslur á sérsniðnum einingum"
 
@@ -119,140 +60,85 @@ msgstr "Uppfærslur á sérsniðnum einingum"
 msgid "Module Information"
 msgstr "Upplýsingar um einingu"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:102
-msgid "Could not identify a suitable module upgrade service for custom module"
-msgstr "Gat ekki fundið viðeigandi uppfærsluþjónustu fyrir sérsniðna einingu"
-
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:110
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:113
 msgid "Error during retrieving download URL"
 msgstr "Villa við að sækja niðurhalsvefslóð"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:147
-msgid "Check version..."
-msgstr "Athugaðu útgáfu..."
-
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:148
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:165
 msgid "Create temporary folders…"
 msgstr "Búa til tímabundnar möppur…"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:153
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:156
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:170
 msgid "Backup…"
 msgstr "Afrita..."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:136
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:137
 msgid "Update Wizard was aborted"
 msgstr "Hætt var við uppfærsluhjálpina"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:216
-#, php-format
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:220
 msgid "Installing module \"%s\" (to folder: \"/module_v4/%s\")"
 msgstr "Set upp eininguna \"%s\" (í möppuna: \"/module_v4/%s\")"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:219
-#, php-format
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:223
 msgid "Upgrading module \"%s\" (in folder: \"/module_v4/%s\")"
 msgstr "Uppfæri eininguna \"%s\" (í möppunni: \"/module_v4/%s\")"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:229
-msgid ""
-"Version % is the latest version of the custom module. No upgrade is "
-"available."
-msgstr ""
-"Útgáfa % er nýjasta útgáfan af sérsniðnu einingunni. Engin uppfærsla er í "
-"boði."
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:233
+msgid "Version % is the latest version of the custom module. No upgrade is available."
+msgstr "Útgáfa % er nýjasta útgáfan af sérsniðnu einingunni. Engin uppfærsla er í boði."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:234
-#, php-format
-msgid ""
-"This custom module can only be used with a webtrees version greater or equal "
-"than %s"
-msgstr ""
-"Þessa sérsniðnu einingu er aðeins hægt að nota með webtrees útgáfu sem er "
-"hærri eða jafngild %s"
-
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:239
-msgid ""
-"The PHP extension \"zip\" is not installed. In order to use the custom "
-"module, your PHP installation needs to include the \"zip\" extension. You "
-"have to activate the extension in your \"php.ini\" file."
-msgstr ""
-"PHP viðbótin „zip“ er ekki uppsett. Til að nota sérsniðnu eininguna þarf PHP "
-"uppsetningin þín að innihalda viðbótina „zip“. Þú verður að virkja viðbótina "
-"í „php.ini“ skránni þinni."
-
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:247
-#, php-format
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:252
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:255
 msgid "Installing version: \"%s\""
 msgstr "Uppsetningarútgáfa: \"%s\""
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:250
-#, php-format
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:259
 msgid "Upgrading the module from version \"%s\" to version \"%s\""
 msgstr "Uppfærsla á einingunni úr útgáfu \"%s\" í útgáfu \"%s\""
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:321
-#, php-format
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:330
 msgid "A backup of the current module was created in %s seconds."
 msgstr "Afrit af núverandi einingu var búið til á %s sekúndum."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:326
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:335
 msgid "Failed to create a backup of the current module."
 msgstr "Mistókst að búa til afrit af núverandi einingu."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:353
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:362
 msgid "Error during downloading the module zip file."
 msgstr "Villa við að hlaða niður zip-skrá einingarinnar."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:385
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:394
 msgid "Error during unzipping the module zip file."
 msgstr "Villa við að afþjappa zip-skrá einingarinnar."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:499
-#, php-format
-msgid ""
-"The module %s was rolled back to the current version, because the update "
-"created errors."
-msgstr ""
-"Einingin %s var færð aftur í núverandi útgáfu vegna þess að uppfærslan olli "
-"villum."
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:511
+msgid "The module %s was rolled back to the current version, because the update created errors."
+msgstr "Einingin %s var færð aftur í núverandi útgáfu vegna þess að uppfærslan olli villum."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:502
-#, php-format
-msgid ""
-"The installation of module %s was rolled back, because the module created "
-"errors."
-msgstr ""
-"Uppsetning einingarinnar %s var afturkölluð vegna þess að einingin skapaði "
-"villur."
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:514
+msgid "The installation of module %s was rolled back, because the module created errors."
+msgstr "Uppsetning einingarinnar %s var afturkölluð vegna þess að einingin skapaði villur."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:512
-#, php-format
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:524
 msgid "A roll back of the module %s to the current version failed."
 msgstr "Ekki tókst að endurræsa eininguna %s í núverandi útgáfu."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:514
-#, php-format
-msgid ""
-"Please try to manually roll back by copying the files from \"/data/tmp/"
-"backup/modules_4/%s\" to \"/modules_v4/%s\"."
-msgstr ""
-"Reyndu að afturkalla stillingarnar handvirkt með því að afrita skrárnar úr "
-"\"/data/tmp/backup/modules_4/%s\" í \"/modules_v4/%s\"."
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:526
+msgid "Please try to manually roll back by copying the files from \"/data/tmp/backup/modules_4/%s\" to \"/modules_v4/%s\"."
+msgstr "Reyndu að afturkalla stillingarnar handvirkt með því að afrita skrárnar úr \"/data/tmp/backup/modules_4/%s\" í \"/modules_v4/%s\"."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:517
-#, php-format
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:529
 msgid "A roll back of the installation of module %s failed."
 msgstr "Ekki tókst að afturkalla uppsetningu á einingunni %s."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:519
-#, php-format
-msgid ""
-"Please try to manually roll back by deleting the folder \"/modules_v4/%s\""
-msgstr ""
-"Reyndu að snúa við stillingum handvirkt með því að eyða möppunni \"/"
-"modules_v4/%s\""
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:531
+msgid "Please try to manually roll back by deleting the folder \"/modules_v4/%s\""
+msgstr "Reyndu að snúa við stillingum handvirkt með því að eyða möppunni \"/modules_v4/%s\""
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:661
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:714
 msgid "continue (reload)"
 msgstr "halda áfram (endurhlaða)"
 
@@ -260,117 +146,69 @@ msgstr "halda áfram (endurhlaða)"
 msgid "Documentation"
 msgstr "Skjölun"
 
-#: resources/views/modals/module_information.phtml:94
-#: resources/views/module_update.phtml:94
+#: resources/views/modals/module_information.phtml:99
+#: resources/views/module_update.phtml:96
 msgid "Update Service"
 msgstr "Uppfærsluþjónusta"
 
-#: resources/views/modals/module_information.phtml:99
+#: resources/views/modals/module_information.phtml:104
 msgid "Module folder"
 msgstr "Mappa fyrir einingar"
 
-#: resources/views/modals/module_information.phtml:104
-#: resources/views/module_update.phtml:92
+#: resources/views/modals/module_information.phtml:109
+#: resources/views/module_update.phtml:94
 msgid "Current Version"
 msgstr "Núverandi útgáfa"
 
-#: resources/views/modals/module_information.phtml:109
-#: resources/views/module_update.phtml:93
+#: resources/views/modals/module_information.phtml:114
+#: resources/views/modals/release_notes.phtml:31
+#: resources/views/module_update.phtml:95
 msgid "Latest Version"
 msgstr "Nýjasta útgáfa"
 
-#: resources/views/modals/module_information.phtml:114
+#: resources/views/modals/module_information.phtml:119
 msgid "⚶ Vesta homepage"
 msgstr "⚶ Heimasíða Vesta"
 
-#: resources/views/modals/module_information.phtml:123
-msgid "GitHub repository"
-msgstr "GitHub geymsla"
-
-#: resources/views/modals/module_information.phtml:163
+#: resources/views/modals/module_information.phtml:168
 #: resources/views/module_usage.phtml:38
 msgid "Module Usage"
 msgstr "Notkun einingarinnar"
 
-#: resources/views/module_update.phtml:57
-#, php-format
-msgid ""
-"A new version of \"%s\" is available. It is recommended to upgrade to the "
-"latest version before other custom modules are installed/upgraded."
-msgstr ""
-"Ný útgáfa af „%s“ er tiltæk. Mælt er með að uppfæra í nýjustu útgáfuna áður "
-"en aðrar sérsniðnar einingar eru settar upp/uppfærðar."
+#: resources/views/module_update.phtml:55
+msgid "Typically, custom modules versions are updated every 24 hours. You can check if later versions are available."
+msgstr "Venjulega eru útgáfur af sérsniðnum einingum uppfærðar á 24 tíma fresti. Þú getur athugað hvort nýrri útgáfur séu tiltækar."
 
-#: resources/views/module_update.phtml:60
-msgid ""
-"Typically, custom modules versions are updated every 24 hours. You can check "
-"if later versions are available."
-msgstr ""
-"Venjulega eru útgáfur af sérsniðnum einingum uppfærðar á 24 tíma fresti. Þú "
-"getur athugað hvort nýrri útgáfur séu tiltækar."
-
-#: resources/views/module_update.phtml:83
+#: resources/views/module_update.phtml:85
 msgid "Module Updates"
 msgstr "Uppfærslur á einingum"
 
-#: resources/views/module_update.phtml:90
+#: resources/views/module_update.phtml:92
 msgid "Folder (within modules_v4)"
 msgstr "Mappa (innan modules_v4)"
 
-#: resources/views/module_update.phtml:96
-msgid "Action"
-msgstr "Aðgerð"
-
-#: resources/views/module_update.phtml:105
-#: resources/views/module_update.phtml:232
+#: resources/views/module_update.phtml:104
+#: resources/views/module_update.phtml:249
 msgid "not installed"
 msgstr "ekki uppsett"
 
-#: resources/views/module_update.phtml:109
-msgid "enabled"
-msgstr "virkjað"
-
-#: resources/views/module_update.phtml:111
-msgid "disabled"
-msgstr "óvirkur"
-
-#: resources/views/module_update.phtml:128
-#: resources/views/module_update.phtml:153
-msgid "not received"
-msgstr "ekki móttekið"
-
-#: resources/views/module_update.phtml:131
+#: resources/views/module_update.phtml:138
+#: resources/views/module_update.phtml:151
+#: resources/views/module_update.phtml:152
 msgid "not available"
 msgstr "ekki tiltækt"
 
-#: resources/views/module_update.phtml:231
+#: resources/views/module_update.phtml:252
 msgid "Update module"
 msgstr "Uppfæra einingu"
 
-#: resources/views/module_update.phtml:234
+#: resources/views/module_update.phtml:255
 msgid "Install module"
 msgstr "Setja upp einingu"
 
 #: resources/views/settings.phtml:41
 msgid "Manage custom modules"
 msgstr "Stjórna sérsniðnum einingum"
-
-#: resources/views/settings.phtml:53
-msgid "Settings for List Menu"
-msgstr "Stillingar fyrir listavalmynd"
-
-#: resources/views/settings.phtml:58
-msgid "Show menu item in list menu"
-msgstr "Sýna valmyndaratriði í listavalmynd"
-
-#: resources/views/settings.phtml:63
-#, php-format
-msgid ""
-"If this option is selected, a link to the page \"%s\" will be shown as a "
-"list menu item."
-msgstr ""
-"Ef þessi valkostur er valinn, þá birtist tengill á síðuna „%s“ sem "
-"listaatriði í valmyndinni."
 
 #: resources/views/settings.phtml:70
 msgid "Selection of the custom modules to show"
@@ -392,25 +230,121 @@ msgstr "Sýna uppsettar sérsniðnar einingar (til að uppfæra einingar)"
 msgid "Show not installed custom modules (in order to install new modules)"
 msgstr "Sýna óuppsettar sérsniðnar einingar (til að setja upp nýjar einingar)"
 
+#: resources/views/modals/module_information.phtml:128
+msgid "GitHub repository"
+msgstr "GitHub geymsla"
+
+#: resources/views/settings.phtml:53
+msgid "Settings for List Menu"
+msgstr "Stillingar fyrir listavalmynd"
+
+#: resources/views/settings.phtml:58
+msgid "Show menu item in list menu"
+msgstr "Sýna valmyndaratriði í listavalmynd"
+
+#: resources/views/settings.phtml:63
+msgid "If this option is selected, a link to the page \"%s\" will be shown as a list menu item."
+msgstr "Ef þessi valkostur er valinn, þá birtist tengill á síðuna „%s“ sem listaatriði í valmyndinni."
+
 #: resources/views/settings.phtml:103 resources/views/settings.phtml:109
 msgid "GitHub API token"
 msgstr "GitHub API tákn"
 
 #: resources/views/settings.phtml:105
-msgid ""
-"The custom module makes intensive use of the GitHub API to retrieve module "
-"versions and download URLs. However, GitHub limits the frequency of API "
-"calls for a certain IP address. In order to significantly increase the "
-"allowed frequency of GitHub API calls, GitHub requires to use a GitHub API "
-"token."
-msgstr ""
-"Sérsniðna einingin notar GitHub API ítarlega til að sækja útgáfur eininga og "
-"hlaða niður vefslóðum. Hins vegar takmarkar GitHub tíðni API-uppkalla fyrir "
-"ákveðna IP-tölu. Til að auka verulega leyfilega tíðni GitHub API-uppkalla "
-"þarf GitHub að nota GitHub API-tákn."
+msgid "The custom module makes intensive use of the GitHub API to retrieve module versions and download URLs. However, GitHub limits the frequency of API calls for a certain IP address. In order to significantly increase the allowed frequency of GitHub API calls, GitHub requires to use a GitHub API token."
+msgstr "Sérsniðna einingin notar GitHub API ítarlega til að sækja útgáfur eininga og hlaða niður vefslóðum. Hins vegar takmarkar GitHub tíðni API-uppkalla fyrir ákveðna IP-tölu. Til að auka verulega leyfilega tíðni GitHub API-uppkalla þarf GitHub að nota GitHub API-tákn."
 
 #: resources/views/settings.phtml:106
-msgid ""
-"Using a GitHub API token is recommended, if GitHub communication errors occur"
-msgstr ""
-"Mælt er með því að nota GitHub API-tákn ef samskiptavillur koma upp á GitHub"
+msgid "Using a GitHub API token is recommended, if GitHub communication errors occur"
+msgstr "Mælt er með því að nota GitHub API-tákn ef samskiptavillur koma upp á GitHub"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:243
+msgid "The PHP extension \"zip\" is not installed. In order to use the custom module, your PHP installation needs to include the \"zip\" extension. You have to activate the extension in your \"php.ini\" file."
+msgstr "PHP viðbótin „zip“ er ekki uppsett. Til að nota sérsniðnu eininguna þarf PHP uppsetningin þín að innihalda viðbótina „zip“. Þú verður að virkja viðbótina í „php.ini“ skránni þinni."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:238
+msgid "This custom module can only be used with a webtrees version greater or equal than %s"
+msgstr "Þessa sérsniðnu einingu er aðeins hægt að nota með webtrees útgáfu sem er hærri eða jafngild %s"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:105
+msgid "Could not identify a suitable module upgrade service for custom module"
+msgstr "Gat ekki fundið viðeigandi uppfærsluþjónustu fyrir sérsniðna einingu"
+
+#: resources/views/module_update.phtml:52
+msgid "A new version of \"%s\" is available. It is recommended to upgrade to the latest version before other custom modules are installed/upgraded."
+msgstr "Ný útgáfa af „%s“ er tiltæk. Mælt er með að uppfæra í nýjustu útgáfuna áður en aðrar sérsniðnar einingar eru settar upp/uppfærðar."
+
+#: src/ModuleUpdates/AbstractModuleUpdate.php:155
+#: src/ModuleUpdates/AbstractModuleUpdate.php:157
+#: src/ModuleUpdates/AbstractModuleUpdate.php:159
+msgid "Frontend"
+msgstr "Viðmót"
+
+#: src/ModuleUpdates/AbstractModuleUpdate.php:183
+msgid "Tags"
+msgstr "Merki"
+
+#: src/ModuleUpdates/AbstractModuleUpdate.php:187
+msgid "Data validation"
+msgstr "Gagnastaðfesting"
+
+#: src/ModuleUpdates/GithubModuleUpdate.php:265
+msgid "Could not retrieve release notes due to a communication error with GitHub."
+msgstr "Ekki tókst að sækja útgáfubréf vegna samskiptavillu við GitHub."
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:157
+msgid "Delete…"
+msgstr "Eyða…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:164
+msgid "Check version…"
+msgstr "Athugaðu útgáfu…"
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:571
+msgid "The module was successfully deleted in %s seconds."
+msgstr "Einingunni var eytt á %s sekúndum."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:576
+msgid "Error during deleting the module."
+msgstr "Villa við að eyða einingunni."
+
+#: src/RequestHandlers/ReleaseNotesModal.php:76
+msgid "No release notes available"
+msgstr "Engar útgáfuupplýsingar tiltækar"
+
+#: src/RequestHandlers/ReleaseNotesModal.php:85
+msgid "Release notes"
+msgstr "Útgáfubréf"
+
+#: resources/views/module_update.phtml:273
+msgid "Delete module"
+msgstr "Eyða einingu"
+
+#: resources/views/module_update.phtml:298
+msgid "Press the save button to enable/disable modules according to the checkbox in the \"enabled\" column."
+msgstr "Ýttu á vista hnappinn til að virkja/slökkva á einingar samkvæmt gátreitnum í dálknum „virkt“."
+
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:252
+msgid "Latest version"
+msgstr "Nýjasta útgáfa"
+
+#: resources/views/module_update.phtml:98
+msgid "Install"
+msgstr "Setja upp"
+
+#: resources/views/modals/release_notes.phtml:55
+msgid "activate update for this version"
+msgstr "virkja uppfærslu fyrir þessa útgáfu"
+
+#: resources/views/modals/release_notes.phtml:55
+msgid "ignore update for this version"
+msgstr "hunsa uppfærslu fyrir þessa útgáfu"
+
+#: resources/views/modals/module_information.phtml:90
+msgid "Disabled"
+msgstr "Óvirkur"
+
+#: resources/views/module_update.phtml:108
+#: resources/views/module_update.phtml:253
+msgid "Not installed"
+msgstr "Ekki uppsett"

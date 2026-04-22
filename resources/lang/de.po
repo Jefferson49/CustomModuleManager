@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-03-21 10:40+0100\n"
-"PO-Revision-Date: 2026-03-26 06:23+0100\n"
+"POT-Creation-Date: 2026-04-22 07:35+0200\n"
+"PO-Revision-Date: 2026-04-22 07:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,34 +15,34 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:256
+#: src/CustomModuleManager.php:249
 msgid "Custom Module Manager"
 msgstr "Management von Erweiterungsmodulen"
 
-#: src/CustomModuleManager.php:269
+#: src/CustomModuleManager.php:262
 msgid "A custom module to manage webtrees custom modules."
 msgstr "Ein Erweiterungsmodul zum Verwalten von webtrees-Erweiterungsmodulen."
 
-#: src/CustomModuleManager.php:343 src/ModuleUpdates/GithubModuleUpdate.php:157
+#: src/CustomModuleManager.php:336 src/ModuleUpdates/GithubModuleUpdate.php:157
 #: src/ModuleUpdates/GithubModuleUpdate.php:228
 #, php-format
 msgid "Communication error with %s"
 msgstr "Kommunikationsfehler mit %s"
 
-#: src/CustomModuleManager.php:521
+#: src/CustomModuleManager.php:512
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:567
+#: src/CustomModuleManager.php:558
 msgid "Rollback Custom Module Update"
 msgstr "Aktualisierung des Erweiterungsmoduls rückgängig machen"
 
-#: src/CustomModuleManager.php:568
+#: src/CustomModuleManager.php:559
 msgid "Rollback"
 msgstr "Rückgängig machen"
 
-#: src/CustomModuleManager.php:595
+#: src/CustomModuleManager.php:586
 #, php-format
 msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
@@ -51,61 +51,22 @@ msgstr ""
 "Die Einstellungen für das Erweiterungsmodul \"%s\" wurden für die neue Modul-"
 "Version %s aktualisiert."
 
-#: src/CustomModuleManager.php:627
-#, php-format
-msgid ""
-"The custom module \"%s\" is activated in parallel to the %s custom module. "
-"This can lead to unintended behavior. If using the %s module, it is strongly "
-"recommended to deactivate the \"%s\" module, because the identical "
-"functionality is also integrated in the %s module."
-msgstr ""
-"Das Erweiterungsmodul \"%s\" ist parallel zum Erweiterungsmodul %s "
-"aktiviert. Dies kann zu unbeabsichtigtem Verhalten führen. Bei Verwendung "
-"des Moduls %s wird dringend empfohlen, das Modul \"%s\" zu deaktivieren, "
-"weil die identische Funktion ebenfalls im Modul %s integriert ist."
-
-#: src/CustomModuleManager.php:632
-#, php-format
-msgid ""
-"The custom module \"%s\" is activated in parallel to the %s custom module. "
-"This can lead to unintended behavior, because both of the modules have "
-"registered the same custom view \"%s\". It is strongly recommended to "
-"deactivate one of the modules."
-msgstr ""
-"Das Erweiterungsmodul \"%s\" ist parallel zum Modul %s aktiviert. Dies kann "
-"zu unbeabsichtigtem Verhalten führen, weil beide Module die gleiche Custom "
-"View \"%s\" registriert haben. Es wird dringend empfohlen eines der beiden "
-"Module zu deaktivieren."
-
-#: src/CustomModuleManager.php:656
-#, php-format
-msgid ""
-"The custom module view \"%s\" is not registered as replacement for the "
-"standard webtrees view. There might be another module installed, which "
-"registered the same custom view. This can lead to unintended behavior. It is "
-"strongly recommended to deactivate one of the modules. The path of the "
-"parallel view is: %s"
-msgstr ""
-"Der Custom View \"%s\" ist nicht als Ersatz für den Standard Custom View von "
-"webtrees registriert. Es könnte ein anderes Modul installiert sein, welches "
-"den gleiche Custom View registriert hat. Dies kann zu unerwartetem Verhalten "
-"führen. Es wird dringend empfohlen, eines der Module zu deaktivieren. Der "
-"Pfad für den Custom View ist: %s"
-
-#: src/ModuleUpdates/AbstractModuleUpdate.php:154
+#: src/ModuleUpdates/AbstractModuleUpdate.php:155
+#: src/ModuleUpdates/AbstractModuleUpdate.php:157
+#: src/ModuleUpdates/AbstractModuleUpdate.php:159
 msgid "Frontend"
 msgstr "Frontend"
 
-#: src/ModuleUpdates/AbstractModuleUpdate.php:178
+#: src/ModuleUpdates/AbstractModuleUpdate.php:183
 msgid "Tags"
 msgstr "Tags"
 
-#: src/ModuleUpdates/AbstractModuleUpdate.php:182
+#: src/ModuleUpdates/AbstractModuleUpdate.php:187
 msgid "Data validation"
 msgstr "Daten Validierung"
 
 #: src/ModuleUpdates/GithubModuleUpdate.php:89
-#: src/ModuleUpdates/UrlModuleUpdate.php:70
+#: src/ModuleUpdates/UrlModuleUpdate.php:65
 #, php-format
 msgid ""
 "Could not create the %s update service. Configuration parameter \"%s\" "
@@ -234,7 +195,7 @@ msgstr "Fehler beim Herunterladen der ZIP-Datei des Moduls."
 msgid "Error during unzipping the module zip file."
 msgstr "Fehler beim Entpacken der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:508
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:511
 #, php-format
 msgid ""
 "The module %s was rolled back to the current version, because the update "
@@ -243,7 +204,7 @@ msgstr ""
 "Das Modul %s wurde auf die bisherige Version zurückgesetzt, weil die "
 "Aktualisierung Fehler verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:511
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:514
 #, php-format
 msgid ""
 "The installation of module %s was rolled back, because the module created "
@@ -252,13 +213,13 @@ msgstr ""
 "Die Installation von Modul %s wurde rückgängig gemacht, weil das Modul "
 "Fehler verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:521
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:524
 #, php-format
 msgid "A roll back of the module %s to the current version failed."
 msgstr ""
 "Ein Rollback des Moduls %s auf die bisherige Version ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:523
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:526
 #, php-format
 msgid ""
 "Please try to manually roll back by copying the files from \"/data/tmp/"
@@ -268,12 +229,12 @@ msgstr ""
 "Dateien von \"/data/tmp/backup/modules_4/%s\" nach \"/modules_v4/%s\" "
 "kopieren."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:526
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:529
 #, php-format
 msgid "A roll back of the installation of module %s failed."
 msgstr "Ein Rollback der Installation von Modul %s ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:528
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:531
 #, php-format
 msgid ""
 "Please try to manually roll back by deleting the folder \"/modules_v4/%s\""
@@ -281,16 +242,16 @@ msgstr ""
 "Bitte versuchen Sie, die Dateien manuell zurückzusetzen, indem Sie den "
 "Ordner \"/modules_4/%s\" löschen"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:568
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:571
 #, php-format
 msgid "The module was successfully deleted in %s seconds."
 msgstr "Das Modul wurde in %s Sekunden erfolgreich gelöscht."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:573
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:576
 msgid "Error during deleting the module."
 msgstr "Fehler beim Löschen des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:708
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:714
 msgid "continue (reload)"
 msgstr "Weiter (neu laden)"
 
@@ -306,35 +267,39 @@ msgstr "Versionshinweise"
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: resources/views/modals/module_information.phtml:93
-#: resources/views/module_update.phtml:92
+#: resources/views/modals/module_information.phtml:90
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+#: resources/views/modals/module_information.phtml:99
+#: resources/views/module_update.phtml:96
 msgid "Update Service"
 msgstr "Aktualisierungs-Dienst"
 
-#: resources/views/modals/module_information.phtml:98
+#: resources/views/modals/module_information.phtml:104
 msgid "Module folder"
 msgstr "Modul-Ordner"
 
-#: resources/views/modals/module_information.phtml:103
-#: resources/views/module_update.phtml:90
+#: resources/views/modals/module_information.phtml:109
+#: resources/views/module_update.phtml:94
 msgid "Current Version"
 msgstr "Aktuelle Version"
 
-#: resources/views/modals/module_information.phtml:108
+#: resources/views/modals/module_information.phtml:114
 #: resources/views/modals/release_notes.phtml:31
-#: resources/views/module_update.phtml:91
+#: resources/views/module_update.phtml:95
 msgid "Latest Version"
 msgstr "Neueste Version"
 
-#: resources/views/modals/module_information.phtml:113
+#: resources/views/modals/module_information.phtml:119
 msgid "⚶ Vesta homepage"
 msgstr "⚶ Vesta-Homepage"
 
-#: resources/views/modals/module_information.phtml:122
+#: resources/views/modals/module_information.phtml:128
 msgid "GitHub repository"
 msgstr "GitHub-Repository"
 
-#: resources/views/modals/module_information.phtml:162
+#: resources/views/modals/module_information.phtml:168
 #: resources/views/module_usage.phtml:38
 msgid "Module Usage"
 msgstr "Modul-Verwendung"
@@ -365,42 +330,42 @@ msgstr ""
 "Die Versionen von Erweiterungsmodulen werden in der Regel alle 24 Stunden "
 "aktualisiert. Sie können prüfen, ob neuere Versionen verfügbar sind."
 
-#: resources/views/module_update.phtml:81
+#: resources/views/module_update.phtml:85
 msgid "Module Updates"
 msgstr "Aktualisierungen für Module"
 
-#: resources/views/module_update.phtml:88
+#: resources/views/module_update.phtml:92
 msgid "Folder (within modules_v4)"
 msgstr "Ordner (in modules_v4)"
 
-#: resources/views/module_update.phtml:94
+#: resources/views/module_update.phtml:98
 msgid "Install"
 msgstr "Installieren"
 
-#: resources/views/module_update.phtml:104
-#: resources/views/module_update.phtml:249
-msgid "not installed"
-msgstr "nicht installiert"
+#: resources/views/module_update.phtml:108
+#: resources/views/module_update.phtml:253
+msgid "Not installed"
+msgstr "Nicht installiert"
 
-#: resources/views/module_update.phtml:134
-#: resources/views/module_update.phtml:147
-#: resources/views/module_update.phtml:148
+#: resources/views/module_update.phtml:138
+#: resources/views/module_update.phtml:151
+#: resources/views/module_update.phtml:152
 msgid "not available"
 msgstr "nicht verfügbar"
 
-#: resources/views/module_update.phtml:248
+#: resources/views/module_update.phtml:252
 msgid "Update module"
 msgstr "Modul aktualisieren"
 
-#: resources/views/module_update.phtml:251
+#: resources/views/module_update.phtml:255
 msgid "Install module"
 msgstr "Modul installieren"
 
-#: resources/views/module_update.phtml:269
+#: resources/views/module_update.phtml:273
 msgid "Delete module"
 msgstr "Modul löschen"
 
-#: resources/views/module_update.phtml:294
+#: resources/views/module_update.phtml:298
 msgid ""
 "Press the save button to enable/disable modules according to the checkbox in "
 "the \"enabled\" column."
@@ -476,6 +441,44 @@ msgstr ""
 "Die Verwendung eines GitHub-API Tokens wird empfohlen, wenn GitHub-"
 "Kommunikationsfehler auftreten"
 
+#, php-format
+#~ msgid ""
+#~ "The custom module \"%s\" is activated in parallel to the %s custom "
+#~ "module. This can lead to unintended behavior. If using the %s module, it "
+#~ "is strongly recommended to deactivate the \"%s\" module, because the "
+#~ "identical functionality is also integrated in the %s module."
+#~ msgstr ""
+#~ "Das Erweiterungsmodul \"%s\" ist parallel zum Erweiterungsmodul %s "
+#~ "aktiviert. Dies kann zu unbeabsichtigtem Verhalten führen. Bei Verwendung "
+#~ "des Moduls %s wird dringend empfohlen, das Modul \"%s\" zu deaktivieren, "
+#~ "weil die identische Funktion ebenfalls im Modul %s integriert ist."
+
+#, php-format
+#~ msgid ""
+#~ "The custom module \"%s\" is activated in parallel to the %s custom "
+#~ "module. This can lead to unintended behavior, because both of the modules "
+#~ "have registered the same custom view \"%s\". It is strongly recommended "
+#~ "to deactivate one of the modules."
+#~ msgstr ""
+#~ "Das Erweiterungsmodul \"%s\" ist parallel zum Modul %s aktiviert. Dies "
+#~ "kann zu unbeabsichtigtem Verhalten führen, weil beide Module die gleiche "
+#~ "Custom View \"%s\" registriert haben. Es wird dringend empfohlen eines "
+#~ "der beiden Module zu deaktivieren."
+
+#, php-format
+#~ msgid ""
+#~ "The custom module view \"%s\" is not registered as replacement for the "
+#~ "standard webtrees view. There might be another module installed, which "
+#~ "registered the same custom view. This can lead to unintended behavior. It "
+#~ "is strongly recommended to deactivate one of the modules. The path of the "
+#~ "parallel view is: %s"
+#~ msgstr ""
+#~ "Der Custom View \"%s\" ist nicht als Ersatz für den Standard Custom View "
+#~ "von webtrees registriert. Es könnte ein anderes Modul installiert sein, "
+#~ "welches den gleiche Custom View registriert hat. Dies kann zu "
+#~ "unerwartetem Verhalten führen. Es wird dringend empfohlen, eines der "
+#~ "Module zu deaktivieren. Der Pfad für den Custom View ist: %s"
+
 #~ msgid "not received"
 #~ msgstr "nicht empfangen"
 
@@ -484,9 +487,6 @@ msgstr ""
 
 #~ msgid "enabled"
 #~ msgstr "aktiviert"
-
-#~ msgid "disabled"
-#~ msgstr "deaktiviert"
 
 #~ msgid "Action"
 #~ msgstr "Aktion"

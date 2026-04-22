@@ -105,7 +105,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                 <?php $module = $module_service->findByName($module_name, true) ?>
                 <?php if ($module === null) : ?>
                     <?php if ($modules_to_show === CustomModuleManager::PREF_SHOW_INSTALLED) : ?><?php continue ?><?php endif ?>	
-                    <?php $module_status = I18N::translate('not installed') ?>
+                    <?php $module_status = I18N::translate('Not installed') ?>
                 <?php else : ?>
                     <?php if ($modules_to_show === CustomModuleManager::PREF_SHOW_NOT_INSTALLED) : ?><?php continue ?><?php endif ?>						
                     <?php if ($module->isEnabled()) : ?>
@@ -250,7 +250,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <?php if ($module !== null && $later_version_available && !($latest_version === $ignore_version)) : ?>
                         <?php $action = CustomModuleManager::ACTION_UPDATE ?>
                         <?php $action_label = I18N::translate('Update module') ?>
-                    <?php elseif ($module_status === I18N::translate('not installed')) : ?>
+                    <?php elseif ($module_status === I18N::translate('Not installed')) : ?>
                         <?php $action = CustomModuleManager::ACTION_INSTALL ?>
                         <?php $action_label = I18N::translate('Install module') ?>
                     <?php endif ?>						
