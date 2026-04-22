@@ -48,11 +48,6 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
     //The documentation URL
     protected string $documentation_url;
 
-    //The latest version of the module
-
-    protected string $latest_version;
-
-
     /**
      * @param string $module_name  The custom module name
      * @param array  $params       The configuration parameters of the update service
@@ -75,13 +70,6 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
         }
         else {
             $this->documentation_url = '';
-        }
-
-        if (array_key_exists('latest_version', $params)) {
-            $this->latest_version = $params['latest_version'];
-        }
-        else {
-            $this->latest_version = '';
         }
 
         $this->category = self::identifyCategoryFromConfig($module_name, $params);
