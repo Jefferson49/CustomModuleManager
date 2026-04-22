@@ -221,6 +221,7 @@ class ModuleUpdateServiceConfiguration
 
         '_tree-explorer_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'szporwolik/webtrees-tree-explorer', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
+        '_gendex-generator_'                 =>  ['update_service' => 'UrlModuleUpdate',    'params' => ['download_url' => 'https://codeberg.org/Joppla/Webtrees-GendexGenerator/archive/main.zip', 'documentation_url' => 'https://codeberg.org/Joppla/Webtrees-GendexGenerator#readme', self::CATEGORY => self::CATEGORY_GEDCOM]],
     ];
 
     private const MODULES_INSTALLATION_FAILS = [
