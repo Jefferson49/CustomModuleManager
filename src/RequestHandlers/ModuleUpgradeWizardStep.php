@@ -430,11 +430,11 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 $installation_folder    = $module_update_service::getInstallationFolderFromModuleName($module_name);
                 $update_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . Webtrees::MODULES_PATH);
 
-                //If Vesta, take standard Vesta folder
+                // If Vesta, take standard Vesta folder
                 if ($module_update_service->name() === VestaModuleUpdate::NAME) {
                     $update_folder = $module_update_service::getInstallationFolderFromModuleName($standard_module_name);
                 }
-                //Otherwise get top level folder from unzipped file
+                // Otherwise get top level folder from unzipped file
                 else {
                     $update_folder = self::getInstallationFolder($update_filesystem);
                 }
@@ -443,6 +443,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 $destination_filesystem = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
 
                 $this->webtrees_upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
+
+                // Reset stored version
+                $short_module_name = substr($module_name, 0, 25) . '_';
+                $custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, '');
             }
             $alert      = MoreI18N::xlate('The upgrade is complete.');
             $alert_type = self::ALERT_SUCCESS;
