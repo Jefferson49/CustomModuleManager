@@ -31,6 +31,7 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
+use Cissee\WebtreesExt\Module\ModuleMetaData;
 use Fisharebest\Webtrees\Webtrees;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 
@@ -140,5 +141,83 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
         $getVesta = true; 
 
         return ModuleUpdateServiceConfiguration::getModuleNames($getVesta);
+    }
+
+    /**
+     * Fetch the latest version of this module
+     *
+     * @param bool $fetch_latest  Whether to fetch the latest version, e.g. from a Github repository 
+     * 
+     * @return string
+     */
+    public function customModuleLatestVersion(bool $fetch_latest = false): string
+    {
+        $module = $this->getModule();
+
+        if ($module === null) {
+            return '';
+        }
+
+        //Code from: Cissee\WebtreesExt\Module\ModuleMetaTrait
+        $latest_release_meta_data = $this->getLatestReleaseMetaData();
+
+        //Use the latest Vesta version if the minimum required webtrees version is compatible with the current webtrees version
+        if (    $latest_release_meta_data !== null
+            &&  version_compare($latest_release_meta_data->minRequiredWebtreesVersion(), Webtrees::VERSION, '<=')
+            &&  version_compare(Webtrees::VERSION, $latest_release_meta_data->minUnsupportedWebtreesVersion(), '<')) {
+
+            return $latest_release_meta_data->version();
+        }
+
+        //As default, return the currently installed version
+        return $module->customModuleVersion();
+    }
+
+    /**
+     * Get the release notes for the latest version of this module
+     *
+     * @return string
+     */
+    public function getLatestReleaseNotes(): string {
+        $module = $this->getModule();
+
+        if ($module === null) {
+            return '';
+        }
+
+        //Code from: Cissee\WebtreesExt\Module\ModuleMetaTrait
+        $latest_release_meta_data = $this->getLatestReleaseMetaData();
+
+        if ($latest_release_meta_data === null) {
+            return '';
+        }
+
+        if (sizeof($latest_release_meta_data->changelog()) > 0) {
+            return implode(" ", $latest_release_meta_data->changelog());
+        }
+
+        return '';
+    }
+
+    /**
+     * Get the meta data for the latest release
+     * Code from: Cissee\WebtreesExt\Module\ModuleMetaTrait
+     *
+     * @return ModuleMetaData
+     */
+    public function getLatestReleaseMetaData(): ?ModuleMetaData {
+
+        /** @var \Cissee\Webtrees\Module\ClassicLAF\ClassicLAFModule $module To avoid IDE warnings */
+        $module = $this->getModule();
+
+        if ($module === null) {
+            return null;
+        }
+
+        return $module->customModuleLatestMetaDatas()
+            ->sort(static function (ModuleMetaData $x, ModuleMetaData $y): int {
+                return version_compare($x->version(), $y->version());
+            })
+            ->last();
     }
 }

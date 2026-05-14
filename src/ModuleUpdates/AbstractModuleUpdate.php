@@ -424,11 +424,30 @@ abstract class AbstractModuleUpdate
     }
 
     /**
+     * Whether the module provides releases in the repository
+     *
+     * @return bool
+     */
+    public function providesReleasesInRepository(): bool {
+        return false;
+    }
+
+    /**
      * Get the release notes for the latest version of this module
      *
      * @return string
      */
     public function getLatestReleaseNotes(): string {
+        return '';
+    }
+
+    /**
+     * Get the latest release URL
+     *
+     * @return string
+     */
+    public function getLatestReleaseURL(): string {
+
         return '';
     }
 }

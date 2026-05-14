@@ -14,8 +14,10 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\VestaModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleInformationModal;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpdateCheck;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleActivateAction;
@@ -216,7 +218,10 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
 
                     <!-- Latest version -->
                     <td data-sort="<?= e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>">
-                        <?php if ( $later_version_available && $current_version !== '' && $module_update_service_name === GithubModuleUpdate::NAME && $module_update_service->providesGithubReleases()) : ?>
+                        <?php if (      $later_version_available && $current_version !== '' 
+                                    &&  (       ($module_update_service_name === GithubModuleUpdate::NAME && $module_update_service->providesReleasesInRepository())
+                                            OR  ($module_update_service_name === VestaModuleUpdate::NAME))
+                                ) : ?>
                             <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ReleaseNotesModal::class, [
                                     'module_name'    => $module_name,
                                     'module_title'   => $module_title,
@@ -253,7 +258,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <?php elseif ($module_status === I18N::translate('Not installed')) : ?>
                         <?php $action = CustomModuleManager::ACTION_INSTALL ?>
                         <?php $action_label = I18N::translate('Install module') ?>
-                    <?php endif ?>						
+                    <?php endif ?>
                     <td data-sort="<?= $action_label ?>">
                         <?php if ($action_label !== '' && $update_service_available) : ?>
                             <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ModuleUpgradeWizardPage::class, [

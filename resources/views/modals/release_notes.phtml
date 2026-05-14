@@ -31,12 +31,14 @@ use function view;
         <?= I18N::translate('Latest Version') . ': ' ?>
         <?=  e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>
         <br>
-        <?= view('icons/link') ?>
-        <?= MoreI18N::xlate('Link') . ': ' ?>
-        <a href="<?= e($release_url) ?>" target="blank">
-            <?= I18N::translate('Release notes') ?>
-        </a>
-        <br>
+        <?php if ($release_url !== '') : ?>
+            <?= view('icons/link') ?>
+            <?= MoreI18N::xlate('Link') . ': ' ?>
+            <a href="<?= e($release_url) ?>" target="blank">
+                <?= I18N::translate('Release notes') ?>
+            </a>
+            <br>
+        <?php endif ?>	            
     </div>
     <div class="row mb-3"><?= view('icons/spacer') ?></div>
     <?= $release_notes ?>

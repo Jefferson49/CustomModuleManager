@@ -160,9 +160,23 @@ interface CustomModuleUpdateInterface
     public function getCategory(): string;
 
     /**
+     * Whether the module provides releases in the repository
+     *
+     * @return bool
+     */
+    public function providesReleasesInRepository(): bool;    
+
+    /**
      * Get the release notes for the latest version of this module
      *
      * @return string
      */
     public function getLatestReleaseNotes(): string;
+
+    /**
+     * Get the latest release URL
+     *
+     * @return string
+     */
+    public function getLatestReleaseURL(): string;    
 }

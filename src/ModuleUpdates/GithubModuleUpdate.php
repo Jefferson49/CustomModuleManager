@@ -267,18 +267,18 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     }
 
     /**
-     * Whether the module provides releases on GitHub
+     * Whether the module provides releases in the repository
      *
      * @return bool
      */
-    public function providesGithubReleases(): bool {
+    public function providesReleasesInRepository(): bool {
         return !$this->no_release;
     }
 
     /**
      * Get the latest release URL
      *
-     * @return bool
+     * @return string
      */
     public function getLatestReleaseURL(): string {
 
