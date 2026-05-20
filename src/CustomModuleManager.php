@@ -59,6 +59,7 @@ use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Webtrees;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
 use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
@@ -882,6 +883,11 @@ class CustomModuleManager extends AbstractModule implements
             Site::setPreference('SITE_UUID', $site_uuid);
         }
 
+        $request_body = json_encode([
+            'p_site_uuid'    => $site_uuid,
+            'p_modules_list' => array_values($module_names),
+        ]);
+
         try {
             $client = new Client();
             $response = $client->post($telemetry_url . '/submit_telemetry', [
@@ -891,17 +897,28 @@ class CustomModuleManager extends AbstractModule implements
                     'apikey'        => $telemetry_key,
                     'Authorization' => 'Bearer ' . $telemetry_key,
                 ],
-                'json' => [
-                    'site_uuid'    => $site_uuid,
-                    'modules_list' => array_values($module_names),
-                ],
+                'body' => $request_body,
             ]);
 
-            if ($this->debuggingActivated()) {
-                FlashMessages::addMessage('Telemetry submit: HTTP ' . $response->getStatusCode() . ' — ' . $response->getBody()->getContents(), 'info');
-            }
+            $response_body = $response->getBody()->getContents();
+            FlashMessages::addMessage(
+                'Telemetry submit OK: HTTP ' . $response->getStatusCode() .
+                '<br><strong>Request body:</strong> <code>' . e($request_body) . '</code>' .
+                '<br><strong>Response body:</strong> <code>' . e($response_body) . '</code>',
+                'info'
+            );
         } catch (Throwable $ex) {
-            FlashMessages::addMessage('Telemetry submit error: ' . $ex->getMessage(), 'danger');
+            $error_detail = $ex->getMessage();
+            if ($ex instanceof RequestException && $ex->hasResponse()) {
+                $error_detail = $ex->getResponse()->getBody()->getContents();
+            }
+            error_log('CustomModuleManager telemetry submit error: ' . $error_detail);
+            FlashMessages::addMessage(
+                'Telemetry submit error:' .
+                '<br><strong>Request body:</strong> <code>' . e($request_body) . '</code>' .
+                '<br><strong>Error:</strong> <code>' . e($error_detail) . '</code>',
+                'danger'
+            );
         }
     }
 
@@ -928,6 +945,8 @@ class CustomModuleManager extends AbstractModule implements
         $telemetry_url = $this->getPreference(self::PREF_TELEMETRY_URL, self::DEFAULT_TELEMETRY_URL);
         $telemetry_key = $this->getPreference(self::PREF_TELEMETRY_KEY, self::DEFAULT_TELEMETRY_KEY);
 
+        $request_body = json_encode((object) []);
+
         try {
             $client   = new Client();
             $response = $client->post($telemetry_url . '/get_module_statistics', [
@@ -937,14 +956,17 @@ class CustomModuleManager extends AbstractModule implements
                     'apikey'        => $telemetry_key,
                     'Authorization' => 'Bearer ' . $telemetry_key,
                 ],
-                'json' => (object) [],
+                'body' => $request_body,
             ]);
 
             $body = $response->getBody()->getContents();
 
-            if ($this->debuggingActivated()) {
-                FlashMessages::addMessage('Telemetry stats: HTTP ' . $response->getStatusCode() . ' — ' . substr($body, 0, 500), 'info');
-            }
+            FlashMessages::addMessage(
+                'Telemetry stats OK: HTTP ' . $response->getStatusCode() .
+                '<br><strong>Request body:</strong> <code>' . e($request_body) . '</code>' .
+                '<br><strong>Response body:</strong> <code>' . e($body) . '</code>',
+                'info'
+            );
 
             $data = json_decode($body, true);
 
@@ -959,7 +981,17 @@ class CustomModuleManager extends AbstractModule implements
 
             $cached_stats = $stats;
         } catch (Throwable $ex) {
-            FlashMessages::addMessage('Telemetry stats error: ' . $ex->getMessage(), 'danger');
+            $error_detail = $ex->getMessage();
+            if ($ex instanceof RequestException && $ex->hasResponse()) {
+                $error_detail = $ex->getResponse()->getBody()->getContents();
+            }
+            error_log('CustomModuleManager telemetry stats error: ' . $error_detail);
+            FlashMessages::addMessage(
+                'Telemetry stats error:' .
+                '<br><strong>Request body:</strong> <code>' . e($request_body) . '</code>' .
+                '<br><strong>Error:</strong> <code>' . e($error_detail) . '</code>',
+                'danger'
+            );
             $cached_stats = [];
         }
 
