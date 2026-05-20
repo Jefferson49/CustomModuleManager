@@ -883,9 +883,16 @@ class CustomModuleManager extends AbstractModule implements
             Site::setPreference('SITE_UUID', $site_uuid);
         }
 
+        // Resolve folder-based module names to standard config key names (globally unique)
+        $module_identifiers = [];
+        foreach ($module_names as $module_name) {
+            $standard_name = ModuleUpdateServiceConfiguration::getStandardModuleName($module_name);
+            $module_identifiers[] = $standard_name !== '' ? $standard_name : $module_name;
+        }
+
         $request_body = json_encode([
             'p_site_uuid'    => $site_uuid,
-            'p_modules_list' => array_values($module_names),
+            'p_modules_list' => $module_identifiers,
         ]);
 
         try {

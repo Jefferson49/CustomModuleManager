@@ -244,7 +244,11 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     </td>
 
                     <!-- Installs -->
-                    <?php $install_count = $telemetry_stats[$module_name] ?? 0 ?>
+                    <?php
+                        $standard_module_name = ModuleUpdateServiceConfiguration::getStandardModuleName($module_name);
+                        $telemetry_id = $standard_module_name !== '' ? $standard_module_name : $module_name;
+                        $install_count = $telemetry_stats[$telemetry_id] ?? 0;
+                    ?>
                     <td data-sort="<?= $install_count ?>">
                         <?= $install_count > 0 ? $install_count : '-' ?>
                     </td>
