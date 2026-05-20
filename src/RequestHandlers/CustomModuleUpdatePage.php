@@ -99,6 +99,7 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
             'themes'                     => $module_service->findByInterface(ModuleThemeInterface::class, true),
             'fetch_latest'               => $fetch_latest,
             'modules_to_show'            => $custom_module_manager->getPreference(CustomModuleManager::PREF_MODULES_TO_SHOW, CustomModuleManager::PREF_SHOW_ALL),
+            'telemetry_opt_in'           => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_TELEMETRY_OPT_IN, '1')),
             'telemetry_stats'            => $telemetry_stats,
         ]);
     }

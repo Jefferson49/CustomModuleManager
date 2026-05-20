@@ -33,6 +33,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
  * @var array               $module_names
  * @var bool                $fetch_latest
  * @var string              $modules_to_show
+ * @var bool                $telemetry_opt_in
  * @var array               $telemetry_stats
  */
 
@@ -71,7 +72,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
         data-info="false"
         data-paging="false"
         data-filter="false"
-        data-columns="<?= e(json_encode([
+        data-columns="<?= e(json_encode(array_merge([
             ['type' => 'html'],
             ['type' => 'html'],
             null,
@@ -79,11 +80,11 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
             null,
             null,
             null,
-            ['type' => 'num'],
+        ], $telemetry_opt_in ? [['type' => 'num']] : [], [
             ['type' => 'html', 'searchable' => false],
             ['type' => 'html', 'searchable' => false],
             ['type' => 'html', 'searchable' => false],
-        ], JSON_THROW_ON_ERROR)) ?>"
+        ]), JSON_THROW_ON_ERROR)) ?>"
     >
         <caption class="visually-hidden">
             <?= $caption ?? I18N::translate('Module Updates') ?>
@@ -98,7 +99,9 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                 <th><?= I18N::translate('Current Version') ?></th>
                 <th><?= I18N::translate('Latest Version') ?></th>
                 <th><?= I18N::translate('Update Service') ?></th>
+                <?php if ($telemetry_opt_in) : ?>
                 <th><?= I18N::translate('Installs') ?></th>
+                <?php endif ?>
                 <th><?= MoreI18N::xlate('Enabled') ?></th>
                 <th><?= I18N::translate('Install') ?></th>
                 <th><?= MoreI18N::xlate('Delete') ?></th>
@@ -244,6 +247,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     </td>
 
                     <!-- Installs -->
+                    <?php if ($telemetry_opt_in) : ?>
                     <?php
                         $standard_module_name = ModuleUpdateServiceConfiguration::getStandardModuleName($module_name);
                         $telemetry_id = $standard_module_name !== '' ? $standard_module_name : $module_name;
@@ -252,6 +256,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <td data-sort="<?= $install_count ?>">
                         <?= $install_count > 0 ? $install_count : '-' ?>
                     </td>
+                    <?php endif ?>
 
                     <!-- Enabled -->
                     <td data-sort="<?= $module_status ?>">
