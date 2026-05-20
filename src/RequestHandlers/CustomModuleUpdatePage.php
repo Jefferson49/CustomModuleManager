@@ -76,15 +76,31 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
         /** @var CustomModuleManager $custom_module_manager To avoid IDE warnings */
         $custom_module_manager = $module_service->findByName(module_name: CustomModuleManager::activeModuleName());    
 
+        $module_names = ModuleUpdateServiceConfiguration::getModuleNames();
+
+        // Submit telemetry when checking for updates
+        if ($fetch_latest && $custom_module_manager !== null) {
+            $installed_modules = $module_service->findByInterface(ModuleCustomInterface::class, true)
+                ->map(static fn ($module) => $module->name())
+                ->values()
+                ->all();
+            $custom_module_manager->submitTelemetry($installed_modules);
+        }
+
+        // Fetch telemetry statistics
+        $telemetry_stats = $custom_module_manager !== null ? $custom_module_manager->fetchTelemetryStatistics() : [];
+
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::module_update', [
             'title'                      => I18N::translate('Custom Module Updates'),
             'custom_module_manager'      => $custom_module_manager,
             'module_service'             => $module_service,
-            'module_names'               => ModuleUpdateServiceConfiguration::getModuleNames(),
+            'module_names'               => $module_names,
             'custom_modules'             => $module_service->findByInterface(ModuleCustomInterface::class, true),
             'themes'                     => $module_service->findByInterface(ModuleThemeInterface::class, true),
             'fetch_latest'               => $fetch_latest,
             'modules_to_show'            => $custom_module_manager->getPreference(CustomModuleManager::PREF_MODULES_TO_SHOW, CustomModuleManager::PREF_SHOW_ALL),
+            'telemetry_opt_in'           => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_TELEMETRY_OPT_IN, '1')),
+            'telemetry_stats'            => $telemetry_stats,
         ]);
     }
 }

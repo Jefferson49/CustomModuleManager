@@ -60,6 +60,20 @@ The module allows to provide a GitHub API token in the module settings. In order
 + Do NOT select any options
 + Press "Generate token" button at the bottom of the page
 
+## Community Telemetry
+
+To help the community understand which custom modules are most actively used, this module includes a telemetry feature to collect aggregate data on module installations.
+
+This feature is enabled by default to help build accurate statistics, but can be easily opted out of by the site administrator in the module configuration.
+
+While enabled, the module will securely send an anonymous list of installed module names to a centralized database during the normal version-check routine. This data powers a feature in the Custom Module Manager, allowing you to see the global number of active installations for each module directly in the directory.
+
+Data Privacy Guarantees:
+
++ Easy Opt-Out: Telemetry can be disabled at any time in the module settings. Once opted out, no data is sent.
++ Fully Anonymous: The system does not collect URLs, IP addresses, admin emails, or core database contents. Sites are identified only by a random site ID (the exact same ID used by the core webtrees installation to anonymously report PHP and database versions).
++ Ecosystem Only: The only data transmitted is an array of strings representing the internal names of installed custom modules. Not even the local folder names are sent.
+
 ## How to use the module?
 
 + Go to "Control Panel/All Modules" and find the "Custom Module Manager" module

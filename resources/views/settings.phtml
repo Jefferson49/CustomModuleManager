@@ -17,6 +17,9 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
  * @var bool   $php_extension_zip_missing
  * @var string $github_api_token
  * @var string $modules_to_show
+ * @var bool   $telemetry_opt_in
+ * @var string $telemetry_url
+ * @var string $telemetry_key
  */
 
 ?>
@@ -113,6 +116,46 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 		</div>
 
 	</div>
+
+	<div class="row mb-3"><?= view('icons/spacer') ?></div>
+
+	<div class="h4">
+		<?= I18N::translate('Community Telemetry') ?>
+	</div>
+	<p><?= I18N::translate('Anonymously share the list of installed custom modules to help the community understand module popularity.') ?></p>
+
+	<fieldset class="mb-3">
+		<div class="row">
+			<legend class="col-form-label col-sm-3">
+				<?= I18N::translate('Opt-in to anonymous community telemetry') ?>
+			</legend>
+			<div class="col-sm-9">
+				<?= view('components/checkbox', ['label' => I18N::translate('Opt-in to anonymous community telemetry'), 'name' => CustomModuleManager::PREF_TELEMETRY_OPT_IN, 'checked' => $telemetry_opt_in]) ?>
+				<div class="form-text">
+					<?= I18N::translate('Help improve the webtrees ecosystem! If checked, your server will anonymously share which custom modules you have installed. No personal data, IP addresses, or family tree information is ever collected. You can disable this at any time.') ?>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label wt-page-options-label" for="telemetry_url">
+			<?= I18N::translate('Telemetry URL') ?>
+		</label>
+		<div class="col-sm-9 wt-page-options-value">
+			<input class="form-control" id="telemetry_url" name="<?= CustomModuleManager::PREF_TELEMETRY_URL ?>" type="text" value="<?= e($telemetry_url) ?>">
+		</div>
+	</div>
+
+	<div class="row mb-3">
+		<label class="col-sm-3 col-form-label wt-page-options-label" for="telemetry_key">
+			<?= I18N::translate('Telemetry API key') ?>
+		</label>
+		<div class="col-sm-9 wt-page-options-value">
+			<input class="form-control" id="telemetry_key" name="<?= CustomModuleManager::PREF_TELEMETRY_KEY ?>" type="text" value="<?= e($telemetry_key) ?>">
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col">
 			<p></p>
