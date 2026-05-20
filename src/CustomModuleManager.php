@@ -884,7 +884,7 @@ class CustomModuleManager extends AbstractModule implements
 
         try {
             $client = new Client();
-            $client->post($telemetry_url . '/submit_telemetry', [
+            $response = $client->post($telemetry_url . '/submit_telemetry', [
                 'timeout' => 3.0,
                 'headers' => [
                     'Content-Type'  => 'application/json',
@@ -896,8 +896,12 @@ class CustomModuleManager extends AbstractModule implements
                     'modules_list' => array_values($module_names),
                 ],
             ]);
-        } catch (Throwable) {
-            // Silently ignore any telemetry errors
+
+            if ($this->debuggingActivated()) {
+                FlashMessages::addMessage('Telemetry submit: HTTP ' . $response->getStatusCode() . ' — ' . $response->getBody()->getContents(), 'info');
+            }
+        } catch (Throwable $ex) {
+            FlashMessages::addMessage('Telemetry submit error: ' . $ex->getMessage(), 'danger');
         }
     }
 
@@ -936,7 +940,13 @@ class CustomModuleManager extends AbstractModule implements
                 'json' => (object) [],
             ]);
 
-            $data = json_decode($response->getBody()->getContents(), true);
+            $body = $response->getBody()->getContents();
+
+            if ($this->debuggingActivated()) {
+                FlashMessages::addMessage('Telemetry stats: HTTP ' . $response->getStatusCode() . ' — ' . substr($body, 0, 500), 'info');
+            }
+
+            $data = json_decode($body, true);
 
             $stats = [];
             if (is_array($data)) {
@@ -948,7 +958,8 @@ class CustomModuleManager extends AbstractModule implements
             }
 
             $cached_stats = $stats;
-        } catch (Throwable) {
+        } catch (Throwable $ex) {
+            FlashMessages::addMessage('Telemetry stats error: ' . $ex->getMessage(), 'danger');
             $cached_stats = [];
         }
 
