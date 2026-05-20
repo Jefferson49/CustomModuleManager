@@ -131,6 +131,9 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 			</legend>
 			<div class="col-sm-9">
 				<?= view('components/checkbox', ['label' => I18N::translate('Opt-in to anonymous community telemetry'), 'name' => CustomModuleManager::PREF_TELEMETRY_OPT_IN, 'checked' => $telemetry_opt_in]) ?>
+				<div class="form-text">
+					<?= I18N::translate('Help improve the webtrees ecosystem! If checked, your server will anonymously share which custom modules you have installed. No personal data, IP addresses, or family tree information is ever collected. You can disable this at any time.') ?>
+				</div>
 			</div>
 		</div>
 	</fieldset>
