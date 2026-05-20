@@ -33,6 +33,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
  * @var array               $module_names
  * @var bool                $fetch_latest
  * @var string              $modules_to_show
+ * @var array               $telemetry_stats
  */
 
 ?>
@@ -78,6 +79,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
             null,
             null,
             null,
+            ['type' => 'num'],
             ['type' => 'html', 'searchable' => false],
             ['type' => 'html', 'searchable' => false],
             ['type' => 'html', 'searchable' => false],
@@ -96,6 +98,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                 <th><?= I18N::translate('Current Version') ?></th>
                 <th><?= I18N::translate('Latest Version') ?></th>
                 <th><?= I18N::translate('Update Service') ?></th>
+                <th><?= I18N::translate('Installs') ?></th>
                 <th><?= MoreI18N::xlate('Enabled') ?></th>
                 <th><?= I18N::translate('Install') ?></th>
                 <th><?= MoreI18N::xlate('Delete') ?></th>
@@ -238,6 +241,12 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <!--Update Service -->
                     <td data-sort="<?= $module_update_service_name ?>">
                         <?= $module_update_service_name ?>
+                    </td>
+
+                    <!-- Installs -->
+                    <?php $install_count = $telemetry_stats[$module_name] ?? 0 ?>
+                    <td data-sort="<?= $install_count ?>">
+                        <?= $install_count > 0 ? $install_count : '-' ?>
                     </td>
 
                     <!-- Enabled -->

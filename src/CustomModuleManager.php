@@ -52,11 +52,13 @@ use Fisharebest\Webtrees\Module\ModuleListInterface;
 use Fisharebest\Webtrees\Module\ModuleListTrait;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Site;
 use Fisharebest\Webtrees\Validator;
 use Fisharebest\Webtrees\Session;
 use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Webtrees;
+use GuzzleHttp\Client;
 use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
 use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
@@ -118,6 +120,13 @@ class CustomModuleManager extends AbstractModule implements
     public const PREF_SHOW_ALL            = 'show_all_modules';
     public const PREF_SHOW_INSTALLED      = 'show_installed_modules';
     public const PREF_SHOW_NOT_INSTALLED  = 'show_not_installed_modules';
+    public const PREF_TELEMETRY_OPT_IN    = 'telemetry_opt_in';
+    public const PREF_TELEMETRY_URL       = 'telemetry_url';
+    public const PREF_TELEMETRY_KEY       = 'telemetry_key';
+
+    //Telemetry defaults
+    public const DEFAULT_TELEMETRY_URL = 'https://fzzgvxqcqngxbhohnxdv.supabase.co/rest/v1/rpc';
+    public const DEFAULT_TELEMETRY_KEY = 'sb_publishable_LYDPMFM9k8j1S8c9Ba1MGw_2MGiQxzP';
     public const PREF_SHOW_MENU_LIST_ITEM = 'show_menu_list_item';
     public const PREF_LATEST_VERSION      = 'latest';
     public const PREF_IGNORE_VERSION      = 'ignore';
@@ -481,6 +490,9 @@ class CustomModuleManager extends AbstractModule implements
                 self::PREF_GITHUB_API_TOKEN    => $this->getPreference(self::PREF_GITHUB_API_TOKEN, ''),
                 self::PREF_MODULES_TO_SHOW     => $this->getPreference(self::PREF_MODULES_TO_SHOW, self::PREF_SHOW_ALL),
 				self::PREF_SHOW_MENU_LIST_ITEM => boolval($this->getPreference(self::PREF_SHOW_MENU_LIST_ITEM, '1')),
+                self::PREF_TELEMETRY_OPT_IN    => boolval($this->getPreference(self::PREF_TELEMETRY_OPT_IN, '1')),
+                self::PREF_TELEMETRY_URL       => $this->getPreference(self::PREF_TELEMETRY_URL, self::DEFAULT_TELEMETRY_URL),
+                self::PREF_TELEMETRY_KEY       => $this->getPreference(self::PREF_TELEMETRY_KEY, self::DEFAULT_TELEMETRY_KEY),
             ]
         );
     }
@@ -498,12 +510,18 @@ class CustomModuleManager extends AbstractModule implements
         $github_api_token    = Validator::parsedBody($request)->string(self::PREF_GITHUB_API_TOKEN, '');
         $modules_to_show     = Validator::parsedBody($request)->string(self::PREF_MODULES_TO_SHOW, self::PREF_SHOW_ALL);
         $show_menu_list_item = Validator::parsedBody($request)->boolean(self::PREF_SHOW_MENU_LIST_ITEM, false);
+        $telemetry_opt_in    = Validator::parsedBody($request)->boolean(self::PREF_TELEMETRY_OPT_IN, false);
+        $telemetry_url       = Validator::parsedBody($request)->string(self::PREF_TELEMETRY_URL, self::DEFAULT_TELEMETRY_URL);
+        $telemetry_key       = Validator::parsedBody($request)->string(self::PREF_TELEMETRY_KEY, self::DEFAULT_TELEMETRY_KEY);
 
         //Save the received settings to the user preferences
         if ($save === '1') {
 			$this->setPreference(self::PREF_GITHUB_API_TOKEN, $github_api_token);
 			$this->setPreference(self::PREF_MODULES_TO_SHOW, $modules_to_show);
 			$this->setPreference(self::PREF_SHOW_MENU_LIST_ITEM, $show_menu_list_item ? '1' : '0');
+			$this->setPreference(self::PREF_TELEMETRY_OPT_IN, $telemetry_opt_in ? '1' : '0');
+			$this->setPreference(self::PREF_TELEMETRY_URL, $telemetry_url);
+			$this->setPreference(self::PREF_TELEMETRY_KEY, $telemetry_key);
         }
 
         //Finally, show a success message
@@ -836,6 +854,105 @@ class CustomModuleManager extends AbstractModule implements
         self::$github_communication_error = true;
 
         return false;
+    }
+
+    /**
+     * Submit telemetry data to the community telemetry service.
+     * Sends the list of installed custom module names along with a site UUID.
+     *
+     * @param array<string> $module_names  Array of installed custom module names
+     *
+     * @return void
+     */
+    public function submitTelemetry(array $module_names): void
+    {
+        $opt_in = boolval($this->getPreference(self::PREF_TELEMETRY_OPT_IN, '1'));
+
+        if (!$opt_in) {
+            return;
+        }
+
+        $telemetry_url = $this->getPreference(self::PREF_TELEMETRY_URL, self::DEFAULT_TELEMETRY_URL);
+        $telemetry_key = $this->getPreference(self::PREF_TELEMETRY_KEY, self::DEFAULT_TELEMETRY_KEY);
+
+        $site_uuid = Site::getPreference('SITE_UUID');
+
+        if ($site_uuid === '') {
+            $site_uuid = Registry::idFactory()->uuid();
+            Site::setPreference('SITE_UUID', $site_uuid);
+        }
+
+        try {
+            $client = new Client();
+            $client->post($telemetry_url . '/submit_telemetry', [
+                'timeout' => 3.0,
+                'headers' => [
+                    'Content-Type'  => 'application/json',
+                    'apikey'        => $telemetry_key,
+                    'Authorization' => 'Bearer ' . $telemetry_key,
+                ],
+                'json' => [
+                    'site_uuid'    => $site_uuid,
+                    'modules_list' => array_values($module_names),
+                ],
+            ]);
+        } catch (Throwable) {
+            // Silently ignore any telemetry errors
+        }
+    }
+
+    /**
+     * Fetch module installation statistics from the community telemetry service.
+     *
+     * @return array<string,int>  Mapping of module_name => active_installs count
+     */
+    public function fetchTelemetryStatistics(): array
+    {
+        static $cached_stats = null;
+
+        if ($cached_stats !== null) {
+            return $cached_stats;
+        }
+
+        $opt_in = boolval($this->getPreference(self::PREF_TELEMETRY_OPT_IN, '1'));
+
+        if (!$opt_in) {
+            $cached_stats = [];
+            return $cached_stats;
+        }
+
+        $telemetry_url = $this->getPreference(self::PREF_TELEMETRY_URL, self::DEFAULT_TELEMETRY_URL);
+        $telemetry_key = $this->getPreference(self::PREF_TELEMETRY_KEY, self::DEFAULT_TELEMETRY_KEY);
+
+        try {
+            $client   = new Client();
+            $response = $client->post($telemetry_url . '/get_module_statistics', [
+                'timeout' => 3.0,
+                'headers' => [
+                    'Content-Type'  => 'application/json',
+                    'apikey'        => $telemetry_key,
+                    'Authorization' => 'Bearer ' . $telemetry_key,
+                ],
+                'json' => (object) [],
+            ]);
+
+            $data = json_decode($response->getBody()->getContents(), true);
+
+            $stats = [];
+            if (is_array($data)) {
+                foreach ($data as $entry) {
+                    if (isset($entry['module_name'], $entry['active_installs'])) {
+                        $stats[$entry['module_name']] = (int) $entry['active_installs'];
+                    }
+                }
+            }
+
+            $cached_stats = $stats;
+        } catch (Throwable) {
+            $cached_stats = [];
+        }
+
+        return $cached_stats;
     }
 
     /**
