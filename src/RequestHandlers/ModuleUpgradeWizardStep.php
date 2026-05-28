@@ -213,8 +213,9 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $abort = false;
         /** @var AbstractModuleUpdate $module_update_service  To avoid IDE warnings */
         $module_update_service = $this->module_update_service;
+        $module_name  = $module_update_service->getModuleName();
         $module_title = $module_update_service->title();
-        $folder_name = $module_update_service::getInstallationFolderFromModuleName($module_update_service->getModuleName());
+        $folder_name  = $module_update_service::getInstallationFolderFromModuleName($module_update_service->getModuleName());
 
         if ($action === CustomModuleManager::ACTION_INSTALL) {
             $alert = I18N::translate('Installing module "%s" (to folder: "/module_v4/%s")', $module_title, $folder_name) . "\n\n";
@@ -252,11 +253,11 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                     $alert .= I18N::translate('Installing version: "%s"', I18N::translate('Latest version'));
                 }
                 else {
-                    $alert .= I18N::translate('Installing version: "%s"',e($latest_version));
+                    $alert .= I18N::translate('Installing version: "%s"',e(CustomModuleManager::normalizeVersion($module_name, $latest_version)));
                 }
             }
             else {
-                $alert .= I18N::translate('Upgrading the module from version "%s" to version "%s"', e($current_version), e($latest_version));
+                $alert .= I18N::translate('Upgrading the module from version "%s" to version "%s"', e($current_version), e(CustomModuleManager::normalizeVersion($module_name, $latest_version)));
             }
         }
 
