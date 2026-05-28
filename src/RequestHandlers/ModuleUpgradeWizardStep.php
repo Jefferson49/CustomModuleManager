@@ -114,6 +114,9 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     // Wether we operate in the context of a modal
     private bool $modal;
 
+    // The version of the module, which shall be installed
+    private string $version_to_install = '';
+
 
     /**
      * @param UpgradeService $webtrees_upgrade_service
@@ -253,10 +256,12 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                     $alert .= I18N::translate('Installing version: "%s"', I18N::translate('Latest version'));
                 }
                 else {
+                    $this->version_to_install = $latest_version;
                     $alert .= I18N::translate('Installing version: "%s"',e(CustomModuleManager::normalizeVersion($module_name, $latest_version)));
                 }
             }
             else {
+                $this->version_to_install = $latest_version;
                 $alert .= I18N::translate('Upgrading the module from version "%s" to version "%s"', e($current_version), e(CustomModuleManager::normalizeVersion($module_name, $latest_version)));
             }
         }
@@ -445,9 +450,9 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
                 $this->webtrees_upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
 
-                // Reset stored version
+                // Replace stored version by the installed version 
                 $short_module_name = substr($module_name, 0, 25) . '_';
-                $custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, '');
+                $custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, $this->version_to_install);
             }
             $alert      = MoreI18N::xlate('The upgrade is complete.');
             $alert_type = self::ALERT_SUCCESS;
