@@ -276,6 +276,58 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     }
 
     /**
+     * Get the cached download count for this module.
+     * 
+     * Fetches the maximum download count across the latest 3 releases' assets.
+     * The result is cached for 24 hours using module preferences to avoid hitting 
+     * GitHub API rate limits on every page load.
+     *
+     * @return int  The download count, or -1 if unavailable
+     */
+    public function getDownloadCount(): int
+    {
+        $short_module_name = substr($this->module_name, 0, 25) . '_';
+        $cache_key = $short_module_name . CustomModuleManager::PREF_DOWNLOAD_COUNT;
+        $cache_time_key = $short_module_name . CustomModuleManager::PREF_DOWNLOAD_COUNT_TIME;
+
+        // Check if we have a cached value that is less than 24 hours old
+        $cached_time = (int) $this->custom_module_manager->getPreference($cache_time_key, '0');
+        $cached_count = $this->custom_module_manager->getPreference($cache_key, '');
+
+        if ($cached_count !== '' && (time() - $cached_time) < 86400) {
+            return (int) $cached_count;
+        }
+
+        // If the module does not provide releases, we cannot get download counts
+        if ($this->no_release) {
+            return -1;
+        }
+
+        $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
+
+        try {
+            $download_count = GithubService::getRecentReleasesMaxDownloads($this->github_repo, $github_api_token);
+
+            // Cache the result
+            $this->custom_module_manager->setPreference($cache_key, (string) $download_count);
+            $this->custom_module_manager->setPreference($cache_time_key, (string) time());
+
+            return $download_count;
+        } catch (GithubCommunicationError $ex) {
+            // If we have a stale cached value, return it rather than nothing
+            if ($cached_count !== '') {
+                return (int) $cached_count;
+            }
+
+            if (!CustomModuleManager::rememberGithubCommunciationError()) {
+                FlashMessages::addMessage(I18N::translate('Communication error with %s', self::NAME), 'danger');
+            }
+
+            return -1;
+        }
+    }
+
+    /**
      * Get the latest release URL
      *
      * @return string

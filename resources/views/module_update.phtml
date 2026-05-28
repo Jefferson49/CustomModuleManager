@@ -78,6 +78,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
             null,
             null,
             null,
+            ['type' => 'num', 'searchable' => false],
             ['type' => 'html', 'searchable' => false],
             ['type' => 'html', 'searchable' => false],
             ['type' => 'html', 'searchable' => false],
@@ -96,6 +97,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                 <th><?= I18N::translate('Current Version') ?></th>
                 <th><?= I18N::translate('Latest Version') ?></th>
                 <th><?= I18N::translate('Update Service') ?></th>
+                <th><?= I18N::translate('Downloads') ?></th>
                 <th><?= MoreI18N::xlate('Enabled') ?></th>
                 <th><?= I18N::translate('Install') ?></th>
                 <th><?= MoreI18N::xlate('Delete') ?></th>
@@ -238,6 +240,12 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <!--Update Service -->
                     <td data-sort="<?= $module_update_service_name ?>">
                         <?= $module_update_service_name ?>
+                    </td>
+
+                    <!--Downloads -->
+                    <?php $download_count = ($module_update_service instanceof GithubModuleUpdate) ? $module_update_service->getDownloadCount() : -1 ?>
+                    <td data-sort="<?= $download_count ?>">
+                        <?= $download_count >= 0 ? number_format($download_count) : I18N::translate('N/A') ?>
                     </td>
 
                     <!-- Enabled -->
