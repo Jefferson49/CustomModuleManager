@@ -121,8 +121,6 @@ class CustomModuleManager extends AbstractModule implements
     public const PREF_SHOW_MENU_LIST_ITEM = 'show_menu_list_item';
     public const PREF_LATEST_VERSION      = 'latest';
     public const PREF_IGNORE_VERSION      = 'ignore';
-    public const PREF_DOWNLOAD_COUNT      = 'dl';
-    public const PREF_DOWNLOAD_COUNT_TIME = 'dl_t';
 
     //Configuraton
     public const CONFIG_GITHUB_BRANCH     = 'config';

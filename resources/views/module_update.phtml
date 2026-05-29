@@ -134,7 +134,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <?php if ($module !== null) : ?>
                         <?php $latest_version = $module_update_service->customModuleLatestVersion($fetch_latest) ?>
                     <?php else : ?>
-                        <?php $latest_version = '' ?>
+                        <?php $latest_version = $module_update_service->customModuleLatestVersion($fetch_latest) ?>
                         <?php $later_version_available = false ?>
                     <?php endif ?>
                     <?php $documentation_url = $module_update_service->documentationUrl() ?>
