@@ -32,6 +32,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
  * @var Collection          $themes
  * @var array               $module_names
  * @var bool                $fetch_latest
+ * @var bool                $fetch_all
  * @var string              $modules_to_show
  */
 
@@ -54,13 +55,23 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
     <div class="alert alert-warning" role="alert" style="white-space: pre-wrap;"><?= I18N::translate('A new version of "%s" is available. It is recommended to upgrade to the latest version before other custom modules are installed/upgraded.', $custom_module_manager->title()) ?></div>
 <?php endif ?>
 
-<?= I18N::translate('Typically, custom modules versions are updated every 24 hours. You can check if later versions are available.') ?><?= view('icons/spacer') ?></div><a href="<?= e(route(CustomModuleUpdatePage::class, [
+<?= I18N::translate('Typically, custom modules versions are updated every 24 hours. You can check if later versions are available.') ?>
+<?= view('icons/spacer') ?>
+<a href="<?= e(route(CustomModuleUpdatePage::class, [
         'fetch_latest' => true,
     ])) ?>" type="submit" class="btn btn-primary">
     <?= MoreI18N::xlate('check now') ?>
 </a>
-<div class="row mb-3"><?= view('icons/spacer') ?></div>
 
+<p class="mt-3">
+<?= I18N::translate('Fetch the latest version and download statistics for all modules (including not installed). This requires one API call per module and may take a moment.') ?>
+</p>
+<a href="<?= e(route(CustomModuleUpdatePage::class, [
+        'fetch_all' => true,
+    ])) ?>" type="submit" class="btn btn-secondary">
+    <?= I18N::translate('Fetch all') ?>
+</a>
+<div class="row mb-3"><?= view('icons/spacer') ?></div>
 
 <form method="post" action="<?= e(route(CustomModuleActivateAction::class)) ?>">
     <table
@@ -78,6 +89,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
             null,
             null,
             null,
+            ['type' => 'num', 'searchable' => false],
             ['type' => 'html', 'searchable' => false],
             ['type' => 'html', 'searchable' => false],
             ['type' => 'html', 'searchable' => false],
@@ -96,6 +108,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                 <th><?= I18N::translate('Current Version') ?></th>
                 <th><?= I18N::translate('Latest Version') ?></th>
                 <th><?= I18N::translate('Update Service') ?></th>
+                <th><?= I18N::translate('Downloads') ?></th>
                 <th><?= MoreI18N::xlate('Enabled') ?></th>
                 <th><?= I18N::translate('Install') ?></th>
                 <th><?= MoreI18N::xlate('Delete') ?></th>
@@ -130,9 +143,9 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <?php $category = $module_update_service->getCategory() ?>
                     <?php $current_version = $module_update_service->customModuleVersion() ?>
                     <?php if ($module !== null) : ?>
-                        <?php $latest_version = $module_update_service->customModuleLatestVersion($fetch_latest) ?>
+                        <?php $latest_version = $module_update_service->customModuleLatestVersion($fetch_latest || $fetch_all) ?>
                     <?php else : ?>
-                        <?php $latest_version = '' ?>
+                        <?php $latest_version = $module_update_service->customModuleLatestVersion($fetch_all) ?>
                         <?php $later_version_available = false ?>
                     <?php endif ?>
                     <?php $documentation_url = $module_update_service->documentationUrl() ?>
@@ -238,6 +251,12 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     <!--Update Service -->
                     <td data-sort="<?= $module_update_service_name ?>">
                         <?= $module_update_service_name ?>
+                    </td>
+
+                    <!--Downloads -->
+                    <?php $download_count = ($module_update_service instanceof GithubModuleUpdate) ? $module_update_service->getDownloadCount() : -1 ?>
+                    <td data-sort="<?= $download_count ?>">
+                        <?= $download_count >= 0 ? number_format($download_count) : I18N::translate('N/A') ?>
                     </td>
 
                     <!-- Enabled -->

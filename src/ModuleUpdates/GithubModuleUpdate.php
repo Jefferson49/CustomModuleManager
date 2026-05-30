@@ -34,6 +34,7 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleInterface;
+use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
 use Jefferson49\Webtrees\Helpers\GithubService;
@@ -214,20 +215,14 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
             $latest_version =  self::getLatestVersionByUpdateURL($module);
         }
-        // Otherwise, try to get the latest version from Github
+        // Otherwise, try to get the latest version from Github using the combined call
+        // This also populates the download count cache as a side effect (piggybacking)
         elseif ($latest_version === '' && $this->github_repo !== '') {
 
-            $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');       
-
-            try {
-                $latest_version = GithubService::getLatestReleaseTag($this->github_repo, $github_api_token);
-            }
-            catch (GithubCommunicationError $ex) {
-                // Can't connect to GitHub? 
-                    if (!CustomModuleManager::rememberGithubCommunciationError()) {
-                    FlashMessages::addMessage(I18N::translate('Communication error with %s', self::NAME), 'danger');
-                }
-            }
+            // Only fetch from GitHub if explicitly requested (fetch_latest=true or fetch_all)
+            // Otherwise, just read from cache (returns empty if not yet fetched)
+            $info = $this->fetchReleasesInfoCached($fetch_latest);
+            $latest_version = $info['tag'];
         }
 
         if ($module !== null) {
@@ -273,6 +268,69 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function providesReleasesInRepository(): bool {
         return !$this->no_release;
+    }
+
+    /**
+     * Get the cached download count for this module.
+     * 
+     * Returns the download count from the file cache. The cache is only populated
+     * when the user explicitly triggers a fetch (via the "Fetch versions & downloads" button).
+     * Returns -1 if no cached data is available.
+     *
+     * @return int  The download count, or -1 if unavailable
+     */
+    public function getDownloadCount(): int
+    {
+        // If the module does not provide releases, we cannot get download counts
+        if ($this->no_release) {
+            return -1;
+        }
+
+        // Only read from cache — never trigger an API call automatically
+        return $this->fetchReleasesInfoCached(false)['max_downloads'];
+    }
+
+    /**
+     * Fetch combined release information (version tag + download count) from GitHub,
+     * using the webtrees file cache.
+     * 
+     * This method fetches /releases?per_page=3 and caches both the latest version tag
+     * and the maximum download count across the 3 most recent releases. The cache uses
+     * no explicit TTL (persists until manually refreshed or garbage collected).
+     * 
+     * The cache is only populated when explicitly requested by the user via the
+     * "Fetch versions & downloads" button. On normal page loads, only cached data is read.
+     *
+     * @param bool $force_refresh  Whether to invalidate the cache and fetch fresh data from GitHub
+     * 
+     * @return array{tag: string, max_downloads: int}
+     */
+    public function fetchReleasesInfoCached(bool $force_refresh = false): array
+    {
+        $cache_key = 'cmm-releases-' . md5($this->github_repo);
+
+        if ($force_refresh) {
+            Registry::cache()->file()->forget($cache_key);
+
+            return Registry::cache()->file()->remember($cache_key, function (): array {
+                $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
+
+                try {
+                    return GithubService::getRecentReleasesInfo($this->github_repo, $github_api_token);
+                } catch (GithubCommunicationError $ex) {
+                    if (!CustomModuleManager::rememberGithubCommunciationError()) {
+                        FlashMessages::addMessage(I18N::translate('Communication error with %s', self::NAME), 'danger');
+                    }
+
+                    return ['tag' => '', 'max_downloads' => -1];
+                }
+            });
+        }
+
+        // Read-only: return cached data or defaults if nothing cached yet
+        return Registry::cache()->file()->remember($cache_key, function (): array {
+            return ['tag' => '', 'max_downloads' => -1];
+        });
     }
 
     /**
