@@ -194,19 +194,24 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     public function customModuleLatestVersion(bool $fetch_latest = false): string
     {
         $latest_version = '';
-        $stored_version = '';
         $module = $this->getModule();
 
         // If the installed module is available, try to get latest version from the module
         if ($module !== null && !$fetch_latest && !$this->get_latest_version_from_github) {
 
-            $latest_version = $module->customModuleLatestVersion();
             $short_module_name = substr($module->name(), 0, 25) . '_';
+            $latest_version = $module->customModuleLatestVersion();
+            $cached_version = $this->fetchReleasesInfoCached(false)['tag'];
             $stored_version = $this->custom_module_manager->getPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, '');
 
-            // If we had retrieved and stored a later version before
+            // If we had installed and stored a higher version before
             if (CustomModuleManager::versionCompare($module->name(), $stored_version, $latest_version) > 0) {
                 $latest_version = $stored_version;
+            }
+
+            // If the cached version is higher
+            if (CustomModuleManager::versionCompare($module->name(), $cached_version, $latest_version) > 0) {
+                $latest_version = $cached_version;
             }
         }
 
@@ -215,28 +220,12 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
             $latest_version =  self::getLatestVersionByUpdateURL($module);
         }
-        // Otherwise, try to get the latest version from Github using the combined call
-        // This also populates the download count cache as a side effect (piggybacking)
+        // Otherwise, try to get the latest version from Github
+        // This also populates the download count cache as a side effect
         elseif ($latest_version === '' && $this->github_repo !== '') {
 
-            // Only fetch from GitHub if explicitly requested (fetch_latest=true or fetch_all)
-            // Otherwise, just read from cache (returns empty if not yet fetched)
-            $info = $this->fetchReleasesInfoCached($fetch_latest);
-            $latest_version = $info['tag'];
-        }
-
-        if ($module !== null) {
-            $short_module_name = substr($module->name(), 0, 25) . '_';
-
-            // If a later version was retrieved, store it 
-            if (CustomModuleManager::versionCompare($module->name(), $latest_version, $this->customModuleVersion()) > 0) {
-
-                $this->custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, $latest_version);
-            }
-            // Otherwise, reset stored version
-            elseif ($stored_version !== '') {
-                $this->custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, '');
-            } 
+            $release_info = $this->fetchReleasesInfoCached($fetch_latest);
+            $latest_version = $release_info['tag'];
         }
 
         return $latest_version;
@@ -296,10 +285,10 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      * 
      * This method fetches /releases?per_page=3 and caches both the latest version tag
      * and the maximum download count across the 3 most recent releases. The cache uses
-     * no explicit TTL (persists until manually refreshed or garbage collected).
+     * 30 days TTL (persists until force refreshed manually).
      * 
-     * The cache is only populated when explicitly requested by the user via the
-     * "Fetch versions & downloads" button. On normal page loads, only cached data is read.
+     * The cache is populated once. Afterwards, only updated if explicitly requested 
+     * by the user via the"Check now" button. On normal page loads, only cached data is read.
      *
      * @param bool $force_refresh  Whether to invalidate the cache and fetch fresh data from GitHub
      * 
@@ -307,30 +296,26 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function fetchReleasesInfoCached(bool $force_refresh = false): array
     {
-        $cache_key = 'cmm-releases-' . md5($this->github_repo);
+        $cache_key = CustomModuleManager::CACHE_REALEASE_INFO . md5($this->github_repo);
 
+        // If refresh shall be forced, we delete the cache in advance (before fetching data)
         if ($force_refresh) {
             Registry::cache()->file()->forget($cache_key);
-
-            return Registry::cache()->file()->remember($cache_key, function (): array {
-                $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
-
-                try {
-                    return GithubService::getRecentReleasesInfo($this->github_repo, $github_api_token);
-                } catch (GithubCommunicationError $ex) {
-                    if (!CustomModuleManager::rememberGithubCommunciationError()) {
-                        FlashMessages::addMessage(I18N::translate('Communication error with %s', self::NAME), 'danger');
-                    }
-
-                    return ['tag' => '', 'max_downloads' => -1];
-                }
-            });
         }
 
-        // Read-only: return cached data or defaults if nothing cached yet
         return Registry::cache()->file()->remember($cache_key, function (): array {
-            return ['tag' => '', 'max_downloads' => -1];
-        });
+            $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
+
+            try {
+                return GithubService::getRecentReleasesInfo($this->github_repo, $github_api_token);
+            } catch (GithubCommunicationError $ex) {
+                if (!CustomModuleManager::rememberGithubCommunciationError()) {
+                    FlashMessages::addMessage(I18N::translate('Communication error with %s', self::NAME), 'danger');
+                }
+
+                return ['tag' => '', 'max_downloads' => -1];
+            }
+        }, 86400 * 30); // Cache for 30 days (or until manually refreshed)
     }
 
     /**

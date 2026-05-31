@@ -64,7 +64,6 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
         $tree         = Validator::attributes($request)->treeOptional();
         $user         = Validator::attributes($request)->user();
         $fetch_latest = Validator::queryParams($request)->boolean('fetch_latest', false);
-        $fetch_all    = Validator::queryParams($request)->boolean('fetch_all', false);
 
         // If no administrator, redirect to home page
         if (!($user instanceof User) OR !Auth::isAdmin($user)) {
@@ -85,7 +84,6 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
             'custom_modules'             => $module_service->findByInterface(ModuleCustomInterface::class, true),
             'themes'                     => $module_service->findByInterface(ModuleThemeInterface::class, true),
             'fetch_latest'               => $fetch_latest,
-            'fetch_all'                  => $fetch_all,
             'modules_to_show'            => $custom_module_manager->getPreference(CustomModuleManager::PREF_MODULES_TO_SHOW, CustomModuleManager::PREF_SHOW_ALL),
         ]);
     }

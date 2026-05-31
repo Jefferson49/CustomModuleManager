@@ -153,6 +153,9 @@ class CustomModuleManager extends AbstractModule implements
     //Errors
     public const ERROR_MAX_LENGTH = 500;
 
+    //Cache
+    public const CACHE_REALEASE_INFO      = 'cmm-release-info-';
+
     //Supported webtrees version
     public const MINIMUM_WEBTREES_VERSION = '2.2.3';
 
