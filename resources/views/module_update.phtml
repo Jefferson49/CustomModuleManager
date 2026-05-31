@@ -70,14 +70,15 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
         <?= view('lists/datatables-attributes') ?>
         data-info="false"
         data-paging="false"
-        data-filter="false"
+        data-filter="true"
+        data-layout='{"topEnd":"search"}'
         data-columns="<?= e(json_encode([
             ['type' => 'html'],
-            ['type' => 'html'],
+            ['type' => 'html', 'sortable' => false],
             null,
             null,
-            null,
-            null,
+            ['sortable' => false],
+            ['sortable' => false],
             null,
             ['type' => 'num', 'searchable' => false],
             ['type' => 'html', 'searchable' => false],
@@ -197,11 +198,11 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     </td>
 
                     <!-- Description -->
-                    <td data-sort="<?= e($module_description) ?>">
+                    <td>
                         <?php if ($show_default_description) : ?>
                             <?= CustomModuleManager::DEFAULT_LANGUAGE_PREFIX ?><br>
                         <?php endif ?>
-                        <?= e($module_description) ?>
+                        <?= $module_description ?>
                     </td>
 
                     <!-- Folder -->
