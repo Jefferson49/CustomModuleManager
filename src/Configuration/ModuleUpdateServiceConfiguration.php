@@ -125,7 +125,7 @@ class ModuleUpdateServiceConfiguration
         '_webtrees-descendants-chart_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-descendants-chart', self::CATEGORY => self::CATEGORY_CHARTS]],
         '_webtrees-fan-chart_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-fan-chart', self::CATEGORY => self::CATEGORY_CHARTS]],
         '_webtrees-pedigree-chart_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-pedigree-chart', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_webtrees-statistics_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-statistics', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_webtrees-statistics_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-statistics', self::CATEGORY => self::CATEGORY_CHARTS]],
 
         '_myartjaub_ruraltheme_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jon48/webtrees-theme-rural', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
 
@@ -169,6 +169,7 @@ class ModuleUpdateServiceConfiguration
 
         '_mitalteli-show-xref_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'elysch/webtrees-mitalteli-show-xref', self::CATEGORY => self::CATEGORY_FRONTEND_SIDEBAR]],
         '_mitalteli-chart-family-book_'      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'elysch/webtrees-mitalteli-chart-family-book', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_mitalteli-misc-features_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'elysch/webtrees-mitalteli-misc-features', self::CATEGORY => self::CATEGORY_GEDCOM]],
         '_mitalteli-report-researchtasks_'   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'elysch/webtrees-mitalteli-report-researchtasks', self::CATEGORY => self::CATEGORY_REPORTS]],
 
         '_webtrees-HTML-block-advanced_'     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'photon-flip/webtrees-HTML-block-advanced', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]], 
@@ -222,7 +223,10 @@ class ModuleUpdateServiceConfiguration
         '_tree-explorer_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'szporwolik/webtrees-tree-explorer', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
         '_gendex-generator_'                 =>  ['update_service' => 'UrlModuleUpdate',    'params' => ['download_url' => 'https://codeberg.org/Joppla/Webtrees-GendexGenerator/archive/main.zip', 'documentation_url' => 'https://codeberg.org/Joppla/Webtrees-GendexGenerator#readme', self::CATEGORY => self::CATEGORY_GEDCOM]],
-    ];
+
+        '_media-folder-import_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'garraflavatra/webtrees-media-folder-import', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
+
+        ];
 
     private const MODULES_INSTALLATION_FAILS = [
 
