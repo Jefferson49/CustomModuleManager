@@ -202,7 +202,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                         <?php if ($show_default_description) : ?>
                             <?= CustomModuleManager::DEFAULT_LANGUAGE_PREFIX ?><br>
                         <?php endif ?>
-                        <?= $module_description ?>
+                        <?= substr($module_description, 0, 255) ?>
                     </td>
 
                     <!-- Folder -->
