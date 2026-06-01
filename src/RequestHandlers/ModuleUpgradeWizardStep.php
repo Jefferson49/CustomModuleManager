@@ -487,8 +487,8 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     }
 
     /**
-     * @param array  $module_names  A list with all module names, which shall be updated
-     * @param string $action        The action to be performed, i.e. update or install
+     * @param array  $module_names  A list with all module names, which shall be rolled back
+     * @param string $action        The action, which was performed or the modules, i.e. update or install
      * @param string $error         An error message to show
      *
      * @return ResponseInterface
@@ -507,7 +507,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         try {
             foreach ($module_names as $module_name => $standard_module_name) {
                 $installation_folder = $module_update_service::getInstallationFolderFromModuleName($module_name);
-                $this->rollback($installation_folder);
+                $this->rollback($installation_folder, $action === CustomModuleManager::ACTION_UPDATE);
 
                 //Reset flash error messages for the module
                 $module_update_service::pullFlashErrorMessage($module_name);             
@@ -601,19 +601,24 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
     /**
      * Rollback the module to the backup (e.g. if a test failed)
+     * 
+     * @param string $installation_folder The installation folder of the module, which shall be rolled back
+     * @param bool   $restore             Whether to restore the module from a backup
      *
      * @return void
      */
-    private function rollback($installation_folder): void
+    private function rollback(string $installation_folder, bool $restore = false): void
     {
-        //Delete files of updated module
+        // Delete files of updated module
         $root_filesystem = Registry::filesystem()->root();
         $root_filesystem->deleteDirectory(Webtrees::MODULES_PATH . $installation_folder);
 
-        //Restore files from backup to modules_v4
-        $source_filesystem      = Registry::filesystem()->root(self::BACKUP_FOLDER . Webtrees::MODULES_PATH . $installation_folder);
-        $destination_filesystem = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
-        self::copyFiles($source_filesystem, $destination_filesystem);
+        // If requested, restore files from backup to modules_v4
+        if ($restore) {
+            $source_filesystem      = Registry::filesystem()->root(self::BACKUP_FOLDER . Webtrees::MODULES_PATH . $installation_folder);
+            $destination_filesystem = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
+            self::copyFiles($source_filesystem, $destination_filesystem);
+        }
 
         return;
     }
