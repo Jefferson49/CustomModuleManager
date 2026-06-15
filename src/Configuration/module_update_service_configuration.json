@@ -429,6 +429,26 @@
             "description": "Legal notice as a footer element for this site."
         }
     },
+    "_hh-unlinked-individual_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "hartenthaler\/hh-unlinked-individual",
+            "tag_prefix": "v",
+            "category": "frontend",
+            "title": "Unlinked individual",
+            "description": "Create an unlinked individual"
+        }
+    },
+    "_hh-change-log_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "hartenthaler\/hh-change-log",
+            "tag_prefix": "v",
+            "category": "frontend_tab",
+            "title": "Changes",
+            "description": "A tab showing recent GEDCOM data changes for an individual."
+        }
+    },
     "_german-chancellors-presidents_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -879,6 +899,48 @@
             "category": "media",
             "title": "Import media files from folder",
             "description": "This module adds the possibility to import all media files in the same folder at once from within the admin panel."
+        }
+    },
+    "_user-page-title_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "0ldM4cM4n\/webtrees-user-page-title",
+            "category": "frontend",
+            "title": "User page title",
+            "description": "Personalizes the user page title to display the actual username instead of the generic \"My page\"."
+        }
+    },
+    "_all-ages-export-engine_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "0ldM4cM4n\/all-ages-export-engine",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "gedcom",
+            "title": "All Ages Export Engine",
+            "description": "Export a concise list of all individuals in a tree with birth and death dates."
+        }
+    },
+    "_dead-record-detective_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "0ldM4cM4n\/dead-record-detective",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "admin",
+            "title": "Dead Record Detective",
+            "description": "Scans a family tree and detects individuals with missing, unknown, or placeholder data in key fields."
+        }
+    },
+    "_webtrees-json-api_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "jbh4x82\/webtrees_api",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "admin",
+            "title": "API",
+            "description": "Token-gated JSON API for managing users and individuals."
         }
     }
 }

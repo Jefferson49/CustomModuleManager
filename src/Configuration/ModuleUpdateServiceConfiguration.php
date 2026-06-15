@@ -154,6 +154,8 @@ class ModuleUpdateServiceConfiguration
 
         '_hh_extended_family_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_extended_family', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
         '_hh_legal_notice_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_legal_notice', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FOOTER]],
+        '_hh-unlinked-individual_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh-unlinked-individual', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_hh-change-log_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh-change-log', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
         '_german-chancellors-presidents_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/german-chancellors-presidents', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
         '_german-wars-battles-worldwide_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/german-wars-battles-worldwide', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
         '_gramps-historical-facts_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/gramps-historical-facts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
@@ -226,9 +228,27 @@ class ModuleUpdateServiceConfiguration
 
         '_media-folder-import_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'garraflavatra/webtrees-media-folder-import', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
 
-        ];
+        '_user-page-title_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '0ldM4cM4n/webtrees-user-page-title', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_all-ages-export-engine_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '0ldM4cM4n/all-ages-export-engine', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
+        '_dead-record-detective_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '0ldM4cM4n/dead-record-detective', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_ADMIN]],
 
+        '_webtrees-json-api_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jbh4x82/webtrees_api', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_ADMIN]],
+
+    ];
+
+
+    private const MODULES_BETA_VERSION = [
+
+        '_media-badge_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JRMine/webtrees-media-badge', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+    ];
+        
     private const MODULES_INSTALLATION_FAILS = [
+
+        '_admin-announcement-billboard_'     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '0ldM4cM4n/admin-announcement-billboard', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        // Module does not show up in the custom module manager view although folder is installed
+
+        '_media-collections_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'thobgg/webtrees-sammlungen', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_MEDIA]],
+        // Error after installation
 
         '_theme-noctis_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'szporwolik/webtrees-theme-noctis', 'tag_prefix' => 'v', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
         // No latest release available yet. CMM requests latest release with GitHub API
