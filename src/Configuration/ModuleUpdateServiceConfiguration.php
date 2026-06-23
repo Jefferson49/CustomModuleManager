@@ -197,7 +197,7 @@ class ModuleUpdateServiceConfiguration
 
         '_polish-historic-events_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'p-ja/polish-historic-events', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
 
-        '_WeEt-main_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '08ah15/WeEt', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_SOURCES]],
+        '_WeEt_'                             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '08ah15/WeEt', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_SOURCES]],
 
         '_vytux_cousins_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'vytux-com/vytux_cousins', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
 
