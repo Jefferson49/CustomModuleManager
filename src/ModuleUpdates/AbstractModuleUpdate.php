@@ -147,6 +147,8 @@ abstract class AbstractModuleUpdate
                 return MoreI18N::xlate('Charts');
             case ModuleUpdateServiceConfiguration::CATEGORY_CLIPPINGS_CART: 
                 return MoreI18N::xlate('Clippings cart');
+            case ModuleUpdateServiceConfiguration::CATEGORY_EMAIL:
+                return MoreI18N::xlate('Email');
             case ModuleUpdateServiceConfiguration::CATEGORY_FACT: 
                 return MoreI18N::xlate('Facts and events');
             case ModuleUpdateServiceConfiguration::CATEGORY_FOOTER: 

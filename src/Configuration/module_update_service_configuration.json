@@ -449,6 +449,16 @@
             "description": "A tab showing recent GEDCOM data changes for an individual."
         }
     },
+    "_hh_privacy_assistant_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "hartenthaler\/hh_privacy_assistant",
+            "tag_prefix": "v",
+            "category": "admin",
+            "title": "Privacy and Security Assistant",
+            "description": "Monitors privacy and security tasks for this webtrees site."
+        }
+    },
     "_german-chancellors-presidents_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -719,7 +729,7 @@
             "description": "Historia Polski"
         }
     },
-    "_WeEt-main_": {
+    "_WeEt_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "08ah15\/WeEt",
@@ -891,6 +901,36 @@
             "description": "Generates a gendex.txt file for your family tree."
         }
     },
+    "_favicon-updater_": {
+        "update_service": "UrlModuleUpdate",
+        "params": {
+            "download_url": "https:\/\/codeberg.org\/Joppla\/Webtrees-FaviconUpdater\/archive\/main.zip",
+            "documentation_url": "https:\/\/codeberg.org\/Joppla\/Webtrees-FaviconUpdater#readme",
+            "category": "frontend",
+            "title": "FaviconUpdater",
+            "description": "Module to replaces automatically the default favicons with your own custom favicons after every webtrees update."
+        }
+    },
+    "_favicon-updater-xxs_": {
+        "update_service": "UrlModuleUpdate",
+        "params": {
+            "download_url": "https:\/\/codeberg.org\/Joppla\/Webtrees-FaviconUpdater-XXS\/archive\/main.zip",
+            "documentation_url": "https:\/\/codeberg.org\/Joppla\/Webtrees-FaviconUpdater-XXS#readme",
+            "category": "frontend",
+            "title": "FaviconUpdaterXXS",
+            "description": "Base module to replaces automatically the default favicons with your own custom favicons after every webtrees update."
+        }
+    },
+    "_favicon-updater-xxl_": {
+        "update_service": "UrlModuleUpdate",
+        "params": {
+            "download_url": "https:\/\/codeberg.org\/Joppla\/Webtrees-FaviconUpdater-XXL\/archive\/main.zip",
+            "documentation_url": "https:\/\/codeberg.org\/Joppla\/Webtrees-FaviconUpdater-XXLr#readme",
+            "category": "frontend",
+            "title": "FaviconUpdaterXXL",
+            "description": "Replaces automatically the default favicons with your own custom favicons after every webtrees update."
+        }
+    },
     "_media-folder-import_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -932,6 +972,17 @@
             "description": "Scans a family tree and detects individuals with missing, unknown, or placeholder data in key fields."
         }
     },
+    "_admin-announcement-billboard_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "0ldM4cM4n\/admin-announcement-billboard",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "frontend",
+            "title": "Admin Announcement Billboard",
+            "description": "Displays an admin-controlled announcement billboard on each member's personal page."
+        }
+    },
     "_webtrees-json-api_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -941,6 +992,24 @@
             "category": "admin",
             "title": "API",
             "description": "Token-gated JSON API for managing users and individuals."
+        }
+    },
+    "_potts_fact_ages_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "PottsNet\/potts_fact_ages",
+            "category": "frontend_tab",
+            "title": "Potts Fact Ages",
+            "description": "Displays a person\u2019s calculated age at dated facts and events."
+        }
+    },
+    "_potts_on_this_day_email_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "PottsNet\/potts_on_this_day_email",
+            "category": "email",
+            "title": "Potts On This Day Email",
+            "description": "Send personalised On This Day emails to registered users who opt in, using webtrees email delivery and each subscriber\u2019s privacy permissions."
         }
     }
 }

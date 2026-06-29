@@ -76,6 +76,7 @@ class ModuleUpdateServiceConfiguration
     public const CATEGORY_CHARTS           = 'charts';
     public const CATEGORY_CLIPPINGS_CART   = 'clippings_cart';
     public const CATEGORY_DATA_VALIDATION  = 'data_validation';
+    public const CATEGORY_EMAIL            = 'email';
     public const CATEGORY_FACT             = 'fact';
     public const CATEGORY_FOOTER           = 'footer';
     public const CATEGORY_FRONTEND         = 'frontend';
@@ -156,6 +157,7 @@ class ModuleUpdateServiceConfiguration
         '_hh_legal_notice_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_legal_notice', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FOOTER]],
         '_hh-unlinked-individual_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh-unlinked-individual', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_hh-change-log_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh-change-log', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_hh_privacy_assistant_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_privacy_assistant', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
         '_german-chancellors-presidents_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/german-chancellors-presidents', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
         '_german-wars-battles-worldwide_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/german-wars-battles-worldwide', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
         '_gramps-historical-facts_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/gramps-historical-facts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
@@ -225,21 +227,32 @@ class ModuleUpdateServiceConfiguration
         '_tree-explorer_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'szporwolik/webtrees-tree-explorer', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
         '_gendex-generator_'                 =>  ['update_service' => 'UrlModuleUpdate',    'params' => ['download_url' => 'https://codeberg.org/Joppla/Webtrees-GendexGenerator/archive/main.zip', 'documentation_url' => 'https://codeberg.org/Joppla/Webtrees-GendexGenerator#readme', self::CATEGORY => self::CATEGORY_GEDCOM]],
+        '_favicon-updater_'                  =>  ['update_service' => 'UrlModuleUpdate',    'params' => ['download_url' => 'https://codeberg.org/Joppla/Webtrees-FaviconUpdater/archive/main.zip', 'documentation_url' => 'https://codeberg.org/Joppla/Webtrees-FaviconUpdater#readme', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_favicon-updater-xxs_'              =>  ['update_service' => 'UrlModuleUpdate',    'params' => ['download_url' => 'https://codeberg.org/Joppla/Webtrees-FaviconUpdater-XXS/archive/main.zip', 'documentation_url' => 'https://codeberg.org/Joppla/Webtrees-FaviconUpdater-XXS#readme', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_favicon-updater-xxl_'              =>  ['update_service' => 'UrlModuleUpdate',    'params' => ['download_url' => 'https://codeberg.org/Joppla/Webtrees-FaviconUpdater-XXL/archive/main.zip', 'documentation_url' => 'https://codeberg.org/Joppla/Webtrees-FaviconUpdater-XXLr#readme', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
         '_media-folder-import_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'garraflavatra/webtrees-media-folder-import', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
 
         '_user-page-title_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '0ldM4cM4n/webtrees-user-page-title', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_all-ages-export-engine_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '0ldM4cM4n/all-ages-export-engine', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
         '_dead-record-detective_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '0ldM4cM4n/dead-record-detective', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_admin-announcement-billboard_'     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '0ldM4cM4n/admin-announcement-billboard', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
         '_webtrees-json-api_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jbh4x82/webtrees_api', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_ADMIN]],
 
+        '_potts_fact_ages_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts_fact_ages', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_potts_on_this_day_email_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts_on_this_day_email', self::CATEGORY => self::CATEGORY_EMAIL]],        
     ];
 
 
     private const MODULES_BETA_VERSION = [
 
         '_media-badge_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JRMine/webtrees-media-badge', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+
+        '_potts-modern-theme_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-modern-theme', self::CATEGORY => self::CATEGORY_THEME]],
+        '_potts-admin-shortcuts_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-admin-shortcuts', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_potts-historical-facts_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-historical-facts', self::CATEGORY => self::CATEGORY_FACT]],
+        '_potts_relationship_context_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts_relationship_context', self::CATEGORY => self::CATEGORY_FRONTEND]],
     ];
         
     private const MODULES_INSTALLATION_FAILS = [
