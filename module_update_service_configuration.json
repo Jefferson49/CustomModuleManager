@@ -178,6 +178,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "magicsunday\/webtrees-descendants-chart",
+            "install_clean": true,
             "category": "charts",
             "title": "Descendants chart",
             "description": "An overview of an individual\u2019s descendants."
@@ -187,6 +188,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "magicsunday\/webtrees-fan-chart",
+            "install_clean": true,
             "category": "charts",
             "title": "Fan chart",
             "description": "A fan chart of an individual\u2019s ancestors."
@@ -196,6 +198,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "magicsunday\/webtrees-pedigree-chart",
+            "install_clean": true,
             "category": "charts",
             "title": "Pedigree chart",
             "description": "A pedigree chart of an individual\u2019s ancestors."
@@ -205,6 +208,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "magicsunday\/webtrees-statistics",
+            "install_clean": true,
             "category": "charts",
             "title": "Statistics",
             "description": "Various statistics charts."
