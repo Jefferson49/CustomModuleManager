@@ -60,6 +60,8 @@ abstract class AbstractModuleUpdate
     //The category of the custom module
     protected string $category = '';
 
+    //Whether the module shall be installed clean, i.e. all earlier files are deleted before installation
+    protected bool $install_clean = false;
 
     /**
      * The name of the module update service
@@ -451,5 +453,15 @@ abstract class AbstractModuleUpdate
     public function getLatestReleaseURL(): string {
 
         return '';
+    }
+
+    /**
+     * Whether the module shall be installed clean, i.e. all earlier files are deleted before installation
+     *
+     * @return bool
+     */
+    public function installClean(): bool {
+
+        return $this->install_clean;
     }
 }

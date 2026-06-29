@@ -118,6 +118,13 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             $this->default_branch = '';
         }
 
+        if (array_key_exists('install_clean', $params)) {
+            $this->install_clean = $params['install_clean'];
+        }
+        else {
+            $this->install_clean = false;
+        }
+
         $this->category = self::identifyCategoryFromConfig($module_name, $params);
     }
 

@@ -123,10 +123,10 @@ class ModuleUpdateServiceConfiguration
 
         '_GVExport_'                         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Neriderc/GVExport', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
-        '_webtrees-descendants-chart_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-descendants-chart', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_webtrees-fan-chart_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-fan-chart', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_webtrees-pedigree-chart_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-pedigree-chart', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_webtrees-statistics_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-statistics', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_webtrees-descendants-chart_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-descendants-chart', 'install_clean' => true, self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_webtrees-fan-chart_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-fan-chart', 'install_clean' => true, self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_webtrees-pedigree-chart_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-pedigree-chart', 'install_clean' => true, self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_webtrees-statistics_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'magicsunday/webtrees-statistics', 'install_clean' => true, self::CATEGORY => self::CATEGORY_CHARTS]],
 
         '_myartjaub_ruraltheme_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jon48/webtrees-theme-rural', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
 

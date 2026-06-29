@@ -445,12 +445,24 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                     $update_folder = self::getInstallationFolder($update_filesystem);
                 }
 
+                // If configured, clean all files in the installation folder before installation
+                if ($module_update_service->installClean()) {
+
+                    $modules_filesystem = Registry::filesystem()->root(Webtrees::MODULES_PATH);
+
+                    if ($modules_filesystem->directoryExists($installation_folder)) {
+                        
+                        $modules_filesystem->deleteDirectory($installation_folder);
+                    }
+                }
+                
+                // Copy files from upgrade folder to installation folder
                 $source_filesystem      = Registry::filesystem()->root(self::UPGRADE_FOLDER . Webtrees::MODULES_PATH . $update_folder);
                 $destination_filesystem = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
 
                 $this->webtrees_upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
 
-                // Replace stored version by the installed version 
+                // Replace stored version by the installed version
                 $short_module_name = substr($module_name, 0, 25) . '_';
                 $custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, $this->version_to_install);
             }

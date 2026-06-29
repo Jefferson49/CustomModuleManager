@@ -179,4 +179,11 @@ interface CustomModuleUpdateInterface
      * @return string
      */
     public function getLatestReleaseURL(): string;    
+
+    /**
+     * Whether the module shall be installed clean, i.e. all earlier files are deleted before installation
+     *
+     * @return bool
+     */
+    public function installClean(): bool;
 }
