@@ -1015,5 +1015,14 @@
             "title": "Potts On This Day Email",
             "description": "Send personalised On This Day emails to registered users who opt in, using webtrees email delivery and each subscriber\u2019s privacy permissions."
         }
+    },
+    "_potts-family-books_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "PottsNet\/potts-family-books",
+            "category": "reports",
+            "title": "Potts Family Book",
+            "description": "Display family history books as HTML pages inside webtrees."
+        }
     }
 }
