@@ -242,6 +242,7 @@ class ModuleUpdateServiceConfiguration
 
         '_potts_fact_ages_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts_fact_ages', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
         '_potts_on_this_day_email_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts_on_this_day_email', self::CATEGORY => self::CATEGORY_EMAIL]],        
+        '_potts-family-books_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-family-books', self::CATEGORY => self::CATEGORY_REPORTS]],        
     ];
 
 
