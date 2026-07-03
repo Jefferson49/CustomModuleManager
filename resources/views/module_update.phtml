@@ -19,6 +19,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleInformationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ColumnConfigurationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleActivateAction;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotesModal;
 
@@ -32,7 +33,42 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
  * @var array               $module_names
  * @var bool                $fetch_latest
  * @var string              $modules_to_show
+ * @var bool                $show_column_description
+ * @var bool                $show_column_category
+ * @var bool                $show_column_update_service
+ * @var bool                $show_column_downloads
+ * @var bool                $show_column_enabled
  */
+
+$data_colums[] = ['type' => 'html'];
+
+if ($show_column_description) {
+    $data_colums[] = ['type' => 'html', 'sortable' => false];
+}
+
+$data_colums[] = null;
+
+if ($show_column_category) {
+    $data_colums[] = null;
+}
+
+$data_colums[] = ['sortable' => false];
+$data_colums[] = ['sortable' => false];
+
+if ($show_column_update_service) {
+    $data_colums[] = null;
+}
+
+if ($show_column_downloads) {
+    $data_colums[] =['type' => 'num', 'searchable' => false];
+}
+
+if ($show_column_enabled) {
+    $data_colums[] =['type' => 'html', 'searchable' => false];
+}
+
+$data_colums[] = ['type' => 'html', 'searchable' => false];
+$data_colums[] = ['type' => 'html', 'searchable' => false];
 
 ?>
 
@@ -60,8 +96,15 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
     ])) ?>" type="submit" class="btn btn-primary">
     <?= MoreI18N::xlate('check now') ?>
 </a>
-
-<div class="row mb-3"><?= view('icons/spacer') ?></div>
+<a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ColumnConfigurationModal::class, [
+        'show_column_description'    => $show_column_description,
+        'show_column_category'       => $show_column_category,
+        'show_column_update_service' => $show_column_update_service,
+        'show_column_downloads'      => $show_column_downloads,
+        'show_column_enabled'        => $show_column_enabled,
+    ])) ?>" type="submit" class="btn btn-secondary">
+    <?= I18N::translate('Configure columns') ?>
+</a>
 
 <form method="post" action="<?= e(route(CustomModuleActivateAction::class)) ?>">
     <table
@@ -72,19 +115,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
         data-paging="false"
         data-filter="true"
         data-layout='{"topEnd":"search"}'
-        data-columns="<?= e(json_encode([
-            ['type' => 'html'],
-            ['type' => 'html', 'sortable' => false],
-            null,
-            null,
-            ['sortable' => false],
-            ['sortable' => false],
-            null,
-            ['type' => 'num', 'searchable' => false],
-            ['type' => 'html', 'searchable' => false],
-            ['type' => 'html', 'searchable' => false],
-            ['type' => 'html', 'searchable' => false],
-        ], JSON_THROW_ON_ERROR)) ?>"
+        data-columns="<?= e(json_encode($data_colums, JSON_THROW_ON_ERROR)) ?>"
     >
         <caption class="visually-hidden">
             <?= $caption ?? I18N::translate('Module Updates') ?>
@@ -93,14 +124,24 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
         <thead>
             <tr>
                 <th><?= MoreI18N::xlate('Title') ?></th>
-                <th><?= MoreI18N::xlate('Description') ?></th>
+                <?php if ($show_column_description) : ?>
+                    <th><?= MoreI18N::xlate('Description') ?></th>
+                <?php endif ?>                    
                 <th><?= I18N::translate('Folder (within modules_v4)') ?></th>
-                <th><?= MoreI18N::xlate('Category') ?></th>
+                <?php if ($show_column_category) : ?>
+                    <th><?= MoreI18N::xlate('Category') ?></th>
+                <?php endif ?>                    
                 <th><?= I18N::translate('Current Version') ?></th>
                 <th><?= I18N::translate('Latest Version') ?></th>
-                <th><?= I18N::translate('Update Service') ?></th>
-                <th><?= I18N::translate('Down-loads') ?></th>
-                <th><?= MoreI18N::xlate('Enabled') ?></th>
+                <?php if ($show_column_update_service) : ?>
+                    <th><?= I18N::translate('Update Service') ?></th>
+                <?php endif ?>                    
+                <?php if ($show_column_downloads) : ?>
+                    <th><?= I18N::translate('Down-loads') ?></th>
+                <?php endif ?>                    
+                <?php if ($show_column_enabled) : ?>
+                    <th><?= MoreI18N::xlate('Enabled') ?></th>
+                <?php endif ?>                    
                 <th><?= I18N::translate('Install') ?></th>
                 <th><?= MoreI18N::xlate('Delete') ?></th>
             </tr>
@@ -198,12 +239,14 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     </td>
 
                     <!-- Description -->
-                    <td>
-                        <?php if ($show_default_description) : ?>
-                            <?= CustomModuleManager::DEFAULT_LANGUAGE_PREFIX ?><br>
-                        <?php endif ?>
-                        <?= substr($module_description, 0, 255) ?>
-                    </td>
+                    <?php if ($show_column_description) : ?>
+                        <td>
+                            <?php if ($show_default_description) : ?>
+                                <?= CustomModuleManager::DEFAULT_LANGUAGE_PREFIX ?><br>
+                            <?php endif ?>
+                            <?= substr($module_description, 0, 255) ?>
+                        </td>
+                    <?php endif ?>                          
 
                     <!-- Folder -->
                     <td data-sort="<?= e($installation_folder) ?>">
@@ -211,9 +254,11 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     </td>
 
                     <!--Category -->
-                    <td data-sort="<?= e($category) ?>">
-                        <?= e($category) ?>
-                    </td>
+                    <?php if ($show_column_category) : ?>
+                        <td data-sort="<?= e($category) ?>">
+                            <?= e($category) ?>
+                        </td>
+                    <?php endif ?>                          
 
                     <!-- Current version -->
                     <td data-sort="<?= e(CustomModuleManager::normalizeVersion($module_name, $current_version)) ?>">
@@ -240,24 +285,30 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
                     </td>
 
                     <!--Update Service -->
-                    <td data-sort="<?= $module_update_service_name ?>">
-                        <?= $module_update_service_name ?>
-                    </td>
+                    <?php if ($show_column_update_service) : ?>
+                        <td data-sort="<?= $module_update_service_name ?>">
+                            <?= $module_update_service_name ?>
+                        </td>
+                    <?php endif ?>                          
 
                     <!--Downloads -->
-                    <?php $download_count = ($module_update_service instanceof GithubModuleUpdate) ? $module_update_service->getDownloadCount() : -1 ?>
-                    <td data-sort="<?= $download_count ?>">
-                        <?= $download_count > 0 ? number_format($download_count) : I18N::translate('N/A') ?>
-                    </td>
+                    <?php if ($show_column_downloads) : ?>
+                        <?php $download_count = ($module_update_service instanceof GithubModuleUpdate) ? $module_update_service->getDownloadCount() : -1 ?>
+                        <td data-sort="<?= $download_count ?>">
+                            <?= $download_count > 0 ? number_format($download_count) : I18N::translate('N/A') ?>
+                        </td>
+                    <?php endif ?>                          
 
                     <!-- Enabled -->
-                    <td data-sort="<?= $module_status ?>">
-                        <?php if ($module !== null) : ?>
-                            <?= view('components/checkbox', ['label' => '', 'name' => 'status-' . $module->name(), 'checked' => $module->isEnabled()]) ?>
-                        <?php else : ?>
-                            <?= $module_status ?>
-                        <?php endif ?>
-                    </td>
+                    <?php if ($show_column_enabled) : ?>
+                        <td data-sort="<?= $module_status ?>">
+                            <?php if ($module !== null) : ?>
+                                <?= view('components/checkbox', ['label' => '', 'name' => 'status-' . $module->name(), 'checked' => $module->isEnabled()]) ?>
+                            <?php else : ?>
+                                <?= $module_status ?>
+                            <?php endif ?>
+                        </td>
+                    <?php endif ?>                          
 
                     <!--Install -->
                     <?php $action = '' ?>

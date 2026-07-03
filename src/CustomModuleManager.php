@@ -64,6 +64,8 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\DefaultTitlesA
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ColumnConfigurationAction;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ColumnConfigurationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleActivateAction;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\IgnoreUpdateAction;
@@ -109,18 +111,23 @@ class CustomModuleManager extends AbstractModule implements
     private static bool $is_lower_than_latest_version;
 
     //Prefences, Settings
-	public const PREF_MODULE_VERSION      = 'module_version';
-    public const PREF_DEBUGGING_ACTIVATED = 'debugging_activated';
-	public const PREF_GITHUB_API_TOKEN    = 'github_api_token';
-	public const PREF_LAST_UPDATED_MODULE = 'last_updated_module';
-    public const PREF_ROLLBACK_ONGOING    = 'rollback_ongoing';
-    public const PREF_MODULES_TO_SHOW     = 'modules_to_show';
-    public const PREF_SHOW_ALL            = 'show_all_modules';
-    public const PREF_SHOW_INSTALLED      = 'show_installed_modules';
-    public const PREF_SHOW_NOT_INSTALLED  = 'show_not_installed_modules';
-    public const PREF_SHOW_MENU_LIST_ITEM = 'show_menu_list_item';
-    public const PREF_LATEST_VERSION      = 'latest';
-    public const PREF_IGNORE_VERSION      = 'ignore';
+	public const PREF_MODULE_VERSION        = 'module_version';
+    public const PREF_DEBUGGING_ACTIVATED   = 'debugging_activated';
+	public const PREF_GITHUB_API_TOKEN      = 'github_api_token';
+	public const PREF_LAST_UPDATED_MODULE   = 'last_updated_module';
+    public const PREF_ROLLBACK_ONGOING      = 'rollback_ongoing';
+    public const PREF_MODULES_TO_SHOW       = 'modules_to_show';
+    public const PREF_SHOW_ALL              = 'show_all_modules';
+    public const PREF_SHOW_INSTALLED        = 'show_installed_modules';
+    public const PREF_SHOW_NOT_INSTALLED    = 'show_not_installed_modules';
+    public const PREF_SHOW_MENU_LIST_ITEM   = 'show_menu_list_item';
+    public const PREF_LATEST_VERSION        = 'latest';
+    public const PREF_IGNORE_VERSION        = 'ignore';
+    public const PREF_SHOW_COLUMN_DESCR     = 'show_column_description';
+    public const PREF_SHOW_COLUMN_CATEGORY  = 'show_column_category';
+    public const PREF_SHOW_COLUMN_UPD_SERV  = 'show_column_update_service';
+    public const PREF_SHOW_COLUMN_DOWNLOADS = 'show_column_downloads';
+    public const PREF_SHOW_COLUMN_ENABLED   = 'show_column_enabled';
 
     //Configuraton
     public const CONFIG_GITHUB_BRANCH     = 'config';
@@ -141,6 +148,8 @@ class CustomModuleManager extends AbstractModule implements
     public const ROUTE_RELEASE_NOTES_MODAL = '/release-notes-modal';
     public const ROUTE_ACTIVATE_ACTION     = '/activate-action';
     public const ROUTE_IGNORE_UPDATE       = '/ignore-update';
+    public const ROUTE_COLUMN_CONF_MODAL   = '/column-config-modal';
+    public const ROUTE_COLUMN_CONF_ACTION  = '/column-config-action';
 
     //Language
     public const DEFAULT_LANGUAGE         = 'en-US';
@@ -227,7 +236,7 @@ class CustomModuleManager extends AbstractModule implements
         ->get(ReleaseNotesModal::class, self::ROUTE_RELEASE_NOTES_MODAL)
         ->allows(RequestMethodInterface::METHOD_POST);
 
-        //Register a route for the release notes modal
+        //Register a route for the module activate action
         $router
         ->get(CustomModuleActivateAction::class, self::ROUTE_ACTIVATE_ACTION)
         ->allows(RequestMethodInterface::METHOD_POST);
@@ -235,6 +244,16 @@ class CustomModuleManager extends AbstractModule implements
         //Register a route for the update ignore action
         $router
         ->get(IgnoreUpdateAction::class, self::ROUTE_IGNORE_UPDATE)
+        ->allows(RequestMethodInterface::METHOD_POST);
+
+        //Register a route for the column configuration modal
+        $router
+        ->get(ColumnConfigurationModal::class, self::ROUTE_COLUMN_CONF_MODAL)
+        ->allows(RequestMethodInterface::METHOD_POST);
+
+        //Register a route for the column configuration action
+        $router
+        ->get(ColumnConfigurationAction::class, self::ROUTE_COLUMN_CONF_ACTION)
         ->allows(RequestMethodInterface::METHOD_POST);
     }
 	

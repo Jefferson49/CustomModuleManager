@@ -33,7 +33,6 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers;
 
 use Fisharebest\Webtrees\DB;
 use Fisharebest\Webtrees\FlashMessages;
-use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Validator;

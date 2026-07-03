@@ -1,0 +1,71 @@
+<?php
+
+namespace Jefferson49\Webtrees\Module\CustomModuleManager;
+
+use Fisharebest\Webtrees\I18N;
+use Jefferson49\Webtrees\Internationalization\MoreI18N;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ColumnConfigurationAction;
+use function view;
+
+/**
+ * @var string $title
+ * @var bool   $show_column_description
+ * @var bool   $show_column_category
+ * @var bool   $show_column_update_service
+ * @var bool   $show_column_downloads
+ * @var bool   $show_column_enabled
+ */
+
+?>
+
+
+<form method="post" action="<?= e(route(ColumnConfigurationAction::class)) ?>" id="wt-modal-form" class="wt-page-options">
+    <?= view('modals/header', ['title' => $title]) ?>
+
+    <div class="modal-body">
+        <fieldset class="row">
+            <legend class="col-sm-3 col-form-label wt-page-options-label">
+                <?= MoreI18N::xlate('Description') ?>
+            </legend>
+            <div class="col-sm-9 wt-page-options-value">
+                <?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_SHOW_COLUMN_DESCR, 'checked' => $show_column_description]) ?>
+            </div>
+        </fieldset>        
+        <fieldset class="row">
+            <legend class="col-sm-3 col-form-label wt-page-options-label">
+                <?= MoreI18N::xlate('Category') ?>
+            </legend>
+            <div class="col-sm-9 wt-page-options-value">
+                <?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY, 'checked' => $show_column_category]) ?>
+            </div>
+        </fieldset>        
+        <fieldset class="row">
+            <legend class="col-sm-3 col-form-label wt-page-options-label">
+                <?= I18N::translate('Update Service') ?>
+            </legend>
+            <div class="col-sm-9 wt-page-options-value">
+                <?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, 'checked' => $show_column_update_service]) ?>
+            </div>
+        </fieldset>        
+        <fieldset class="row">
+            <legend class="col-sm-3 col-form-label wt-page-options-label">
+                <?= I18N::translate('Downloads') ?>
+            </legend>
+            <div class="col-sm-9 wt-page-options-value">
+                <?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, 'checked' => $show_column_downloads]) ?>
+            </div>
+        </fieldset>        
+        <fieldset class="row">
+            <legend class="col-sm-3 col-form-label wt-page-options-label">
+                <?= MoreI18N::xlate('Enabled') ?>
+            </legend>
+            <div class="col-sm-9 wt-page-options-value">
+                <?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_SHOW_COLUMN_ENABLED, 'checked' => $show_column_enabled]) ?>
+            </div>
+        </fieldset>        
+    </div>
+
+    <?= view('modals/footer-save-cancel') ?>
+
+    <?= csrf_field() ?>
+</form>
