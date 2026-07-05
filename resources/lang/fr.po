@@ -278,7 +278,7 @@ msgstr "Une nouvelle version de « %s » est disponible. Il est recommandé de p
 #: src/ModuleUpdates/AbstractModuleUpdate.php:157
 #: src/ModuleUpdates/AbstractModuleUpdate.php:159
 msgid "Frontend"
-msgstr "L'extrémité avant"
+msgstr "Interface utilisateur"
 
 #: src/ModuleUpdates/AbstractModuleUpdate.php:183
 msgid "Tags"
