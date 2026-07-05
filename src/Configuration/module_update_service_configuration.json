@@ -998,6 +998,33 @@
             "description": "Token-gated JSON API for managing users and individuals."
         }
     },
+    "_potts-historical-facts_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "PottsNet\/potts-historical-facts",
+            "category": "fact",
+            "title": "Potts Historical Facts",
+            "description": "Displays historical facts from CSV files using visitor-selected historical fact collections available from every page."
+        }
+    },
+    "_potts-seo-helper_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "PottsNet\/potts-seo-helper",
+            "category": "admin",
+            "title": "Potts SEO Helper",
+            "description": "Adds genealogy-focused SEO metadata, homepage support, public landing pages, robots text and sitemap endpoints."
+        }
+    },
+    "_potts-modern-theme_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "PottsNet\/potts-modern-theme",
+            "category": "theme",
+            "title": "Potts Modern",
+            "description": "A modern, responsive heritage theme for webtrees."
+        }
+    },
     "_potts_fact_ages_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -1023,6 +1050,15 @@
             "category": "reports",
             "title": "Potts Family Book",
             "description": "Display family history books as HTML pages inside webtrees."
+        }
+    },
+    "_potts-narrative-ancestor-book_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "PottsNet\/potts-narrative-ancestor-book",
+            "category": "reports",
+            "title": "Potts Narrative Ancestor Book",
+            "description": "Create a personalised narrative ancestor book from GEDCOM facts, family events, notes and photographs."
         }
     }
 }
