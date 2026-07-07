@@ -1002,6 +1002,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "PottsNet\/potts-historical-facts",
+            "tag_prefix": "v",
             "category": "fact",
             "title": "Potts Historical Facts",
             "description": "Displays historical facts from CSV files using visitor-selected historical fact collections available from every page."
@@ -1011,6 +1012,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "PottsNet\/potts-seo-helper",
+            "tag_prefix": "v",
             "category": "admin",
             "title": "Potts SEO Helper",
             "description": "Adds genealogy-focused SEO metadata, homepage support, public landing pages, robots text and sitemap endpoints."
@@ -1020,6 +1022,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "PottsNet\/potts-modern-theme",
+            "tag_prefix": "v",
             "category": "theme",
             "title": "Potts Modern",
             "description": "A modern, responsive heritage theme for webtrees."
@@ -1029,6 +1032,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "PottsNet\/potts_fact_ages",
+            "tag_prefix": "v",
             "category": "frontend_tab",
             "title": "Potts Fact Ages",
             "description": "Displays a person\u2019s calculated age at dated facts and events."
@@ -1038,6 +1042,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "PottsNet\/potts_on_this_day_email",
+            "tag_prefix": "v",
             "category": "email",
             "title": "Potts On This Day Email",
             "description": "Send personalised On This Day emails to registered users who opt in, using webtrees email delivery and each subscriber\u2019s privacy permissions."
@@ -1047,6 +1052,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "PottsNet\/potts-family-books",
+            "tag_prefix": "v",
             "category": "reports",
             "title": "Potts Family Book",
             "description": "Display family history books as HTML pages inside webtrees."
@@ -1056,6 +1062,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "PottsNet\/potts-narrative-ancestor-book",
+            "tag_prefix": "v",
             "category": "reports",
             "title": "Potts Narrative Ancestor Book",
             "description": "Create a personalised narrative ancestor book from GEDCOM facts, family events, notes and photographs."
