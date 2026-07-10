@@ -1067,5 +1067,25 @@
             "title": "Potts Narrative Ancestor Book",
             "description": "Create a personalised narrative ancestor book from GEDCOM facts, family events, notes and photographs."
         }
+    },
+    "_potts-hero-slideshow_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "PottsNet\/potts-hero-slideshow",
+            "tag_prefix": "v",
+            "category": "frontend",
+            "title": "Potts Hero Slideshow",
+            "description": "A standalone, theme-aware homepage hero banner with a family photo slideshow."
+        }
+    },
+    "_enhanced-charts_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "haylau-ronzo\/enhanced-charts",
+            "tag_prefix": "v",
+            "category": "frontend",
+            "title": "Enhanced Charts",
+            "description": "A configurable tree home-page charts block with built-in chart wrappers plus a module-side Enhanced Hourglass mode based on the built-in webtrees layout."
+        }
     }
 }
