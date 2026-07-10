@@ -240,14 +240,16 @@ class ModuleUpdateServiceConfiguration
 
         '_webtrees-json-api_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jbh4x82/webtrees_api', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_ADMIN]],
 
-        '_potts-historical-facts_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-historical-facts', self::CATEGORY => self::CATEGORY_FACT]],
-        '_potts-seo-helper_'                 =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-seo-helper', self::CATEGORY => self::CATEGORY_ADMIN]],
-        '_potts-modern-theme_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-modern-theme', self::CATEGORY => self::CATEGORY_THEME]],
-        '_potts_fact_ages_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts_fact_ages', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
-        '_potts_on_this_day_email_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts_on_this_day_email', self::CATEGORY => self::CATEGORY_EMAIL]],
-        '_potts-family-books_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-family-books', self::CATEGORY => self::CATEGORY_REPORTS]],        
-        '_potts-narrative-ancestor-book_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-narrative-ancestor-book', self::CATEGORY => self::CATEGORY_REPORTS]],
+        '_potts-historical-facts_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-historical-facts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
+        '_potts-seo-helper_'                 =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-seo-helper', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_potts-modern-theme_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-modern-theme', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
+        '_potts_fact_ages_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts_fact_ages', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_potts_on_this_day_email_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts_on_this_day_email', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_EMAIL]],
+        '_potts-family-books_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-family-books', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_REPORTS]],        
+        '_potts-narrative-ancestor-book_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-narrative-ancestor-book', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_REPORTS]],
+        '_potts-hero-slideshow_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-hero-slideshow', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
+        '_enhanced-charts_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'haylau-ronzo/enhanced-charts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
     ];
 
 
