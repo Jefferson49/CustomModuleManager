@@ -177,6 +177,10 @@ class CustomModuleManager extends AbstractModule implements
     //Use the local json file for the custom module update configuration (in module_update_service_configuration.json)
     public const USE_LOCAL_CONFIG = false;
 
+    //Whether the enabled status is included during submitting the update form
+    public const ENABLED_STATUS_INCLUDED = 'enabled_status_included';
+
+
     /**
      * CustomModuleManager constructor.
      */

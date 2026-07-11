@@ -37,6 +37,7 @@ use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Validator;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
+use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -58,10 +59,11 @@ final class CustomModuleActivateAction implements RequestHandlerInterface
         foreach ($modules as $module) {
 
             if ($module instanceof  ModuleCustomInterface) {
-                $new_status = Validator::parsedBody($request)->boolean('status-' . $module->name(), false);
-                $old_status = $module->isEnabled();
+                $enabled_status_included = Validator::parsedBody($request)->string(CustomModuleManager::ENABLED_STATUS_INCLUDED . $module->name(), '');
+                $new_status              = Validator::parsedBody($request)->boolean('status-' . $module->name(), false);
+                $old_status              = $module->isEnabled();
 
-                if ($new_status !== $old_status) {
+                if ($enabled_status_included && $new_status !== $old_status) {
 
                     //ToDo: Check new database schema in webtrees 2.2.6?
 

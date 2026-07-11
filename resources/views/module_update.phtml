@@ -328,8 +328,20 @@ $order = [[$sort_column, 'desc']];
 
                     <!-- Enabled -->
                     <?php if ($show_column_enabled) : ?>
-                        <td data-sort="<?= $module_status ?>">
+                        <?php if ($module_status === '1') : ?>
+                            <?php $enabled_sort = '0' ?>
+                        <?php elseif ($module_status === '0') : ?>
+                            <?php $enabled_sort = '2' ?>
+                        <?php else : ?>
+                            <?php $enabled_sort = '1' ?>
+                        <?php endif ?>                          
+                        <td data-sort="<?= $enabled_sort ?>">
                             <?php if ($module !== null) : ?>
+                                <input  type="hidden" 
+                                        name="<?= CustomModuleManager::ENABLED_STATUS_INCLUDED . $module->name() ?>" 
+                                        id="<?= CustomModuleManager::ENABLED_STATUS_INCLUDED . $module->name() ?>"
+                                        value="1"
+                                >
                                 <?= view('components/checkbox', ['label' => '', 'name' => 'status-' . $module->name(), 'checked' => $module->isEnabled()]) ?>
                             <?php else : ?>
                                 <?= $module_status ?>
