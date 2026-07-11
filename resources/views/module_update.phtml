@@ -35,6 +35,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
  * @var string              $modules_to_show
  * @var bool                $show_column_description
  * @var bool                $show_column_category
+ * @var bool                $show_column_date_added
  * @var bool                $show_column_update_service
  * @var bool                $show_column_downloads
  * @var bool                $show_column_enabled
@@ -58,6 +59,12 @@ $data_colums[] = null;
 // Category
 if ($show_column_category) {
     $data_colums[] = null;
+    $sort_column++;
+}
+
+// Date added
+if ($show_column_date_added) {
+    $data_colums[] = ['type' => 'html'];
     $sort_column++;
 }
 
@@ -125,6 +132,7 @@ $order = [[$sort_column, 'desc']];
 <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ColumnConfigurationModal::class, [
         'show_column_description'    => $show_column_description,
         'show_column_category'       => $show_column_category,
+        'show_column_date_added'     => $show_column_date_added,
         'show_column_update_service' => $show_column_update_service,
         'show_column_downloads'      => $show_column_downloads,
         'show_column_enabled'        => $show_column_enabled,
@@ -157,6 +165,9 @@ $order = [[$sort_column, 'desc']];
                 <th><?= I18N::translate('Folder (within modules_v4)') ?></th>
                 <?php if ($show_column_category) : ?>
                     <th><?= MoreI18N::xlate('Category') ?></th>
+                <?php endif ?>                    
+                <?php if ($show_column_date_added) : ?>
+                    <th><?= I18N::translate('Date Added') ?></th>
                 <?php endif ?>                    
                 <th><?= I18N::translate('Current Version') ?></th>
                 <th><?= I18N::translate('Latest Version') ?></th>
@@ -200,6 +211,7 @@ $order = [[$sort_column, 'desc']];
                     <?php $default_module_description = $module_update_service->description() ?>
                     <?php $is_theme = $module_update_service->moduleIsTheme() ?>
                     <?php $category = $module_update_service->getCategory() ?>
+                    <?php $date_added = $module_update_service->getDateAdded() ?>
                     <?php $current_version = $module_update_service->customModuleVersion() ?>
                     <?php if ($module !== null) : ?>
                         <?php $latest_version = $module_update_service->customModuleLatestVersion($fetch_latest) ?>
@@ -216,6 +228,7 @@ $order = [[$sort_column, 'desc']];
                     <?php $default_module_description = $module_description ?>
                     <?php $is_theme = $themes->contains($module) ?>
                     <?php $category = $is_theme ? ModuleUpdateServiceConfiguration::CATEGORY_THEME : '' ?>
+                    <?php $date_added = '' ?>
                     <?php /** @var CustomModuleManager $module To avoid IDE warnings */ ?>
                     <?php $current_version = $module->customModuleVersion() ?>
                     <?php $latest_version = $module->customModuleLatestVersion() ?>
@@ -252,6 +265,7 @@ $order = [[$sort_column, 'desc']];
                             'module_update_service_name' => $module_update_service_name,
                             'module_title'               => $module_title,
                             'module_description'         => $module_description,
+                            'date_added'                 => $date_added,
                             'show_default_description'   => $show_default_description,
                             'module_status'              => $module_status,
                             'is_theme'                   => $is_theme,
@@ -284,6 +298,13 @@ $order = [[$sort_column, 'desc']];
                     <?php if ($show_column_category) : ?>
                         <td data-sort="<?= e($category) ?>">
                             <?= e($category) ?>
+                        </td>
+                    <?php endif ?>                          
+
+                    <!--Date Added -->
+                    <?php if ($show_column_date_added) : ?>
+                        <td data-sort="<?= e($date_added) ?>">
+                            <?= e($date_added) ?>
                         </td>
                     <?php endif ?>                          
 

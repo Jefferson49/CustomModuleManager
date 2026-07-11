@@ -11,6 +11,7 @@ use function view;
  * @var string $title
  * @var bool   $show_column_description
  * @var bool   $show_column_category
+ * @var bool   $show_column_date_added
  * @var bool   $show_column_update_service
  * @var bool   $show_column_downloads
  * @var bool   $show_column_enabled
@@ -37,6 +38,14 @@ use function view;
             </legend>
             <div class="col-sm-9 wt-page-options-value">
                 <?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY, 'checked' => $show_column_category]) ?>
+            </div>
+        </fieldset>        
+        <fieldset class="row">
+            <legend class="col-sm-3 col-form-label wt-page-options-label">
+                <?= I18N::translate('Date Added') ?>
+            </legend>
+            <div class="col-sm-9 wt-page-options-value">
+                <?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, 'checked' => $show_column_date_added]) ?>
             </div>
         </fieldset>        
         <fieldset class="row">

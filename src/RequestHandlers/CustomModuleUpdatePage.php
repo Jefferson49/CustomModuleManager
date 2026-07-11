@@ -87,6 +87,7 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
             'modules_to_show'            => $custom_module_manager->getPreference(CustomModuleManager::PREF_MODULES_TO_SHOW, CustomModuleManager::PREF_SHOW_ALL),
             'show_column_description'    => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DESCR, '1')),
             'show_column_category'       => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY, '1')),
+            'show_column_date_added'     => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, '1')),
             'show_column_update_service' => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, '1')),
             'show_column_downloads'      => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, '1')),
             'show_column_enabled'        => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_ENABLED, '1')),

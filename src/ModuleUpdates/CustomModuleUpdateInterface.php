@@ -160,6 +160,13 @@ interface CustomModuleUpdateInterface
     public function getCategory(): string;
 
     /**
+     * Get the date when the module was added to the module list of Custom Module Manager
+     * 
+     * @return string
+     */
+    public function getDateAdded(): string;
+
+    /**
      * Whether the module provides releases in the repository
      *
      * @return bool

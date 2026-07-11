@@ -57,6 +57,7 @@ class ColumnConfigurationModal implements RequestHandlerInterface
     {
         $show_column_description    = Validator::queryParams($request)->string('show_column_description', '');
         $show_column_category       = Validator::queryParams($request)->string('show_column_category', '');
+        $show_column_date_added     = Validator::queryParams($request)->string('show_column_date_added', '');
         $show_column_update_service = Validator::queryParams($request)->string('show_column_update_service', '');
         $show_column_downloads      = Validator::queryParams($request)->string('show_column_downloads', '');
         $show_column_enabled        = Validator::queryParams($request)->string('show_column_enabled', '');
@@ -67,6 +68,7 @@ class ColumnConfigurationModal implements RequestHandlerInterface
             'title'                      => I18N::translate('Configure columns'),
             'show_column_description'    => $show_column_description,
             'show_column_category'       => $show_column_category,
+            'show_column_date_added'     => $show_column_date_added,
             'show_column_update_service' => $show_column_update_service,
             'show_column_downloads'      => $show_column_downloads,
             'show_column_enabled'        => $show_column_enabled,

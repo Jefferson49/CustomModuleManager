@@ -7,7 +7,8 @@
             "category": "language",
             "title": "ChangeLanguageWithURL module",
             "description": "ChangeLanguageWithURL module"
-        }
+        },
+        "date_added": ""
     },
     "_custom_filesystem_": {
         "update_service": "GithubModuleUpdate",
@@ -17,7 +18,8 @@
             "category": "admin",
             "title": "Custom Filesystem",
             "description": "Create a custom filesystem"
-        }
+        },
+        "date_added": ""
     },
     "_custom_module_manager_": {
         "update_service": "GithubModuleUpdate",
@@ -27,7 +29,8 @@
             "category": "admin",
             "title": "Custom Module Manager",
             "description": "A custom module to manage webtrees custom modules."
-        }
+        },
+        "date_added": ""
     },
     "_extended_import_export_": {
         "update_service": "GithubModuleUpdate",
@@ -37,7 +40,8 @@
             "category": "gedcom",
             "title": "Extended Import\/Export",
             "description": "A custom module for advanced GEDCOM import, export, and filter operations. The module also supports remote downloads\/uploads\/filters via URL requests."
-        }
+        },
+        "date_added": ""
     },
     "_my_custom_tags_": {
         "update_service": "GithubModuleUpdate",
@@ -47,7 +51,8 @@
             "category": "gedcom",
             "title": "My Custom Tags",
             "description": "A module to provide custom tags, types, relationship descriptors, and roles in events"
-        }
+        },
+        "date_added": ""
     },
     "_oauth2_client_": {
         "update_service": "GithubModuleUpdate",
@@ -57,7 +62,8 @@
             "category": "signin",
             "title": "OAuth2 Client",
             "description": "A custom module to implement a OAuth2 client for webtrees."
-        }
+        },
+        "date_added": ""
     },
     "_repository_hierarchy_": {
         "update_service": "GithubModuleUpdate",
@@ -67,7 +73,8 @@
             "category": "sources",
             "title": "Repository Hierarchy",
             "description": "A hierarchical structured list of the sources of an archive based on the call numbers of the sources"
-        }
+        },
+        "date_added": ""
     },
     "_webtrees-api_": {
         "update_service": "GithubModuleUpdate",
@@ -77,7 +84,8 @@
             "category": "admin",
             "title": "webtrees API",
             "description": "A custom module to provide an API for webtrees."
-        }
+        },
+        "date_added": "2026-02-15"
     },
     "_jc-fancy-imagebar_": {
         "update_service": "GithubModuleUpdate",
@@ -86,7 +94,8 @@
             "category": "frontend",
             "title": "Fancy Imagebar",
             "description": "An imagebar with small images between header and content."
-        }
+        },
+        "date_added": ""
     },
     "_jc-fancy-research-links_": {
         "update_service": "GithubModuleUpdate",
@@ -95,7 +104,8 @@
             "category": "frontend_sidebar",
             "title": "Fancy Research Links",
             "description": "A sidebar tool to provide quick links to popular research web sites."
-        }
+        },
+        "date_added": ""
     },
     "_jc-fancy-treeview_": {
         "update_service": "GithubModuleUpdate",
@@ -104,7 +114,8 @@
             "category": "frontend",
             "title": "Fancy Treeview",
             "description": "A narrative overview of the descendants or ancestors of one family (branch)."
-        }
+        },
+        "date_added": ""
     },
     "_jc-theme-justlight_": {
         "update_service": "GithubModuleUpdate",
@@ -114,7 +125,8 @@
             "category": "theme",
             "title": "JustLight",
             "description": "Theme \u2014 JustLight"
-        }
+        },
+        "date_added": ""
     },
     "_jc-simple-footer_": {
         "update_service": "GithubModuleUpdate",
@@ -123,7 +135,8 @@
             "category": "footer",
             "title": "Simple footer module",
             "description": "Add an extra footer and page."
-        }
+        },
+        "date_added": ""
     },
     "_jc-simple-media-display_": {
         "update_service": "GithubModuleUpdate",
@@ -132,7 +145,8 @@
             "category": "media",
             "title": "Media Display (as in webtrees 2.0)",
             "description": "Display media objects as in webtrees 2.0, showing multiple media items and additional notes belonging to the same object on the individual page."
-        }
+        },
+        "date_added": ""
     },
     "_jc-simple-menu_": {
         "update_service": "GithubModuleUpdate",
@@ -141,7 +155,8 @@
             "category": "menu",
             "title": "Simple menu module",
             "description": "Add an extra mainmenu item and page."
-        }
+        },
+        "date_added": ""
     },
     "_webtrees-lantmateriet_": {
         "update_service": "GithubModuleUpdate",
@@ -152,7 +167,8 @@
             "category": "maps",
             "title": "Lantm\u00e4teriet",
             "description": "Create maps using <a href=\"https:\/\/www.lantmateriet.se\" dir=\"ltr\">www.lantmateriet.se<\/a>."
-        }
+        },
+        "date_added": ""
     },
     "_webtrees-primer-theme_": {
         "update_service": "GithubModuleUpdate",
@@ -162,7 +178,8 @@
             "category": "theme",
             "title": "Primer",
             "description": "Theme \u2014 Primer"
-        }
+        },
+        "date_added": ""
     },
     "_GVExport_": {
         "update_service": "GithubModuleUpdate",
@@ -172,7 +189,8 @@
             "category": "charts",
             "title": "GVExport",
             "description": "Generate a diagram of everyone in your family tree. Highly customisable, with the ability to navigate in your browser or export the diagram to a file."
-        }
+        },
+        "date_added": ""
     },
     "_webtrees-descendants-chart_": {
         "update_service": "GithubModuleUpdate",
@@ -182,7 +200,8 @@
             "category": "charts",
             "title": "Descendants chart",
             "description": "An overview of an individual\u2019s descendants."
-        }
+        },
+        "date_added": ""
     },
     "_webtrees-fan-chart_": {
         "update_service": "GithubModuleUpdate",
@@ -192,7 +211,8 @@
             "category": "charts",
             "title": "Fan chart",
             "description": "A fan chart of an individual\u2019s ancestors."
-        }
+        },
+        "date_added": ""
     },
     "_webtrees-pedigree-chart_": {
         "update_service": "GithubModuleUpdate",
@@ -202,7 +222,8 @@
             "category": "charts",
             "title": "Pedigree chart",
             "description": "A pedigree chart of an individual\u2019s ancestors."
-        }
+        },
+        "date_added": ""
     },
     "_webtrees-statistics_": {
         "update_service": "GithubModuleUpdate",
@@ -212,7 +233,8 @@
             "category": "charts",
             "title": "Statistics",
             "description": "Various statistics charts."
-        }
+        },
+        "date_added": ""
     },
     "_myartjaub_ruraltheme_": {
         "update_service": "GithubModuleUpdate",
@@ -222,7 +244,8 @@
             "category": "theme",
             "title": "Rural",
             "description": "Theme \u2014 Rural"
-        }
+        },
+        "date_added": ""
     },
     "_huhwt-cce_": {
         "update_service": "GithubModuleUpdate",
@@ -232,7 +255,8 @@
             "category": "clippings_cart",
             "title": "\u210d Clippings cart enhanced",
             "description": "Add records from your family tree to the clippings cart and execute an action on them."
-        }
+        },
+        "date_added": ""
     },
     "_huhwt-fta_": {
         "update_service": "GithubModuleUpdate",
@@ -242,7 +266,8 @@
             "category": "frontend",
             "title": "\u210d Family trees Assistant",
             "description": "A treeview-diagram, showing the ancestors and descendants of an individual."
-        }
+        },
+        "date_added": "2026-03-28"
     },
     "_huhwt-mtv_": {
         "update_service": "GithubModuleUpdate",
@@ -252,7 +277,8 @@
             "category": "admin",
             "title": "\u210d MultTreeView",
             "description": "A treeview-diagram, showing the ancestors and descendants of an individual."
-        }
+        },
+        "date_added": ""
     },
     "_huhwt-tsm_": {
         "update_service": "GithubModuleUpdate",
@@ -262,7 +288,8 @@
             "category": "tags",
             "title": "\u210d Tagging service manager",
             "description": "View and manage Tags for better structuring your Family Tree"
-        }
+        },
+        "date_added": ""
     },
     "_huhwt-wttam_": {
         "update_service": "GithubModuleUpdate",
@@ -272,7 +299,8 @@
             "category": "charts",
             "title": "\u210d TAMchart",
             "description": "Download Gedcom information to client-side for postprocessing in TAM."
-        }
+        },
+        "date_added": ""
     },
     "_huhwt-wtlin_": {
         "update_service": "GithubModuleUpdate",
@@ -282,7 +310,8 @@
             "category": "charts",
             "title": "\u210d LINchart",
             "description": "Download Gedcom information to client-side for postprocessing in LINEAGE."
-        }
+        },
+        "date_added": ""
     },
     "_huhwt-xtv_": {
         "update_service": "GithubModuleUpdate",
@@ -292,7 +321,8 @@
             "category": "charts",
             "title": "\u210d&\u210dwt Interactive tree XT",
             "description": "An interactive tree, showing all the ancestors and descendants of an individual."
-        }
+        },
+        "date_added": ""
     },
     "_vesta_classic_look_and_feel_": {
         "update_service": "VestaModuleUpdate",
@@ -301,7 +331,8 @@
             "category": "frontend",
             "title": "\u26b6 Vesta Classic Look & Feel",
             "description": "A module adjusting all themes and other features, providing a look & feel closer to the webtrees 1.x version."
-        }
+        },
+        "date_added": ""
     },
     "_vesta_clippings_cart_": {
         "update_service": "VestaModuleUpdate",
@@ -310,7 +341,8 @@
             "category": "clippings_cart",
             "title": "\u26b6 Vesta Clippings Cart",
             "description": "Select records from your family tree and save them as a GEDCOM file. Replacement for the original 'Clippings Cart' module."
-        }
+        },
+        "date_added": ""
     },
     "_vesta_common_": {
         "update_service": "VestaModuleUpdate",
@@ -319,7 +351,8 @@
             "category": "none",
             "title": "\u26b6 Vesta Common",
             "description": "A module providing common classes and translations for other 'Vesta' custom modules. Make sure to enable this module if any other Vesta module is enabled."
-        }
+        },
+        "date_added": ""
     },
     "_vesta_extended_relationships_": {
         "update_service": "VestaModuleUpdate",
@@ -328,7 +361,8 @@
             "category": "charts",
             "title": "\u26b6 Vesta Extended Relationships",
             "description": "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module. Also includes an extended 'Who is online' block."
-        }
+        },
+        "date_added": ""
     },
     "_vesta_personal_facts_": {
         "update_service": "VestaModuleUpdate",
@@ -337,7 +371,8 @@
             "category": "frontend_tab",
             "title": "\u26b6 Vesta Facts and events",
             "description": "A tab showing the facts and events of an individual. Replacement for the original 'Facts and events' module.  Also extends facts and events on the family page. Also provides additional map links."
-        }
+        },
+        "date_added": ""
     },
     "_vesta_relatives_": {
         "update_service": "VestaModuleUpdate",
@@ -346,7 +381,8 @@
             "category": "frontend_tab",
             "title": "\u26b6 Vesta Families",
             "description": "A tab showing the close relatives of an individual. Replacement for the original 'Families' module."
-        }
+        },
+        "date_added": ""
     },
     "_vesta_gov4webtrees_": {
         "update_service": "VestaModuleUpdate",
@@ -355,7 +391,8 @@
             "category": "places",
             "title": "\u26b6 Vesta Gov4Webtrees",
             "description": "A module integrating GOV (historic gazetteer) data."
-        }
+        },
+        "date_added": ""
     },
     "_vesta_places_and_pedigree_map_": {
         "update_service": "VestaModuleUpdate",
@@ -364,7 +401,8 @@
             "category": "places",
             "title": "\u26b6 Vesta Places and Pedigree map",
             "description": "The Place hierarchy. Also show the location of events and the birthplace of ancestors on a map. Replacement for the original 'Place hierarchy', 'Places' and  'Pedigree map' modules."
-        }
+        },
+        "date_added": ""
     },
     "_vesta_research_suggestions_": {
         "update_service": "VestaModuleUpdate",
@@ -373,7 +411,8 @@
             "category": "sources",
             "title": "\u26b6 Vesta Research Suggestions",
             "description": "A module providing suggestions for additional research, based on available sources."
-        }
+        },
+        "date_added": ""
     },
     "_vesta_shared_places_": {
         "update_service": "VestaModuleUpdate",
@@ -382,7 +421,8 @@
             "category": "places",
             "title": "\u26b6 Vesta Shared Places",
             "description": "A module providing support for shared places."
-        }
+        },
+        "date_added": ""
     },
     "_vesta_location_data_": {
         "update_service": "VestaModuleUpdate",
@@ -391,7 +431,8 @@
             "category": "places",
             "title": "\u26b6 Vesta Webtrees Location Data Provider",
             "description": "A module providing (non-GEDCOM-based) webtrees location data to other modules."
-        }
+        },
+        "date_added": ""
     },
     "_sosa20_": {
         "update_service": "GithubModuleUpdate",
@@ -400,7 +441,8 @@
             "category": "frontend_sidebar",
             "title": "Sosa-Stradonitz (Ahnentafel)",
             "description": "A sidebar showing Sosa-Stradonitz number of individuals."
-        }
+        },
+        "date_added": ""
     },
     "_gustine-history22_": {
         "update_service": "GithubModuleUpdate",
@@ -411,7 +453,8 @@
             "category": "fact",
             "title": "Faits historiques de France et d\u2019ailleurs \ud83c\uddea\ud83c\uddfa",
             "description": "Variante de FrenchHistory.php pour webtrees 2.2"
-        }
+        },
+        "date_added": ""
     },
     "_hh_extended_family_": {
         "update_service": "GithubModuleUpdate",
@@ -421,7 +464,8 @@
             "category": "frontend_tab",
             "title": "Extended family",
             "description": "A tab showing the extended family of an individual."
-        }
+        },
+        "date_added": ""
     },
     "_hh_legal_notice_": {
         "update_service": "GithubModuleUpdate",
@@ -431,7 +475,8 @@
             "category": "footer",
             "title": "Legal Notice and Privacy Policy",
             "description": "Legal notice as a footer element for this site."
-        }
+        },
+        "date_added": ""
     },
     "_hh-unlinked-individual_": {
         "update_service": "GithubModuleUpdate",
@@ -441,7 +486,8 @@
             "category": "frontend",
             "title": "Unlinked individual",
             "description": "Create an unlinked individual"
-        }
+        },
+        "date_added": "2026-06-15"
     },
     "_hh-change-log_": {
         "update_service": "GithubModuleUpdate",
@@ -451,7 +497,8 @@
             "category": "frontend_tab",
             "title": "Changes",
             "description": "A tab showing recent GEDCOM data changes for an individual."
-        }
+        },
+        "date_added": "2026-06-15"
     },
     "_hh_privacy_assistant_": {
         "update_service": "GithubModuleUpdate",
@@ -461,7 +508,8 @@
             "category": "admin",
             "title": "Privacy and Security Assistant",
             "description": "Monitors privacy and security tasks for this webtrees site."
-        }
+        },
+        "date_added": "2026-06-29"
     },
     "_german-chancellors-presidents_": {
         "update_service": "GithubModuleUpdate",
@@ -471,7 +519,8 @@
             "category": "fact",
             "title": "German Chancellors Presidents",
             "description": "Historical facts - Chancellors and Presidents of Germany (since 1949)"
-        }
+        },
+        "date_added": ""
     },
     "_german-wars-battles-worldwide_": {
         "update_service": "GithubModuleUpdate",
@@ -481,7 +530,8 @@
             "category": "fact",
             "title": "Wars and Battles Worldwide \ud83c\udde9\ud83c\uddea",
             "description": "Historical facts (in German) - Wars and Battles Worldwide (since 900)"
-        }
+        },
+        "date_added": ""
     },
     "_gramps-historical-facts_": {
         "update_service": "GithubModuleUpdate",
@@ -491,7 +541,8 @@
             "category": "fact",
             "title": "Gramps Historical Facts",
             "description": "Historical facts (in several languages) - provided by Gramps"
-        }
+        },
+        "date_added": ""
     },
     "_family-tree-home_": {
         "update_service": "GithubModuleUpdate",
@@ -501,7 +552,8 @@
             "category": "frontend",
             "title": "Family Tree Home Page",
             "description": "This module changes the front page for signed-in users. After a sign in from the front page, users will go back to the Family Tree instead of redirecting to My Page."
-        }
+        },
+        "date_added": ""
     },
     "_ArgonLight_": {
         "update_service": "GithubModuleUpdate",
@@ -511,7 +563,8 @@
             "category": "theme",
             "title": "Argon Light",
             "description": "A light theme for Webtrees based on Argon Design System"
-        }
+        },
+        "date_added": ""
     },
     "_evang_mailsystem_": {
         "update_service": "GithubModuleUpdate",
@@ -522,7 +575,8 @@
             "category": "messages",
             "title": "Mail System",
             "description": "Sends out newsletters at regular intervals"
-        }
+        },
+        "date_added": ""
     },
     "_webtrees-branch-statistics_": {
         "update_service": "GithubModuleUpdate",
@@ -532,7 +586,8 @@
             "category": "charts",
             "title": "Branch statistics",
             "description": "Statistics of an individual\u2019s ancestors."
-        }
+        },
+        "date_added": ""
     },
     "_topola_": {
         "update_service": "GithubModuleUpdate",
@@ -541,7 +596,8 @@
             "category": "charts",
             "title": "Interactive tree (Topola)",
             "description": "Opens the Topola Genealogy Viewer interactive familty tree."
-        }
+        },
+        "date_added": ""
     },
     "_mitalteli-show-xref_": {
         "update_service": "GithubModuleUpdate",
@@ -550,7 +606,8 @@
             "category": "frontend_sidebar",
             "title": "XREF and UID values module.",
             "description": "A sidebar to show XREF and UID values."
-        }
+        },
+        "date_added": ""
     },
     "_mitalteli-chart-family-book_": {
         "update_service": "GithubModuleUpdate",
@@ -559,7 +616,8 @@
             "category": "charts",
             "title": "Enhanced family book",
             "description": "A chart of an individual\u2019s ancestors and descendants, as a family book (enhanced with marriages, images, and more)."
-        }
+        },
+        "date_added": ""
     },
     "_mitalteli-misc-features_": {
         "update_service": "GithubModuleUpdate",
@@ -568,7 +626,8 @@
             "category": "gedcom",
             "title": "Mitalteli Misc Features",
             "description": "Adds UID\/UUID markdown links, extended birth\/death place search, <\/br>COHABITATION marriage type, and more.<\/br><\/br><div class=\"markdown-alert\" dir=\"auto\">\ud83d\uded1<g-emoji class=\"g-emoji\" alias=\"warning\">\u26a0\ufe0f<\/g-emoji> Critical Performance Warning (Scalability Limits)<\/div><div class=\"markdown-alert markdown-alert-caution\" dir=\"auto\"><p class=\"markdown-alert-title\" dir=\"auto\"><svg data-component=\"Octicon\" class=\"octicon octicon-stop mr-2\" viewBox=\"0 0 16 16\" version=\"1.1\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"><\/path><\/svg>Caution<\/p><p dir=\"auto\"><strong>Severe Slowdowns on Large Trees (UID \/ _UID Searches)<\/strong>\n<code>webtrees<\/code> lacks database indexes on <code>UID<\/code> and <code>_UID<\/code> fields. Because of how the current database architecture is structured, there is no way to add manual indexes to mitigate the underlying performance bottleneck.<\/p>\n<\/div>"
-        }
+        },
+        "date_added": "2026-05-31"
     },
     "_mitalteli-report-researchtasks_": {
         "update_service": "GithubModuleUpdate",
@@ -577,7 +636,8 @@
             "category": "reports",
             "title": "Research tasks report",
             "description": "A research tasks Report with filters and other options."
-        }
+        },
+        "date_added": ""
     },
     "_webtrees-HTML-block-advanced_": {
         "update_service": "GithubModuleUpdate",
@@ -587,7 +647,8 @@
             "category": "frontend",
             "title": "HTML Advanced",
             "description": "An advanced HTML Block"
-        }
+        },
+        "date_added": ""
     },
     "_watermark-module_": {
         "update_service": "GithubModuleUpdate",
@@ -597,7 +658,8 @@
             "category": "media",
             "title": "Watermark Module",
             "description": "Changes the size and position of the watermark"
-        }
+        },
+        "date_added": ""
     },
     "_webtrees-faces_": {
         "update_service": "GithubModuleUpdate",
@@ -607,7 +669,8 @@
             "category": "media",
             "title": "Faces",
             "description": "This module provide easy way to mark people on group photo."
-        }
+        },
+        "date_added": ""
     },
     "_webtrees-photos_": {
         "update_service": "GithubModuleUpdate",
@@ -617,7 +680,8 @@
             "category": "media",
             "title": "Recent photos",
             "description": "A list of photos that have been uploaded recently."
-        }
+        },
+        "date_added": ""
     },
     "_webtrees-reminder_": {
         "update_service": "GithubModuleUpdate",
@@ -627,7 +691,8 @@
             "category": "messages",
             "title": "Reminder",
             "description": "Daily e-mail & Slack digest with list of the anniversaries."
-        }
+        },
+        "date_added": ""
     },
     "_webtrees-tree_view_full_screen_": {
         "update_service": "GithubModuleUpdate",
@@ -637,7 +702,8 @@
             "category": "charts",
             "title": "Tree View Full Screen",
             "description": "This module allow switch tree view to full screen mode."
-        }
+        },
+        "date_added": ""
     },
     "_webtrees-mdi_": {
         "update_service": "GithubModuleUpdate",
@@ -647,7 +713,8 @@
             "category": "frontend",
             "title": "Material Design Icons",
             "description": "This module replace icons with Material Design Icons."
-        }
+        },
+        "date_added": ""
     },
     "_jp-theme-colors_": {
         "update_service": "GithubModuleUpdate",
@@ -659,7 +726,8 @@
             "tag_prefix": "v",
             "title": "Jp-barvy",
             "description": "Theme \u2014 Jp-barvy"
-        }
+        },
+        "date_added": ""
     },
     "_jp-main-menu-manual_": {
         "update_service": "GithubModuleUpdate",
@@ -669,7 +737,8 @@
             "category": "menu",
             "title": "Main menu manual",
             "description": "Add an extra item to the main menu as a link to a webtrees manual."
-        }
+        },
+        "date_added": ""
     },
     "_telegram_": {
         "update_service": "GithubModuleUpdate",
@@ -679,7 +748,8 @@
             "category": "messages",
             "title": "Telegram",
             "description": "Sends Telegram notifications about family events, such as birthdays and anniversaries."
-        }
+        },
+        "date_added": ""
     },
     "_news-menu_": {
         "update_service": "GithubModuleUpdate",
@@ -689,7 +759,8 @@
             "category": "menu",
             "title": "News",
             "description": "Add an extra item to the main menu as a link to a webtrees news."
-        }
+        },
+        "date_added": ""
     },
     "_finnish-historical-facts_": {
         "update_service": "GithubModuleUpdate",
@@ -700,7 +771,8 @@
             "category": "fact",
             "title": "Suomen historialliset tapahtumat",
             "description": "Historical facts (in Finnish) - p\u00e4\u00e4ministerit, presidentit, suuriruhtinaat ja kuninkaat"
-        }
+        },
+        "date_added": ""
     },
     "_fam-nav-parents-last_": {
         "update_service": "GithubModuleUpdate",
@@ -711,7 +783,8 @@
             "category": "frontend_sidebar",
             "title": "Family navigator - show parent families last",
             "description": "Family navigator - show parent families last"
-        }
+        },
+        "date_added": ""
     },
     "_linkenhancer_": {
         "update_service": "GithubModuleUpdate",
@@ -721,7 +794,8 @@
             "category": "frontend",
             "title": "Link-Enhancer",
             "description": "Cross-references to Gedcom datasets, Markdown editor, context-sensitive link to the GenWiki webtrees manual"
-        }
+        },
+        "date_added": ""
     },
     "_polish-historic-events_": {
         "update_service": "GithubModuleUpdate",
@@ -731,7 +805,8 @@
             "category": "fact",
             "title": "Historia Polski \ud83c\uddf5\ud83c\uddf1",
             "description": "Historia Polski"
-        }
+        },
+        "date_added": ""
     },
     "_WeEt_": {
         "update_service": "GithubModuleUpdate",
@@ -742,7 +817,8 @@
             "category": "sources",
             "title": "MyList module",
             "description": "This module list sources in an archive you like to see during your next visit"
-        }
+        },
+        "date_added": ""
     },
     "_vytux_cousins_": {
         "update_service": "GithubModuleUpdate",
@@ -751,7 +827,8 @@
             "category": "frontend_tab",
             "title": "Cousins",
             "description": "A tab showing cousins of an individual."
-        }
+        },
+        "date_added": ""
     },
     "_svajana-master_": {
         "update_service": "GithubModuleUpdate",
@@ -763,7 +840,8 @@
             "category": "theme",
             "title": "Webtrees Svajana",
             "description": "Seamless integration with WordPress Kadence Child Theme."
-        }
+        },
+        "date_added": ""
     },
     "_historic-events-belgium_": {
         "update_service": "GithubModuleUpdate",
@@ -773,7 +851,8 @@
             "category": "fact",
             "title": "Historic events in present-day Belgium",
             "description": "Historic events that took place on the territory of present-day Belgium since 1600, shown automatically on individual pages."
-        }
+        },
+        "date_added": ""
     },
     "_time-travel-map_": {
         "update_service": "GithubModuleUpdate",
@@ -783,7 +862,8 @@
             "category": "charts",
             "title": "Time Travel Map",
             "description": "Time Travel Map is a module to visualize the geographic history of a family over time."
-        }
+        },
+        "date_added": ""
     },
     "_custom-views_": {
         "update_service": "GithubModuleUpdate",
@@ -794,7 +874,8 @@
             "category": "frontend",
             "title": "Custom views (and translations)",
             "description": "Keep your customizations of .phtml files in a different directory, so upgrades do not overwrite them. It also supports customization of translations via .csv files."
-        }
+        },
+        "date_added": ""
     },
     "_datafix-add-married-names_": {
         "update_service": "GithubModuleUpdate",
@@ -805,7 +886,8 @@
             "category": "gedcom",
             "title": "Add married names",
             "description": "You can make it easier to search for married women by recording their married name. However not all women take their husband\u2019s surname, so beware of introducing incorrect information into your database.<p>This data-fix is full of assumptions - most of which are wrong."
-        }
+        },
+        "date_added": "2026-03-27"
     },
     "_module-bulk-delete_": {
         "update_service": "GithubModuleUpdate",
@@ -816,7 +898,8 @@
             "category": "gedcom",
             "title": "Bulk delete objects",
             "description": "This module can delete many objects. Got a backup? Use with caution at your own risk. "
-        }
+        },
+        "date_added": ""
     },
     "_old-nicknames_": {
         "update_service": "GithubModuleUpdate",
@@ -827,7 +910,8 @@
             "category": "frontend",
             "title": "Old Nicknames",
             "description": "Put quoted nickname into the full display name."
-        }
+        },
+        "date_added": ""
     },
     "_insight-lens_": {
         "update_service": "GithubModuleUpdate",
@@ -837,7 +921,8 @@
             "category": "charts",
             "title": "Insight Lens",
             "description": "Visualize genealogy change statistics with interactive charts"
-        }
+        },
+        "date_added": ""
     },
     "_data-check_": {
         "update_service": "GithubModuleUpdate",
@@ -847,7 +932,8 @@
             "category": "data_validation",
             "title": "Data Check",
             "description": "Checks for data inconsistencies."
-        }
+        },
+        "date_added": "2026-02-15"
     },
     "_k-theme_": {
         "update_service": "GithubModuleUpdate",
@@ -859,7 +945,8 @@
             "category": "theme",
             "title": "K-Theme",
             "description": "A modern, premium theme with light and dark palettes."
-        }
+        },
+        "date_added": "2026-03-27"
     },
     "_easy-tree_": {
         "update_service": "GithubModuleUpdate",
@@ -871,7 +958,8 @@
             "category": "theme",
             "title": "EasyTree",
             "description": "Theme \u2014 EasyTree"
-        }
+        },
+        "date_added": "2026-03-27"
     },
     "_full-diagram_": {
         "update_service": "GithubModuleUpdate",
@@ -883,7 +971,8 @@
             "category": "charts",
             "title": "Full Diagram",
             "description": "An interactive diagram showing ancestors, descendants, and siblings."
-        }
+        },
+        "date_added": "2026-03-27"
     },
     "_tree-explorer_": {
         "update_service": "GithubModuleUpdate",
@@ -893,7 +982,8 @@
             "category": "charts",
             "title": "Tree Explorer",
             "description": "An interactive tree explorer showing ancestors and descendants."
-        }
+        },
+        "date_added": "2026-03-28"
     },
     "_gendex-generator_": {
         "update_service": "UrlModuleUpdate",
@@ -903,7 +993,8 @@
             "category": "gedcom",
             "title": "Gendex Generator",
             "description": "Generates a gendex.txt file for your family tree."
-        }
+        },
+        "date_added": "2026-04-22"
     },
     "_favicon-updater_": {
         "update_service": "UrlModuleUpdate",
@@ -913,7 +1004,8 @@
             "category": "frontend",
             "title": "FaviconUpdater",
             "description": "Module to replaces automatically the default favicons with your own custom favicons after every webtrees update."
-        }
+        },
+        "date_added": "2026-06-29"
     },
     "_favicon-updater-xxs_": {
         "update_service": "UrlModuleUpdate",
@@ -923,7 +1015,8 @@
             "category": "frontend",
             "title": "FaviconUpdaterXXS",
             "description": "Base module to replaces automatically the default favicons with your own custom favicons after every webtrees update."
-        }
+        },
+        "date_added": "2026-06-29"
     },
     "_favicon-updater-xxl_": {
         "update_service": "UrlModuleUpdate",
@@ -933,7 +1026,8 @@
             "category": "frontend",
             "title": "FaviconUpdaterXXL",
             "description": "Replaces automatically the default favicons with your own custom favicons after every webtrees update."
-        }
+        },
+        "date_added": "2026-06-29"
     },
     "_media-folder-import_": {
         "update_service": "GithubModuleUpdate",
@@ -943,7 +1037,8 @@
             "category": "media",
             "title": "Import media files from folder",
             "description": "This module adds the possibility to import all media files in the same folder at once from within the admin panel."
-        }
+        },
+        "date_added": "2026-05-31"
     },
     "_user-page-title_": {
         "update_service": "GithubModuleUpdate",
@@ -952,7 +1047,8 @@
             "category": "frontend",
             "title": "User page title",
             "description": "Personalizes the user page title to display the actual username instead of the generic \"My page\"."
-        }
+        },
+        "date_added": "2026-06-15"
     },
     "_all-ages-export-engine_": {
         "update_service": "GithubModuleUpdate",
@@ -963,7 +1059,8 @@
             "category": "gedcom",
             "title": "All Ages Export Engine",
             "description": "Export a concise list of all individuals in a tree with birth and death dates."
-        }
+        },
+        "date_added": "2026-06-15"
     },
     "_dead-record-detective_": {
         "update_service": "GithubModuleUpdate",
@@ -974,7 +1071,8 @@
             "category": "admin",
             "title": "Dead Record Detective",
             "description": "Scans a family tree and detects individuals with missing, unknown, or placeholder data in key fields."
-        }
+        },
+        "date_added": "2026-06-15"
     },
     "_admin-announcement-billboard_": {
         "update_service": "GithubModuleUpdate",
@@ -985,7 +1083,8 @@
             "category": "frontend",
             "title": "Admin Announcement Billboard",
             "description": "Displays an admin-controlled announcement billboard on each member's personal page."
-        }
+        },
+        "date_added": "2026-06-29"
     },
     "_webtrees-json-api_": {
         "update_service": "GithubModuleUpdate",
@@ -996,7 +1095,8 @@
             "category": "admin",
             "title": "API",
             "description": "Token-gated JSON API for managing users and individuals."
-        }
+        },
+        "date_added": "2026-06-15"
     },
     "_potts-historical-facts_": {
         "update_service": "GithubModuleUpdate",
@@ -1006,7 +1106,8 @@
             "category": "fact",
             "title": "Potts Historical Facts",
             "description": "Displays historical facts from CSV files using visitor-selected historical fact collections available from every page."
-        }
+        },
+        "date_added": "2026-07-05"
     },
     "_potts-seo-helper_": {
         "update_service": "GithubModuleUpdate",
@@ -1016,7 +1117,8 @@
             "category": "admin",
             "title": "Potts SEO Helper",
             "description": "Adds genealogy-focused SEO metadata, homepage support, public landing pages, robots text and sitemap endpoints."
-        }
+        },
+        "date_added": "2026-07-05"
     },
     "_potts-modern-theme_": {
         "update_service": "GithubModuleUpdate",
@@ -1026,7 +1128,8 @@
             "category": "theme",
             "title": "Potts Modern",
             "description": "A modern, responsive heritage theme for webtrees."
-        }
+        },
+        "date_added": "2026-07-05"
     },
     "_potts_fact_ages_": {
         "update_service": "GithubModuleUpdate",
@@ -1036,7 +1139,8 @@
             "category": "frontend_tab",
             "title": "Potts Fact Ages",
             "description": "Displays a person\u2019s calculated age at dated facts and events."
-        }
+        },
+        "date_added": "2026-06-29"
     },
     "_potts_on_this_day_email_": {
         "update_service": "GithubModuleUpdate",
@@ -1046,7 +1150,8 @@
             "category": "email",
             "title": "Potts On This Day Email",
             "description": "Send personalised On This Day emails to registered users who opt in, using webtrees email delivery and each subscriber\u2019s privacy permissions."
-        }
+        },
+        "date_added": "2026-06-29"
     },
     "_potts-family-books_": {
         "update_service": "GithubModuleUpdate",
@@ -1056,7 +1161,8 @@
             "category": "reports",
             "title": "Potts Family Book",
             "description": "Display family history books as HTML pages inside webtrees."
-        }
+        },
+        "date_added": "2026-07-03"
     },
     "_potts-narrative-ancestor-book_": {
         "update_service": "GithubModuleUpdate",
@@ -1066,7 +1172,8 @@
             "category": "reports",
             "title": "Potts Narrative Ancestor Book",
             "description": "Create a personalised narrative ancestor book from GEDCOM facts, family events, notes and photographs."
-        }
+        },
+        "date_added": "2026-07-05"
     },
     "_potts-hero-slideshow_": {
         "update_service": "GithubModuleUpdate",
@@ -1076,7 +1183,8 @@
             "category": "frontend",
             "title": "Potts Hero Slideshow",
             "description": "A standalone, theme-aware homepage hero banner with a family photo slideshow."
-        }
+        },
+        "date_added": "2026-07-10"
     },
     "_enhanced-charts_": {
         "update_service": "GithubModuleUpdate",
@@ -1086,6 +1194,7 @@
             "category": "frontend",
             "title": "Enhanced Charts",
             "description": "A configurable tree home-page charts block with built-in chart wrappers plus a module-side Enhanced Hourglass mode based on the built-in webtrees layout."
-        }
+        },
+        "date_added": "2026-07-10"
     }
 }

@@ -111,23 +111,24 @@ class CustomModuleManager extends AbstractModule implements
     private static bool $is_lower_than_latest_version;
 
     //Prefences, Settings
-	public const PREF_MODULE_VERSION        = 'module_version';
-    public const PREF_DEBUGGING_ACTIVATED   = 'debugging_activated';
-	public const PREF_GITHUB_API_TOKEN      = 'github_api_token';
-	public const PREF_LAST_UPDATED_MODULE   = 'last_updated_module';
-    public const PREF_ROLLBACK_ONGOING      = 'rollback_ongoing';
-    public const PREF_MODULES_TO_SHOW       = 'modules_to_show';
-    public const PREF_SHOW_ALL              = 'show_all_modules';
-    public const PREF_SHOW_INSTALLED        = 'show_installed_modules';
-    public const PREF_SHOW_NOT_INSTALLED    = 'show_not_installed_modules';
-    public const PREF_SHOW_MENU_LIST_ITEM   = 'show_menu_list_item';
-    public const PREF_LATEST_VERSION        = 'latest';
-    public const PREF_IGNORE_VERSION        = 'ignore';
-    public const PREF_SHOW_COLUMN_DESCR     = 'show_column_description';
-    public const PREF_SHOW_COLUMN_CATEGORY  = 'show_column_category';
-    public const PREF_SHOW_COLUMN_UPD_SERV  = 'show_column_update_service';
-    public const PREF_SHOW_COLUMN_DOWNLOADS = 'show_column_downloads';
-    public const PREF_SHOW_COLUMN_ENABLED   = 'show_column_enabled';
+	public const PREF_MODULE_VERSION          = 'module_version';
+    public const PREF_DEBUGGING_ACTIVATED     = 'debugging_activated';
+	public const PREF_GITHUB_API_TOKEN        = 'github_api_token';
+	public const PREF_LAST_UPDATED_MODULE     = 'last_updated_module';
+    public const PREF_ROLLBACK_ONGOING        = 'rollback_ongoing';
+    public const PREF_MODULES_TO_SHOW         = 'modules_to_show';
+    public const PREF_SHOW_ALL                = 'show_all_modules';
+    public const PREF_SHOW_INSTALLED          = 'show_installed_modules';
+    public const PREF_SHOW_NOT_INSTALLED      = 'show_not_installed_modules';
+    public const PREF_SHOW_MENU_LIST_ITEM     = 'show_menu_list_item';
+    public const PREF_LATEST_VERSION          = 'latest';
+    public const PREF_IGNORE_VERSION          = 'ignore';
+    public const PREF_SHOW_COLUMN_DESCR       = 'show_column_description';
+    public const PREF_SHOW_COLUMN_CATEGORY    = 'show_column_category';
+    public const PREF_SHOW_COLUMN_DATE_ADDED  = 'show_column_date_added';
+    public const PREF_SHOW_COLUMN_UPD_SERV    = 'show_column_update_service';
+    public const PREF_SHOW_COLUMN_DOWNLOADS   = 'show_column_downloads';
+    public const PREF_SHOW_COLUMN_ENABLED     = 'show_column_enabled';
 
     //Configuraton
     public const CONFIG_GITHUB_BRANCH     = 'config';
@@ -752,6 +753,9 @@ class CustomModuleManager extends AbstractModule implements
 
         $json_file = __DIR__ . '/Configuration/module_update_service_configuration.json';
 
+        //Get data from current json file
+        $old_local_config = ModuleUpdateServiceConfiguration::getModuleUpdateServiceConfig();
+
         //Delete file if already existing
         if (file_exists($json_file)) {
             unlink($json_file);
@@ -775,9 +779,22 @@ class CustomModuleManager extends AbstractModule implements
             $config[$module_name]['params']['title']       = $titles[$module_name] ?? '';
             $config[$module_name]['params']['description'] = $descriptions[$module_name] ?? '';
         }
+
+        //Date added
+        foreach ($old_local_config as $module_name => $module_config) {
+
+            //If date added does not exist already, we insert the current date
+            if (!isset($old_local_config[$module_name]['date_added'])) {
+                $config[$module_name]['date_added'] = date("Y-m-d");
+            }
+            //Otherwise, we take the existing value
+            else {
+                $config[$module_name]['date_added'] = $old_local_config[$module_name]['date_added'];
+            }
+        }
         
         //Create JSON
-        $json_config = json_encode($config);
+        $json_config = json_encode($config, JSON_PRETTY_PRINT);
 
         try {
             fwrite($stream, $json_config);

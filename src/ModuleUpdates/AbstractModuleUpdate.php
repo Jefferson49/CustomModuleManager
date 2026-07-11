@@ -195,6 +195,18 @@ abstract class AbstractModuleUpdate
     }
 
     /**
+     * Get the date when the module was added to the module list of Custom Module Manager
+     * 
+     * @return string
+     */
+    public function getDateAdded(): string {
+
+        $standard_module_name = ModuleUpdateServiceConfiguration::getStandardModuleName($this->module_name);
+
+        return ModuleUpdateServiceConfiguration::getDateAdded($standard_module_name);
+    }
+
+    /**
      * The version of this module.
      *
      * @return string

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-07-03 12:16+0200\n"
-"PO-Revision-Date: 2026-07-03 12:16+0200\n"
+"POT-Creation-Date: 2026-07-11 11:49+0200\n"
+"PO-Revision-Date: 2026-07-11 11:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,34 +15,34 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:269
+#: src/CustomModuleManager.php:274
 msgid "Custom Module Manager"
 msgstr "Management von Erweiterungsmodulen"
 
-#: src/CustomModuleManager.php:282
+#: src/CustomModuleManager.php:287
 msgid "A custom module to manage webtrees custom modules."
 msgstr "Ein Erweiterungsmodul zum Verwalten von webtrees-Erweiterungsmodulen."
 
-#: src/CustomModuleManager.php:356 src/ModuleUpdates/GithubModuleUpdate.php:165
+#: src/CustomModuleManager.php:361 src/ModuleUpdates/GithubModuleUpdate.php:165
 #: src/ModuleUpdates/GithubModuleUpdate.php:320
 #, php-format
 msgid "Communication error with %s"
 msgstr "Kommunikationsfehler mit %s"
 
-#: src/CustomModuleManager.php:532
+#: src/CustomModuleManager.php:537
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:578
+#: src/CustomModuleManager.php:583
 msgid "Rollback Custom Module Update"
 msgstr "Aktualisierung des Erweiterungsmoduls rückgängig machen"
 
-#: src/CustomModuleManager.php:579
+#: src/CustomModuleManager.php:584
 msgid "Rollback"
 msgstr "Rückgängig machen"
 
-#: src/CustomModuleManager.php:606
+#: src/CustomModuleManager.php:611
 #, php-format
 msgid ""
 "The preferences for the custom module \"%s\" were sucessfully updated to the "
@@ -86,7 +86,7 @@ msgstr ""
 "Die Versionshinweise konnten aufgrund eines Kommunikationsfehlers mit GitHub "
 "nicht abgerufen werden."
 
-#: src/RequestHandlers/ColumnConfigurationModal.php:67
+#: src/RequestHandlers/ColumnConfigurationModal.php:68
 msgid "Configure columns"
 msgstr "Spalten konfigurieren"
 
@@ -267,13 +267,18 @@ msgstr "Keine Versionshinweise verfügbar"
 msgid "Release notes"
 msgstr "Versionshinweise"
 
-#: resources/views/modals/column_configuration.phtml:44
+#: resources/views/modals/column_configuration.phtml:45
+#: resources/views/module_update.phtml:170
+msgid "Date Added"
+msgstr "Hinzugefügt am"
+
+#: resources/views/modals/column_configuration.phtml:53
 #: resources/views/modals/module_information.phtml:99
-#: resources/views/module_update.phtml:137
+#: resources/views/module_update.phtml:175
 msgid "Update Service"
 msgstr "Aktualisierungs-Dienst"
 
-#: resources/views/modals/column_configuration.phtml:52
+#: resources/views/modals/column_configuration.phtml:61
 msgid "Downloads"
 msgstr "Downloads"
 
@@ -290,13 +295,13 @@ msgid "Module folder"
 msgstr "Modul-Ordner"
 
 #: resources/views/modals/module_information.phtml:109
-#: resources/views/module_update.phtml:134
+#: resources/views/module_update.phtml:172
 msgid "Current Version"
 msgstr "Aktuelle Version"
 
 #: resources/views/modals/module_information.phtml:114
 #: resources/views/modals/release_notes.phtml:31
-#: resources/views/module_update.phtml:135
+#: resources/views/module_update.phtml:173
 msgid "Latest Version"
 msgstr "Neueste Version"
 
@@ -321,7 +326,7 @@ msgstr "Aktualisierung für diese Version aktivieren"
 msgid "ignore update for this version"
 msgstr "Aktualisierung für diese Version ignorieren"
 
-#: resources/views/module_update.phtml:89
+#: resources/views/module_update.phtml:122
 #, php-format
 msgid ""
 "A new version of \"%s\" is available. It is recommended to upgrade to the "
@@ -331,7 +336,7 @@ msgstr ""
 "neueste Version zu aktualisieren bevor andere Erweiterungsmodule installiert/"
 "aktualisiert werden."
 
-#: resources/views/module_update.phtml:92
+#: resources/views/module_update.phtml:125
 msgid ""
 "Typically, custom modules versions are updated every 24 hours. You can check "
 "if later versions or download counts are available."
@@ -340,50 +345,50 @@ msgstr ""
 "aktualisiert. Sie können prüfen, ob neuere Versionen oder Download-Zahlen "
 "verfügbar sind."
 
-#: resources/views/module_update.phtml:121
+#: resources/views/module_update.phtml:156
 msgid "Module Updates"
 msgstr "Aktualisierungen für Module"
 
-#: resources/views/module_update.phtml:130
+#: resources/views/module_update.phtml:165
 msgid "Folder (within modules_v4)"
 msgstr "Ordner (in modules_v4)"
 
-#: resources/views/module_update.phtml:140
+#: resources/views/module_update.phtml:178
 msgid "Down-loads"
 msgstr "Down-loads"
 
-#: resources/views/module_update.phtml:145
+#: resources/views/module_update.phtml:183
 msgid "Install"
 msgstr "Installieren"
 
-#: resources/views/module_update.phtml:155
-#: resources/views/module_update.phtml:319
+#: resources/views/module_update.phtml:193
+#: resources/views/module_update.phtml:381
 msgid "Not installed"
 msgstr "Nicht installiert"
 
-#: resources/views/module_update.phtml:185
-#: resources/views/module_update.phtml:198
-#: resources/views/module_update.phtml:199
+#: resources/views/module_update.phtml:224
+#: resources/views/module_update.phtml:238
+#: resources/views/module_update.phtml:239
 msgid "not available"
 msgstr "nicht verfügbar"
 
-#: resources/views/module_update.phtml:298
+#: resources/views/module_update.phtml:346
 msgid "N/A"
 msgstr "N/A"
 
-#: resources/views/module_update.phtml:318
+#: resources/views/module_update.phtml:379
 msgid "Update module"
 msgstr "Modul aktualisieren"
 
-#: resources/views/module_update.phtml:321
+#: resources/views/module_update.phtml:383
 msgid "Install module"
 msgstr "Modul installieren"
 
-#: resources/views/module_update.phtml:339
+#: resources/views/module_update.phtml:402
 msgid "Delete module"
 msgstr "Modul löschen"
 
-#: resources/views/module_update.phtml:364
+#: resources/views/module_update.phtml:427
 msgid ""
 "Press the save button to enable/disable modules according to the checkbox in "
 "the \"enabled\" column."

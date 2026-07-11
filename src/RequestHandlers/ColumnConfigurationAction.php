@@ -48,6 +48,7 @@ class ColumnConfigurationAction implements RequestHandlerInterface
     {
         $show_column_description    = Validator::parsedBody($request)->boolean('show_column_description', false);
         $show_column_category       = Validator::parsedBody($request)->boolean('show_column_category', false);
+        $show_column_date_added     = Validator::parsedBody($request)->boolean('show_column_date_added', false);
         $show_column_update_service = Validator::parsedBody($request)->boolean('show_column_update_service', false);
         $show_column_downloads      = Validator::parsedBody($request)->boolean('show_column_downloads', false);
         $show_column_enabled        = Validator::parsedBody($request)->boolean('show_column_enabled', false);
@@ -58,6 +59,7 @@ class ColumnConfigurationAction implements RequestHandlerInterface
 
         $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_DESCR, $show_column_description ? '1' : '0');
         $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY, $show_column_category ? '1' : '0');
+        $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, $show_column_date_added ? '1' : '0');
         $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, $show_column_update_service ? '1' : '0');
         $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, $show_column_downloads ? '1' : '0');
         $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_ENABLED, $show_column_enabled ? '1' : '0');

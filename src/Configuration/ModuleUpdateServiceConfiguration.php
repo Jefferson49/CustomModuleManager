@@ -579,6 +579,24 @@ class ModuleUpdateServiceConfiguration
     }
 
     /**
+     * Get the date added (to the module list of Custom Module Manager) from the stored configuration
+     * 
+     * @param string $module_name
+     *  
+     * @return string
+     */
+    public static function getDateAdded(string $module_name): string {
+
+        $module_update_service_config = self::getModuleUpdateServiceConfig();
+
+        if (!isset($module_update_service_config[$module_name]['date_added'])) {
+            return '';
+        }
+
+        return $module_update_service_config[$module_name]['date_added'];
+    }
+
+    /**
      * Initialize the titles and descriptions for current and default language
      */
     public static function initializeTitlesAndDescriptions() {
