@@ -37,6 +37,7 @@ use Fisharebest\Webtrees\Http\ViewResponseTrait;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Module\ModuleThemeInterface;
+use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\User;
 use Fisharebest\Webtrees\Validator;
@@ -73,8 +74,7 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
         $this->layout = 'layouts/administration';
         
         $module_service        = New ModuleService();
-        /** @var CustomModuleManager $custom_module_manager To avoid IDE warnings */
-        $custom_module_manager = $module_service->findByName(module_name: CustomModuleManager::activeModuleName());    
+        $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::module_update', [
             'title'                      => I18N::translate('Custom Module Updates'),

@@ -214,6 +214,9 @@ class CustomModuleManager extends AbstractModule implements
 		// Register a namespace for the views.
 		View::registerNamespace(self::viewsNamespace(), $this->resourcesFolder() . 'views/');
 
+        //Register the custom module in the webtrees container
+        Registry::container()->set(CustomModuleManager::class, $this);
+
         $router = Registry::routeFactory()->routeMap();                 
 
         //Register a route for the upgrade wizard page
@@ -910,5 +913,17 @@ class CustomModuleManager extends AbstractModule implements
         }
 
         return self::$is_lower_than_latest_version ?? false;
+    }
+
+    /**
+     * Get a short module name, for example to be used for storing module preferences
+     *
+     * @param string $module_name
+     * 
+     * @return string
+     */
+    public static function getShortModuleName(string $module_name): string {
+        
+        return substr($module_name, 0, 25) . '_';
     }
 }

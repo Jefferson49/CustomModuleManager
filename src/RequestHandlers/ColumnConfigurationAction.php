@@ -31,7 +31,7 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers;
 
-use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Validator;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
@@ -53,9 +53,7 @@ class ColumnConfigurationAction implements RequestHandlerInterface
         $show_column_downloads      = Validator::parsedBody($request)->boolean('show_column_downloads', false);
         $show_column_enabled        = Validator::parsedBody($request)->boolean('show_column_enabled', false);
 
-        /** @var CustomModuleManager $module_update_service  To avoid IDE warnings */
-        $module_service = New ModuleService();
-        $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
+        $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
 
         $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_DESCR, $show_column_description ? '1' : '0');
         $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY, $show_column_category ? '1' : '0');

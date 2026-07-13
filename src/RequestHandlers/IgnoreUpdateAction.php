@@ -31,7 +31,7 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers;
 
-use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Validator;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Psr\Http\Message\ResponseInterface;
@@ -49,11 +49,8 @@ class IgnoreUpdateAction implements RequestHandlerInterface
         $ignore_updates = Validator::queryParams($request)->boolean('ignore_updates', false);
         $ignore_version = Validator::queryParams($request)->string('ignore_version', '');
 
-        /** @var CustomModuleManager $module_update_service  To avoid IDE warnings */
-        $module_service = New ModuleService();
-        $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
-
-        $short_module_name = substr($module_name, 0, 25) . '_';
+        $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
+        $short_module_name = CustomModuleManager::getShortModuleName($module_name);
 
         if ($ignore_updates) {
             $custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_IGNORE_VERSION, $ignore_version);

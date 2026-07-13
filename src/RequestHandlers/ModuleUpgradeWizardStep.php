@@ -105,6 +105,9 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     // The webtrees upgrade service
     private UpgradeService $webtrees_upgrade_service;
 
+    // The custom module
+    private CustomModuleManager $custom_module_manager;
+
     // The webtrees upgrade service
     private MaintenanceModeService $maintenance_mode_service;
 
@@ -119,12 +122,14 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
 
     /**
-     * @param UpgradeService $webtrees_upgrade_service
+     * @param UpgradeService         $webtrees_upgrade_service
+     * @param MaintenanceModeService $maintenance_mode_service
      */
     public function __construct(UpgradeService $webtrees_upgrade_service, MaintenanceModeService $maintenance_mode_service) {
 
         $this->webtrees_upgrade_service = $webtrees_upgrade_service;
         $this->maintenance_mode_service = $maintenance_mode_service;
+        $this->custom_module_manager    = Registry::container()->get(CustomModuleManager::class);
     }
 
     /**
@@ -426,8 +431,6 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
         /** @var AbstractModuleUpdate $module_update_service  To avoid IDE warnings */
         $module_update_service = $this->module_update_service;
-        $module_service = New ModuleService();
-        $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());        
 
         $this->maintenance_mode_service->offline();
 
@@ -463,8 +466,8 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 $this->webtrees_upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
 
                 // Replace stored version by the installed version
-                $short_module_name = substr($module_name, 0, 25) . '_';
-                $custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, $this->version_to_install);
+                $short_module_name = CustomModuleManager::getShortModuleName($module_name);                
+                $this->custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, $this->version_to_install);
             }
             $alert      = MoreI18N::xlate('The upgrade is complete.');
             $alert_type = self::ALERT_SUCCESS;
@@ -491,8 +494,8 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         }
 
         //Remember the module name for a test (i.e. load and boot) and potential rollback at the next start of webtrees
-        $custom_module_manager->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, $this->module_update_service->getModuleName());
-        $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
+        $this->custom_module_manager->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, $this->module_update_service->getModuleName());
+        $this->custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
 
         $url = route(CustomModuleUpdatePage::class);
         return $this->viewAlert($alert, $alert_type, $url);
@@ -522,7 +525,11 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 $this->rollback($installation_folder, $action === CustomModuleManager::ACTION_UPDATE);
 
                 //Reset flash error messages for the module
-                $module_update_service::pullFlashErrorMessage($module_name);             
+                $module_update_service::pullFlashErrorMessage($module_name);
+
+                //Reset stored module version
+                $short_module_name = CustomModuleManager::getShortModuleName($module_name);
+                $this->custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, '');
             }
 
             if ($action === CustomModuleManager::ACTION_UPDATE) {
@@ -553,10 +560,8 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $this->maintenance_mode_service->online();    
 
         //Reset update information
-        $module_service = New ModuleService();
-        $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
-        $custom_module_manager->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, '');
-        $custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
+        $this->custom_module_manager->setPreference(CustomModuleManager::PREF_LAST_UPDATED_MODULE, '');
+        $this->custom_module_manager->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '0');
 
         $url = route(CustomModuleUpdatePage::class);
         
@@ -582,6 +587,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 // Delete module files
                 $root_filesystem = Registry::filesystem()->root();
                 $root_filesystem->deleteDirectory(Webtrees::MODULES_PATH . $installation_folder);
+
+                // Reset stored module version^
+                $short_module_name = CustomModuleManager::getShortModuleName($module_name);
+                $this->custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, '');
             }
 
             $end_time   = Registry::timeFactory()->now();

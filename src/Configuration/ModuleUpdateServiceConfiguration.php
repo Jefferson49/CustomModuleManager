@@ -33,6 +33,7 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\Configuration;
 
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
+use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Session;
 use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
@@ -303,6 +304,7 @@ class ModuleUpdateServiceConfiguration
         //Does not have a GitHub or download link; creates PHP errors during use
     ];
 
+
     /**
      * Get the module update service configuration
      * 
@@ -317,9 +319,7 @@ class ModuleUpdateServiceConfiguration
 
         // Try to load the configuration from GitHub
         if (!CustomModuleManager::USE_LOCAL_CONFIG) {
-            $module_service = New ModuleService();
-            /** @var CustomModuleManager $custom_module_manager To avoid IDE warnings */
-            $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());
+            $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
             $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');            
 
             // If we use a module version, which is suitable to the remote module update service configuration on GitHub.

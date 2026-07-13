@@ -69,6 +69,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
     // The Custom Module Manager module
     protected ModuleInterface $custom_module_manager;
+
     
     /**
      * @param string $module_name  The custom module name
@@ -80,7 +81,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
         $this->module_name           = $module_name;
         $this->module_service        = new ModuleService();
-        $this->custom_module_manager = $this->module_service->findByName(CustomModuleManager::activeModuleName());
+        $this->custom_module_manager = Registry::container()->get(CustomModuleManager::class);
 
 
         if (array_key_exists('github_repo', $params)) {
@@ -206,7 +207,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         // If the installed module is available, try to get latest version from the module
         if ($module !== null && !$fetch_latest && !$this->get_latest_version_from_github) {
 
-            $short_module_name = substr($module->name(), 0, 25) . '_';
+            $short_module_name = CustomModuleManager::getShortModuleName($module->name());
             $latest_version = $module->customModuleLatestVersion();
             $cached_version = $this->fetchReleasesInfoCached(false)['tag'];
             $stored_version = $this->custom_module_manager->getPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, '');
@@ -233,6 +234,13 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
             $release_info = $this->fetchReleasesInfoCached($fetch_latest);
             $latest_version = $release_info['tag'];
+
+        }
+
+        // If latest version was fetched, store it in the module preferences
+        if ($fetch_latest) {
+            $short_module_name = CustomModuleManager::getShortModuleName($this->getModuleName());
+            $this->custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, $latest_version);
         }
 
         return $latest_version;

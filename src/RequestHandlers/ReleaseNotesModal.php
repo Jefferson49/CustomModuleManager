@@ -34,7 +34,6 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers;
 use Fisharebest\Webtrees\Http\ViewResponseTrait;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Registry;
-use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Validator;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
@@ -62,14 +61,12 @@ class ReleaseNotesModal implements RequestHandlerInterface
         $module_title   = Validator::queryParams($request)->string('module_title', '');
         $latest_version = Validator::queryParams($request)->string('latest_version', '');
 
-        /** @var CustomModuleManager $custom_module_manager  To avoid IDE warnings */
-        $module_service = New ModuleService();
-        $custom_module_manager = $module_service->findByName(CustomModuleManager::activeModuleName());   
+        $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
 
         /** @var GithubModuleUpdate $module_update_service */
         $module_update_service = CustomModuleUpdateFactory::make($module_name);
 
-        $short_module_name = substr($module_name, 0, 25) . '_';
+        $short_module_name = CustomModuleManager::getShortModuleName($module_name);
         $release_note = $module_update_service->getLatestReleaseNotes();
 
         if ($release_note === '') {
