@@ -1022,7 +1022,7 @@
         "update_service": "UrlModuleUpdate",
         "params": {
             "download_url": "https:\/\/codeberg.org\/Joppla\/Webtrees-FaviconUpdater-XXL\/archive\/main.zip",
-            "documentation_url": "https:\/\/codeberg.org\/Joppla\/Webtrees-FaviconUpdater-XXLr#readme",
+            "documentation_url": "https:\/\/codeberg.org\/Joppla\/Webtrees-FaviconUpdater-XXL#readme",
             "category": "frontend",
             "title": "FaviconUpdaterXXL",
             "description": "Replaces automatically the default favicons with your own custom favicons after every webtrees update."
@@ -1196,5 +1196,16 @@
             "description": "A configurable tree home-page charts block with built-in chart wrappers plus a module-side Enhanced Hourglass mode based on the built-in webtrees layout."
         },
         "date_added": "2026-07-10"
+    },
+    "_ortsregister_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "thobgg\/webtrees-ortsregister",
+            "tag_prefix": "v",
+            "category": "places",
+            "title": "Ortsregister",
+            "description": "Ortsregister mit visueller Landing-Page, Medien-Verkn\u00fcpfung und (geplant) GOV-Integration."
+        },
+        "date_added": "2026-07-15"
     }
 }
