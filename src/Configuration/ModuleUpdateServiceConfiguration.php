@@ -251,6 +251,8 @@ class ModuleUpdateServiceConfiguration
         '_potts-hero-slideshow_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-hero-slideshow', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
         '_enhanced-charts_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'haylau-ronzo/enhanced-charts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+
+        '_ortsregister_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'thobgg/webtrees-ortsregister', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_PLACES]],
     ];
 
 
