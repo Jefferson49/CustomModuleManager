@@ -187,7 +187,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 return $this->wizardStepUnzip($zip_file, $unzip_folder);
 
             case self::STEP_COPY:
-                return $this->wizardStepCopyAndCleanUp($module_names, $zip_file,$folders_to_clean, $action);
+                return $this->wizardStepCopyAndCleanUp($module_names, $zip_file, $folders_to_clean, $action);
 
             case self::STEP_ROLLBACK:
                 return $this->wizardStepRollback($module_names, CustomModuleManager::ACTION_UPDATE, $error_message);
@@ -464,11 +464,8 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 $destination_filesystem = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
 
                 $this->webtrees_upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
-
-                // Replace stored version by the installed version
-                $short_module_name = CustomModuleManager::getShortModuleName($module_name);                
-                $this->custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, $this->version_to_install);
             }
+
             $alert      = MoreI18N::xlate('The upgrade is complete.');
             $alert_type = self::ALERT_SUCCESS;
         }
@@ -526,10 +523,6 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
                 //Reset flash error messages for the module
                 $module_update_service::pullFlashErrorMessage($module_name);
-
-                //Reset stored module version
-                $short_module_name = CustomModuleManager::getShortModuleName($module_name);
-                $this->custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, '');
             }
 
             if ($action === CustomModuleManager::ACTION_UPDATE) {
@@ -587,10 +580,6 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 // Delete module files
                 $root_filesystem = Registry::filesystem()->root();
                 $root_filesystem->deleteDirectory(Webtrees::MODULES_PATH . $installation_folder);
-
-                // Reset stored module version^
-                $short_module_name = CustomModuleManager::getShortModuleName($module_name);
-                $this->custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, '');
             }
 
             $end_time   = Registry::timeFactory()->now();

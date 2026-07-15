@@ -207,17 +207,10 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         // If the installed module is available, try to get latest version from the module
         if ($module !== null && !$fetch_latest && !$this->get_latest_version_from_github) {
 
-            $short_module_name = CustomModuleManager::getShortModuleName($module->name());
             $latest_version = $module->customModuleLatestVersion();
             $cached_version = $this->fetchReleasesInfoCached(false)['tag'];
-            $stored_version = $this->custom_module_manager->getPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, '');
 
-            // If we had installed and stored a higher version before
-            if (CustomModuleManager::versionCompare($module->name(), $stored_version, $latest_version) > 0) {
-                $latest_version = $stored_version;
-            }
-
-            // If the cached version is higher
+            // We take the cached version if it is higher
             if (CustomModuleManager::versionCompare($module->name(), $cached_version, $latest_version) > 0) {
                 $latest_version = $cached_version;
             }
@@ -234,13 +227,6 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
             $release_info = $this->fetchReleasesInfoCached($fetch_latest);
             $latest_version = $release_info['tag'];
-
-        }
-
-        // If latest version was fetched, store it in the module preferences
-        if ($fetch_latest) {
-            $short_module_name = CustomModuleManager::getShortModuleName($this->getModuleName());
-            $this->custom_module_manager->setPreference($short_module_name . CustomModuleManager::PREF_LATEST_VERSION, $latest_version);
         }
 
         return $latest_version;
@@ -319,11 +305,14 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         }
 
         return Registry::cache()->file()->remember($cache_key, function (): array {
+            
             $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
 
             try {
                 return GithubService::getRecentReleasesInfo($this->github_repo, $github_api_token);
-            } catch (GithubCommunicationError $ex) {
+            }
+            catch (GithubCommunicationError $ex) {
+
                 if (!CustomModuleManager::rememberGithubCommunciationError()) {
                     FlashMessages::addMessage(I18N::translate('Communication error with %s', self::NAME), 'danger');
                 }

@@ -121,7 +121,6 @@ class CustomModuleManager extends AbstractModule implements
     public const PREF_SHOW_INSTALLED          = 'show_installed_modules';
     public const PREF_SHOW_NOT_INSTALLED      = 'show_not_installed_modules';
     public const PREF_SHOW_MENU_LIST_ITEM     = 'show_menu_list_item';
-    public const PREF_LATEST_VERSION          = 'latest';
     public const PREF_IGNORE_VERSION          = 'ignore';
     public const PREF_SHOW_COLUMN_DESCR       = 'show_column_description';
     public const PREF_SHOW_COLUMN_CATEGORY    = 'show_column_category';
