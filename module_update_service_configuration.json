@@ -493,7 +493,6 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "hartenthaler\/hh-change-log",
-            "tag_prefix": "v",
             "category": "frontend_tab",
             "title": "Changes",
             "description": "A tab showing recent GEDCOM data changes for an individual."
