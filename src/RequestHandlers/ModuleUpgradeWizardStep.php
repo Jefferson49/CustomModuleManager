@@ -112,7 +112,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     private MaintenanceModeService $maintenance_mode_service;
 
     // The custom module update service
-    private CustomModuleUpdateInterface $module_update_service;
+    private CustomModuleUpdateInterface|null $module_update_service;
 
     // Wether we operate in the context of a modal
     private bool $modal;
@@ -165,10 +165,15 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $this->module_update_service = CustomModuleUpdateFactory::make($module_name);
         $this->modal = $modal;
 
-        $zip_file         = Webtrees::ROOT_DIR . self::ZIP_FILENAME;
-        $module_names     = $this->module_update_service->getModuleNamesToUpdate();
-        $unzip_folder     = $this->module_update_service->getUnzipFolder();
-        $folders_to_clean = $this->module_update_service->getFoldersToClean();
+        if ($this->module_update_service === null && in_array($step, [self::STEP_BACKUP, self::STEP_DELETE])) {
+            $module_names = [$module_name => $module_name];
+        }
+        else {
+            $zip_file         = Webtrees::ROOT_DIR . self::ZIP_FILENAME;
+            $module_names     = $this->module_update_service->getModuleNamesToUpdate();
+            $unzip_folder     = $this->module_update_service->getUnzipFolder();
+            $folders_to_clean = $this->module_update_service->getFoldersToClean();
+        }
 
         switch ($step) {
             case self::STEP_CHECK:
@@ -329,7 +334,12 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
         try {
             foreach ($module_names as $module_name => $standard_module_name) {
-                $installation_folder    = $module_update_service::getInstallationFolderFromModuleName($module_name);
+                if ($module_update_service === null) {
+                    $installation_folder = AbstractModuleUpdate::getInstallationFolderFromModuleName($module_name);
+                }
+                else {
+                    $installation_folder = $module_update_service::getInstallationFolderFromModuleName($module_name);
+                }
                 $source_filesystem      = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
                 $destination_filesystem = Registry::filesystem()->root(self::BACKUP_FOLDER . Webtrees::MODULES_PATH . $installation_folder);
 
@@ -709,35 +719,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
         //If URL is provided, include continue buttons
         if ($url !== '') {
-            /** @var AbstractModuleUpdate $module_update_service  To avoid IDE warnings */
-            $module_update_service = $this->module_update_service;
-            $module_service = new ModuleService;
-            $module = $module_service->findByName($module_update_service->getModuleName());      
-            
-            if ($module !== null && (get_class($module) ===  CustomModuleManager::class)) {
-                $update_own_module_code = true;
-            }
-            else {
-                $update_own_module_code = false;
-            }
-
-            // We do not use a second button ("continue") any more, since the loading time for the module update page was significantly reduced
-            // However, might be needed again later
-            //$add_modal_button = $this->modal && !$update_own_module_code && !($module_update_service->name() === VestaModuleUpdate::NAME);
-            $add_modal_button = false;
     
-            $button1 = '<a href="' . e($url) . '" class="btn btn-primary"';
-            if ($add_modal_button) {
-                $button1 .= ' data-bs-dismiss="modal"';
-            }
-            $button1 .= '>' . MoreI18N::xlate('continue') . '</a>';
-
-            $button2 = '<a href="' . e($url) . '" class="btn btn-secondary">' . I18N::translate('continue (reload)') . '</a>';
-
-            $alert .= ' ' . $button1;
-            if ($add_modal_button) {
-                $alert .= ' ' . $button2;
-            }
+            $button = '<a href="' . e($url) . '" class="btn btn-primary"';
+            $button .= '>' . MoreI18N::xlate('continue') . '</a>';
+            $alert .= ' ' . $button;
         }
 
         return response(view('components/' . $alert_type, [
