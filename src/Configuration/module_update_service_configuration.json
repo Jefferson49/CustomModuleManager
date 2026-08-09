@@ -974,6 +974,18 @@
         },
         "date_added": "2026-03-27"
     },
+    "_theme-noctis_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "szporwolik\/webtrees-theme-noctis",
+            "tag_prefix": "v",
+            "is_theme": true,
+            "category": "theme",
+            "title": "Noctis",
+            "description": "A modern dark theme for webtrees."
+        },
+        "date_added": "2026-08-09"
+    },
     "_tree-explorer_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -1074,18 +1086,6 @@
         },
         "date_added": "2026-06-15"
     },
-    "_admin-announcement-billboard_": {
-        "update_service": "GithubModuleUpdate",
-        "params": {
-            "github_repo": "0ldM4cM4n\/admin-announcement-billboard",
-            "no_release": true,
-            "default_branch": "main",
-            "category": "frontend",
-            "title": "Admin Announcement Billboard",
-            "description": "Displays an admin-controlled announcement billboard on each member's personal page."
-        },
-        "date_added": "2026-06-29"
-    },
     "_webtrees-json-api_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -1097,6 +1097,61 @@
             "description": "Token-gated JSON API for managing users and individuals."
         },
         "date_added": "2026-06-15"
+    },
+    "_potts-admin-shortcuts_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "PottsNet\/potts-admin-shortcuts",
+            "tag_prefix": "v",
+            "category": "admin",
+            "title": "Administration shortcuts",
+            "description": "Quick links to an administrator's favourite module settings and user administration."
+        },
+        "date_added": "2026-08-09"
+    },
+    "_potts_fact_ages_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "PottsNet\/potts_fact_ages",
+            "tag_prefix": "v",
+            "category": "frontend_tab",
+            "title": "Potts Fact Ages",
+            "description": "Displays a person\u2019s calculated age at dated facts and events."
+        },
+        "date_added": "2026-06-29"
+    },
+    "_potts-family-books_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "PottsNet\/potts-family-books",
+            "tag_prefix": "v",
+            "category": "reports",
+            "title": "Potts Family Book",
+            "description": "Display family history books as HTML pages inside webtrees."
+        },
+        "date_added": "2026-07-03"
+    },
+    "_potts-help-centre_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "PottsNet\/potts-help-centre",
+            "tag_prefix": "v",
+            "category": "frontend",
+            "title": "Potts Help Centre",
+            "description": "An inclusive webtrees help centre for visitors and members, with searchable, contextual and module-aware guidance."
+        },
+        "date_added": "2026-08-09"
+    },
+    "_potts-hero-slideshow_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "PottsNet\/potts-hero-slideshow",
+            "tag_prefix": "v",
+            "category": "frontend",
+            "title": "Potts Hero Slideshow",
+            "description": "A standalone, theme-aware homepage hero banner with a family photo slideshow."
+        },
+        "date_added": "2026-07-10"
     },
     "_potts-historical-facts_": {
         "update_service": "GithubModuleUpdate",
@@ -1120,6 +1175,17 @@
         },
         "date_added": "2026-07-05"
     },
+    "_potts-life-story-engine_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "PottsNet\/potts-life-story-engine",
+            "tag_prefix": "v",
+            "category": "frontend_tab",
+            "title": "Potts Biography",
+            "description": "Creates an intelligent, illustrated biography from the genealogy records visible to each visitor."
+        },
+        "date_added": "2026-08-09"
+    },
     "_potts-modern-theme_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -1130,39 +1196,6 @@
             "description": "A modern, responsive heritage theme for webtrees."
         },
         "date_added": "2026-07-05"
-    },
-    "_potts_fact_ages_": {
-        "update_service": "GithubModuleUpdate",
-        "params": {
-            "github_repo": "PottsNet\/potts_fact_ages",
-            "tag_prefix": "v",
-            "category": "frontend_tab",
-            "title": "Potts Fact Ages",
-            "description": "Displays a person\u2019s calculated age at dated facts and events."
-        },
-        "date_added": "2026-06-29"
-    },
-    "_potts_on_this_day_email_": {
-        "update_service": "GithubModuleUpdate",
-        "params": {
-            "github_repo": "PottsNet\/potts_on_this_day_email",
-            "tag_prefix": "v",
-            "category": "email",
-            "title": "Potts On This Day Email",
-            "description": "Send personalised On This Day emails to registered users who opt in, using webtrees email delivery and each subscriber\u2019s privacy permissions."
-        },
-        "date_added": "2026-06-29"
-    },
-    "_potts-family-books_": {
-        "update_service": "GithubModuleUpdate",
-        "params": {
-            "github_repo": "PottsNet\/potts-family-books",
-            "tag_prefix": "v",
-            "category": "reports",
-            "title": "Potts Family Book",
-            "description": "Display family history books as HTML pages inside webtrees."
-        },
-        "date_added": "2026-07-03"
     },
     "_potts-narrative-ancestor-book_": {
         "update_service": "GithubModuleUpdate",
@@ -1175,16 +1208,27 @@
         },
         "date_added": "2026-07-05"
     },
-    "_potts-hero-slideshow_": {
+    "_potts_on_this_day_email_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "PottsNet\/potts-hero-slideshow",
+            "github_repo": "PottsNet\/potts_on_this_day_email",
+            "tag_prefix": "v",
+            "category": "email",
+            "title": "Potts On This Day Email",
+            "description": "Send personalised On This Day emails to registered users who opt in, using webtrees email delivery and each subscriber\u2019s privacy permissions."
+        },
+        "date_added": "2026-06-29"
+    },
+    "_potts-relationship-context_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "PottsNet\/potts-relationship-context",
             "tag_prefix": "v",
             "category": "frontend",
-            "title": "Potts Hero Slideshow",
-            "description": "A standalone, theme-aware homepage hero banner with a family photo slideshow."
+            "title": "Potts Relationship Context",
+            "description": "Shows relationship context between the current individual, the logged-in user and close-relative events."
         },
-        "date_added": "2026-07-10"
+        "date_added": "2026-08-09"
     },
     "_enhanced-charts_": {
         "update_service": "GithubModuleUpdate",
@@ -1197,6 +1241,29 @@
         },
         "date_added": "2026-07-10"
     },
+    "_media-badge_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "JRMine\/webtrees-media-badge",
+            "tag_prefix": "v",
+            "category": "frontend",
+            "title": "Media Badge",
+            "description": "Zeigt konfigurierbare Badges aus Medien-Notizen neben dem Medientitel an."
+        },
+        "date_added": "2026-08-09"
+    },
+    "_media-collections_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "thobgg\/webtrees-sammlungen",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "media",
+            "title": "Sammlungen",
+            "description": "Foto- und Dokumenten-Sammlungen mit EXIF-Anreicherung, Galerie und Lightbox."
+        },
+        "date_added": "2026-08-09"
+    },
     "_ortsregister_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -1207,5 +1274,16 @@
             "description": "Ortsregister mit visueller Landing-Page, Medien-Verkn\u00fcpfung und (geplant) GOV-Integration."
         },
         "date_added": "2026-07-15"
+    },
+    "_theme-farbwelten_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "thobgg\/webtrees-theme-farbwelten",
+            "tag_prefix": "v",
+            "category": "theme",
+            "title": "Farbwelten",
+            "description": "One theme, four palettes: light, dark, sepia and bordeaux \u2013 switchable from the header menu."
+        },
+        "date_added": "2026-08-09"
     }
 }

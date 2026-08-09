@@ -225,6 +225,7 @@ class ModuleUpdateServiceConfiguration
 
         '_full-diagram_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'AlexBocken/WebtreesFullDiagram', 'no_release' => true, 'default_branch' => 'master', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
+        '_theme-noctis_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'szporwolik/webtrees-theme-noctis', 'tag_prefix' => 'v', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
         '_tree-explorer_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'szporwolik/webtrees-tree-explorer', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
         '_gendex-generator_'                 =>  ['update_service' => 'UrlModuleUpdate',    'params' => ['download_url' => 'https://codeberg.org/Joppla/Webtrees-GendexGenerator/archive/main.zip', 'documentation_url' => 'https://codeberg.org/Joppla/Webtrees-GendexGenerator#readme', self::CATEGORY => self::CATEGORY_GEDCOM]],
@@ -237,47 +238,43 @@ class ModuleUpdateServiceConfiguration
         '_user-page-title_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '0ldM4cM4n/webtrees-user-page-title', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_all-ages-export-engine_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '0ldM4cM4n/all-ages-export-engine', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
         '_dead-record-detective_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '0ldM4cM4n/dead-record-detective', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_ADMIN]],
-        '_admin-announcement-billboard_'     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '0ldM4cM4n/admin-announcement-billboard', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
         '_webtrees-json-api_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jbh4x82/webtrees_api', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_ADMIN]],
 
+        '_potts-admin-shortcuts_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-admin-shortcuts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_potts_fact_ages_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts_fact_ages', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_potts-family-books_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-family-books', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_REPORTS]],        
+        '_potts-help-centre_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-help-centre', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_potts-hero-slideshow_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-hero-slideshow', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_potts-historical-facts_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-historical-facts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
         '_potts-seo-helper_'                 =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-seo-helper', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_potts-life-story-engine_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-life-story-engine', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
         '_potts-modern-theme_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-modern-theme', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
-        '_potts_fact_ages_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts_fact_ages', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
-        '_potts_on_this_day_email_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts_on_this_day_email', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_EMAIL]],
-        '_potts-family-books_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-family-books', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_REPORTS]],        
         '_potts-narrative-ancestor-book_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-narrative-ancestor-book', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_REPORTS]],
-        '_potts-hero-slideshow_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-hero-slideshow', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_potts_on_this_day_email_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts_on_this_day_email', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_EMAIL]],
+        '_potts-relationship-context_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-relationship-context', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
         '_enhanced-charts_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'haylau-ronzo/enhanced-charts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
+        '_media-badge_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JRMine/webtrees-media-badge', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_media-collections_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'thobgg/webtrees-sammlungen', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_MEDIA]],
         '_ortsregister_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'thobgg/webtrees-ortsregister', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_PLACES]],
+        '_theme-farbwelten_'                 =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'thobgg/webtrees-theme-farbwelten', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
     ];
 
 
     private const MODULES_BETA_VERSION = [
 
-        '_media-badge_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JRMine/webtrees-media-badge', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
-
     ];
         
-    private const MODULES_INSTALLATION_FAILS = [
-
-        '_enhanced-charts_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'haylau-ronzo/enhanced-charts', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        // Unzipping the module ZIP file fails on Linux systems
+    private const MODULES_WITH_ERRORS = [
 
         '_admin-announcement-billboard_'     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '0ldM4cM4n/admin-announcement-billboard', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        // Module does not show up in the custom module manager view although folder is installed
-
-        '_media-collections_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'thobgg/webtrees-sammlungen', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_MEDIA]],
-        // Error after installation
-
-        '_theme-noctis_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'szporwolik/webtrees-theme-noctis', 'tag_prefix' => 'v', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
-        // No latest release available yet. CMM requests latest release with GitHub API
+        //Wrongly shows new version available in CMM
+        //Does not provide releases yet
 
         '_WebtreesChatBot_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'MABeatty1978/WebtreesChatBot', 'no_release' => true, 'default_branch' => 'master', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
-        // No standard custom module files; needs manual copying of specific files to webtrees core
+        //No standard custom module files; needs manual copying of specific files to webtrees core
 
         '_custom-css_'                       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'makitso/custom-css']],
         //Unusual folder structure; disabled by default: modules_v4/custom-css-1.0.19/custom-css.disable/module.php
@@ -285,22 +282,21 @@ class ModuleUpdateServiceConfiguration
         '_SA-history-4-webtrees_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo'  => 'tronsmit/SA-history-4-webtrees']],
         //Creates errors if module folder is renamed (e.g. from "SA-history-4-webtrees-1.1.0" to "SA-history-4-webtrees")
         //Seems not to occur in control panel, even if installed manually
+        //Last update in Dec 2024
 
         '_paradiso-master_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'filicis/paradiso', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_THEME]],
         //Last commit is 6 years ago; seemingly not compatible to webtrees 2.2
         //Main folder "paradiso-master" seems to contain 5 module in sub-directories
-        //Included odules create PHP errors
+        //Included modules create PHP errors
  
         '_jsonld_'                           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bmarwell/webtrees-jsonld', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
-        //Preliminary release; creates errors
+        //Only preliminary release from Nov. 2025 available; creates errors
     ];
 
     private const MODULES_TO_CLARIFY = [
         
-        '_new_modules_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'sevtor/modules']],
         '_new_reports_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'sevtor/modules']],
         //No module, but substitution of webtrees core code
-
 
         '_changes_'
         //Does not have a GitHub or download link; creates PHP errors during use
