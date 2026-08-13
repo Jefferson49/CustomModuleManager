@@ -28,28 +28,40 @@ use Jefferson49\Webtrees\Internationalization\MoreI18N;
 <dl>
     <?php foreach ($steps as $url => $text) : ?>
     <dt><?= $text ?></dt>
-    <dd class="wt-ajax-load" data-url="<?= e($url) ?>"></dd>
+    <dd data-url="<?= e($url) ?>"></dd>
     <?php endforeach ?>
 </dl>
 
 <?php View::push('javascript') ?>
 <script>
   function nextAjaxStep() {
-    $("dd:empty:first").each(function(n, el) {
-      $(el).load(el.dataset.url, {}, function (responseText, textStatus, req) {
-        el.innerHTML = responseText;
-        if (textStatus === "error") {
-          $(".wt-ajax-load").removeClass("wt-ajax-load");
-        } else {
-          nextAjaxStep();
-        }
-      });
+    const el = document.querySelector('dd:empty');
 
-      // Only process one callback at a time.
-      return false;
-    });
+    if (!el) {
+      return;
+    }
+
+    el.innerHTML = <?= json_encode(view('icons/spinner')) ?>;
+
+    fetch(el.dataset.url, {
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    })
+      .then(response => response.text())
+      .then(html => {
+        el.innerHTML = html;
+        nextAjaxStep();
+      })
+      .catch(() => {
+        el.innerHTML = '';
+      });
   }
 
-  nextAjaxStep();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', nextAjaxStep);
+  } else {
+    nextAjaxStep();
+  }
 </script>
 <?php View::endpush() ?>
