@@ -40,6 +40,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
  * @var bool                $show_column_update_service
  * @var bool                $show_column_downloads
  * @var bool                $show_column_enabled
+ * @var bool                $responsive_table
  */
 
 // Configuration of module update table
@@ -130,19 +131,12 @@ $order = [[$sort_column, 'desc']];
     ])) ?>" type="submit" class="btn btn-primary">
     <?= MoreI18N::xlate('check now') ?>
 </a>
-<a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ColumnConfigurationModal::class, [
-        'show_column_description'    => $show_column_description,
-        'show_column_category'       => $show_column_category,
-        'show_column_date_added'     => $show_column_date_added,
-        'show_column_update_service' => $show_column_update_service,
-        'show_column_downloads'      => $show_column_downloads,
-        'show_column_enabled'        => $show_column_enabled,
-    ])) ?>" type="submit" class="btn btn-secondary">
+<a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ColumnConfigurationModal::class)) ?>" type="submit" class="btn btn-secondary">
     <?= I18N::translate('Configure columns') ?>
 </a>
 
 <form method="post" action="<?= e(route(CustomModuleActivateAction::class)) ?>">
-    <div class="table-responsive">
+    <div class="<?= $responsive_table ? 'table-responsive' : '' ?>">
         <table
             id="wt-datatables-custom-module-manager-updates"
             class="table table-bordered table-hover table-sm table-module-administration datatables"

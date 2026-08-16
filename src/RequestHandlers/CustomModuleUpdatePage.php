@@ -77,20 +77,21 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
         $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::module_update', [
-            'title'                      => I18N::translate('Custom Module Updates'),
-            'custom_module_manager'      => $custom_module_manager,
-            'module_service'             => $module_service,
-            'module_names'               => ModuleUpdateServiceConfiguration::getModuleNames(),
-            'custom_modules'             => $module_service->findByInterface(ModuleCustomInterface::class, true),
-            'themes'                     => $module_service->findByInterface(ModuleThemeInterface::class, true),
-            'fetch_latest'               => $fetch_latest,
-            'modules_to_show'            => $custom_module_manager->getPreference(CustomModuleManager::PREF_MODULES_TO_SHOW, CustomModuleManager::PREF_SHOW_ALL),
-            'show_column_description'    => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DESCR, '1')),
-            'show_column_category'       => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY, '1')),
-            'show_column_date_added'     => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, '1')),
-            'show_column_update_service' => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, '1')),
-            'show_column_downloads'      => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, '1')),
-            'show_column_enabled'        => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_ENABLED, '1')),
+            'title'                                          => I18N::translate('Custom Module Updates'),
+            'custom_module_manager'                          => $custom_module_manager,
+            'module_service'                                 => $module_service,
+            'module_names'                                   => ModuleUpdateServiceConfiguration::getModuleNames(),
+            'custom_modules'                                 => $module_service->findByInterface(ModuleCustomInterface::class, true),
+            'themes'                                         => $module_service->findByInterface(ModuleThemeInterface::class, true),
+            'fetch_latest'                                   => $fetch_latest,
+            'modules_to_show'                                => $custom_module_manager->getPreference(CustomModuleManager::PREF_MODULES_TO_SHOW, CustomModuleManager::PREF_SHOW_ALL),
+            CustomModuleManager::PREF_SHOW_COLUMN_DESCR      => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DESCR, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY   => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV   => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS  => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_ENABLED    => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_ENABLED, '1')),
+            CustomModuleManager::PREF_RESPONSIVE_TABLE       => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_RESPONSIVE_TABLE, '0')),
         ]);
     }
 }

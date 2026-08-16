@@ -15,6 +15,7 @@ use function view;
  * @var bool   $show_column_update_service
  * @var bool   $show_column_downloads
  * @var bool   $show_column_enabled
+ * @var bool   $responsive_table
  */
 
 ?>
@@ -63,13 +64,22 @@ use function view;
             <div class="col-sm-9 wt-page-options-value">
                 <?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, 'checked' => $show_column_downloads]) ?>
             </div>
-        </fieldset>        
+        </fieldset>
         <fieldset class="row">
             <legend class="col-sm-3 col-form-label wt-page-options-label">
                 <?= MoreI18N::xlate('Enabled') ?>
             </legend>
             <div class="col-sm-9 wt-page-options-value">
                 <?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_SHOW_COLUMN_ENABLED, 'checked' => $show_column_enabled]) ?>
+            </div>
+        </fieldset>
+        <div class="row mb-3"><?= view('icons/spacer') ?></div>
+        <fieldset class="row">
+            <legend class="col-sm-3 col-form-label wt-page-options-label">
+                <?= I18N::translate('Responsive table layout') ?>
+            </legend>
+            <div class="col-sm-9 wt-page-options-value">
+                <?= view('components/checkbox', ['label' => MoreI18N::xlate('Activate'), 'name' => CustomModuleManager::PREF_RESPONSIVE_TABLE, 'checked' => $responsive_table]) ?>
             </div>
         </fieldset>        
     </div>

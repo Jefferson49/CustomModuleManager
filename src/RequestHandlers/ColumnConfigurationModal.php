@@ -33,8 +33,7 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers;
 
 use Fisharebest\Webtrees\Http\ViewResponseTrait;
 use Fisharebest\Webtrees\I18N;
-use Fisharebest\Webtrees\Services\ModuleService;
-use Fisharebest\Webtrees\Validator;
+use Fisharebest\Webtrees\Registry;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -55,23 +54,19 @@ class ColumnConfigurationModal implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $show_column_description    = Validator::queryParams($request)->string('show_column_description', '');
-        $show_column_category       = Validator::queryParams($request)->string('show_column_category', '');
-        $show_column_date_added     = Validator::queryParams($request)->string('show_column_date_added', '');
-        $show_column_update_service = Validator::queryParams($request)->string('show_column_update_service', '');
-        $show_column_downloads      = Validator::queryParams($request)->string('show_column_downloads', '');
-        $show_column_enabled        = Validator::queryParams($request)->string('show_column_enabled', '');
-
         $this->layout = 'layouts/ajax';
+
+        $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
         
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/column_configuration', [
             'title'                      => I18N::translate('Configure columns'),
-            'show_column_description'    => $show_column_description,
-            'show_column_category'       => $show_column_category,
-            'show_column_date_added'     => $show_column_date_added,
-            'show_column_update_service' => $show_column_update_service,
-            'show_column_downloads'      => $show_column_downloads,
-            'show_column_enabled'        => $show_column_enabled,
+            CustomModuleManager::PREF_SHOW_COLUMN_DESCR      => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DESCR, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY   => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV   => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS  => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_ENABLED    => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_ENABLED, '1')),            
+            CustomModuleManager::PREF_RESPONSIVE_TABLE       => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_RESPONSIVE_TABLE, '0')),            
         ]);
     }
 }
