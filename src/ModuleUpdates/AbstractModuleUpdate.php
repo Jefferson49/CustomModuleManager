@@ -35,12 +35,14 @@ use Fig\Http\Message\StatusCodeInterface;
 use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
+use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Webtrees;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Exception\RequestException;
+use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 use Illuminate\Support\Collection;
+use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
@@ -417,23 +419,15 @@ abstract class AbstractModuleUpdate
             return '';
         }
 
-        try {
-            $client = new Client([
-                'timeout' => 3,
-            ]);
+        $response = GithubService::getResponse($module->customModuleLatestVersionUrl());
 
-            $response = $client->get($module->customModuleLatestVersionUrl());
+        if ($response->getStatusCode() === StatusCodeInterface::STATUS_OK) {
+            $version = $response->getBody()->getContents();
 
-            if ($response->getStatusCode() === StatusCodeInterface::STATUS_OK) {
-                $version = $response->getBody()->getContents();
-
-                // Does the response look like a version?
-                if (preg_match('/^\d+\.\d+\.\d+/', $version)) {
-                    return $version;
-                }
+            // Does the response look like a version?
+            if (preg_match('/^\d+\.\d+\.\d+/', $version)) {
+                return $version;
             }
-        } catch (GuzzleException | RequestException $e) {
-            // Can't connect to the server?
         }
 
         return '';
