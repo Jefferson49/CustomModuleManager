@@ -38,7 +38,6 @@ use Fisharebest\Webtrees\Http\RequestHandlers\HomePage;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\MaintenanceModeService;
-use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Services\PhpService;
 use Fisharebest\Webtrees\Services\TimeoutService;
 use Fisharebest\Webtrees\Services\UpgradeService;
@@ -70,6 +69,7 @@ use function intdiv;
 use function response;
 use function route;
 use function view;
+
 
 /**
  * Upgrade to a new version of a custom module.
@@ -141,7 +141,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        if (Session::get(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED, false)) {
+        if (Session::get($this->custom_module_manager->name() . CustomModuleManager::SESSION_WIZARD_ABORTED, false)) {
             return $this->viewAlert(I18N::translate('Update Wizard was aborted'), self::ALERT_DANGER, '', true);
         }
 
@@ -709,12 +709,12 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         }
 
         if ($abort) {
-            if (!Session::get(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED, false)) {
+            if (!Session::get($this->custom_module_manager->name() . CustomModuleManager::SESSION_WIZARD_ABORTED, false)) {
 
                 //If first time to abort, add a button with an URL to continue
                 $url = route(CustomModuleUpdatePage::class);
             }
-            Session::put(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED, true);
+            Session::put($this->custom_module_manager->name() . CustomModuleManager::SESSION_WIZARD_ABORTED, true);
         }
 
         //If URL is provided, include continue buttons

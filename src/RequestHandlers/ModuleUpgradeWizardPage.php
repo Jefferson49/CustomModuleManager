@@ -35,6 +35,7 @@ use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\Http\RequestHandlers\HomePage;
 use Fisharebest\Webtrees\Http\ViewResponseTrait;
 use Fisharebest\Webtrees\I18N;
+use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\UpgradeService;
 use Fisharebest\Webtrees\Session;
 use Fisharebest\Webtrees\User;
@@ -93,7 +94,8 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
         }
 
         // Reset aborted flag before start of wizard
-        Session::forget(CustomModuleManager::activeModuleName() . CustomModuleManager::SESSION_WIZARD_ABORTED);
+        $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
+        Session::forget($custom_module_manager->name() . CustomModuleManager::SESSION_WIZARD_ABORTED);
 
         // Retrieve download URL
         if ($action !== CustomModuleManager::ACTION_DELETE) {

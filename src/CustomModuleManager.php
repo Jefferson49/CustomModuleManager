@@ -43,7 +43,6 @@ use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Fisharebest\Webtrees\Module\ModuleConfigTrait;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
-use Fisharebest\Webtrees\Module\ModuleCustomTrait;
 use Fisharebest\Webtrees\Module\ModuleGlobalInterface;
 use Fisharebest\Webtrees\Module\ModuleGlobalTrait;
 use Fisharebest\Webtrees\Module\ModuleLanguageInterface;
@@ -57,13 +56,12 @@ use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Webtrees;
 use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
+use Jefferson49\Webtrees\Helpers\Functions;
 use Jefferson49\Webtrees\Helpers\GithubService;
-use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\DefaultTitlesAndDescriptions;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
-use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ColumnConfigurationAction;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ColumnConfigurationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleActivateAction;
@@ -73,6 +71,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleInform
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardStep;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotesModal;
+use Jefferson49\Webtrees\Module\ModuleCustomTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -197,7 +196,10 @@ class CustomModuleManager extends AbstractModule implements
      * @return void
      */
     public function boot(): void
-    {              
+    {
+        //Register the custom module in the webtrees container
+        Registry::container()->set(CustomModuleManager::class, $this);
+
         //Check update of module version
         $this->checkModuleVersionUpdate();
 
@@ -213,9 +215,6 @@ class CustomModuleManager extends AbstractModule implements
 
 		// Register a namespace for the views.
 		View::registerNamespace(self::viewsNamespace(), $this->resourcesFolder() . 'views/');
-
-        //Register the custom module in the webtrees container
-        Registry::container()->set(CustomModuleManager::class, $this);
 
         $router = Registry::routeFactory()->routeMap();                 
 
@@ -288,113 +287,6 @@ class CustomModuleManager extends AbstractModule implements
     {
         /* I18N: Description of the “AncestorsChart” module */
         return I18N::translate('A custom module to manage webtrees custom modules.');
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @return string
-     *
-     * @see \Fisharebest\Webtrees\Module\AbstractModule::resourcesFolder()
-     */
-    public function resourcesFolder(): string
-    {
-        return dirname(__DIR__, 1) . '/resources/';
-    }
-
-    /**
-     * Get the active module name, e.g. the name of the currently running module
-     *
-     * @return string
-     */
-    public static function activeModuleName(): string
-    {
-        return '_' . basename(dirname(__DIR__, 1)) . '_';
-    }
-    
-    /**
-     * {@inheritDoc}
-     *
-     * @return string
-     *
-     * @see \Fisharebest\Webtrees\Module\ModuleCustomInterface::customModuleAuthorName()
-     */
-    public function customModuleAuthorName(): string
-    {
-        return self::CUSTOM_AUTHOR;
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @return string
-     *
-     * @see \Fisharebest\Webtrees\Module\ModuleCustomInterface::customModuleVersion()
-     */
-    public function customModuleVersion(): string
-    {
-        return self::CUSTOM_VERSION;
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @return string
-     *
-     * @see \Fisharebest\Webtrees\Module\ModuleCustomInterface::customModuleLatestVersion()
-     */
-    public function customModuleLatestVersion(): string
-    {
-        // If no GitHub repo is available
-        if (self::GITHUB_REPO === '') {
-            return $this->customModuleVersion();
-        }
-
-        return Registry::cache()->file()->remember(
-            $this->name() . '-latest-version',
-            function (): string {
-
-                try {
-                    //Get latest release from GitHub
-                    return GithubService::getLatestReleaseTag(self::GITHUB_REPO, $this->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, ''));
-                }
-                catch (GithubCommunicationError $ex) {
-                    // Can't connect to GitHub?
-                    if (!self::rememberGithubCommunciationError()) {
-                        FlashMessages::addMessage(I18N::translate('Communication error with %s', GithubModuleUpdate::NAME), 'danger');
-                    }
-                }
-
-                return $this->customModuleVersion();
-            },
-            86400
-        );
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @return string
-     *
-     * @see \Fisharebest\Webtrees\Module\ModuleCustomInterface::customModuleSupportUrl()
-     */
-    public function customModuleSupportUrl(): string
-    {
-        return 'https://github.com/' . self::GITHUB_REPO;
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @param string $language
-     *
-     * @return array
-     *
-     * @see \Fisharebest\Webtrees\Module\ModuleCustomInterface::customTranslations()
-     */
-    public function customTranslations(string $language): array
-    {
-        return MoreI18N::readTranslationsFromMoFile($this->resourcesFolder() . 'lang/', $language);
     }
 
     /**
@@ -475,16 +367,6 @@ class CustomModuleManager extends AbstractModule implements
         return boolval($this->getPreference(self::PREF_DEBUGGING_ACTIVATED, '0'));
     }
     
-    /**
-     * Get the namespace for the views
-     *
-     * @return string
-     */
-    public static function viewsNamespace(): string
-    {
-        return self::activeModuleName();
-    }    
-
     /**
      * View module settings in control panel
      *
