@@ -9,6 +9,7 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Session;
+use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
@@ -42,6 +43,13 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
  * @var bool                $show_column_enabled
  * @var bool                $responsive_table
  */
+
+// Class for module update table
+if (version_compare(Webtrees::VERSION, '2.2.6', '>')) {
+    $data_tables_class = "wt-datatables d-none";
+} else {
+    $data_tables_class = "datatables";
+}
 
 // Configuration of module update table
 $sort_column = 4;
@@ -139,7 +147,7 @@ $order = [[$sort_column, 'desc']];
     <div class="<?= $responsive_table ? 'table-responsive' : '' ?>">
         <table
             id="wt-datatables-custom-module-manager-updates"
-            class="table table-bordered table-hover table-sm table-module-administration datatables"
+            class="table table-bordered table-hover table-sm table-module-administration <?= $data_tables_class ?>"
             <?= view('lists/datatables-attributes') ?>
             data-info="false"
             data-paging="false"
