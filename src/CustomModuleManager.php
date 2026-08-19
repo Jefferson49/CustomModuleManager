@@ -633,9 +633,13 @@ class CustomModuleManager extends AbstractModule implements
 
         $languages = $module_service->findByInterface(ModuleLanguageInterface::class, true, true)
             ->mapWithKeys(static function (ModuleLanguageInterface $module): array {
-                $locale = $module->locale();
-
-                return [$locale->languageTag() => $locale->endonym()];
+                if (version_compare(Webtrees::VERSION, '2.2.6', '>')) {
+                    $language = $module->language();
+                }
+                else {
+                    $language = $module->locale();
+                }
+                return [$language->languageTag() => $language->endonym()];
             });
 
         foreach ($languages as $language_tag => $language_name) {
