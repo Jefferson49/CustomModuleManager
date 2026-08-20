@@ -125,6 +125,12 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         else {
             $this->install_clean = false;
         }
+        if (array_key_exists('update_manually', $params)) {
+            $this->update_manually = $params['update_manually'];
+        }
+        else {
+            $this->update_manually = false;
+        }
 
         $this->category = self::identifyCategoryFromConfig($module_name, $params);
     }

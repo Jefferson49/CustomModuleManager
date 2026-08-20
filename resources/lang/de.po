@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-08-17 05:51+0200\n"
-"PO-Revision-Date: 2026-08-17 05:54+0200\n"
+"POT-Creation-Date: 2026-08-20 05:57+0200\n"
+"PO-Revision-Date: 2026-08-20 06:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,34 +15,28 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:277
+#: src/CustomModuleManager.php:275
 msgid "Custom Module Manager"
 msgstr "Management von Erweiterungsmodulen"
 
-#: src/CustomModuleManager.php:290
+#: src/CustomModuleManager.php:288
 msgid "A custom module to manage webtrees custom modules."
 msgstr "Ein Erweiterungsmodul zum Verwalten von webtrees-Erweiterungsmodulen."
 
-#: src/CustomModuleManager.php:364 src/ModuleUpdates/GithubModuleUpdate.php:166
-#: src/ModuleUpdates/GithubModuleUpdate.php:317
-#, php-format
-msgid "Communication error with %s"
-msgstr "Kommunikationsfehler mit %s"
-
-#: src/CustomModuleManager.php:543
+#: src/CustomModuleManager.php:418
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:589
+#: src/CustomModuleManager.php:464
 msgid "Rollback Custom Module Update"
 msgstr "Aktualisierung des Erweiterungsmoduls rückgängig machen"
 
-#: src/CustomModuleManager.php:590
+#: src/CustomModuleManager.php:465
 msgid "Rollback"
 msgstr "Rückgängig machen"
 
-#: src/CustomModuleManager.php:617
+#: src/CustomModuleManager.php:492
 #: vendor/jefferson49/webtrees-common/Module/ModuleCustomTrait.php:206
 #, php-format
 msgid ""
@@ -52,17 +46,17 @@ msgstr ""
 "Die Einstellungen für das Erweiterungsmodul \"%s\" wurden für die neue Modul-"
 "Version %s aktualisiert."
 
-#: src/ModuleUpdates/AbstractModuleUpdate.php:159
 #: src/ModuleUpdates/AbstractModuleUpdate.php:161
 #: src/ModuleUpdates/AbstractModuleUpdate.php:163
+#: src/ModuleUpdates/AbstractModuleUpdate.php:165
 msgid "Frontend"
 msgstr "Frontend"
 
-#: src/ModuleUpdates/AbstractModuleUpdate.php:187
+#: src/ModuleUpdates/AbstractModuleUpdate.php:189
 msgid "Tags"
 msgstr "Tags"
 
-#: src/ModuleUpdates/AbstractModuleUpdate.php:191
+#: src/ModuleUpdates/AbstractModuleUpdate.php:193
 msgid "Data validation"
 msgstr "Daten Validierung"
 
@@ -76,11 +70,17 @@ msgstr ""
 "Der Aktualisierungsdienst %s konnte nicht erstellt werden. "
 "Konfigurationsparameter \"%s\" fehlt."
 
-#: src/ModuleUpdates/GithubModuleUpdate.php:167
+#: src/ModuleUpdates/GithubModuleUpdate.php:172
+#: src/ModuleUpdates/GithubModuleUpdate.php:323
+#, php-format
+msgid "Communication error with %s"
+msgstr "Kommunikationsfehler mit %s"
+
+#: src/ModuleUpdates/GithubModuleUpdate.php:173
 msgid "Cannot retrieve download URL."
 msgstr "Die Download-URL kann nicht abgerufen werden."
 
-#: src/ModuleUpdates/GithubModuleUpdate.php:250
+#: src/ModuleUpdates/GithubModuleUpdate.php:256
 msgid ""
 "Could not retrieve release notes due to a communication error with GitHub."
 msgstr ""
@@ -99,30 +99,30 @@ msgstr "Aktualisierung von Erweiterungsmodulen"
 msgid "Module Information"
 msgstr "Modul-Informationen"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:105
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:107
 msgid "Could not identify a suitable module upgrade service for custom module"
 msgstr ""
 "Es konnte kein passender Aktualisierungsdienst für das Erweiterungsmodule "
 "identifiziert werden"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:113
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:115
 msgid "Error during retrieving download URL"
 msgstr "Fehler beim Abrufen der Download-URL"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:156
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:170
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:158
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:172
 msgid "Backup…"
 msgstr "Sicherung…"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:157
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:159
 msgid "Delete…"
 msgstr "Löschen…"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:164
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:166
 msgid "Check version…"
 msgstr "Version prüfen…"
 
-#: src/RequestHandlers/ModuleUpgradeWizardPage.php:165
+#: src/RequestHandlers/ModuleUpgradeWizardPage.php:167
 msgid "Create temporary folders…"
 msgstr "Temporäre Ordner anlegen…"
 
@@ -292,13 +292,13 @@ msgstr ""
 "parallelen Ansicht lautet: %s"
 
 #: resources/views/modals/column_configuration.phtml:46
-#: resources/views/module_update.phtml:166
+#: resources/views/module_update.phtml:173
 msgid "Date Added"
 msgstr "Hinzugefügt am"
 
 #: resources/views/modals/column_configuration.phtml:54
 #: resources/views/modals/module_information.phtml:99
-#: resources/views/module_update.phtml:171
+#: resources/views/module_update.phtml:178
 msgid "Update Service"
 msgstr "Aktualisierungs-Dienst"
 
@@ -307,7 +307,7 @@ msgid "Downloads"
 msgstr "Downloads"
 
 #: resources/views/modals/column_configuration.phtml:79
-#: resources/views/settings.phtml:109
+#: resources/views/settings.phtml:108
 msgid "Responsive table layout"
 msgstr " Responsives Layout für Tabelle"
 
@@ -324,13 +324,13 @@ msgid "Module folder"
 msgstr "Modul-Ordner"
 
 #: resources/views/modals/module_information.phtml:109
-#: resources/views/module_update.phtml:168
+#: resources/views/module_update.phtml:175
 msgid "Current Version"
 msgstr "Aktuelle Version"
 
 #: resources/views/modals/module_information.phtml:114
 #: resources/views/modals/release_notes.phtml:31
-#: resources/views/module_update.phtml:169
+#: resources/views/module_update.phtml:176
 msgid "Latest Version"
 msgstr "Neueste Version"
 
@@ -355,7 +355,7 @@ msgstr "Aktualisierung für diese Version aktivieren"
 msgid "ignore update for this version"
 msgstr "Aktualisierung für diese Version ignorieren"
 
-#: resources/views/module_update.phtml:124
+#: resources/views/module_update.phtml:131
 #, php-format
 msgid ""
 "A new version of \"%s\" is available. It is recommended to upgrade to the "
@@ -365,7 +365,7 @@ msgstr ""
 "neueste Version zu aktualisieren bevor andere Erweiterungsmodule installiert/"
 "aktualisiert werden."
 
-#: resources/views/module_update.phtml:127
+#: resources/views/module_update.phtml:134
 msgid ""
 "Typically, custom modules versions are updated every 24 hours. You can check "
 "if later versions or download counts are available."
@@ -374,51 +374,55 @@ msgstr ""
 "aktualisiert. Sie können prüfen, ob neuere Versionen oder Download-Zahlen "
 "verfügbar sind."
 
-#: resources/views/module_update.phtml:152
+#: resources/views/module_update.phtml:159
 msgid "Module Updates"
 msgstr "Aktualisierungen für Module"
 
-#: resources/views/module_update.phtml:161
+#: resources/views/module_update.phtml:168
 msgid "Folder (within modules_v4)"
 msgstr "Ordner (in modules_v4)"
 
-#: resources/views/module_update.phtml:174
+#: resources/views/module_update.phtml:181
 msgid "Down-loads"
 msgstr "Down-loads"
 
-#: resources/views/module_update.phtml:179
+#: resources/views/module_update.phtml:186
 msgid "Install"
 msgstr "Installieren"
 
-#: resources/views/module_update.phtml:189
-#: resources/views/module_update.phtml:381
+#: resources/views/module_update.phtml:196
+#: resources/views/module_update.phtml:390
 msgid "Not installed"
 msgstr "Nicht installiert"
 
-#: resources/views/module_update.phtml:220
-#: resources/views/module_update.phtml:234
-#: resources/views/module_update.phtml:235
+#: resources/views/module_update.phtml:227
+#: resources/views/module_update.phtml:241
+#: resources/views/module_update.phtml:242
 msgid "not available"
 msgstr "nicht verfügbar"
 
-#: resources/views/module_update.phtml:304
-#: resources/views/module_update.phtml:346
+#: resources/views/module_update.phtml:311
+#: resources/views/module_update.phtml:353
 msgid "N/A"
 msgstr "N/A"
 
-#: resources/views/module_update.phtml:379
+#: resources/views/module_update.phtml:388
 msgid "Update module"
 msgstr "Modul aktualisieren"
 
-#: resources/views/module_update.phtml:383
+#: resources/views/module_update.phtml:392
 msgid "Install module"
 msgstr "Modul installieren"
 
-#: resources/views/module_update.phtml:402
+#: resources/views/module_update.phtml:397
+msgid "Manual updating/merging required"
+msgstr "Manuelles Aktualisieren/Zusammenführen erforderlich"
+
+#: resources/views/module_update.phtml:413
 msgid "Delete module"
 msgstr "Modul löschen"
 
-#: resources/views/module_update.phtml:428
+#: resources/views/module_update.phtml:439
 msgid ""
 "Press the save button to enable/disable modules according to the checkbox in "
 "the \"enabled\" column."
@@ -430,15 +434,15 @@ msgstr ""
 msgid "Manage custom modules"
 msgstr "Erweiterungsmodule aktualisieren"
 
-#: resources/views/settings.phtml:54
+#: resources/views/settings.phtml:53
 msgid "Settings for List Menu"
 msgstr "Einstellungen für das Listen-Menü"
 
-#: resources/views/settings.phtml:59
+#: resources/views/settings.phtml:58
 msgid "Show menu item in list menu"
 msgstr "Menü-Eintrag im Listen-Menü anzeigen"
 
-#: resources/views/settings.phtml:64
+#: resources/views/settings.phtml:63
 #, php-format
 msgid ""
 "If this option is selected, a link to the page \"%s\" will be shown as a "
@@ -447,33 +451,33 @@ msgstr ""
 "Bei Auswahl dieser Option wird ein Link zur Seite \"%s\" als Menüeintrag im "
 "Listen-Menü angezeigt."
 
-#: resources/views/settings.phtml:71
+#: resources/views/settings.phtml:70
 msgid "Selection of the custom modules to show"
 msgstr "Auswahl der angezeigten Erweiterungsmodule"
 
-#: resources/views/settings.phtml:76
+#: resources/views/settings.phtml:75
 msgid "Modules to show"
 msgstr "Angezeigte Module"
 
-#: resources/views/settings.phtml:83
+#: resources/views/settings.phtml:82
 msgid "Show all custom modules"
 msgstr "Alle Erweiterungsmodule anzeigen"
 
-#: resources/views/settings.phtml:90
+#: resources/views/settings.phtml:89
 msgid "Show installed custom modules (in order to update modules)"
 msgstr "Installierte Erweiterungsmodule anzeigen (um Module zu aktualisieren)"
 
-#: resources/views/settings.phtml:97
+#: resources/views/settings.phtml:96
 msgid "Show not installed custom modules (in order to install new modules)"
 msgstr ""
 "Nicht installierte Erweiterungsmodule anzeigen (um neue Module zu "
 "installieren)"
 
-#: resources/views/settings.phtml:104
+#: resources/views/settings.phtml:103
 msgid "Settings for modules table"
 msgstr "Einstellungen für die Tabelle der Erweiterungsmodule"
 
-#: resources/views/settings.phtml:114
+#: resources/views/settings.phtml:113
 msgid ""
 "If this option is selected, the custom module table is shown with an "
 "responsive layout, which might be helpful to use the module on devices with "
@@ -483,11 +487,11 @@ msgstr ""
 "einem responsiven Layout angezeigt, was für die Verwendung des Moduls auf "
 "Geräten mit kleineren Bildschirmen hilfreich sein kann."
 
-#: resources/views/settings.phtml:121 resources/views/settings.phtml:127
+#: resources/views/settings.phtml:120 resources/views/settings.phtml:126
 msgid "GitHub API token"
 msgstr "GitHub API Token"
 
-#: resources/views/settings.phtml:123
+#: resources/views/settings.phtml:122
 msgid ""
 "The custom module makes intensive use of the GitHub API to retrieve module "
 "versions and download URLs. However, GitHub limits the frequency of API "
@@ -501,7 +505,7 @@ msgstr ""
 "zulässige Häufigkeit von GitHub-API Aufrufen deutlich zu erhöhen, erfordert "
 "GitHub die Verwendung eines GitHub-API Tokens."
 
-#: resources/views/settings.phtml:124
+#: resources/views/settings.phtml:123
 msgid ""
 "Using a GitHub API token is recommended, if GitHub communication errors occur"
 msgstr ""

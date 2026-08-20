@@ -193,4 +193,11 @@ interface CustomModuleUpdateInterface
      * @return bool
      */
     public function installClean(): bool;
+	
+    /**
+     * Whether the module can only be updated manually (and shall not be updated with CustomModuleManager)
+     *
+     * @return bool
+     */
+    public function updateManually(): bool;	
 }

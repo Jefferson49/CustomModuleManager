@@ -35,12 +35,8 @@ use Fig\Http\Message\StatusCodeInterface;
 use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
-use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Webtrees;
-use Psr\Http\Client\ClientExceptionInterface;
-use Psr\Http\Client\ClientInterface;
-use Psr\Http\Message\RequestFactoryInterface;
 use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
@@ -64,6 +60,10 @@ abstract class AbstractModuleUpdate
 
     //Whether the module shall be installed clean, i.e. all earlier files are deleted before installation
     protected bool $install_clean = false;
+
+    //Whether the module can only be updated manually (and shall not be updated with CustomModuleManager)
+    protected bool $update_manually = false;
+
 
     /**
      * The name of the module update service
@@ -469,5 +469,15 @@ abstract class AbstractModuleUpdate
     public function installClean(): bool {
 
         return $this->install_clean;
+    }
+	
+    /**
+     * Whether the module can only be updated manually (and shall not be updated with CustomModuleManager)
+     *
+     * @return bool
+     */
+    public function updateManually(): bool {
+
+        return $this->update_manually;
     }
 }

@@ -48,6 +48,7 @@
         "params": {
             "github_repo": "Jefferson49\/MyCustomTags",
             "tag_prefix": "v",
+            "update_manually": true,
             "category": "gedcom",
             "title": "My Custom Tags",
             "description": "A module to provide custom tags, types, relationship descriptors, and roles in events"
@@ -493,7 +494,6 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "hartenthaler\/hh-change-log",
-            "tag_prefix": "v",
             "category": "frontend_tab",
             "title": "Changes",
             "description": "A tab showing recent GEDCOM data changes for an individual."
