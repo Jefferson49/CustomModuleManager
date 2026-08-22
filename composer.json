@@ -1,4 +1,24 @@
 {
+    "name": "jefferson49/custommodulemanager",
+    "description": "A webtrees custom module to manage custom modules within webtrees",
+    "license": [
+        "GPL-3.0-or-later"
+    ],
+    "keywords": [
+        "webtrees",
+        "custom module"
+    ],
+    "authors": [
+        {
+            "name": "Markus Hemprich",
+            "homepage": "https://github.com/jefferson49",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://github.com/jefferson49/custommodulemanager",
+    "support": {
+        "issues": "https://github.com/jefferson49/custommodulemanager/issues"
+    },
     "repositories": [
         {
             "url": "https://github.com/Jefferson49/webtrees-common.git",
@@ -6,11 +26,13 @@
         }
     ],
     "require": {
-        "jefferson49/webtrees-common": ">=1.2.44"
+        "php": ">=8.3",
+        "jefferson49/webtrees-common": ">=1.2.45"
     },
-    "replace": {
+    "conflict": {
+        "fisharebest/webtrees": "<2.2"
     },
     "config": {
         "prepend-autoloader": false
-    }    
+    }
 }
