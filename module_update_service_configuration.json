@@ -1288,7 +1288,7 @@
     "_hh_external_places_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "hartenthaler/hh_external_places",
+            "github_repo": "hartenthaler\/hh_external_places",
             "tag_prefix": "v",
             "category": "places",
             "title": "External Places",
