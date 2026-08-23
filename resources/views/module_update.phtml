@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager;
 
-use Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
@@ -42,6 +41,13 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
  * @var bool                $show_column_downloads
  * @var bool                $show_column_enabled
  */
+
+// ControlPanel class
+if (version_compare(Webtrees::VERSION, '2.2.6', '>')) {
+    $control_panel = \Fisharebest\Webtrees\Http\Controllers\ControlPanel::class;
+} else {
+    $control_panel = \Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel::class;
+}
 
 // Class for module update table
 if (version_compare(Webtrees::VERSION, '2.2.6', '>')) {
@@ -115,7 +121,7 @@ $order = [[$sort_column, 'desc']];
 ?>
 
 <?= view('components/breadcrumbs', ['links' => [
-    route(ControlPanel::class) => MoreI18N::xlate('Control panel'),
+    route($control_panel) => MoreI18N::xlate('Control panel'),
     $custom_module_manager->getConfigLink() => $custom_module_manager->title(),
     $title
     ]]) ?>
@@ -263,8 +269,6 @@ $order = [[$sort_column, 'desc']];
                         <td data-sort="<?= e($module_title_sort) ?>">
                         <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ModuleInformationModal::class, [
                                 'module_name'                => $module_name,
-                                'module'                     => $module,
-                                'module_update_service'      => $module_update_service,
                                 'module_update_service_name' => $module_update_service_name,
                                 'module_title'               => $module_title,
                                 'module_description'         => $module_description,

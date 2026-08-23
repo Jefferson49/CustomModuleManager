@@ -24,11 +24,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  *
- * 
+ *
  * CustomModuleManager
  *
  * A weebtrees(https://webtrees.net) 2.2 custom module to manage custom modules
- * 
+ *
  */
 
 declare(strict_types=1);
@@ -56,6 +56,7 @@ use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Webtrees;
 use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
+use Jefferson49\Webtrees\Helpers\Functions;
 use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\DefaultTitlesAndDescriptions;
@@ -172,7 +173,7 @@ class CustomModuleManager extends AbstractModule implements
 
     //Switch to generate a json file with the custom module update configuration (in module_update_service_configuration.json)
     public const GENERATE_CUSTOM_MODULE_UPDATE_CONFIG = false;
-    
+
     //Use the local json file for the custom module update configuration (in module_update_service_configuration.json)
     public const USE_LOCAL_CONFIG = false;
 
@@ -185,7 +186,7 @@ class CustomModuleManager extends AbstractModule implements
      */
     public function __construct()
     {
-        //Caution: Do not use the shared library jefferson47/webtrees-common within __construct(), 
+        //Caution: Do not use the shared library jefferson47/webtrees-common within __construct(),
         //         because it might result in wrong autoload behavior
     }
 
@@ -205,64 +206,28 @@ class CustomModuleManager extends AbstractModule implements
         //If a specific switch is turned on, we generate default titles and descriptions
         if (self::GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS) {
             self::generateDefaultTitlesAndDescriptions();
-        }        
+        }
 
         //If a specific switch is turned on, we generate a json file for custom module update configuration
         if (self::GENERATE_CUSTOM_MODULE_UPDATE_CONFIG) {
             self::generateModuleUpdateServiceConfig();
-        }        
+        }
 
 		// Register a namespace for the views.
 		View::registerNamespace(self::viewsNamespace(), $this->resourcesFolder() . 'views/');
 
-        $router = Registry::routeFactory()->routeMap();                 
-
-        //Register a route for the upgrade wizard page
-        $router
-        ->get(ModuleUpgradeWizardPage::class, self::ROUTE_WIZARD_PAGE)
-        ->allows(RequestMethodInterface::METHOD_POST);
-
-        //Register a route for a upgrade wizard step
-        $router
-        ->get(ModuleUpgradeWizardStep::class, self::ROUTE_WIZARD_STEP)
-        ->allows(RequestMethodInterface::METHOD_POST);
-
-        //Register a route for the custom module update page
-        $router
-        ->get(CustomModuleUpdatePage::class, self::ROUTE_MODULE_UPDATE_PAGE)
-        ->allows(RequestMethodInterface::METHOD_POST);
-
-        //Register a route for the module information modal
-        $router
-        ->get(ModuleInformationModal::class, self::ROUTE_MODULE_INFO_MODAL)
-        ->allows(RequestMethodInterface::METHOD_POST);
-
-        //Register a route for the release notes modal
-        $router
-        ->get(ReleaseNotesModal::class, self::ROUTE_RELEASE_NOTES_MODAL)
-        ->allows(RequestMethodInterface::METHOD_POST);
-
-        //Register a route for the module activate action
-        $router
-        ->get(CustomModuleActivateAction::class, self::ROUTE_ACTIVATE_ACTION)
-        ->allows(RequestMethodInterface::METHOD_POST);
-
-        //Register a route for the update ignore action
-        $router
-        ->get(IgnoreUpdateAction::class, self::ROUTE_IGNORE_UPDATE)
-        ->allows(RequestMethodInterface::METHOD_POST);
-
-        //Register a route for the column configuration modal
-        $router
-        ->get(ColumnConfigurationModal::class, self::ROUTE_COLUMN_CONF_MODAL)
-        ->allows(RequestMethodInterface::METHOD_POST);
-
-        //Register a route for the column configuration action
-        $router
-        ->get(ColumnConfigurationAction::class, self::ROUTE_COLUMN_CONF_ACTION)
-        ->allows(RequestMethodInterface::METHOD_POST);
+        //Register the routes for the custom module
+        Functions::registerRoute(self::ROUTE_WIZARD_PAGE, ModuleUpgradeWizardPage::class);
+        Functions::registerRoute(self::ROUTE_WIZARD_STEP, ModuleUpgradeWizardStep::class);
+        Functions::registerRoute(self::ROUTE_MODULE_UPDATE_PAGE, CustomModuleUpdatePage::class);
+        Functions::registerRoute(self::ROUTE_MODULE_INFO_MODAL, ModuleInformationModal::class);
+        Functions::registerRoute(self::ROUTE_RELEASE_NOTES_MODAL, ReleaseNotesModal::class);
+        Functions::registerRoute(self::ROUTE_ACTIVATE_ACTION, CustomModuleActivateAction::class);
+        Functions::registerRoute(self::ROUTE_IGNORE_UPDATE, IgnoreUpdateAction::class);
+        Functions::registerRoute(self::ROUTE_COLUMN_CONF_MODAL, ColumnConfigurationModal::class);
+        Functions::registerRoute(self::ROUTE_COLUMN_CONF_ACTION, ColumnConfigurationAction::class);
     }
-	
+
     /**
      * {@inheritDoc}
      *
@@ -300,7 +265,7 @@ class CustomModuleManager extends AbstractModule implements
         //Include CSS file in head of webtrees HTML to make sure it is always found
         $css = '<link href="' . $this->assetUrl('css/custom-module-manager.css') . '" type="text/css" rel="stylesheet" />';
 
-        return $css; 
+        return $css;
     }
 
     /**
@@ -317,7 +282,7 @@ class CustomModuleManager extends AbstractModule implements
     public function listUrl(Tree $tree, array $parameters = []): string
     {
         return route(CustomModuleUpdatePage::class);
-    }    
+    }
 
     /**
      * {@inheritDoc}
@@ -327,13 +292,13 @@ class CustomModuleManager extends AbstractModule implements
      * @return string
      *
      * @see \Fisharebest\Webtrees\Module\ModuleListInterface::listIsEmpty()
-     */    
+     */
     public function listIsEmpty(Tree $tree): bool
     {
-        return (   !Auth::isAdmin() 
+        return (   !Auth::isAdmin()
                 OR !boolval($this->getPreference(self::PREF_SHOW_MENU_LIST_ITEM, '1'))
         );
-    }    
+    }
 
     /**
      * {@inheritDoc}
@@ -350,22 +315,22 @@ class CustomModuleManager extends AbstractModule implements
 
     /**
      * Get the prefix for custom module specific logs
-     * 
+     *
      * @return string
      */
     public static function getLogPrefix() : string {
         return 'Custom Module Manager';
-    }  
-    
+    }
+
     /**
      * Whether debugging is activated
-     * 
+     *
      * @return bool
      */
     public function debuggingActivated(): bool {
         return boolval($this->getPreference(self::PREF_DEBUGGING_ACTIVATED, '0'));
     }
-    
+
     /**
      * View module settings in control panel
      *
@@ -416,7 +381,7 @@ class CustomModuleManager extends AbstractModule implements
 
         //Finally, show a success message
         $message = I18N::translate('The preferences for the module "%s" were updated.', $this->title());
-        FlashMessages::addMessage($message, 'success');	
+        FlashMessages::addMessage($message, 'success');
 
         return redirect($this->getConfigLink());
     }
@@ -446,7 +411,7 @@ class CustomModuleManager extends AbstractModule implements
                 $test_result = $module_update_service !== null ? substr($module_update_service->testModuleUpdate(), 0, self::ERROR_MAX_LENGTH) : 'Error';
 
                 if ($test_result !== '') {
-                    //Trigger rollback of the udpated module                
+                    //Trigger rollback of the udpated module
                     $this->setPreference(CustomModuleManager::PREF_ROLLBACK_ONGOING, '1');
 
                     $modal = Validator::queryParams($request)->boolean('modal', false);
@@ -490,13 +455,13 @@ class CustomModuleManager extends AbstractModule implements
         if ($updated) {
             //Show flash message for update of preferences
             $message = I18N::translate('The preferences for the custom module "%s" were sucessfully updated to the new module version %s.', $this->title(), self::CUSTOM_VERSION);
-            FlashMessages::addMessage($message, 'success');	
+            FlashMessages::addMessage($message, 'success');
         }
     }
 
     /**
      * Gemerate default titles and descriptions for all custom modules, which are available in this webtrees installation
-     * 
+     *
      * If a (complete) list of modules is installed, we can use the generate a (complete) list of default values for all languages,
      * The default values are written to a PHP file, which is delivered with the Custom Module Manager code.
      *
@@ -541,7 +506,7 @@ class CustomModuleManager extends AbstractModule implements
                 $descriptions[$language_tag][$module->name()] = $description;
             }
         }
- 
+
         //Reset language
         I18N::init($current_language);
         Session::put('language', $current_language);
@@ -558,7 +523,7 @@ class CustomModuleManager extends AbstractModule implements
             $titles_for_language = $titles[$language_tag];
 
             foreach ($titles_for_language as $module_name => $title) {
-                
+
                 if ($title === $titles_for_default_language[$module_name]) {
                     unset($titles[$language_tag][$module_name]);
                 }
@@ -567,7 +532,7 @@ class CustomModuleManager extends AbstractModule implements
             $descriptions_for_language = $descriptions[$language_tag];
 
             foreach ($descriptions_for_language as $module_name => $description) {
-                
+
                 if ($description === $descriptions_for_default_language[$module_name]) {
                     unset($descriptions[$language_tag][$module_name]);
                 }
@@ -588,7 +553,7 @@ class CustomModuleManager extends AbstractModule implements
 
         if (fwrite($stream, "<?php\n\n") === false) {
             throw new RuntimeException('Cannot write to file: ' . $json_file);
-        }        
+        }
 
         fwrite($stream, "declare(strict_types=1);\n\n");
         fwrite($stream, "namespace Jefferson49\Webtrees\Module\CustomModuleManager\Configuration;\n\n");
@@ -656,7 +621,7 @@ class CustomModuleManager extends AbstractModule implements
 
         //Add titles and descriptions
         $titles_all_languages = DefaultTitlesAndDescriptions::MODULE_TITLES;
-        $descriptions_all_languages = DefaultTitlesAndDescriptions::MODULE_DESCRIPTIONS;        
+        $descriptions_all_languages = DefaultTitlesAndDescriptions::MODULE_DESCRIPTIONS;
         $titles = json_decode($titles_all_languages[CustomModuleManager::DEFAULT_LANGUAGE], true);
         $descriptions = json_decode($descriptions_all_languages[CustomModuleManager::DEFAULT_LANGUAGE], true);
 
@@ -677,7 +642,7 @@ class CustomModuleManager extends AbstractModule implements
                 $config[$module_name]['date_added'] = $old_local_config[$module_name]['date_added'];
             }
         }
-        
+
         //Create JSON
         $json_config = json_encode($config, JSON_PRETTY_PRINT);
 
@@ -697,20 +662,20 @@ class CustomModuleManager extends AbstractModule implements
      * @param string $module_name
      * @param string $version1,
      * @param string $version2,
-     * 
+     *
      * @return int Returns -1 if the first version is lower than the second, 0 if they are equal, and 1 if the second is lower
      */
     public static function versionCompare(string $module_name, string $version1, $version2): int
     {
         return version_compare(self::normalizeVersion($module_name, $version1), self::normalizeVersion($module_name, $version2));
-    }      
+    }
 
     /**
      * Normalize a module version number strings
      *
      * @param string $module_name
      * @param string $version,
-     * 
+     *
      * @return string
      */
     public static function normalizeVersion(string $module_name, string $version): string
@@ -726,7 +691,7 @@ class CustomModuleManager extends AbstractModule implements
             // Only replace if prefix found once at start of version string
             if (strpos($version, $prefix_list[$module_name], 0) === 0 && $count === 1) {
 
-                // Replace 
+                // Replace
                 $version = $replaced_version;
             }
         }
@@ -801,11 +766,11 @@ class CustomModuleManager extends AbstractModule implements
      * Get a short module name, for example to be used for storing module preferences
      *
      * @param string $module_name
-     * 
+     *
      * @return string
      */
     public static function getShortModuleName(string $module_name): string {
-        
+
         return substr($module_name, 0, 25) . '_';
     }
 }
