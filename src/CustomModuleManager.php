@@ -126,7 +126,6 @@ class CustomModuleManager extends AbstractModule implements
     public const PREF_SHOW_COLUMN_DATE_ADDED  = 'show_column_date_added';
     public const PREF_SHOW_COLUMN_UPD_SERV    = 'show_column_update_service';
     public const PREF_SHOW_COLUMN_DOWNLOADS   = 'show_column_downloads';
-    public const PREF_SHOW_COLUMN_ENABLED     = 'show_column_enabled';
     public const PREF_RESPONSIVE_TABLE        = 'responsive_table';
 
     //Configuraton

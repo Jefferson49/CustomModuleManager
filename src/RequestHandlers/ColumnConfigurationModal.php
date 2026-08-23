@@ -65,7 +65,6 @@ class ColumnConfigurationModal implements RequestHandlerInterface
             CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, '1')),
             CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV   => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, '1')),
             CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS  => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, '1')),
-            CustomModuleManager::PREF_SHOW_COLUMN_ENABLED    => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_ENABLED, '1')),            
             CustomModuleManager::PREF_RESPONSIVE_TABLE       => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_RESPONSIVE_TABLE, '0')),            
         ]);
     }

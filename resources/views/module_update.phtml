@@ -8,6 +8,7 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Session;
+use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
@@ -39,7 +40,6 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
  * @var bool                $show_column_date_added
  * @var bool                $show_column_update_service
  * @var bool                $show_column_downloads
- * @var bool                $show_column_enabled
  */
 
 // ControlPanel class
@@ -57,7 +57,7 @@ if (version_compare(Webtrees::VERSION, '2.2.6', '>')) {
 }
 
 // Configuration of module update table
-$sort_column = 4;
+$sort_column = 7;
 
 // Title
 $data_colums[] = ['type' => 'html'];
@@ -102,10 +102,7 @@ if ($show_column_downloads) {
 }
 
 // Enabled
-if ($show_column_enabled) {
-    $data_colums[] =['type' => 'html', 'searchable' => false];
-    $sort_column++;
-}
+$data_colums[] =['type' => 'html', 'searchable' => false];
 
 // Install
 $data_colums[] = ['type' => 'html', 'searchable' => false];
@@ -139,20 +136,40 @@ $order = [[$sort_column, 'desc']];
 
 <?= I18N::translate('Typically, custom modules versions are updated every 24 hours. You can check if later versions or download counts are available.') ?>
 <?= view('icons/spacer') ?>
-<a href="<?= e(route(CustomModuleUpdatePage::class, [
-        'fetch_latest' => true,
-    ])) ?>" type="submit" class="btn btn-primary">
-    <?= MoreI18N::xlate('check now') ?>
-</a>
-<a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ColumnConfigurationModal::class)) ?>" type="submit" class="btn btn-secondary">
-    <?= I18N::translate('Configure columns') ?>
-</a>
 
 <form method="post" action="<?= e(route(CustomModuleActivateAction::class)) ?>">
-    <div class="<?= $responsive_table ? 'table-responsive' : '' ?>">
+    <table class="table-custom-module-manager-fixed-top" width="100%">
+        <tr>
+            <td>
+                <a href="<?= e(route(CustomModuleUpdatePage::class, [
+                        'fetch_latest' => true,
+                    ])) ?>" type="submit" class="btn btn-primary">
+                    <?= MoreI18N::xlate('check now') ?>
+                </a>
+                <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ColumnConfigurationModal::class)) ?>" type="submit" class="btn btn-secondary">
+                    <?= I18N::translate('Configure columns') ?>
+                </a>
+                <button class="btn btn-primary" type="submit">
+                    <?= view('icons/save') ?>
+                    <?= MoreI18N::xlate('save') ?>
+                </button>
+            </td>
+            <td>
+                <div id="module-filter-bar" class="sticky-top">
+                    <!-- Search box will be moved here -->
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?= I18N::translate('Press the save button to enable/disable modules according to the checkbox in the "enabled" column.') ?>
+            </td>
+        </tr>
+    </table>
+    <div <?= $responsive_table ? 'class="table-responsive"' : 'style="max-height: 75vh; overflow-y: auto;"' ?>>
         <table
             id="wt-datatables-custom-module-manager-updates"
-            class="table table-bordered table-hover table-sm table-module-administration <?= $data_tables_class ?>"
+            class="table table-bordered table-hover table-sm table-module-administration table-custom-module-manager-updates <?= $data_tables_class ?>"
             <?= view('lists/datatables-attributes') ?>
             data-info="false"
             data-paging="false"
@@ -165,7 +182,7 @@ $order = [[$sort_column, 'desc']];
                 <?= $caption ?? I18N::translate('Module Updates') ?>
             </caption>
 
-            <thead>
+            <thead class="sticky-top">
                 <tr>
                     <th><?= MoreI18N::xlate('Title') ?></th>
                     <?php if ($show_column_description) : ?>
@@ -186,9 +203,7 @@ $order = [[$sort_column, 'desc']];
                     <?php if ($show_column_downloads) : ?>
                         <th><?= I18N::translate('Down-loads') ?></th>
                     <?php endif ?>
-                    <?php if ($show_column_enabled) : ?>
-                        <th><?= MoreI18N::xlate('Enabled') ?></th>
-                    <?php endif ?>
+                    <th><?= MoreI18N::xlate('Enabled') ?></th>
                     <th><?= I18N::translate('Install') ?></th>
                     <th><?= MoreI18N::xlate('Delete') ?></th>
                 </tr>
@@ -359,27 +374,25 @@ $order = [[$sort_column, 'desc']];
                         <?php endif ?>
 
                         <!-- Enabled -->
-                        <?php if ($show_column_enabled) : ?>
-                            <?php if ($module_status === '1') : ?>
-                                <?php $enabled_sort = '0' ?>
-                            <?php elseif ($module_status === '0') : ?>
-                                <?php $enabled_sort = '2' ?>
-                            <?php else : ?>
-                                <?php $enabled_sort = '1' ?>
-                            <?php endif ?>
-                            <td data-sort="<?= $enabled_sort ?>">
-                                <?php if ($module !== null) : ?>
-                                    <input  type="hidden"
-                                            name="<?= CustomModuleManager::ENABLED_STATUS_INCLUDED . $module->name() ?>"
-                                            id="<?= CustomModuleManager::ENABLED_STATUS_INCLUDED . $module->name() ?>"
-                                            value="1"
-                                    >
-                                    <?= view('components/checkbox', ['label' => '', 'name' => 'status-' . $module->name(), 'checked' => $module->isEnabled()]) ?>
-                                <?php else : ?>
-                                    <?= $module_status ?>
-                                <?php endif ?>
-                            </td>
-                        <?php endif ?>
+					   <?php if ($module_status === '1') : ?>
+							<?php $enabled_sort = '0' ?>
+						<?php elseif ($module_status === '0') : ?>
+							<?php $enabled_sort = '2' ?>
+						<?php else : ?>
+							<?php $enabled_sort = '1' ?>
+						<?php endif ?>
+						<td data-sort="<?= $enabled_sort ?>">
+							<?php if ($module !== null) : ?>
+								<input  type="hidden"
+										name="<?= CustomModuleManager::ENABLED_STATUS_INCLUDED . $module->name() ?>"
+										id="<?= CustomModuleManager::ENABLED_STATUS_INCLUDED . $module->name() ?>"
+										value="1"
+								>
+								<?= view('components/checkbox', ['label' => '', 'name' => 'status-' . $module->name(), 'checked' => $module->isEnabled()]) ?>
+							<?php else : ?>
+								<?= $module_status ?>
+							<?php endif ?>
+						</td>
 
                         <!--Install -->
                         <?php $action = '' ?>
@@ -431,18 +444,25 @@ $order = [[$sort_column, 'desc']];
             </tbody>
         </table>
     </div>
-
-    <div class="row mb-3"><?= view('icons/spacer') ?></div>
-
-    <button class="btn btn-primary" type="submit">
-        <?= view('icons/save') ?>
-        <?= MoreI18N::xlate('save') ?>
-    </button>
-
-    <br>
-    <?= I18N::translate('Press the save button to enable/disable modules according to the checkbox in the "enabled" column.') ?>
-
     <?= csrf_field() ?>
 </form>
+
+<?php View::push('javascript') ?>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dt = new DataTable('#wt-datatables-custom-module-manager-updates');
+
+        const searchBox = document.querySelector('#wt-datatables-custom-module-manager-updates_wrapper .dt-search');
+        const stickyBar = document.getElementById('module-filter-bar');
+
+        if (searchBox && stickyBar) {
+            stickyBar.appendChild(searchBox);
+
+            searchBox.classList.add('d-flex', 'align-items-center', 'gap-2');
+            label.classList.add('mb-0');
+        }
+    });
+</script>
+<?php View::endpush() ?>
 
 <?= view('modals/ajax') ?>
