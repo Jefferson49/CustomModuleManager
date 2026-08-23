@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-08-20 05:57+0200\n"
-"PO-Revision-Date: 2026-08-20 06:03+0200\n"
+"POT-Creation-Date: 2026-08-23 17:24+0200\n"
+"PO-Revision-Date: 2026-08-23 17:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,28 +15,28 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:275
+#: src/CustomModuleManager.php:242
 msgid "Custom Module Manager"
 msgstr "Management von Erweiterungsmodulen"
 
-#: src/CustomModuleManager.php:288
+#: src/CustomModuleManager.php:255
 msgid "A custom module to manage webtrees custom modules."
 msgstr "Ein Erweiterungsmodul zum Verwalten von webtrees-Erweiterungsmodulen."
 
-#: src/CustomModuleManager.php:418
+#: src/CustomModuleManager.php:385
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:464
+#: src/CustomModuleManager.php:431
 msgid "Rollback Custom Module Update"
 msgstr "Aktualisierung des Erweiterungsmoduls rückgängig machen"
 
-#: src/CustomModuleManager.php:465
+#: src/CustomModuleManager.php:432
 msgid "Rollback"
 msgstr "Rückgängig machen"
 
-#: src/CustomModuleManager.php:492
+#: src/CustomModuleManager.php:459
 #: vendor/jefferson49/webtrees-common/Module/ModuleCustomTrait.php:206
 #, php-format
 msgid ""
@@ -88,8 +88,8 @@ msgstr ""
 "nicht abgerufen werden."
 
 #: src/RequestHandlers/ColumnConfigurationModal.php:62
-msgid "Configure columns"
-msgstr "Spalten konfigurieren"
+msgid "Configure columns and table layout"
+msgstr "Spalten und Tabellen-Layout konfigurieren"
 
 #: src/RequestHandlers/CustomModuleUpdatePage.php:80
 msgid "Custom Module Updates"
@@ -271,11 +271,7 @@ msgid ""
 "version %s: "
 msgstr ""
 "Fehler beim Versuch, das Erweiterungsmodul \"%s\" auf die neue Modulversion "
-"%s zu aktualisieren:"
-
-#: vendor/jefferson49/webtrees-common/Module/ModuleCustomTrait.php:255
-msgid "Error"
-msgstr ""
+"%s zu aktualisieren: "
 
 #: vendor/jefferson49/webtrees-common/Module/ModuleCustomTrait.php:257
 #, php-format
@@ -291,25 +287,39 @@ msgstr ""
 "empfohlen, eines der Module zu deaktivieren. Der Pfad des Moduls mit der "
 "parallelen Ansicht lautet: %s"
 
-#: resources/views/modals/column_configuration.phtml:46
-#: resources/views/module_update.phtml:173
+#: resources/views/modals/column_configuration.phtml:45
+#: resources/views/module_update.phtml:203
 msgid "Date Added"
 msgstr "Hinzugefügt am"
 
-#: resources/views/modals/column_configuration.phtml:54
+#: resources/views/modals/column_configuration.phtml:53
 #: resources/views/modals/module_information.phtml:99
-#: resources/views/module_update.phtml:178
+#: resources/views/module_update.phtml:208
 msgid "Update Service"
 msgstr "Aktualisierungs-Dienst"
 
-#: resources/views/modals/column_configuration.phtml:62
+#: resources/views/modals/column_configuration.phtml:61
 msgid "Downloads"
 msgstr "Downloads"
 
-#: resources/views/modals/column_configuration.phtml:79
-#: resources/views/settings.phtml:108
-msgid "Responsive table layout"
-msgstr " Responsives Layout für Tabelle"
+#: resources/views/modals/column_configuration.phtml:71
+#: resources/views/settings.phtml:107
+msgid "Table layout"
+msgstr "Tabellen-Layout"
+
+#: resources/views/modals/column_configuration.phtml:76
+#: resources/views/settings.phtml:112
+msgid "Table"
+msgstr "Tabelle"
+
+#: resources/views/modals/column_configuration.phtml:77
+msgid "Table with fixed header row"
+msgstr "Tabelle mit fixierter Kopfzeile"
+
+#: resources/views/modals/column_configuration.phtml:78
+#: resources/views/settings.phtml:114
+msgid "Responsive table (for small screens)"
+msgstr "Responsive Tabelle (für kleine Bildschirme)"
 
 #: resources/views/modals/module_information.phtml:63
 msgid "Documentation"
@@ -324,13 +334,13 @@ msgid "Module folder"
 msgstr "Modul-Ordner"
 
 #: resources/views/modals/module_information.phtml:109
-#: resources/views/module_update.phtml:175
+#: resources/views/module_update.phtml:205
 msgid "Current Version"
 msgstr "Aktuelle Version"
 
 #: resources/views/modals/module_information.phtml:114
 #: resources/views/modals/release_notes.phtml:31
-#: resources/views/module_update.phtml:176
+#: resources/views/module_update.phtml:206
 msgid "Latest Version"
 msgstr "Neueste Version"
 
@@ -355,7 +365,7 @@ msgstr "Aktualisierung für diese Version aktivieren"
 msgid "ignore update for this version"
 msgstr "Aktualisierung für diese Version ignorieren"
 
-#: resources/views/module_update.phtml:131
+#: resources/views/module_update.phtml:135
 #, php-format
 msgid ""
 "A new version of \"%s\" is available. It is recommended to upgrade to the "
@@ -365,7 +375,7 @@ msgstr ""
 "neueste Version zu aktualisieren bevor andere Erweiterungsmodule installiert/"
 "aktualisiert werden."
 
-#: resources/views/module_update.phtml:134
+#: resources/views/module_update.phtml:138
 msgid ""
 "Typically, custom modules versions are updated every 24 hours. You can check "
 "if later versions or download counts are available."
@@ -374,55 +384,7 @@ msgstr ""
 "aktualisiert. Sie können prüfen, ob neuere Versionen oder Download-Zahlen "
 "verfügbar sind."
 
-#: resources/views/module_update.phtml:159
-msgid "Module Updates"
-msgstr "Aktualisierungen für Module"
-
-#: resources/views/module_update.phtml:168
-msgid "Folder (within modules_v4)"
-msgstr "Ordner (in modules_v4)"
-
-#: resources/views/module_update.phtml:181
-msgid "Down-loads"
-msgstr "Down-loads"
-
-#: resources/views/module_update.phtml:186
-msgid "Install"
-msgstr "Installieren"
-
-#: resources/views/module_update.phtml:196
-#: resources/views/module_update.phtml:390
-msgid "Not installed"
-msgstr "Nicht installiert"
-
-#: resources/views/module_update.phtml:227
-#: resources/views/module_update.phtml:241
-#: resources/views/module_update.phtml:242
-msgid "not available"
-msgstr "nicht verfügbar"
-
-#: resources/views/module_update.phtml:311
-#: resources/views/module_update.phtml:353
-msgid "N/A"
-msgstr "N/A"
-
-#: resources/views/module_update.phtml:388
-msgid "Update module"
-msgstr "Modul aktualisieren"
-
-#: resources/views/module_update.phtml:392
-msgid "Install module"
-msgstr "Modul installieren"
-
-#: resources/views/module_update.phtml:397
-msgid "Manual updating/merging required"
-msgstr "Manuelles Aktualisieren/Zusammenführen erforderlich"
-
-#: resources/views/module_update.phtml:413
-msgid "Delete module"
-msgstr "Modul löschen"
-
-#: resources/views/module_update.phtml:439
+#: resources/views/module_update.phtml:166
 msgid ""
 "Press the save button to enable/disable modules according to the checkbox in "
 "the \"enabled\" column."
@@ -430,19 +392,67 @@ msgstr ""
 "Drücken Sie den „Speichern“ Button, um Module entsprechend dem "
 "Kontrollkästchen in der Spalte „Aktiviert“ zu aktivieren/deaktivieren."
 
-#: resources/views/settings.phtml:42
+#: resources/views/module_update.phtml:189
+msgid "Module Updates"
+msgstr "Aktualisierungen für Module"
+
+#: resources/views/module_update.phtml:198
+msgid "Folder (within modules_v4)"
+msgstr "Ordner (in modules_v4)"
+
+#: resources/views/module_update.phtml:211
+msgid "Down-loads"
+msgstr "Down-loads"
+
+#: resources/views/module_update.phtml:214
+msgid "Install"
+msgstr "Installieren"
+
+#: resources/views/module_update.phtml:224
+#: resources/views/module_update.phtml:414
+msgid "Not installed"
+msgstr "Nicht installiert"
+
+#: resources/views/module_update.phtml:255
+#: resources/views/module_update.phtml:269
+#: resources/views/module_update.phtml:270
+msgid "not available"
+msgstr "nicht verfügbar"
+
+#: resources/views/module_update.phtml:337
+#: resources/views/module_update.phtml:379
+msgid "N/A"
+msgstr "N/A"
+
+#: resources/views/module_update.phtml:412
+msgid "Update module"
+msgstr "Modul aktualisieren"
+
+#: resources/views/module_update.phtml:416
+msgid "Install module"
+msgstr "Modul installieren"
+
+#: resources/views/module_update.phtml:421
+msgid "Manual updating/merging required"
+msgstr "Manuelles Aktualisieren/Zusammenführen erforderlich"
+
+#: resources/views/module_update.phtml:437
+msgid "Delete module"
+msgstr "Modul löschen"
+
+#: resources/views/settings.phtml:41
 msgid "Manage custom modules"
 msgstr "Erweiterungsmodule aktualisieren"
 
-#: resources/views/settings.phtml:53
+#: resources/views/settings.phtml:52
 msgid "Settings for List Menu"
 msgstr "Einstellungen für das Listen-Menü"
 
-#: resources/views/settings.phtml:58
+#: resources/views/settings.phtml:57
 msgid "Show menu item in list menu"
 msgstr "Menü-Eintrag im Listen-Menü anzeigen"
 
-#: resources/views/settings.phtml:63
+#: resources/views/settings.phtml:62
 #, php-format
 msgid ""
 "If this option is selected, a link to the page \"%s\" will be shown as a "
@@ -451,47 +461,41 @@ msgstr ""
 "Bei Auswahl dieser Option wird ein Link zur Seite \"%s\" als Menüeintrag im "
 "Listen-Menü angezeigt."
 
-#: resources/views/settings.phtml:70
+#: resources/views/settings.phtml:69
 msgid "Selection of the custom modules to show"
 msgstr "Auswahl der angezeigten Erweiterungsmodule"
 
-#: resources/views/settings.phtml:75
+#: resources/views/settings.phtml:74
 msgid "Modules to show"
 msgstr "Angezeigte Module"
 
-#: resources/views/settings.phtml:82
+#: resources/views/settings.phtml:81
 msgid "Show all custom modules"
 msgstr "Alle Erweiterungsmodule anzeigen"
 
-#: resources/views/settings.phtml:89
+#: resources/views/settings.phtml:88
 msgid "Show installed custom modules (in order to update modules)"
 msgstr "Installierte Erweiterungsmodule anzeigen (um Module zu aktualisieren)"
 
-#: resources/views/settings.phtml:96
+#: resources/views/settings.phtml:95
 msgid "Show not installed custom modules (in order to install new modules)"
 msgstr ""
 "Nicht installierte Erweiterungsmodule anzeigen (um neue Module zu "
 "installieren)"
 
-#: resources/views/settings.phtml:103
-msgid "Settings for modules table"
-msgstr "Einstellungen für die Tabelle der Erweiterungsmodule"
+#: resources/views/settings.phtml:102
+msgid "Layout of the custom modules table"
+msgstr "Layout der Tabelle mit den Erweiterungsmodulen"
 
 #: resources/views/settings.phtml:113
-msgid ""
-"If this option is selected, the custom module table is shown with an "
-"responsive layout, which might be helpful to use the module on devices with "
-"smaller screens."
-msgstr ""
-"Wenn diese Option ausgewählt ist, wird die Tabelle des Erweiterungsmoduls in "
-"einem responsiven Layout angezeigt, was für die Verwendung des Moduls auf "
-"Geräten mit kleineren Bildschirmen hilfreich sein kann."
+msgid "Table with fixed header"
+msgstr "Tabelle mit fixierter Kopfzeile"
 
-#: resources/views/settings.phtml:120 resources/views/settings.phtml:126
+#: resources/views/settings.phtml:122 resources/views/settings.phtml:128
 msgid "GitHub API token"
 msgstr "GitHub API Token"
 
-#: resources/views/settings.phtml:122
+#: resources/views/settings.phtml:124
 msgid ""
 "The custom module makes intensive use of the GitHub API to retrieve module "
 "versions and download URLs. However, GitHub limits the frequency of API "
@@ -505,12 +509,21 @@ msgstr ""
 "zulässige Häufigkeit von GitHub-API Aufrufen deutlich zu erhöhen, erfordert "
 "GitHub die Verwendung eines GitHub-API Tokens."
 
-#: resources/views/settings.phtml:123
+#: resources/views/settings.phtml:125
 msgid ""
 "Using a GitHub API token is recommended, if GitHub communication errors occur"
 msgstr ""
 "Die Verwendung eines GitHub-API Tokens wird empfohlen, wenn GitHub-"
 "Kommunikationsfehler auftreten"
+
+#~ msgid ""
+#~ "If this option is selected, the custom module table is shown with an "
+#~ "responsive layout, which might be helpful to use the module on devices "
+#~ "with smaller screens."
+#~ msgstr ""
+#~ "Wenn diese Option ausgewählt ist, wird die Tabelle des Erweiterungsmoduls "
+#~ "in einem responsiven Layout angezeigt, was für die Verwendung des Moduls "
+#~ "auf Geräten mit kleineren Bildschirmen hilfreich sein kann."
 
 #~ msgid "continue (reload)"
 #~ msgstr "Weiter (neu laden)"
@@ -544,9 +557,6 @@ msgstr ""
 
 #~ msgid "latest"
 #~ msgstr "neueste"
-
-#~ msgid "enabled"
-#~ msgstr "aktiviert"
 
 #~ msgid "Action"
 #~ msgstr "Aktion"

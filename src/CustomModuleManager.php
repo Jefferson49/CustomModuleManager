@@ -35,7 +35,6 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager;
 
-use Fig\Http\Message\RequestMethodInterface;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\I18N;
@@ -126,13 +125,18 @@ class CustomModuleManager extends AbstractModule implements
     public const PREF_SHOW_COLUMN_DATE_ADDED  = 'show_column_date_added';
     public const PREF_SHOW_COLUMN_UPD_SERV    = 'show_column_update_service';
     public const PREF_SHOW_COLUMN_DOWNLOADS   = 'show_column_downloads';
-    public const PREF_RESPONSIVE_TABLE        = 'responsive_table';
+    public const PREF_TABLE_LAYOUT            = 'table_layout';
 
     //Configuraton
     public const CONFIG_GITHUB_BRANCH     = 'config';
     public const CONFIG_LOCAL_PATH        = 'module_update_service_configuration.json';
     public const CONFIG_GITHUB_PATH       = 'module_update_service_configuration.json';
     public const CONFIG_FILE_NAME         = '';
+
+    //Table layout
+    public const TABLE_LAYOUT_TABLE       = 'table_layout_table';
+    public const TABLE_LAYOUT_STICKY_HEAD = 'table_layout_sticky_head';
+    public const TABLE_LAYOUT_RESPONSIVE  = 'table_layout_responsive';
 
     //Actions
     public const ACTION_DELETE            = 'action_delete';
@@ -153,7 +157,6 @@ class CustomModuleManager extends AbstractModule implements
     //Language
     public const DEFAULT_LANGUAGE         = 'en-US';
     public const DEFAULT_LANGUAGE_PREFIX  = "[English:]";
-
 
     //Session
     public const SESSION_WIZARD_ABORTED   = 'wizard_aborted';
@@ -350,7 +353,7 @@ class CustomModuleManager extends AbstractModule implements
                 self::PREF_GITHUB_API_TOKEN    => $this->getPreference(self::PREF_GITHUB_API_TOKEN, ''),
                 self::PREF_MODULES_TO_SHOW     => $this->getPreference(self::PREF_MODULES_TO_SHOW, self::PREF_SHOW_ALL),
 				self::PREF_SHOW_MENU_LIST_ITEM => boolval($this->getPreference(self::PREF_SHOW_MENU_LIST_ITEM, '1')),
-				self::PREF_RESPONSIVE_TABLE    => boolval($this->getPreference(self::PREF_RESPONSIVE_TABLE, '0')),
+				self::PREF_TABLE_LAYOUT        => $this->getPreference(self::PREF_TABLE_LAYOUT, self::TABLE_LAYOUT_STICKY_HEAD),
             ]
         );
     }
@@ -368,14 +371,14 @@ class CustomModuleManager extends AbstractModule implements
         $github_api_token    = Validator::parsedBody($request)->string(self::PREF_GITHUB_API_TOKEN, '');
         $modules_to_show     = Validator::parsedBody($request)->string(self::PREF_MODULES_TO_SHOW, self::PREF_SHOW_ALL);
         $show_menu_list_item = Validator::parsedBody($request)->boolean(self::PREF_SHOW_MENU_LIST_ITEM, false);
-        $responsive_table    = Validator::parsedBody($request)->boolean(self::PREF_RESPONSIVE_TABLE, false);
+        $table_layout        = Validator::parsedBody($request)->string(self::PREF_TABLE_LAYOUT, SELF::TABLE_LAYOUT_STICKY_HEAD);
 
         //Save the received settings to the user preferences
         if ($save === '1') {
 			$this->setPreference(self::PREF_GITHUB_API_TOKEN, $github_api_token);
 			$this->setPreference(self::PREF_MODULES_TO_SHOW, $modules_to_show);
 			$this->setPreference(self::PREF_SHOW_MENU_LIST_ITEM, $show_menu_list_item ? '1' : '0');
-			$this->setPreference(self::PREF_RESPONSIVE_TABLE, $responsive_table ? '1' : '0');
+			$this->setPreference(self::PREF_TABLE_LAYOUT, $table_layout);
         }
 
         //Finally, show a success message

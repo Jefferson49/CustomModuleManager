@@ -20,11 +20,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  *
- * 
+ *
  * CustomModuleManager
  *
  * A weebtrees(https://webtrees.net) 2.2 custom module to manage custom modules
- * 
+ *
  */
 
 declare(strict_types=1);
@@ -51,7 +51,7 @@ class ColumnConfigurationAction implements RequestHandlerInterface
         $show_column_date_added     = Validator::parsedBody($request)->boolean(CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, false);
         $show_column_update_service = Validator::parsedBody($request)->boolean(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, false);
         $show_column_downloads      = Validator::parsedBody($request)->boolean(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, false);
-        $responsive_table           = Validator::parsedBody($request)->boolean(CustomModuleManager::PREF_RESPONSIVE_TABLE, false);
+        $table_layout               = Validator::parsedBody($request)->string(CustomModuleManager::PREF_TABLE_LAYOUT, CustomModuleManager::TABLE_LAYOUT_TABLE);
 
         $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
 
@@ -60,6 +60,7 @@ class ColumnConfigurationAction implements RequestHandlerInterface
         $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, $show_column_date_added ? '1' : '0');
         $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, $show_column_update_service ? '1' : '0');
         $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, $show_column_downloads ? '1' : '0');
+        $custom_module_manager->setPreference(CustomModuleManager::PREF_TABLE_LAYOUT, $table_layout);
 
         return redirect(route(CustomModuleUpdatePage::class));
     }

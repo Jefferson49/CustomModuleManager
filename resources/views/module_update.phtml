@@ -40,6 +40,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
  * @var bool                $show_column_date_added
  * @var bool                $show_column_update_service
  * @var bool                $show_column_downloads
+ * @var string              $table_layout
  */
 
 // ControlPanel class
@@ -147,7 +148,7 @@ $order = [[$sort_column, 'desc']];
                     <?= MoreI18N::xlate('check now') ?>
                 </a>
                 <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ColumnConfigurationModal::class)) ?>" type="submit" class="btn btn-secondary">
-                    <?= I18N::translate('Configure columns') ?>
+                    <?= I18N::translate('Configure columns and table layout') ?>
                 </a>
                 <button class="btn btn-primary" type="submit">
                     <?= view('icons/save') ?>
@@ -166,7 +167,13 @@ $order = [[$sort_column, 'desc']];
             </td>
         </tr>
     </table>
-    <div <?= $responsive_table ? 'class="table-responsive"' : 'style="max-height: 75vh; overflow-y: auto;"' ?>>
+    <?php if ($table_layout === CustomModuleManager::TABLE_LAYOUT_RESPONSIVE) : ?>
+        <div class="table-responsive">
+    <?php elseif ($table_layout === CustomModuleManager::TABLE_LAYOUT_STICKY_HEAD) : ?>
+        <div style="max-height: 75vh; overflow-y: auto;">
+    <?php else : ?>
+        <div>
+    <?php endif ?>
         <table
             id="wt-datatables-custom-module-manager-updates"
             class="table table-bordered table-hover table-sm table-module-administration table-custom-module-manager-updates <?= $data_tables_class ?>"
@@ -182,7 +189,7 @@ $order = [[$sort_column, 'desc']];
                 <?= $caption ?? I18N::translate('Module Updates') ?>
             </caption>
 
-            <thead class="sticky-top">
+            <thead <?= $table_layout === CustomModuleManager::TABLE_LAYOUT_STICKY_HEAD ? 'class="sticky-top"' : '' ?>>
                 <tr>
                     <th><?= MoreI18N::xlate('Title') ?></th>
                     <?php if ($show_column_description) : ?>

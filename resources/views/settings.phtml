@@ -99,21 +99,24 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 	</div>
 
 	<div class="h4">
-		<?= I18N::translate('Settings for modules table') ?>
+		<?= I18N::translate('Layout of the custom modules table') ?>
 	</div>
-	<fieldset class="mb-3">
-		<div class="row">
-			<legend class="col-form-label col-sm-3">
-				<?= I18N::translate('Responsive table layout') ?>
-			</legend>
-			<div class="col-sm-9">
-				<?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_RESPONSIVE_TABLE, 'checked' => $responsive_table]) ?>
-				<div class="form-text">
-					<?= I18N::translate('If this option is selected, the custom module table is shown with an responsive layout, which might be helpful to use the module on devices with smaller screens.'); ?>
-				</div>
-			</div>
-		</div>
-	</fieldset>
+        <fieldset class="mb-3">
+            <div class="row">
+                <legend class="col-form-label col-sm-3">
+                    <?= I18N::translate('Table layout') ?>
+                </legend>
+                <div class="col-sm-9">
+                    <?= view('components/radios', ['name' => 'table_layout', 'selected' => $table_layout,
+                        'options' => [
+                            CustomModuleManager::TABLE_LAYOUT_TABLE       => I18N::translate('Table'),
+                            CustomModuleManager::TABLE_LAYOUT_STICKY_HEAD => I18N::translate('Table with fixed header'),
+                            CustomModuleManager::TABLE_LAYOUT_RESPONSIVE  => I18N::translate('Responsive table (for small screens)'),
+                        ]
+                    ]) ?>
+                </div>
+            </div>
+        </fieldset>
 
 	<div class="h4">
 		<?= I18N::translate('GitHub API token') ?>
