@@ -76,6 +76,9 @@ use function view;
  */
 class ModuleUpgradeWizardStep implements RequestHandlerInterface
 {
+
+    private TimeoutService $timeout_service;
+
     // We make the upgrade in a number of small steps to keep within server time limits.
     public const STEP_CHECK    = 'Check';
     public const STEP_PREPARE  = 'Prepare';
@@ -125,10 +128,11 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      * @param UpgradeService         $webtrees_upgrade_service
      * @param MaintenanceModeService $maintenance_mode_service
      */
-    public function __construct(UpgradeService $webtrees_upgrade_service, MaintenanceModeService $maintenance_mode_service) {
+    public function __construct(UpgradeService $webtrees_upgrade_service, MaintenanceModeService $maintenance_mode_service, TimeoutService $timeout_service) {
 
         $this->webtrees_upgrade_service = $webtrees_upgrade_service;
         $this->maintenance_mode_service = $maintenance_mode_service;
+        $this->timeout_service          = $timeout_service;
         $this->custom_module_manager    = Registry::container()->get(CustomModuleManager::class);
     }
 
@@ -343,7 +347,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 $source_filesystem      = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
                 $destination_filesystem = Registry::filesystem()->root(self::BACKUP_FOLDER . Webtrees::MODULES_PATH . $installation_folder);
 
-                self::copyFiles($source_filesystem, $destination_filesystem);
+                $this->copyFiles($source_filesystem, $destination_filesystem);
             }
 
             $end_time   = (float) Registry::timeStampFactory()->now()->format('U.u');
@@ -637,7 +641,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         if ($restore) {
             $source_filesystem      = Registry::filesystem()->root(self::BACKUP_FOLDER . Webtrees::MODULES_PATH . $installation_folder);
             $destination_filesystem = Registry::filesystem()->root(Webtrees::MODULES_PATH . $installation_folder);
-            self::copyFiles($source_filesystem, $destination_filesystem);
+            $this->copyFiles($source_filesystem, $destination_filesystem);
         }
 
         return;
@@ -677,15 +681,13 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      * @return void
      * @throws FilesystemException
      */
-    public static function copyFiles(FilesystemOperator $source, FilesystemOperator $destination): void
+    private function copyFiles(FilesystemOperator $source, FilesystemOperator $destination): void
     {
-        $timeout_service = new TimeoutService(new PhpService);
-
         foreach ($source->listContents('', FilesystemReader::LIST_DEEP) as $attributes) {
             if ($attributes->isFile()) {
                 $destination->write($attributes->path(), $source->read($attributes->path()));
 
-                if ($timeout_service->isTimeNearlyUp()) {
+                if ($this->timeout_service->isTimeNearlyUp()) {
                     throw new HttpServerErrorException(MoreI18N::xlate('The server’s time limit has been reached.'));
                 }
             }
