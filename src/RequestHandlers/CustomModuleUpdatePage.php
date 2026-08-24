@@ -84,13 +84,14 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
             'custom_modules'                                 => $module_service->findByInterface(ModuleCustomInterface::class, true),
             'themes'                                         => $module_service->findByInterface(ModuleThemeInterface::class, true),
             'fetch_latest'                                   => $fetch_latest,
-            'modules_to_show'                                => $custom_module_manager->getPreference(CustomModuleManager::PREF_MODULES_TO_SHOW, CustomModuleManager::PREF_SHOW_ALL),
+            CustomModuleManager::PREF_MODULES_TO_SHOW        => $custom_module_manager->getPreference(CustomModuleManager::PREF_MODULES_TO_SHOW, CustomModuleManager::PREF_SHOW_ALL),
             CustomModuleManager::PREF_SHOW_COLUMN_DESCR      => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DESCR, '1')),
             CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY   => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY, '1')),
             CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, '1')),
             CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV   => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, '1')),
             CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS  => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, '1')),
             CustomModuleManager::PREF_TABLE_LAYOUT           => $custom_module_manager->getPreference(CustomModuleManager::PREF_TABLE_LAYOUT, CustomModuleManager::TABLE_LAYOUT_TABLE),
+            CustomModuleManager::PREF_VESTA_CONFIRMED        => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_VESTA_CONFIRMED, '0')),
         ]);
     }
 }

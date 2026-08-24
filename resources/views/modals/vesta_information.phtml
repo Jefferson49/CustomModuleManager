@@ -1,0 +1,45 @@
+<?php
+
+namespace Jefferson49\Webtrees\Module\CustomModuleManager;
+
+use Fisharebest\Webtrees\I18N;
+use Jefferson49\Webtrees\Internationalization\MoreI18N;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\VestaInformationAction;
+
+use function view;
+
+
+/**
+ * @var string $title
+ */
+
+?>
+
+<div class="modal-body">
+    <div class="h4">
+        <?= $title ?>
+    </div>
+    <div class="row mb-3"><?= view('icons/spacer') ?></div>
+    <div class="row mb-3">
+        <p>
+            <?= I18N::translate('Vesta modules are always handled as a bundle, because Vesta modules do have dependencies between each other and the module author does not provide separate releases and installation files for the single modules.') ?>
+        </p>
+        <p>
+            <?= I18N::translate('If one Vesta module is installed, updated or deleted, all Vesta modules are installed, updated, or deleted at the same time.') ?>
+        </p>
+        <p>
+            <?= I18N::translate('Please confirm.') ?>
+        </p>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+        <?= view('icons/cancel') ?>
+        <?= MoreI18N::xlate('cancel') ?>
+    </button>
+    <a class="btn btn-secondary" href="<?= e(route(VestaInformationAction::class)) ?>" >
+        <?= I18N::translate('confirm') ?>
+    </a>
+</div>
+

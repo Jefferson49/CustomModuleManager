@@ -70,6 +70,8 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleInform
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardPage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleUpgradeWizardStep;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotesModal;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\VestaInformationAction;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\VestaInformationModal;
 use Jefferson49\Webtrees\Module\ModuleCustomTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -126,6 +128,7 @@ class CustomModuleManager extends AbstractModule implements
     public const PREF_SHOW_COLUMN_UPD_SERV    = 'show_column_update_service';
     public const PREF_SHOW_COLUMN_DOWNLOADS   = 'show_column_downloads';
     public const PREF_TABLE_LAYOUT            = 'table_layout';
+    public const PREF_VESTA_CONFIRMED         = 'vesta_confirmed';
 
     //Configuraton
     public const CONFIG_GITHUB_BRANCH     = 'config';
@@ -153,6 +156,8 @@ class CustomModuleManager extends AbstractModule implements
     public const ROUTE_IGNORE_UPDATE       = '/ignore-update';
     public const ROUTE_COLUMN_CONF_MODAL   = '/column-config-modal';
     public const ROUTE_COLUMN_CONF_ACTION  = '/column-config-action';
+    public const ROUTE_VESTA_INFORMATION   = '/vesta-information';
+    public const ROUTE_VESTA_INFO_ACTION   = '/vesta-information-action';
 
     //Language
     public const DEFAULT_LANGUAGE         = 'en-US';
@@ -228,6 +233,8 @@ class CustomModuleManager extends AbstractModule implements
         Functions::registerRoute(self::ROUTE_IGNORE_UPDATE, IgnoreUpdateAction::class);
         Functions::registerRoute(self::ROUTE_COLUMN_CONF_MODAL, ColumnConfigurationModal::class);
         Functions::registerRoute(self::ROUTE_COLUMN_CONF_ACTION, ColumnConfigurationAction::class);
+        Functions::registerRoute(self::ROUTE_VESTA_INFORMATION, VestaInformationModal::class);
+        Functions::registerRoute(self::ROUTE_VESTA_INFO_ACTION, VestaInformationAction::class);
     }
 
     /**

@@ -24,6 +24,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateSe
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ColumnConfigurationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleActivateAction;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotesModal;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\VestaInformationModal;
 
 
 /**
@@ -41,6 +42,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ReleaseNotes
  * @var bool                $show_column_update_service
  * @var bool                $show_column_downloads
  * @var string              $table_layout
+ * @var bool                $vesta_confirmed
  */
 
 // ControlPanel class
@@ -409,41 +411,65 @@ $order = [[$sort_column, 'desc']];
                             <?php $action_sort = '2' ?>
                         <?php elseif ($module !== null && $later_version_available && !($latest_version === $ignore_version)) : ?>
                             <?php $action = CustomModuleManager::ACTION_UPDATE ?>
-                            <?php $action_label = I18N::translate('Update module') ?>
+                                <?php if ($module_update_service_name === VestaModuleUpdate::NAME && $vesta_confirmed) : ?>
+                                    <?php $action_label = I18N::translate('Update all Vesta modules') ?>
+                                <?php else : ?>
+                                    <?php $action_label = I18N::translate('Update module') ?>
+                                <?php endif ?>
                             <?php $action_sort = '3' ?>
                         <?php elseif ($module_status === I18N::translate('Not installed')) : ?>
                             <?php $action = CustomModuleManager::ACTION_INSTALL ?>
-                            <?php $action_label = I18N::translate('Install module') ?>
+                                <?php if ($module_update_service_name === VestaModuleUpdate::NAME && $vesta_confirmed) : ?>
+                                    <?php $action_label = I18N::translate('Install all Vesta modules') ?>
+                                <?php else : ?>
+                                    <?php $action_label = I18N::translate('Install module') ?>
+                                <?php endif ?>
                             <?php $action_sort = '1' ?>
                         <?php endif ?>
                         <td data-sort="<?= $action_sort ?>">
                             <?php if ($update_service_available && $module_update_service->updateManually()) : ?>
                                 <?= I18N::translate('Manual updating/merging required') ?>
                             <?php elseif ($action_label !== '' && $update_service_available) : ?>
-                                <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ModuleUpgradeWizardPage::class, [
-                                        'module_name'     => $module_name,
-                                        'current_version' => $current_version,
-                                        'latest_version'  => $latest_version,
-                                        'action'          => $action,
-                                    ])) ?>" type="submit" class="btn btn-<?= $action === CustomModuleManager::ACTION_UPDATE ? 'primary' : 'secondary' ?>">
-                                    <?= $action_label ?>
-                                </a>
+                                <?php if ($module_update_service_name === VestaModuleUpdate::NAME && !$vesta_confirmed) : ?>
+                                    <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(VestaInformationModal::class)) ?>" type="submit" class="btn btn-<?= $action === CustomModuleManager::ACTION_UPDATE ? 'primary' : 'secondary' ?>">
+                                        <?= $action_label ?>
+                                    </a>
+                                <?php else : ?>
+                                    <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ModuleUpgradeWizardPage::class, [
+                                            'module_name'     => $module_name,
+                                            'current_version' => $current_version,
+                                            'latest_version'  => $latest_version,
+                                            'action'          => $action,
+                                        ])) ?>" type="submit" class="btn btn-<?= $action === CustomModuleManager::ACTION_UPDATE ? 'primary' : 'secondary' ?>">
+                                        <?= $action_label ?>
+                                    </a>
+                                <?php endif ?>
                             <?php endif ?>
                         </td>
 
                         <!--Delete -->
-                        <?php $label = '' ?>
+                        <?php $action_label = '' ?>
                         <?php if ($module !== null) : ?>
-                            <?php $label = I18N::translate('Delete module') ?>
+                            <?php if ($module_update_service_name === VestaModuleUpdate::NAME && $vesta_confirmed) : ?>
+                                <?php $action_label = I18N::translate('Delete all Vesta modules') ?>
+                            <?php else : ?>
+                                <?php $action_label = I18N::translate('Delete module') ?>
+                            <?php endif ?>
                         <?php endif ?>
-                        <td data-sort="<?= $label ?>">
+                        <td data-sort="<?= $action_label ?>">
                             <?php if ($module !== null) : ?>
-                                <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ModuleUpgradeWizardPage::class, [
-                                        'module_name'     => $module_name,
-                                        'action'          => CustomModuleManager::ACTION_DELETE,
-                                    ])) ?>" type="submit" class="btn btn-secondary">
-                                    <?= $label ?>
-                                </a>
+                                <?php if ($module_update_service_name === VestaModuleUpdate::NAME && !$vesta_confirmed) : ?>
+                                    <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(VestaInformationModal::class)) ?>" type="submit" class="btn btn-secondary">
+                                        <?= $action_label ?>
+                                    </a>
+                                <?php else : ?>
+                                    <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ModuleUpgradeWizardPage::class, [
+                                            'module_name'     => $module_name,
+                                            'action'          => CustomModuleManager::ACTION_DELETE,
+                                        ])) ?>" type="submit" class="btn btn-secondary">
+                                        <?= $action_label ?>
+                                    </a>
+                                <?php endif ?>
                             <?php endif ?>
                         </td>
                     </tr>
