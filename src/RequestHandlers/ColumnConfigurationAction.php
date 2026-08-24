@@ -51,7 +51,7 @@ class ColumnConfigurationAction implements RequestHandlerInterface
         $show_column_date_added     = Validator::parsedBody($request)->boolean(CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, false);
         $show_column_update_service = Validator::parsedBody($request)->boolean(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, false);
         $show_column_downloads      = Validator::parsedBody($request)->boolean(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, false);
-        $table_layout               = Validator::parsedBody($request)->string(CustomModuleManager::PREF_TABLE_LAYOUT, CustomModuleManager::TABLE_LAYOUT_TABLE);
+        $table_layout               = Validator::parsedBody($request)->string(CustomModuleManager::PREF_TABLE_LAYOUT, CustomModuleManager::TABLE_LAYOUT_STICKY_HEAD);
 
         $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
 
