@@ -46,14 +46,14 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\VestaInforma
  */
 
 // ControlPanel class
-if (version_compare(Webtrees::VERSION, '2.2.6', '>')) {
+if (version_compare(Webtrees::VERSION, '2.3', '>=')) {
     $control_panel = \Fisharebest\Webtrees\Http\Controllers\ControlPanel::class;
 } else {
     $control_panel = \Fisharebest\Webtrees\Http\RequestHandlers\ControlPanel::class;
 }
 
 // Class for module update table
-if (version_compare(Webtrees::VERSION, '2.2.6', '>')) {
+if (version_compare(Webtrees::VERSION, '2.3', '>=')) {
     $data_tables_class = "wt-datatables d-none";
 } else {
     $data_tables_class = "datatables";
