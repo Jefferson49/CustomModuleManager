@@ -20,11 +20,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  *
- * 
+ *
  * CustomModuleManager
  *
  * A weebtrees(https://webtrees.net) 2.2 custom module to manage custom modules
- * 
+ *
  */
 
 declare(strict_types=1);
@@ -36,7 +36,7 @@ use Illuminate\Support\Collection;
 
 
 /**
- * Interface for custom module updates 
+ * Interface for custom module updates
  */
 interface CustomModuleUpdateInterface
 {
@@ -46,12 +46,12 @@ interface CustomModuleUpdateInterface
      * @return string
      */
     public function name(): string;
-  
+
     /**
      * How should the module be identified in the control panel, etc.?
      *
      * @param string $language_tag
-     * 
+     *
      * @return string
      */
     public function title(string $language_tag): string;
@@ -60,7 +60,7 @@ interface CustomModuleUpdateInterface
      * A description of the module
      *
      * @param string $language_tag
-     * 
+     *
      * @return string
      */
     public function description(string $language_tag): string;
@@ -83,20 +83,20 @@ interface CustomModuleUpdateInterface
      *
      * @return string
      */
-    public function customModuleVersion(): string;    
+    public function customModuleVersion(): string;
 
     /**
      * Fetch the latest version of this module
      *
-     * @param bool $fetch_latest  Whether to fetch the latest version, e.g. from a Github repository 
-     * 
+     * @param bool $fetch_latest  Whether to fetch the latest version, e.g. from a Github repository
+     *
      * @return string
      */
     public function customModuleLatestVersion(bool $fetch_latest = false): string;
 
     /**
      * Where can we download the module
-     * 
+     *
      * @param  string $version  The version of the module; latest version if empty
      * @return string
      */
@@ -104,7 +104,7 @@ interface CustomModuleUpdateInterface
 
     /**
      * Where can we find a documentation for the module
-     * 
+     *
      * @return string
      */
     public function documentationUrl(): string;
@@ -115,7 +115,7 @@ interface CustomModuleUpdateInterface
      * @return string
      */
     public function getUnzipFolder(): string;
-    
+
     /**
      * A collection of folder names within the module, which shall be cleaned after an upgrade
      *
@@ -126,42 +126,42 @@ interface CustomModuleUpdateInterface
     /**
      * Get a list of all module names, which are needed to perform updates with this update service
      * Background: Update services like Vesta might need several modules in parallel
-     * 
+     *
      * @return array<string> module_name => standard_module_name
      */
     public function getModuleNamesToUpdate(): array;
 
     /**
      * Test a module after installation
-     * 
+     *
      * @return string Error message or empty string if no error
      */
     public function testModuleInstallation(): string;
 
     /**
      * Test a module update
-     * 
+     *
      * @return string Error message or empty string if no error
      */
     public function testModuleUpdate(): string;
 
     /**
      * Whether the module is a Theme
-     * 
+     *
      * @return bool
      */
     public function moduleIsTheme(): bool;
 
     /**
      * Get the module category
-     * 
+     *
      * @return string
      */
     public function getCategory(): string;
 
     /**
      * Get the date when the module was added to the module list of Custom Module Manager
-     * 
+     *
      * @return string
      */
     public function getDateAdded(): string;
@@ -171,7 +171,7 @@ interface CustomModuleUpdateInterface
      *
      * @return bool
      */
-    public function providesReleasesInRepository(): bool;    
+    public function providesReleasesInRepository(): bool;
 
     /**
      * Get the release notes for the latest version of this module
@@ -185,7 +185,7 @@ interface CustomModuleUpdateInterface
      *
      * @return string
      */
-    public function getLatestReleaseURL(): string;    
+    public function getLatestReleaseURL(): string;
 
     /**
      * Whether the module shall be installed clean, i.e. all earlier files are deleted before installation
@@ -193,11 +193,11 @@ interface CustomModuleUpdateInterface
      * @return bool
      */
     public function installClean(): bool;
-	
+
     /**
      * Whether the module can only be updated manually (and shall not be updated with CustomModuleManager)
      *
      * @return bool
      */
-    public function updateManually(): bool;	
+    public function updateManually(): bool;
 }

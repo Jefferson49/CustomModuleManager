@@ -20,11 +20,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  *
- * 
+ *
  * CustomModuleManager
  *
  * A weebtrees(https://webtrees.net) 2.2 custom module to manage custom modules
- * 
+ *
  */
 
 declare(strict_types=1);
@@ -47,7 +47,7 @@ use RuntimeException;
 /**
  * Configuration of the module update services
  */
-class ModuleUpdateServiceConfiguration 
+class ModuleUpdateServiceConfiguration
 {
     //The language used
     private static string $language = '';
@@ -117,9 +117,9 @@ class ModuleUpdateServiceConfiguration
         '_jc-theme-justlight_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-theme-justlight', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
         '_jc-simple-footer_'                 =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-footer', self::CATEGORY => self::CATEGORY_FOOTER]],
         '_jc-simple-media-display_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-media-display', self::CATEGORY => self::CATEGORY_MEDIA]],
-        '_jc-simple-menu_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-menu', self::CATEGORY => self::CATEGORY_MENU]],          
+        '_jc-simple-menu_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JustCarmen/webtrees-simple-menu', self::CATEGORY => self::CATEGORY_MENU]],
 
-        '_webtrees-lantmateriet_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ekdahl/webtrees-lantmateriet', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_MAP]],       
+        '_webtrees-lantmateriet_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ekdahl/webtrees-lantmateriet', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_MAP]],
         '_webtrees-primer-theme_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ekdahl/webtrees-primer-theme', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
 
         '_GVExport_'                         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Neriderc/GVExport', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
@@ -165,10 +165,10 @@ class ModuleUpdateServiceConfiguration
 
         '_family-tree-home_'                 =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'miqrogroove/family-tree-home', 'get_latest_version_from_github' => true, self::CATEGORY => self::CATEGORY_FRONTEND]],
 
-        '_ArgonLight_'                       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '06Games/Webtrees-ArgonLight', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],       
+        '_ArgonLight_'                       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '06Games/Webtrees-ArgonLight', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
         '_evang_mailsystem_'                 =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '06Games/Webtrees-MailSystem', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_MESSAGES]],
 
-        '_webtrees-branch-statistics_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'squatteur/webtrees-branch-statistics', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],       
+        '_webtrees-branch-statistics_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'squatteur/webtrees-branch-statistics', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
         '_topola_'                           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PeWu/topola-webtrees', self::CATEGORY => self::CATEGORY_CHARTS]],
 
@@ -177,19 +177,19 @@ class ModuleUpdateServiceConfiguration
         '_mitalteli-misc-features_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'elysch/webtrees-mitalteli-misc-features', self::CATEGORY => self::CATEGORY_GEDCOM]],
         '_mitalteli-report-researchtasks_'   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'elysch/webtrees-mitalteli-report-researchtasks', self::CATEGORY => self::CATEGORY_REPORTS]],
 
-        '_webtrees-HTML-block-advanced_'     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'photon-flip/webtrees-HTML-block-advanced', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]], 
+        '_webtrees-HTML-block-advanced_'     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'photon-flip/webtrees-HTML-block-advanced', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_watermark-module_'                 =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'photon-flip/watermark-module', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
 
-        '_webtrees-faces_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-faces', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],   
+        '_webtrees-faces_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-faces', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
         '_webtrees-photos_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-photos', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
         '_webtrees-reminder_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-reminder', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MESSAGES]],
         '_webtrees-tree_view_full_screen_'   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-tree_view_full_screen', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
         '_webtrees-mdi_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'UksusoFF/webtrees-mdi', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        
-        '_jp-theme-colors_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jpretired/jp-theme-colors', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME, 'get_latest_version_from_github' => true , 'tag_prefix' => 'v']],       
+
+        '_jp-theme-colors_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jpretired/jp-theme-colors', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME, 'get_latest_version_from_github' => true , 'tag_prefix' => 'v']],
         '_jp-main-menu-manual_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jpretired/jp-main-menu-manual', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MENU]],
 
-        '_telegram_'                         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Tywed/telegram', 'tag_prefix' => 'v.', self::CATEGORY => self::CATEGORY_MESSAGES]],       
+        '_telegram_'                         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Tywed/telegram', 'tag_prefix' => 'v.', self::CATEGORY => self::CATEGORY_MESSAGES]],
         '_news-menu_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Tywed/news-menu', 'tag_prefix' => 'v.', self::CATEGORY => self::CATEGORY_MENU]],
 
         '_finnish-historical-facts_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ardhtu/finnish-historical-facts', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_FACT]],
@@ -206,7 +206,7 @@ class ModuleUpdateServiceConfiguration
 
         '_svajana-master_'                   =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'baskar-yahoo/webtrees-svajana', 'no_release' => true, 'default_branch' => 'master', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
 
-        '_historic-events-belgium_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Dirk-Everts/webtrees-historic-events-belgium', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],        
+        '_historic-events-belgium_'          =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Dirk-Everts/webtrees-historic-events-belgium', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
 
         '_time-travel-map_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'gmarcon/webtrees-time-travel-map', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
@@ -214,7 +214,7 @@ class ModuleUpdateServiceConfiguration
         '_datafix-add-married-names_'        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bertkoor/wt-datafix-add-married-names', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
         '_module-bulk-delete_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'BertKoor/wt-module-bulk-delete', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
         '_old-nicknames_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bertkoor/wt-module-old-nicknames', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        
+
         '_insight-lens_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'godzil3/webtrees-insight-lens', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
         '_data-check_'                       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Vulfharban/webtrees-datencheck-plugin', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_DATA_VALIDATION]],
@@ -243,7 +243,7 @@ class ModuleUpdateServiceConfiguration
 
         '_potts-admin-shortcuts_'            =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-admin-shortcuts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
         '_potts_fact_ages_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts_fact_ages', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
-        '_potts-family-books_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-family-books', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_REPORTS]],        
+        '_potts-family-books_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-family-books', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_REPORTS]],
         '_potts-help-centre_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-help-centre', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_potts-hero-slideshow_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-hero-slideshow', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_potts-historical-facts_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'PottsNet/potts-historical-facts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
@@ -266,7 +266,7 @@ class ModuleUpdateServiceConfiguration
     private const MODULES_BETA_VERSION = [
 
     ];
-        
+
     private const MODULES_WITH_ERRORS = [
 
         '_admin-announcement-billboard_'     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '0ldM4cM4n/admin-announcement-billboard', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
@@ -288,13 +288,13 @@ class ModuleUpdateServiceConfiguration
         //Last commit is 6 years ago; seemingly not compatible to webtrees 2.2
         //Main folder "paradiso-master" seems to contain 5 module in sub-directories
         //Included modules create PHP errors
- 
+
         '_jsonld_'                           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'bmarwell/webtrees-jsonld', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
         //Only preliminary release from Nov. 2025 available; creates errors
     ];
 
     private const MODULES_TO_CLARIFY = [
-        
+
         '_new_reports_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'sevtor/modules']],
         //No module, but substitution of webtrees core code
 
@@ -305,7 +305,7 @@ class ModuleUpdateServiceConfiguration
 
     /**
      * Get the module update service configuration
-     * 
+     *
      * @return array module_name => module_config
      */
     public static function getModuleUpdateServiceConfig(): array {
@@ -318,7 +318,7 @@ class ModuleUpdateServiceConfiguration
         // Try to load the configuration from GitHub
         if (!CustomModuleManager::USE_LOCAL_CONFIG) {
             $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
-            $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');            
+            $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
 
             // If we use a module version, which is suitable to the remote module update service configuration on GitHub.
             if (!$custom_module_manager->isLowerThanLatestVersion()) {
@@ -367,9 +367,9 @@ class ModuleUpdateServiceConfiguration
 
     /**
      * Get a list of all module names
-     * 
+     *
      * @param bool $getVesta Whether to get Vesta modules only
-     * 
+     *
      * @return array<string> module_name => standard_module_name
      */
     public static function getModuleNames(bool $getVesta = false): array
@@ -383,7 +383,7 @@ class ModuleUpdateServiceConfiguration
 
         foreach($module_update_service_config as $module_name => $config) {
             if ($getVesta) {
-                //Only add to list if has Vesta update service 
+                //Only add to list if has Vesta update service
                 if (    isset($module_update_service_config[$module_name]['update_service'])
                      && $module_update_service_config[$module_name]['update_service'] === 'VestaModuleUpdate') {
 
@@ -405,7 +405,7 @@ class ModuleUpdateServiceConfiguration
                 unset($module_names[$standard_module_name]);
 
                 if ($getVesta) {
-                    //Only add to list if has Vesta update service                    
+                    //Only add to list if has Vesta update service
                     if (   isset($module_update_service_config[$standard_module_name]['update_service'])
                         && $module_update_service_config[$standard_module_name]['update_service'] === 'VestaModuleUpdate') {
 
@@ -425,9 +425,9 @@ class ModuleUpdateServiceConfiguration
 
     /**
      * Get the configuration parameters for the update service of a module
-     * 
+     *
      * @param string $module_name
-     *  
+     *
      * @return array
      */
     public static function getParams(string $module_name): array
@@ -442,13 +442,13 @@ class ModuleUpdateServiceConfiguration
         }
 
         return [];
-    }      
+    }
 
     /**
      * Get the update service name for a module
-     * 
+     *
      * @param string $module_name
-     *  
+     *
      * @return string
      */
     public static function getUpdateServiceName(string $module_name): string
@@ -467,9 +467,9 @@ class ModuleUpdateServiceConfiguration
 
     /**
      * Get the standard module name; if not in list, match name by the module title
-     * 
+     *
      * @param string $module_name
-     *  
+     *
      * @return string
      */
     public static function getStandardModuleName(string $module_name): string
@@ -490,12 +490,12 @@ class ModuleUpdateServiceConfiguration
             return $module_name;
         }
 
-        return '';    
+        return '';
     }
 
     /**
      * Initialize the maps for default titles/descriptions to module names
-     * 
+     *
      * @return string
      */
     public static function initializeMapsForModuleNames(): void
@@ -548,10 +548,10 @@ class ModuleUpdateServiceConfiguration
 
     /**
      * Get a title from the stored configuration
-     * 
+     *
      * @param string $module_name
      * @param string $language_tag
-     *  
+     *
      * @return string
      */
     public static function getTitle(string $module_name, string $language_tag = CustomModuleManager::DEFAULT_LANGUAGE): string {
@@ -563,10 +563,10 @@ class ModuleUpdateServiceConfiguration
 
     /**
      * Get a description from the stored configuration
-     * 
+     *
      * @param string $module_name
      * @param string $language_tag
-     *  
+     *
      * @return string
      */
     public static function getDescription(string $module_name, string $language_tag = CustomModuleManager::DEFAULT_LANGUAGE): string {
@@ -578,9 +578,9 @@ class ModuleUpdateServiceConfiguration
 
     /**
      * Get the date added (to the module list of Custom Module Manager) from the stored configuration
-     * 
+     *
      * @param string $module_name
-     *  
+     *
      * @return string
      */
     public static function getDateAdded(string $module_name): string {
@@ -661,7 +661,7 @@ class ModuleUpdateServiceConfiguration
 
     /**
      * Get a list with all tag prefixes used by the custom modules
-     * 
+     *
      * @return array [module_name => tag_prefix]
      */
     public static function getPrefixList(): array {

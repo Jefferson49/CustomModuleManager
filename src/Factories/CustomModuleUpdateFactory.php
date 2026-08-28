@@ -20,11 +20,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  *
- * 
+ *
  * CustomModuleManager
  *
  * A weebtrees(https://webtrees.net) 2.2 custom module to manage custom modules
- * 
+ *
  */
 
 declare(strict_types=1);
@@ -42,9 +42,9 @@ class CustomModuleUpdateFactory
 {
     /**
      * Create a custom module update service
-     * 
+     *
      * @param string $module_name  Name of the custom module
-     * 
+     *
      * @return CustomModuleUpdateInterface   A configured update service. Null, if not found
      */
     public static function make(string $module_name) : ?CustomModuleUpdateInterface
@@ -67,7 +67,7 @@ class CustomModuleUpdateFactory
      * Return the names of all available custom module update services
      *
      * @return array<class_name => module_update_service_name>
-     */ 
+     */
 
     public static function getModuleUpdateServiceNames(): array {
 
@@ -75,12 +75,12 @@ class CustomModuleUpdateFactory
         $name_space = str_replace('\\\\', '\\',__NAMESPACE__ );
         $name_space_module_updates = str_replace('Factories', 'ModuleUpdates\\', $name_space);
 
-        foreach (get_declared_classes() as $class_name) { 
+        foreach (get_declared_classes() as $class_name) {
             if (strpos($class_name, $name_space_module_updates) !==  false) {
                 if (in_array($name_space_module_updates . 'CustomModuleUpdateInterface', class_implements($class_name))) {
                     if (str_replace($name_space_module_updates, '',  $class_name) !== 'AbstractModuleUpdate') {
                         $class_name = str_replace($name_space_module_updates, '', $class_name);
-                        $module_update_service_names[] = $class_name;    
+                        $module_update_service_names[] = $class_name;
                     }
                 }
             }

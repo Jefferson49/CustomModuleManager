@@ -38,7 +38,7 @@ use function view;
 <div class="modal-body">
 
     <div class="h4">
-        <?= MoreI18N::xlate('Title') ?>	
+        <?= MoreI18N::xlate('Title') ?>
     </div>
     <div class="row mb-3">
         <p>
@@ -47,20 +47,20 @@ use function view;
     </div>
 
     <div class="h4">
-        <?= MoreI18N::xlate('Description') ?>	
+        <?= MoreI18N::xlate('Description') ?>
     </div>
     <div class="row mb-3">
         <p>
             <?php if ($show_default_description) : ?>
                 <?= CustomModuleManager::DEFAULT_LANGUAGE_PREFIX ?><br>
-            <?php endif ?>	
+            <?php endif ?>
             <?= e($module_description) ?>
         </p>
     </div>
-    
+
     <?php if ($documentation_url !== '') : ?>
         <div class="h4">
-            <?= I18N::translate('Documentation') ?>	
+            <?= I18N::translate('Documentation') ?>
         </div>
         <div class="wt-custom-module-info">
             <?php if ($module_update_service_name === VestaModuleUpdate::NAME) : ?>
@@ -77,10 +77,10 @@ use function view;
             </a>
         </div>
         <br>
-    <?php endif ?>        
+    <?php endif ?>
 
     <div class="h4">
-        <?= MoreI18N::xlate('Module Information') ?>	
+        <?= MoreI18N::xlate('Module Information') ?>
     </div>
 
     <div class="wt-custom-module-info">
@@ -172,6 +172,6 @@ use function view;
             'module' => $module,
         ]) ?>
     <?php endif ?>
-</div>    
+</div>
 
 <?= view('modals/footer-close') ?>

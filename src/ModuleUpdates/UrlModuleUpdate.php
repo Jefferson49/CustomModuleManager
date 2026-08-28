@@ -20,11 +20,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  *
- * 
+ *
  * CustomModuleManager
  *
  * A weebtrees(https://webtrees.net) 2.2 custom module to manage custom modules
- * 
+ *
  */
 
 declare(strict_types=1);
@@ -38,7 +38,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManag
 /**
  * Update API for a custom module, which is based on a simple download URL
  */
-class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdateInterface 
+class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdateInterface
 {
     const NAME = 'URL';
 
@@ -51,7 +51,7 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
     /**
      * @param string $module_name  The custom module name
      * @param array  $params       The configuration parameters of the update service
-     * 
+     *
      * @return void
      */
     public function __construct(string $module_name, array  $params) {
@@ -84,10 +84,10 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
 
         return self::NAME;
     }
-    
+
     /**
      * Where can we download the module
-     * 
+     *
      * @param  string $version  The version of the module; latest version if empty
      * @return string
      */
@@ -98,10 +98,10 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
 
     /**
      * Where can we find a documentation for the module
-     * 
+     *
      * @return string
      */
-    public function documentationUrl(): string 
+    public function documentationUrl(): string
     {
         return $this->documentation_url;
     }

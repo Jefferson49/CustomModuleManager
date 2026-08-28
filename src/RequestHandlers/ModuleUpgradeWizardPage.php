@@ -20,11 +20,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  *
- * 
+ *
  * CustomModuleManager
  *
  * A weebtrees(https://webtrees.net) 2.2 custom module to manage custom modules
- * 
+ *
  */
 
 declare(strict_types=1);
@@ -134,7 +134,7 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
      * @param string $action         The action to be performed, i.e. update or install
      * @param string $current_version
      * @param string $latest_version
-     * 
+     *
      * @return array<string>
      */
     private function wizardSteps(string $module_name, string $download_url = '', string $action = CustomModuleManager::ACTION_UPDATE, string $current_version = '', string $latest_version = ''): array

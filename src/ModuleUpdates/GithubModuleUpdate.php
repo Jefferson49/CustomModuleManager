@@ -20,11 +20,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  *
- * 
+ *
  * CustomModuleManager
  *
  * A weebtrees(https://webtrees.net) 2.2 custom module to manage custom modules
- * 
+ *
  */
 
 declare(strict_types=1);
@@ -45,7 +45,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManag
 /**
  * Update API for a custom module, which is hosted in a Github repository
  */
-class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdateInterface 
+class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdateInterface
 {#
     const NAME = 'GitHub';
 
@@ -70,11 +70,11 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     // The Custom Module Manager module
     protected ModuleInterface $custom_module_manager;
 
-    
+
     /**
      * @param string $module_name  The custom module name
      * @param array  $params       The configuration parameters of the update service
-     * 
+     *
      * @return void
      */
     public function __construct(string $module_name, array $params) {
@@ -147,9 +147,9 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
     /**
      * Where can we download the module
-     * 
+     *
      * @param  string $version  The version of the module; latest version if empty
-     * 
+     *
      * @return string
      */
     public function downloadUrl(string $version = ''): string
@@ -161,15 +161,15 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             return 'https://github.com/' . $this->github_repo . '/archive/refs/heads/' . $this->default_branch . '.zip';
         }
 
-        $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');       
+        $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
 
         // Get the download URL from Github
         try {
             $download_url = GithubService::downloadUrl($this->github_repo, $version, $this->tag_prefix, $github_api_token);
-        } 
+        }
         catch (GithubCommunicationError $ex) {
             // Can't connect to GitHub?
-            $message =  I18N::translate('Communication error with %s', $this->name()) . ': ' . 
+            $message =  I18N::translate('Communication error with %s', $this->name()) . ': ' .
                         I18N::translate('Cannot retrieve download URL.') . "\n" .
                         $ex->getMessage();
             throw new CustomModuleManagerException($message);
@@ -180,7 +180,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
     /**
      * Where can we find a documentation for the module
-     * 
+     *
      * @return string
      */
     public function documentationUrl(): string
@@ -190,7 +190,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
     /**
      * Get the GitHub repository
-     * 
+     *
      * @return string
      */
     public function getGithubRepo(): string
@@ -201,8 +201,8 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     /**
      * Fetch the latest version of this module
      *
-     * @param bool $fetch_latest  Whether to fetch the latest version, e.g. from a GitHub repository 
-     * 
+     * @param bool $fetch_latest  Whether to fetch the latest version, e.g. from a GitHub repository
+     *
      * @return string
      */
     public function customModuleLatestVersion(bool $fetch_latest = false): string
@@ -245,7 +245,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function getLatestReleaseNotes(): string
     {
-        $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');       
+        $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
 
         //Get the latest releases note from GitHub
         try {
@@ -268,7 +268,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
     /**
      * Get the cached download count for this module.
-     * 
+     *
      * Returns the download count from the file cache. The cache is only populated
      * when the user explicitly triggers a fetch (via the "Fetch versions & downloads" button).
      * Returns -1 if no cached data is available.
@@ -289,16 +289,16 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     /**
      * Fetch combined release information (version tag + download count) from GitHub,
      * using the webtrees file cache.
-     * 
+     *
      * This method fetches /releases?per_page=3 and caches both the latest version tag
      * and the maximum download count across the 3 most recent releases. The cache uses
      * 30 days TTL (persists until force refreshed manually).
-     * 
-     * The cache is populated once. Afterwards, only updated if explicitly requested 
+     *
+     * The cache is populated once. Afterwards, only updated if explicitly requested
      * by the user via the"Check now" button. On normal page loads, only cached data is read.
      *
      * @param bool $force_refresh  Whether to invalidate the cache and fetch fresh data from GitHub
-     * 
+     *
      * @return array{tag: string, max_downloads: int}
      */
     public function fetchReleasesInfoCached(bool $force_refresh = false): array
@@ -311,7 +311,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         }
 
         return Registry::cache()->file()->remember($cache_key, function (): array {
-            
+
             $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
 
             try {

@@ -20,11 +20,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  *
- * 
+ *
  * CustomModuleManager
  *
  * A weebtrees(https://webtrees.net) 2.2 custom module to manage custom modules
- * 
+ *
  */
 
 declare(strict_types=1);
@@ -53,7 +53,7 @@ use Throwable;
 abstract class AbstractModuleUpdate
 {
     //The custom module name
-    protected string $module_name; 
+    protected string $module_name;
 
     //The category of the custom module
     protected string $category = '';
@@ -71,7 +71,7 @@ abstract class AbstractModuleUpdate
      * @return string
      */
     abstract public function name(): string;
-    
+
     /**
      * A unique internal name for the module (based on the installation folder).
      *
@@ -93,7 +93,7 @@ abstract class AbstractModuleUpdate
         $module = $module_service->findByName($this->module_name, true);
 
         if ($module !== null && class_implements(ModuleCustomInterface::class)) {
-            return $module;            
+            return $module;
         }
 
         return null;
@@ -103,7 +103,7 @@ abstract class AbstractModuleUpdate
      * How should the module be identified in the control panel, etc.?
      *
      * @param string $language_tag
-     * 
+     *
      * @return string
      */
     public function title(string $language_tag = CustomModuleManager::DEFAULT_LANGUAGE): string {
@@ -117,7 +117,7 @@ abstract class AbstractModuleUpdate
      * A description of the module
      *
      * @param string $language_tag
-     * 
+     *
      * @return string
      */
     public function description(string $language_tag = CustomModuleManager::DEFAULT_LANGUAGE): string {
@@ -129,17 +129,17 @@ abstract class AbstractModuleUpdate
 
     /**
      * Whether the module is a Theme
-     * 
+     *
      * @return bool
      */
     public function moduleIsTheme(): bool {
 
         return $this->category === ModuleUpdateServiceConfiguration::CATEGORY_THEME;
     }
-    
+
     /**
      * Get the module category
-     * 
+     *
      * @return string
      */
     public function getCategory(): string {
@@ -147,49 +147,49 @@ abstract class AbstractModuleUpdate
         switch ($this->category) {
             case ModuleUpdateServiceConfiguration::CATEGORY_ADMIN:
                 return MoreI18N::xlate('Administrator');
-            case ModuleUpdateServiceConfiguration::CATEGORY_CHARTS: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_CHARTS:
                 return MoreI18N::xlate('Charts');
-            case ModuleUpdateServiceConfiguration::CATEGORY_CLIPPINGS_CART: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_CLIPPINGS_CART:
                 return MoreI18N::xlate('Clippings cart');
             case ModuleUpdateServiceConfiguration::CATEGORY_EMAIL:
                 return MoreI18N::xlate('Email');
-            case ModuleUpdateServiceConfiguration::CATEGORY_FACT: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_FACT:
                 return MoreI18N::xlate('Facts and events');
-            case ModuleUpdateServiceConfiguration::CATEGORY_FOOTER: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_FOOTER:
                 return MoreI18N::xlate('Footer');
-            case ModuleUpdateServiceConfiguration::CATEGORY_FRONTEND: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_FRONTEND:
                 return I18N::translate('Frontend');
-            case ModuleUpdateServiceConfiguration::CATEGORY_FRONTEND_TAB: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_FRONTEND_TAB:
                 return I18N::translate('Frontend') . ' ' . MoreI18N::xlate('Tab');
-            case ModuleUpdateServiceConfiguration::CATEGORY_FRONTEND_SIDEBAR: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_FRONTEND_SIDEBAR:
                 return I18N::translate('Frontend') . ' ' . MoreI18N::xlate('Sidebar');
             case ModuleUpdateServiceConfiguration::CATEGORY_GEDCOM:
                 return MoreI18N::xlate('GEDCOM');
-            case ModuleUpdateServiceConfiguration::CATEGORY_LANGUAGE: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_LANGUAGE:
                 return MoreI18N::xlate('Language');
-            case ModuleUpdateServiceConfiguration::CATEGORY_MAP: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_MAP:
                 return MoreI18N::xlate('Map');
-            case ModuleUpdateServiceConfiguration::CATEGORY_MESSAGES: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_MESSAGES:
                 return MoreI18N::xlate('Messages');
-            case ModuleUpdateServiceConfiguration::CATEGORY_MEDIA: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_MEDIA:
                 return MoreI18N::xlate('Media');
-            case ModuleUpdateServiceConfiguration::CATEGORY_MENU: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_MENU:
                 return MoreI18N::xlate('Menu');
-            case ModuleUpdateServiceConfiguration::CATEGORY_NONE: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_NONE:
                 return MoreI18N::xlate('None');
-            case ModuleUpdateServiceConfiguration::CATEGORY_PLACES: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_PLACES:
                 return MoreI18N::xlate('Places');
-            case ModuleUpdateServiceConfiguration::CATEGORY_REPORTS: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_REPORTS:
                 return MoreI18N::xlate('Reports');
-            case ModuleUpdateServiceConfiguration::CATEGORY_SIGNIN: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_SIGNIN:
                 return MoreI18N::xlate('Sign in');
-            case ModuleUpdateServiceConfiguration::CATEGORY_SOURCES: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_SOURCES:
                 return MoreI18N::xlate('Sources');
             case ModuleUpdateServiceConfiguration::CATEGORY_TAGS:
                 return I18N::translate('Tags');
-            case ModuleUpdateServiceConfiguration::CATEGORY_THEME: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_THEME:
                 return MoreI18N::xlate('Theme');
-            case ModuleUpdateServiceConfiguration::CATEGORY_DATA_VALIDATION: 
+            case ModuleUpdateServiceConfiguration::CATEGORY_DATA_VALIDATION:
                 return I18N::translate('Data validation');
             default:
                 return  '';
@@ -198,7 +198,7 @@ abstract class AbstractModuleUpdate
 
     /**
      * Get the date when the module was added to the module list of Custom Module Manager
-     * 
+     *
      * @return string
      */
     public function getDateAdded(): string {
@@ -227,8 +227,8 @@ abstract class AbstractModuleUpdate
     /**
      * Fetch the latest version of this module
      *
-     * @param bool $fetch_latest  Whether to fetch the latest version, e.g. from a Github repository 
-     * 
+     * @param bool $fetch_latest  Whether to fetch the latest version, e.g. from a Github repository
+     *
      * @return string
      */
     public function customModuleLatestVersion(bool $fetch_latest = false): string
@@ -244,9 +244,9 @@ abstract class AbstractModuleUpdate
 
     /**
      * A default name for a custom module based on the installation folder
-     * 
+     *
      * @param string $installation_folder_name  The installation folder in modules_v4
-     * 
+     *
      * @return string
      */
     public static function defaultModuleName(string $installation_folder_name): string
@@ -256,9 +256,9 @@ abstract class AbstractModuleUpdate
 
     /**
      * Get installation folder name from custom module name
-     * 
+     *
      * @param string $module_name  A custom module name
-     * 
+     *
      * @return string
      */
     public static function getInstallationFolderFromModuleName(string $module_name): string
@@ -294,7 +294,7 @@ abstract class AbstractModuleUpdate
     /**
      * Get a list of all module names, which are needed to perform updates with this update service
      * Background: Update services like Vesta might need several modules in parallel
-     * 
+     *
      * @return array<string> module_name => standard_module_name
      */
     public function getModuleNamesToUpdate(): array {
@@ -302,11 +302,11 @@ abstract class AbstractModuleUpdate
         $standard_module_name = ModuleUpdateServiceConfiguration::getStandardModuleName($this->module_name);
 
         return [$this->module_name => $standard_module_name];
-    }    
+    }
 
     /**
      * Test a module update
-     * 
+     *
      * @return string Error message or empty string if no error
      */
     public function testModuleUpdate(): string
@@ -330,7 +330,7 @@ abstract class AbstractModuleUpdate
 
     /**
      * Test a module after installation
-     * 
+     *
      * @return string Error message or empty string if no error
      */
     public function testModuleInstallation(): string
@@ -360,10 +360,10 @@ abstract class AbstractModuleUpdate
 
     /**
      * Identify the module category from the configuration
-     * 
+     *
      * @param string $module_name
      * @param array  $params        config parameters
-     *  
+     *
      * @return string
      */
     public function identifyCategoryFromConfig(string $module_name, $params): string {
@@ -378,9 +378,9 @@ abstract class AbstractModuleUpdate
 
     /**
      * Retrieve a flash error message for a certain module
-     * 
+     *
      * @param string $module_name
-     *  
+     *
      * @return string Error message or empty string if no error
      */
     public static function pullFlashErrorMessage(string $module_name): string {
@@ -470,7 +470,7 @@ abstract class AbstractModuleUpdate
 
         return $this->install_clean;
     }
-	
+
     /**
      * Whether the module can only be updated manually (and shall not be updated with CustomModuleManager)
      *

@@ -20,11 +20,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  *
- * 
+ *
  * CustomModuleManager
  *
  * A weebtrees(https://webtrees.net) 2.2 custom module to manage custom modules
- * 
+ *
  */
 
 declare(strict_types=1);
@@ -75,7 +75,7 @@ class ModuleInformationModal implements RequestHandlerInterface
         $module_update_service = CustomModuleUpdateFactory::make($module_name);
 
         $this->layout = 'layouts/ajax';
-        
+
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/module_information', [
                 'title'                      => I18N::translate('Module Information'),
                 'module_name'                => $module_name,
