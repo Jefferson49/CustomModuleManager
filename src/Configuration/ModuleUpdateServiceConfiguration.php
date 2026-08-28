@@ -257,7 +257,7 @@ class ModuleUpdateServiceConfiguration
         '_enhanced-charts_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'haylau-ronzo/enhanced-charts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
         '_media-badge_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JRMine/webtrees-media-badge', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_media-collections_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'thobgg/webtrees-sammlungen', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_MEDIA]],
+        '_sammlungen_'                       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'thobgg/webtrees-sammlungen', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
         '_ortsregister_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'thobgg/webtrees-ortsregister', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_PLACES]],
         '_theme-farbwelten_'                 =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'thobgg/webtrees-theme-farbwelten', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
     ];
