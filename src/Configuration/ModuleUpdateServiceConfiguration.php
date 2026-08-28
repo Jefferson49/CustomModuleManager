@@ -155,6 +155,7 @@ class ModuleUpdateServiceConfiguration
         '_gustine-history22_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'gustine/gustine-history22', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_FACT]],
 
         '_hh_extended_family_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_extended_family', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_hh_external_places_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_external_places', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_PLACES]],
         '_hh_legal_notice_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_legal_notice', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FOOTER]],
         '_hh-unlinked-individual_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh-unlinked-individual', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_hh-change-log_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh-change-log', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
