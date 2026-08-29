@@ -467,16 +467,6 @@
         },
         "date_added": "2026-06-15"
     },
-    "_hh_courtship_radius_": {
-        "update_service": "GithubModuleUpdate",
-        "params": {
-            "github_repo": "hartenthaler\/hh-courtship-radius",
-            "category": "frontend",
-            "title": "Courtship radius",
-            "description": "Analyse the geographic courtship radius of selected families over time."
-        },
-        "date_added": "2026-08-29"
-    },
     "_hh_extended_family_": {
         "update_service": "GithubModuleUpdate",
         "params": {
