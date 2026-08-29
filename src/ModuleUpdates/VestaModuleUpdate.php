@@ -220,4 +220,14 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
             })
             ->last();
     }
+
+    /**
+     * Get the package name (for custom module list)
+     *
+     * @return bool
+     */
+    public function getPackageName(): string {
+
+        return strtolower($this->github_repo);
+    }
 }

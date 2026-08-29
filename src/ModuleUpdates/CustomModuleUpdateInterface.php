@@ -33,6 +33,7 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Illuminate\Support\Collection;
+use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 
 
 /**
@@ -54,7 +55,7 @@ interface CustomModuleUpdateInterface
      *
      * @return string
      */
-    public function title(string $language_tag): string;
+    public function title(string $language_tag = CustomModuleManager::DEFAULT_LANGUAGE): string;
 
     /**
      * A description of the module
@@ -63,7 +64,7 @@ interface CustomModuleUpdateInterface
      *
      * @return string
      */
-    public function description(string $language_tag): string;
+    public function description(string $language_tag = CustomModuleManager::DEFAULT_LANGUAGE): string;
 
     /**
      * A unique internal name for the module (during runtime, based on the installation folder).
@@ -200,4 +201,11 @@ interface CustomModuleUpdateInterface
      * @return bool
      */
     public function updateManually(): bool;
+
+    /**
+     * Get the package name (for custom module list)
+     *
+     * @return bool
+     */
+    public function getPackageName(): string;
 }

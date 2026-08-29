@@ -1,0 +1,939 @@
+{
+    "packages": {
+        "jefferson49/changelanguagewithurl": [
+            {
+                "version": "1.2.2",
+                "name": "jefferson49/changelanguagewithurl",
+                "description": "ChangeLanguageWithURL module",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "Jefferson49/ChangeLanguageWithURL",
+                            "tag_prefix": "v",
+                            "category": "language",
+                            "title": "ChangeLanguageWithURL module",
+                            "description": "ChangeLanguageWithURL module"
+                        },
+                        "date_added": ""
+                    }
+                },
+                "require": {
+                    "jefferson49/webtrees-common": ">=1.2.42"
+                },
+                "repositories": [
+                    {
+                        "url": "https://github.com/Jefferson49/webtrees-common.git",
+                        "type": "git"
+                    }
+                ]
+            }
+        ],
+        "jefferson49/customfilesystem": [
+            {
+                "version": "1.0.0-beta",
+                "name": "jefferson49/customfilesystem",
+                "description": "A webtrees custom module to use alternative filesystems within webtrees.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "Jefferson49/CustomFilesystem",
+                            "tag_prefix": "v",
+                            "category": "admin",
+                            "title": "Custom Filesystem",
+                            "description": "Create a custom filesystem"
+                        },
+                        "date_added": ""
+                    }
+                },
+                "require": {
+                    "php": ">=7.4",
+                    "jefferson49/webtrees-common": ">=1.2.44",
+                    "marktaborosi/flysystem-nextcloud": ">=1.0.0"
+                },
+                "replace": {
+                    "larapack/dd": "*",
+                    "league/flysystem": "*",
+                    "league/flysystem-local": "*",
+                    "league/mime-type-detection": "*",
+                    "psr/log": "*",
+                    "sabre/uri": "*",
+                    "sabre/vobject": "*",
+                    "symfony/deprecation-contracts": "*",
+                    "symfony/polyfill-mbstring": "*",
+                    "symfony/var-dumper": "*"
+                },
+                "conflict": {
+                    "fisharebest/webtrees": "<2.1"
+                },
+                "authors": [
+                    {
+                        "name": "Markus Hemprich",
+                        "homepage": "https://github.com/jefferson49",
+                        "role": "Developer"
+                    }
+                ],
+                "homepage": "https://github.com/jefferson49/customfilesystem",
+                "keywords": [
+                    "webtrees",
+                    "custom module"
+                ],
+                "license": [
+                    "GPL-3.0-or-later"
+                ],
+                "support": {
+                    "issues": "https://github.com/jefferson49/customfilesystem/issues"
+                },
+                "repositories": [
+                    {
+                        "url": "https://github.com/Jefferson49/webtrees-common.git",
+                        "type": "git"
+                    }
+                ],
+                "config": {
+                    "prepend-autoloader": false
+                }
+            }
+        ],
+        "jefferson49/custommodulemanager": [
+            {
+                "version": "v2.0.6",
+                "name": "jefferson49/custommodulemanager",
+                "description": "A webtrees custom module to manage custom modules within webtrees",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "Jefferson49/CustomModuleManager",
+                            "tag_prefix": "v",
+                            "category": "admin",
+                            "title": "Custom Module Manager",
+                            "description": "A custom module to manage webtrees custom modules."
+                        },
+                        "date_added": ""
+                    }
+                },
+                "require": {
+                    "php": ">=8.3",
+                    "jefferson49/webtrees-common": ">=1.2.47"
+                },
+                "conflict": {
+                    "fisharebest/webtrees": "<2.2"
+                },
+                "authors": [
+                    {
+                        "name": "Markus Hemprich",
+                        "homepage": "https://github.com/jefferson49",
+                        "role": "Developer"
+                    }
+                ],
+                "homepage": "https://github.com/jefferson49/custommodulemanager",
+                "keywords": [
+                    "webtrees",
+                    "custom module"
+                ],
+                "license": [
+                    "GPL-3.0-or-later"
+                ],
+                "support": {
+                    "issues": "https://github.com/jefferson49/custommodulemanager/issues"
+                },
+                "repositories": [
+                    {
+                        "url": "https://github.com/Jefferson49/webtrees-common.git",
+                        "type": "git"
+                    }
+                ],
+                "config": {
+                    "prepend-autoloader": false
+                }
+            }
+        ],
+        "jefferson49/extendedimportexport": [
+            {
+                "version": "4.2.14",
+                "name": "jefferson49/extendedimportexport",
+                "description": "A webtrees custom module for advanced GEDCOM import, export, and filter operations. The module also supports remote downloads/uploads via URL requests.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "Jefferson49/ExtendedImportExport",
+                            "tag_prefix": "v",
+                            "category": "gedcom",
+                            "title": "Extended Import/Export",
+                            "description": "A custom module for advanced GEDCOM import, export, and filter operations. The module also supports remote downloads/uploads/filters via URL requests."
+                        },
+                        "date_added": ""
+                    }
+                },
+                "require": {
+                    "php": ">=8.1",
+                    "jefferson49/webtrees-common": ">=1.2.49"
+                },
+                "conflict": {
+                    "fisharebest/webtrees": "<2.1"
+                },
+                "authors": [
+                    {
+                        "name": "Markus Hemprich",
+                        "homepage": "https://github.com/jefferson49",
+                        "role": "Developer"
+                    }
+                ],
+                "homepage": "https://github.com/jefferson49/extendedimportexport",
+                "keywords": [
+                    "webtrees",
+                    "custom module"
+                ],
+                "license": [
+                    "GPL-3.0-or-later"
+                ],
+                "support": {
+                    "issues": "https://github.com/jefferson49/extendedimportexport/issues"
+                },
+                "repositories": [
+                    {
+                        "url": "https://github.com/Jefferson49/webtrees-common.git",
+                        "type": "git"
+                    }
+                ],
+                "config": {
+                    "prepend-autoloader": false
+                }
+            }
+        ],
+        "jefferson49/mycustomtags": [
+            {
+                "version": "1.1.0",
+                "name": "jefferson49/mycustomtags",
+                "description": "A module to provide custom tags, types, relationship descriptors, and roles in events",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "Jefferson49/MyCustomTags",
+                            "tag_prefix": "v",
+                            "update_manually": true,
+                            "category": "gedcom",
+                            "title": "My Custom Tags",
+                            "description": "A module to provide custom tags, types, relationship descriptors, and roles in events"
+                        },
+                        "date_added": ""
+                    }
+                },
+                "require": {
+                    "jefferson49/webtrees-common": ">=1.2.44"
+                },
+                "repositories": [
+                    {
+                        "url": "https://github.com/Jefferson49/webtrees-common.git",
+                        "type": "git"
+                    }
+                ],
+                "config": {
+                    "prepend-autoloader": false
+                }
+            }
+        ],
+        "jefferson49/webtrees-oauth2-client": [
+            {
+                "version": "1.1.11",
+                "name": "jefferson49/webtrees-oauth2-client",
+                "description": "A webtrees custom module to manage custom modules within webtrees",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "Jefferson49/webtrees-oauth2-client",
+                            "tag_prefix": "v",
+                            "category": "signin",
+                            "title": "OAuth2 Client",
+                            "description": "A custom module to implement a OAuth2 client for webtrees."
+                        },
+                        "date_added": ""
+                    }
+                },
+                "require": {
+                    "php": ">=7.4",
+                    "bahuma/oauth2-nextcloud": "=2.1.0",
+                    "jefferson49/oauth2-authelia": ">=1.0.0",
+                    "jefferson49/oauth2-kanidm": ">=1.1.1",
+                    "jefferson49/webtrees-common": ">=1.2.55",
+                    "league/oauth2-client": "=2.9.0",
+                    "league/oauth2-github": "=3.1.1",
+                    "league/oauth2-google": "=4.2.0",
+                    "stevenmaguire/oauth2-dropbox": "=3.1.0",
+                    "stevenmaguire/oauth2-keycloak": "=5.1.0"
+                },
+                "replace": {
+                    "firebase/php-jwt": "*",
+                    "guzzlehttp/guzzle": "*",
+                    "paragonie/random_compat": "*"
+                },
+                "conflict": {
+                    "fisharebest/webtrees": "<2.1"
+                },
+                "authors": [
+                    {
+                        "name": "Markus Hemprich",
+                        "homepage": "https://github.com/jefferson49",
+                        "role": "Developer"
+                    }
+                ],
+                "homepage": "https://github.com/jefferson49/webtrees-oauth2-client",
+                "keywords": [
+                    "webtrees",
+                    "custom module"
+                ],
+                "license": [
+                    "GPL-3.0-or-later"
+                ],
+                "support": {
+                    "issues": "https://github.com/jefferson49/webtrees-oauth2-client/issues"
+                },
+                "repositories": [
+                    {
+                        "url": "https://github.com/Jefferson49/webtrees-common.git",
+                        "type": "git"
+                    },
+                    {
+                        "url": "https://github.com/jefferson49/oauth2-kanidm.git",
+                        "type": "git"
+                    },
+                    {
+                        "url": "https://github.com/jefferson49/oauth2-authelia.git",
+                        "type": "git"
+                    }
+                ],
+                "config": {
+                    "prepend-autoloader": false
+                }
+            }
+        ],
+        "jefferson49/repositoryhierarchy": [
+            {
+                "version": "1.5.7",
+                "name": "jefferson49/repositoryhierarchy",
+                "description": "A weebtrees custom module to present the structure of a repository and its sources in a hierarchical manner.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "Jefferson49/RepositoryHierarchy",
+                            "tag_prefix": "v",
+                            "category": "sources",
+                            "title": "Repository Hierarchy",
+                            "description": "A hierarchical structured list of the sources of an archive based on the call numbers of the sources"
+                        },
+                        "date_added": ""
+                    }
+                },
+                "require": {
+                    "php": ">=7.4",
+                    "jefferson49/webtrees-common": ">=1.2.45",
+                    "matriphe/iso-639": "=1.3"
+                },
+                "conflict": {
+                    "fisharebest/webtrees": "<2.1"
+                },
+                "authors": [
+                    {
+                        "name": "Markus Hemprich",
+                        "homepage": "https://github.com/jefferson49",
+                        "role": "Developer"
+                    }
+                ],
+                "homepage": "https://github.com/jefferson49/repositoryhierarchy",
+                "keywords": [
+                    "webtrees",
+                    "custom module"
+                ],
+                "license": [
+                    "GPL-3.0-or-later"
+                ],
+                "support": {
+                    "issues": "https://github.com/jefferson49/repositoryhierarchy/issues"
+                },
+                "repositories": [
+                    {
+                        "url": "https://github.com/Jefferson49/webtrees-common.git",
+                        "type": "git"
+                    },
+                    {
+                        "url": "https://github.com/matriphe/php-iso-639.git",
+                        "type": "git"
+                    }
+                ],
+                "config": {
+                    "prepend-autoloader": false
+                }
+            }
+        ],
+        "jefferson49/webtrees-api": [
+            {
+                "version": "1.3.0-beta",
+                "name": "jefferson49/webtrees-api",
+                "description": "A webtrees custom module to provide a Web based API, also supporting MCP.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "Jefferson49/webtrees-API",
+                            "tag_prefix": "v",
+                            "category": "admin",
+                            "title": "webtrees API",
+                            "description": "A custom module to provide an API for webtrees."
+                        },
+                        "date_added": "2026-02-15"
+                    }
+                },
+                "require": {
+                    "php": ">=8.3",
+                    "jefferson49/webtrees-common": ">=1.2.44",
+                    "zircote/swagger-php": "<6.0.0",
+                    "liberu-genealogy/php-gedcom": "dev-main",
+                    "league/oauth2-server": "*"
+                },
+                "replace": {
+                    "psr/clock": "*",
+                    "psr/event-dispatcher": "*",
+                    "psr/http-factory": "*",
+                    "psr/http-message": "*",
+                    "psr/http-server-handler": "*",
+                    "psr/http-server-middleware": "*",
+                    "psr/log": "*",
+                    "symfony/deprecation-contracts": "*",
+                    "symfony/polyfill-ctype": "*"
+                },
+                "conflict": {
+                    "fisharebest/webtrees": "<2.2"
+                },
+                "authors": [
+                    {
+                        "name": "Markus Hemprich",
+                        "homepage": "https://github.com/jefferson49",
+                        "role": "Developer"
+                    }
+                ],
+                "homepage": "https://github.com/jefferson49/webtrees-api",
+                "keywords": [
+                    "webtrees",
+                    "custom module"
+                ],
+                "license": [
+                    "GPL-3.0-or-later"
+                ],
+                "support": {
+                    "issues": "https://github.com/jefferson49/webtrees-api/issues"
+                },
+                "repositories": [
+                    {
+                        "url": "https://github.com/Jefferson49/webtrees-common.git",
+                        "type": "git"
+                    }
+                ],
+                "config": {
+                    "prepend-autoloader": false
+                },
+                "_custom_repositories": [
+                    {
+                        "url": "https://github.com/Jefferson49/php-gedcom.git",
+                        "type": "git"
+                    }
+                ]
+            }
+        ],
+        "justcarmen/webtrees-fancy-imagebar": [
+            {
+                "version": "2.4.1",
+                "name": "justcarmen/webtrees-fancy-imagebar",
+                "description": "An imagebar with small images between header and content.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "JustCarmen/webtrees-fancy-imagebar",
+                            "category": "frontend",
+                            "title": "Fancy Imagebar",
+                            "description": "An imagebar with small images between header and content."
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "justcarmen/webtrees-fancy-treeview": [
+            {
+                "version": "2.2.0",
+                "name": "justcarmen/webtrees-fancy-treeview",
+                "description": "A narrative overview of the descendants or ancestors of one family (branch).",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "JustCarmen/webtrees-fancy-treeview",
+                            "category": "frontend",
+                            "title": "Fancy Treeview",
+                            "description": "A narrative overview of the descendants or ancestors of one family (branch)."
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "justcarmen/webtrees-theme-justlight": [
+            {
+                "version": "2.4.0",
+                "name": "justcarmen/webtrees-theme-justlight",
+                "description": "Theme \u2014 JustLight",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "JustCarmen/webtrees-theme-justlight",
+                            "is_theme": true,
+                            "category": "theme",
+                            "title": "JustLight",
+                            "description": "Theme \u2014 JustLight"
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "neriderc/gvexport": [
+            {
+                "version": "2.2.7",
+                "name": "neriderc/gvexport",
+                "description": "Family tree diagram module for webtrees",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "Neriderc/GVExport",
+                            "tag_prefix": "v",
+                            "category": "charts",
+                            "title": "GVExport",
+                            "description": "Generate a diagram of everyone in your family tree. Highly customisable, with the ability to navigate in your browser or export the diagram to a file."
+                        },
+                        "date_added": ""
+                    }
+                },
+                "require": {
+                    "fisharebest/webtrees": "^2.1",
+                    "ext-json": "*"
+                },
+                "license": "GPL-2.0-only",
+                "minimum-stability": "stable"
+            }
+        ],
+        "magicsunday/webtrees-statistics": [
+            {
+                "version": "1.8.4",
+                "name": "magicsunday/webtrees-statistics",
+                "description": "Various statistics charts.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "magicsunday/webtrees-statistics",
+                            "install_clean": true,
+                            "category": "charts",
+                            "title": "Statistics",
+                            "description": "Various statistics charts."
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "jon48/webtrees-theme-rural": [
+            {
+                "version": "2.2.6-v.2",
+                "name": "jon48/webtrees-theme-rural",
+                "description": "Theme \u2014 Rural",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "jon48/webtrees-theme-rural",
+                            "is_theme": true,
+                            "category": "theme",
+                            "title": "Rural",
+                            "description": "Theme \u2014 Rural"
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "huhwt/huhwt-cce": [
+            {
+                "version": "2.2.5.1",
+                "name": "huhwt/huhwt-cce",
+                "description": "Add records from your family tree to the clippings cart and execute an action on them.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "huhwt/huhwt-cce",
+                            "tag_prefix": "v",
+                            "category": "clippings_cart",
+                            "title": "\u210d Clippings cart enhanced",
+                            "description": "Add records from your family tree to the clippings cart and execute an action on them."
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "vesta-webtrees-2-custom-modules/vesta_classic_laf": [
+            {
+                "version": "2.2.6.1.0",
+                "name": "vesta-webtrees-2-custom-modules/vesta_classic_laf",
+                "description": "A module adjusting all themes and other features, providing a look & feel closer to the webtrees 1.x version.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "VestaModuleUpdate",
+                        "params": {
+                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_classic_laf",
+                            "category": "frontend",
+                            "title": "\u26b6 Vesta Classic Look & Feel",
+                            "description": "A module adjusting all themes and other features, providing a look & feel closer to the webtrees 1.x version."
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "vesta-webtrees-2-custom-modules/vesta_clippings_cart": [
+            {
+                "version": "2.2.6.1.0",
+                "name": "vesta-webtrees-2-custom-modules/vesta_clippings_cart",
+                "description": "Select records from your family tree and save them as a GEDCOM file. Replacement for the original 'Clippings Cart' module.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "VestaModuleUpdate",
+                        "params": {
+                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_clippings_cart",
+                            "category": "clippings_cart",
+                            "title": "\u26b6 Vesta Clippings Cart",
+                            "description": "Select records from your family tree and save them as a GEDCOM file. Replacement for the original 'Clippings Cart' module."
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "vesta-webtrees-2-custom-modules/vesta_common": [
+            {
+                "version": "2.2.6.1.0",
+                "name": "vesta-webtrees-2-custom-modules/vesta_common",
+                "description": "A module providing common classes and translations for other 'Vesta' custom modules. Make sure to enable this module if any other Vesta module is enabled.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "VestaModuleUpdate",
+                        "params": {
+                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_common",
+                            "category": "none",
+                            "title": "\u26b6 Vesta Common",
+                            "description": "A module providing common classes and translations for other 'Vesta' custom modules. Make sure to enable this module if any other Vesta module is enabled."
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "vesta-webtrees-2-custom-modules/vesta_extended_relationships": [
+            {
+                "version": "2.2.6.1.0",
+                "name": "vesta-webtrees-2-custom-modules/vesta_extended_relationships",
+                "description": "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module. Also includes an extended 'Who is online' block.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "VestaModuleUpdate",
+                        "params": {
+                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_extended_relationships",
+                            "category": "charts",
+                            "title": "\u26b6 Vesta Extended Relationships",
+                            "description": "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module. Also includes an extended 'Who is online' block."
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "vesta-webtrees-2-custom-modules/vesta_personal_facts": [
+            {
+                "version": "2.2.6.1.0",
+                "name": "vesta-webtrees-2-custom-modules/vesta_personal_facts",
+                "description": "A tab showing the facts and events of an individual. Replacement for the original 'Facts and events' module.  Also extends facts and events on the family page. Also provides additional map links.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "VestaModuleUpdate",
+                        "params": {
+                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_personal_facts",
+                            "category": "frontend_tab",
+                            "title": "\u26b6 Vesta Facts and events",
+                            "description": "A tab showing the facts and events of an individual. Replacement for the original 'Facts and events' module.  Also extends facts and events on the family page. Also provides additional map links."
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "vesta-webtrees-2-custom-modules/vesta_relatives": [
+            {
+                "version": "2.2.6.1.0",
+                "name": "vesta-webtrees-2-custom-modules/vesta_relatives",
+                "description": "A tab showing the close relatives of an individual. Replacement for the original 'Families' module.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "VestaModuleUpdate",
+                        "params": {
+                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_relatives",
+                            "category": "frontend_tab",
+                            "title": "\u26b6 Vesta Families",
+                            "description": "A tab showing the close relatives of an individual. Replacement for the original 'Families' module."
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "vesta-webtrees-2-custom-modules/vesta_gov4webtrees": [
+            {
+                "version": "2.2.6.1.0",
+                "name": "vesta-webtrees-2-custom-modules/vesta_gov4webtrees",
+                "description": "A module integrating GOV (historic gazetteer) data.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "VestaModuleUpdate",
+                        "params": {
+                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_gov4webtrees",
+                            "category": "places",
+                            "title": "\u26b6 Vesta Gov4Webtrees",
+                            "description": "A module integrating GOV (historic gazetteer) data."
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "vesta-webtrees-2-custom-modules/vesta_places_and_pedigree_map": [
+            {
+                "version": "2.2.6.1.0",
+                "name": "vesta-webtrees-2-custom-modules/vesta_places_and_pedigree_map",
+                "description": "The Place hierarchy. Also show the location of events and the birthplace of ancestors on a map. Replacement for the original 'Place hierarchy', 'Places' and  'Pedigree map' modules.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "VestaModuleUpdate",
+                        "params": {
+                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_places_and_pedigree_map",
+                            "category": "places",
+                            "title": "\u26b6 Vesta Places and Pedigree map",
+                            "description": "The Place hierarchy. Also show the location of events and the birthplace of ancestors on a map. Replacement for the original 'Place hierarchy', 'Places' and  'Pedigree map' modules."
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "vesta-webtrees-2-custom-modules/vesta_research_suggestions": [
+            {
+                "version": "2.2.6.1.0",
+                "name": "vesta-webtrees-2-custom-modules/vesta_research_suggestions",
+                "description": "A module providing suggestions for additional research, based on available sources.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "VestaModuleUpdate",
+                        "params": {
+                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_research_suggestions",
+                            "category": "sources",
+                            "title": "\u26b6 Vesta Research Suggestions",
+                            "description": "A module providing suggestions for additional research, based on available sources."
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "vesta-webtrees-2-custom-modules/vesta_shared_places": [
+            {
+                "version": "2.2.6.1.0",
+                "name": "vesta-webtrees-2-custom-modules/vesta_shared_places",
+                "description": "A module providing support for shared places.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "VestaModuleUpdate",
+                        "params": {
+                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_shared_places",
+                            "category": "places",
+                            "title": "\u26b6 Vesta Shared Places",
+                            "description": "A module providing support for shared places."
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "vesta-webtrees-2-custom-modules/vesta_location_data": [
+            {
+                "version": "2.2.6.1.0",
+                "name": "vesta-webtrees-2-custom-modules/vesta_location_data",
+                "description": "A module providing (non-GEDCOM-based) webtrees location data to other modules.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "VestaModuleUpdate",
+                        "params": {
+                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_location_data",
+                            "category": "places",
+                            "title": "\u26b6 Vesta Webtrees Location Data Provider",
+                            "description": "A module providing (non-GEDCOM-based) webtrees location data to other modules."
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "06games/webtrees-argonlight": [
+            {
+                "version": "2.0.2",
+                "name": "evang/argon-light",
+                "description": "A light theme for Webtrees based on Argon Design System",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "06Games/Webtrees-ArgonLight",
+                            "is_theme": true,
+                            "category": "theme",
+                            "title": "Argon Light",
+                            "description": "A light theme for Webtrees based on Argon Design System"
+                        },
+                        "date_added": ""
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Evan Galli",
+                        "role": "Developer",
+                        "homepage": "https://github.com/06Games"
+                    },
+                    {
+                        "name": "jchue",
+                        "role": "Initial Developer",
+                        "homepage": "https://github.com/jchue"
+                    }
+                ],
+                "homepage": "https://github.com/06Games/Webtrees-ArgonLight",
+                "type": "webtrees-module",
+                "keywords": [
+                    "webtrees",
+                    "theme"
+                ],
+                "license": "ISC",
+                "config": {
+                    "preferred-install": {
+                        "fisharebest/webtrees": "source"
+                    }
+                },
+                "autoload": {
+                    "psr-4": {
+                        "EvanG\\Themes\\Argon\\": ""
+                    }
+                },
+                "readme": "./README.md",
+                "require-dev": {
+                    "fisharebest/webtrees": "^2.2"
+                }
+            }
+        ],
+        "bschwede/linkenhancer": [
+            {
+                "version": "1.2.14",
+                "name": "bschwede/linkenhancer",
+                "description": "Cross-references to Gedcom datasets, Markdown editor, context-sensitive link to the GenWiki webtrees manual",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "bschwede/linkenhancer",
+                            "tag_prefix": "v",
+                            "category": "frontend",
+                            "title": "Link-Enhancer",
+                            "description": "Cross-references to Gedcom datasets, Markdown editor, context-sensitive link to the GenWiki webtrees manual"
+                        },
+                        "date_added": ""
+                    }
+                }
+            }
+        ],
+        "vulfharban/webtrees-datencheck-plugin": [
+            {
+                "version": "1.6.9.2",
+                "name": "wolfrum/datencheck",
+                "description": "A webtrees plugin to check for data consistency and logical errors.",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "Vulfharban/webtrees-datencheck-plugin",
+                            "tag_prefix": "v",
+                            "category": "data_validation",
+                            "title": "Data Check",
+                            "description": "Checks for data inconsistencies."
+                        },
+                        "date_added": "2026-02-15"
+                    }
+                },
+                "require": {
+                    "php": "^7.4 || ^8.0"
+                },
+                "authors": [
+                    {
+                        "name": "Christian Wolfrum",
+                        "email": "c.wolfrum@example.com"
+                    }
+                ],
+                "type": "webtrees-module",
+                "autoload": {
+                    "psr-4": {
+                        "Wolfrum\\Datencheck\\": "src/"
+                    }
+                }
+            }
+        ],
+        "mdkaleel/k-theme": [
+            {
+                "version": "1.0.0",
+                "name": "kaleel/k-theme",
+                "description": "K-Theme module for webtrees 2.x",
+                "extra": {
+                    "custom-module-manager": {
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "mdkaleel/k-theme",
+                            "no_release": true,
+                            "default_branch": "main",
+                            "is_theme": true,
+                            "category": "theme",
+                            "title": "K-Theme",
+                            "description": "A modern, premium theme with light and dark palettes."
+                        },
+                        "date_added": "2026-03-27"
+                    }
+                },
+                "type": "webtrees-module",
+                "license": "GPL-3.0-or-later",
+                "autoload": {
+                    "psr-4": {
+                        "WebtreesModules\\KTheme\\": ""
+                    }
+                }
+            }
+        ]
+    }
+}

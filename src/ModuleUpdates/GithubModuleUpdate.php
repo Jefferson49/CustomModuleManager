@@ -337,4 +337,44 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
         return 'https://github.com/' . $this->github_repo . '/releases/latest';
     }
+
+    /**
+     * Get the package name (for custom module list)
+     *
+     * @return string
+     */
+    public function getPackageName(): string {
+
+        return strtolower($this->github_repo);
+    }
+
+    /**
+     * Get the tag prefix
+     *
+     * @return string
+     */
+    public function getTagPrefix(): string {
+
+        return $this->tag_prefix;
+    }
+
+    /**
+     * Whether the GitHub repo does not provide releases
+     *
+     * @return bool
+     */
+    public function noRelease(): bool {
+
+        return $this->no_release;
+    }
+
+    /**
+     * Get the default branch
+     *
+     * @return string
+     */
+    public function getDefaultBranch(): string {
+
+        return $this->default_branch;
+    }
 }

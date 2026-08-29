@@ -61,6 +61,7 @@ use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\DefaultTitlesAndDescriptions;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ColumnConfigurationAction;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ColumnConfigurationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleActivateAction;
@@ -178,8 +179,14 @@ class CustomModuleManager extends AbstractModule implements
     //Switch to generate new default titles and description (in class DefaultTitlesAndDescriptions.php)
     public const GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS = false;
 
-    //Switch to generate a json file with the custom module update configuration (in module_update_service_configuration.json)
+    //Switch to generate a JSON file with the custom module update configuration (in module_update_service_configuration.json)
     public const GENERATE_CUSTOM_MODULE_UPDATE_CONFIG = false;
+
+    //Switch to generate a JSON file with the custom module list
+    public const GENERATE_CUSTOM_MODULE_LIST = false;
+
+    //Switch to add conflicts with the current webtrees version for
+    public const ADD_CONFLICTS_FOR_MODULES_NOT_EXISTING = false;
 
     //Use the local json file for the custom module update configuration (in module_update_service_configuration.json)
     public const USE_LOCAL_CONFIG = false;
@@ -210,14 +217,19 @@ class CustomModuleManager extends AbstractModule implements
         //Check update of module version
         $this->checkModuleVersionUpdate();
 
-        //If a specific switch is turned on, we generate default titles and descriptions
+        //If the corresponding switch is turned on, we generate default titles and descriptions
         if (self::GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS) {
             self::generateDefaultTitlesAndDescriptions();
         }
 
-        //If a specific switch is turned on, we generate a json file for custom module update configuration
+        //If the corresponding switch is turned on, we generate a JSON file for custom module update configuration
         if (self::GENERATE_CUSTOM_MODULE_UPDATE_CONFIG) {
             self::generateModuleUpdateServiceConfig();
+        }
+
+        //If the corresponding switch is turned on, we generate a JSON file for custom module list
+        if (self::GENERATE_CUSTOM_MODULE_LIST) {
+            self::generateCustomModuleList();
         }
 
 		// Register a namespace for the views.
@@ -612,9 +624,6 @@ class CustomModuleManager extends AbstractModule implements
 
         $json_file = __DIR__ . '/Configuration/module_update_service_configuration.json';
 
-        //Get data from current json file
-        $old_local_config = ModuleUpdateServiceConfiguration::getModuleUpdateServiceConfig();
-
         //Delete file if already existing
         if (file_exists($json_file)) {
             unlink($json_file);
@@ -624,6 +633,121 @@ class CustomModuleManager extends AbstractModule implements
         if (!$stream = fopen($json_file, "c")) {
             throw new RuntimeException('Cannot open file: ' . $json_file);
         }
+
+        //Create JSON from configuration
+        $json_config = json_encode(self::getConfig(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+
+        try {
+            fwrite($stream, $json_config);
+        }
+        catch (Throwable $th) {
+            throw new RuntimeException('Cannot write to file: ' . $json_file);
+        }
+
+        return;
+    }
+
+    /**
+     * Gemerate a custom module list in based on the Packagist API v2 JSON format
+     *
+     * Documentation:     https://packagist.org/apidoc#get-package-data
+     * Example JSON file: https://repo.packagist.org/p2/monolog/monolog.json
+     *
+     * @return void
+     */
+    public static function generateCustomModuleList(): void {
+
+        $json_file = __DIR__ . '/Configuration/custom_module_list.json';
+
+        //Get data from current JSON custom module list
+        $custom_module_list = json_decode(self::readFromFile($json_file), true);
+
+        //Create custom modules list
+        $config = self::getConfig();
+
+        foreach ($config as $module_name => $module_config) {
+
+            /** @var GithubModuleUpdate $module_update_service */
+            $module_update_service = CustomModuleUpdateFactory::make($module_name);
+
+            if ($module_update_service === null) {
+                break;
+            }
+
+            //Get existing module versions
+            $module_versions = $custom_module_list['packages'][$module_update_service->getPackageName()] ?? [];
+
+            //Only proceed if the current module version is available
+            if (    $module_update_service->customModuleVersion() !== '') {
+
+                //Get the content of the current composer.json file
+                $composer_json = self::getComposerJson($module_update_service::getInstallationFolderFromModuleName($module_name));
+
+                //Add additional content to composer.json data
+                $composer_json['version'] = $module_update_service->customModuleVersion();
+                //$composer_json['time']  = $module_update_service->releaseDate();
+
+                if (!isset($composer_json['description'])) {
+                    $composer_json['description'] = $module_update_service->description();
+                }
+                if (!isset($composer_json['name'])) {
+                    $composer_json['name'] = $module_update_service->getPackageName();
+                }
+                if (!isset($composer_json['conflict'])) {
+
+                    $version_before = self::getVersionBefore($module_versions, $module_update_service->customModuleVersion());
+
+                    if (isset($module_versions[$version_before]['conflict'])) {
+
+                        $composer_json['conflict'] = $module_versions[$version_before]['conflict'];
+                    }
+                }
+
+                $composer_json['extra'] = ['custom-module-manager' => $config[$module_name]];
+
+                //Sort composer.json data
+                self::sortCpomposerJsonData($composer_json);
+
+                //Remove data for version if already exists
+                self::removeVersion($custom_module_list, $module_update_service->getPackageName(), $module_update_service->customModuleVersion());
+
+                //Add the data of the new version to the module list
+                $custom_module_list['packages'][$module_update_service->getPackageName()][] = $composer_json;
+            }
+        }
+
+        //Create JSON
+        $json_custom_module_list = json_encode($custom_module_list, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+
+        //Delete file if already existing
+        if (file_exists($json_file)) {
+            unlink($json_file);
+        }
+
+        //Write JSON to file
+        try {
+            if (!$stream = fopen($json_file, "c")) {
+                throw new RuntimeException('Cannot open file: ' . $json_file);
+            }
+            fwrite($stream, $json_custom_module_list);
+            fclose($stream);
+        }
+        catch (Throwable $th) {
+            throw new RuntimeException('Cannot write to file: ' . $json_file);
+        }
+
+        return;
+    }
+
+    /**
+     * Get the configuration
+     *
+     * @return array
+     */
+    public static function getConfig(): array {
+
+        //Get data from current json file
+        $local_config = ModuleUpdateServiceConfiguration::getModuleUpdateServiceConfig();
 
         //Get configuration
 		$config = (array) ModuleUpdateServiceConfiguration::MODULE_UPDATE_SERVICE_CONFIG;
@@ -643,24 +767,167 @@ class CustomModuleManager extends AbstractModule implements
         foreach ($config as $module_name => $module_config) {
 
             //If date added does not exist already, we insert the current date
-            if (!isset($old_local_config[$module_name]['date_added'])) {
+            if (!isset($local_config[$module_name]['date_added'])) {
                 $config[$module_name]['date_added'] = date("Y-m-d");
             }
             //Otherwise, we take the existing value
             else {
-                $config[$module_name]['date_added'] = $old_local_config[$module_name]['date_added'];
+                $config[$module_name]['date_added'] = $local_config[$module_name]['date_added'];
             }
         }
 
-        //Create JSON
-        $json_config = json_encode($config, JSON_PRETTY_PRINT);
+        return $config;
+    }
 
-        try {
-            fwrite($stream, $json_config);
+    /**
+     * Get content of a module composer.json file decoded as an array
+     *
+     * @param string $module_folder
+     *
+     * @return array
+     */
+    public static function getComposerJson(string $module_folder): array {
+
+        $json_file = __DIR__ . '/../../' . $module_folder . '/composer.json';
+
+        //Get data from current JSON custom module list
+        $json = self::readFromFile($json_file);
+
+        $composer_json = json_decode($json, true);
+
+        return $composer_json ?? [];
+    }
+
+    /**
+     * Sort composer.json data
+     *
+     * @return void
+     */
+    public static function sortCpomposerJsonData(array &$composer_json): void {
+
+        uksort($composer_json, function ($a, $b) {
+
+                $property_order = [
+                    'version',
+                    'time',
+                    'name',
+                    'description',
+                    'extra',
+                    'require',
+                    'replace',
+                    'conflict',
+                    'authors',
+                    'homepage',
+                    'support',
+                    'type',
+                    'keywords',
+                    'license',
+                    'repositories',
+                    'custom_repositories',
+                    'config',
+                    'autoload',
+                ];
+
+                $orderMap = array_flip($property_order);
+
+                $hasA = isset($orderMap[$a]);
+                $hasB = isset($orderMap[$b]);
+
+                if ($hasA && $hasB) {
+                    return $orderMap[$a] <=> $orderMap[$b];
+                }
+                else if ($hasA) {
+                    return -1;
+                }
+                else if ($hasB) {
+                    return 1;
+                }
+                else {
+                    return strcmp($a, $b);
+                }
+            }
+        );
+
+        return;
+    }
+
+    /**
+     * Whether a certain module version exists
+     *
+     * @param array  $module_versions
+     * @param string $version
+     *
+     * @return bool
+     */
+    public static function versionExists(array $module_versions, string $version): bool {
+
+        foreach($module_versions as $module_version) {
+
+            if ($module_version['version'] === $version) {
+                return true;
+            }
         }
-        catch (Throwable $th) {
-            throw new RuntimeException('Cannot write to file: ' . $json_file);
+
+        return false;
+    }
+
+    /**
+     * Get version before
+     *
+     * @param array  $module_versions
+     * @param string $version
+     *
+     * @return string
+     */
+    public static function getVersionBefore(array $module_versions, string $version): string {
+
+        uasort($module_versions, function (array $a, array $b) {
+                version_compare($a['version'], $b['version'], ">=");
+            }
+        );
+
+        $version_before = '';
+
+        foreach($module_versions as $module_version) {
+
+            if ($module_version['version'] === $version) {
+                return $version_before;
+            }
+
+            $version_before = $module_version['version'];
         }
+
+        return '';
+    }
+
+    /**
+     * Remove version
+     *
+     * @param array  $custom_module_list
+     * @param string $package_name
+     * @param string $version
+     *
+     * @return void
+     */
+    public static function removeVersion(array &$custom_module_list, string $package_name, string $version): void {
+
+        $reduced_module_versions = [];
+
+        if (isset($custom_module_list['packages'][$package_name])) {
+            $module_versions = $custom_module_list['packages'][$package_name];
+        }
+        else {
+            return;
+        }
+
+        foreach($module_versions as $module_version) {
+            if ($module_version['version'] !== $version) {
+                $reduced_module_versions[] = $module_version;
+            }
+        }
+
+        //Replace module versions with reduced versions
+        $custom_module_list['packages'][$package_name] = $reduced_module_versions;
 
         return;
     }
@@ -781,5 +1048,36 @@ class CustomModuleManager extends AbstractModule implements
     public static function getShortModuleName(string $module_name): string {
 
         return substr($module_name, 0, 25) . '_';
+    }
+
+    /**
+     * Read the content of a file to a string
+     *
+     * @param string $file
+     *
+     * @return string
+     */
+    public static function readFromFile(string $file): string {
+
+        try {
+            //Code from: Fisharebest\Webtrees\Cli\Commands\TreeImport, last check: 2026-08-28
+            $total_bytes  = filesize($file);
+            $bytes_loaded = 0;
+
+            $fp = fopen($file, 'rb');
+            $buffer = '';
+
+            while ($bytes_loaded < $total_bytes) {
+                $tmp = fread($fp, 8192);
+                $buffer .= $tmp;
+                $bytes_loaded += strlen($tmp);
+            }
+        }
+        catch (Throwable $th) {
+            // Fail gracefully
+            $buffer = '';
+        }
+
+        return $buffer;
     }
 }
