@@ -457,6 +457,26 @@
         },
         "date_added": ""
     },
+    "_hh-change-log_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "hartenthaler\/hh-change-log",
+            "category": "frontend_tab",
+            "title": "Changes",
+            "description": "A tab showing recent GEDCOM data changes for an individual."
+        },
+        "date_added": "2026-06-15"
+    },
+    "_hh_courtship_radius_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "hartenthaler\/hh-courtship-radius",
+            "category": "frontend",
+            "title": "Courtship radius",
+            "description": "Analyse the geographic courtship radius of selected families over time."
+        },
+        "date_added": "2026-08-29"
+    },
     "_hh_extended_family_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -467,6 +487,17 @@
             "description": "A tab showing the extended family of an individual."
         },
         "date_added": ""
+    },
+    "_hh_families_trees_list_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "hartenthaler\/hh-family-trees-list",
+            "tag_prefix": "v",
+            "category": "frontend",
+            "title": "Family tree list",
+            "description": "List of family trees on this website"
+        },
+        "date_added": "2026-08-29"
     },
     "_hh_legal_notice_": {
         "update_service": "GithubModuleUpdate",
@@ -490,15 +521,16 @@
         },
         "date_added": "2026-06-15"
     },
-    "_hh-change-log_": {
+    "_hh_occupation_standardizer_": {
         "update_service": "GithubModuleUpdate",
         "params": {
-            "github_repo": "hartenthaler\/hh-change-log",
-            "category": "frontend_tab",
-            "title": "Changes",
-            "description": "A tab showing recent GEDCOM data changes for an individual."
+            "github_repo": "hartenthaler\/hh_occupation_standardizer",
+            "tag_prefix": "v",
+            "category": "frontend",
+            "title": "Occupation Standardizer",
+            "description": "Helps standardize historical occupation entries in genealogical sources."
         },
-        "date_added": "2026-06-15"
+        "date_added": "2026-08-29"
     },
     "_hh_privacy_assistant_": {
         "update_service": "GithubModuleUpdate",
@@ -657,7 +689,7 @@
             "tag_prefix": "v",
             "category": "media",
             "title": "Watermark Module",
-            "description": "Changes the size and position of the watermark"
+            "description": "Choose the watermark image and its position on media images."
         },
         "date_added": ""
     },
@@ -725,7 +757,7 @@
             "get_latest_version_from_github": true,
             "tag_prefix": "v",
             "title": "Jp-barvy",
-            "description": "Theme \u2014 Jp-barvy"
+            "description": "This module adds titles to main menu icons."
         },
         "date_added": ""
     },
@@ -1252,7 +1284,7 @@
         },
         "date_added": "2026-08-09"
     },
-    "_sammlungen_": {
+    "_media-collections_": {
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "thobgg\/webtrees-sammlungen",

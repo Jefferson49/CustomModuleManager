@@ -154,11 +154,13 @@ class ModuleUpdateServiceConfiguration
         '_sosa20_'                           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'gustine/sosa20', self::CATEGORY => self::CATEGORY_FRONTEND_SIDEBAR]],
         '_gustine-history22_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'gustine/gustine-history22', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_FACT]],
 
+        '_hh-change-log_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh-change-log', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_hh_courtship_radius_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh-courtship-radius', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_hh_extended_family_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_extended_family', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
-        '_hh_external_places_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_external_places', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_PLACES]],
+        '_hh_families_trees_list_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh-family-trees-list', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_hh_legal_notice_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_legal_notice', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FOOTER]],
         '_hh-unlinked-individual_'           =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh-unlinked-individual', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_hh-change-log_'                    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh-change-log', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_hh_occupation_standardizer_'       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_occupation_standardizer', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_hh_privacy_assistant_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/hh_privacy_assistant', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
         '_german-chancellors-presidents_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/german-chancellors-presidents', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
         '_german-wars-battles-worldwide_'    =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'hartenthaler/german-wars-battles-worldwide', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
@@ -258,7 +260,7 @@ class ModuleUpdateServiceConfiguration
         '_enhanced-charts_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'haylau-ronzo/enhanced-charts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
         '_media-badge_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'JRMine/webtrees-media-badge', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_sammlungen_'                       =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'thobgg/webtrees-sammlungen', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
+        '_media-collections_'                =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'thobgg/webtrees-sammlungen', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
         '_ortsregister_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'thobgg/webtrees-ortsregister', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_PLACES]],
         '_theme-farbwelten_'                 =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'thobgg/webtrees-theme-farbwelten', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
     ];
@@ -269,6 +271,13 @@ class ModuleUpdateServiceConfiguration
     ];
 
     private const MODULES_WITH_ERRORS = [
+
+        '_maoli-yuqing_'                     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'mastermaoli/webtrees-theme-maoli-yuqing', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_THEME]],
+        //PHP error after opening webtrees (not during installation):
+        //Error: Call to undefined function Maoli\Webtrees\Module\app() in /webtrees/modules_v4/webtrees-theme-maoli-yuqing/module.php:161
+
+        '_webtrees-translate_'               =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Aengelking/webtrees-translate', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        //PHP errors after installation
 
         '_admin-announcement-billboard_'     =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => '0ldM4cM4n/admin-announcement-billboard', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
         //Wrongly shows new version available in CMM
