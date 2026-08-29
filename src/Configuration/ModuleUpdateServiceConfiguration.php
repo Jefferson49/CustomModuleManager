@@ -637,14 +637,12 @@ class ModuleUpdateServiceConfiguration
 
             foreach($module_update_service_config as $module_name => $update_config) {
                 if(!isset(self::$titles[CustomModuleManager::DEFAULT_LANGUAGE][$module_name])) {
-                    $module_config = (array) $module_update_service_config[$module_name];
-                    $params        = (array) $module_config['params'];
 
-                    if (isset($params['title'])) {
-                        self::$titles[CustomModuleManager::DEFAULT_LANGUAGE][$module_name] = $params['title'];
+                    if (isset($module_update_service_config[$module_name]['params']['title'])) {
+                        self::$titles[CustomModuleManager::DEFAULT_LANGUAGE][$module_name] = $module_update_service_config[$module_name]['params']['title'];
                     }
-                    if (isset($params['description'])) {
-                        self::$descriptions[CustomModuleManager::DEFAULT_LANGUAGE][$module_name] = $params['description'];
+                    if (isset($module_update_service_config[$module_name]['params']['description'])) {
+                        self::$descriptions[CustomModuleManager::DEFAULT_LANGUAGE][$module_name] =$module_update_service_config[$module_name]['params']['description'];
                     }
                 }
             }

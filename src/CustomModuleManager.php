@@ -640,7 +640,7 @@ class CustomModuleManager extends AbstractModule implements
         }
 
         //Date added
-        foreach ($old_local_config as $module_name => $module_config) {
+        foreach ($config as $module_name => $module_config) {
 
             //If date added does not exist already, we insert the current date
             if (!isset($old_local_config[$module_name]['date_added'])) {
