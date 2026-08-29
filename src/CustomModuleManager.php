@@ -229,7 +229,7 @@ class CustomModuleManager extends AbstractModule implements
 
         //If the corresponding switch is turned on, we generate a JSON file for custom module list
         if (self::GENERATE_CUSTOM_MODULE_LIST) {
-            self::generateCustomModuleList();
+            $this->generateCustomModuleList();
         }
 
 		// Register a namespace for the views.
@@ -655,12 +655,12 @@ class CustomModuleManager extends AbstractModule implements
      *
      * @return void
      */
-    public static function generateCustomModuleList(): void {
+    public function generateCustomModuleList(): void {
 
         $json_file = __DIR__ . '/Configuration/custom_module_list.json';
 
         //Get data from current JSON custom module list
-        $custom_module_list = json_decode(self::readFromFile($json_file), true);
+        $custom_module_list = json_decode(self::readFromFile($json_file), true) ?? [];
 
         //Create custom modules list
         $config = self::getConfig();
@@ -674,28 +674,67 @@ class CustomModuleManager extends AbstractModule implements
                 break;
             }
 
-            //Get existing module versions
-            $module_versions = $custom_module_list['packages'][$module_update_service->getPackageName()] ?? [];
+            //Get the module version
+            if (strpos($module_name, 'linkenhancer') !== false) {
+                $debug = true;
+            }
+            $version      = CustomModuleManager::normalizeVersion($module_name, $module_update_service->customModuleVersion());
+            $package_name = $module_update_service->getPackageName();
 
             //Only proceed if the current module version is available
-            if (    $module_update_service->customModuleVersion() !== '') {
+            if ($version !== '') {
 
                 //Get the content of the current composer.json file
                 $composer_json = self::getComposerJson($module_update_service::getInstallationFolderFromModuleName($module_name));
 
+                //If we were not able to read composer.json data from the file, we try to retrieve it from GitHub
+                if ($composer_json === [] && $module_update_service::NAME === GithubModuleUpdate::NAME) {
+
+                    $tag        = $version;
+                    $tag_prefix = $module_update_service->getTagPrefix();
+
+                    //Add prefix, if the tags of the repository have a prefix
+                    if ($tag_prefix !== '') {
+                        if ($tag !== '' && strlen($tag) > strlen($tag_prefix)) {
+
+                            //If tag does not start with prefix, add prefix
+                            if (substr($tag, 0, strlen($tag_prefix)) !== $tag_prefix) {
+                                $tag = $tag_prefix . $tag;
+                            }
+                        }
+                    }
+
+                    try {
+                        $json = GithubService::getTextFileContent(
+                            $module_update_service->getGithubRepo(),
+                            $tag,
+                            'composer.json',
+                            $this->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '')
+                        );
+
+                        $composer_json = json_decode($json, true);
+                    }
+                    catch (GithubCommunicationError $e) {
+                        //Fail gracefully if communication with GitHub failed
+                    }
+                }
+
+                //Get existing module versions
+                $module_versions = $custom_module_list['packages'][$package_name] ?? [];
+
                 //Add additional content to composer.json data
-                $composer_json['version'] = $module_update_service->customModuleVersion();
+                $composer_json['version'] = $version;
                 //$composer_json['time']  = $module_update_service->releaseDate();
 
                 if (!isset($composer_json['description'])) {
                     $composer_json['description'] = $module_update_service->description();
                 }
                 if (!isset($composer_json['name'])) {
-                    $composer_json['name'] = $module_update_service->getPackageName();
+                    $composer_json['name'] = $package_name;
                 }
                 if (!isset($composer_json['conflict'])) {
 
-                    $version_before = self::getVersionBefore($module_versions, $module_update_service->customModuleVersion());
+                    $version_before = self::getVersionBefore($module_versions, $version);
 
                     if (isset($module_versions[$version_before]['conflict'])) {
 
@@ -709,10 +748,10 @@ class CustomModuleManager extends AbstractModule implements
                 self::sortCpomposerJsonData($composer_json);
 
                 //Remove data for version if already exists
-                self::removeVersion($custom_module_list, $module_update_service->getPackageName(), $module_update_service->customModuleVersion());
+                self::removeVersion($custom_module_list, $package_name, $version);
 
                 //Add the data of the new version to the module list
-                $custom_module_list['packages'][$module_update_service->getPackageName()][] = $composer_json;
+                $custom_module_list['packages'][$package_name][] = $composer_json;
             }
         }
 
@@ -810,12 +849,12 @@ class CustomModuleManager extends AbstractModule implements
                 $property_order = [
                     'version',
                     'time',
+                    'conflict',
                     'name',
                     'description',
                     'extra',
                     'require',
                     'replace',
-                    'conflict',
                     'authors',
                     'homepage',
                     'support',
