@@ -779,7 +779,7 @@ class CustomModuleManager extends AbstractModule implements
                 $composer_json['extra'] = ['custom-module-manager' => $extra];
 
                 //Sort composer.json data
-                self::sortCpomposerJsonData($composer_json);
+                self::sortComposerJsonData($composer_json);
 
                 //Remove data for version if already exists
                 self::removeVersion($custom_module_list, $package_name, $version);
@@ -843,7 +843,7 @@ class CustomModuleManager extends AbstractModule implements
                 }
 
                 //Sort
-                self::sortCpomposerJsonData($latest_version);
+                self::sortComposerJsonData($latest_version);
 
                 //Remove data for version if already exists
                 self::removeVersion($custom_module_list, $package_name, $version);
@@ -970,7 +970,7 @@ class CustomModuleManager extends AbstractModule implements
      *
      * @return void
      */
-    public static function sortCpomposerJsonData(array &$composer_json): void {
+    public static function sortComposerJsonData(array &$composer_json): void {
 
         uksort($composer_json, function ($a, $b) {
 
