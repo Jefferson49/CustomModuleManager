@@ -174,6 +174,9 @@ class CustomModuleManager extends AbstractModule implements
     //Cache
     public const CACHE_REALEASE_INFO      = 'cmm-release-info-';
 
+    //Path
+    public const PATH_CUSTOM_MODULE_LIST  = '/Configuration/custom_module_list.json';
+
     //Supported webtrees version
     public const MINIMUM_WEBTREES_VERSION = '2.2.3';
 
@@ -186,8 +189,8 @@ class CustomModuleManager extends AbstractModule implements
     //Switch to generate a JSON file with the custom module list
     public const GENERATE_CUSTOM_MODULE_LIST = false;
 
-    //Switch to add conflicts with the current webtrees version for
-    public const ADD_CONFLICTS_FOR_MODULES_NOT_EXISTING = false;
+    //Switch to add conflicts with the current webtrees version
+    public const ADD_CONFLICTS_FOR_MODULES_NOT_EXISTING = true;
 
     //Use the local json file for the custom module update configuration (in module_update_service_configuration.json)
     public const USE_LOCAL_CONFIG = false;
@@ -231,6 +234,11 @@ class CustomModuleManager extends AbstractModule implements
         //If the corresponding switch is turned on, we generate a JSON file for custom module list
         if (self::GENERATE_CUSTOM_MODULE_LIST) {
             $this->generateCustomModuleList();
+        }
+
+        //If the corresponding switch is turned on, we add conflicts to the custom module list
+        if (self::ADD_CONFLICTS_FOR_MODULES_NOT_EXISTING) {
+            $this->addConflictsForModulesNotExisting();
         }
 
 		// Register a namespace for the views.
@@ -658,10 +666,8 @@ class CustomModuleManager extends AbstractModule implements
      */
     public function generateCustomModuleList(): void {
 
-        $json_file = __DIR__ . '/Configuration/custom_module_list.json';
-
-        //Get data from current JSON custom module list
-        $custom_module_list = json_decode(self::readFromFile($json_file), true) ?? [];
+        //Load custom module list
+        self::loadCustomModuleList();
 
         //Create custom modules list
         $config = self::getConfig();
@@ -770,6 +776,87 @@ class CustomModuleManager extends AbstractModule implements
             }
         }
 
+        self::saveCustomModuleList($custom_module_list);
+    }
+
+    /**
+     * Gemerate a custom module list in based on the Packagist API v2 JSON format
+     *
+     * @return void
+     */
+    public function addConflictsForModulesNotExisting(): void {
+
+        $custom_module_list = self::loadCustomModuleList();
+        $modifed = false;
+
+        //Create custom modules list
+        $config = self::getConfig();
+
+        foreach ($config as $module_name => $module_config) {
+
+            /** @var GithubModuleUpdate $module_update_service */
+            $module_update_service = CustomModuleUpdateFactory::make($module_name);
+
+            if ($module_update_service === null) {
+                break;
+            }
+
+            $package_name = $module_update_service->getPackageName();
+
+            //Add a conflict with the current webtrees version, if module is not availalbe
+            if (    $module_update_service->getModule() === null
+                &&  isset($custom_module_list['packages'][$package_name])) {
+
+                $latest_version = end($custom_module_list['packages'][$package_name]);
+                $version        = $latest_version['version'];
+
+                //Add a conflict with the current webtrees version
+                if (!isset($latest_version['conflict']['fisharebest/webtrees'])) {
+
+                    $latest_version['conflict'] = ['fisharebest/webtrees' => '>=' . Webtrees::VERSION];
+                }
+                //Append a conflict
+                elseif (strpos($latest_version['conflict']['fisharebest/webtrees'], '>=' . Webtrees::VERSION) === false) {
+                    $latest_version['conflict']['fisharebest/webtrees'] .= ' || >=' . Webtrees::VERSION;
+                }
+
+                //Remove data for version if already exists
+                self::removeVersion($custom_module_list, $package_name, $version);
+
+                //Add updated version data
+                $custom_module_list['packages'][$package_name][] = $latest_version;
+                $modifed = true;
+            }
+        }
+
+        if ($modifed) {
+            self::saveCustomModuleList($custom_module_list);
+        }
+    }
+
+    /**
+     * Load custom module list
+     *
+     * @return array
+     */
+    public static function loadCustomModuleList(): array {
+
+        $json_file = __DIR__ . self::PATH_CUSTOM_MODULE_LIST;
+
+        //Get data from JSON custom module list
+        return json_decode(self::readFromFile($json_file), true) ?? [];
+    }
+
+    /**
+     * Save custom module list
+     *
+     * @param array $custom_module_list
+     * @return void
+     */
+    public static function saveCustomModuleList(array $custom_module_list): void {
+
+        $json_file = __DIR__ . self::PATH_CUSTOM_MODULE_LIST;
+
         //Create JSON
         $json_custom_module_list = json_encode($custom_module_list, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 
@@ -791,6 +878,7 @@ class CustomModuleManager extends AbstractModule implements
         }
 
         return;
+
     }
 
     /**
