@@ -982,9 +982,13 @@ class CustomModuleManager extends AbstractModule implements
                     'description',
                     'extra',
                     'require',
+                    'require-dev',
+                    'minimum-stability',
+                    'prefer-stable',
                     'replace',
                     'authors',
                     'homepage',
+                    'readme',
                     'support',
                     'type',
                     'keywords',
@@ -993,6 +997,10 @@ class CustomModuleManager extends AbstractModule implements
                     'custom_repositories',
                     'config',
                     'autoload',
+                    'autoload-dev',
+                    'archive',
+                    'scripts',
+                    'scripts-descriptions',
                 ];
 
                 $orderMap = array_flip($property_order);
