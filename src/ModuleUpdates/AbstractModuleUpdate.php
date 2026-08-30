@@ -38,11 +38,13 @@ use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
+use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
 use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
+use Psr\Http\Client\ClientExceptionInterface;
 
 use Throwable;
 
@@ -419,7 +421,13 @@ abstract class AbstractModuleUpdate
             return '';
         }
 
-        $response = GithubService::getResponse($module->customModuleLatestVersionUrl());
+        try {
+            $response = GithubService::getResponse($module->customModuleLatestVersionUrl());
+        }
+        catch (GithubCommunicationError $ex) {
+            // Can't connect to the server?
+            return '';
+        }
 
         if ($response->getStatusCode() === StatusCodeInterface::STATUS_OK) {
             $version = $response->getBody()->getContents();

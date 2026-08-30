@@ -35,6 +35,7 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager;
 
+use DateTimeImmutable;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\I18N;
@@ -675,9 +676,6 @@ class CustomModuleManager extends AbstractModule implements
             }
 
             //Get the module version
-            if (strpos($module_name, 'linkenhancer') !== false) {
-                $debug = true;
-            }
             $version      = CustomModuleManager::normalizeVersion($module_name, $module_update_service->customModuleVersion());
             $package_name = $module_update_service->getPackageName();
 
@@ -724,13 +722,15 @@ class CustomModuleManager extends AbstractModule implements
 
                 //Add additional content to composer.json data
                 $composer_json['version'] = $version;
-                //$composer_json['time']  = $module_update_service->releaseDate();
 
-                if (!isset($composer_json['description'])) {
-                    $composer_json['description'] = $module_update_service->description();
-                }
-                if (!isset($composer_json['name'])) {
-                    $composer_json['name'] = $package_name;
+                if (!isset($composer_json['time']) && $module_update_service::NAME === GithubModuleUpdate::NAME) {
+                    $release_info = $module_update_service->fetchReleasesInfoCached();
+
+                    if (isset($release_info['published_at'])) {
+
+                        $dt = new DateTimeImmutable($release_info['published_at']);
+                        $composer_json['time'] = $dt->format("Y-m-d");
+                    }
                 }
                 if (!isset($composer_json['conflict'])) {
 
@@ -741,8 +741,23 @@ class CustomModuleManager extends AbstractModule implements
                         $composer_json['conflict'] = $module_versions[$version_before]['conflict'];
                     }
                 }
+                if (!isset($composer_json['name'])) {
+                    $composer_json['name'] = $package_name;
+                }
+                if (!isset($composer_json['description'])) {
+                    $composer_json['description'] = $module_update_service->description();
+                }
+                if (!isset($composer_json['authors'])) {
 
-                $composer_json['extra'] = ['custom-module-manager' => $config[$module_name]];
+                    $module = $module_update_service->getModule();
+
+                    if ($module !== null && $module->customModuleAuthorName() !== '') {
+                        $composer_json['authors'] = [['name' => $module->customModuleAuthorName()]];
+                    }
+                }
+
+                $extra = ['module_name' => $module_name] + $config[$module_name];
+                $composer_json['extra'] = ['custom-module-manager' => $extra];
 
                 //Sort composer.json data
                 self::sortCpomposerJsonData($composer_json);

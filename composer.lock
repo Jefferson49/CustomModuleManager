@@ -8,11 +8,11 @@
     "packages": [
         {
             "name": "jefferson49/webtrees-common",
-            "version": "1.2.47",
+            "version": "1.4.57",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Jefferson49/webtrees-common.git",
-                "reference": "46eabfc9e90b26d605ea279c66b7ba164eca5358"
+                "reference": "5d95e653812275581a2def80e0a3a343bc94858d"
             },
             "require": {
                 "php": ">=7.4"
@@ -27,7 +27,7 @@
                 "webtrees",
                 "webtrees-module"
             ],
-            "time": "2026-08-22T13:34:38+00:00"
+            "time": "2026-08-29T20:11:39+00:00"
         }
     ],
     "packages-dev": [],
