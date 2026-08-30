@@ -7,7 +7,7 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\Configuration;
 /**
  * Default titles and descriptions
  */
-class DefaultTitlesAndDescriptions 
+class DefaultTitlesAndDescriptions
 {
     public const MODULE_TITLES = [
         'af' => '{"_webtrees-fan-chart_":"Waaierdiagram","_webtrees-pedigree-chart_":"Stamboomdiagram","_webtrees-statistics_":"Statistieke","_hh-change-log_":"Veranderinge"}',

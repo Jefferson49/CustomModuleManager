@@ -44,7 +44,6 @@ use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
-use Psr\Http\Client\ClientExceptionInterface;
 
 use Throwable;
 
