@@ -221,26 +221,6 @@ class CustomModuleManager extends AbstractModule implements
         //Check update of module version
         $this->checkModuleVersionUpdate();
 
-        //If the corresponding switch is turned on, we generate default titles and descriptions
-        if (self::GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS) {
-            self::generateDefaultTitlesAndDescriptions();
-        }
-
-        //If the corresponding switch is turned on, we generate a JSON file for custom module update configuration
-        if (self::GENERATE_CUSTOM_MODULE_UPDATE_CONFIG) {
-            self::generateModuleUpdateServiceConfig();
-        }
-
-        //If the corresponding switch is turned on, we generate a JSON file for custom module list
-        if (self::GENERATE_CUSTOM_MODULE_LIST) {
-            $this->generateCustomModuleList();
-        }
-
-        //If the corresponding switch is turned on, we add conflicts to the custom module list
-        if (self::ADD_CONFLICTS_FOR_MODULES_NOT_EXISTING) {
-            $this->addConflictsForModulesNotExisting();
-        }
-
 		// Register a namespace for the views.
 		View::registerNamespace(self::viewsNamespace(), $this->resourcesFolder() . 'views/');
 
@@ -370,6 +350,26 @@ class CustomModuleManager extends AbstractModule implements
      */
     public function getAdminAction(ServerRequestInterface $request): ResponseInterface
     {
+        //If the corresponding switch is turned on, we generate default titles and descriptions
+        if (self::GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS) {
+            self::generateDefaultTitlesAndDescriptions();
+        }
+
+        //If the corresponding switch is turned on, we generate a JSON file for custom module update configuration
+        if (self::GENERATE_CUSTOM_MODULE_UPDATE_CONFIG) {
+            self::generateModuleUpdateServiceConfig();
+        }
+
+        //If the corresponding switch is turned on, we generate a JSON file for custom module list
+        if (self::GENERATE_CUSTOM_MODULE_LIST) {
+            $this->generateCustomModuleList();
+        }
+
+        //If the corresponding switch is turned on, we add conflicts to the custom module list
+        if (self::ADD_CONFLICTS_FOR_MODULES_NOT_EXISTING) {
+            $this->addConflictsForModulesNotExisting();
+        }
+
         $this->layout = 'layouts/administration';
 
         return $this->viewResponse(
@@ -819,6 +819,9 @@ class CustomModuleManager extends AbstractModule implements
                 elseif (strpos($latest_version['conflict']['fisharebest/webtrees'], '>=' . Webtrees::VERSION) === false) {
                     $latest_version['conflict']['fisharebest/webtrees'] .= ' || >=' . Webtrees::VERSION;
                 }
+
+                //Sort
+                self::sortCpomposerJsonData($latest_version);
 
                 //Remove data for version if already exists
                 self::removeVersion($custom_module_list, $package_name, $version);
