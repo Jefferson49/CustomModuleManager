@@ -189,8 +189,11 @@ class CustomModuleManager extends AbstractModule implements
     //Switch to generate a JSON file with the custom module list
     public const GENERATE_CUSTOM_MODULE_LIST = false;
 
+    //Whether data of existing versions shall be replaced
+    public const REPLACE_EXISTING_VERSIONS = false;
+
     //Switch to add conflicts with the current webtrees version
-    public const ADD_CONFLICTS_FOR_MODULES_NOT_EXISTING = true;
+    public const ADD_CONFLICTS_FOR_MODULES_NOT_EXISTING = false;
 
     //Use the local json file for the custom module update configuration (in module_update_service_configuration.json)
     public const USE_LOCAL_CONFIG = false;
@@ -362,7 +365,7 @@ class CustomModuleManager extends AbstractModule implements
 
         //If the corresponding switch is turned on, we generate a JSON file for custom module list
         if (self::GENERATE_CUSTOM_MODULE_LIST) {
-            $this->generateCustomModuleList();
+            $this->generateCustomModuleList(self::REPLACE_EXISTING_VERSIONS);
         }
 
         //If the corresponding switch is turned on, we add conflicts to the custom module list
@@ -662,21 +665,26 @@ class CustomModuleManager extends AbstractModule implements
      * Documentation:     https://packagist.org/apidoc#get-package-data
      * Example JSON file: https://repo.packagist.org/p2/monolog/monolog.json
      *
-     * @return void
+     * @param
+     *
+     * @return bool $replace_existing_versions  Whether data of existing versions shall be replaced
      */
-    public function generateCustomModuleList(): void {
+    public function generateCustomModuleList(bool $replace_existing_versions = false): void {
 
         //Load custom module list
-        self::loadCustomModuleList();
+        $custom_module_list = self::loadCustomModuleList();
 
         //Create custom modules list
         $config = self::getConfig();
+
+        $modified = false;
 
         foreach ($config as $module_name => $module_config) {
 
             /** @var GithubModuleUpdate $module_update_service */
             $module_update_service = CustomModuleUpdateFactory::make($module_name);
 
+            //Skip if no module update service is available
             if ($module_update_service === null) {
                 break;
             }
@@ -685,8 +693,13 @@ class CustomModuleManager extends AbstractModule implements
             $version      = CustomModuleManager::normalizeVersion($module_name, $module_update_service->customModuleVersion());
             $package_name = $module_update_service->getPackageName();
 
-            //Only proceed if the current module version is available
-            if ($version !== '') {
+            //Skip if current module version is not available
+            if ($version === '') {
+                break;
+            }
+
+            //If the version is not included in the list yet or we shall replace the existing version
+            if (!self::versionIsInList($custom_module_list, $package_name, $version) OR $replace_existing_versions) {
 
                 //Get the content of the current composer.json file
                 $composer_json = self::getComposerJson($module_update_service::getInstallationFolderFromModuleName($module_name));
@@ -773,10 +786,19 @@ class CustomModuleManager extends AbstractModule implements
 
                 //Add the data of the new version to the module list
                 $custom_module_list['packages'][$package_name][] = $composer_json;
+                $modified = true;
             }
         }
 
-        self::saveCustomModuleList($custom_module_list);
+        if ($modified) {
+            //Sort the module list by package name
+            ksort($custom_module_list['packages']);
+
+            //Save the custom module list
+            self::saveCustomModuleList($custom_module_list);
+        }
+
+        return;
     }
 
     /**
@@ -1043,6 +1065,33 @@ class CustomModuleManager extends AbstractModule implements
         }
 
         return '';
+    }
+
+    /**
+     * Whether a version for a custom module is in the custom module list
+     *
+     * @param array  $custom_module_list
+     * @param string $package_name
+     * @param string $version
+     *
+     * @return bool
+     */
+    public static function versionIsInList(array &$custom_module_list, string $package_name, string $version): bool {
+
+        if (isset($custom_module_list['packages'][$package_name])) {
+            $module_versions = $custom_module_list['packages'][$package_name];
+        }
+        else {
+            //Package name not in list
+            return false;
+        }
+
+        if (self::versionExists($module_versions, $version)) {
+            return true;
+        }
+
+        //Version not found
+        return false;
     }
 
     /**
