@@ -686,16 +686,16 @@ class CustomModuleManager extends AbstractModule implements
 
             //Skip if no module update service is available
             if ($module_update_service === null) {
-                break;
+                continue;
             }
 
             //Get the module version
             $version      = CustomModuleManager::normalizeVersion($module_name, $module_update_service->customModuleVersion());
             $package_name = $module_update_service->getPackageName();
 
-            //Skip if current module version is not available
+            //If current module version is not available
             if ($version === '') {
-                break;
+                $version = 'not available';
             }
 
             //If the version is not included in the list yet or we shall replace the existing version
