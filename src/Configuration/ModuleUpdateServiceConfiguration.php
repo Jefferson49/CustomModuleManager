@@ -131,7 +131,7 @@ class ModuleUpdateServiceConfiguration
 
         '_myartjaub_ruraltheme_'             =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jon48/webtrees-theme-rural', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
 
-        '_huhwt-cce_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-cce', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CLIPPINGS_CART]],
+        '_huhwt-cce_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-cce', 'tag_prefix' => 'v', 'install_clean' => true, self::CATEGORY => self::CATEGORY_CLIPPINGS_CART]],
         '_huhwt-fta_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-fta', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_huhwt-mtv_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-mtv', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
         '_huhwt-tsm_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'huhwt/huhwt-tsm', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_TAGS]],
