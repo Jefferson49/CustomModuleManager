@@ -46,7 +46,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManag
  * Update API for a custom module, which is hosted in a Github repository
  */
 class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdateInterface
-{#
+{
     const NAME = 'GitHub';
 
     //The Github repository of the module, e.g. Jefferson49/CustomModuleManager
@@ -89,6 +89,13 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         }
         else {
             throw new CustomModuleManagerException(I18N::translate('Could not create the %s update service. Configuration parameter "%s" missing.', basename(str_replace('\\', '/', __CLASS__)) , 'github_repo'));
+        }
+
+        if (array_key_exists('conflicts', $params)) {
+            $this->conflicts = $params['conflicts'];
+        }
+        else {
+            $this->conflicts = [];
         }
 
         if (array_key_exists('get_latest_version_from_github', $params)) {
@@ -207,11 +214,35 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function customModuleLatestVersion(bool $fetch_latest = false): string
     {
-        $latest_version = '';
+        $lowest_incompatible_version = $this->getLowestIncompatibleVersion();
+        $highest_compatible_version  = $this->getHighestCompatibleVersion();
+
+        // The latest or some of the latest versions of the module are not compatible with the current webtrees version
+        if ($highest_compatible_version !== '' && $lowest_incompatible_version !== '') {
+            $below_tag = $this->tag_prefix . $lowest_incompatible_version;
+        }
+        else {
+            $below_tag = '';
+        }
+
         $module = $this->getModule();
 
+        // For certain modules, which do not provide a release, try to get the latest version by update URL
+        if ($module !== null && $this->no_release) {
+
+            $latest_version_by_update_url = self::getLatestVersionByUpdateURL($module);
+
+            //If we have a latest version by update URL, and it is lower than the lowest incompatible version, then we return it
+            if ($latest_version_by_update_url !== '' && $latest_version_by_update_url < $lowest_incompatible_version) {
+                return $latest_version_by_update_url;
+            }
+            //If we have not received any reasonable version by update URL, then we return the highest compatible version from the custom module list
+            else {
+                return $highest_compatible_version;
+            }
+        }
         // If the installed module is available, try to get latest version from the module
-        if ($module !== null && !$fetch_latest && !$this->get_latest_version_from_github) {
+        elseif ($module !== null && !$fetch_latest && !$this->get_latest_version_from_github && $below_tag === '') {
 
             $latest_version = $module->customModuleLatestVersion();
             $cached_version = $this->fetchReleasesInfoCached(false)['tag'];
@@ -220,22 +251,18 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             if (CustomModuleManager::versionCompare($module->name(), $cached_version, $latest_version) > 0) {
                 $latest_version = $cached_version;
             }
+
+            return $latest_version;
+        }
+        // Otherwise, try to get the latest (cached) version from Github; also considering the lowest incompatible version, if defined
+        // This might also populates the download count cache as a side effect
+        elseif ($this->github_repo !== '') {
+
+            $release_info = $this->fetchReleasesInfoCached($fetch_latest, $below_tag);
+            return $release_info['tag'];
         }
 
-        // For certain modules, which do not provide a release, try to get the latest version by update URL
-        if ($latest_version === '' && $module !== null && $this->no_release) {
-
-            $latest_version =  self::getLatestVersionByUpdateURL($module);
-        }
-        // Otherwise, try to get the latest version from Github
-        // This also populates the download count cache as a side effect
-        elseif ($latest_version === '' && $this->github_repo !== '') {
-
-            $release_info = $this->fetchReleasesInfoCached($fetch_latest);
-            $latest_version = $release_info['tag'];
-        }
-
-        return $latest_version;
+        return '';
     }
 
     /**
@@ -283,7 +310,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         }
 
         // Only read from cache — never trigger an API call automatically
-        return $this->fetchReleasesInfoCached(false)['max_downloads'];
+        return $this->fetchReleasesInfoCached(false, $this->getLowestIncompatibleVersion())['max_downloads'];
     }
 
     /**
@@ -297,25 +324,26 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      * The cache is populated once. Afterwards, only updated if explicitly requested
      * by the user via the"Check now" button. On normal page loads, only cached data is read.
      *
-     * @param bool $force_refresh  Whether to invalidate the cache and fetch fresh data from GitHub
+     * @param bool   $force_refresh  Whether to invalidate the cache and fetch fresh data from GitHub
+     * @param string $below_tag      If provided, only consider releases below this tag
      *
      * @return array{tag: string, max_downloads: int}
      */
-    public function fetchReleasesInfoCached(bool $force_refresh = false): array
+    public function fetchReleasesInfoCached(bool $force_refresh = false, string $below_tag = ''): array
     {
         $cache_key = CustomModuleManager::CACHE_REALEASE_INFO . md5($this->github_repo);
 
         // If refresh shall be forced, we delete the cache in advance (before fetching data)
-        if ($force_refresh) {
+        if ($force_refresh OR $below_tag !== '') {
             Registry::cache()->file()->forget($cache_key);
         }
 
-        return Registry::cache()->file()->remember($cache_key, function (): array {
+        return Registry::cache()->file()->remember($cache_key, function () use ($below_tag): array {
 
             $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
 
             try {
-                return GithubService::getRecentReleasesInfo($this->github_repo, $github_api_token);
+                return GithubService::getRecentReleasesInfo($this->github_repo, $github_api_token, $below_tag);
             }
             catch (GithubCommunicationError $ex) {
 

@@ -153,7 +153,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         $step            = Validator::queryParams($request)->string('step', self::STEP_CHECK);
         $module_name     = Validator::queryParams($request)->string('module_name', '');
         $current_version = Validator::queryParams($request)->string('current_version', '');
-        $latest_version  = Validator::queryParams($request)->string('latest_version', '');
+        $version         = Validator::queryParams($request)->string('version', '');
         $download_url    = Validator::queryParams($request)->string('download_url', '');
         $message         = Validator::queryParams($request)->string('message', '');
         $action          = Validator::queryParams($request)->string('action', '');
@@ -180,7 +180,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
 
         switch ($step) {
             case self::STEP_CHECK:
-                return $this->wizardStepCheck($current_version, $latest_version, $action);
+                return $this->wizardStepCheck($current_version, $version, $action);
 
             case self::STEP_PREPARE:
                 return $this->wizardStepPrepare($action);
@@ -215,12 +215,12 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
      * @return ResponseInterface
      *
      * @param string $current_version
-     * @param string $latest_version
+     * @param string $version
      * @param string $action The action to be performed, i.e. update or install
      *
      * @return ResponseInterface
      */
-    private function wizardStepCheck(string $current_version, string $latest_version, string $action): ResponseInterface
+    private function wizardStepCheck(string $current_version, string $version, string $action): ResponseInterface
     {
         if (!in_array($action, [CustomModuleManager::ACTION_UPDATE, CustomModuleManager::ACTION_INSTALL])) {
             $action = CustomModuleManager::ACTION_UPDATE;
@@ -240,14 +240,14 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $alert = I18N::translate('Upgrading module "%s" (in folder: "/module_v4/%s")', $module_title, $folder_name) . "\n\n";
         }
 
-        if ($action === CustomModuleManager::ACTION_UPDATE && $latest_version === '') {
+        if ($action === CustomModuleManager::ACTION_UPDATE && $version === '') {
             $alert_type = self::ALERT_DANGER;
             $alert      .= MoreI18N::xlate('No upgrade information is available.');
             $abort      = true;
         }
-        elseif ($action === CustomModuleManager::ACTION_UPDATE && CustomModuleManager::versionCompare($module_update_service->getModuleName(), $current_version, $latest_version) >= 0) {
+        elseif ($action === CustomModuleManager::ACTION_UPDATE && CustomModuleManager::versionCompare($module_update_service->getModuleName(), $current_version, $version) >= 0) {
             $alert_type = self::ALERT_DANGER;
-            $alert      .= I18N::translate('Version % is the latest version of the custom module. No upgrade is available.', e($current_version));
+            $alert      .= I18N::translate('Version % is the latest compatible version of the custom module. No upgrade is available.', e($current_version));
             $abort      = true;
         }
         elseif (!CustomModuleManager::runsWithInstalledWebtreesVersion()) {
@@ -265,17 +265,17 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $alert_type = self::ALERT_SUCCESS;
 
             if ($action === CustomModuleManager::ACTION_INSTALL) {
-                if ($latest_version === '') {
+                if ($version === '') {
                     $alert .= I18N::translate('Installing version: "%s"', I18N::translate('Latest version'));
                 }
                 else {
-                    $this->version_to_install = $latest_version;
-                    $alert .= I18N::translate('Installing version: "%s"',e(CustomModuleManager::normalizeVersion($module_name, $latest_version)));
+                    $this->version_to_install = $version;
+                    $alert .= I18N::translate('Installing version: "%s"',e(CustomModuleManager::normalizeVersion($module_name, $version)));
                 }
             }
             else {
-                $this->version_to_install = $latest_version;
-                $alert .= I18N::translate('Upgrading the module from version "%s" to version "%s"', e($current_version), e(CustomModuleManager::normalizeVersion($module_name, $latest_version)));
+                $this->version_to_install = $version;
+                $alert .= I18N::translate('Upgrading the module from version "%s" to version "%s"', e($current_version), e(CustomModuleManager::normalizeVersion($module_name, $version)));
             }
         }
 

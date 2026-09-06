@@ -62,6 +62,13 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
             $this->github_repo = '';
         }
 
+        if (array_key_exists('conflicts', $params)) {
+            $this->conflicts = $params['conflicts'];
+        }
+        else {
+            $this->conflicts = [];
+        }
+
         $this->category = self::identifyCategoryFromConfig($module_name, $params);
     }
 

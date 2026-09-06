@@ -59,7 +59,7 @@ class ReleaseNotesModal implements RequestHandlerInterface
     {
         $module_name    = Validator::queryParams($request)->string('module_name', '');
         $module_title   = Validator::queryParams($request)->string('module_title', '');
-        $latest_version = Validator::queryParams($request)->string('latest_version', '');
+        $version         = Validator::queryParams($request)->string('version', '');
 
         $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
 
@@ -82,7 +82,7 @@ class ReleaseNotesModal implements RequestHandlerInterface
                 'title'          => I18N::translate('Release notes'),
                 'module_name'    => $module_name,
                 'module_title'   => $module_title,
-                'latest_version' => $latest_version,
+                'version'        => $version,
                 'ignore_version' => $custom_module_manager->getPreference($short_module_name . CustomModuleManager::PREF_IGNORE_VERSION, ''),
                 'release_notes'  => $html,
                 'release_url'    => $module_update_service->getLatestReleaseURL(),

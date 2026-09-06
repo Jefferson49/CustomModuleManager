@@ -47,6 +47,9 @@ $loader = new ClassLoader(__DIR__);
 $loader->addPsr4('Jefferson49\\Webtrees\\Module\\CustomModuleManager\\', __DIR__ . '/src');
 $loader->register();
 
+//Autoload composer/semver
+require_once __DIR__ . '/vendor/autoload.php';
+
 //Directly include custom module update services, because they shall be detected by "get_declared_classes"
 $file_system = new Filesystem(new LocalFilesystemAdapter(__DIR__));
 $files = $file_system->listContents('/src/ModuleUpdates')->toArray();

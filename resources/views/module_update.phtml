@@ -250,8 +250,9 @@ $order = [[$sort_column, 'desc']];
                             <?php $latest_version = $module_update_service->customModuleLatestVersion($fetch_latest) ?>
                         <?php else : ?>
                             <?php $latest_version = $fetch_latest ? $module_update_service->customModuleLatestVersion($fetch_latest) : '' ?>
-                            <?php $later_version_available = false ?>
                         <?php endif ?>
+                        <?php $highest_compatible_version = $module_update_service->getHighestCompatibleVersion() ?>
+                        <?php $highest_version_in_module_list = $module_update_service->getHighestVersionInCustomModuleList() ?>
                         <?php $documentation_url = $module_update_service->documentationUrl() ?>
                     <?php else : ?>
                         <?php $module_update_service_name = I18N::translate('not available') ?>
@@ -265,6 +266,8 @@ $order = [[$sort_column, 'desc']];
                         <?php /** @var CustomModuleManager $module To avoid IDE warnings */ ?>
                         <?php $current_version = $module->customModuleVersion() ?>
                         <?php $latest_version = $module->customModuleLatestVersion() ?>
+                        <?php $highest_compatible_version = '' ?>
+                        <?php $highest_version_in_module_list = '' ?>
                         <?php $documentation_url = '' ?>
                     <?php endif ?>
                     <?php if ($module !== null) : ?>
@@ -350,7 +353,13 @@ $order = [[$sort_column, 'desc']];
 
                         <!-- Latest version -->
                         <td data-sort="<?= e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>">
-                            <?php if (      $later_version_available && $current_version !== ''
+                            <?php if ($highest_compatible_version === '') : ?>
+                                <?php if (CustomModuleManager::versionCompare($module_name, $latest_version, $highest_version_in_module_list) > 0) : ?>
+                                    <?= e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>
+                                <?php else : ?>
+                                    <?= '' ?>
+                                <?php endif ?>
+                            <?php elseif (      $later_version_available && $current_version !== ''
                                         &&  (       ($module_update_service_name === GithubModuleUpdate::NAME && $module_update_service->providesReleasesInRepository())
                                                 OR  ($module_update_service_name === VestaModuleUpdate::NAME))
                                     ) : ?>
@@ -405,9 +414,13 @@ $order = [[$sort_column, 'desc']];
 
                         <!--Install -->
                         <?php $action = '' ?>
-                        <?php $action_sort = '0' ?>
+                        <?php $action_sort = '6' ?>
                         <?php $action_label = '' ?>
-                        <?php if ($update_service_available && $module_update_service->updateManually()) : ?>
+                        <?php if (!$update_service_available) : ?>
+                            <?php $action_sort = '5' ?>
+                        <?php elseif ($highest_compatible_version === '') : ?>
+                            <?php $action_sort = '4' ?>
+                        <?php elseif ($update_service_available && $module_update_service->updateManually()) : ?>
                             <?php $action_sort = '2' ?>
                         <?php elseif ($module !== null && $later_version_available && !($latest_version === $ignore_version)) : ?>
                             <?php $action = CustomModuleManager::ACTION_UPDATE ?>
@@ -416,7 +429,7 @@ $order = [[$sort_column, 'desc']];
                                 <?php else : ?>
                                     <?php $action_label = I18N::translate('Update module') ?>
                                 <?php endif ?>
-                            <?php $action_sort = '3' ?>
+                            <?php $action_sort = '1' ?>
                         <?php elseif ($module_status === I18N::translate('Not installed')) : ?>
                             <?php $action = CustomModuleManager::ACTION_INSTALL ?>
                                 <?php if ($module_update_service_name === VestaModuleUpdate::NAME && $vesta_confirmed) : ?>
@@ -424,10 +437,14 @@ $order = [[$sort_column, 'desc']];
                                 <?php else : ?>
                                     <?php $action_label = I18N::translate('Install module') ?>
                                 <?php endif ?>
-                            <?php $action_sort = '1' ?>
+                            <?php $action_sort = '3' ?>
                         <?php endif ?>
                         <td data-sort="<?= $action_sort ?>">
-                            <?php if ($update_service_available && $module_update_service->updateManually()) : ?>
+                            <?php if (!$update_service_available) : ?>
+                                <?= I18N::translate('No update service available') ?>
+                            <?php elseif ($highest_compatible_version === '') : ?>
+                                <?= I18N::translate('No compatible version available') ?>
+                            <?php elseif ($update_service_available && $module_update_service->updateManually()) : ?>
                                 <?= I18N::translate('Manual updating/merging required') ?>
                             <?php elseif ($action_label !== '' && $update_service_available) : ?>
                                 <?php if ($module_update_service_name === VestaModuleUpdate::NAME && !$vesta_confirmed) : ?>

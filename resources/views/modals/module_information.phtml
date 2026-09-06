@@ -110,10 +110,12 @@ use function view;
             <?=  e(CustomModuleManager::normalizeVersion($module_name, $current_version)) ?>
             <br>
         <?php endif ?>
-        <?= view('icons/module') ?>
-        <?= I18N::translate('Latest Version') . ': ' ?>
-        <?=  e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>
-        <br>
+        <?php if ($latest_version !== '') : ?>
+            <?= view('icons/module') ?>
+            <?= I18N::translate('Latest compatible version') . ': ' ?>
+            <?=  e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>
+            <br>
+        <?php endif ?>
         <?php if ($module_update_service_name === VestaModuleUpdate::NAME) : ?>
             <?= view('icons/link') ?>
             <?= I18N::translate('⚶ Vesta homepage') . ': ' ?>

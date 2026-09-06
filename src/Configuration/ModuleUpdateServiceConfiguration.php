@@ -329,8 +329,18 @@ class ModuleUpdateServiceConfiguration
             return self::$module_update_service_config;
         }
 
+        // Try to load the configuration from a local custom module list (a Packagist JSON file)
+        if (CustomModuleManager::USE_LOCAL_CONFIG_FROM_CUSTOM_MODULE_LIST) {
+            try {
+                self::$module_update_service_config = self::getLocalConfigFromCustomModuleList();
+            }
+            catch (RuntimeException $ex) {
+                // Fail gracefully; local configuration will be loaded below
+            }
+        }
+
         // Try to load the configuration from GitHub
-        if (!CustomModuleManager::USE_LOCAL_CONFIG) {
+        elseif (!CustomModuleManager::USE_LOCAL_CONFIG) {
             $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
             $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
 
@@ -343,12 +353,12 @@ class ModuleUpdateServiceConfiguration
                     self::$module_update_service_config = json_decode($json_config, true);
                 }
                 catch (GithubCommunicationError $ex) {
-                    // Fail gracefully (local configuration will be loaded below)
+                    // Fail gracefully; local configuration will be loaded below
                 }
             }
         }
 
-        // If we have no configuration yet, we take the local one
+        // If we still have no configuration yet, we take the local one
         if (self::$module_update_service_config === []) {
             $local_config = self::getLocalConfiguration();
             self::$module_update_service_config = $local_config;
@@ -363,20 +373,90 @@ class ModuleUpdateServiceConfiguration
      *
      * @return array<string> module_name => module_config
      */
-    public static function getLocalConfiguration(bool $load_from_internet = true): array {
+    public static function getLocalConfiguration(): array {
 
-        $json_file = __DIR__ . '/' . CustomModuleManager::CONFIG_LOCAL_PATH;
+        $json_file = __DIR__ . '/' . CustomModuleManager::PATH_LOCAL_CONFIG;
+        $file_system = new Filesystem(new LocalFilesystemAdapter(__DIR__));
 
         //Open file
-        $file_system = new Filesystem(new LocalFilesystemAdapter(__DIR__));
-        if (!$file_system->fileExists(CustomModuleManager::CONFIG_LOCAL_PATH)) {
+        if (!$file_system->fileExists(CustomModuleManager::PATH_LOCAL_CONFIG)) {
              throw new RuntimeException('Cannot open file: ' . $json_file);
         }
 
-        $local_json_config = $file_system->read(CustomModuleManager::CONFIG_LOCAL_PATH);
+        $local_json_config = $file_system->read(CustomModuleManager::PATH_LOCAL_CONFIG);
         $local_config = json_decode($local_json_config, true);
 
         return $local_config;
+    }
+
+    /**
+     * Get the configuration from a local custom module list (from a Packagist JSON file in the module)
+     *
+     * @return array<string> module_name => module_config
+     */
+    public static function getLocalConfigFromCustomModuleList(): array {
+
+        $json_file   = __DIR__ . '/..' . CustomModuleManager::PATH_CUSTOM_MODULE_LIST;
+        $file_system = new Filesystem(new LocalFilesystemAdapter(__DIR__ . '/..'));
+
+        //Open file
+        if (!$file_system->fileExists(CustomModuleManager::PATH_CUSTOM_MODULE_LIST)) {
+             throw new RuntimeException('Cannot open file: ' . $json_file);
+        }
+
+        $local_custom_module_list = $file_system->read(CustomModuleManager::PATH_CUSTOM_MODULE_LIST);
+        $custom_module_list = json_decode($local_custom_module_list, true);
+
+        /** @var $conflicts array<string>  version => conflict rule for version*/
+        $config = [];
+        $packages = $custom_module_list['packages'] ?? [];
+
+        foreach ($packages as $package_name => $versions) {
+
+            $conflicts = [];
+
+            foreach ($versions as $version) {
+
+                if (isset($version['version'])) {
+
+                    if ($version['version'] === CustomModuleManager::VERSION_NOT_AVAILABLE) {
+                        $version['version'] = '';
+                    }
+
+                    if (isset($version['conflict']) && isset($version['conflict']['fisharebest/webtrees'])) {
+
+                        $conflicts[$version['version']] = $version['conflict']['fisharebest/webtrees'];
+                    }
+                    else {
+                        $conflicts[$version['version']] = '';
+                    }
+                }
+            }
+
+            $latest_version = $versions[array_key_last($versions)] ?? [];
+
+            if (!isset($latest_version['extra']['custom-module-manager'])) {
+                continue;
+            }
+
+            $module_config = $latest_version['extra']['custom-module-manager'];
+
+            if (!isset($module_config['module_name'])) {
+                continue;
+            }
+
+            $module_name = $module_config['module_name'] ?? '';
+            unset($module_config['module_name']);
+
+            //Sort conflicts by version in ascending order
+            ksort($conflicts);
+
+            $module_config['params']['conflicts'] = $conflicts;
+
+            $config[$module_name] = $module_config;
+        }
+
+        return $config;
     }
 
     /**

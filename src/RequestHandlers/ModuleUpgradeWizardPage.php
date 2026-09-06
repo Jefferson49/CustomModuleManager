@@ -85,7 +85,7 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
         $user            = Validator::attributes($request)->user();
         $module_name     = Validator::queryParams($request)->string('module_name', '');
         $current_version = Validator::queryParams($request)->string('current_version', '');
-        $latest_version  = Validator::queryParams($request)->string('latest_version', '');
+        $version         = Validator::queryParams($request)->string('version', '');
         $action          = Validator::queryParams($request)->string('action', '');
 
         // If no administrator, redirect to home page
@@ -107,7 +107,7 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
                     throw new CustomModuleManagerException(I18N::translate('Could not identify a suitable module upgrade service for custom module'));
                 }
 
-                $download_url = $module_upgrade_service->downloadUrl($latest_version);
+                $download_url = $module_upgrade_service->downloadUrl($version);
             }
             catch (CustomModuleManagerException $exception) {
                 return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/steps-modal', [
@@ -122,7 +122,7 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
         }
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/steps-modal', [
-            'steps' => $this->wizardSteps($module_name, $download_url, $action, $current_version, $latest_version),
+            'steps' => $this->wizardSteps($module_name, $download_url, $action, $current_version, $version),
             'title' => MoreI18N::xlate('Upgrade wizard'),
             'modal' => true,
         ]);
@@ -133,11 +133,11 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
      * @param string $module_name
      * @param string $action         The action to be performed, i.e. update or install
      * @param string $current_version
-     * @param string $latest_version
+     * @param string $version
      *
      * @return array<string>
      */
-    private function wizardSteps(string $module_name, string $download_url = '', string $action = CustomModuleManager::ACTION_UPDATE, string $current_version = '', string $latest_version = ''): array
+    private function wizardSteps(string $module_name, string $download_url = '', string $action = CustomModuleManager::ACTION_UPDATE, string $current_version = '', string $version = ''): array
     {
         // Default action
         if (!in_array($action, [CustomModuleManager::ACTION_UPDATE, CustomModuleManager::ACTION_INSTALL, CustomModuleManager::ACTION_DELETE])) {
@@ -149,7 +149,7 @@ class ModuleUpgradeWizardPage implements RequestHandlerInterface
             'download_url'    => $download_url,
             'action'          => $action,
             'current_version' => $current_version,
-            'latest_version'  => $latest_version,
+            'version'         => $version,
             'modal'           => true,
         ];
 

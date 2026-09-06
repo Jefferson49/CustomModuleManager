@@ -58,6 +58,13 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
 
         $this->module_name    = $module_name;
 
+        if (array_key_exists('conflicts', $params)) {
+            $this->conflicts = $params['conflicts'];
+        }
+        else {
+            $this->conflicts = [];
+        }
+
         if (array_key_exists('download_url', $params)) {
             $this->download_url = $params['download_url'];
         }
@@ -113,12 +120,12 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
      */
     public function getPackageName(): string {
 
-        if (strpos($this->download_url,'codeberg')) {
+        if (strpos($this->download_url,'codeberg') !== false) {
 
-            $package_name = str_replace(' https://codeberg.org/', '', $this->download_url);
+            $package_name = str_replace('https://codeberg.org/', '', $this->download_url);
 
             $slash_position1 = strpos($package_name, '/', 0);
-            $slash_position2 = strpos($package_name, '/', $slash_position1);
+            $slash_position2 = strpos($package_name, '/', $slash_position1 + 1);
 
             return substr($package_name, 0, $slash_position2);
         }

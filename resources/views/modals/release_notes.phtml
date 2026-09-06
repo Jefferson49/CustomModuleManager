@@ -10,7 +10,7 @@ use function view;
 /**
  * @var string $title
  * @var string $module_title
- * @var string $latest_version
+ * @var string $version
  * @var string $ignore_version
  * @var string $release_url
  * @var string $release_notes
@@ -29,7 +29,7 @@ use function view;
         <br>
         <?= view('icons/module') ?>
         <?= I18N::translate('Latest Version') . ': ' ?>
-        <?=  e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>
+        <?=  e(CustomModuleManager::normalizeVersion($module_name, $version)) ?>
         <br>
         <?php if ($release_url !== '') : ?>
             <?= view('icons/link') ?>
@@ -51,10 +51,10 @@ use function view;
     </button>
     <a class="btn btn-secondary" href="<?= e(route(IgnoreUpdateAction::class, [
             'module_name'    => $module_name,
-            'ignore_updates' => $latest_version !== $ignore_version,
-            'ignore_version' => $latest_version,
+            'ignore_updates' => $version !== $ignore_version,
+            'ignore_version' => $version,
         ])) ?>" >
-        <?= $latest_version === $ignore_version ? I18N::translate('activate update for this version') : I18N::translate('ignore update for this version') ?>
+        <?= $version === $ignore_version ? I18N::translate('activate update for this version') : I18N::translate('ignore update for this version') ?>
     </a>
 </div>
 

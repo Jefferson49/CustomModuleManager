@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-08-24 18:38+0200\n"
-"PO-Revision-Date: 2026-08-24 18:40+0200\n"
+"POT-Creation-Date: 2026-09-06 17:56+0200\n"
+"PO-Revision-Date: 2026-09-06 17:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,28 +15,28 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:249
+#: src/CustomModuleManager.php:264
 msgid "Custom Module Manager"
 msgstr "Management von Erweiterungsmodulen"
 
-#: src/CustomModuleManager.php:262
+#: src/CustomModuleManager.php:277
 msgid "A custom module to manage webtrees custom modules."
 msgstr "Ein Erweiterungsmodul zum Verwalten von webtrees-Erweiterungsmodulen."
 
-#: src/CustomModuleManager.php:392
+#: src/CustomModuleManager.php:427
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:438
+#: src/CustomModuleManager.php:473
 msgid "Rollback Custom Module Update"
 msgstr "Aktualisierung des Erweiterungsmoduls rückgängig machen"
 
-#: src/CustomModuleManager.php:439
+#: src/CustomModuleManager.php:474
 msgid "Rollback"
 msgstr "Rückgängig machen"
 
-#: src/CustomModuleManager.php:466
+#: src/CustomModuleManager.php:501
 #: vendor/jefferson49/webtrees-common/Module/ModuleCustomTrait.php:206
 #, php-format
 msgid ""
@@ -46,22 +46,22 @@ msgstr ""
 "Die Einstellungen für das Erweiterungsmodul \"%s\" wurden für die neue Modul-"
 "Version %s aktualisiert."
 
-#: src/ModuleUpdates/AbstractModuleUpdate.php:161
-#: src/ModuleUpdates/AbstractModuleUpdate.php:163
-#: src/ModuleUpdates/AbstractModuleUpdate.php:165
+#: src/ModuleUpdates/AbstractModuleUpdate.php:169
+#: src/ModuleUpdates/AbstractModuleUpdate.php:171
+#: src/ModuleUpdates/AbstractModuleUpdate.php:173
 msgid "Frontend"
 msgstr "Frontend"
 
-#: src/ModuleUpdates/AbstractModuleUpdate.php:189
+#: src/ModuleUpdates/AbstractModuleUpdate.php:197
 msgid "Tags"
 msgstr "Tags"
 
-#: src/ModuleUpdates/AbstractModuleUpdate.php:193
+#: src/ModuleUpdates/AbstractModuleUpdate.php:201
 msgid "Data validation"
 msgstr "Daten Validierung"
 
 #: src/ModuleUpdates/GithubModuleUpdate.php:91
-#: src/ModuleUpdates/UrlModuleUpdate.php:65
+#: src/ModuleUpdates/UrlModuleUpdate.php:72
 #, php-format
 msgid ""
 "Could not create the %s update service. Configuration parameter \"%s\" "
@@ -70,17 +70,17 @@ msgstr ""
 "Der Aktualisierungsdienst %s konnte nicht erstellt werden. "
 "Konfigurationsparameter \"%s\" fehlt."
 
-#: src/ModuleUpdates/GithubModuleUpdate.php:172
-#: src/ModuleUpdates/GithubModuleUpdate.php:323
+#: src/ModuleUpdates/GithubModuleUpdate.php:179
+#: src/ModuleUpdates/GithubModuleUpdate.php:351
 #, php-format
 msgid "Communication error with %s"
 msgstr "Kommunikationsfehler mit %s"
 
-#: src/ModuleUpdates/GithubModuleUpdate.php:173
+#: src/ModuleUpdates/GithubModuleUpdate.php:180
 msgid "Cannot retrieve download URL."
 msgstr "Die Download-URL kann nicht abgerufen werden."
 
-#: src/ModuleUpdates/GithubModuleUpdate.php:256
+#: src/ModuleUpdates/GithubModuleUpdate.php:283
 msgid ""
 "Could not retrieve release notes due to a communication error with GitHub."
 msgstr ""
@@ -126,29 +126,29 @@ msgstr "Version prüfen…"
 msgid "Create temporary folders…"
 msgstr "Temporäre Ordner anlegen…"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:149
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:148
 msgid "Update Wizard was aborted"
 msgstr "Der Aktualisierungsassistent wurde abgebrochen"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:238
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:237
 #, php-format
 msgid "Installing module \"%s\" (to folder: \"/module_v4/%s\")"
 msgstr "Installiere Modul \"%s\" (in Ordner: \"/module_v4/%s\")"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:241
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:240
 #, php-format
 msgid "Upgrading module \"%s\" (in folder: \"/module_v4/%s\")"
 msgstr "Aktualisierung von Modul \"%s\" (in Ordner: \"/module_v4/%s\")"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:251
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:250
 msgid ""
-"Version % is the latest version of the custom module. No upgrade is "
-"available."
+"Version % is the latest compatible version of the custom module. No upgrade "
+"is available."
 msgstr ""
-"Die Version %s ist die neueste Version des Moduls. Es ist keine "
+"Version %s ist die neueste kompatible Version des Moduls. Es ist keine "
 "Aktualisierung verfügbar."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:256
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:255
 #, php-format
 msgid ""
 "This custom module can only be used with a webtrees version greater or equal "
@@ -157,7 +157,7 @@ msgstr ""
 "Dieses Erweiterungsmodul kann nur mit einer webtrees-Version größer oder "
 "gleich %s genutzt werden"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:261
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:260
 msgid ""
 "The PHP extension \"zip\" is not installed. In order to use the custom "
 "module, your PHP installation needs to include the \"zip\" extension. You "
@@ -167,40 +167,40 @@ msgstr ""
 "zu nutzen, muss Ihre PHP-Installation die \"zip\"-Erweiterung beinhalten. "
 "Sie müssen die die Erweiterung in der \"php.ini\"-Datei aktivieren."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:270
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:269
 msgid "Latest version"
 msgstr "Neueste Version"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:270
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:274
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:269
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:273
 #, php-format
 msgid "Installing version: \"%s\""
 msgstr "Installiere Version \"%s\""
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:279
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:278
 #, php-format
 msgid "Upgrading the module from version \"%s\" to version \"%s\""
 msgstr "Aktualisieren des Moduls von Version \"%s\" auf Version \"%s\""
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:355
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:354
 #, php-format
 msgid "A backup of the current module was created in %s seconds."
 msgstr ""
 "Eine Sicherungskopie des aktuellen Moduls wurde in %s Sekunden erstellt."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:360
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:359
 msgid "Failed to create a backup of the current module."
 msgstr "Es konnte keine Sicherungskopie des aktuellen Moduls erstellt werden."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:387
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:386
 msgid "Error during downloading the module zip file."
 msgstr "Fehler beim Herunterladen der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:419
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:418
 msgid "Error during unzipping the module zip file."
 msgstr "Fehler beim Entpacken der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:543
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:542
 #, php-format
 msgid ""
 "The module %s was rolled back to the current version, because the update "
@@ -209,7 +209,7 @@ msgstr ""
 "Das Modul %s wurde auf die bisherige Version zurückgesetzt, weil die "
 "Aktualisierung Fehler verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:546
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:545
 #, php-format
 msgid ""
 "The installation of module %s was rolled back, because the module created "
@@ -218,13 +218,13 @@ msgstr ""
 "Die Installation von Modul %s wurde rückgängig gemacht, weil das Modul "
 "Fehler verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:556
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:555
 #, php-format
 msgid "A roll back of the module %s to the current version failed."
 msgstr ""
 "Ein Rollback des Moduls %s auf die bisherige Version ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:558
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:557
 #, php-format
 msgid ""
 "Please try to manually roll back by copying the files from \"/data/tmp/"
@@ -234,12 +234,12 @@ msgstr ""
 "Dateien von \"/data/tmp/backup/modules_4/%s\" nach \"/modules_v4/%s\" "
 "kopieren."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:561
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:560
 #, php-format
 msgid "A roll back of the installation of module %s failed."
 msgstr "Ein Rollback der Installation von Modul %s ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:563
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:562
 #, php-format
 msgid ""
 "Please try to manually roll back by deleting the folder \"/modules_v4/%s\""
@@ -247,12 +247,12 @@ msgstr ""
 "Bitte versuchen Sie, die Dateien manuell zurückzusetzen, indem Sie den "
 "Ordner \"/modules_4/%s\" löschen"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:601
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:600
 #, php-format
 msgid "The module was successfully deleted in %s seconds."
 msgstr "Das Modul wurde in %s Sekunden erfolgreich gelöscht."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:606
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:605
 msgid "Error during deleting the module."
 msgstr "Fehler beim Löschen des Moduls."
 
@@ -264,7 +264,7 @@ msgstr "Keine Versionshinweise verfügbar"
 msgid "Release notes"
 msgstr "Versionshinweise"
 
-#: src/RequestHandlers/VestaInformationModal.php:60
+#: src/RequestHandlers/VestaInformationModal.php:59
 msgid "Vesta Module Information"
 msgstr "Information zu den Vesta-Modulen"
 
@@ -342,24 +342,27 @@ msgstr "Modul-Ordner"
 msgid "Current Version"
 msgstr "Aktuelle Version"
 
-#: resources/views/modals/module_information.phtml:114
+#: resources/views/modals/module_information.phtml:115
+msgid "Latest compatible version"
+msgstr "Neueste kompatible Version"
+
+#: resources/views/modals/module_information.phtml:121
+msgid "⚶ Vesta homepage"
+msgstr "⚶ Vesta-Homepage"
+
+#: resources/views/modals/module_information.phtml:130
+msgid "GitHub repository"
+msgstr "GitHub-Repository"
+
+#: resources/views/modals/module_information.phtml:170
+#: resources/views/module_usage.phtml:38
+msgid "Module Usage"
+msgstr "Modul-Verwendung"
+
 #: resources/views/modals/release_notes.phtml:31
 #: resources/views/module_update.phtml:208
 msgid "Latest Version"
 msgstr "Neueste Version"
-
-#: resources/views/modals/module_information.phtml:119
-msgid "⚶ Vesta homepage"
-msgstr "⚶ Vesta-Homepage"
-
-#: resources/views/modals/module_information.phtml:128
-msgid "GitHub repository"
-msgstr "GitHub-Repository"
-
-#: resources/views/modals/module_information.phtml:168
-#: resources/views/module_usage.phtml:38
-msgid "Module Usage"
-msgstr "Modul-Verwendung"
 
 #: resources/views/modals/release_notes.phtml:57
 msgid "activate update for this version"
@@ -439,46 +442,54 @@ msgid "Install"
 msgstr "Installieren"
 
 #: resources/views/module_update.phtml:226
-#: resources/views/module_update.phtml:420
+#: resources/views/module_update.phtml:433
 msgid "Not installed"
 msgstr "Nicht installiert"
 
-#: resources/views/module_update.phtml:257
-#: resources/views/module_update.phtml:271
-#: resources/views/module_update.phtml:272
+#: resources/views/module_update.phtml:258
+#: resources/views/module_update.phtml:274
+#: resources/views/module_update.phtml:275
 msgid "not available"
 msgstr "nicht verfügbar"
 
-#: resources/views/module_update.phtml:339
-#: resources/views/module_update.phtml:381
+#: resources/views/module_update.phtml:342
+#: resources/views/module_update.phtml:390
 msgid "N/A"
 msgstr "N/A"
 
-#: resources/views/module_update.phtml:415
+#: resources/views/module_update.phtml:428
 msgid "Update all Vesta modules"
 msgstr "Alle Vesta-Module aktualisieren"
 
-#: resources/views/module_update.phtml:417
+#: resources/views/module_update.phtml:430
 msgid "Update module"
 msgstr "Modul aktualisieren"
 
-#: resources/views/module_update.phtml:423
+#: resources/views/module_update.phtml:436
 msgid "Install all Vesta modules"
 msgstr "Alle Vesta-Module installieren"
 
-#: resources/views/module_update.phtml:425
+#: resources/views/module_update.phtml:438
 msgid "Install module"
 msgstr "Modul installieren"
 
-#: resources/views/module_update.phtml:431
+#: resources/views/module_update.phtml:444
+msgid "No update service available"
+msgstr "Kein Aktualisierungsdienst verfügbar"
+
+#: resources/views/module_update.phtml:446
+msgid "No compatible version available"
+msgstr "Keine kompatible Version verfügbar"
+
+#: resources/views/module_update.phtml:448
 msgid "Manual updating/merging required"
 msgstr "Manuelles Aktualisieren/Zusammenführen erforderlich"
 
-#: resources/views/module_update.phtml:454
+#: resources/views/module_update.phtml:471
 msgid "Delete all Vesta modules"
 msgstr "Alle Vesta-Module löschen"
 
-#: resources/views/module_update.phtml:456
+#: resources/views/module_update.phtml:473
 msgid "Delete module"
 msgstr "Modul löschen"
 

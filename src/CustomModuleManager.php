@@ -35,7 +35,9 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager;
 
-use DateTimeImmutable;
+use Composer\Semver\Comparator;
+use Composer\Semver\Semver;
+use Composer\Semver\VersionParser;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\I18N;
@@ -80,6 +82,9 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+use DateTimeImmutable;
+use Exception;
+use InvalidArgumentException;
 use RuntimeException;
 use Throwable;
 
@@ -132,12 +137,6 @@ class CustomModuleManager extends AbstractModule implements
     public const PREF_TABLE_LAYOUT            = 'table_layout';
     public const PREF_VESTA_CONFIRMED         = 'vesta_confirmed';
 
-    //Configuraton
-    public const CONFIG_GITHUB_BRANCH     = 'config';
-    public const CONFIG_LOCAL_PATH        = 'module_update_service_configuration.json';
-    public const CONFIG_GITHUB_PATH       = 'module_update_service_configuration.json';
-    public const CONFIG_FILE_NAME         = '';
-
     //Table layout
     public const TABLE_LAYOUT_TABLE       = 'table_layout_table';
     public const TABLE_LAYOUT_STICKY_HEAD = 'table_layout_sticky_head';
@@ -174,8 +173,17 @@ class CustomModuleManager extends AbstractModule implements
     //Cache
     public const CACHE_REALEASE_INFO      = 'cmm-release-info-';
 
+    //Config GitHub
+    public const CONFIG_GITHUB_BRANCH      = 'config';
+    public const CONFIG_GITHUB_PATH        = 'module_update_service_configuration.json';
+
+    //Other
+    public const VERSION_NOT_AVAILABLE     = 'not available';
+
     //Path
-    public const PATH_CUSTOM_MODULE_LIST  = '/Configuration/custom_module_list.json';
+    public const PATH_LOCAL_CONFIG                    = '/Configuration/module_update_service_configuration.json';
+    public const PATH_CUSTOM_MODULE_LIST              = '/Configuration/custom_module_list.json';
+    public const PATH_DEFAULT_TITLES_AND_DESCRIPTIONS = '/Configuration/DefaultTitlesAndDescriptions.php';
 
     //Supported webtrees version
     public const MINIMUM_WEBTREES_VERSION = '2.2.3';
@@ -197,6 +205,9 @@ class CustomModuleManager extends AbstractModule implements
 
     //Use the local json file for the custom module update configuration (in module_update_service_configuration.json)
     public const USE_LOCAL_CONFIG = false;
+
+    //Use the local json file for the custom module update configuration (in module_update_service_configuration.json)
+    public const USE_LOCAL_CONFIG_FROM_CUSTOM_MODULE_LIST = true;
 
     //Whether the enabled status is included during submitting the update form
     public const ENABLED_STATUS_INCLUDED = 'enabled_status_included';
@@ -634,7 +645,7 @@ class CustomModuleManager extends AbstractModule implements
      */
     public static function generateModuleUpdateServiceConfig(): void {
 
-        $json_file = __DIR__ . '/Configuration/module_update_service_configuration.json';
+        $json_file = __DIR__ . self::PATH_LOCAL_CONFIG;
 
         //Delete file if already existing
         if (file_exists($json_file)) {
@@ -695,7 +706,7 @@ class CustomModuleManager extends AbstractModule implements
 
             //If current module version is not available
             if ($version === '') {
-                $version = 'not available';
+                $version = self::VERSION_NOT_AVAILABLE;
             }
 
             //If the version is not included in the list yet or we shall replace the existing version
@@ -868,7 +879,7 @@ class CustomModuleManager extends AbstractModule implements
 
         $json_file = __DIR__ . self::PATH_CUSTOM_MODULE_LIST;
 
-        //Get data from JSON custom module list
+        //Get the data from the JSON custom module list
         return json_decode(self::readFromFile($json_file), true) ?? [];
     }
 
@@ -1057,7 +1068,7 @@ class CustomModuleManager extends AbstractModule implements
     public static function getVersionBefore(array $module_versions, string $version): string {
 
         uasort($module_versions, function (array $a, array $b) {
-                version_compare($a['version'], $b['version'], ">=");
+                Comparator::greaterThan($a['version'], $b['version']) ? -1 : 1;
             }
         );
 
@@ -1281,5 +1292,46 @@ class CustomModuleManager extends AbstractModule implements
         }
 
         return $buffer;
+    }
+
+    /**
+     * Check whether a given webtrees version conflicts with a
+     * conflict rule (e.g. ">2.1 || <=2.3") using Composer\Semver.
+     *
+     * @param string $webtrees_version  The version to check (e.g. "2.0.9")
+     * @param string $conflict_rule     The conflict constraint (e.g. ">2.1 || <=2.3")
+     *
+     * @return bool  True if the version conflicts, false otherwise.
+     *
+     * @throws InvalidArgumentException If version or constraint are invalid.
+     */
+    public static function webtreesVersionSatifiesConflictRule(string $webtrees_version, string $conflict_rule): bool
+    {
+        if ($conflict_rule === '' OR $conflict_rule === null) {
+            throw new InvalidArgumentException("Conflict rule must not be empty.");
+        }
+
+        if ($webtrees_version === '' OR $webtrees_version === null) {
+            throw new InvalidArgumentException("Webtrees version must not be empty.");
+        }
+
+        $parser = new VersionParser();
+
+        // Validate version
+        try {
+            $parser->normalize($webtrees_version);
+        } catch (Exception $e) {
+            throw new InvalidArgumentException("Invalid webtrees version '{$webtrees_version}': " . $e->getMessage());
+        }
+
+        // Validate constraint
+        try {
+            $parser->parseConstraints($conflict_rule);
+        } catch (Exception $e) {
+            throw new InvalidArgumentException("Invalid conflict rule '{$conflict_rule}': " . $e->getMessage());
+        }
+
+        // Perform actual conflict check
+        return Semver::satisfies($webtrees_version, $conflict_rule);
     }
 }
