@@ -375,8 +375,8 @@ class ModuleUpdateServiceConfiguration
      */
     public static function getLocalConfiguration(): array {
 
-        $json_file = __DIR__ . '/' . CustomModuleManager::PATH_LOCAL_CONFIG;
-        $file_system = new Filesystem(new LocalFilesystemAdapter(__DIR__));
+        $json_file = __DIR__ .CustomModuleManager::PATH_LOCAL_CONFIG;
+        $file_system = new Filesystem(new LocalFilesystemAdapter(__DIR__ . '/..'));
 
         //Open file
         if (!$file_system->fileExists(CustomModuleManager::PATH_LOCAL_CONFIG)) {
