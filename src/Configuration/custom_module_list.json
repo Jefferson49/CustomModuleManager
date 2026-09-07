@@ -4,6 +4,9 @@
             {
                 "version": "2.0.2",
                 "time": "2026-06-07",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "evang/argon-light",
                 "description": "A light theme for Webtrees based on Argon Design System",
                 "extra": {
@@ -59,6 +62,9 @@
             {
                 "version": "2.3.11",
                 "time": "2025-02-16",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "evang/mailsystem",
                 "description": "Sends a mail with recent changes to Webtrees users.",
                 "extra": {
@@ -116,6 +122,9 @@
             {
                 "version": "0.0.3.9",
                 "time": "2026-09-07",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "08ah15/weet",
                 "description": "This module list sources in an archive you like to see during your next visit",
                 "extra": {
@@ -143,6 +152,9 @@
         "0ldm4cm4n/all-ages-export-engine": [
             {
                 "version": "1.0.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "billkochman/all-ages-export-engine",
                 "description": "A clean, simple admin utility for exporting a concise list of all individuals in a Webtrees family tree, including first name, last name, birth date and death date.",
                 "extra": {
@@ -183,6 +195,9 @@
         "0ldm4cm4n/dead-record-detective": [
             {
                 "version": "1.0.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "billkochman/dead-record-detective",
                 "description": "Scans a Webtrees family tree and detects individuals with missing, unknown, or placeholder data in key fields. We find them. YOU kill them. We detect them. YOU reject them!",
                 "extra": {
@@ -250,6 +265,9 @@
         "Joppla/Webtrees-FaviconUpdater": [
             {
                 "version": "1.0.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "Joppla/Webtrees-FaviconUpdater",
                 "description": "Module to replaces automatically the default favicons with your own custom favicons after every webtrees update.",
                 "extra": {
@@ -276,6 +294,9 @@
         "Joppla/Webtrees-FaviconUpdater-XXL": [
             {
                 "version": "1.0.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "Joppla/Webtrees-FaviconUpdater-XXL",
                 "description": "Replaces automatically the default favicons with your own custom favicons after every webtrees update.",
                 "extra": {
@@ -328,6 +349,9 @@
         "Joppla/Webtrees-GendexGenerator": [
             {
                 "version": "2.2.6.1",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "Joppla/Webtrees-GendexGenerator",
                 "description": "Generates a gendex.txt file for your family tree.",
                 "extra": {
@@ -355,6 +379,9 @@
             {
                 "version": "2.4.0",
                 "time": "2026-04-08",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "ahmadyaseen-pokkat/easytree",
                 "description": "Theme \u2014 EasyTree",
                 "extra": {
@@ -384,6 +411,9 @@
             {
                 "version": "1.0.0",
                 "time": "2026-09-07",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "alex/webtrees-full-diagram",
                 "description": "Full family diagram chart module for webtrees \u2014 shows ancestors, descendants, and siblings in a single interactive SVG diagram.",
                 "extra": {
@@ -463,6 +493,9 @@
             {
                 "version": "not available",
                 "time": "2026-09-07",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "baskar-yahoo/webtrees-svajana",
                 "description": "Seamless integration with WordPress Kadence Child Theme.",
                 "extra": {
@@ -589,6 +622,9 @@
             {
                 "version": "1.2.14",
                 "time": "2026-08-02",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "bschwede/linkenhancer",
                 "description": "Cross-references to Gedcom datasets, Markdown editor, context-sensitive link to the GenWiki webtrees manual",
                 "extra": {
@@ -616,6 +652,9 @@
             {
                 "version": "1.5.0",
                 "time": "2025-12-22",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "dirk-everts/webtrees-historic-events-belgium",
                 "description": "Historic events that took place on the territory of present-day Belgium since 1600, shown automatically on individual pages.",
                 "extra": {
@@ -666,6 +705,9 @@
             {
                 "version": "2.2.6.0",
                 "time": "2026-05-07",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "ekdahl/webtrees-primer-theme",
                 "description": "Theme \u2014 Primer",
                 "extra": {
@@ -693,6 +735,9 @@
             {
                 "version": "2.0.3",
                 "time": "2026-06-17",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "elysch/webtrees-mitalteli-chart-family-book",
                 "description": "A chart of an individual\u2019s ancestors and descendants, as a family book (enhanced with marriages, images, and more).",
                 "extra": {
@@ -719,6 +764,9 @@
             {
                 "version": "1.1.0",
                 "time": "2026-06-17",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "elysch/webtrees-mitalteli-misc-features",
                 "description": "Adds UID/UUID markdown links, extended birth/death place search, </br>COHABITATION marriage type, and more.</br></br><div class=\"markdown-alert\" dir=\"auto\">\ud83d\uded1<g-emoji class=\"g-emoji\" alias=\"warning\">\u26a0\ufe0f</g-emoji> Critical Performance Warning (Scalability Limits)</div><div class=\"markdown-alert markdown-alert-caution\" dir=\"auto\"><p class=\"markdown-alert-title\" dir=\"auto\"><svg data-component=\"Octicon\" class=\"octicon octicon-stop mr-2\" viewBox=\"0 0 16 16\" version=\"1.1\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"></path></svg>Caution</p><p dir=\"auto\"><strong>Severe Slowdowns on Large Trees (UID / _UID Searches)</strong>\n<code>webtrees</code> lacks database indexes on <code>UID</code> and <code>_UID</code> fields. Because of how the current database architecture is structured, there is no way to add manual indexes to mitigate the underlying performance bottleneck.</p>\n</div>",
                 "extra": {
@@ -745,6 +793,9 @@
             {
                 "version": "3.2.1",
                 "time": "2026-06-18",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "elysch/webtrees-mitalteli-report-researchtasks",
                 "description": "A research tasks Report with filters and other options.",
                 "extra": {
@@ -771,6 +822,9 @@
             {
                 "version": "4.2.1",
                 "time": "2026-06-18",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "elysch/webtrees-mitalteli-show-xref",
                 "description": "A sidebar to show XREF and UID values.",
                 "extra": {
@@ -824,6 +878,9 @@
             {
                 "version": "1.1.0",
                 "time": "2026-04-16",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "gmarcon/webtrees-time-travel-map",
                 "description": "Time Travel Map is a module to visualize the geographic history of a family over time.",
                 "extra": {
@@ -851,6 +908,9 @@
             {
                 "version": "1.0.0",
                 "time": "2026-01-28",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "godzil3/webtrees-insight-lens",
                 "description": "Visualize genealogy change statistics with interactive charts",
                 "extra": {
@@ -906,6 +966,9 @@
             {
                 "version": "2025.12.17",
                 "time": "2025-12-17",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "gustine/sosa20",
                 "description": "A sidebar showing Sosa-Stradonitz number of individuals.",
                 "extra": {
@@ -932,6 +995,9 @@
             {
                 "version": "2.2.1.3",
                 "time": "2025-01-05",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "hartenthaler/german-chancellors-presidents",
                 "description": "Historical facts - Chancellors and Presidents of Germany (since 1949)",
                 "extra": {
@@ -959,6 +1025,9 @@
             {
                 "version": "2.2.1.0",
                 "time": "2024-12-22",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "hartenthaler/german-wars-battles-worldwide",
                 "description": "Historical facts (in German) - Wars and Battles Worldwide (since 900)",
                 "extra": {
@@ -986,6 +1055,9 @@
             {
                 "version": "2.2.1.0",
                 "time": "2024-12-28",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "hartenthaler/gramps-historical-facts",
                 "description": "Historical facts (in several languages) - provided by Gramps",
                 "extra": {
@@ -1013,6 +1085,9 @@
             {
                 "version": "2.2.6.5",
                 "time": "2026-07-31",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "hartenthaler/hh-change-log",
                 "description": "A tab showing recent GEDCOM data changes for an individual.",
                 "extra": {
@@ -1039,6 +1114,9 @@
             {
                 "version": "2.2.6.2",
                 "time": "2026-07-11",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "hartenthaler/hh-family-trees-list",
                 "description": "List of family trees on this website",
                 "extra": {
@@ -1066,6 +1144,9 @@
             {
                 "version": "2.2.6.1",
                 "time": "2026-07-08",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "hartenthaler/hh-unlinked-individual",
                 "description": "webtrees custom module to add an unlinked individual to a tree.",
                 "extra": {
@@ -1108,6 +1189,9 @@
             {
                 "version": "2.2.6.14",
                 "time": "2026-07-13",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "hartenthaler/hh_extended_family",
                 "description": "A tab showing the extended family of an individual.",
                 "extra": {
@@ -1136,7 +1220,7 @@
                 "version": "2.2.6.8",
                 "time": "2026-08-30",
                 "conflict": {
-                    "fisharebest/webtrees": "<2.3"
+                    "fisharebest/webtrees": ">=2.3.0"
                 },
                 "name": "hartenthaler/hh-external-places",
                 "description": "A webtrees module for read-only information from Wikidata, FactGrid and GOV.",
@@ -1178,6 +1262,9 @@
             {
                 "version": "2.2.6.9",
                 "time": "2026-07-14",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "hartenthaler/hh_legal_notice",
                 "description": "Legal notice as a footer element for this site.",
                 "extra": {
@@ -1205,6 +1292,9 @@
             {
                 "version": "2.2.6.7",
                 "time": "2026-07-06",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "hartenthaler/hh_occupation_standardizer",
                 "description": "Helps standardize historical occupation entries in genealogical sources.",
                 "extra": {
@@ -1232,6 +1322,9 @@
             {
                 "version": "2.2.6.2",
                 "time": "2026-07-27",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "hartenthaler/hh_privacy_assistant",
                 "description": "Monitors privacy and security tasks for this webtrees site.",
                 "extra": {
@@ -1286,6 +1379,9 @@
             {
                 "version": "2.2.5.1",
                 "time": "2026-03-28",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "huhwt/huhwt-cce",
                 "description": "Add records from your family tree to the clippings cart and execute an action on them.",
                 "extra": {
@@ -1314,6 +1410,9 @@
             {
                 "version": "2.2.5.0",
                 "time": "2026-03-26",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "huhwt/huhwt-fta",
                 "description": "A treeview-diagram, showing the ancestors and descendants of an individual.",
                 "extra": {
@@ -1341,6 +1440,9 @@
             {
                 "version": "2.4.1.0",
                 "time": "2026-03-03",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "huhwt/huhwt-mtv",
                 "description": "A treeview-diagram, showing the ancestors and descendants of an individual.",
                 "extra": {
@@ -1368,6 +1470,9 @@
             {
                 "version": "2.4.1.1",
                 "time": "2025-10-31",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "huhwt/huhwt-tsm",
                 "description": "View and manage Tags for better structuring your Family Tree",
                 "extra": {
@@ -1395,6 +1500,9 @@
             {
                 "version": "2.4.1.1",
                 "time": "2025-12-17",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "huhwt/huhwt-wtlin",
                 "description": "Download Gedcom information to client-side for postprocessing in LINEAGE.",
                 "extra": {
@@ -1422,6 +1530,9 @@
             {
                 "version": "2.4.1.1",
                 "time": "2025-12-17",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "huhwt/huhwt-wttam",
                 "description": "Download Gedcom information to client-side for postprocessing in TAM.",
                 "extra": {
@@ -1449,6 +1560,9 @@
             {
                 "version": "2.4.1.1",
                 "time": "2026-03-03",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "huhwt/huhwt-xtv",
                 "description": "An interactive tree, showing all the ancestors and descendants of an individual.",
                 "extra": {
@@ -1475,6 +1589,9 @@
         "jbh4x82/webtrees_api": [
             {
                 "version": "1.0.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "jbh4x82/webtrees_api",
                 "description": "Token-gated JSON API for managing users and individuals.",
                 "extra": {
@@ -1870,6 +1987,9 @@
             {
                 "version": "2.2.6-v.2",
                 "time": "2026-06-14",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "jon48/webtrees-theme-rural",
                 "description": "Rural theme for webtrees",
                 "extra": {
@@ -1938,6 +2058,9 @@
             {
                 "version": "2.1.4",
                 "time": "2026-08-31",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "jpretired/jp-main-menu-manual",
                 "description": "Add an extra item to the main menu as a link to a webtrees manual.",
                 "extra": {
@@ -1994,6 +2117,9 @@
             {
                 "version": "0.5.0-beta",
                 "time": "2026-06-28",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "jrmine/webtrees-media-badge",
                 "description": "Zeigt konfigurierbare Badges aus Medien-Notizen neben dem Medientitel an.",
                 "extra": {
@@ -2021,6 +2147,9 @@
             {
                 "version": "2.4.1",
                 "time": "2024-12-08",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "justcarmen/webtrees-fancy-imagebar",
                 "description": "An imagebar with small images between header and content.",
                 "extra": {
@@ -2047,6 +2176,9 @@
             {
                 "version": "2.6.1",
                 "time": "2026-08-13",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "justcarmen/jc-fancy-research-links",
                 "description": "A sidebar module for webtrees that provides shortcuts to popular research websites, using the individual data as a search reference.",
                 "extra": {
@@ -2086,6 +2218,9 @@
             {
                 "version": "2.2.0",
                 "time": "2026-06-03",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "justcarmen/jc-fancy-treeview",
                 "description": "webtrees module to display a fancy treeview of the genealogy in a narrative way",
                 "extra": {
@@ -2122,6 +2257,9 @@
             {
                 "version": "1.2",
                 "time": "2024-12-08",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "justcarmen/webtrees-simple-footer",
                 "description": "Add an extra footer and page.",
                 "extra": {
@@ -2174,6 +2312,9 @@
             {
                 "version": "1.4",
                 "time": "2024-02-17",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "justcarmen/webtrees-simple-menu",
                 "description": "Add an extra mainmenu item and page.",
                 "extra": {
@@ -2200,6 +2341,9 @@
             {
                 "version": "2.4.0",
                 "time": "2025-08-03",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "justcarmen/webtrees-theme-justlight",
                 "description": "justlight theme for webtrees",
                 "extra": {
@@ -2242,6 +2386,9 @@
             {
                 "version": "2.6.4",
                 "time": "2026-06-06",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "magicsunday/webtrees-descendants-chart",
                 "description": "SVG descendants chart module for the webtrees genealogy application \u2014 interactive D3.js tree visualization with spouse display and up to 25 generations.",
                 "extra": {
@@ -2395,6 +2542,9 @@
             {
                 "version": "3.7.1",
                 "time": "2026-07-08",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "magicsunday/webtrees-fan-chart",
                 "description": "SVG ancestor fan chart module for the webtrees genealogy application \u2014 interactive D3.js visualization with zoom, export and up to 10 generations.",
                 "extra": {
@@ -2544,6 +2694,9 @@
             {
                 "version": "2.7.4",
                 "time": "2026-06-06",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "magicsunday/webtrees-pedigree-chart",
                 "description": "SVG pedigree chart module for the webtrees genealogy application \u2014 interactive D3.js tree visualization with multiple layouts and up to 25 generations.",
                 "extra": {
@@ -2697,6 +2850,9 @@
             {
                 "version": "1.8.4",
                 "time": "2026-07-06",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "magicsunday/webtrees-statistics",
                 "description": "SVG statistics dashboard module for the webtrees genealogy application \u2014 six themed tabs of interactive D3.js charts (donut, bar, sankey, population pyramid, world map and more).",
                 "extra": {
@@ -2847,6 +3003,9 @@
             {
                 "version": "1.0.0",
                 "time": "2026-09-07",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "kaleel/k-theme",
                 "description": "K-Theme module for webtrees 2.x",
                 "extra": {
@@ -2883,6 +3042,9 @@
             {
                 "version": "1.0.06",
                 "time": "2026-06-11",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "miqrogroove/family-tree-home",
                 "description": "This module changes the front page for signed-in users. After a sign in from the front page, users will go back to the Family Tree instead of redirecting to My Page.",
                 "extra": {
@@ -2910,6 +3072,9 @@
             {
                 "version": "2.2.7",
                 "time": "2026-02-14",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "neriderc/gvexport",
                 "description": "Family tree diagram module for webtrees",
                 "extra": {
@@ -2965,6 +3130,9 @@
             {
                 "version": "2.2.0",
                 "time": "2025-01-27",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "pewu/topola-webtrees",
                 "description": "Opens the Topola Genealogy Viewer interactive familty tree.",
                 "extra": {
@@ -2991,6 +3159,9 @@
             {
                 "version": "2.2.6.0",
                 "time": "2026-08-15",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "photon-flip/watermark-module",
                 "description": "Choose the watermark image and its position on media images.",
                 "extra": {
@@ -3018,6 +3189,9 @@
             {
                 "version": "2.2.2",
                 "time": "2026-06-10",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "photon-flip/webtrees-html-block-advanced",
                 "description": "An advanced HTML Block",
                 "extra": {
@@ -3072,6 +3246,9 @@
             {
                 "version": "1.1.0-beta.2",
                 "time": "2026-07-25",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "pottsnet/potts-family-books",
                 "description": "Display family history books as HTML pages inside webtrees.",
                 "extra": {
@@ -3099,6 +3276,9 @@
             {
                 "version": "1.0.0-rc.2",
                 "time": "2026-07-28",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "pottsnet/potts-help-centre",
                 "description": "An inclusive webtrees help centre for visitors and members, with searchable, contextual and module-aware guidance.",
                 "extra": {
@@ -3126,6 +3306,9 @@
             {
                 "version": "1.0.0",
                 "time": "2026-07-09",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "pottsnet/potts-hero-slideshow",
                 "description": "A standalone, theme-aware homepage hero banner with a family photo slideshow.",
                 "extra": {
@@ -3153,6 +3336,9 @@
             {
                 "version": "1.1.0",
                 "time": "2026-07-04",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "pottsnet/potts-historical-facts",
                 "description": "Displays historical facts from CSV files using visitor-selected historical fact collections available from every page.",
                 "extra": {
@@ -3180,6 +3366,9 @@
             {
                 "version": "1.0.0-rc.6",
                 "time": "2026-07-18",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "pottsnet/potts-life-story-engine",
                 "description": "Creates an intelligent, illustrated biography from the genealogy records visible to each visitor.",
                 "extra": {
@@ -3207,6 +3396,9 @@
             {
                 "version": "1.3.0",
                 "time": "2026-09-01",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "pottsnet/potts-modern-theme",
                 "description": "A modern, responsive heritage theme for webtrees.",
                 "extra": {
@@ -3234,6 +3426,9 @@
             {
                 "version": "0.8.3",
                 "time": "2026-07-06",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "pottsnet/potts-narrative-ancestor-book",
                 "description": "A webtrees custom module that creates a personalised narrative ancestor book.",
                 "extra": {
@@ -3294,6 +3489,9 @@
             {
                 "version": "0.6.20",
                 "time": "2026-07-06",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "pottsnet/potts-seo-helper",
                 "description": "Adds genealogy-focused SEO metadata, homepage support, public landing pages, robots text and sitemap endpoints.",
                 "extra": {
@@ -3348,6 +3546,9 @@
             {
                 "version": "1.0.1",
                 "time": "2026-07-06",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "pottsnet/potts_on_this_day_email",
                 "description": "Send personalised On This Day emails to registered users who opt in, using webtrees email delivery and each subscriber\u2019s privacy permissions.",
                 "extra": {
@@ -3375,6 +3576,9 @@
             {
                 "version": "2.0",
                 "time": "2024-12-04",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "squatteur/webtrees-branch-statistics",
                 "description": "Statistics of an individual\u2019s ancestors.",
                 "extra": {
@@ -3402,6 +3606,9 @@
             {
                 "version": "0.9.0",
                 "time": "2026-04-06",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "szporwolik/webtrees-theme-noctis",
                 "description": "A modern dark theme for webtrees.",
                 "extra": {
@@ -3430,6 +3637,9 @@
             {
                 "version": "0.7.3",
                 "time": "2026-06-08",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "szporwolik/webtrees-tree-explorer",
                 "description": "An interactive tree explorer showing ancestors and descendants.",
                 "extra": {
@@ -3457,6 +3667,9 @@
             {
                 "version": "1.12.0",
                 "time": "2026-08-28",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "thobgg/ortsregister",
                 "description": "webtrees custom module \u2013 Ortsregister (visuelle Landing-Page, Medien-Verkn\u00fcpfung)",
                 "extra": {
@@ -3513,6 +3726,9 @@
             {
                 "version": "1.5.0",
                 "time": "2026-08-28",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "thobgg/sammlungen",
                 "description": "webtrees custom module \u2013 Sammlungen (Foto-Galerien mit EXIF und Lightbox)",
                 "extra": {
@@ -3574,6 +3790,9 @@
             {
                 "version": "1.2.0",
                 "time": "2026-08-02",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "thobgg/webtrees-theme-farbwelten",
                 "description": "One theme, four palettes: light, dark, sepia and bordeaux \u2013 switchable from the header menu.",
                 "extra": {
@@ -3624,6 +3843,9 @@
             {
                 "version": "0.3.3",
                 "time": "2025-11-30",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "tywed/news-menu",
                 "description": "Add an extra item to the main menu as a link to a webtrees news.",
                 "extra": {
@@ -3651,6 +3873,9 @@
             {
                 "version": "0.2.2",
                 "time": "2026-06-10",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "tywed/telegram",
                 "description": "Sends Telegram notifications about family events, such as birthdays and anniversaries.",
                 "extra": {
@@ -3678,6 +3903,9 @@
             {
                 "version": "2.7.3",
                 "time": "2024-12-03",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "uksusoff/webtrees-faces",
                 "description": "This module provide easy way to mark people on group photo.",
                 "extra": {
@@ -3776,6 +4004,9 @@
             {
                 "version": "0.0.2",
                 "time": "2024-12-03",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "uksusoff/webtrees-photos",
                 "description": "A list of photos that have been uploaded recently.",
                 "extra": {
@@ -3825,6 +4056,9 @@
             {
                 "version": "2.1.2",
                 "time": "2024-12-03",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "uksusoff/webtrees-reminder",
                 "description": "Daily e-mail & Slack digest with list of the anniversaries.",
                 "extra": {
@@ -3922,6 +4156,9 @@
         "vesta-webtrees-2-custom-modules/vesta_classic_laf": [
             {
                 "version": "2.2.6.1.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "vesta-webtrees-2-custom-modules/vesta_classic_laf",
                 "description": "A module adjusting all themes and other features, providing a look & feel closer to the webtrees 1.x version.",
                 "extra": {
@@ -3947,6 +4184,9 @@
         "vesta-webtrees-2-custom-modules/vesta_clippings_cart": [
             {
                 "version": "2.2.6.1.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "vesta-webtrees-2-custom-modules/vesta_clippings_cart",
                 "description": "Select records from your family tree and save them as a GEDCOM file. Replacement for the original 'Clippings Cart' module.",
                 "extra": {
@@ -3972,6 +4212,9 @@
         "vesta-webtrees-2-custom-modules/vesta_common": [
             {
                 "version": "2.2.6.1.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "vesta-webtrees-2-custom-modules/vesta_common",
                 "description": "A module providing common classes and translations for other 'Vesta' custom modules. Make sure to enable this module if any other Vesta module is enabled.",
                 "extra": {
@@ -3997,6 +4240,9 @@
         "vesta-webtrees-2-custom-modules/vesta_extended_relationships": [
             {
                 "version": "2.2.6.1.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "vesta-webtrees-2-custom-modules/vesta_extended_relationships",
                 "description": "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module. Also includes an extended 'Who is online' block.",
                 "extra": {
@@ -4022,6 +4268,9 @@
         "vesta-webtrees-2-custom-modules/vesta_gov4webtrees": [
             {
                 "version": "2.2.6.1.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "vesta-webtrees-2-custom-modules/vesta_gov4webtrees",
                 "description": "A module integrating GOV (historic gazetteer) data.",
                 "extra": {
@@ -4047,6 +4296,9 @@
         "vesta-webtrees-2-custom-modules/vesta_location_data": [
             {
                 "version": "2.2.6.1.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "vesta-webtrees-2-custom-modules/vesta_location_data",
                 "description": "A module providing (non-GEDCOM-based) webtrees location data to other modules.",
                 "extra": {
@@ -4072,6 +4324,9 @@
         "vesta-webtrees-2-custom-modules/vesta_personal_facts": [
             {
                 "version": "2.2.6.1.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "vesta-webtrees-2-custom-modules/vesta_personal_facts",
                 "description": "A tab showing the facts and events of an individual. Replacement for the original 'Facts and events' module.  Also extends facts and events on the family page. Also provides additional map links.",
                 "extra": {
@@ -4097,6 +4352,9 @@
         "vesta-webtrees-2-custom-modules/vesta_places_and_pedigree_map": [
             {
                 "version": "2.2.6.1.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "vesta-webtrees-2-custom-modules/vesta_places_and_pedigree_map",
                 "description": "The Place hierarchy. Also show the location of events and the birthplace of ancestors on a map. Replacement for the original 'Place hierarchy', 'Places' and  'Pedigree map' modules.",
                 "extra": {
@@ -4122,6 +4380,9 @@
         "vesta-webtrees-2-custom-modules/vesta_relatives": [
             {
                 "version": "2.2.6.1.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "vesta-webtrees-2-custom-modules/vesta_relatives",
                 "description": "A tab showing the close relatives of an individual. Replacement for the original 'Families' module.",
                 "extra": {
@@ -4147,6 +4408,9 @@
         "vesta-webtrees-2-custom-modules/vesta_research_suggestions": [
             {
                 "version": "2.2.6.1.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "vesta-webtrees-2-custom-modules/vesta_research_suggestions",
                 "description": "A module providing suggestions for additional research, based on available sources.",
                 "extra": {
@@ -4172,6 +4436,9 @@
         "vesta-webtrees-2-custom-modules/vesta_shared_places": [
             {
                 "version": "2.2.6.1.0",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "vesta-webtrees-2-custom-modules/vesta_shared_places",
                 "description": "A module providing support for shared places.",
                 "extra": {
@@ -4198,6 +4465,9 @@
             {
                 "version": "1.6.9.6",
                 "time": "2026-08-27",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "wolfrum/datencheck",
                 "description": "A webtrees plugin to check for data consistency and logical errors.",
                 "extra": {
@@ -4235,6 +4505,9 @@
             {
                 "version": "2.1.1",
                 "time": "2022-05-27",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "vytux-com/vytux_cousins",
                 "description": "A tab showing cousins of an individual.",
                 "extra": {
