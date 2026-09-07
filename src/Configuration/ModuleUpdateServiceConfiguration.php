@@ -309,6 +309,9 @@ class ModuleUpdateServiceConfiguration
 
     private const MODULES_TO_CLARIFY = [
 
+        '_source-worklist_',
+        //No download link available
+
         '_new_reports_'                      =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'sevtor/modules']],
         //No module, but substitution of webtrees core code
 
