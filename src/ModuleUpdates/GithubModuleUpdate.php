@@ -227,8 +227,21 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
         $module = $this->getModule();
 
+        // If the installed module is available, try to get latest version from the module
+        if ($module !== null && !$fetch_latest && !$this->get_latest_version_from_github && $below_tag === '') {
+
+            $latest_version = $module->customModuleLatestVersion();
+            $cached_version = $this->fetchReleasesInfoCached(false)['tag'];
+
+            // We take the cached version if it is higher
+            if (CustomModuleManager::versionCompare($module->name(), $cached_version, $latest_version) > 0) {
+                $latest_version = $cached_version;
+            }
+
+            return $latest_version;
+        }
         // For certain modules, which do not provide a release, try to get the latest version by update URL
-        if ($module !== null && $this->no_release) {
+        elseif ($module !== null && $this->no_release) {
 
             $latest_version_by_update_url = self::getLatestVersionByUpdateURL($module);
 
@@ -240,19 +253,6 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             else {
                 return $highest_compatible_version;
             }
-        }
-        // If the installed module is available, try to get latest version from the module
-        elseif ($module !== null && !$fetch_latest && !$this->get_latest_version_from_github && $below_tag === '') {
-
-            $latest_version = $module->customModuleLatestVersion();
-            $cached_version = $this->fetchReleasesInfoCached(false)['tag'];
-
-            // We take the cached version if it is higher
-            if (CustomModuleManager::versionCompare($module->name(), $cached_version, $latest_version) > 0) {
-                $latest_version = $cached_version;
-            }
-
-            return $latest_version;
         }
         // Otherwise, try to get the latest (cached) version from Github; also considering the lowest incompatible version, if defined
         // This might also populates the download count cache as a side effect

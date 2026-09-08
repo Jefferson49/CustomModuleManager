@@ -272,7 +272,7 @@ $order = [[$sort_column, 'desc']];
                     <?php endif ?>
                     <?php if ($module !== null) : ?>
                         <?php $current_version = $current_version !== '' ? $current_version : I18N::translate('not available') ?>
-                        <?php $latest_version = $latest_version !== '' ? $latest_version : I18N::translate('not available') ?>
+                        <?php $latest_version = !in_array($latest_version, [CustomModuleManager::VERSION_NOT_AVAILABLE, '']) ? $latest_version : I18N::translate('not available') ?>
                     <?php endif ?>
                     <?php if (CustomModuleManager::versionCompare($module_name, $latest_version, $current_version) > 0) : ?>
                         <?php $later_version_available = true ?>
@@ -418,7 +418,7 @@ $order = [[$sort_column, 'desc']];
                         <?php $action_label = '' ?>
                         <?php if (!$update_service_available) : ?>
                             <?php $action_sort = '5' ?>
-                        <?php elseif ($highest_compatible_version === '') : ?>
+                        <?php elseif ($module === null && $highest_compatible_version === '') : ?>
                             <?php $action_sort = '4' ?>
                         <?php elseif ($update_service_available && $module_update_service->updateManually()) : ?>
                             <?php $action_sort = '2' ?>
@@ -442,7 +442,7 @@ $order = [[$sort_column, 'desc']];
                         <td data-sort="<?= $action_sort ?>">
                             <?php if (!$update_service_available) : ?>
                                 <?= I18N::translate('No update service available') ?>
-                            <?php elseif ($highest_compatible_version === '') : ?>
+                            <?php elseif ($module === null && $highest_compatible_version === '') : ?>
                                 <?= I18N::translate('No compatible version available') ?>
                             <?php elseif ($update_service_available && $module_update_service->updateManually()) : ?>
                                 <?= I18N::translate('Manual updating/merging required') ?>

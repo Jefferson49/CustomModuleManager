@@ -422,10 +422,6 @@ class ModuleUpdateServiceConfiguration
 
                 if (isset($version['version'])) {
 
-                    if ($version['version'] === CustomModuleManager::VERSION_NOT_AVAILABLE) {
-                        $version['version'] = '';
-                    }
-
                     if (isset($version['conflict']) && isset($version['conflict']['fisharebest/webtrees'])) {
 
                         $conflicts[$version['version']] = $version['conflict']['fisharebest/webtrees'];
