@@ -59,14 +59,12 @@ class ReleaseNotesModal implements RequestHandlerInterface
     {
         $module_name    = Validator::queryParams($request)->string('module_name', '');
         $module_title   = Validator::queryParams($request)->string('module_title', '');
-        $version         = Validator::queryParams($request)->string('version', '');
-
-        $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
+        $version        = Validator::queryParams($request)->string('version', '');
+        $ignore_version = Validator::queryParams($request)->string('ignore_version', '');
 
         /** @var GithubModuleUpdate $module_update_service */
         $module_update_service = CustomModuleUpdateFactory::make($module_name);
 
-        $short_module_name = CustomModuleManager::getShortModuleName($module_name);
         $release_note = $module_update_service->getLatestReleaseNotes();
 
         if ($release_note === '') {
@@ -83,7 +81,7 @@ class ReleaseNotesModal implements RequestHandlerInterface
                 'module_name'    => $module_name,
                 'module_title'   => $module_title,
                 'version'        => $version,
-                'ignore_version' => $custom_module_manager->getPreference($short_module_name . CustomModuleManager::PREF_IGNORE_VERSION, ''),
+                'ignore_version' => $ignore_version,
                 'release_notes'  => $html,
                 'release_url'    => $module_update_service->getLatestReleaseURL(),
         ]);

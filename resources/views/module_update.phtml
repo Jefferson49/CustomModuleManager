@@ -366,7 +366,7 @@ $order = [[$sort_column, 'desc']];
                                 <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ReleaseNotesModal::class, [
                                         'module_name'    => $module_name,
                                         'module_title'   => $module_title,
-                                        'latest_version' => $latest_version,
+                                        'version'        => $latest_version,
                                         'ignore_version' => $ignore_version,
                                     ])) ?>" type="submit" class="btn btn-<?= $latest_version === $ignore_version ? 'secondary' : 'primary' ?>">
                                     <?= e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>
