@@ -28,7 +28,7 @@
     "require": {
         "php": ">=8.3",
         "composer/semver": ">=3.4.4",
-        "jefferson49/webtrees-common": ">=1.2.59"
+        "jefferson49/webtrees-common": ">=1.2.60"
     },
     "conflict": {
         "fisharebest/webtrees": "<2.2"

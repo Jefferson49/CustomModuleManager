@@ -447,9 +447,6 @@ class ModuleUpdateServiceConfiguration
             $module_name = $module_config['module_name'] ?? '';
             unset($module_config['module_name']);
 
-            //Sort conflicts by version in ascending order
-            ksort($conflicts);
-
             $module_config['params']['conflicts'] = $conflicts;
 
             $config[$module_name] = $module_config;

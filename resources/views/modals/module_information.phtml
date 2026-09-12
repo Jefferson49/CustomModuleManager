@@ -26,7 +26,6 @@ use function view;
  * @var bool                        $is_theme
  * @var string                      $category
  * @var string                      $current_version
- * @var string                      $latest_version
  * @var string                      $installation_folder
  * @var string                      $documentation_url
  */
@@ -108,12 +107,6 @@ use function view;
             <?= view('icons/module') ?>
             <?= I18N::translate('Current Version') . ': ' ?>
             <?=  e(CustomModuleManager::normalizeVersion($module_name, $current_version)) ?>
-            <br>
-        <?php endif ?>
-        <?php if ($latest_version !== '') : ?>
-            <?= view('icons/module') ?>
-            <?= I18N::translate('Latest compatible version') . ': ' ?>
-            <?=  e(CustomModuleManager::normalizeVersion($module_name, $latest_version)) ?>
             <br>
         <?php endif ?>
         <?php if ($module_update_service_name === VestaModuleUpdate::NAME) : ?>

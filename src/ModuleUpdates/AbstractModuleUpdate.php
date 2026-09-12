@@ -496,13 +496,13 @@ abstract class AbstractModuleUpdate
     }
 
     /**
-     * Get the lowest version of the module, which is incompatible with the given webtrees version; i.e. has conflicts
+     * Get the earliest version of the module, which is incompatible with the given webtrees version; i.e. has conflicts
      *
      * @param string $webtrees_version The version of webtrees, for which the module shall be compatible
      *
-     * @return string  The lowest incompatible version of the module with conflicts; empty if not found
+     * @return string  The earliest incompatible version of the module with conflicts; empty if not found
      */
-    public function getLowestIncompatibleVersion(string $webtrees_version = Webtrees::VERSION): string {
+    public function getEarliestIncompatibleVersion(string $webtrees_version = Webtrees::VERSION): string {
 
         foreach ($this->conflicts as $version => $conflict_rule) {
 
@@ -514,7 +514,7 @@ abstract class AbstractModuleUpdate
                 //If the webtrees version satisfies the conflict rule, then the module version is incompatible
                 if (CustomModuleManager::webtreesVersionSatifiesConflictRule($webtrees_version, $conflict_rule)) {
 
-                    //The list of conflicts is sorted by version, so the first match is the lowest incompatible version
+                    //The list of conflicts is sorted by release time, so the first match is the earliest incompatible version
                     return $version;
                 }
             }
@@ -528,33 +528,30 @@ abstract class AbstractModuleUpdate
     }
 
     /**
-     * Get the highest version of the module, which is compatible with the given webtrees version; i.e. has no conflicts
+     * Get the latest version of the module, which is compatible with the given webtrees version; i.e. has no conflicts
      *
      * @param string $webtrees_version The version of webtrees, for which the module shall be compatible
      *
-     * @return string  The highest compatible version of the module with no conflicts; empty if not found
+     * @return string  The latest compatible version of the module with no conflicts; empty if not found
      */
-    public function getHighestCompatibleVersion(string $webtrees_version = Webtrees::VERSION): string {
+    public function getLatestCompatibleVersion(string $webtrees_version = Webtrees::VERSION): string {
 
-        $highest_version = '';
+        $latest_version = '';
 
+        //The list of conflicts is sorted by release time, so we iterate and take the last compatible version in the list
         foreach ($this->conflicts as $version => $conflict_rule) {
 
             //If there is no conflict rule, then the module version is compatible with all webtrees versions
             if ($conflict_rule === '') {
 
-                if ($highest_version === '' OR Comparator::greaterThan($version, $highest_version)) {
-                    $highest_version = $version;
-                }
+                $latest_version = $version;
             }
 
             try {
                 //If the webtrees version does not satisfy the conflict rule, then the module version is compatible
                 if (!CustomModuleManager::webtreesVersionSatifiesConflictRule($webtrees_version, $conflict_rule)) {
 
-                    if ($highest_version === '' OR Comparator::greaterThan($version, $highest_version)) {
-                        $highest_version = $version;
-                    }
+                    $latest_version = $version;
                 }
             }
             catch (InvalidArgumentException $ex) {
@@ -563,17 +560,17 @@ abstract class AbstractModuleUpdate
             }
         }
 
-        return $highest_version;
+        return $latest_version;
     }
 
     /**
-     * Get the highest version of the module, which is compatible with the given webtrees version; i.e. has no conflicts
+     * Get the latest version of the module in the custom module list
      *
      * @param string $webtrees_version The version of webtrees, for which the module shall be compatible
      *
-     * @return string  The highest version in the custom module list
+     * @return string  The latest version in the custom module list
      */
-    public function getHighestVersionInCustomModuleList(string $webtrees_version = Webtrees::VERSION): string {
+    public function getLatestVersionInCustomModuleList(string $webtrees_version = Webtrees::VERSION): string {
 
         return array_key_last($this->conflicts) ?? '';
     }

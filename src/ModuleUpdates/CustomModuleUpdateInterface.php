@@ -210,29 +210,29 @@ interface CustomModuleUpdateInterface
     public function getPackageName(): string;
 
     /**
-     * Get the lowest version of the module, which is incompatible with the given webtrees version; i.e. has conflicts
+     * Get the earliest version of the module, which is incompatible with the given webtrees version; i.e. has conflicts
      *
      * @param string $webtrees_version The version of webtrees, for which the module shall be compatible
      *
-     * @return string  The lowest incompatible version of the module with conflicts; empty if not found
+     * @return string  The earliest incompatible version of the module with conflicts; empty if not found
      */
-    public function getLowestIncompatibleVersion(string $webtrees_version = Webtrees::VERSION): string;
+    public function getEarliestIncompatibleVersion(string $webtrees_version = Webtrees::VERSION): string;
 
     /**
-     * Get the highest version of the module, which is compatible with the given webtrees version; i.e. has no conflicts
+     * Get the latest version of the module, which is compatible with the given webtrees version; i.e. has no conflicts
      *
      * @param string $webtrees_version The version of webtrees, for which the module shall be compatible
      *
-     * @return string  The highest compatible version of the module with no conflicts; empty if not found
+     * @return string  The latest compatible version of the module with no conflicts; empty if not found
      */
-    public function getHighestCompatibleVersion(string $webtrees_version = Webtrees::VERSION): string;
+    public function getLatestCompatibleVersion(string $webtrees_version = Webtrees::VERSION): string;
 
     /**
-     * Get the highest version of the module, which is compatible with the given webtrees version; i.e. has no conflicts
+     * Get the latest version of the module in the custom module list
      *
      * @param string $webtrees_version The version of webtrees, for which the module shall be compatible
      *
-     * @return string  The highest version in the custom module list
+     * @return string  The latest version in the custom module list
      */
-    public function getHighestVersionInCustomModuleList(string $webtrees_version = Webtrees::VERSION): string;
+    public function getLatestVersionInCustomModuleList(string $webtrees_version = Webtrees::VERSION): string;
 }

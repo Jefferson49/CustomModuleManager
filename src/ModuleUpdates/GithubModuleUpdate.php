@@ -214,21 +214,10 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function customModuleLatestVersion(bool $fetch_latest = false): string
     {
-        $lowest_incompatible_version = $this->getLowestIncompatibleVersion();
-        $highest_compatible_version  = $this->getHighestCompatibleVersion();
-
-        // The latest or some of the latest versions of the module are not compatible with the current webtrees version
-        if ($highest_compatible_version !== '' && $lowest_incompatible_version !== '') {
-            $below_tag = $this->tag_prefix . $lowest_incompatible_version;
-        }
-        else {
-            $below_tag = '';
-        }
-
         $module = $this->getModule();
 
         // If the installed module is available, try to get latest version from the module
-        if ($module !== null && !$fetch_latest && !$this->get_latest_version_from_github && $below_tag === '') {
+        if ($module !== null && !$fetch_latest && !$this->get_latest_version_from_github) {
 
             $latest_version = $module->customModuleLatestVersion();
             $cached_version = $this->fetchReleasesInfoCached(false)['tag'];
@@ -243,22 +232,13 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         // For certain modules, which do not provide a release, try to get the latest version by update URL
         elseif ($module !== null && $this->no_release) {
 
-            $latest_version_by_update_url = self::getLatestVersionByUpdateURL($module);
-
-            //If we have a latest version by update URL, and it is lower than the lowest incompatible version, then we return it
-            if ($latest_version_by_update_url !== '' && $latest_version_by_update_url < $lowest_incompatible_version) {
-                return $latest_version_by_update_url;
-            }
-            //If we have not received any reasonable version by update URL, then we return the highest compatible version from the custom module list
-            else {
-                return $highest_compatible_version;
-            }
+            return self::getLatestVersionByUpdateURL($module);
         }
         // Otherwise, try to get the latest (cached) version from Github; also considering the lowest incompatible version, if defined
         // This might also populates the download count cache as a side effect
         elseif ($this->github_repo !== '') {
 
-            $release_info = $this->fetchReleasesInfoCached($fetch_latest, $below_tag);
+            $release_info = $this->fetchReleasesInfoCached($fetch_latest);
             return $release_info['tag'];
         }
 
@@ -310,7 +290,7 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
         }
 
         // Only read from cache — never trigger an API call automatically
-        return $this->fetchReleasesInfoCached(false, $this->getLowestIncompatibleVersion())['max_downloads'];
+        return $this->fetchReleasesInfoCached(false)['max_downloads'];
     }
 
     /**

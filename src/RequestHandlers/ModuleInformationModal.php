@@ -66,7 +66,6 @@ class ModuleInformationModal implements RequestHandlerInterface
         $is_theme                   = Validator::queryParams($request)->boolean('is_theme', false);
         $category                   = Validator::queryParams($request)->string('category', '');
         $current_version            = Validator::queryParams($request)->string('current_version', '');
-        $latest_version             = Validator::queryParams($request)->string('latest_version', '');
         $installation_folder        = Validator::queryParams($request)->string('installation_folder', '');
         $documentation_url          = Validator::queryParams($request)->string('documentation_url', '');
 
@@ -90,7 +89,6 @@ class ModuleInformationModal implements RequestHandlerInterface
                 'is_theme'                   => $is_theme,
                 'category'                   => $category,
                 'current_version'            => $current_version,
-                'latest_version'             => $latest_version,
                 'installation_folder'        => $installation_folder,
                 'documentation_url'          => $documentation_url,
         ]);

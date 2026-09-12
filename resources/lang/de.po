@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-09-06 17:56+0200\n"
-"PO-Revision-Date: 2026-09-06 17:58+0200\n"
+"POT-Creation-Date: 2026-09-12 06:12+0200\n"
+"PO-Revision-Date: 2026-09-12 06:12+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -71,7 +71,7 @@ msgstr ""
 "Konfigurationsparameter \"%s\" fehlt."
 
 #: src/ModuleUpdates/GithubModuleUpdate.php:179
-#: src/ModuleUpdates/GithubModuleUpdate.php:351
+#: src/ModuleUpdates/GithubModuleUpdate.php:331
 #, php-format
 msgid "Communication error with %s"
 msgstr "Kommunikationsfehler mit %s"
@@ -80,7 +80,7 @@ msgstr "Kommunikationsfehler mit %s"
 msgid "Cannot retrieve download URL."
 msgstr "Die Download-URL kann nicht abgerufen werden."
 
-#: src/ModuleUpdates/GithubModuleUpdate.php:283
+#: src/ModuleUpdates/GithubModuleUpdate.php:263
 msgid ""
 "Could not retrieve release notes due to a communication error with GitHub."
 msgstr ""
@@ -95,7 +95,7 @@ msgstr "Spalten und Tabellen-Layout konfigurieren"
 msgid "Custom Module Updates"
 msgstr "Aktualisierung von Erweiterungsmodulen"
 
-#: src/RequestHandlers/ModuleInformationModal.php:80
+#: src/RequestHandlers/ModuleInformationModal.php:79
 msgid "Module Information"
 msgstr "Modul-Informationen"
 
@@ -256,11 +256,11 @@ msgstr "Das Modul wurde in %s Sekunden erfolgreich gelöscht."
 msgid "Error during deleting the module."
 msgstr "Fehler beim Löschen des Moduls."
 
-#: src/RequestHandlers/ReleaseNotesModal.php:73
+#: src/RequestHandlers/ReleaseNotesModal.php:71
 msgid "No release notes available"
 msgstr "Keine Versionshinweise verfügbar"
 
-#: src/RequestHandlers/ReleaseNotesModal.php:82
+#: src/RequestHandlers/ReleaseNotesModal.php:80
 msgid "Release notes"
 msgstr "Versionshinweise"
 
@@ -292,13 +292,13 @@ msgstr ""
 "parallelen Ansicht lautet: %s"
 
 #: resources/views/modals/column_configuration.phtml:45
-#: resources/views/module_update.phtml:205
+#: resources/views/module_update.phtml:206
 msgid "Date Added"
 msgstr "Hinzugefügt am"
 
 #: resources/views/modals/column_configuration.phtml:53
-#: resources/views/modals/module_information.phtml:99
-#: resources/views/module_update.phtml:210
+#: resources/views/modals/module_information.phtml:98
+#: resources/views/module_update.phtml:211
 msgid "Update Service"
 msgstr "Aktualisierungs-Dienst"
 
@@ -325,42 +325,38 @@ msgstr "Tabelle mit fixierter Kopfzeile"
 msgid "Responsive table (for small screens)"
 msgstr "Responsive Tabelle (für kleine Bildschirme)"
 
-#: resources/views/modals/module_information.phtml:63
+#: resources/views/modals/module_information.phtml:62
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: resources/views/modals/module_information.phtml:90
+#: resources/views/modals/module_information.phtml:89
 msgid "Disabled"
 msgstr "Deaktiviert"
 
-#: resources/views/modals/module_information.phtml:104
+#: resources/views/modals/module_information.phtml:103
 msgid "Module folder"
 msgstr "Modul-Ordner"
 
-#: resources/views/modals/module_information.phtml:109
-#: resources/views/module_update.phtml:207
+#: resources/views/modals/module_information.phtml:108
+#: resources/views/module_update.phtml:208
 msgid "Current Version"
 msgstr "Aktuelle Version"
 
-#: resources/views/modals/module_information.phtml:115
-msgid "Latest compatible version"
-msgstr "Neueste kompatible Version"
-
-#: resources/views/modals/module_information.phtml:121
+#: resources/views/modals/module_information.phtml:114
 msgid "⚶ Vesta homepage"
 msgstr "⚶ Vesta-Homepage"
 
-#: resources/views/modals/module_information.phtml:130
+#: resources/views/modals/module_information.phtml:123
 msgid "GitHub repository"
 msgstr "GitHub-Repository"
 
-#: resources/views/modals/module_information.phtml:170
+#: resources/views/modals/module_information.phtml:163
 #: resources/views/module_usage.phtml:38
 msgid "Module Usage"
 msgstr "Modul-Verwendung"
 
 #: resources/views/modals/release_notes.phtml:31
-#: resources/views/module_update.phtml:208
+#: resources/views/module_update.phtml:209
 msgid "Latest Version"
 msgstr "Neueste Version"
 
@@ -422,74 +418,80 @@ msgid ""
 "Press the save button to enable/disable modules according to the checkbox in "
 "the \"enabled\" column."
 msgstr ""
-"Drücken Sie den „Speichern“ Button, um Module entsprechend dem "
-"Kontrollkästchen in der Spalte „Aktiviert“ zu aktivieren/deaktivieren."
+"Drücken Sie den \"Speichern\" Button, um Module entsprechend dem "
+"Kontrollkästchen in der Spalte \"Aktiviert\" zu aktivieren/deaktivieren."
 
-#: resources/views/module_update.phtml:191
+#: resources/views/module_update.phtml:192
 msgid "Module Updates"
 msgstr "Aktualisierungen für Module"
 
-#: resources/views/module_update.phtml:200
+#: resources/views/module_update.phtml:201
 msgid "Folder (within modules_v4)"
 msgstr "Ordner (in modules_v4)"
 
-#: resources/views/module_update.phtml:213
+#: resources/views/module_update.phtml:214
 msgid "Down-loads"
 msgstr "Down-loads"
 
-#: resources/views/module_update.phtml:216
+#: resources/views/module_update.phtml:217
 msgid "Install"
 msgstr "Installieren"
 
-#: resources/views/module_update.phtml:226
-#: resources/views/module_update.phtml:433
+#: resources/views/module_update.phtml:227
+#: resources/views/module_update.phtml:458
 msgid "Not installed"
 msgstr "Nicht installiert"
 
-#: resources/views/module_update.phtml:258
-#: resources/views/module_update.phtml:274
+#: resources/views/module_update.phtml:259
 #: resources/views/module_update.phtml:275
+#: resources/views/module_update.phtml:276
 msgid "not available"
 msgstr "nicht verfügbar"
 
-#: resources/views/module_update.phtml:342
-#: resources/views/module_update.phtml:390
+#: resources/views/module_update.phtml:368
+#: resources/views/module_update.phtml:414
 msgid "N/A"
 msgstr "N/A"
 
-#: resources/views/module_update.phtml:428
+#: resources/views/module_update.phtml:384
+#: resources/views/module_update.phtml:455
+#: resources/views/module_update.phtml:464
+msgid "possibly incompatible"
+msgstr "möglicherweise inkompatibel"
+
+#: resources/views/module_update.phtml:452
 msgid "Update all Vesta modules"
 msgstr "Alle Vesta-Module aktualisieren"
 
-#: resources/views/module_update.phtml:430
+#: resources/views/module_update.phtml:454
 msgid "Update module"
 msgstr "Modul aktualisieren"
 
-#: resources/views/module_update.phtml:436
+#: resources/views/module_update.phtml:461
 msgid "Install all Vesta modules"
 msgstr "Alle Vesta-Module installieren"
 
-#: resources/views/module_update.phtml:438
+#: resources/views/module_update.phtml:463
 msgid "Install module"
 msgstr "Modul installieren"
 
-#: resources/views/module_update.phtml:444
+#: resources/views/module_update.phtml:470
 msgid "No update service available"
 msgstr "Kein Aktualisierungsdienst verfügbar"
 
-#: resources/views/module_update.phtml:446
+#: resources/views/module_update.phtml:472
 msgid "No compatible version available"
 msgstr "Keine kompatible Version verfügbar"
 
-#: resources/views/module_update.phtml:448
+#: resources/views/module_update.phtml:474
 msgid "Manual updating/merging required"
 msgstr "Manuelles Aktualisieren/Zusammenführen erforderlich"
 
-#: resources/views/module_update.phtml:471
+#: resources/views/module_update.phtml:497
 msgid "Delete all Vesta modules"
 msgstr "Alle Vesta-Module löschen"
 
-#: resources/views/module_update.phtml:473
+#: resources/views/module_update.phtml:499
 msgid "Delete module"
 msgstr "Modul löschen"
 
@@ -568,6 +570,9 @@ msgid ""
 msgstr ""
 "Die Verwendung eines GitHub-API Tokens wird empfohlen, wenn GitHub-"
 "Kommunikationsfehler auftreten"
+
+#~ msgid "Latest compatible version"
+#~ msgstr "Neueste kompatible Version"
 
 #~ msgid ""
 #~ "If this option is selected, the custom module table is shown with an "
