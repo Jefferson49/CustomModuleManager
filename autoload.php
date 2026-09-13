@@ -2,15 +2,15 @@
 
 /**
  * webtrees: online genealogy
- * Copyright (C) 2025 webtrees development team
+ * Copyright (C) 2026 webtrees development team
  *                    <http://webtrees.net>
  *
  * Fancy Research Links (webtrees custom module):
- * Copyright (C) 2024 Carmen Just
+ * Copyright (C) 2026 Carmen Just
  *                    <https://justcarmen.nl>
  *
  * CustomModuleManager (webtrees custom module):
- * Copyright (C) 2025 Markus Hemprich
+ * Copyright (C) 2026 Markus Hemprich
  *                    <http://www.familienforschung-hemprich.de>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -37,6 +37,9 @@ use Composer\Autoload\ClassLoader;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Local\LocalFilesystemAdapter;
 
+//Autoload vendor libraries
+//Need to be autoloaded before the common code library, because otherwise the prepended library will be removed
+require_once __DIR__ . '/vendor/autoload.php';
 
 //Autoload the latest version of the common code library, which is shared between webtrees custom modules
 //Caution: This autoload needs to be executed before autoloading any other libraries from __DIR__/vendor
@@ -47,14 +50,9 @@ $loader = new ClassLoader(__DIR__);
 $loader->addPsr4('Jefferson49\\Webtrees\\Module\\CustomModuleManager\\', __DIR__ . '/src');
 $loader->register();
 
-//Autoload composer/semver
-require_once __DIR__ . '/vendor/autoload.php';
-
 //Directly include custom module update services, because they shall be detected by "get_declared_classes"
 $file_system = new Filesystem(new LocalFilesystemAdapter(__DIR__));
 $files = $file_system->listContents('/src/ModuleUpdates')->toArray();
 foreach ($files as $file) {
     require_once __DIR__ . '/'. $file->path();
 }
-
-return true;

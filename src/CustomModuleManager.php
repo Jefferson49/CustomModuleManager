@@ -217,7 +217,7 @@ class CustomModuleManager extends AbstractModule implements
 
 
     /**
-     * CustomModuleManager constructor.
+     * Constructor
      */
     public function __construct()
     {
@@ -226,9 +226,11 @@ class CustomModuleManager extends AbstractModule implements
     }
 
     /**
-     * Initialization.
+     * {@inheritDoc}
      *
      * @return void
+     *
+     * @see \Fisharebest\Webtrees\Module\AbstractModule::boot()
      */
     public function boot(): void
     {
