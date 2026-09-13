@@ -31,6 +31,7 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers;
 
+use Composer\Semver\VersionParser;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Validator;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
@@ -38,6 +39,8 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModule
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+
+use Exception;
 
 use function redirect;
 use function route;
@@ -52,6 +55,18 @@ class ColumnConfigurationAction implements RequestHandlerInterface
         $show_column_update_service = Validator::parsedBody($request)->boolean(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, false);
         $show_column_downloads      = Validator::parsedBody($request)->boolean(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, false);
         $table_layout               = Validator::parsedBody($request)->string(CustomModuleManager::PREF_TABLE_LAYOUT, CustomModuleManager::TABLE_LAYOUT_STICKY_HEAD);
+        $webtrees_version           = Validator::parsedBody($request)->string(CustomModuleManager::PREF_COMP_WEBTREES_VERSION);
+
+        if ($webtrees_version !== '') {
+
+            // Validate version
+            $parser = new VersionParser();
+            try {
+                $parser->normalize($webtrees_version);
+            } catch (Exception $e) {
+                $webtrees_version = '';
+            }
+        }
 
         $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
 
@@ -61,6 +76,7 @@ class ColumnConfigurationAction implements RequestHandlerInterface
         $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, $show_column_update_service ? '1' : '0');
         $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, $show_column_downloads ? '1' : '0');
         $custom_module_manager->setPreference(CustomModuleManager::PREF_TABLE_LAYOUT, $table_layout);
+        $custom_module_manager->setPreference(CustomModuleManager::PREF_COMP_WEBTREES_VERSION, $webtrees_version);
 
         return redirect(route(CustomModuleUpdatePage::class));
     }

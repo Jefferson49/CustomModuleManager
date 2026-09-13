@@ -132,10 +132,12 @@ class CustomModuleManager extends AbstractModule implements
     public const PREF_SHOW_COLUMN_DESCR       = 'show_column_description';
     public const PREF_SHOW_COLUMN_CATEGORY    = 'show_column_category';
     public const PREF_SHOW_COLUMN_DATE_ADDED  = 'show_column_date_added';
+    public const PREF_SHOW_COLUMN_COMPATIB    = 'show_column_compatibility';
     public const PREF_SHOW_COLUMN_UPD_SERV    = 'show_column_update_service';
     public const PREF_SHOW_COLUMN_DOWNLOADS   = 'show_column_downloads';
     public const PREF_TABLE_LAYOUT            = 'table_layout';
     public const PREF_VESTA_CONFIRMED         = 'vesta_confirmed';
+    public const PREF_COMP_WEBTREES_VERSION   = 'webtrees_version';
 
     //Table layout
     public const TABLE_LAYOUT_TABLE       = 'table_layout_table';
@@ -177,8 +179,9 @@ class CustomModuleManager extends AbstractModule implements
     public const CONFIG_GITHUB_BRANCH      = 'config';
     public const CONFIG_GITHUB_PATH        = 'module_update_service_configuration.json';
 
-    //Other
-    public const VERSION_NOT_AVAILABLE     = 'not available';
+    //Versions
+    public const VERSION_NOT_AVAILABLE         = 'not available';
+    public const VERSION_WEBTREES_COMP_DEFAULT = '2.3';
 
     //Path
     public const PATH_LOCAL_CONFIG                    = '/Configuration/module_update_service_configuration.json';

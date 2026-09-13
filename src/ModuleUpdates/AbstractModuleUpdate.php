@@ -31,7 +31,6 @@ declare(strict_types=1);
 
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
-use Composer\Semver\Comparator;
 use Fig\Http\Message\StatusCodeInterface;
 use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\I18N;
@@ -44,6 +43,7 @@ use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Enums\CustomModuleCompatibility;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 
 use InvalidArgumentException;
@@ -573,5 +573,70 @@ abstract class AbstractModuleUpdate
     public function getLatestVersionInCustomModuleList(string $webtrees_version = Webtrees::VERSION): string {
 
         return array_key_last($this->conflicts) ?? '';
+    }
+
+    /**
+     * Get the compatiblilty infoprmation for a module, which contains a version and its compatibility level
+     *
+     * @param bool   $fetch_latest     Whether to fetch the latest version, e.g. from a Github repository
+     * @param string $webtrees_version The version of webtrees, for which the module shall be compatible
+     *
+     * @return array  An array with a version and its compatibility level
+     */
+    public function getCompatibleVersionInfo(bool $fetch_latest = false, string $webtrees_version = Webtrees::VERSION): array {
+
+        $module_name                   = $this->getModuleName();
+        $current_version               = $this->customModuleVersion();
+        $latest_version                = $this->customModuleLatestVersion($fetch_latest);
+        $latest_compatible_version     = $this->getLatestCompatibleVersion($webtrees_version);
+        $latest_version_in_module_list = $this->getLatestVersionInCustomModuleList($webtrees_version);
+        $earlies_incompatible_version  = $this->getEarliestIncompatibleVersion($webtrees_version);
+
+        $version = '';
+        $compatiblilty = CustomModuleCompatibility::NOT_COMPATIBLE;
+
+        if (strpos($module_name, 'change_language_with_url') !== false) {
+            $debug = true;
+        }
+
+        // If the latest version in the module list is compatible, we assume that any latest version can be installed
+        if ($latest_compatible_version === $latest_version_in_module_list) {
+
+            if (CustomModuleManager::versionCompare($module_name, $latest_compatible_version, $current_version) >= 0) {
+                $version = $latest_compatible_version;
+                $compatiblilty = CustomModuleCompatibility::COMPATIBLE;
+
+                // If the latest version is greater than in the module list, the latest version might be incompatible
+                if (CustomModuleManager::versionCompare($module_name, $latest_version, $latest_version_in_module_list) > 0) {
+                    $compatiblilty = CustomModuleCompatibility::LIKELY_COMPATIBLE;
+                }
+            }
+        }
+        // If no compatible version is known and a newer version than in the module list is available
+        elseif ($latest_compatible_version === '') {
+            if (    CustomModuleManager::versionCompare($module_name, $latest_version, $latest_version_in_module_list) > 0
+                &&  CustomModuleManager::versionCompare($module_name, $latest_version, $current_version) >= 0) {
+
+                $version = $latest_version;
+
+                // If the latest version is smaller than the earliest incompatible version
+                if (CustomModuleManager::versionCompare($module_name, $latest_version, $earlies_incompatible_version) < 0) {
+                    $compatiblilty = CustomModuleCompatibility::LIKELY_COMPATIBLE;
+                }
+                else {
+                    $compatiblilty = CustomModuleCompatibility::POSSIBLY_COMPATIBLE;
+                }
+            }
+        }
+        // If the module is not installed yet, take the latest compatible version
+        elseif ($this->getModule() === null && $latest_compatible_version !== '') {
+            $version = $latest_compatible_version;
+            $compatiblilty = CustomModuleCompatibility::COMPATIBLE;
+        }
+
+        return [
+            'version'       => $version,
+            'compatiblilty' => $compatiblilty,
+        ];
     }
 }

@@ -59,13 +59,14 @@ class ColumnConfigurationModal implements RequestHandlerInterface
         $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
 
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::modals/column_configuration', [
-            'title'                      => I18N::translate('Configure columns and table layout'),
+            'title'                                          => I18N::translate('Configure columns and table layout'),
             CustomModuleManager::PREF_SHOW_COLUMN_DESCR      => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DESCR, '1')),
             CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY   => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY, '1')),
             CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, '1')),
             CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV   => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, '1')),
             CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS  => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, '1')),
             CustomModuleManager::PREF_TABLE_LAYOUT           => $custom_module_manager->getPreference(CustomModuleManager::PREF_TABLE_LAYOUT, CustomModuleManager::TABLE_LAYOUT_STICKY_HEAD),
+            CustomModuleManager::PREF_COMP_WEBTREES_VERSION  => $custom_module_manager->getPreference(CustomModuleManager::PREF_COMP_WEBTREES_VERSION, CustomModuleManager::VERSION_WEBTREES_COMP_DEFAULT),
         ]);
     }
 }

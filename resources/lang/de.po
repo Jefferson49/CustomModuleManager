@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-09-12 06:12+0200\n"
-"PO-Revision-Date: 2026-09-12 06:12+0200\n"
+"POT-Creation-Date: 2026-09-13 09:02+0200\n"
+"PO-Revision-Date: 2026-09-13 09:02+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,28 +15,28 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:264
+#: src/CustomModuleManager.php:267
 msgid "Custom Module Manager"
 msgstr "Management von Erweiterungsmodulen"
 
-#: src/CustomModuleManager.php:277
+#: src/CustomModuleManager.php:280
 msgid "A custom module to manage webtrees custom modules."
 msgstr "Ein Erweiterungsmodul zum Verwalten von webtrees-Erweiterungsmodulen."
 
-#: src/CustomModuleManager.php:427
+#: src/CustomModuleManager.php:430
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:473
+#: src/CustomModuleManager.php:476
 msgid "Rollback Custom Module Update"
 msgstr "Aktualisierung des Erweiterungsmoduls rückgängig machen"
 
-#: src/CustomModuleManager.php:474
+#: src/CustomModuleManager.php:477
 msgid "Rollback"
 msgstr "Rückgängig machen"
 
-#: src/CustomModuleManager.php:501
+#: src/CustomModuleManager.php:504
 #: vendor/jefferson49/webtrees-common/Module/ModuleCustomTrait.php:206
 #, php-format
 msgid ""
@@ -45,6 +45,38 @@ msgid ""
 msgstr ""
 "Die Einstellungen für das Erweiterungsmodul \"%s\" wurden für die neue Modul-"
 "Version %s aktualisiert."
+
+#: src/Enums/CustomModuleCompatibility.php:50
+msgid "Not available"
+msgstr "Nicht verfügbar"
+
+#: src/Enums/CustomModuleCompatibility.php:51
+msgid "Not compatible"
+msgstr "Nicht kompatibel"
+
+#: src/Enums/CustomModuleCompatibility.php:52
+msgid "Possibly compatible"
+msgstr "Möglicherweise kompatibel"
+
+#: src/Enums/CustomModuleCompatibility.php:53
+msgid "Likely compatible"
+msgstr "Voraussichtlich kompatibel"
+
+#: src/Enums/CustomModuleCompatibility.php:54
+msgid "Compatible"
+msgstr "Kompatibel"
+
+#: src/Enums/CustomModuleStatus.php:48
+msgid "Not installed"
+msgstr "Nicht installiert"
+
+#: src/Enums/CustomModuleStatus.php:49
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+#: src/Enums/CustomModuleStatus.php:50
+msgid "Enabled"
+msgstr "Aktiviert"
 
 #: src/ModuleUpdates/AbstractModuleUpdate.php:169
 #: src/ModuleUpdates/AbstractModuleUpdate.php:171
@@ -95,7 +127,7 @@ msgstr "Spalten und Tabellen-Layout konfigurieren"
 msgid "Custom Module Updates"
 msgstr "Aktualisierung von Erweiterungsmodulen"
 
-#: src/RequestHandlers/ModuleInformationModal.php:79
+#: src/RequestHandlers/ModuleInformationModal.php:80
 msgid "Module Information"
 msgstr "Modul-Informationen"
 
@@ -291,72 +323,72 @@ msgstr ""
 "empfohlen, eines der Module zu deaktivieren. Der Pfad des Moduls mit der "
 "parallelen Ansicht lautet: %s"
 
-#: resources/views/modals/column_configuration.phtml:45
-#: resources/views/module_update.phtml:206
+#: resources/views/modals/column_configuration.phtml:46
+#: resources/views/module_update.phtml:215
 msgid "Date Added"
 msgstr "Hinzugefügt am"
 
-#: resources/views/modals/column_configuration.phtml:53
-#: resources/views/modals/module_information.phtml:98
-#: resources/views/module_update.phtml:211
+#: resources/views/modals/column_configuration.phtml:54
+#: resources/views/modals/module_information.phtml:93
+#: resources/views/module_update.phtml:223
 msgid "Update Service"
 msgstr "Aktualisierungs-Dienst"
 
-#: resources/views/modals/column_configuration.phtml:61
+#: resources/views/modals/column_configuration.phtml:62
 msgid "Downloads"
 msgstr "Downloads"
 
-#: resources/views/modals/column_configuration.phtml:71
+#: resources/views/modals/column_configuration.phtml:70
+msgid "Compatiblity with webtrees version"
+msgstr "Kompatibilität mit webtrees-Version"
+
+#: resources/views/modals/column_configuration.phtml:80
 #: resources/views/settings.phtml:107
 msgid "Table layout"
 msgstr "Tabellen-Layout"
 
-#: resources/views/modals/column_configuration.phtml:76
+#: resources/views/modals/column_configuration.phtml:85
 #: resources/views/settings.phtml:112
 msgid "Table"
 msgstr "Tabelle"
 
-#: resources/views/modals/column_configuration.phtml:77
+#: resources/views/modals/column_configuration.phtml:86
 msgid "Table with fixed header row"
 msgstr "Tabelle mit fixierter Kopfzeile"
 
-#: resources/views/modals/column_configuration.phtml:78
+#: resources/views/modals/column_configuration.phtml:87
 #: resources/views/settings.phtml:114
 msgid "Responsive table (for small screens)"
 msgstr "Responsive Tabelle (für kleine Bildschirme)"
 
-#: resources/views/modals/module_information.phtml:62
+#: resources/views/modals/module_information.phtml:63
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: resources/views/modals/module_information.phtml:89
-msgid "Disabled"
-msgstr "Deaktiviert"
-
-#: resources/views/modals/module_information.phtml:103
+#: resources/views/modals/module_information.phtml:98
 msgid "Module folder"
 msgstr "Modul-Ordner"
 
-#: resources/views/modals/module_information.phtml:108
-#: resources/views/module_update.phtml:208
+#: resources/views/modals/module_information.phtml:103
+#: resources/views/module_update.phtml:217
 msgid "Current Version"
 msgstr "Aktuelle Version"
 
-#: resources/views/modals/module_information.phtml:114
+#: resources/views/modals/module_information.phtml:109
 msgid "⚶ Vesta homepage"
 msgstr "⚶ Vesta-Homepage"
 
-#: resources/views/modals/module_information.phtml:123
+#: resources/views/modals/module_information.phtml:118
 msgid "GitHub repository"
 msgstr "GitHub-Repository"
 
-#: resources/views/modals/module_information.phtml:163
+#: resources/views/modals/module_information.phtml:158
 #: resources/views/module_usage.phtml:38
 msgid "Module Usage"
 msgstr "Modul-Verwendung"
 
 #: resources/views/modals/release_notes.phtml:31
-#: resources/views/module_update.phtml:209
+#: resources/views/module_update.phtml:218
 msgid "Latest Version"
 msgstr "Neueste Version"
 
@@ -394,7 +426,7 @@ msgstr "Bitte bestätigen Sie."
 msgid "confirm"
 msgstr "Bestätigen"
 
-#: resources/views/module_update.phtml:137
+#: resources/views/module_update.phtml:147
 #, php-format
 msgid ""
 "A new version of \"%s\" is available. It is recommended to upgrade to the "
@@ -404,7 +436,7 @@ msgstr ""
 "neueste Version zu aktualisieren bevor andere Erweiterungsmodule installiert/"
 "aktualisiert werden."
 
-#: resources/views/module_update.phtml:140
+#: resources/views/module_update.phtml:150
 msgid ""
 "Typically, custom modules versions are updated every 24 hours. You can check "
 "if later versions or download counts are available."
@@ -413,7 +445,7 @@ msgstr ""
 "aktualisiert. Sie können prüfen, ob neuere Versionen oder Download-Zahlen "
 "verfügbar sind."
 
-#: resources/views/module_update.phtml:168
+#: resources/views/module_update.phtml:178
 msgid ""
 "Press the save button to enable/disable modules according to the checkbox in "
 "the \"enabled\" column."
@@ -421,77 +453,69 @@ msgstr ""
 "Drücken Sie den \"Speichern\" Button, um Module entsprechend dem "
 "Kontrollkästchen in der Spalte \"Aktiviert\" zu aktivieren/deaktivieren."
 
-#: resources/views/module_update.phtml:192
+#: resources/views/module_update.phtml:201
 msgid "Module Updates"
 msgstr "Aktualisierungen für Module"
 
-#: resources/views/module_update.phtml:201
+#: resources/views/module_update.phtml:210
 msgid "Folder (within modules_v4)"
 msgstr "Ordner (in modules_v4)"
 
-#: resources/views/module_update.phtml:214
+#: resources/views/module_update.phtml:220
+msgid "Compatibility with webtrees"
+msgstr "Kompatibilität mit webtrees"
+
+#: resources/views/module_update.phtml:226
 msgid "Down-loads"
 msgstr "Down-loads"
 
-#: resources/views/module_update.phtml:217
+#: resources/views/module_update.phtml:229
 msgid "Install"
 msgstr "Installieren"
 
-#: resources/views/module_update.phtml:227
-#: resources/views/module_update.phtml:458
-msgid "Not installed"
-msgstr "Nicht installiert"
-
-#: resources/views/module_update.phtml:259
-#: resources/views/module_update.phtml:275
-#: resources/views/module_update.phtml:276
-msgid "not available"
-msgstr "nicht verfügbar"
-
-#: resources/views/module_update.phtml:368
-#: resources/views/module_update.phtml:414
+#: resources/views/module_update.phtml:345
+#: resources/views/module_update.phtml:417
 msgid "N/A"
 msgstr "N/A"
 
-#: resources/views/module_update.phtml:384
-#: resources/views/module_update.phtml:455
-#: resources/views/module_update.phtml:464
-msgid "possibly incompatible"
-msgstr "möglicherweise inkompatibel"
-
-#: resources/views/module_update.phtml:452
+#: resources/views/module_update.phtml:465
 msgid "Update all Vesta modules"
 msgstr "Alle Vesta-Module aktualisieren"
 
-#: resources/views/module_update.phtml:454
+#: resources/views/module_update.phtml:467
 msgid "Update module"
 msgstr "Modul aktualisieren"
 
-#: resources/views/module_update.phtml:461
+#: resources/views/module_update.phtml:469
+#: resources/views/module_update.phtml:480
+msgid "might be incompatible"
+msgstr "möglicherweise inkompatibel"
+
+#: resources/views/module_update.phtml:476
 msgid "Install all Vesta modules"
 msgstr "Alle Vesta-Module installieren"
 
-#: resources/views/module_update.phtml:463
+#: resources/views/module_update.phtml:478
 msgid "Install module"
 msgstr "Modul installieren"
 
-#: resources/views/module_update.phtml:470
+#: resources/views/module_update.phtml:487
 msgid "No update service available"
 msgstr "Kein Aktualisierungsdienst verfügbar"
 
-#: resources/views/module_update.phtml:472
+#: resources/views/module_update.phtml:489
 msgid "No compatible version available"
 msgstr "Keine kompatible Version verfügbar"
 
-#: resources/views/module_update.phtml:474
+#: resources/views/module_update.phtml:494
 msgid "Manual updating/merging required"
 msgstr "Manuelles Aktualisieren/Zusammenführen erforderlich"
 
-#: resources/views/module_update.phtml:497
+#: resources/views/module_update.phtml:517
 msgid "Delete all Vesta modules"
 msgstr "Alle Vesta-Module löschen"
 
-#: resources/views/module_update.phtml:499
+#: resources/views/module_update.phtml:519
 msgid "Delete module"
 msgstr "Modul löschen"
 
@@ -570,6 +594,20 @@ msgid ""
 msgstr ""
 "Die Verwendung eines GitHub-API Tokens wird empfohlen, wenn GitHub-"
 "Kommunikationsfehler auftreten"
+
+#~ msgid "not available"
+#~ msgstr "nicht verfügbar"
+
+#~ msgid "possibly incompatible"
+#~ msgstr "möglicherweise kompatibel"
+
+#~ msgid "Probably compatible"
+#~ msgstr "Voraussichtlich kompatibel"
+
+#, fuzzy
+#~| msgid "possibly incompatible"
+#~ msgid "probably compatible"
+#~ msgstr "möglicherweise inkompatibel"
 
 #~ msgid "Latest compatible version"
 #~ msgstr "Neueste kompatible Version"

@@ -235,4 +235,14 @@ interface CustomModuleUpdateInterface
      * @return string  The latest version in the custom module list
      */
     public function getLatestVersionInCustomModuleList(string $webtrees_version = Webtrees::VERSION): string;
+
+    /**
+     * Get the compatiblilty infoprmation for a module, which contains a version and its compatibility level
+     *
+     * @param bool   $fetch_latest     Whether to fetch the latest version, e.g. from a Github repository
+     * @param string $webtrees_version The version of webtrees, for which the module shall be compatible
+     *
+     * @return array  An array with a version and its compatibility level
+     */
+    public function getCompatibleVersionInfo(bool $fetch_latest = false, string $webtrees_version = Webtrees::VERSION): array;
 }

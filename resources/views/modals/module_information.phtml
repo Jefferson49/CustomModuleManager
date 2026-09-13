@@ -7,6 +7,7 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Enums\CustomModuleStatus;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CustomModuleUpdateInterface;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\VestaModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
@@ -22,7 +23,7 @@ use function view;
  * @var string                      $module_title
  * @var string                      $module_description
  * @var bool                        $show_default_description
- * @var string                      $module_status
+ * @var CustomModuleStatus          $module_status
  * @var bool                        $is_theme
  * @var string                      $category
  * @var string                      $current_version
@@ -85,13 +86,7 @@ use function view;
     <div class="wt-custom-module-info">
         <?= view('icons/information') ?>
         <?= MoreI18N::xlate('Status') . ': ' ?>
-            <?php if ($module_status === '0') : ?>
-                <?= I18N::translate('Disabled') ?>
-            <?php elseif ($module_status === '1') : ?>
-                <?= MoreI18N::xlate('Enabled') ?>
-            <?php else : ?>
-                <?= e($module_status) ?>
-            <?php endif ?>
+        <?= $module_status->label() ?>
         <br>
         <?php if ($module_update_service_name !== '') : ?>
             <?= view('icons/information') ?>
