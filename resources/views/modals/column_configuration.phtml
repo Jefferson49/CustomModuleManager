@@ -71,6 +71,9 @@ use function view;
             </label>
             <div class="col-sm-9 wt-page-options-value">
                 <input class="form-control" id="webtrees_version" name="webtrees_version" type="text" value="<?= e($webtrees_version) ?>">
+                <div class="form-text">
+                    <?= I18N::translate('If empty, column will not be shown.'); ?>
+                </div>
             </div>
         </fieldset>
         <div class="row mb-3"><?= view('icons/spacer') ?></div>

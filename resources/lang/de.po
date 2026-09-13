@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-09-13 09:02+0200\n"
-"PO-Revision-Date: 2026-09-13 09:02+0200\n"
+"POT-Creation-Date: 2026-09-13 09:23+0200\n"
+"PO-Revision-Date: 2026-09-13 09:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -342,21 +342,25 @@ msgstr "Downloads"
 msgid "Compatiblity with webtrees version"
 msgstr "Kompatibilität mit webtrees-Version"
 
-#: resources/views/modals/column_configuration.phtml:80
+#: resources/views/modals/column_configuration.phtml:75
+msgid "If empty, column will not be shown."
+msgstr "Wenn das Feld leer ist, wird die Spalte nicht angezeigt."
+
+#: resources/views/modals/column_configuration.phtml:83
 #: resources/views/settings.phtml:107
 msgid "Table layout"
 msgstr "Tabellen-Layout"
 
-#: resources/views/modals/column_configuration.phtml:85
+#: resources/views/modals/column_configuration.phtml:88
 #: resources/views/settings.phtml:112
 msgid "Table"
 msgstr "Tabelle"
 
-#: resources/views/modals/column_configuration.phtml:86
+#: resources/views/modals/column_configuration.phtml:89
 msgid "Table with fixed header row"
 msgstr "Tabelle mit fixierter Kopfzeile"
 
-#: resources/views/modals/column_configuration.phtml:87
+#: resources/views/modals/column_configuration.phtml:90
 #: resources/views/settings.phtml:114
 msgid "Responsive table (for small screens)"
 msgstr "Responsive Tabelle (für kleine Bildschirme)"
