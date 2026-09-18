@@ -620,6 +620,47 @@
         ],
         "bschwede/linkenhancer": [
             {
+                "version": "1.3.0",
+                "time": "2026-09-16",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "bschwede/linkenhancer",
+                "description": "webtrees custom module: link enhancements (linkenhancer)",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_linkenhancer_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "bschwede/linkenhancer",
+                            "tag_prefix": "v",
+                            "category": "frontend",
+                            "title": "Link-Enhancer",
+                            "description": "Cross-references to Gedcom datasets, Markdown editor, context-sensitive link to the GenWiki webtrees manual"
+                        },
+                        "date_added": ""
+                    }
+                },
+                "require": {
+                    "bschwede/wt-shared-libs": "^1.0"
+                },
+                "authors": [
+                    {
+                        "name": "Bernd Schwendinger"
+                    }
+                ],
+                "license": "GPL-3.0-or-later",
+                "repositories": [
+                    {
+                        "type": "path",
+                        "url": "../wt-shared-libs",
+                        "options": {
+                            "symlink": false
+                        }
+                    }
+                ]
+            },
+            {
                 "version": "1.2.14",
                 "time": "2026-08-02",
                 "conflict": {
@@ -1216,6 +1257,47 @@
             }
         ],
         "hartenthaler/hh_external_places": [
+            {
+                "version": "2.2.6.13",
+                "time": "2026-09-17",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "hartenthaler/hh-external-places",
+                "description": "A webtrees module for read-only information from Wikidata, FactGrid and GOV.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_hh_external_places_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "hartenthaler/hh_external_places",
+                            "tag_prefix": "v",
+                            "category": "places",
+                            "title": "External Places",
+                            "description": "Links shared places to Wikidata, FactGrid and GOV and displays read-only external place information, optionally including GeoNames context."
+                        },
+                        "date_added": "2026-08-23"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Hermann Hartenthaler"
+                    }
+                ],
+                "homepage": "https://github.com/hartenthaler/hh_external_places",
+                "support": {
+                    "issues": "https://github.com/hartenthaler/hh_external_places/issues"
+                },
+                "keywords": [
+                    "webtrees",
+                    "custom module",
+                    "places",
+                    "wikidata",
+                    "factgrid",
+                    "gov"
+                ],
+                "license": "GPL-3.0-or-later"
+            },
             {
                 "version": "2.2.6.8",
                 "time": "2026-08-30",
@@ -3304,6 +3386,34 @@
         ],
         "pottsnet/potts-hero-slideshow": [
             {
+                "version": "1.0.1",
+                "time": "2026-09-17",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "pottsnet/potts-hero-slideshow",
+                "description": "A standalone, theme-aware homepage hero banner with a family photo slideshow.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_potts-hero-slideshow_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "PottsNet/potts-hero-slideshow",
+                            "tag_prefix": "v",
+                            "category": "frontend",
+                            "title": "Potts Hero Slideshow",
+                            "description": "A standalone, theme-aware homepage hero banner with a family photo slideshow."
+                        },
+                        "date_added": "2026-07-10"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Jason Potts"
+                    }
+                ]
+            },
+            {
                 "version": "1.0.0",
                 "time": "2026-07-09",
                 "conflict": {
@@ -3333,6 +3443,34 @@
             }
         ],
         "pottsnet/potts-historical-facts": [
+            {
+                "version": "1.1.4",
+                "time": "2026-09-17",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "pottsnet/potts-historical-facts",
+                "description": "Displays historical facts from CSV files using visitor-selected historical fact collections available from every page.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_potts-historical-facts_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "PottsNet/potts-historical-facts",
+                            "tag_prefix": "v",
+                            "category": "fact",
+                            "title": "Potts Historical Facts",
+                            "description": "Displays historical facts from CSV files using visitor-selected historical fact collections available from every page."
+                        },
+                        "date_added": "2026-07-05"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Jason Potts"
+                    }
+                ]
+            },
             {
                 "version": "1.1.0",
                 "time": "2026-07-04",
@@ -3393,6 +3531,34 @@
             }
         ],
         "pottsnet/potts-modern-theme": [
+            {
+                "version": "1.4.0-alpha.10",
+                "time": "2026-09-02",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "pottsnet/potts-modern-theme",
+                "description": "A modern, responsive heritage theme for webtrees.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_potts-modern-theme_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "PottsNet/potts-modern-theme",
+                            "tag_prefix": "v",
+                            "category": "theme",
+                            "title": "Potts Modern",
+                            "description": "A modern, responsive heritage theme for webtrees."
+                        },
+                        "date_added": "2026-07-05"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Jason Potts"
+                    }
+                ]
+            },
             {
                 "version": "1.3.0",
                 "time": "2026-09-01",
@@ -3724,6 +3890,68 @@
         ],
         "thobgg/webtrees-sammlungen": [
             {
+                "version": "1.5.1",
+                "time": "2026-09-04",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "thobgg/sammlungen",
+                "description": "webtrees custom module \u2013 Sammlungen (Foto-Galerien mit EXIF und Lightbox)",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_sammlungen_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "thobgg/webtrees-sammlungen",
+                            "tag_prefix": "v",
+                            "category": "media",
+                            "title": "Sammlungen",
+                            "description": "Foto- und Dokumenten-Sammlungen mit EXIF-Anreicherung, Galerie und Lightbox."
+                        },
+                        "date_added": "2026-08-09"
+                    }
+                },
+                "require": {
+                    "php": "^8.2"
+                },
+                "require-dev": {
+                    "phpunit/phpunit": "^11.0",
+                    "phpstan/phpstan": "^2.2"
+                },
+                "authors": [
+                    {
+                        "name": "Thomas Bugge"
+                    }
+                ],
+                "type": "webtrees-module",
+                "license": "GPL-3.0-or-later",
+                "config": {
+                    "optimize-autoloader": true,
+                    "autoloader-suffix": "ThobggSammlungen",
+                    "platform": {
+                        "php": "8.4"
+                    }
+                },
+                "autoload": {
+                    "psr-4": {
+                        "Sammlungen\\": "src/"
+                    }
+                },
+                "autoload-dev": {
+                    "psr-4": {
+                        "Sammlungen\\Tests\\": "tests/"
+                    }
+                },
+                "scripts": {
+                    "test": "@php vendor/bin/phpunit",
+                    "analyse": "@php vendor/bin/phpstan analyse --no-progress",
+                    "check": [
+                        "@test",
+                        "@analyse"
+                    ]
+                }
+            },
+            {
                 "version": "1.5.0",
                 "time": "2026-08-28",
                 "conflict": {
@@ -3841,6 +4069,34 @@
         ],
         "tywed/news-menu": [
             {
+                "version": "0.3.5",
+                "time": "2026-09-10",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "tywed/news-menu",
+                "description": "Add an extra item to the main menu as a link to a webtrees news.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_news-menu_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "Tywed/news-menu",
+                            "tag_prefix": "v",
+                            "category": "menu",
+                            "title": "News",
+                            "description": "Add an extra item to the main menu as a link to a webtrees news."
+                        },
+                        "date_added": ""
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Tywed"
+                    }
+                ]
+            },
+            {
                 "version": "0.3.3",
                 "time": "2025-11-30",
                 "conflict": {
@@ -3870,6 +4126,34 @@
             }
         ],
         "tywed/telegram": [
+            {
+                "version": "0.2.3",
+                "time": "2026-09-11",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "tywed/telegram",
+                "description": "Sends Telegram notifications about family events, such as birthdays and anniversaries.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_telegram_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "Tywed/telegram",
+                            "tag_prefix": "v",
+                            "category": "messages",
+                            "title": "Telegram",
+                            "description": "Sends Telegram notifications about family events, such as birthdays and anniversaries."
+                        },
+                        "date_added": ""
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Tywed"
+                    }
+                ]
+            },
             {
                 "version": "0.2.2",
                 "time": "2026-06-10",
@@ -4462,6 +4746,44 @@
             }
         ],
         "vulfharban/webtrees-datencheck-plugin": [
+            {
+                "version": "1.6.9.7",
+                "time": "2026-09-16",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "wolfrum/datencheck",
+                "description": "A webtrees plugin to check for data consistency and logical errors.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_data-check_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "Vulfharban/webtrees-datencheck-plugin",
+                            "tag_prefix": "v",
+                            "category": "data_validation",
+                            "title": "Data Check",
+                            "description": "Checks for data inconsistencies."
+                        },
+                        "date_added": "2026-02-15"
+                    }
+                },
+                "require": {
+                    "php": "^7.4 || ^8.0"
+                },
+                "authors": [
+                    {
+                        "name": "Christian Wolfrum",
+                        "email": "c.wolfrum@example.com"
+                    }
+                ],
+                "type": "webtrees-module",
+                "autoload": {
+                    "psr-4": {
+                        "Wolfrum\\Datencheck\\": "src/"
+                    }
+                }
+            },
             {
                 "version": "1.6.9.6",
                 "time": "2026-08-27",
