@@ -701,8 +701,11 @@ class CustomModuleManager extends AbstractModule implements
             /** @var GithubModuleUpdate $module_update_service */
             $module_update_service = CustomModuleUpdateFactory::make($module_name);
 
-            //Skip if no module update service is available
+            //Skip if module update service or module is not available
             if ($module_update_service === null) {
+                continue;
+            }
+            elseif ($module_update_service->getModule() === null) {
                 continue;
             }
 
@@ -768,14 +771,19 @@ class CustomModuleManager extends AbstractModule implements
                         $composer_json['time'] = $dt->format("Y-m-d");
                     }
                 }
+                // If no conflict rule is available, copy conflict rule from version before
                 if (!isset($composer_json['conflict'])) {
 
                     $version_before = self::getVersionBefore($module_versions, $version);
 
-                    if (isset($module_versions[$version_before]['conflict'])) {
+                    foreach ($module_versions as $module_version) {
 
-                        $composer_json['conflict'] = $module_versions[$version_before]['conflict'];
+                        if ($module_version['version'] === $version_before && isset($module_version['conflict'])) {
+
+                            $composer_json['conflict'] = $module_version['conflict'];
+                        }
                     }
+
                 }
                 if (!isset($composer_json['name'])) {
                     $composer_json['name'] = $package_name;
@@ -801,8 +809,8 @@ class CustomModuleManager extends AbstractModule implements
                 //Remove data for version if already exists
                 self::removeVersion($custom_module_list, $package_name, $version);
 
-                //Add the data of the new version to the module list
-                $custom_module_list['packages'][$package_name][] = $composer_json;
+                //Add the data of the new version at the beginning of the module list
+                array_unshift($custom_module_list['packages'][$package_name], $composer_json);
                 $modified = true;
             }
         }
@@ -1082,14 +1090,14 @@ class CustomModuleManager extends AbstractModule implements
 
         foreach($module_versions as $module_version) {
 
-            if ($module_version['version'] === $version) {
+            if (Comparator::greaterThanOrEqualTo($module_version['version'], $version)) {
                 return $version_before;
             }
 
             $version_before = $module_version['version'];
         }
 
-        return '';
+        return $version_before;
     }
 
     /**
