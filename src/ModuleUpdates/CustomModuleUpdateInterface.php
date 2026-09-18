@@ -34,6 +34,7 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Enums\CustomModuleCompatibility;
 
 
 /**
@@ -237,7 +238,7 @@ interface CustomModuleUpdateInterface
     public function getLatestVersionInCustomModuleList(string $webtrees_version = Webtrees::VERSION): string;
 
     /**
-     * Get the compatiblilty infoprmation for a module, which contains a version and its compatibility level
+     * Get the compatiblilty information for a module, which contains a version and its compatibility level
      *
      * @param bool   $fetch_latest     Whether to fetch the latest version, e.g. from a Github repository
      * @param string $webtrees_version The version of webtrees, for which the module shall be compatible
@@ -245,4 +246,14 @@ interface CustomModuleUpdateInterface
      * @return array  An array with a version and its compatibility level
      */
     public function getCompatibleVersionInfo(bool $fetch_latest = false, string $webtrees_version = Webtrees::VERSION): array;
+
+    /**
+     * Get the compatiblilty of a module version for a webtrees version
+     *
+     * @param string $webtrees_version    The version of webtrees, for which the module shall be compatible
+     * @param string $module_version      A version of the custom module; defaults to the current version
+     *
+     * @return CustomModuleCompatibility  The compatibility level
+     */
+    public function getCompatibility(string $module_version, string $webtrees_version = Webtrees::VERSION): CustomModuleCompatibility;
 }

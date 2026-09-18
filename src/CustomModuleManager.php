@@ -181,6 +181,7 @@ class CustomModuleManager extends AbstractModule implements
 
     //Versions
     public const VERSION_NOT_AVAILABLE         = 'not available';
+    public const VERSION_LATEST                = 'latest';
     public const VERSION_WEBTREES_COMP_DEFAULT = '2.3';
 
     //Path

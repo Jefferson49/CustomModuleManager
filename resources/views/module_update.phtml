@@ -360,7 +360,7 @@ $order = [[$sort_column, 'desc']];
 
                         <!-- Latest version -->
                         <td>
-                            <?php if (      !in_array($latest_compatible_version, [CustomModuleManager::VERSION_NOT_AVAILABLE, ''])
+                            <?php if (      !in_array($latest_compatible_version, [CustomModuleManager::VERSION_NOT_AVAILABLE, CustomModuleManager::VERSION_LATEST, ''])
                                         &&  $module !== null
                                         &&  CustomModuleManager::versionCompare($module_name, $latest_compatible_version, $current_version) > 0
                                         &&  (       ($module_update_service_name === GithubModuleUpdate::NAME && $module_update_service->providesReleasesInRepository())
@@ -369,8 +369,8 @@ $order = [[$sort_column, 'desc']];
                                 <?php $latest_compatible_version_label = e(CustomModuleManager::normalizeVersion($module_name, $latest_compatible_version)) ?>
                                 <?php if ($compatiblilty === CustomModuleCompatibility::POSSIBLY_COMPATIBLE) : ?>
                                     <?php $latest_compatible_version_label .= '<br>(' . CustomModuleCompatibility::POSSIBLY_COMPATIBLE->label() . ')' ?>
-                                <?php elseif ($compatiblilty === CustomModuleCompatibility::LIKELY_COMPATIBLE) : ?>
-                                    <?php $latest_compatible_version_label .= '<br>(' . CustomModuleCompatibility::LIKELY_COMPATIBLE->label() . ')' ?>
+                                <?php elseif ($compatiblilty === CustomModuleCompatibility::PRESUMABLY_COMPATIBLE) : ?>
+                                    <?php $latest_compatible_version_label .= '<br>(' . CustomModuleCompatibility::PRESUMABLY_COMPATIBLE->label() . ')' ?>
                                 <?php endif ?>
                                 <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ReleaseNotesModal::class, [
                                         'module_name'    => $module_name,
@@ -382,24 +382,58 @@ $order = [[$sort_column, 'desc']];
                                 </a>
                             <?php elseif ($module !== null): ?>
                                 <?= e(CustomModuleManager::normalizeVersion($module_name,
-                                    !in_array($latest_compatible_version, [CustomModuleManager::VERSION_NOT_AVAILABLE, '']) ? $latest_compatible_version : I18N::translate('Not available')
+                                    !in_array($latest_compatible_version, [CustomModuleManager::VERSION_NOT_AVAILABLE, CustomModuleManager::VERSION_LATEST, '']) ? $latest_compatible_version : I18N::translate('Not available')
                                 )) ?>
                             <?php endif ?>
                         </td>
 
                         <!-- Compatibility -->
                         <?php if ($show_column_compatibility) : ?>
-                            <?php if ($update_service_available) : ?>
-                                <?php $compatibility_info = $module_update_service->getCompatibleVersionInfo(
+                            <!-- If the webtrees version to check is below 2.2.6, we cannot provide any information -->
+                            <?php if (  !$update_service_available
+                                    OR  version_compare($custom_module_manager->getPreference(CustomModuleManager::PREF_COMP_WEBTREES_VERSION, ''), '2.2.6') < 0) : ?>
+                                <?php $current_compatibility = CustomModuleCompatibility::NOT_AVAILABLE ?>
+                                <?php $general_compatibility = CustomModuleCompatibility::NOT_AVAILABLE ?>
+                            <?php else : ?>
+                                <?php if ($module !== null) : ?>
+                                    <?php $current_compatibility = $module_update_service->getCompatibility(
+                                        $current_version,
+                                        $custom_module_manager->getPreference(CustomModuleManager::PREF_COMP_WEBTREES_VERSION, '')
+                                    ) ?>
+                                <?php else : ?>
+                                    <?php $current_compatibility = CustomModuleCompatibility::NOT_AVAILABLE ?>
+                                <?php endif ?>
+                                <?php $general_compatibility_info = $module_update_service->getCompatibleVersionInfo(
                                     $fetch_latest,
                                     $custom_module_manager->getPreference(CustomModuleManager::PREF_COMP_WEBTREES_VERSION, '')
                                 ) ?>
-                                <?php $webtrees_version_compatibility = $compatibility_info['compatiblilty'] ?>
-                            <?php else : ?>
-                                <?php $webtrees_version_compatibility = CustomModuleCompatibility::NOT_AVAILABLE ?>
+                                <?php $general_compatibility = $general_compatibility_info['compatiblilty'] ?>
+                                <?php $general_compatible_version = $general_compatibility_info['version'] ?>
                             <?php endif ?>
-                            <td data-sort="<?= $webtrees_version_compatibility->value ?>">
-                                <?= $webtrees_version_compatibility->label() ?>
+                            <td data-sort="<?= $current_compatibility->value >= $general_compatibility->value ? $current_compatibility->value : $general_compatibility->value ?>">
+                                <?php if (!$update_service_available) : ?>
+                                    <?= CustomModuleCompatibility::NOT_AVAILABLE->label() ?>
+                                <?php elseif ($latest_compatible_version === CustomModuleManager::VERSION_LATEST) : ?>
+                                    <?= CustomModuleCompatibility::NOT_AVAILABLE->label() ?>
+                                <?php elseif ($general_compatibility->value < CustomModuleCompatibility::POSSIBLY_COMPATIBLE->value) : ?>
+                                    <?= I18N::translate('No compatible version available') ?>
+                                <?php else : ?>
+                                    <?php if ($module !== null) : ?>
+                                        <?= I18N::translate('Current version') . ': ' . $current_compatibility->label() ?>
+                                    <?php endif ?>
+                                    <?php if (  $general_compatibility->value > $current_compatibility->value
+                                            &&  $general_compatibility->value >= CustomModuleCompatibility::POSSIBLY_COMPATIBLE->value) : ?>
+                                        <?php if ($module !== null) : ?>
+                                            <br><br>
+                                        <?php endif ?>
+                                        <?php if ($general_compatible_version === CustomModuleManager::VERSION_LATEST) : ?>
+                                            <?= I18N::translate('Latest version') . ': '?>
+                                        <?php else : ?>
+                                            <?= I18N::translate('Version %s', e(CustomModuleManager::normalizeVersion($module_name, $general_compatible_version))) . ': ' ?>
+                                        <?php endif ?>
+                                        <?= $general_compatibility->label() ?>
+                                    <?php endif ?>
+                                <?php endif ?>
                             </td>
                         <?php endif ?>
 
@@ -451,11 +485,10 @@ $order = [[$sort_column, 'desc']];
                             <?php $action_sort = '4' ?>
                         <?php elseif (  $module !== null
                                     &&  !in_array($latest_compatible_version, [CustomModuleManager::VERSION_NOT_AVAILABLE, ''])
-                                    &&  !($latest_compatible_version === $ignore_version)
-                                    &&  !($latest_compatible_version === $ignore_version)
+                                    &&  $latest_compatible_version !== $ignore_version
                                     &&  CustomModuleManager::versionCompare($module_name, $latest_compatible_version, $current_version) > 0
                         ) : ?>
-                            <?php if ($update_service_available &&  $module_update_service->updateManually()) : ?>
+                            <?php if ($module_update_service->updateManually()) : ?>
                                 <?php $action_sort = '2' ?>
                             <?php else : ?>
                                 <?php $action_sort = '1' ?>
@@ -463,19 +496,23 @@ $order = [[$sort_column, 'desc']];
                             <?php $action = CustomModuleManager::ACTION_UPDATE ?>
                             <?php if ($module_update_service_name === VestaModuleUpdate::NAME && $vesta_confirmed) : ?>
                                 <?php $action_label = I18N::translate('Update all Vesta modules') ?>
+                            <?php elseif ($latest_compatible_version === CustomModuleManager::VERSION_LATEST) : ?>
+                                <?php $action_label = I18N::translate('Update to latest version') ?>
                             <?php else : ?>
-                                <?php $action_label = I18N::translate('Update module') ?>
+                                <?php $action_label = I18N::translate('Update to version %s', CustomModuleManager::normalizeVersion($module_name, $latest_compatible_version)) ?>
                                 <?php if ($compatiblilty === CustomModuleCompatibility::POSSIBLY_COMPATIBLE) : ?>
                                     <?php $action_label .= '<br>(' . I18N::translate('might be incompatible') . ')' ?>
                                 <?php endif ?>
                             <?php endif ?>
-                        <?php elseif ($module_status === CustomModuleStatus::NOT_INSTALLED) : ?>
+                        <?php elseif ($module === null) : ?>
                             <?php $action_sort = '3' ?>
                             <?php $action = CustomModuleManager::ACTION_INSTALL ?>
                                 <?php if ($module_update_service_name === VestaModuleUpdate::NAME && $vesta_confirmed) : ?>
                                     <?php $action_label = I18N::translate('Install all Vesta modules') ?>
+                                <?php elseif ($latest_compatible_version === CustomModuleManager::VERSION_LATEST) : ?>
+                                    <?php $action_label = I18N::translate('Install latest version') ?>
                                 <?php else : ?>
-                                    <?php $action_label = I18N::translate('Install module') ?>
+                                    <?php $action_label = I18N::translate('Install version %s', CustomModuleManager::normalizeVersion($module_name, $latest_compatible_version)) ?>
                                     <?php if ($compatiblilty ===  CustomModuleCompatibility::POSSIBLY_COMPATIBLE) : ?>
                                         <?php $action_label .= '<br>(' . I18N::translate('might be incompatible') . ')' ?>
                                     <?php endif ?>
@@ -489,7 +526,7 @@ $order = [[$sort_column, 'desc']];
                                 <?= I18N::translate('No compatible version available') ?>
                             <?php elseif (  $update_service_available
                                         && $action === CustomModuleManager::ACTION_UPDATE
-                                        &&  $module_update_service->updateManually()
+                                        && $module_update_service->updateManually()
                             ) : ?>
                                 <?= I18N::translate('Manual updating/merging required') ?>
                             <?php elseif ($action_label !== '' && $update_service_available) : ?>
@@ -498,12 +535,16 @@ $order = [[$sort_column, 'desc']];
                                         <?= $action_label ?>
                                     </a>
                                 <?php else : ?>
+                                    <?php $primary_button = $action ===     CustomModuleManager::ACTION_UPDATE
+                                                                        &&  $module !== null
+                                                                        &&  $latest_compatible_version !== CustomModuleManager::VERSION_LATEST
+                                    ?>
                                     <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ModuleUpgradeWizardPage::class, [
                                             'module_name'     => $module_name,
                                             'current_version' => $current_version,
-                                            'version'         => $latest_compatible_version,
+                                            'version'         => $latest_compatible_version !== CustomModuleManager::VERSION_LATEST ? $latest_compatible_version : '',
                                             'action'          => $action,
-                                        ])) ?>" type="submit" class="btn btn-<?= $action === CustomModuleManager::ACTION_UPDATE ? 'primary' : 'secondary' ?>">
+                                        ])) ?>" type="submit" class="btn btn-<?= $primary_button ? 'primary' : 'secondary' ?>">
                                         <?= $action_label ?>
                                     </a>
                                 <?php endif ?>
@@ -512,14 +553,17 @@ $order = [[$sort_column, 'desc']];
 
                         <!--Delete -->
                         <?php $action_label = '' ?>
+                        <?php $action_sort = '0' ?>
                         <?php if ($module !== null) : ?>
                             <?php if ($module_update_service_name === VestaModuleUpdate::NAME && $vesta_confirmed) : ?>
                                 <?php $action_label = I18N::translate('Delete all Vesta modules') ?>
+                                <?php $action_sort = '2' ?>
                             <?php else : ?>
                                 <?php $action_label = I18N::translate('Delete module') ?>
+                                <?php $action_sort = '1' ?>
                             <?php endif ?>
                         <?php endif ?>
-                        <td data-sort="<?= $action_label ?>">
+                        <td data-sort="<?= $action_sort ?>">
                             <?php if ($module !== null) : ?>
                                 <?php if ($module_update_service_name === VestaModuleUpdate::NAME && !$vesta_confirmed) : ?>
                                     <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(VestaInformationModal::class)) ?>" type="submit" class="btn btn-secondary">

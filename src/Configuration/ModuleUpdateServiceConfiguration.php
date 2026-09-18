@@ -192,8 +192,8 @@ class ModuleUpdateServiceConfiguration
         '_jp-theme-colors_'                  =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jpretired/jp-theme-colors', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME, 'get_latest_version_from_github' => true , 'tag_prefix' => 'v']],
         '_jp-main-menu-manual_'              =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'jpretired/jp-main-menu-manual', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MENU]],
 
-        '_telegram_'                         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Tywed/telegram', 'tag_prefix' => 'v.', self::CATEGORY => self::CATEGORY_MESSAGES]],
-        '_news-menu_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Tywed/news-menu', 'tag_prefix' => 'v.', self::CATEGORY => self::CATEGORY_MENU]],
+        '_telegram_'                         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Tywed/telegram', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MESSAGES]],
+        '_news-menu_'                        =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'Tywed/news-menu', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MENU]],
 
         '_finnish-historical-facts_'         =>  ['update_service' => 'GithubModuleUpdate', 'params' => ['github_repo' => 'ardhtu/finnish-historical-facts', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_FACT]],
 
@@ -432,7 +432,7 @@ class ModuleUpdateServiceConfiguration
                 }
             }
 
-            $latest_version = $versions[array_key_last($versions)] ?? [];
+            $latest_version = $versions[array_key_first($versions)] ?? [];
 
             if (!isset($latest_version['extra']['custom-module-manager'])) {
                 continue;
@@ -444,7 +444,7 @@ class ModuleUpdateServiceConfiguration
                 continue;
             }
 
-            $module_name = $module_config['module_name'] ?? '';
+            $module_name = $module_config['module_name'];
             unset($module_config['module_name']);
 
             $module_config['params']['conflicts'] = $conflicts;

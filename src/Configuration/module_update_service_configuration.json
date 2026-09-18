@@ -778,7 +778,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "Tywed/telegram",
-            "tag_prefix": "v.",
+            "tag_prefix": "v",
             "category": "messages",
             "title": "Telegram",
             "description": "Sends Telegram notifications about family events, such as birthdays and anniversaries."
@@ -789,7 +789,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "Tywed/news-menu",
-            "tag_prefix": "v.",
+            "tag_prefix": "v",
             "category": "menu",
             "title": "News",
             "description": "Add an extra item to the main menu as a link to a webtrees news."

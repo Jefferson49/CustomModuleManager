@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-09-13 09:23+0200\n"
-"PO-Revision-Date: 2026-09-13 09:24+0200\n"
+"POT-Creation-Date: 2026-09-18 07:43+0200\n"
+"PO-Revision-Date: 2026-09-18 07:45+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,28 +15,28 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:267
+#: src/CustomModuleManager.php:270
 msgid "Custom Module Manager"
 msgstr "Management von Erweiterungsmodulen"
 
-#: src/CustomModuleManager.php:280
+#: src/CustomModuleManager.php:283
 msgid "A custom module to manage webtrees custom modules."
 msgstr "Ein Erweiterungsmodul zum Verwalten von webtrees-Erweiterungsmodulen."
 
-#: src/CustomModuleManager.php:430
+#: src/CustomModuleManager.php:433
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:476
+#: src/CustomModuleManager.php:479
 msgid "Rollback Custom Module Update"
 msgstr "Aktualisierung des Erweiterungsmoduls rückgängig machen"
 
-#: src/CustomModuleManager.php:477
+#: src/CustomModuleManager.php:480
 msgid "Rollback"
 msgstr "Rückgängig machen"
 
-#: src/CustomModuleManager.php:504
+#: src/CustomModuleManager.php:507
 #: vendor/jefferson49/webtrees-common/Module/ModuleCustomTrait.php:206
 #, php-format
 msgid ""
@@ -59,8 +59,8 @@ msgid "Possibly compatible"
 msgstr "Möglicherweise kompatibel"
 
 #: src/Enums/CustomModuleCompatibility.php:53
-msgid "Likely compatible"
-msgstr "Voraussichtlich kompatibel"
+msgid "Presumably compatible"
+msgstr "Vermutlich kompatibel"
 
 #: src/Enums/CustomModuleCompatibility.php:54
 msgid "Compatible"
@@ -206,8 +206,8 @@ msgstr "Neueste Version"
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:269
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:273
 #, php-format
-msgid "Installing version: \"%s\""
-msgstr "Installiere Version \"%s\""
+msgid "Installing version: %s"
+msgstr "Installiere Version %s"
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:278
 #, php-format
@@ -478,48 +478,68 @@ msgid "Install"
 msgstr "Installieren"
 
 #: resources/views/module_update.phtml:345
-#: resources/views/module_update.phtml:417
+#: resources/views/module_update.phtml:443
 msgid "N/A"
 msgstr "N/A"
 
-#: resources/views/module_update.phtml:465
-msgid "Update all Vesta modules"
-msgstr "Alle Vesta-Module aktualisieren"
-
-#: resources/views/module_update.phtml:467
-msgid "Update module"
-msgstr "Modul aktualisieren"
-
-#: resources/views/module_update.phtml:469
-#: resources/views/module_update.phtml:480
-msgid "might be incompatible"
-msgstr "möglicherweise inkompatibel"
-
-#: resources/views/module_update.phtml:476
-msgid "Install all Vesta modules"
-msgstr "Alle Vesta-Module installieren"
-
-#: resources/views/module_update.phtml:478
-msgid "Install module"
-msgstr "Modul installieren"
-
-#: resources/views/module_update.phtml:487
-msgid "No update service available"
-msgstr "Kein Aktualisierungsdienst verfügbar"
-
-#: resources/views/module_update.phtml:489
+#: resources/views/module_update.phtml:416
+#: resources/views/module_update.phtml:522
 msgid "No compatible version available"
 msgstr "Keine kompatible Version verfügbar"
 
+#: resources/views/module_update.phtml:419
+msgid "Current version"
+msgstr "Aktuelle Version"
+
+#: resources/views/module_update.phtml:426
+#, php-format
+msgid "Version %s"
+msgstr "Version %s"
+
 #: resources/views/module_update.phtml:494
+msgid "Update all Vesta modules"
+msgstr "Alle Vesta-Module aktualisieren"
+
+#: resources/views/module_update.phtml:496
+msgid "Update to latest version"
+msgstr "Aktualisieren auf neueste Version"
+
+#: resources/views/module_update.phtml:498
+#, php-format
+msgid "Update to version %s"
+msgstr "Aktualisieren auf Version %s "
+
+#: resources/views/module_update.phtml:500
+#: resources/views/module_update.phtml:513
+msgid "might be incompatible"
+msgstr "möglicherweise inkompatibel"
+
+#: resources/views/module_update.phtml:507
+msgid "Install all Vesta modules"
+msgstr "Alle Vesta-Module installieren"
+
+#: resources/views/module_update.phtml:509
+msgid "Install latest version"
+msgstr "Neueste Version installieren"
+
+#: resources/views/module_update.phtml:511
+#, php-format
+msgid "Install version %s"
+msgstr "Version %s installieren"
+
+#: resources/views/module_update.phtml:520
+msgid "No update service available"
+msgstr "Kein Aktualisierungsdienst verfügbar"
+
+#: resources/views/module_update.phtml:527
 msgid "Manual updating/merging required"
 msgstr "Manuelles Aktualisieren/Zusammenführen erforderlich"
 
-#: resources/views/module_update.phtml:517
+#: resources/views/module_update.phtml:551
 msgid "Delete all Vesta modules"
 msgstr "Alle Vesta-Module löschen"
 
-#: resources/views/module_update.phtml:519
+#: resources/views/module_update.phtml:554
 msgid "Delete module"
 msgstr "Modul löschen"
 
@@ -599,22 +619,29 @@ msgstr ""
 "Die Verwendung eines GitHub-API Tokens wird empfohlen, wenn GitHub-"
 "Kommunikationsfehler auftreten"
 
+#, php-format
+#~ msgid "Install module version %s"
+#~ msgstr "Version %s installieren"
+
+#~ msgid "Likely compatible"
+#~ msgstr "Wahrscheinlich kompatibel"
+
+#~ msgid "Compatibel version"
+#~ msgstr "Kompatible Version"
+
+#~ msgid "Install module"
+#~ msgstr "Modul installieren"
+
 #~ msgid "not available"
 #~ msgstr "nicht verfügbar"
 
 #~ msgid "possibly incompatible"
 #~ msgstr "möglicherweise kompatibel"
 
-#~ msgid "Probably compatible"
-#~ msgstr "Voraussichtlich kompatibel"
-
 #, fuzzy
 #~| msgid "possibly incompatible"
 #~ msgid "probably compatible"
 #~ msgstr "möglicherweise inkompatibel"
-
-#~ msgid "Latest compatible version"
-#~ msgstr "Neueste kompatible Version"
 
 #~ msgid ""
 #~ "If this option is selected, the custom module table is shown with an "

@@ -38,20 +38,20 @@ use Fisharebest\Webtrees\I18N;
  */
 enum CustomModuleCompatibility: int
 {
-    case NOT_AVAILABLE       = -1;
-    case NOT_COMPATIBLE      = 0;
-    case POSSIBLY_COMPATIBLE = 1;
-    case LIKELY_COMPATIBLE   = 2;
-    case COMPATIBLE          = 3;
+    case NOT_AVAILABLE         = 0;
+    case NOT_COMPATIBLE        = 1;
+    case POSSIBLY_COMPATIBLE   = 2;
+    case PRESUMABLY_COMPATIBLE = 3;
+    case COMPATIBLE            = 4;
 
     public function label(): string
     {
         return match ($this) {
-            self::NOT_AVAILABLE       => I18N::translate('Not available'),
-            self::NOT_COMPATIBLE      => I18N::translate('Not compatible'),
-            self::POSSIBLY_COMPATIBLE => I18N::translate('Possibly compatible'),
-            self::LIKELY_COMPATIBLE   => I18N::translate('Likely compatible'),
-            self::COMPATIBLE          => I18N::translate('Compatible'),
+            self::NOT_AVAILABLE         => I18N::translate('Not available'),
+            self::NOT_COMPATIBLE        => I18N::translate('Not compatible'),
+            self::POSSIBLY_COMPATIBLE   => I18N::translate('Possibly compatible'),
+            self::PRESUMABLY_COMPATIBLE => I18N::translate('Presumably compatible'),
+            self::COMPATIBLE            => I18N::translate('Compatible'),
         };
     }
 }
