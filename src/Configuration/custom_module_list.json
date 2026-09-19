@@ -273,10 +273,9 @@
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_favicon-updater_",
-                        "update_service": "UrlModuleUpdate",
+                        "update_service": "CodebergModuleUpdate",
                         "params": {
-                            "download_url": "https://codeberg.org/Joppla/Webtrees-FaviconUpdater/archive/main.zip",
-                            "documentation_url": "https://codeberg.org/Joppla/Webtrees-FaviconUpdater#readme",
+                            "codeberg_repo": "Joppla/Webtrees-FaviconUpdater",
                             "category": "frontend",
                             "title": "FaviconUpdater",
                             "description": "Module to replaces automatically the default favicons with your own custom favicons after every webtrees update."
@@ -302,10 +301,9 @@
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_favicon-updater-xxl_",
-                        "update_service": "UrlModuleUpdate",
+                        "update_service": "CodebergModuleUpdate",
                         "params": {
-                            "download_url": "https://codeberg.org/Joppla/Webtrees-FaviconUpdater-XXL/archive/main.zip",
-                            "documentation_url": "https://codeberg.org/Joppla/Webtrees-FaviconUpdater-XXL#readme",
+                            "codeberg_repo": "Joppla/Webtrees-FaviconUpdater-XXL",
                             "category": "frontend",
                             "title": "FaviconUpdaterXXL",
                             "description": "Replaces automatically the default favicons with your own custom favicons after every webtrees update."
@@ -328,10 +326,9 @@
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_favicon-updater-xxs_",
-                        "update_service": "UrlModuleUpdate",
+                        "update_service": "CodebergModuleUpdate",
                         "params": {
-                            "download_url": "https://codeberg.org/Joppla/Webtrees-FaviconUpdater-XXS/archive/main.zip",
-                            "documentation_url": "https://codeberg.org/Joppla/Webtrees-FaviconUpdater-XXS#readme",
+                            "codeberg_repo": "Joppla/Webtrees-FaviconUpdater-XXS",
                             "category": "frontend",
                             "title": "FaviconUpdaterXXS",
                             "description": "Base module to replaces automatically the default favicons with your own custom favicons after every webtrees update."
@@ -357,10 +354,9 @@
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_gendex-generator_",
-                        "update_service": "UrlModuleUpdate",
+                        "update_service": "CodebergModuleUpdate",
                         "params": {
-                            "download_url": "https://codeberg.org/Joppla/Webtrees-GendexGenerator/archive/main.zip",
-                            "documentation_url": "https://codeberg.org/Joppla/Webtrees-GendexGenerator#readme",
+                            "codeberg_repo": "Joppla/Webtrees-GendexGenerator",
                             "category": "gedcom",
                             "title": "Gendex Generator",
                             "description": "Generates a gendex.txt file for your family tree."

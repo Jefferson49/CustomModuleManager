@@ -8,6 +8,7 @@ use Fisharebest\Webtrees\Module\ModuleConfigInterface;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Enums\CustomModuleStatus;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CodebergModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CustomModuleUpdateInterface;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\VestaModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
@@ -113,11 +114,11 @@ use function view;
             </a>
             <br>
         <?php endif ?>
-        <?php if ($module_update_service_name === GithubModuleUpdate::NAME OR $module_update_service_name === VestaModuleUpdate::NAME) : ?>
+        <?php if (in_array($module_update_service_name, [GithubModuleUpdate::NAME, CodebergModuleUpdate::NAME, VestaModuleUpdate::NAME])) : ?>
             <?= view('icons/link') ?>
-            <?= I18N::translate('GitHub repository') . ': ' ?>
+            <?= I18N::translate('%s repository', $module_update_service->getHostingPlatform()) . ': ' ?>
             <a href="<?= e($documentation_url) ?>" target="blank">
-                <?= e($module_update_service->getGithubRepo()) ?>
+                <?= e($module_update_service->getRepository()) ?>
             </a>
             <br>
             <?= view('icons/link') ?>

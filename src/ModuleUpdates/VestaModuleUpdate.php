@@ -112,9 +112,19 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
      *
      * @return string
      */
-    public function getGithubRepo(): string
+    public function getRepository(): string
     {
         return $this->github_repo;
+    }
+
+    /**
+     * Get the hosting platform of the module, e.g. GitHub or Codeberg
+     *
+     * @return string
+     */
+    public function getHostingPlatform(): string
+    {
+        return 'GitHub';
     }
 
     /**

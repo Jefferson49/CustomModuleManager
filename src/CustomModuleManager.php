@@ -58,12 +58,14 @@ use Fisharebest\Webtrees\Tree;
 use Fisharebest\Webtrees\View;
 use Fisharebest\Webtrees\Webtrees;
 use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
+use Jefferson49\Webtrees\Exceptions\HostingPlatformCommunicationError;
 use Jefferson49\Webtrees\Helpers\Functions;
 use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\DefaultTitlesAndDescriptions;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CodebergModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ColumnConfigurationAction;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ColumnConfigurationModal;
@@ -120,6 +122,7 @@ class CustomModuleManager extends AbstractModule implements
     //Prefences, Settings
 	public const PREF_MODULE_VERSION          = 'module_version';
     public const PREF_DEBUGGING_ACTIVATED     = 'debugging_activated';
+	public const PREF_CODEBERG_API_TOKEN      = 'codeberg_api_token';
 	public const PREF_GITHUB_API_TOKEN        = 'github_api_token';
 	public const PREF_LAST_UPDATED_MODULE     = 'last_updated_module';
     public const PREF_ROLLBACK_ONGOING        = 'rollback_ongoing';
@@ -398,6 +401,7 @@ class CustomModuleManager extends AbstractModule implements
                 'runs_with_webtrees_version'   => CustomModuleManager::runsWithInstalledWebtreesVersion(),
                 'php_extension_zip_missing'    => !extension_loaded('zip'),
                 'title'                        => $this->title(),
+                self::PREF_CODEBERG_API_TOKEN  => $this->getPreference(self::PREF_CODEBERG_API_TOKEN, ''),
                 self::PREF_GITHUB_API_TOKEN    => $this->getPreference(self::PREF_GITHUB_API_TOKEN, ''),
                 self::PREF_MODULES_TO_SHOW     => $this->getPreference(self::PREF_MODULES_TO_SHOW, self::PREF_SHOW_ALL),
 				self::PREF_SHOW_MENU_LIST_ITEM => boolval($this->getPreference(self::PREF_SHOW_MENU_LIST_ITEM, '1')),
@@ -416,6 +420,7 @@ class CustomModuleManager extends AbstractModule implements
     public function postAdminAction(ServerRequestInterface $request): ResponseInterface
     {
         $save                = Validator::parsedBody($request)->string('save', '');
+        $codeberg_api_token  = Validator::parsedBody($request)->string(self::PREF_CODEBERG_API_TOKEN, '');
         $github_api_token    = Validator::parsedBody($request)->string(self::PREF_GITHUB_API_TOKEN, '');
         $modules_to_show     = Validator::parsedBody($request)->string(self::PREF_MODULES_TO_SHOW, self::PREF_SHOW_ALL);
         $show_menu_list_item = Validator::parsedBody($request)->boolean(self::PREF_SHOW_MENU_LIST_ITEM, false);
@@ -423,6 +428,7 @@ class CustomModuleManager extends AbstractModule implements
 
         //Save the received settings to the user preferences
         if ($save === '1') {
+			$this->setPreference(self::PREF_CODEBERG_API_TOKEN, $codeberg_api_token);
 			$this->setPreference(self::PREF_GITHUB_API_TOKEN, $github_api_token);
 			$this->setPreference(self::PREF_MODULES_TO_SHOW, $modules_to_show);
 			$this->setPreference(self::PREF_SHOW_MENU_LIST_ITEM, $show_menu_list_item ? '1' : '0');
@@ -725,7 +731,7 @@ class CustomModuleManager extends AbstractModule implements
                 $composer_json = self::getComposerJson($module_update_service::getInstallationFolderFromModuleName($module_name));
 
                 //If we were not able to read composer.json data from the file, we try to retrieve it from GitHub
-                if ($composer_json === [] && $module_update_service::NAME === GithubModuleUpdate::NAME) {
+                if ($composer_json === [] && in_array($module_update_service::NAME, [GithubModuleUpdate::NAME, CodebergModuleUpdate::NAME], true)) {
 
                     $tag        = $version;
                     $tag_prefix = $module_update_service->getTagPrefix();
@@ -742,16 +748,13 @@ class CustomModuleManager extends AbstractModule implements
                     }
 
                     try {
-                        $json = GithubService::getTextFileContent(
-                            $module_update_service->getGithubRepo(),
-                            $tag,
-                            'composer.json',
-                            $this->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '')
-                        );
+                        if (in_array($module_update_service::NAME, [CodebergModuleUpdate::NAME, GithubModuleUpdate::NAME])) {
+                            $json = $module_update_service->getTextFileContent($module_update_service->getRepository(), $tag, 'composer.json');
+                        }
 
                         $composer_json = json_decode($json, true);
                     }
-                    catch (GithubCommunicationError $e) {
+                    catch (HostingPlatformCommunicationError $e) {
                         //Fail gracefully if communication with GitHub failed
                     }
                 }
@@ -762,7 +765,7 @@ class CustomModuleManager extends AbstractModule implements
                 //Add additional content to composer.json data
                 $composer_json['version'] = $version;
 
-                if (!isset($composer_json['time']) && $module_update_service::NAME === GithubModuleUpdate::NAME) {
+                if (!isset($composer_json['time']) && in_array($module_update_service::NAME, [GithubModuleUpdate::NAME, CodebergModuleUpdate::NAME], true)) {
                     $release_info = $module_update_service->fetchReleasesInfoCached();
 
                     if (isset($release_info['published_at'])) {

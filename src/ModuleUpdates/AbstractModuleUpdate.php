@@ -38,6 +38,7 @@ use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
+use Jefferson49\Webtrees\Exceptions\HostingPlatformCommunicationError;
 use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
 use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
@@ -214,6 +215,25 @@ abstract class AbstractModuleUpdate
         $standard_module_name = ModuleUpdateServiceConfiguration::getStandardModuleName($this->module_name);
 
         return ModuleUpdateServiceConfiguration::getDateAdded($standard_module_name);
+    }
+
+    /**
+     * Get the repository of the module
+     *
+     * @return string
+     */
+    public function getRepository(): string {
+        return '';
+    }
+
+    /**
+     * Get the hosting platform of the module, e.g. GitHub or Codeberg
+     *
+     * @return string
+     */
+    public function getHostingPlatform(): string
+    {
+        return '';
     }
 
     /**
@@ -702,5 +722,20 @@ abstract class AbstractModuleUpdate
         }
 
         return  CustomModuleCompatibility::NOT_COMPATIBLE;
+    }
+
+    /**
+     * Get the text of a file from the module repository
+     *
+     * @param string $repo       The module repository, e.g. GitHub 'Jefferson49/webtrees-common'
+     * @param string $branch     The tag or branch in the module repository
+     * @param string $path       The path in the module repository including the file name
+     *
+     * @throws HostingPlatformCommunicationError  In case of a communcation error with the hosting platform
+     *
+     * @return string
+     */
+    public function getTextFileContent(string $repo, string $branch, string $path): string {
+        return '';
     }
 }

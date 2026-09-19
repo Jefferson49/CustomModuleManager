@@ -33,6 +33,7 @@ namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
 use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Illuminate\Support\Collection;
+use Jefferson49\Webtrees\Exceptions\HostingPlatformCommunicationError;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Enums\CustomModuleCompatibility;
 
@@ -256,4 +257,31 @@ interface CustomModuleUpdateInterface
      * @return CustomModuleCompatibility  The compatibility level
      */
     public function getCompatibility(string $module_version, string $webtrees_version = Webtrees::VERSION): CustomModuleCompatibility;
+
+    /**
+     * Get the repository of the module
+     *
+     * @return string
+     */
+    public function getRepository(): string;
+
+    /**
+     * Get the hosting platform of the module, e.g. GitHub or Codeberg
+     *
+     * @return string
+     */
+    public function getHostingPlatform(): string;
+
+    /**
+     * Get the text of a file from the module repository
+     *
+     * @param string $repo       The module repository, e.g. GitHub 'Jefferson49/webtrees-common'
+     * @param string $branch     The tag or branch in the module repository
+     * @param string $path       The path in the module repository including the file name
+     *
+     * @throws HostingPlatformCommunicationError  In case of a communcation error with the hosting platform
+     *
+     * @return string
+     */
+    public function getTextFileContent(string $repo, string $branch, string $path): string;
 }

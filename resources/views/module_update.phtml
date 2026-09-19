@@ -17,6 +17,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Enums\CustomModuleCompatibil
 use Jefferson49\Webtrees\Module\CustomModuleManager\Enums\CustomModuleStatus;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\AbstractModuleUpdate;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CodebergModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\VestaModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
@@ -363,7 +364,7 @@ $order = [[$sort_column, 'desc']];
                             <?php if (      !in_array($latest_compatible_version, [CustomModuleManager::VERSION_NOT_AVAILABLE, CustomModuleManager::VERSION_LATEST, ''])
                                         &&  $module !== null
                                         &&  CustomModuleManager::versionCompare($module_name, $latest_compatible_version, $current_version) > 0
-                                        &&  (       ($module_update_service_name === GithubModuleUpdate::NAME && $module_update_service->providesReleasesInRepository())
+                                        &&  (       (in_array($module_update_service_name, [GithubModuleUpdate::NAME, CodebergModuleUpdate::NAME]) && $module_update_service->providesReleasesInRepository())
                                                 OR  ($module_update_service_name === VestaModuleUpdate::NAME))
                                     ) : ?>
                                 <?php $latest_compatible_version_label = e(CustomModuleManager::normalizeVersion($module_name, $latest_compatible_version)) ?>

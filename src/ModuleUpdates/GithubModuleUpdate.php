@@ -168,11 +168,9 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
             return 'https://github.com/' . $this->github_repo . '/archive/refs/heads/' . $this->default_branch . '.zip';
         }
 
-        $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
-
         // Get the download URL from Github
         try {
-            $download_url = GithubService::downloadUrl($this->github_repo, $version, $this->tag_prefix, $github_api_token);
+            $download_url = GithubService::downloadUrl($this->github_repo, $version, $this->tag_prefix, $this->getApiToken());
         }
         catch (GithubCommunicationError $ex) {
             // Can't connect to GitHub?
@@ -200,9 +198,19 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      *
      * @return string
      */
-    public function getGithubRepo(): string
+    public function getRepository(): string
     {
         return $this->github_repo;
+    }
+
+    /**
+     * Get the hosting platform of the module, e.g. GitHub or Codeberg
+     *
+     * @return string
+     */
+    public function getHostingPlatform(): string
+    {
+        return 'GitHub';
     }
 
     /**
@@ -252,11 +260,9 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
      */
     public function getLatestReleaseNotes(): string
     {
-        $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
-
         //Get the latest releases note from GitHub
         try {
-            return GithubService::getLatestReleaseNotes($this->github_repo, $github_api_token);
+            return GithubService::getLatestReleaseNotes($this->github_repo, $this->getApiToken());
         }
         catch (GithubCommunicationError $ex) {
             // Can't connect to GitHub?
@@ -320,10 +326,8 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
 
         return Registry::cache()->file()->remember($cache_key, function () use ($below_tag): array {
 
-            $github_api_token = $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
-
             try {
-                return GithubService::getRecentReleasesInfo($this->github_repo, $github_api_token, $below_tag);
+                return GithubService::getRecentReleasesInfo($this->github_repo, $this->getApiToken(), $below_tag);
             }
             catch (GithubCommunicationError $ex) {
 
@@ -384,5 +388,31 @@ class GithubModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpd
     public function getDefaultBranch(): string {
 
         return $this->default_branch;
+    }
+
+    /**
+     * Get the API token
+     *
+     * @return string
+     */
+    public function getApiToken(): string {
+
+        return $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
+    }
+
+    /**
+     * Get the text of a file from the module repository
+     *
+     * @param string $repo       The module repository, e.g. GitHub 'Jefferson49/webtrees-common'
+     * @param string $branch     The tag or branch in the module repository
+     * @param string $path       The path in the module repository including the file name
+     *
+     * @throws GithubCommunicationError  In case of a communcation error with the hosting platform
+     *
+     * @return string
+     */
+    public function getTextFileContent(string $repo, string $branch, string $path): string {
+
+        return GithubService::getTextFileContent($repo, $branch, $path, $this->getApiToken());
     }
 }

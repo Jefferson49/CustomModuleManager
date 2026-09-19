@@ -1,25 +1,28 @@
 [![Latest Release](https://img.shields.io/github/v/release/Jefferson49/CustomModuleManager?display_name=tag)](https://github.com/Jefferson49/CustomModuleManager/releases/latest)
 [![webtrees major version](https://img.shields.io/badge/webtrees-v2.2.x-green)](https://webtrees.net/download)
+[![webtrees major version](https://img.shields.io/badge/webtrees-v2.3.x-green)](https://webtrees.net/download)
 
 # Custom Module Manager for webtrees
-A [webtrees](https://webtrees.net) 2.2 custom module to manage custom modules.
+A [webtrees](https://webtrees.net) 2.2/2.3 custom module to manage custom modules.
 
 ##  Table of contents
 This README file contains the following main sections:
 +   [What are the benefits of this module?](#what-are-the-benefits-of-this-module)
 +   [Installation](#installation)
 +   [Screenshot](#screenshot)
-+   [GitHub API Token](#github-api-token)
++   [GitHub and Codeberg API Tokens](#github-and-codeberg-api-tokens)
 *   [**How to use the module?**](#how-to-use-the-module)
-+   [Webtrees Version](#webtrees-version)
++   [PHP and webtrees Version](#php-and-webtrees-version)
 +   [Translation](#translation)
 +   [Bugs and Feature Requests](#bugs-and-feature-requests)
 +   [License](#license)
++   [Contributions and Copyrights](#contributions-and-copyrights)
 +   [GitHub Repository](#github-repository)
 
 ## What are the benefits of this module?
 **Features:**
-+ Provide a list of available custom modules (for webtrees 2.2)
++ Provide a list of available custom modules for webtrees 2.2 and 2.3
++ Check the compatibility of custom modules with the webtrees versions 2.2 and 2.3
 + Support the download of custom modules
 + Support the installation of custom modules
 + Support the update of custom modules
@@ -27,7 +30,6 @@ This README file contains the following main sections:
 + Support deleting custom modules
 
 **Optionally planned features:**
-+ Check the compatibility of custom modules with the webtrees versions
 + Save and restore the settings of a custom module
 
 ##  Screenshot
@@ -41,11 +43,14 @@ This README file contains the following main sections:
 	+ Go to "Control Panel/All Modules", and find the module called "Custom Module Manager"
 	+ Check if it has a tick for "Enabled"
 
-## GitHub API Token
+## GitHub and Codeberg API Tokens
 
-The custom module makes intensive use of the GitHub API to retrieve module versions and download URLs. However, GitHub limits the frequency of API calls for a certain IP address. In order to significantly increase the allowed frequency of GitHub API calls, GitHub requires to use a GitHub API token.
+The custom module makes intensive use of the GitHub and Codeberg APIs to retrieve module versions and download URLs. However, the frequency of API calls for a certain IP address is limited. In order to significantly increase the allowed frequency of API calls, API tokens are required.
 
-The module allows to provide a GitHub API token in the module settings. In order to get an API token from GitHub, the following steps need to be taken:
+The module allows to provide GitHub and Codeberg API tokens in the module settings.
+
+### How to get a GitHub API token?
+In order to get an API token from GitHub, the following steps need to be taken:
 
 + Open the [GitHub](https://github.com/) page and log into your GitHub account
 + Click on the symbol for your user account on the top right side of the browser
@@ -60,11 +65,25 @@ The module allows to provide a GitHub API token in the module settings. In order
 + Do NOT select any options
 + Press "Generate token" button at the bottom of the page
 
+### How to get a Codeberg API token?
+In order to get an API token from Codeberg, the following steps need to be taken:
+
++ Open the [Codeberg](https://codeberg.org/) page and log into your Codeberg account
++ Click on the symbol for your user account on the top right side of the browser
++ Choose "Settings" from the profile menu
++ Choose "Applications"
++ Press button "New access token"
++ Enter a token name, e.g. "API token for webtrees Custom Module Manager"
++ Select "Public only"
++ Select "package:Read"
++ Select "repository:Read"
++ Press "Generate token" button at the bottom of the page
+
 ## How to use the module?
 
 + Go to "Control Panel/All Modules" and find the "Custom Module Manager" module
 + Go to the module settings
-+ Optionally, enter a [GitHub API token](#github-api-token)
++ Optionally, enter [GitHub and Codeberg API tokens](#github-and-codeberg-api-tokens)
 + Press the "**Manage custom modules**" button
 + Optionally: Activate list menu item in the module settings
 + If activated: **Select menu "Lists" => "Custom Module Manager"**
@@ -78,8 +97,9 @@ The module allows to provide a GitHub API token in the module settings. In order
 ### View: Module Information
 ![Screenshot](resources/img/module_information.jpg)
 
-## Webtrees Version
-The module requires a [webtrees version](https://webtrees.net/download) greater or even to 2.2.3.
+## PHP and webtrees Version
++ PHP 8.3 or higher
++ [webtrees](https://webtrees.net/download) greater or equal to 2.2.3
 
 ## Translation
 Currently, the following languages are available:
@@ -90,6 +110,7 @@ Currently, the following languages are available:
 + English
 + French
 + German
++ Islandic
 + Italian
 + Polish
 + Russian
@@ -97,7 +118,7 @@ Currently, the following languages are available:
 
 You can help to translate this module. The language files are available on [POEditor](https://poeditor.com/join/project/bs8yRYqtme), where you can update or add a language.
 
-Alternatively, you can directly edit the .po translation text files, which can be found in [/resources/lang/](resources/lang). You can use a specific editor like [Poedit](https://poedit.net/) or a text editor like notepad++ to work on translations and provide them in the [GitHub repository](https://github.com/Jefferson49/CustomModuleManager) of the module. You can do this via a pull request (if you know how to do), or by opening a new issue and attaching a .po file. 
+Alternatively, you can directly edit the .po translation text files, which can be found in [/resources/lang/](resources/lang). You can use a specific editor like [Poedit](https://poedit.net/) or a text editor like notepad++ to work on translations and provide them in the [GitHub repository](https://github.com/Jefferson49/CustomModuleManager) of the module. You can do this via a pull request (if you know how to do), or by opening a new issue and attaching a .po file.
 
 Updated translations will be included in the next release of this module.
 
@@ -116,10 +137,10 @@ You should have received a copy of the GNU General Public License along with thi
 ## Contributions and Copyrights
 + webtrees
     + [webtrees](https://webtrees.net): online genealogy
-    + Copyright (c) 2025 [webtrees development team](http://webtrees.net)
+    + Copyright (c) 2026 [webtrees development team](http://webtrees.net)
 + Vesta Common (webtrees custom module)
     + [Cissee\WebtreesExt\More18N](https://github.com/vesta-webtrees-2-custom-modules/vesta_common/blob/master/patchedWebtrees/MoreI18N.php)
-        + Copyright (c) 2019 – 2025 Richard Cissée
+        + Copyright (c) 2019 – 2026 Richard Cissée
 
 ## GitHub Repository
 https://github.com/Jefferson49/CustomModuleManager
