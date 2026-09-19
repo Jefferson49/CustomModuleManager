@@ -1701,6 +1701,9 @@
             {
                 "version": "1.2.1",
                 "time": "2025-03-14",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "jefferson49/changelanguagewithurl",
                 "description": "ChangeLanguageWithURL module",
                 "extra": {
@@ -1728,6 +1731,9 @@
             {
                 "version": "1.0.0-beta",
                 "time": "2025-11-02",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "jefferson49/customfilesystem",
                 "description": "Create a custom filesystem",
                 "extra": {
@@ -1771,7 +1777,7 @@
                 "version": "2.0.6",
                 "time": "2026-07-11",
                 "conflict": {
-                    "fisharebest/webtrees": "<2.2"
+                    "fisharebest/webtrees": "<2.2.3 || >=2.3.0"
                 },
                 "name": "jefferson49/custommodulemanager",
                 "description": "A webtrees custom module to manage custom modules within webtrees",
@@ -1827,6 +1833,9 @@
             {
                 "version": "4.2.14",
                 "time": "2026-06-27",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "jefferson49/extendedimportexport",
                 "description": "A custom module for advanced GEDCOM import, export, and filter operations. The module also supports remote downloads/uploads/filters via URL requests.",
                 "extra": {
@@ -1867,6 +1876,9 @@
             {
                 "version": "0.9.99",
                 "time": "2025-07-31",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "jefferson49/mycustomtags",
                 "description": "A module to provide custom tags, types, relationship descriptors, and roles in events",
                 "extra": {
@@ -1905,6 +1917,9 @@
             {
                 "version": "1.5.7",
                 "time": "2026-05-02",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "jefferson49/repositoryhierarchy",
                 "description": "A hierarchical structured list of the sources of an archive based on the call numbers of the sources",
                 "extra": {
@@ -1949,6 +1964,9 @@
             {
                 "version": "1.2.3",
                 "time": "2026-08-06",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "jefferson49/webtrees-api",
                 "description": "A custom module to provide an API for webtrees.",
                 "extra": {
@@ -2008,6 +2026,9 @@
             {
                 "version": "1.1.11",
                 "time": "2026-04-18",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "jefferson49/webtrees-oauth2-client",
                 "description": "A custom module to implement a OAuth2 client for webtrees.",
                 "extra": {

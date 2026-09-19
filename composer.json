@@ -31,7 +31,7 @@
         "jefferson49/webtrees-common": ">=1.4.63"
     },
     "conflict": {
-        "fisharebest/webtrees": "<2.2.3"
+        "fisharebest/webtrees": "<2.2.3 || >=2.3.0"
     },
     "config": {
         "prepend-autoloader": false
