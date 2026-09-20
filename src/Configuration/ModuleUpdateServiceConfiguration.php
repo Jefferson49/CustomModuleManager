@@ -155,6 +155,8 @@ class ModuleUpdateServiceConfiguration
         '_gustine-history22_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'gustine/gustine-history22', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_FACT]],
 
         '_hh-change-log_'                    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh-change-log', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_hh_courtship_radius_'              =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh-courtship-radius', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_hh_exid_'                          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_exid', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_GEDCOM]],
         '_hh_extended_family_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_extended_family', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
         '_hh_families_trees_list_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh-family-trees-list', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
         '_hh_external_places_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_external_places', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_PLACES]],
@@ -272,18 +274,17 @@ class ModuleUpdateServiceConfiguration
 
     private const MODULES_WITH_ERRORS = [
 
-        '_hh_courtship_radius_'              =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh-courtship-radius', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        //Error during module booting. However, after installation seemingly works correct
-        //Strange error in CMM: Call to a member function getModuleNamesToUpdate() on null …/modules_v4/custom_module_manager/src/RequestHandlers/ModuleUpgradeWizardStep.php:177
-
         '_maoli-yuqing_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'mastermaoli/webtrees-theme-maoli-yuqing', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_THEME]],
+        //Last check: 2026-09-20
         //PHP error after opening webtrees (not during installation):
         //Error: Call to undefined function Maoli\Webtrees\Module\app() in /webtrees/modules_v4/webtrees-theme-maoli-yuqing/module.php:161
 
         '_webtrees-translate_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'Aengelking/webtrees-translate', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        //Last check: 2026-09-20
         //PHP errors after installation
 
         '_admin-announcement-billboard_'     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => '0ldM4cM4n/admin-announcement-billboard', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        //Last check: 2026-09-20
         //Wrongly shows new version available in CMM
         //Does not provide releases yet
 
@@ -294,6 +295,7 @@ class ModuleUpdateServiceConfiguration
         //Unusual folder structure; disabled by default: modules_v4/custom-css-1.0.19/custom-css.disable/module.php
 
         '_SA-history-4-webtrees_'            =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo'  => 'tronsmit/SA-history-4-webtrees']],
+        //Last check: 2026-09-20
         //Creates errors if module folder is renamed (e.g. from "SA-history-4-webtrees-1.1.0" to "SA-history-4-webtrees")
         //Seems not to occur in control panel, even if installed manually
         //Last update in Dec 2024
@@ -304,6 +306,7 @@ class ModuleUpdateServiceConfiguration
         //Included modules create PHP errors
 
         '_jsonld_'                           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'bmarwell/webtrees-jsonld', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
+        //Last check: 2026-09-20
         //Only preliminary release from Nov. 2025 available; creates errors
     ];
 
