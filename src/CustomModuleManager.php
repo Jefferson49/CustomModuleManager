@@ -819,8 +819,16 @@ class CustomModuleManager extends AbstractModule implements
                 //Remove data for version if already exists
                 self::removeVersion($custom_module_list, $package_name, $version);
 
-                //Add the data of the new version at the beginning of the module list
-                array_unshift($custom_module_list['packages'][$package_name], $composer_json);
+                //If package already exists, add the data of the new version at the beginning of the module list
+                if (isset($custom_module_list['packages'][$package_name])) {
+
+                    array_unshift($custom_module_list['packages'][$package_name], $composer_json);
+                }
+                //Otherwise, add as new package
+                else {
+                    $custom_module_list['packages'][$package_name][] = $composer_json;
+                }
+
                 $modified = true;
             }
         }
