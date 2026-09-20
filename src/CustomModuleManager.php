@@ -119,6 +119,10 @@ class CustomModuleManager extends AbstractModule implements
     //Whether the current version is lower than the latest version of the module
     private static bool $is_lower_than_latest_version;
 
+    //The module configuration (including all available module data)
+    private static array $configuration = [];
+
+
     //Prefences, Settings
 	public const PREF_MODULE_VERSION          = 'module_version';
     public const PREF_DEBUGGING_ACTIVATED     = 'debugging_activated';
@@ -214,7 +218,7 @@ class CustomModuleManager extends AbstractModule implements
     public const USE_LOCAL_CONFIG = false;
 
     //Use the local json file for the custom module update configuration (in module_update_service_configuration.json)
-    public const USE_LOCAL_CONFIG_FROM_CUSTOM_MODULE_LIST = true;
+    public const USE_LOCAL_CONFIG_FROM_CUSTOM_MODULE_LIST = false;
 
     //Whether the enabled status is included during submitting the update form
     public const ENABLED_STATUS_INCLUDED = 'enabled_status_included';
@@ -373,6 +377,9 @@ class CustomModuleManager extends AbstractModule implements
      */
     public function getAdminAction(ServerRequestInterface $request): ResponseInterface
     {
+        //Before generating configuration files, we need to initialize the configuration
+        $config = self::getConfig();
+
         //If the corresponding switch is turned on, we generate default titles and descriptions
         if (self::GENERATE_DEFAULT_TITLES_AND_DESCRIPTIONS) {
             self::generateDefaultTitlesAndDescriptions();
@@ -941,11 +948,16 @@ class CustomModuleManager extends AbstractModule implements
      */
     public static function getConfig(): array {
 
-        //Get data from current json file
-        $local_config = ModuleUpdateServiceConfiguration::getModuleUpdateServiceConfig();
+        // If the config is already available, take it
+        if (!empty(self::$configuration)) {
+            return self::$configuration;
+        }
 
-        //Get configuration
-		$config = (array) ModuleUpdateServiceConfiguration::MODULE_UPDATE_SERVICE_CONFIG;
+        //Get data from current a json file (either local or remote)
+        $config_from_file = ModuleUpdateServiceConfiguration::getModuleUpdateServiceConfig();
+
+        //Get the configuration from the code
+		$configuration = (array) ModuleUpdateServiceConfiguration::MODULE_UPDATE_SERVICE_CONFIG;
 
         //Add titles and descriptions
         $titles_all_languages = DefaultTitlesAndDescriptions::MODULE_TITLES;
@@ -953,25 +965,27 @@ class CustomModuleManager extends AbstractModule implements
         $titles = json_decode($titles_all_languages[CustomModuleManager::DEFAULT_LANGUAGE], true);
         $descriptions = json_decode($descriptions_all_languages[CustomModuleManager::DEFAULT_LANGUAGE], true);
 
-        foreach ($config as $module_name => $module_config) {
-            $config[$module_name]['params']['title']       = $titles[$module_name] ?? '';
-            $config[$module_name]['params']['description'] = $descriptions[$module_name] ?? '';
+        foreach ($configuration as $module_name => $module_config) {
+            $configuration[$module_name]['params']['title']       = $titles[$module_name] ?? '';
+            $configuration[$module_name]['params']['description'] = $descriptions[$module_name] ?? '';
         }
 
         //Date added
-        foreach ($config as $module_name => $module_config) {
+        foreach ($configuration as $module_name => $module_config) {
 
             //If date added does not exist already, we insert the current date
-            if (!isset($local_config[$module_name]['date_added'])) {
-                $config[$module_name]['date_added'] = date("Y-m-d");
+            if (!isset($config_from_file[$module_name]['date_added'])) {
+                $configuration[$module_name]['date_added'] = date("Y-m-d");
             }
             //Otherwise, we take the existing value
             else {
-                $config[$module_name]['date_added'] = $local_config[$module_name]['date_added'];
+                $configuration[$module_name]['date_added'] = $config_from_file[$module_name]['date_added'];
             }
         }
 
-        return $config;
+        self::$configuration = $configuration;
+
+        return $configuration;
     }
 
     /**
