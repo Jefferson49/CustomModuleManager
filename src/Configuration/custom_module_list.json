@@ -2182,6 +2182,9 @@
             {
                 "version": "1.0.0",
                 "name": "joppla/webtrees-faviconupdater",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "description": "Module to replaces automatically the default favicons with your own custom favicons after every webtrees update.",
                 "extra": {
                     "custom-module-manager": {
@@ -2207,6 +2210,9 @@
             {
                 "version": "1.0.0",
                 "name": "joppla/webtrees-faviconupdater-xxl",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "description": "Replaces automatically the default favicons with your own custom favicons after every webtrees update.",
                 "extra": {
                     "custom-module-manager": {
@@ -2257,6 +2263,9 @@
             {
                 "version": "2.2.6.1",
                 "name": "joppla/webtrees-gendexgenerator",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "description": "Generates a gendex.txt file for your family tree.",
                 "extra": {
                     "custom-module-manager": {
@@ -2339,7 +2348,7 @@
         ],
         "jrmine/webtrees-media-badge": [
             {
-                "version": "0.5.0-beta",
+                "version": "0.5.0",
                 "time": "2026-06-28",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
