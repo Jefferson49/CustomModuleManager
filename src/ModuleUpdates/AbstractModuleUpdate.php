@@ -564,14 +564,14 @@ abstract class AbstractModuleUpdate
             //If there is no conflict rule, then the module version is compatible with all webtrees versions
             if ($conflict_rule === '') {
 
-                $latest_version = $version;
+                return $version;
             }
 
             try {
                 //If the webtrees version does not satisfy the conflict rule, then the module version is compatible
                 if (!CustomModuleManager::webtreesVersionSatifiesConflictRule($webtrees_version, $conflict_rule)) {
 
-                    $latest_version = $version;
+                    return $version;
                 }
             }
             catch (InvalidArgumentException $ex) {
@@ -580,7 +580,7 @@ abstract class AbstractModuleUpdate
             }
         }
 
-        return $latest_version;
+        return '';
     }
 
     /**
