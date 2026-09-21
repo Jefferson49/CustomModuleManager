@@ -262,115 +262,6 @@
                 ]
             }
         ],
-        "Joppla/Webtrees-FaviconUpdater": [
-            {
-                "version": "1.0.0",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "Joppla/Webtrees-FaviconUpdater",
-                "description": "Module to replaces automatically the default favicons with your own custom favicons after every webtrees update.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_favicon-updater_",
-                        "update_service": "CodebergModuleUpdate",
-                        "params": {
-                            "codeberg_repo": "Joppla/Webtrees-FaviconUpdater",
-                            "category": "frontend",
-                            "title": "FaviconUpdater",
-                            "description": "Module to replaces automatically the default favicons with your own custom favicons after every webtrees update."
-                        },
-                        "date_added": "2026-06-29"
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Joppla"
-                    }
-                ]
-            }
-        ],
-        "Joppla/Webtrees-FaviconUpdater-XXL": [
-            {
-                "version": "1.0.0",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "Joppla/Webtrees-FaviconUpdater-XXL",
-                "description": "Replaces automatically the default favicons with your own custom favicons after every webtrees update.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_favicon-updater-xxl_",
-                        "update_service": "CodebergModuleUpdate",
-                        "params": {
-                            "codeberg_repo": "Joppla/Webtrees-FaviconUpdater-XXL",
-                            "category": "frontend",
-                            "title": "FaviconUpdaterXXL",
-                            "description": "Replaces automatically the default favicons with your own custom favicons after every webtrees update."
-                        },
-                        "date_added": "2026-06-29"
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Joppla"
-                    }
-                ]
-            }
-        ],
-        "Joppla/Webtrees-FaviconUpdater-XXS": [
-            {
-                "version": "1.0.1",
-                "name": "Joppla/Webtrees-FaviconUpdater-XXS",
-                "description": "Base module to replaces automatically the default favicons with your own custom favicons after every webtrees update.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_favicon-updater-xxs_",
-                        "update_service": "CodebergModuleUpdate",
-                        "params": {
-                            "codeberg_repo": "Joppla/Webtrees-FaviconUpdater-XXS",
-                            "category": "frontend",
-                            "title": "FaviconUpdaterXXS",
-                            "description": "Base module to replaces automatically the default favicons with your own custom favicons after every webtrees update."
-                        },
-                        "date_added": "2026-06-29"
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Joppla"
-                    }
-                ]
-            }
-        ],
-        "Joppla/Webtrees-GendexGenerator": [
-            {
-                "version": "2.2.6.1",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "Joppla/Webtrees-GendexGenerator",
-                "description": "Generates a gendex.txt file for your family tree.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_gendex-generator_",
-                        "update_service": "CodebergModuleUpdate",
-                        "params": {
-                            "codeberg_repo": "Joppla/Webtrees-GendexGenerator",
-                            "category": "gedcom",
-                            "title": "Gendex Generator",
-                            "description": "Generates a gendex.txt file for your family tree."
-                        },
-                        "date_added": "2026-04-22"
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Joppla"
-                    }
-                ]
-            }
-        ],
         "ahmadyaseen-pokkat/easytree": [
             {
                 "version": "2.4.0",
@@ -686,6 +577,68 @@
                         "name": "Bernd Schwendinger"
                     }
                 ]
+            }
+        ],
+        "bschwede/wt-cronjob": [
+            {
+                "version": "1.0.0",
+                "time": "2026-09-20",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "schwendinger/webtrees-module-cronjob",
+                "description": "webtrees custom module: cron job scheduler service (time-based maintenance jobs with admin UI, run history and manual trigger)",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_cronjob_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "bschwede/wt-cronjob",
+                            "tag_prefix": "v",
+                            "category": "admin",
+                            "title": "",
+                            "description": ""
+                        },
+                        "date_added": "2026-09-21"
+                    }
+                },
+                "require": {
+                    "php": ">=8.3",
+                    "dragonmantank/cron-expression": "^3.4",
+                    "bschwede/wt-shared-libs": "^1.0"
+                },
+                "authors": [
+                    {
+                        "name": "Bernd Schwendinger",
+                        "homepage": "https://github.com/bschwede",
+                        "role": "Developer"
+                    }
+                ],
+                "homepage": "https://github.com/bschwede/wt-cronjob",
+                "support": {
+                    "issues": "https://github.com/bschwede/wt-cronjob/issues"
+                },
+                "type": "project",
+                "keywords": [
+                    "webtrees",
+                    "custom module"
+                ],
+                "license": "GPL-3.0-or-later",
+                "repositories": [
+                    {
+                        "type": "path",
+                        "url": "../wt-shared-libs",
+                        "options": {
+                            "symlink": false
+                        }
+                    }
+                ],
+                "config": {
+                    "platform": {
+                        "php": "8.3.0"
+                    },
+                    "prepend-autoloader": false
+                }
             }
         ],
         "dirk-everts/webtrees-historic-events-belgium": [
@@ -1150,6 +1103,35 @@
                 ]
             }
         ],
+        "hartenthaler/hh-courtship-radius": [
+            {
+                "version": "2.2.6.0",
+                "name": "hartenthaler/hh-courtship-radius",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "description": "Analyse the geographic courtship radius of selected families over time.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_hh_courtship_radius_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "hartenthaler/hh-courtship-radius",
+                            "tag_prefix": "v",
+                            "category": "charts",
+                            "title": "Courtship radius",
+                            "description": "Analyse the geographic courtship radius of selected families over time."
+                        },
+                        "date_added": "2026-09-20"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Hermann Hartenthaler"
+                    }
+                ]
+            }
+        ],
         "hartenthaler/hh-family-trees-list": [
             {
                 "version": "2.2.6.2",
@@ -1221,6 +1203,46 @@
                 "autoload": {
                     "psr-4": {
                         "Hartenthaler\\Webtrees\\Module\\UnlinkedIndividual\\": "./"
+                    }
+                }
+            }
+        ],
+        "hartenthaler/hh_exid": [
+            {
+                "version": "2.2.6.2",
+                "time": "2026-09-20",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "hartenthaler/hh-exid",
+                "description": "GEDCOM external identifier support for webtrees",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_hh_exid_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "hartenthaler/hh_exid",
+                            "tag_prefix": "v",
+                            "category": "gedcom",
+                            "title": "External identifiers (EXID)",
+                            "description": "Support for GEDCOM external identifiers."
+                        },
+                        "date_added": "2026-09-20"
+                    }
+                },
+                "require": {
+                    "webtrees/module-installer": "^1.0"
+                },
+                "authors": [
+                    {
+                        "name": "Hermann Hartenthaler"
+                    }
+                ],
+                "type": "webtrees-module",
+                "license": "GPL-3.0-or-later",
+                "autoload": {
+                    "psr-4": {
+                        "Hartenthaler\\Webtrees\\Module\\ExidModule\\": "src/"
                     }
                 }
             }
@@ -2154,6 +2176,106 @@
                 "scripts-descriptions": {
                     "webtrees-theme-rural:package": "Create a package file for distribution. Add -- commit for specific commit."
                 }
+            }
+        ],
+        "joppla/webtrees-faviconupdater": [
+            {
+                "version": "1.0.0",
+                "name": "joppla/webtrees-faviconupdater",
+                "description": "Module to replaces automatically the default favicons with your own custom favicons after every webtrees update.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_favicon-updater_",
+                        "update_service": "CodebergModuleUpdate",
+                        "params": {
+                            "codeberg_repo": "Joppla/Webtrees-FaviconUpdater",
+                            "category": "frontend",
+                            "title": "FaviconUpdater",
+                            "description": "Module to replaces automatically the default favicons with your own custom favicons after every webtrees update."
+                        },
+                        "date_added": "2026-06-29"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Joppla"
+                    }
+                ]
+            }
+        ],
+        "joppla/webtrees-faviconupdater-xxl": [
+            {
+                "version": "1.0.0",
+                "name": "joppla/webtrees-faviconupdater-xxl",
+                "description": "Replaces automatically the default favicons with your own custom favicons after every webtrees update.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_favicon-updater-xxl_",
+                        "update_service": "CodebergModuleUpdate",
+                        "params": {
+                            "codeberg_repo": "Joppla/Webtrees-FaviconUpdater-XXL",
+                            "category": "frontend",
+                            "title": "FaviconUpdaterXXL",
+                            "description": "Replaces automatically the default favicons with your own custom favicons after every webtrees update."
+                        },
+                        "date_added": "2026-06-29"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Joppla"
+                    }
+                ]
+            }
+        ],
+        "joppla/webtrees-faviconupdater-xxs": [
+            {
+                "version": "1.0.1",
+                "name": "joppla/webtrees-faviconupdater-xxs",
+                "description": "Base module to replaces automatically the default favicons with your own custom favicons after every webtrees update.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_favicon-updater-xxs_",
+                        "update_service": "CodebergModuleUpdate",
+                        "params": {
+                            "codeberg_repo": "Joppla/Webtrees-FaviconUpdater-XXS",
+                            "category": "frontend",
+                            "title": "FaviconUpdaterXXS",
+                            "description": "Base module to replaces automatically the default favicons with your own custom favicons after every webtrees update."
+                        },
+                        "date_added": "2026-06-29"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Joppla"
+                    }
+                ]
+            }
+        ],
+        "joppla/webtrees-gendexgenerator": [
+            {
+                "version": "2.2.6.1",
+                "name": "joppla/webtrees-gendexgenerator",
+                "description": "Generates a gendex.txt file for your family tree.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_gendex-generator_",
+                        "update_service": "CodebergModuleUpdate",
+                        "params": {
+                            "codeberg_repo": "Joppla/Webtrees-GendexGenerator",
+                            "category": "gedcom",
+                            "title": "Gendex Generator",
+                            "description": "Generates a gendex.txt file for your family tree."
+                        },
+                        "date_added": "2026-04-22"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Joppla"
+                    }
+                ]
             }
         ],
         "jpretired/jp-main-menu-manual": [

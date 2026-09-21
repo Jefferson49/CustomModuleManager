@@ -468,6 +468,28 @@
         },
         "date_added": "2026-06-15"
     },
+    "_hh_courtship_radius_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "hartenthaler/hh-courtship-radius",
+            "tag_prefix": "v",
+            "category": "charts",
+            "title": "Courtship radius",
+            "description": "Analyse the geographic courtship radius of selected families over time."
+        },
+        "date_added": "2026-09-20"
+    },
+    "_hh_exid_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "hartenthaler/hh_exid",
+            "tag_prefix": "v",
+            "category": "gedcom",
+            "title": "External identifiers (EXID)",
+            "description": "Support for GEDCOM external identifiers."
+        },
+        "date_added": "2026-09-20"
+    },
     "_hh_extended_family_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -819,6 +841,17 @@
             "description": "Family navigator - show parent families last"
         },
         "date_added": ""
+    },
+    "_cronjob_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "bschwede/wt-cronjob",
+            "tag_prefix": "v",
+            "category": "admin",
+            "title": "",
+            "description": ""
+        },
+        "date_added": "2026-09-21"
     },
     "_linkenhancer_": {
         "update_service": "GithubModuleUpdate",
@@ -1292,8 +1325,8 @@
             "github_repo": "thobgg/webtrees-sammlungen",
             "tag_prefix": "v",
             "category": "media",
-            "title": "",
-            "description": ""
+            "title": "Sammlungen",
+            "description": "Foto- und Dokumenten-Sammlungen mit EXIF-Anreicherung, Galerie und Lightbox."
         },
         "date_added": "2026-08-09"
     },
