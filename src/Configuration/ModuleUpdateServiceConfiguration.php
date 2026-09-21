@@ -201,6 +201,7 @@ class ModuleUpdateServiceConfiguration
 
         '_fam-nav-parents-last_'             =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'tronsmit/fam-nav-parents-last', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND_SIDEBAR]],
 
+        '_cronjob_'                          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'bschwede/wt-cronjob', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
         '_linkenhancer_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'bschwede/linkenhancer', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
         '_polish-historic-events_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'p-ja/polish-historic-events', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
