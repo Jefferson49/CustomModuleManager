@@ -155,7 +155,7 @@ class ModuleUpdateServiceConfiguration
         '_gustine-history22_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'gustine/gustine-history22', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_FACT]],
 
         '_hh-change-log_'                    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh-change-log', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
-        '_hh_courtship_radius_'              =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh-courtship-radius', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_hh_courtship_radius_'              =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh-courtship-radius', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
         '_hh_exid_'                          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_exid', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_GEDCOM]],
         '_hh_extended_family_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_extended_family', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
         '_hh_families_trees_list_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh-family-trees-list', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
