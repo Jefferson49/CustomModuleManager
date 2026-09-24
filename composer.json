@@ -27,7 +27,7 @@
     ],
     "require": {
         "php": ">=8.3",
-        "composer/semver": ">=3.4.4",
+        "composer/semver": "=3.4.4",
         "jefferson49/webtrees-common": ">=1.4.64"
     },
     "conflict": {
