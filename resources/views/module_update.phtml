@@ -390,9 +390,11 @@ $order = [[$sort_column, 'desc']];
 
                         <!-- Compatibility -->
                         <?php if ($show_column_compatibility) : ?>
-                            <!-- If the webtrees version to check is below 2.2.6, we cannot provide any information -->
+                            <!-- If the webtrees version to check is below a minimum version, we cannot provide any information -->
                             <?php if (  !$update_service_available
-                                    OR  version_compare($custom_module_manager->getPreference(CustomModuleManager::PREF_COMP_WEBTREES_VERSION, ''), '2.2.6') < 0) : ?>
+                                    OR  version_compare($custom_module_manager->getPreference(CustomModuleManager::PREF_COMP_WEBTREES_VERSION, ''),CustomModuleManager::VERSION_WEBTREES_MINIMUM) < 0
+                                    OR  $module === null && $latest_compatible_version === ''
+                            ) : ?>
                                 <?php $current_compatibility = CustomModuleCompatibility::NOT_AVAILABLE ?>
                                 <?php $general_compatibility = CustomModuleCompatibility::NOT_AVAILABLE ?>
                             <?php else : ?>

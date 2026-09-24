@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-09-19 11:40+0200\n"
-"PO-Revision-Date: 2026-09-19 11:48+0200\n"
+"POT-Creation-Date: 2026-09-22 06:23+0200\n"
+"PO-Revision-Date: 2026-09-22 06:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,28 +15,28 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:273
+#: src/CustomModuleManager.php:278
 msgid "Custom Module Manager"
 msgstr "Management von Erweiterungsmodulen"
 
-#: src/CustomModuleManager.php:286
+#: src/CustomModuleManager.php:291
 msgid "A custom module to manage webtrees custom modules."
 msgstr "Ein Erweiterungsmodul zum Verwalten von webtrees-Erweiterungsmodulen."
 
-#: src/CustomModuleManager.php:439
+#: src/CustomModuleManager.php:447
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:485
+#: src/CustomModuleManager.php:493
 msgid "Rollback Custom Module Update"
 msgstr "Aktualisierung des Erweiterungsmoduls rückgängig machen"
 
-#: src/CustomModuleManager.php:486
+#: src/CustomModuleManager.php:494
 msgid "Rollback"
 msgstr "Rückgängig machen"
 
-#: src/CustomModuleManager.php:513
+#: src/CustomModuleManager.php:521
 #: vendor/jefferson49/webtrees-common/Module/ModuleCustomTrait.php:206
 #, php-format
 msgid ""
@@ -357,21 +357,29 @@ msgstr "Kompatibilität mit webtrees-Version"
 msgid "If empty, column will not be shown."
 msgstr "Wenn das Feld leer ist, wird die Spalte nicht angezeigt."
 
-#: resources/views/modals/column_configuration.phtml:83
+#: resources/views/modals/column_configuration.phtml:77
+#, php-format
+msgid ""
+"Compatibility information is only available for webtrees versions >= %s."
+msgstr ""
+"Informationen über die Kompatibilität mit webtrees sind nur für Versionen >= "
+"%s verfügbar."
+
+#: resources/views/modals/column_configuration.phtml:85
 #: resources/views/settings.phtml:107
 msgid "Table layout"
 msgstr "Tabellen-Layout"
 
-#: resources/views/modals/column_configuration.phtml:88
+#: resources/views/modals/column_configuration.phtml:90
 #: resources/views/settings.phtml:112
 msgid "Table"
 msgstr "Tabelle"
 
-#: resources/views/modals/column_configuration.phtml:89
+#: resources/views/modals/column_configuration.phtml:91
 msgid "Table with fixed header row"
 msgstr "Tabelle mit fixierter Kopfzeile"
 
-#: resources/views/modals/column_configuration.phtml:90
+#: resources/views/modals/column_configuration.phtml:92
 #: resources/views/settings.phtml:114
 msgid "Responsive table (for small screens)"
 msgstr "Responsive Tabelle (für kleine Bildschirme)"
@@ -519,7 +527,7 @@ msgstr "Aktualisieren auf neueste Version"
 #: resources/views/module_update.phtml:503
 #, php-format
 msgid "Update to version %s"
-msgstr "Aktualisieren auf Version %s "
+msgstr "Aktualisieren auf Version %s"
 
 #: resources/views/module_update.phtml:505
 #: resources/views/module_update.phtml:518

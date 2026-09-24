@@ -556,8 +556,6 @@ abstract class AbstractModuleUpdate
      */
     public function getLatestCompatibleVersion(string $webtrees_version = Webtrees::VERSION): string {
 
-        $latest_version = '';
-
         //The list of conflicts is sorted by release time, so we iterate and take the last compatible version in the list
         foreach ($this->conflicts as $version => $conflict_rule) {
 
@@ -692,12 +690,8 @@ abstract class AbstractModuleUpdate
         $latest_version_in_module_list = $this->getLatestVersionInCustomModuleList($webtrees_version);
         $earliest_incompatible_version = $this->getEarliestIncompatibleVersion($webtrees_version);
 
-        if (strpos($module_name, 'media-badge') !== false) {
-            $debug = true;
-        }
-
-        // If the webtrees version is below 2.2.6, we cannot provide any information
-        if (version_compare($webtrees_version, '2.2.6') < 0) {
+        // If the webtrees version is below a minimum webtrees version, we cannot provide any information
+        if (version_compare($webtrees_version, CustomModuleManager::VERSION_WEBTREES_MINIMUM) < 0) {
             return CustomModuleCompatibility::NOT_AVAILABLE;
         }
 

@@ -73,6 +73,8 @@ use function view;
                 <input class="form-control" id="webtrees_version" name="webtrees_version" type="text" value="<?= e($webtrees_version) ?>">
                 <div class="form-text">
                     <?= I18N::translate('If empty, column will not be shown.'); ?>
+                    <br>
+                    <?= I18N::translate('Compatibility information is only available for webtrees versions >= %s.', CustomModuleManager::VERSION_WEBTREES_MINIMUM); ?>
                 </div>
             </div>
         </fieldset>

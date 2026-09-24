@@ -190,6 +190,7 @@ class CustomModuleManager extends AbstractModule implements
     public const VERSION_NOT_AVAILABLE         = 'not available';
     public const VERSION_LATEST                = 'latest';
     public const VERSION_WEBTREES_COMP_DEFAULT = '2.3';
+    public const VERSION_WEBTREES_MINIMUM      = '2.2.6';
 
     //Path
     public const PATH_LOCAL_CONFIG                    = '/Configuration/module_update_service_configuration.json';
