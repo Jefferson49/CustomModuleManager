@@ -520,9 +520,9 @@
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_linkenhancer_",
-                        "update_service": "GithubModuleUpdate",
+                        "update_service": "CodebergModuleUpdate",
                         "params": {
-                            "github_repo": "bschwede/linkenhancer",
+                            "codeberg_repo": "bschwede/linkenhancer",
                             "tag_prefix": "v",
                             "category": "frontend",
                             "title": "Link-Enhancer",
@@ -561,9 +561,9 @@
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_linkenhancer_",
-                        "update_service": "GithubModuleUpdate",
+                        "update_service": "CodebergModuleUpdate",
                         "params": {
-                            "github_repo": "bschwede/linkenhancer",
+                            "codeberg_repo": "bschwede/linkenhancer",
                             "tag_prefix": "v",
                             "category": "frontend",
                             "title": "Link-Enhancer",
@@ -591,9 +591,9 @@
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_cronjob_",
-                        "update_service": "GithubModuleUpdate",
+                        "update_service": "CodebergModuleUpdate",
                         "params": {
-                            "github_repo": "bschwede/wt-cronjob",
+                            "codeberg_repo": "bschwede/wt-cronjob",
                             "tag_prefix": "v",
                             "category": "admin",
                             "title": "",
@@ -610,13 +610,13 @@
                 "authors": [
                     {
                         "name": "Bernd Schwendinger",
-                        "homepage": "https://github.com/bschwede",
+                        "homepage": "https://codeberg.org/bschwede",
                         "role": "Developer"
                     }
                 ],
-                "homepage": "https://github.com/bschwede/wt-cronjob",
+                "homepage": "https://codeberg.org/bschwede/wt-cronjob",
                 "support": {
-                    "issues": "https://github.com/bschwede/wt-cronjob/issues"
+                    "issues": "https://codeberg.org/bschwede/wt-cronjob/issues"
                 },
                 "type": "project",
                 "keywords": [
