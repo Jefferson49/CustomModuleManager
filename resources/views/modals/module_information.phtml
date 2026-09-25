@@ -122,7 +122,7 @@ use function view;
             </a>
             <br>
             <?= view('icons/link') ?>
-            <?= 'GitHub '?>
+            <?= $module_update_service->getHostingPlatform() . ' ' ?>
             <a href="<?= e($documentation_url . '/issues') ?>" target="blank">
                 <?= MoreI18N::xlate('Issues') ?>
             </a>
