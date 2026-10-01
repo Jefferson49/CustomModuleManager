@@ -259,6 +259,10 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
                 $latest_version = self::getLatestVersionByUpdateURL($module);
             }
 
+            if ($module === null OR $latest_version === '') {
+                $latest_version = self::getLatestVersionFromLatestVersionFile();
+            }
+
             return $latest_version;
         }
         // Otherwise, try to get the latest (cached) version from the platform; also considering the lowest incompatible version, if defined
@@ -267,6 +271,30 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
 
             $release_info = $this->fetchReleasesInfoCached($fetch_latest);
             return $release_info['tag'];
+        }
+
+        return '';
+    }
+
+    /**
+     * Get the latest version of a module from a latest-version.txt file in the repository
+     *
+     * @return string
+     */
+    public function getLatestVersionFromLatestVersionFile(): string
+    {
+        try {
+            $ref = new ReflectionMethod($this->platform_service, 'getTextFileContent');
+            $version = $ref->invoke(null, $this->repo, $this->default_branch, 'latest-version.txt', self::getApiToken());
+
+            // Does the response look like a version?
+            if (preg_match('/^\d+\.\d+\.\d+/', $version)) {
+                return $version;
+            }
+        }
+        catch (HostingPlatformCommunicationError $ex) {
+            // Fail gracefully, if we do not receive a response
+            return '';
         }
 
         return '';
