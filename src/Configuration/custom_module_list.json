@@ -405,10 +405,13 @@
         ],
         "bertkoor/wt-datafix-add-married-names": [
             {
-                "version": "not available",
-                "time": "2026-09-07",
+                "version": "1.1.0",
+                "time": "2026-10-01",
+                "conflict": {
+                    "fisharebest/webtrees": "<2.1"
+                },
                 "name": "bertkoor/wt-datafix-add-married-names",
-                "description": "You can make it easier to search for married women by recording their married name. However not all women take their husband\u2019s surname, so beware of introducing incorrect information into your database.<p>This data-fix is full of assumptions - most of which are wrong.",
+                "description": "You can make it easier to search for married women by recording their married name. However not all women take their husband\u2019s surname, so beware of introducing incorrect information into your database.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_datafix-add-married-names_",
@@ -423,15 +426,37 @@
                         },
                         "date_added": "2026-03-27"
                     }
-                }
+                },
+                "require": {
+                    "fisharebest/webtrees": "~2.1"
+                },
+                "authors": [
+                    {
+                        "name": "Bert Koorengevel",
+                        "homepage": "https://github.com/BertKoor",
+                        "role": "Developer"
+                    }
+                ],
+                "homepage": "https://github.com/BertKoor/wt-datafix-add-married-names",
+                "support": {
+                    "issues": "https://github.com/BertKoor/wt-datafix-add-married-names/issues"
+                },
+                "type": "webtrees-module",
+                "license": [
+                    "GPL-3.0-or-later"
+                ],
+                "disclaimer": "This project does NOT use PHP Composer. This file is used only for convenience, to hold metadata about the project."
             }
         ],
         "bertkoor/wt-module-bulk-delete": [
             {
                 "version": "0.1.2",
-                "time": "2026-09-07",
+                "time": "2026-10-01",
+                "conflict": {
+                    "fisharebest/webtrees": "<2.2"
+                },
                 "name": "bertkoor/wt-module-bulk-delete",
-                "description": "This module can delete many objects. Got a backup? Use with caution at your own risk. ",
+                "description": "Put quoted nickname into the full display name.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_module-bulk-delete_",
@@ -446,18 +471,37 @@
                         },
                         "date_added": ""
                     }
-                }
+                },
+                "require": {
+                    "fisharebest/webtrees": "~2.2"
+                },
+                "authors": [
+                    {
+                        "name": "Bert Koorengevel",
+                        "homepage": "https://github.com/BertKoor",
+                        "role": "Developer"
+                    }
+                ],
+                "homepage": "https://github.com/BertKoor/wt-module-bulk-delete",
+                "support": {
+                    "issues": "https://github.com/BertKoor/wt-module-bulk-delete/issues"
+                },
+                "type": "webtrees-module",
+                "license": [
+                    "GPL-3.0-or-later"
+                ],
+                "disclaimer": "This project does NOT use PHP Composer. This file is used only for convenience, to hold metadata about the project."
             }
         ],
         "bertkoor/wt-module-custom-views": [
             {
-                "version": "1.0.1",
-                "time": "2026-09-07",
+                "version": "1.1.0",
+                "time": "2026-10-01",
                 "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
+                    "fisharebest/webtrees": "<2.0 || >=2.3.0"
                 },
                 "name": "bertkoor/wt-module-custom-views",
-                "description": "Keep your customizations of .phtml files in a different directory, so upgrades do not overwrite them. It also supports customization of translations via .csv files.",
+                "description": "Custom views (and translations). Keep your customizations of .phtml files in a different directory, so upgrades do not overwrite them. It also supports customization of translations via .csv files.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_custom-views_",
@@ -473,17 +517,34 @@
                         "date_added": ""
                     }
                 },
+                "require": {
+                    "fisharebest/webtrees": "~2.0"
+                },
                 "authors": [
                     {
-                        "name": "bertkoor"
+                        "name": "Bert Koorengevel",
+                        "homepage": "https://github.com/BertKoor",
+                        "role": "Developer"
                     }
-                ]
+                ],
+                "homepage": "https://github.com/BertKoor/wt-module-custom-views",
+                "support": {
+                    "issues": "https://github.com/BertKoor/wt-module-custom-views/issues"
+                },
+                "type": "webtrees-module",
+                "license": [
+                    "GPL-3.0-or-later"
+                ],
+                "disclaimer": "This project does NOT use PHP Composer. This file is used only for convenience, to hold metadata about the project."
             }
         ],
         "bertkoor/wt-module-old-nicknames": [
             {
-                "version": "1.0.1",
-                "time": "2026-09-07",
+                "version": "1.1.0",
+                "time": "2026-10-01",
+                "conflict": {
+                    "fisharebest/webtrees": "<2.1"
+                },
                 "name": "bertkoor/wt-module-old-nicknames",
                 "description": "Put quoted nickname into the full display name.",
                 "extra": {
@@ -501,11 +562,26 @@
                         "date_added": ""
                     }
                 },
+                "require": {
+                    "php": ">=8.0",
+                    "fisharebest/webtrees": "~2.1"
+                },
                 "authors": [
                     {
-                        "name": "bertkoor"
+                        "name": "Bert Koorengevel",
+                        "homepage": "https://github.com/BertKoor",
+                        "role": "Developer"
                     }
-                ]
+                ],
+                "homepage": "https://github.com/BertKoor/wt-module-old-nicknames",
+                "support": {
+                    "issues": "https://github.com/BertKoor/wt-module-old-nicknames/issues"
+                },
+                "type": "webtrees-module",
+                "license": [
+                    "GPL-3.0-or-later"
+                ],
+                "disclaimer": "This project does NOT use PHP Composer. This file is used only for convenience, to hold metadata about the project."
             }
         ],
         "bschwede/linkenhancer": [
