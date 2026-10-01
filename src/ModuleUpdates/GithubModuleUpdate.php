@@ -32,6 +32,7 @@ declare(strict_types=1);
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
 use Jefferson49\Webtrees\Helpers\GithubService;
+use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 
 
 /**
@@ -55,5 +56,15 @@ class GithubModuleUpdate extends PlatformModuleUpdate implements CustomModuleUpd
         $this->platform_service = GithubService::class;
 
         parent::__construct($module_name, $params);
+    }
+
+    /**
+     * Get the API token
+     *
+     * @return string
+     */
+    public function getApiToken(): string {
+
+        return $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
     }
 }

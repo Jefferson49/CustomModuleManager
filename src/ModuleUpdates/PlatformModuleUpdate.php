@@ -37,6 +37,8 @@ use Fisharebest\Webtrees\Module\ModuleInterface;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Jefferson49\Webtrees\Exceptions\HostingPlatformCommunicationError;
+use Jefferson49\Webtrees\Helpers\Functions;
+use Jefferson49\Webtrees\Log\CustomModuleLog;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
 
@@ -190,9 +192,14 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
         }
         catch (HostingPlatformCommunicationError $ex) {
             // Can't connect to the platform?
-            $message =  I18N::translate('Communication error with %s', $this->platform_name) . ': ' .
+            $message = I18N::translate('Communication error with %s: %s', $this->platform_name,
                         I18N::translate('Cannot retrieve download URL.') . "\n" .
-                        $ex->getMessage();
+                        $ex->getMessage()
+            );
+
+            $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
+            CustomModuleLog::addDebugLog($custom_module_manager, $message);
+
             throw new CustomModuleManagerException($message);
         }
 
@@ -287,7 +294,7 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
     {
         try {
             $ref = new ReflectionMethod($this->platform_service, 'getTextFileContent');
-            $version = $ref->invoke(null, $this->repo, $this->default_branch, 'latest-version.txt', self::getApiToken());
+            $version = $ref->invoke(null, $this->repo, $this->default_branch, 'latest-version.txt', static::getApiToken());
 
             // Does the response look like a version?
             if (preg_match('/^\d+\.\d+\.\d+/', $version)) {
@@ -296,6 +303,10 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
         }
         catch (HostingPlatformCommunicationError $ex) {
             // Fail gracefully, if we do not receive a response
+            $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
+            $message = I18N::translate('Communication error with %s: %s', $this->platform_name, $ex->getMessage());
+            CustomModuleLog::addDebugLog($custom_module_manager, $message);
+
             return '';
         }
 
@@ -315,8 +326,12 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
             return $ref->invoke(null, $this->repo, $this->getApiToken());
         }
         catch (HostingPlatformCommunicationError $ex) {
-            // Can't connect to GitHub?
-            return I18N::translate('Could not retrieve release notes due to a communication error with GitHub.');
+            // Can't connect to the hosting platform?
+            $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
+            $message = I18N::translate('Could not retrieve release notes due to a communication error with %s.', $this->platform_name);
+            CustomModuleLog::addDebugLog($custom_module_manager, $message);
+
+            return $message;
         }
     }
 
@@ -382,8 +397,13 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
             }
             catch (HostingPlatformCommunicationError $ex) {
 
+                $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
+                $message = I18N::translate('Communication error with %s: %s', $this->platform_name, $ex->getMessage());
+                CustomModuleLog::addDebugLog($custom_module_manager, $message);
+
+                //Show flash message if has not already been shown before
                 if (!CustomModuleManager::rememberPlatformCommunciationError()) {
-                    FlashMessages::addMessage(I18N::translate('Communication error with %s', $this->platform_name), 'danger');
+                    FlashMessages::addMessage($message, 'danger');
                 }
 
                 return ['tag' => '', 'max_downloads' => -1];
@@ -446,10 +466,7 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
      *
      * @return string
      */
-    public function getApiToken(): string {
-
-        return $this->custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
-    }
+    abstract public function getApiToken(): string;
 
     /**
      * Get the text of a file from the module repository

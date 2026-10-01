@@ -39,9 +39,10 @@ use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Webtrees;
 use Illuminate\Support\Collection;
 use Jefferson49\Webtrees\Exceptions\HostingPlatformCommunicationError;
-use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
-use Jefferson49\Webtrees\Helpers\GithubService;
+use Jefferson49\Webtrees\Helpers\Functions;
+use Jefferson49\Webtrees\Helpers\PlatformService;
 use Jefferson49\Webtrees\Internationalization\MoreI18N;
+use Jefferson49\Webtrees\Log\CustomModuleLog;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Enums\CustomModuleCompatibility;
@@ -448,10 +449,14 @@ abstract class AbstractModuleUpdate
         }
 
         try {
-            $response = GithubService::getResponse($module->customModuleLatestVersionUrl());
+            $response = PlatformService::getResponse($module->customModuleLatestVersionUrl());
         }
-        catch (GithubCommunicationError $ex) {
+        catch (HostingPlatformCommunicationError $ex) {
             // Can't connect to the server?
+            $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
+            $message = I18N::translate('Communication error with %s: %s', $module->customModuleLatestVersionUrl(), $ex->getMessage());
+            CustomModuleLog::addDebugLog($custom_module_manager, $message);
+
             return '';
         }
 

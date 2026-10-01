@@ -67,6 +67,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateSe
 use Jefferson49\Webtrees\Module\CustomModuleManager\Factories\CustomModuleUpdateFactory;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\CodebergModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\GithubModuleUpdate;
+use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\PlatformModuleUpdate;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ColumnConfigurationAction;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ColumnConfigurationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleActivateAction;
@@ -223,6 +224,9 @@ class CustomModuleManager extends AbstractModule implements
 
     //Whether the enabled status is included during submitting the update form
     public const ENABLED_STATUS_INCLUDED = 'enabled_status_included';
+
+    //Whether logging of communication errors with hosting platforms (i.e. GitHub, Codeberg) is activated
+    public const LOGGING_COMM_ERRORS_ENABLEDD = 'logging_of_communication_errors_enabled';
 
 
     /**
@@ -414,6 +418,7 @@ class CustomModuleManager extends AbstractModule implements
                 self::PREF_MODULES_TO_SHOW     => $this->getPreference(self::PREF_MODULES_TO_SHOW, self::PREF_SHOW_ALL),
 				self::PREF_SHOW_MENU_LIST_ITEM => boolval($this->getPreference(self::PREF_SHOW_MENU_LIST_ITEM, '1')),
 				self::PREF_TABLE_LAYOUT        => $this->getPreference(self::PREF_TABLE_LAYOUT, self::TABLE_LAYOUT_STICKY_HEAD),
+				self::PREF_DEBUGGING_ACTIVATED => boolval($this->getPreference(self::PREF_DEBUGGING_ACTIVATED, '0')),
             ]
         );
     }
@@ -433,6 +438,7 @@ class CustomModuleManager extends AbstractModule implements
         $modules_to_show     = Validator::parsedBody($request)->string(self::PREF_MODULES_TO_SHOW, self::PREF_SHOW_ALL);
         $show_menu_list_item = Validator::parsedBody($request)->boolean(self::PREF_SHOW_MENU_LIST_ITEM, false);
         $table_layout        = Validator::parsedBody($request)->string(self::PREF_TABLE_LAYOUT, SELF::TABLE_LAYOUT_STICKY_HEAD);
+        $debugging_activated = Validator::parsedBody($request)->boolean(self::PREF_DEBUGGING_ACTIVATED, false);
 
         //Save the received settings to the user preferences
         if ($save === '1') {
@@ -441,6 +447,7 @@ class CustomModuleManager extends AbstractModule implements
 			$this->setPreference(self::PREF_MODULES_TO_SHOW, $modules_to_show);
 			$this->setPreference(self::PREF_SHOW_MENU_LIST_ITEM, $show_menu_list_item ? '1' : '0');
 			$this->setPreference(self::PREF_TABLE_LAYOUT, $table_layout);
+			$this->setPreference(self::PREF_DEBUGGING_ACTIVATED, $debugging_activated ? '1' : '0');
         }
 
         //Finally, show a success message
@@ -711,7 +718,7 @@ class CustomModuleManager extends AbstractModule implements
 
         foreach ($config as $module_name => $module_config) {
 
-            /** @var GithubModuleUpdate $module_update_service */
+            /** @var PlatformModuleUpdate $module_update_service */
             $module_update_service = CustomModuleUpdateFactory::make($module_name);
 
             //Skip if module update service or module is not available
@@ -859,7 +866,7 @@ class CustomModuleManager extends AbstractModule implements
 
         foreach ($config as $module_name => $module_config) {
 
-            /** @var GithubModuleUpdate $module_update_service */
+            /** @var PlatformModuleUpdate $module_update_service */
             $module_update_service = CustomModuleUpdateFactory::make($module_name);
 
             if ($module_update_service === null) {
@@ -1242,13 +1249,14 @@ class CustomModuleManager extends AbstractModule implements
     }
 
     /**
-     * Remember if a communication with the platform occured. Return true if it is the force occurance
+     * Remember if a communication with the platform occured. Return true if it is the first occurance
      *
+     * @param $error_message  An optional error message, which might be used for logging
      * @return bool
      */
-    public static function rememberPlatformCommunciationError(): bool {
+    public static function rememberPlatformCommunciationError($error_message = ''): bool {
 
-        //If GitHub communication has already occured before
+        //If communication error has already occured before
         if (self::$platform_communication_error) {
             return true;
         }

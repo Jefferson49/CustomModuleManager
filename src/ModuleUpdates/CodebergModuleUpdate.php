@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates;
 
 use Jefferson49\Webtrees\Helpers\CodebergService;
+use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 
 
 /**
@@ -28,5 +29,15 @@ class CodebergModuleUpdate extends PlatformModuleUpdate implements CustomModuleU
         $this->platform_service = CodebergService::class;
 
         parent::__construct($module_name, $params);
+    }
+
+    /**
+     * Get the API token
+     *
+     * @return string
+     */
+    public function getApiToken(): string {
+
+        return $this->custom_module_manager->getPreference(CustomModuleManager::PREF_CODEBERG_API_TOKEN, '');
     }
 }
