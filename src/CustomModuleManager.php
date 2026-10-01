@@ -114,7 +114,7 @@ class CustomModuleManager extends AbstractModule implements
 	public const CUSTOM_AUTHOR = 'Markus Hemprich';
 
     //Whether a GiHub communication error occured
-    private static bool $github_communication_error = false;
+    private static bool $platform_communication_error = false;
 
     //Whether the current version is lower than the latest version of the module
     private static bool $is_lower_than_latest_version;
@@ -391,7 +391,7 @@ class CustomModuleManager extends AbstractModule implements
             self::generateModuleUpdateServiceConfig();
         }
 
-        //If the corresponding switch is turned on, we generate a JSON file for custom module list
+        //If the corresponding switch is turned on, we generate a JSON file for the custom module list
         if (self::GENERATE_CUSTOM_MODULE_LIST) {
             $this->generateCustomModuleList(self::REPLACE_EXISTING_VERSIONS);
         }
@@ -702,10 +702,9 @@ class CustomModuleManager extends AbstractModule implements
      */
     public function generateCustomModuleList(bool $replace_existing_versions = false): void {
 
-        //Load custom module list
+        //Load existing custom module list
         $custom_module_list = self::loadCustomModuleList();
 
-        //Create custom modules list
         $config = self::getConfig();
 
         $modified = false;
@@ -852,10 +851,10 @@ class CustomModuleManager extends AbstractModule implements
      */
     public function addConflictsForModulesNotExisting(): void {
 
+        //Load existing custom module list
         $custom_module_list = self::loadCustomModuleList();
         $modifed = false;
 
-        //Create custom modules list
         $config = self::getConfig();
 
         foreach ($config as $module_name => $module_config) {
@@ -1243,19 +1242,19 @@ class CustomModuleManager extends AbstractModule implements
     }
 
     /**
-     * Remember if a GitHub communication occured. Return true if it is the force occurance
+     * Remember if a communication with the platform occured. Return true if it is the force occurance
      *
      * @return bool
      */
-    public static function rememberGithubCommunciationError(): bool {
+    public static function rememberPlatformCommunciationError(): bool {
 
         //If GitHub communication has already occured before
-        if (self::$github_communication_error) {
+        if (self::$platform_communication_error) {
             return true;
         }
 
         //Remember error for further requests
-        self::$github_communication_error = true;
+        self::$platform_communication_error = true;
 
         return false;
     }
