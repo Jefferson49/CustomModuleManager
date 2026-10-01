@@ -615,7 +615,7 @@ abstract class AbstractModuleUpdate
         $compatiblilty = CustomModuleCompatibility::NOT_AVAILABLE;
 
 
-        // If no information is available at, the latest version shall be taken
+        // If no information is available at all, the latest version shall be taken
         if ($latest_compatible_version === CustomModuleManager::VERSION_NOT_AVAILABLE && $latest_version === '') {
             $version = CustomModuleManager::VERSION_LATEST;
             $compatiblilty = CustomModuleCompatibility::POSSIBLY_COMPATIBLE;
@@ -663,9 +663,11 @@ abstract class AbstractModuleUpdate
             }
         }
         elseif ($latest_version_in_module_list === CustomModuleManager::VERSION_NOT_AVAILABLE) {
+            $version = $latest_version;
             $compatiblilty = CustomModuleCompatibility::NOT_AVAILABLE;
         }
         else {
+            $version = $latest_version;
             $compatiblilty = CustomModuleCompatibility::NOT_COMPATIBLE;
         }
 
