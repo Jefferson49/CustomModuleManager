@@ -85,6 +85,8 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
      * @param array  $params       The configuration parameters of the update service
      *
      * @return void
+     *
+     * @throws CustomModuleManagerException  If the update service cannot be created
      */
     public function __construct(string $module_name, array $params) {
 
@@ -304,8 +306,6 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
      * Get the release notes for the latest version of this module
      *
      * @return string
-     *
-     * @throws HostingPlatformCommunicationError  In case of a communication error with the platform*
      */
     public function getLatestReleaseNotes(): string
     {
