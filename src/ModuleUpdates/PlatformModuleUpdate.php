@@ -266,9 +266,13 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
 
             if ($module !== null) {
                 $latest_version = self::getLatestVersionByUpdateURL($module);
+
+                if ($latest_version === '') {
+                    $latest_version = self::getLatestVersionFromLatestVersionFile();
+                }
             }
 
-            if ($module === null OR $latest_version === '') {
+            if ($fetch_latest) {
                 $latest_version = self::getLatestVersionFromLatestVersionFile();
             }
 
