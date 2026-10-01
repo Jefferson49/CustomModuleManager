@@ -512,7 +512,10 @@ $order = [[$sort_column, 'desc']];
                             <?php $action = CustomModuleManager::ACTION_INSTALL ?>
                                 <?php if ($module_update_service_name === VestaModuleUpdate::NAME && $vesta_confirmed) : ?>
                                     <?php $action_label = I18N::translate('Install all Vesta modules') ?>
-                                <?php elseif ($latest_compatible_version === CustomModuleManager::VERSION_LATEST) : ?>
+                                <?php elseif (  $latest_compatible_version === CustomModuleManager::VERSION_LATEST
+                                            OR  (   in_array($module_update_service_name, [GithubModuleUpdate::NAME, CodebergModuleUpdate::NAME])
+                                                 && $module_update_service->noRelease())
+                                ) : ?>
                                     <?php $action_label = I18N::translate('Install latest version') ?>
                                 <?php else : ?>
                                     <?php $action_label = I18N::translate('Install version %s', CustomModuleManager::normalizeVersion($module_name, $latest_compatible_version)) ?>
