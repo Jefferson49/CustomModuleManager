@@ -498,7 +498,7 @@
                 "version": "1.1.0",
                 "time": "2026-10-01",
                 "conflict": {
-                    "fisharebest/webtrees": "<2.0 || >=2.3.0"
+                    "fisharebest/webtrees": "<2.0"
                 },
                 "name": "bertkoor/wt-module-custom-views",
                 "description": "Custom views (and translations). Keep your customizations of .phtml files in a different directory, so upgrades do not overwrite them. It also supports customization of translations via .csv files.",
@@ -586,8 +586,8 @@
         ],
         "bschwede/linkenhancer": [
             {
-                "version": "1.3.0",
-                "time": "2026-09-16",
+                "version": "1.5.1",
+                "time": "2026-10-02",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -667,9 +667,9 @@
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_cronjob_",
-                        "update_service": "CodebergModuleUpdate",
+                        "update_service": "GitHubModuleUpdate",
                         "params": {
-                            "codeberg_repo": "bschwede/wt-cronjob",
+                            "github_repo": "bschwede/wt-cronjob",
                             "tag_prefix": "v",
                             "category": "admin",
                             "title": "",
@@ -772,8 +772,8 @@
         ],
         "ekdahl/webtrees-primer-theme": [
             {
-                "version": "2.2.6.0",
-                "time": "2026-05-07",
+                "version": "2.2.6.1",
+                "time": "2026-10-02",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
