@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "720a543a933f0c0784251bc30469760e",
+    "content-hash": "bb01d1e75887f9ca7f2ef7077ea2053b",
     "packages": [
         {
             "name": "composer/semver",
@@ -85,11 +85,11 @@
         },
         {
             "name": "jefferson49/webtrees-common",
-            "version": "1.4.64",
+            "version": "1.4.69",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Jefferson49/webtrees-common.git",
-                "reference": "043a0e202b36f5b62953c0431d6a8c67ded54cc1"
+                "reference": "93dfc58ee67bd426a65e35f713d3dc87549b2d93"
             },
             "require": {
                 "php": ">=7.4"
@@ -104,7 +104,7 @@
                 "webtrees",
                 "webtrees-module"
             ],
-            "time": "2026-09-19T14:11:22+00:00"
+            "time": "2026-10-02T08:42:17+00:00"
         }
     ],
     "packages-dev": [],

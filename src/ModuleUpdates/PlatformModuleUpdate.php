@@ -182,7 +182,7 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
 
         //For certain modules, which do not provide a release, we take the URL of the source code ZIP file of the default branch
         if ($this->no_release) {
-            return $this->platform_url . $this->repo . '/archive/refs/heads/' . $this->default_branch . '.zip';
+            return $this->platform_url . '/' . $this->repo . '/archive/refs/heads/' . $this->default_branch . '.zip';
         }
 
         // Get the download URL from the hosting platform
@@ -192,13 +192,9 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
         }
         catch (HostingPlatformCommunicationError $ex) {
             // Can't connect to the platform?
-            $message = I18N::translate('Communication error with %s: %s', $this->platform_name,
-                        I18N::translate('Cannot retrieve download URL.') . "\n" .
-                        $ex->getMessage()
-            );
-
+            $message = I18N::translate('Communication error with %s', $this->platform_name);
             $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
-            CustomModuleLog::addDebugLog($custom_module_manager, $message);
+            CustomModuleLog::addDebugLog($custom_module_manager, $message . "\n" . 'Cannot retrieve download URL.' . "\n" . $ex->getMessage());
 
             throw new CustomModuleManagerException($message);
         }
@@ -213,7 +209,7 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
      */
     public function documentationUrl(): string
     {
-        return $this->platform_url . $this->repo;
+        return $this->platform_url . '/' . $this->repo;
     }
 
     /**
@@ -239,7 +235,7 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
     /**
      * Fetch the latest version of this module
      *
-     * @param bool $fetch_latest  Whether to fetch the latest version, e.g. from a GitHub repository
+     * @param bool $fetch_latest  Whether to fetch the latest version, e.g. from a repository
      *
      * @return string
      */
@@ -307,10 +303,6 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
         }
         catch (HostingPlatformCommunicationError $ex) {
             // Fail gracefully, if we do not receive a response
-            $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
-            $message = I18N::translate('Communication error with %s: %s', $this->platform_name, $ex->getMessage());
-            CustomModuleLog::addDebugLog($custom_module_manager, $message);
-
             return '';
         }
 
@@ -324,7 +316,7 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
      */
     public function getLatestReleaseNotes(): string
     {
-        //Get the latest releases note from GitHub
+        //Get the latest releases note from the hosting platform
         try {
             $ref = new ReflectionMethod($this->platform_service, 'getLatestReleaseNotes');
             return $ref->invoke(null, $this->repo, $this->getApiToken());
@@ -332,8 +324,8 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
         catch (HostingPlatformCommunicationError $ex) {
             // Can't connect to the hosting platform?
             $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
-            $message = I18N::translate('Could not retrieve release notes due to a communication error with %s.', $this->platform_name);
-            CustomModuleLog::addDebugLog($custom_module_manager, $message);
+		    $message = I18N::translate('Could not retrieve release notes due to a communication error with %s.', $this->platform_name);
+            CustomModuleLog::addDebugLog($custom_module_manager, $message . "\n" . $ex->getMessage());
 
             return $message;
         }
@@ -402,8 +394,8 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
             catch (HostingPlatformCommunicationError $ex) {
 
                 $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
-                $message = I18N::translate('Communication error with %s: %s', $this->platform_name, $ex->getMessage());
-                CustomModuleLog::addDebugLog($custom_module_manager, $message);
+                $message = I18N::translate('Communication error with %s', $this->platform_name);
+                CustomModuleLog::addDebugLog($custom_module_manager, $message . "\n" . $ex->getMessage());
 
                 //Show flash message if has not already been shown before
                 if (!CustomModuleManager::rememberPlatformCommunciationError()) {
@@ -422,7 +414,7 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
      */
     public function getLatestReleaseURL(): string {
 
-        return $this->platform_url . $this->repo . '/releases/latest';
+        return $this->platform_url . '/' . $this->repo . '/releases/latest';
     }
 
     /**
@@ -446,7 +438,7 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
     }
 
     /**
-     * Whether the GitHub repo does not provide releases
+     * Whether the repo does not provide releases
      *
      * @return bool
      */

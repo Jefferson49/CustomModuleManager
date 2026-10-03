@@ -41,7 +41,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 class GithubModuleUpdate extends PlatformModuleUpdate implements CustomModuleUpdateInterface
 {
     const string NAME = 'GitHub';
-    const string URL  = 'https://github.com/';
+    const string URL  = 'https://github.com';
 
     /**
      * @param string $module_name  The custom module name

@@ -14,7 +14,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
 class CodebergModuleUpdate extends PlatformModuleUpdate implements CustomModuleUpdateInterface
 {
     const string NAME = 'Codeberg';
-    const string URL  = 'https://codeberg.org/';
+    const string URL  = 'https://codeberg.org';
 
     /**
      * @param string $module_name  The custom module name
