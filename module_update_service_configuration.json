@@ -848,8 +848,8 @@
             "github_repo": "bschwede/wt-cronjob",
             "tag_prefix": "v",
             "category": "admin",
-            "title": "",
-            "description": ""
+            "title": "Cron Job Scheduler",
+            "description": "Schedule and monitor maintenance jobs: cron expressions, run history and manual trigger."
         },
         "date_added": "2026-09-21"
     },
