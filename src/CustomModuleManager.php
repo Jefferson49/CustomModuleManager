@@ -106,7 +106,7 @@ class CustomModuleManager extends AbstractModule implements
     use ModuleListTrait;
 
 	//Custom module version
-	public const CUSTOM_VERSION = 'v2.0.6';
+	public const CUSTOM_VERSION = 'v2.1.0-beta';
 
 	//GitHub repository
 	public const GITHUB_REPO = 'Jefferson49/CustomModuleManager';
@@ -1114,7 +1114,7 @@ class CustomModuleManager extends AbstractModule implements
     public static function getVersionBefore(array $module_versions, string $version): string {
 
         uasort($module_versions, function (array $a, array $b) {
-                Comparator::greaterThan($a['version'], $b['version']) ? -1 : 1;
+                return Comparator::greaterThan($a['version'], $b['version']) ? -1 : 1;
             }
         );
 
