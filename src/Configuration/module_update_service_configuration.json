@@ -512,6 +512,18 @@
         },
         "date_added": "2026-08-29"
     },
+    "_hh_gemeda_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "hartenthaler/hh_gemeda",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "frontend_tab",
+            "title": "GeMeDa",
+            "description": "Displays and manages GeMeDa identity links for individuals."
+        },
+        "date_added": "2026-10-25"
+    },
     "_hh_external_places_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -854,9 +866,9 @@
         "date_added": "2026-09-21"
     },
     "_linkenhancer_": {
-        "update_service": "GithubModuleUpdate",
+        "update_service": "CodebergModuleUpdate",
         "params": {
-            "github_repo": "bschwede/linkenhancer",
+            "codeberg_repo": "bschwede/linkenhancer",
             "tag_prefix": "v",
             "category": "frontend",
             "title": "Link-Enhancer",
@@ -1065,10 +1077,9 @@
         "date_added": "2026-03-28"
     },
     "_gendex-generator_": {
-        "update_service": "UrlModuleUpdate",
+        "update_service": "CodebergModuleUpdate",
         "params": {
-            "download_url": "https://codeberg.org/Joppla/Webtrees-GendexGenerator/archive/main.zip",
-            "documentation_url": "https://codeberg.org/Joppla/Webtrees-GendexGenerator#readme",
+            "codeberg_repo": "Joppla/Webtrees-GendexGenerator",
             "category": "gedcom",
             "title": "Gendex Generator",
             "description": "Generates a gendex.txt file for your family tree."
@@ -1076,10 +1087,9 @@
         "date_added": "2026-04-22"
     },
     "_favicon-updater_": {
-        "update_service": "UrlModuleUpdate",
+        "update_service": "CodebergModuleUpdate",
         "params": {
-            "download_url": "https://codeberg.org/Joppla/Webtrees-FaviconUpdater/archive/main.zip",
-            "documentation_url": "https://codeberg.org/Joppla/Webtrees-FaviconUpdater#readme",
+            "codeberg_repo": "Joppla/Webtrees-FaviconUpdater",
             "category": "frontend",
             "title": "FaviconUpdater",
             "description": "Module to replaces automatically the default favicons with your own custom favicons after every webtrees update."
@@ -1087,10 +1097,9 @@
         "date_added": "2026-06-29"
     },
     "_favicon-updater-xxs_": {
-        "update_service": "UrlModuleUpdate",
+        "update_service": "CodebergModuleUpdate",
         "params": {
-            "download_url": "https://codeberg.org/Joppla/Webtrees-FaviconUpdater-XXS/archive/main.zip",
-            "documentation_url": "https://codeberg.org/Joppla/Webtrees-FaviconUpdater-XXS#readme",
+            "codeberg_repo": "Joppla/Webtrees-FaviconUpdater-XXS",
             "category": "frontend",
             "title": "FaviconUpdaterXXS",
             "description": "Base module to replaces automatically the default favicons with your own custom favicons after every webtrees update."
@@ -1098,10 +1107,9 @@
         "date_added": "2026-06-29"
     },
     "_favicon-updater-xxl_": {
-        "update_service": "UrlModuleUpdate",
+        "update_service": "CodebergModuleUpdate",
         "params": {
-            "download_url": "https://codeberg.org/Joppla/Webtrees-FaviconUpdater-XXL/archive/main.zip",
-            "documentation_url": "https://codeberg.org/Joppla/Webtrees-FaviconUpdater-XXL#readme",
+            "codeberg_repo": "Joppla/Webtrees-FaviconUpdater-XXL",
             "category": "frontend",
             "title": "FaviconUpdaterXXL",
             "description": "Replaces automatically the default favicons with your own custom favicons after every webtrees update."
@@ -1351,5 +1359,39 @@
             "description": "One theme, four palettes: light, dark, sepia and bordeaux \u2013 switchable from the header menu."
         },
         "date_added": "2026-08-09"
+    },
+    "_api4webtrees_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "thobgg/api4webtrees",
+            "tag_prefix": "v",
+            "category": "admin",
+            "title": "api4webtrees",
+            "description": "JSON interface for the apps wtAnd, wtWin and wtTux \u2013 and any other client. Reads and writes with the rights of the signed-in user."
+        },
+        "date_added": "2026-10-25"
+    },
+    "_ofb4webtrees_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "thobgg/ofb4webtrees",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "gedcom",
+            "title": "ofb4webtrees",
+            "description": "Connector for OFB-Werkstatt: labels the tags of a local family register, exports the tree as evidence, receives handover packages as pending changes."
+        },
+        "date_added": "2026-10-25"
+    },
+    "_lebensbuehne_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "gregorwolf1973/webtrees-lebensbuehne",
+            "tag_prefix": "v",
+            "category": "charts",
+            "title": "Lebensb\u00fchne",
+            "description": "Vorfahren und Nachkommen als begehbarer 3D-Zeittunnel \u2013 mit Zeitreise, Lebensgeschichten, Karten und Zeitgeschehen."
+        },
+        "date_added": "2026-10-25"
     }
 }
