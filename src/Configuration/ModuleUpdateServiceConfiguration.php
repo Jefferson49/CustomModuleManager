@@ -159,6 +159,7 @@ class ModuleUpdateServiceConfiguration
         '_hh_exid_'                          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_exid', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_GEDCOM]],
         '_hh_extended_family_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_extended_family', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
         '_hh_families_trees_list_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh-family-trees-list', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_hh_gemeda_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_gemeda', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
         '_hh_external_places_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_external_places', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_PLACES]],
         '_hh_legal_notice_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_legal_notice', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FOOTER]],
         '_hh-unlinked-individual_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh-unlinked-individual', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
@@ -266,6 +267,10 @@ class ModuleUpdateServiceConfiguration
         '_sammlungen_'                       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'thobgg/webtrees-sammlungen', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
         '_ortsregister_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'thobgg/webtrees-ortsregister', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_PLACES]],
         '_theme-farbwelten_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'thobgg/webtrees-theme-farbwelten', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
+        '_api4webtrees_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'thobgg/api4webtrees', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_ofb4webtrees_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'thobgg/ofb4webtrees', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
+
+        '_lebensbuehne_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'gregorwolf1973/webtrees-lebensbuehne', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
     ];
 
 
@@ -274,6 +279,9 @@ class ModuleUpdateServiceConfiguration
     ];
 
     private const MODULES_WITH_ERRORS = [
+
+        '_MABeatty1978/webtrees_modules_'    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'MABeatty1978/webtrees_modules']],
+        //Four custom modules in one repo. Not possible to handle in CMM; seperate repo needed for each module
 
         '_maoli-yuqing_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'mastermaoli/webtrees-theme-maoli-yuqing', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_THEME]],
         //Last check: 2026-09-20
