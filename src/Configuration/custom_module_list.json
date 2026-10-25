@@ -1532,6 +1532,9 @@
                 "version": "0.3.1",
                 "time": "2026-07-09",
                 "name": "haylau-ronzo/enhanced-charts",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "description": "A configurable tree home-page charts block with built-in chart wrappers plus a module-side Enhanced Hourglass mode based on the built-in webtrees layout.",
                 "extra": {
                     "custom-module-manager": {
