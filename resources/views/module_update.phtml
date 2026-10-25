@@ -548,7 +548,7 @@ $order = [[$sort_column, 'desc']];
                                     <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ModuleUpgradeWizardPage::class, [
                                             'module_name'     => $module_name,
                                             'current_version' => $current_version,
-                                            'version'         => $latest_compatible_version !== CustomModuleManager::VERSION_LATEST ? $latest_compatible_version : '',
+                                            'version'         => $latest_compatible_version,
                                             'action'          => $action,
                                         ])) ?>" type="submit" class="btn btn-<?= $primary_button ? 'primary' : 'secondary' ?>">
                                         <?= $action_label ?>
