@@ -1163,6 +1163,33 @@
                 ]
             }
         ],
+        "gregorwolf1973/webtrees-lebensbuehne": [
+            {
+                "version": "1.1.0",
+                "time": "2026-10-25",
+                "name": "gregorwolf1973/webtrees-lebensbuehne",
+                "description": "Stage of Life: Family tree as a 3D time tunnel featuring time travel, life stories, maps, and historical events.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_lebensbuehne_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "gregorwolf1973/webtrees-lebensbuehne",
+                            "tag_prefix": "v",
+                            "category": "charts",
+                            "title": "",
+                            "description": ""
+                        },
+                        "date_added": "2026-10-25"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Gregor Wolf"
+                    }
+                ]
+            }
+        ],
         "gustine/gustine-history22": [
             {
                 "version": "2025.12.29",
@@ -1710,6 +1737,54 @@
                     "gov"
                 ],
                 "license": "GPL-3.0-or-later"
+            }
+        ],
+        "hartenthaler/hh_gemeda": [
+            {
+                "version": "2.2.6.0",
+                "time": "2026-10-25",
+                "name": "hartenthaler/hh_gemeda",
+                "description": "GeMeDa links and claims for webtrees individuals",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_hh_gemeda_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "hartenthaler/hh_gemeda",
+                            "no_release": true,
+                            "default_branch": "main",
+                            "category": "frontend_tab",
+                            "title": "",
+                            "description": ""
+                        },
+                        "date_added": "2026-10-25"
+                    }
+                },
+                "require": {
+                    "webtrees/module-installer": "^1.0",
+                    "hartenthaler/hh-shared": "^0.1"
+                },
+                "authors": [
+                    {
+                        "name": "Hermann Hartenthaler"
+                    }
+                ],
+                "type": "webtrees-module",
+                "license": "GPL-3.0-or-later",
+                "repositories": [
+                    {
+                        "type": "vcs",
+                        "url": "https://github.com/hartenthaler/hh_shared"
+                    }
+                ],
+                "config": {
+                    "prepend-autoloader": false
+                },
+                "autoload": {
+                    "psr-4": {
+                        "Hartenthaler\\Webtrees\\Module\\GeMeDaModule\\": "src/"
+                    }
+                }
             }
         ],
         "hartenthaler/hh_legal_notice": [
@@ -4515,6 +4590,61 @@
                 "authors": [
                     {
                         "name": "Szymon Porwolik"
+                    }
+                ]
+            }
+        ],
+        "thobgg/api4webtrees": [
+            {
+                "version": "1.23.0",
+                "time": "2026-10-18",
+                "name": "thobgg/api4webtrees",
+                "description": "JSON interface for the apps wtAnd, wtWin, and wtTux \u2013 and any other client. Reads and writes with the permissions of the logged-in user.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_api4webtrees_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "thobgg/api4webtrees",
+                            "tag_prefix": "v",
+                            "category": "admin",
+                            "title": "",
+                            "description": ""
+                        },
+                        "date_added": "2026-10-25"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Thomas Bugge"
+                    }
+                ]
+            }
+        ],
+        "thobgg/ofb4webtrees": [
+            {
+                "version": "0.1.0",
+                "time": "2026-10-25",
+                "name": "thobgg/ofb4webtrees",
+                "description": "connector for OFB-Werkstatt (Ortsfamilienbuch) \u2013 tags, export as evidence, handover packages as pending changes.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_ofb4webtrees_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "thobgg/ofb4webtrees",
+                            "no_release": true,
+                            "default_branch": "main",
+                            "category": "gedcom",
+                            "title": "",
+                            "description": ""
+                        },
+                        "date_added": "2026-10-25"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Thomas Bugge"
                     }
                 ]
             }
