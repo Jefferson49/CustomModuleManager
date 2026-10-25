@@ -512,17 +512,6 @@
         },
         "date_added": "2026-08-29"
     },
-    "_hh_external_places_": {
-        "update_service": "GithubModuleUpdate",
-        "params": {
-            "github_repo": "hartenthaler/hh_external_places",
-            "tag_prefix": "v",
-            "category": "places",
-            "title": "External Places",
-            "description": "Links shared places to Wikidata, FactGrid and GOV and displays read-only external place information, optionally including GeoNames context."
-        },
-        "date_added": "2026-08-23"
-    },
     "_hh_gemeda_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -534,6 +523,17 @@
             "description": "Displays and manages GeMeDa identity links for individuals."
         },
         "date_added": "2026-10-25"
+    },
+    "_hh_external_places_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "hartenthaler/hh_external_places",
+            "tag_prefix": "v",
+            "category": "places",
+            "title": "External Places",
+            "description": "Links shared places to Wikidata, FactGrid and GOV and displays read-only external place information, optionally including GeoNames context."
+        },
+        "date_added": "2026-08-23"
     },
     "_hh_legal_notice_": {
         "update_service": "GithubModuleUpdate",
@@ -1371,7 +1371,7 @@
             "tag_prefix": "v",
             "category": "admin",
             "title": "api4webtrees",
-            "description": "JSON interface for the apps wtAnd, wtWin, and wtTux – and any other client. Reads and writes with the permissions of the logged-in user."
+            "description": "JSON interface for the apps wtAnd, wtWin and wtTux \u2013 and any other client. Reads and writes with the rights of the signed-in user."
         },
         "date_added": "2026-10-25"
     },
@@ -1383,7 +1383,7 @@
             "default_branch": "main",
             "category": "gedcom",
             "title": "ofb4webtrees",
-            "description": "connector for OFB-Werkstatt (Ortsfamilienbuch) – tags, export as evidence, handover packages as pending changes."
+            "description": "Connector for OFB-Werkstatt: labels the tags of a local family register, exports the tree as evidence, receives handover packages as pending changes."
         },
         "date_added": "2026-10-25"
     },
@@ -1393,7 +1393,7 @@
             "github_repo": "gregorwolf1973/webtrees-lebensbuehne",
             "tag_prefix": "v",
             "category": "charts",
-            "title": "Lebensbühne",
+            "title": "Lebensb\u00fchne",
             "description": "Stage of Life: Family tree as a 3D time tunnel featuring time travel, life stories, maps, and historical events."
         },
         "date_added": "2026-10-25"
