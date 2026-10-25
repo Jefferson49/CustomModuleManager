@@ -523,6 +523,18 @@
         },
         "date_added": "2026-08-23"
     },
+    "_hh_gemeda_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "hartenthaler/hh_gemeda",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "frontend_tab",
+            "title": "GeMeDa",
+            "description": "Displays and manages GeMeDa identity links for individuals."
+        },
+        "date_added": "2026-10-25"
+    },
     "_hh_legal_notice_": {
         "update_service": "GithubModuleUpdate",
         "params": {
@@ -1351,5 +1363,39 @@
             "description": "One theme, four palettes: light, dark, sepia and bordeaux \u2013 switchable from the header menu."
         },
         "date_added": "2026-08-09"
+    },
+    "_api4webtrees_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "thobgg/api4webtrees",
+            "tag_prefix": "v",
+            "category": "admin",
+            "title": "api4webtrees",
+            "description": "JSON interface for the apps wtAnd, wtWin, and wtTux – and any other client. Reads and writes with the permissions of the logged-in user."
+        },
+        "date_added": "2026-10-25"
+    },
+    "_ofb4webtrees_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "thobgg/ofb4webtrees",
+            "no_release": true,
+            "default_branch": "main",
+            "category": "gedcom",
+            "title": "ofb4webtrees",
+            "description": "connector for OFB-Werkstatt (Ortsfamilienbuch) – tags, export as evidence, handover packages as pending changes."
+        },
+        "date_added": "2026-10-25"
+    },
+    "_lebensbuehne_": {
+        "update_service": "GithubModuleUpdate",
+        "params": {
+            "github_repo": "gregorwolf1973/webtrees-lebensbuehne",
+            "tag_prefix": "v",
+            "category": "charts",
+            "title": "Lebensbühne",
+            "description": "Stage of Life: Family tree as a 3D time tunnel featuring time travel, life stories, maps, and historical events."
+        },
+        "date_added": "2026-10-25"
     }
 }
