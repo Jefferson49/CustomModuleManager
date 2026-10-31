@@ -712,9 +712,9 @@
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_cronjob_",
-                        "update_service": "CodebergModuleUpdate",
+                        "update_service": "GitHubModuleUpdate",
                         "params": {
-                            "codeberg_repo": "bschwede/wt-cronjob",
+                            "github_repo": "bschwede/wt-cronjob",
                             "tag_prefix": "v",
                             "category": "admin",
                             "title": "Cron Job Scheduler",
