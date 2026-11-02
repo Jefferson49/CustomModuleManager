@@ -454,7 +454,7 @@ abstract class AbstractModuleUpdate
         catch (HostingPlatformCommunicationError $ex) {
             // Can't connect to the server?
             $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
-            $message = I18N::translate('Communication error with %s: %s', $module->customModuleLatestVersionUrl(), $ex->getMessage());
+            $message = 'Communication error with ' . $module->customModuleLatestVersionUrl() . ': ' . $ex->getMessage();
             CustomModuleLog::addDebugLog($custom_module_manager, $message);
 
             return '';

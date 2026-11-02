@@ -192,7 +192,7 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
         }
         catch (HostingPlatformCommunicationError $ex) {
             // Can't connect to the platform?
-            $message = I18N::translate('Communication error with %s', $this->platform_name);
+            $message = 'Communication error with ' . $this->platform_name;
             $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
             CustomModuleLog::addDebugLog($custom_module_manager, $message . "\n" . 'Cannot retrieve download URL.' . "\n" . $ex->getMessage());
 
@@ -324,7 +324,7 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
         catch (HostingPlatformCommunicationError $ex) {
             // Can't connect to the hosting platform?
             $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
-		    $message = I18N::translate('Could not retrieve release notes due to a communication error with %s.', $this->platform_name);
+		    $message = 'Could not retrieve release notes due to a communication error with %' . $this->platform_name;
             CustomModuleLog::addDebugLog($custom_module_manager, $message . "\n" . $ex->getMessage());
 
             return $message;
@@ -394,8 +394,8 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
             catch (HostingPlatformCommunicationError $ex) {
 
                 $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
-                $message = I18N::translate('Communication error with %s', $this->platform_name);
-                CustomModuleLog::addDebugLog($custom_module_manager, $message . "\n" . $ex->getMessage());
+                $message = 'Communication error with ' . $this->platform_name . ': ' . $ex->getMessage();
+                CustomModuleLog::addDebugLog($custom_module_manager, $message);
 
                 //Show flash message if has not already been shown before
                 if (!CustomModuleManager::rememberPlatformCommunciationError()) {
