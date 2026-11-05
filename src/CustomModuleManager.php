@@ -40,6 +40,7 @@ use Composer\Semver\Semver;
 use Composer\Semver\VersionParser;
 use Fisharebest\Webtrees\Auth;
 use Fisharebest\Webtrees\FlashMessages;
+use Fisharebest\Webtrees\Http\Middleware\AuthAdministrator;
 use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\AbstractModule;
 use Fisharebest\Webtrees\Module\ModuleConfigInterface;
@@ -61,6 +62,7 @@ use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
 use Jefferson49\Webtrees\Exceptions\HostingPlatformCommunicationError;
 use Jefferson49\Webtrees\Helpers\Functions;
 use Jefferson49\Webtrees\Helpers\GithubService;
+use Jefferson49\Webtrees\Http\Middleware\RequireHttpPostMethod;
 use Jefferson49\Webtrees\Log\CustomModuleLogInterface;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\DefaultTitlesAndDescriptions;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
@@ -257,17 +259,17 @@ class CustomModuleManager extends AbstractModule implements
 		View::registerNamespace(self::viewsNamespace(), $this->resourcesFolder() . 'views/');
 
         //Register the routes for the custom module
-        Functions::registerRoute(self::ROUTE_WIZARD_PAGE, ModuleUpgradeWizardPage::class);
-        Functions::registerRoute(self::ROUTE_WIZARD_STEP, ModuleUpgradeWizardStep::class);
-        Functions::registerRoute(self::ROUTE_MODULE_UPDATE_PAGE, CustomModuleUpdatePage::class);
-        Functions::registerRoute(self::ROUTE_MODULE_INFO_MODAL, ModuleInformationModal::class);
-        Functions::registerRoute(self::ROUTE_RELEASE_NOTES_MODAL, ReleaseNotesModal::class);
-        Functions::registerRoute(self::ROUTE_ACTIVATE_ACTION, CustomModuleActivateAction::class);
-        Functions::registerRoute(self::ROUTE_IGNORE_UPDATE, IgnoreUpdateAction::class);
-        Functions::registerRoute(self::ROUTE_COLUMN_CONF_MODAL, ColumnConfigurationModal::class);
-        Functions::registerRoute(self::ROUTE_COLUMN_CONF_ACTION, ColumnConfigurationAction::class);
-        Functions::registerRoute(self::ROUTE_VESTA_INFORMATION, VestaInformationModal::class);
-        Functions::registerRoute(self::ROUTE_VESTA_INFO_ACTION, VestaInformationAction::class);
+        Functions::registerRoute(self::ROUTE_WIZARD_PAGE, ModuleUpgradeWizardPage::class, null, [AuthAdministrator::class]);
+        Functions::registerRoute(self::ROUTE_WIZARD_STEP, ModuleUpgradeWizardStep::class, null, [AuthAdministrator::class]);
+        Functions::registerRoute(self::ROUTE_MODULE_UPDATE_PAGE, CustomModuleUpdatePage::class, null, [AuthAdministrator::class]);
+        Functions::registerRoute(self::ROUTE_MODULE_INFO_MODAL, ModuleInformationModal::class, null, [AuthAdministrator::class]);
+        Functions::registerRoute(self::ROUTE_RELEASE_NOTES_MODAL, ReleaseNotesModal::class, null, [AuthAdministrator::class]);
+        Functions::registerRoute(self::ROUTE_ACTIVATE_ACTION, CustomModuleActivateAction::class, null, [RequireHttpPostMethod::class, AuthAdministrator::class]);
+        Functions::registerRoute(self::ROUTE_IGNORE_UPDATE, IgnoreUpdateAction::class, null, [RequireHttpPostMethod::class, AuthAdministrator::class]);
+        Functions::registerRoute(self::ROUTE_COLUMN_CONF_MODAL, ColumnConfigurationModal::class, null, [AuthAdministrator::class]);
+        Functions::registerRoute(self::ROUTE_COLUMN_CONF_ACTION, ColumnConfigurationAction::class, null, [RequireHttpPostMethod::class, AuthAdministrator::class]);
+        Functions::registerRoute(self::ROUTE_VESTA_INFORMATION, VestaInformationModal::class, null, [AuthAdministrator::class]);
+        Functions::registerRoute(self::ROUTE_VESTA_INFO_ACTION, VestaInformationAction::class, null, [RequireHttpPostMethod::class, AuthAdministrator::class]);
     }
 
     /**
@@ -1251,10 +1253,9 @@ class CustomModuleManager extends AbstractModule implements
     /**
      * Remember if a communication with the platform occured. Return true if it is the first occurance
      *
-     * @param $error_message  An optional error message, which might be used for logging
      * @return bool
      */
-    public static function rememberPlatformCommunciationError($error_message = ''): bool {
+    public static function rememberPlatformCommunciationError(): bool {
 
         //If communication error has already occured before
         if (self::$platform_communication_error) {
