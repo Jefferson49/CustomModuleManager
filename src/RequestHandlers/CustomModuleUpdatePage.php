@@ -32,6 +32,7 @@ declare(strict_types=1);
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers;
 
 use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\Http\RequestHandlers\HomePage;
 use Fisharebest\Webtrees\Http\ViewResponseTrait;
 use Fisharebest\Webtrees\I18N;
@@ -43,6 +44,7 @@ use Fisharebest\Webtrees\User;
 use Fisharebest\Webtrees\Validator;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -76,11 +78,19 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
         $module_service        = New ModuleService();
         $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
 
+        try {
+            $module_names = ModuleUpdateServiceConfiguration::getModuleNames();
+        }
+        catch (CustomModuleManagerException $ex) {
+            $module_names = [];
+            FlashMessages::addMessage($ex->getMessage(), 'danger');
+        }
+
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::module_update', [
             'title'                                          => I18N::translate('Custom Module Updates'),
             'custom_module_manager'                          => $custom_module_manager,
             'module_service'                                 => $module_service,
-            'module_names'                                   => ModuleUpdateServiceConfiguration::getModuleNames(),
+            'module_names'                                   => $module_names,
             'custom_modules'                                 => $module_service->findByInterface(ModuleCustomInterface::class, true),
             'themes'                                         => $module_service->findByInterface(ModuleThemeInterface::class, true),
             'fetch_latest'                                   => $fetch_latest,

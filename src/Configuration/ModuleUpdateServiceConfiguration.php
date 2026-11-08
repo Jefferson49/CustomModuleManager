@@ -36,9 +36,10 @@ use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Session;
-use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
+use Jefferson49\Webtrees\Exceptions\HostingPlatformCommunicationError;
 use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Local\LocalFilesystemAdapter;
 
@@ -344,18 +345,9 @@ class ModuleUpdateServiceConfiguration
             return self::$module_update_service_config;
         }
 
-        // Try to load the configuration from a local custom module list (a Packagist JSON file)
-        if (CustomModuleManager::USE_LOCAL_CONFIG_FROM_CUSTOM_MODULE_LIST) {
-            try {
-                self::$module_update_service_config = self::getLocalConfigFromCustomModuleList();
-            }
-            catch (RuntimeException $ex) {
-                // Fail gracefully; local configuration will be loaded below
-            }
-        }
-
         // Try to load the configuration from GitHub
-        elseif (!CustomModuleManager::USE_LOCAL_CONFIG) {
+        if (!CustomModuleManager::USE_LOCAL_CONFIG_FROM_CUSTOM_MODULE_LIST) {
+
             $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
             $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
 
@@ -365,51 +357,32 @@ class ModuleUpdateServiceConfiguration
                 //Rational: The remote configuration file on GitHub might not be compatible with the local code if the module is not updated to the latest version
                 try {
                     $json_config = GithubService::getTextFileContent(CustomModuleManager::GITHUB_REPO, CustomModuleManager::CONFIG_GITHUB_BRANCH, CustomModuleManager::CONFIG_GITHUB_PATH, $github_api_token);
-                    self::$module_update_service_config = json_decode($json_config, true);
+                    self::$module_update_service_config = self::getConfigFromPackagistJson($json_config);
                 }
-                catch (GithubCommunicationError $ex) {
+                catch (HostingPlatformCommunicationError $ex) {
                     // Fail gracefully; local configuration will be loaded below
                 }
             }
         }
-
-        // If we still have no configuration yet, we take the local one
-        if (self::$module_update_service_config === []) {
-            $local_config = self::getLocalConfiguration();
-            self::$module_update_service_config = $local_config;
-            return $local_config;
+        // Try to load the configuration from a local custom module list
+        if (empty(self::$module_update_service_config)) {
+            try {
+                self::$module_update_service_config = self::getLocalConfigFromCustomModuleList();
+            }
+            catch (RuntimeException $ex) {
+                throw new CustomModuleManagerException(I18N::translate('Failed to load module update service configuration') . ': ' . $ex->getMessage());
+            }
         }
 
         return self::$module_update_service_config;
     }
 
     /**
-     * Get the local configuration (from a JSON file in the module)
+     * Get the configuration from a local custom module list (in a Packagist JSON file)
      *
      * @return array<string> module_name => module_config
      */
-    public static function getLocalConfiguration(): array {
-
-        $json_file = __DIR__ .CustomModuleManager::PATH_LOCAL_CONFIG;
-        $file_system = new Filesystem(new LocalFilesystemAdapter(__DIR__ . '/..'));
-
-        //Open file
-        if (!$file_system->fileExists(CustomModuleManager::PATH_LOCAL_CONFIG)) {
-             throw new RuntimeException('Cannot open file: ' . $json_file);
-        }
-
-        $local_json_config = $file_system->read(CustomModuleManager::PATH_LOCAL_CONFIG);
-        $local_config = json_decode($local_json_config, true);
-
-        return $local_config;
-    }
-
-    /**
-     * Get the configuration from a local custom module list (from a Packagist JSON file in the module)
-     *
-     * @return array<string> module_name => module_config
-     */
-    public static function getLocalConfigFromCustomModuleList(): array {
+    private static function getLocalConfigFromCustomModuleList(): array {
 
         $json_file   = __DIR__ . '/..' . CustomModuleManager::PATH_CUSTOM_MODULE_LIST;
         $file_system = new Filesystem(new LocalFilesystemAdapter(__DIR__ . '/..'));
@@ -420,7 +393,20 @@ class ModuleUpdateServiceConfiguration
         }
 
         $local_custom_module_list = $file_system->read(CustomModuleManager::PATH_CUSTOM_MODULE_LIST);
-        $custom_module_list = json_decode($local_custom_module_list, true);
+
+        return self::getConfigFromPackagistJson($local_custom_module_list);
+    }
+
+    /**
+     * Get the configuration from Packagist JSON data
+     *
+     * @param string $packagist_json  Packagist JSON data
+     *
+     * @return array<string> module_name => module_config
+     */
+    private static function getConfigFromPackagistJson(string $packagist_json): array {
+
+        $custom_module_list = json_decode($packagist_json, true);
 
         /** @var $conflicts array<string>  version => conflict rule for version*/
         $config = [];

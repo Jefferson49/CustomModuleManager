@@ -187,7 +187,7 @@ class CustomModuleManager extends AbstractModule implements
 
     //Config GitHub
     public const CONFIG_GITHUB_BRANCH      = 'config';
-    public const CONFIG_GITHUB_PATH        = 'module_update_service_configuration.json';
+    public const CONFIG_GITHUB_PATH        = 'custom_module_list.json';
 
     //Versions
     public const VERSION_NOT_AVAILABLE         = 'not available';
@@ -222,10 +222,7 @@ class CustomModuleManager extends AbstractModule implements
     public const REMOVE_EARLIER_VERSIONS_WITH_SAME_CONFLICT_RULE = false;
 
     //Use the local json file for the custom module update configuration (in module_update_service_configuration.json)
-    public const USE_LOCAL_CONFIG = false;
-
-    //Use the local json file for the custom module update configuration (in module_update_service_configuration.json)
-    public const USE_LOCAL_CONFIG_FROM_CUSTOM_MODULE_LIST = true;
+    public const USE_LOCAL_CONFIG_FROM_CUSTOM_MODULE_LIST = false;
 
     //Whether the enabled status is included during submitting the update form
     public const ENABLED_STATUS_INCLUDED = 'enabled_status_included';
