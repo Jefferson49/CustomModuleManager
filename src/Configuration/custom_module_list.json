@@ -900,34 +900,6 @@
                         "name": "Fredrik Ekdahl"
                     }
                 ]
-            },
-            {
-                "version": "2.2.6.1",
-                "time": "2026-10-02",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "ekdahl/webtrees-primer-theme",
-                "description": "Theme \u2014 Primer",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_webtrees-primer-theme_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "ekdahl/webtrees-primer-theme",
-                            "is_theme": true,
-                            "category": "theme",
-                            "title": "Primer",
-                            "description": "Theme \u2014 Primer"
-                        },
-                        "date_added": ""
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Fredrik Ekdahl"
-                    }
-                ]
             }
         ],
         "elysch/webtrees-mitalteli-chart-family-book": [
@@ -992,33 +964,6 @@
             {
                 "version": "3.4.3",
                 "time": "2026-10-21",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "elysch/webtrees-mitalteli-report-researchtasks",
-                "description": "A research tasks Report with filters and other options.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_mitalteli-report-researchtasks_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "elysch/webtrees-mitalteli-report-researchtasks",
-                            "category": "reports",
-                            "title": "Research tasks report",
-                            "description": "A research tasks Report with filters and other options."
-                        },
-                        "date_added": ""
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "elysch"
-                    }
-                ]
-            },
-            {
-                "version": "3.2.1",
-                "time": "2026-06-18",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -1511,44 +1456,6 @@
                         "Hartenthaler\\Webtrees\\Module\\ExidModule\\": "src/"
                     }
                 }
-            },
-            {
-                "version": "2.2.6.2",
-                "time": "2026-09-20",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "hartenthaler/hh-exid",
-                "description": "GEDCOM external identifier support for webtrees",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_hh_exid_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "hartenthaler/hh_exid",
-                            "tag_prefix": "v",
-                            "category": "gedcom",
-                            "title": "External identifiers (EXID)",
-                            "description": "Support for GEDCOM external identifiers."
-                        },
-                        "date_added": "2026-09-20"
-                    }
-                },
-                "require": {
-                    "webtrees/module-installer": "^1.0"
-                },
-                "authors": [
-                    {
-                        "name": "Hermann Hartenthaler"
-                    }
-                ],
-                "type": "webtrees-module",
-                "license": "GPL-3.0-or-later",
-                "autoload": {
-                    "psr-4": {
-                        "Hartenthaler\\Webtrees\\Module\\ExidModule\\": "src/"
-                    }
-                }
             }
         ],
         "hartenthaler/hh_extended_family": [
@@ -1584,122 +1491,12 @@
                     "issues": "https://github.com/hartenthaler/hh_extended_family/issues"
                 },
                 "license": "GPL-3.0-or-later"
-            },
-            {
-                "version": "2.2.6.14",
-                "time": "2026-07-13",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "hartenthaler/hh_extended_family",
-                "description": "A tab showing the extended family of an individual.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_hh_extended_family_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "hartenthaler/hh_extended_family",
-                            "tag_prefix": "v",
-                            "category": "frontend_tab",
-                            "title": "Extended family",
-                            "description": "A tab showing the extended family of an individual."
-                        },
-                        "date_added": ""
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Hermann Hartenthaler"
-                    }
-                ]
             }
         ],
         "hartenthaler/hh_external_places": [
             {
                 "version": "2.2.6.16",
                 "time": "2026-09-25",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "hartenthaler/hh-external-places",
-                "description": "A webtrees module for read-only information from Wikidata, FactGrid and GOV.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_hh_external_places_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "hartenthaler/hh_external_places",
-                            "tag_prefix": "v",
-                            "category": "places",
-                            "title": "External Places",
-                            "description": "Links shared places to Wikidata, FactGrid and GOV and displays read-only external place information, optionally including GeoNames context."
-                        },
-                        "date_added": "2026-08-23"
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Hermann Hartenthaler"
-                    }
-                ],
-                "homepage": "https://github.com/hartenthaler/hh_external_places",
-                "support": {
-                    "issues": "https://github.com/hartenthaler/hh_external_places/issues"
-                },
-                "keywords": [
-                    "webtrees",
-                    "custom module",
-                    "places",
-                    "wikidata",
-                    "factgrid",
-                    "gov"
-                ],
-                "license": "GPL-3.0-or-later"
-            },
-            {
-                "version": "2.2.6.13",
-                "time": "2026-09-17",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "hartenthaler/hh-external-places",
-                "description": "A webtrees module for read-only information from Wikidata, FactGrid and GOV.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_hh_external_places_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "hartenthaler/hh_external_places",
-                            "tag_prefix": "v",
-                            "category": "places",
-                            "title": "External Places",
-                            "description": "Links shared places to Wikidata, FactGrid and GOV and displays read-only external place information, optionally including GeoNames context."
-                        },
-                        "date_added": "2026-08-23"
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Hermann Hartenthaler"
-                    }
-                ],
-                "homepage": "https://github.com/hartenthaler/hh_external_places",
-                "support": {
-                    "issues": "https://github.com/hartenthaler/hh_external_places/issues"
-                },
-                "keywords": [
-                    "webtrees",
-                    "custom module",
-                    "places",
-                    "wikidata",
-                    "factgrid",
-                    "gov"
-                ],
-                "license": "GPL-3.0-or-later"
-            },
-            {
-                "version": "2.2.6.8",
-                "time": "2026-08-30",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -1794,34 +1591,6 @@
             {
                 "version": "2.2.6.10",
                 "time": "2026-09-26",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "hartenthaler/hh_legal_notice",
-                "description": "Legal notice as a footer element for this site.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_hh_legal_notice_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "hartenthaler/hh_legal_notice",
-                            "tag_prefix": "v",
-                            "category": "footer",
-                            "title": "Legal Notice and Privacy Policy",
-                            "description": "Legal notice as a footer element for this site."
-                        },
-                        "date_added": ""
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Hermann Hartenthaler"
-                    }
-                ]
-            },
-            {
-                "version": "2.2.6.9",
-                "time": "2026-07-14",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -3073,34 +2842,6 @@
         ],
         "jrmine/webtrees-media-badge": [
             {
-                "version": "0.5.0-beta",
-                "time": "2026-06-28",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "jrmine/webtrees-media-badge",
-                "description": "Zeigt konfigurierbare Badges aus Medien-Notizen neben dem Medientitel an.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_media-badge_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "JRMine/webtrees-media-badge",
-                            "tag_prefix": "v",
-                            "category": "frontend",
-                            "title": "Media Badge",
-                            "description": "Zeigt konfigurierbare Badges aus Medien-Notizen neben dem Medientitel an."
-                        },
-                        "date_added": "2026-08-09"
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "JRMine"
-                    }
-                ]
-            },
-            {
                 "version": "0.5.0",
                 "time": "2026-06-28",
                 "conflict": {
@@ -3556,160 +3297,6 @@
                         "check-deptrac-cycles.php .build/deptrac-layers.dot"
                     ]
                 }
-            },
-            {
-                "version": "2.6.4",
-                "time": "2026-06-06",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "magicsunday/webtrees-descendants-chart",
-                "description": "SVG descendants chart module for the webtrees genealogy application \u2014 interactive D3.js tree visualization with spouse display and up to 25 generations.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_webtrees-descendants-chart_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "magicsunday/webtrees-descendants-chart",
-                            "install_clean": true,
-                            "category": "charts",
-                            "title": "Descendants chart",
-                            "description": "An overview of an individual\u2019s descendants."
-                        },
-                        "date_added": ""
-                    }
-                },
-                "require": {
-                    "php": "8.3 - 8.5",
-                    "ext-dom": "*",
-                    "ext-json": "*",
-                    "fisharebest/webtrees": "~2.2.0",
-                    "magicsunday/webtrees-module-base": "^2.5",
-                    "magicsunday/webtrees-module-installer-plugin": "^2.0"
-                },
-                "require-dev": {
-                    "friendsofphp/php-cs-fixer": "^3.0",
-                    "overtrue/phplint": "^9.0",
-                    "phpstan/phpstan": "^2.0",
-                    "phpstan/phpstan-deprecation-rules": "^2.0",
-                    "phpstan/phpstan-phpunit": "^2.0",
-                    "phpstan/phpstan-strict-rules": "^2.0",
-                    "phpunit/phpunit": "^12.0 || ^13.0",
-                    "rector/rector": "^2.0"
-                },
-                "minimum-stability": "dev",
-                "prefer-stable": true,
-                "authors": [
-                    {
-                        "name": "Rico Sonntag",
-                        "email": "mail@ricosonntag.de",
-                        "homepage": "https://ricosonntag.de",
-                        "role": "Developer"
-                    }
-                ],
-                "type": "webtrees-module",
-                "keywords": [
-                    "chart",
-                    "d3",
-                    "d3js",
-                    "data-visualization",
-                    "descendants",
-                    "descendants-chart",
-                    "family-tree",
-                    "genealogy",
-                    "module",
-                    "svg",
-                    "visualization",
-                    "webtrees"
-                ],
-                "license": "GPL-3.0-or-later",
-                "config": {
-                    "bin-dir": ".build/bin",
-                    "vendor-dir": ".build/vendor",
-                    "discard-changes": true,
-                    "sort-packages": true,
-                    "optimize-autoloader": true,
-                    "audit": {
-                        "abandoned": "ignore",
-                        "ignore": [
-                            "PKSA-21fb-n1x5-5nf7",
-                            "PKSA-2cx9-ynrq-qdk3",
-                            "PKSA-rqc2-tcc6-nc79",
-                            "PKSA-fndg-qryc-dyc9",
-                            "PKSA-z7t6-zt6p-wtng",
-                            "PKSA-28rh-rzzn-djk4"
-                        ]
-                    },
-                    "allow-plugins": {
-                        "magicsunday/webtrees-module-installer-plugin": true
-                    }
-                },
-                "autoload": {
-                    "psr-4": {
-                        "MagicSunday\\Webtrees\\DescendantsChart\\": "src/"
-                    }
-                },
-                "autoload-dev": {
-                    "psr-4": {
-                        "MagicSunday\\Webtrees\\DescendantsChart\\Test\\": "tests/"
-                    }
-                },
-                "scripts": {
-                    "ci:cgl": [
-                        "php-cs-fixer fix --config .php-cs-fixer.dist.php --diff --verbose"
-                    ],
-                    "ci:rector": [
-                        "rector process --config rector.php"
-                    ],
-                    "ci:test:php:cgl": [
-                        "@ci:cgl --dry-run"
-                    ],
-                    "ci:test:php:lint": [
-                        "phplint --configuration .phplint.yml"
-                    ],
-                    "ci:test:php:phpstan": [
-                        "phpstan analyze --configuration phpstan.neon --memory-limit=-1"
-                    ],
-                    "ci:test:php:rector": [
-                        "@ci:rector --dry-run"
-                    ],
-                    "ci:test:cpd": [
-                        "npx jscpd src resources/js/modules --config .jscpd.json"
-                    ],
-                    "ci:test:php:unit": [
-                        "phpunit --configuration phpunit.xml --display-all-issues"
-                    ],
-                    "ci:test:php:unit:coverage": [
-                        "XDEBUG_MODE=coverage phpunit --configuration phpunit.xml --display-all-issues --coverage-html .build/coverage/"
-                    ],
-                    "ci:test:js:lint": [
-                        "npm run lint"
-                    ],
-                    "ci:test:js:format": [
-                        "npm run format:check"
-                    ],
-                    "ci:test:js:typecheck": [
-                        "npm run typecheck"
-                    ],
-                    "ci:test:js:unit": [
-                        "node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js --passWithNoTests"
-                    ],
-                    "ci:test": [
-                        "@ci:test:php:lint",
-                        "@ci:test:js:lint",
-                        "@ci:test:js:format",
-                        "@ci:test:js:typecheck",
-                        "@ci:test:php:phpstan",
-                        "@ci:test:php:rector",
-                        "@ci:test:cpd",
-                        "@ci:test:php:unit",
-                        "@ci:test:js:unit",
-                        "@ci:test:php:cgl"
-                    ],
-                    "post-update-cmd": [
-                        "npm install --save-dev jscpd"
-                    ]
-                }
             }
         ],
         "magicsunday/webtrees-fan-chart": [
@@ -3900,156 +3487,6 @@
                         "check-deptrac-cycles.php .build/deptrac-layers.dot"
                     ]
                 }
-            },
-            {
-                "version": "3.7.1",
-                "time": "2026-07-08",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "magicsunday/webtrees-fan-chart",
-                "description": "SVG ancestor fan chart module for the webtrees genealogy application \u2014 interactive D3.js visualization with zoom, export and up to 10 generations.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_webtrees-fan-chart_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "magicsunday/webtrees-fan-chart",
-                            "install_clean": true,
-                            "category": "charts",
-                            "title": "Fan chart",
-                            "description": "A fan chart of an individual\u2019s ancestors."
-                        },
-                        "date_added": ""
-                    }
-                },
-                "require": {
-                    "php": "8.3 - 8.5",
-                    "ext-dom": "*",
-                    "ext-json": "*",
-                    "fisharebest/webtrees": "~2.2.0",
-                    "magicsunday/webtrees-module-base": "^2.6",
-                    "magicsunday/webtrees-module-installer-plugin": "^2.0"
-                },
-                "require-dev": {
-                    "friendsofphp/php-cs-fixer": "^3.0",
-                    "overtrue/phplint": "^9.0",
-                    "phpstan/phpstan": "^2.0",
-                    "phpstan/phpstan-deprecation-rules": "^2.0",
-                    "phpstan/phpstan-phpunit": "^2.0",
-                    "phpstan/phpstan-strict-rules": "^2.0",
-                    "phpunit/phpunit": "^12.0 || ^13.0",
-                    "rector/rector": "^2.0"
-                },
-                "minimum-stability": "dev",
-                "prefer-stable": true,
-                "authors": [
-                    {
-                        "name": "Rico Sonntag",
-                        "email": "mail@ricosonntag.de",
-                        "homepage": "https://ricosonntag.de",
-                        "role": "Developer"
-                    }
-                ],
-                "type": "webtrees-module",
-                "keywords": [
-                    "ancestors",
-                    "chart",
-                    "d3",
-                    "d3js",
-                    "data-visualization",
-                    "family-tree",
-                    "fan-chart",
-                    "genealogy",
-                    "module",
-                    "svg",
-                    "visualization",
-                    "webtrees"
-                ],
-                "license": "GPL-3.0-or-later",
-                "config": {
-                    "bin-dir": ".build/bin",
-                    "vendor-dir": ".build/vendor",
-                    "discard-changes": true,
-                    "sort-packages": true,
-                    "optimize-autoloader": true,
-                    "allow-plugins": {
-                        "magicsunday/webtrees-module-installer-plugin": true
-                    },
-                    "policy": {
-                        "advisories": {
-                            "ignore": {
-                                "guzzlehttp/guzzle": "Transitive dev/test dependency pinned exactly by fisharebest/webtrees; the module ships no guzzle and the admin's webtrees install governs the upgrade. New guzzle CVEs still surface via composer audit, and advisories on any other package still block resolution."
-                            }
-                        }
-                    }
-                },
-                "autoload": {
-                    "psr-4": {
-                        "MagicSunday\\Webtrees\\FanChart\\": "src/"
-                    }
-                },
-                "autoload-dev": {
-                    "psr-4": {
-                        "MagicSunday\\Webtrees\\FanChart\\Test\\": "tests/"
-                    }
-                },
-                "scripts": {
-                    "ci:cgl": [
-                        "php-cs-fixer fix --config .php-cs-fixer.dist.php --diff --verbose"
-                    ],
-                    "ci:rector": [
-                        "rector process --config rector.php"
-                    ],
-                    "ci:test:php:cgl": [
-                        "@ci:cgl --dry-run"
-                    ],
-                    "ci:test:php:lint": [
-                        "phplint --configuration .phplint.yml"
-                    ],
-                    "ci:test:php:phpstan": [
-                        "phpstan analyze --configuration phpstan.neon --memory-limit=-1"
-                    ],
-                    "ci:test:php:rector": [
-                        "@ci:rector --dry-run"
-                    ],
-                    "ci:test:cpd": [
-                        "npx jscpd src resources/js/modules --config .jscpd.json --skip-comments --no-tips"
-                    ],
-                    "ci:test:php:unit": [
-                        "phpunit --configuration phpunit.xml --display-all-issues"
-                    ],
-                    "ci:test:php:unit:coverage": [
-                        "XDEBUG_MODE=coverage phpunit --configuration phpunit.xml --display-all-issues --coverage-html .build/coverage/"
-                    ],
-                    "ci:test:js:lint": [
-                        "npm run lint"
-                    ],
-                    "ci:test:js:format": [
-                        "npm run format:check"
-                    ],
-                    "ci:test:js:typecheck": [
-                        "npm run typecheck"
-                    ],
-                    "ci:test:js:unit": [
-                        "SKIP_EXPORT_BUILD=true node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js --passWithNoTests --ignore=resources/js/tests/export"
-                    ],
-                    "ci:compliance": [
-                        "php scripts/analyze-exif-compliance.php 50"
-                    ],
-                    "ci:test": [
-                        "@ci:test:php:lint",
-                        "@ci:test:js:lint",
-                        "@ci:test:js:format",
-                        "@ci:test:js:typecheck",
-                        "@ci:test:php:phpstan",
-                        "@ci:test:php:rector",
-                        "@ci:test:cpd",
-                        "@ci:test:php:unit",
-                        "@ci:test:js:unit",
-                        "@ci:test:php:cgl"
-                    ]
-                }
             }
         ],
         "magicsunday/webtrees-pedigree-chart": [
@@ -4238,160 +3675,6 @@
                         "@php -r \"is_dir('.build') || mkdir('.build', 0777, true);\"",
                         "deptrac analyse --no-progress --formatter=graphviz-dot --output=.build/deptrac-layers.dot",
                         "check-deptrac-cycles.php .build/deptrac-layers.dot"
-                    ]
-                }
-            },
-            {
-                "version": "2.7.4",
-                "time": "2026-06-06",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "magicsunday/webtrees-pedigree-chart",
-                "description": "SVG pedigree chart module for the webtrees genealogy application \u2014 interactive D3.js tree visualization with multiple layouts and up to 25 generations.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_webtrees-pedigree-chart_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "magicsunday/webtrees-pedigree-chart",
-                            "install_clean": true,
-                            "category": "charts",
-                            "title": "Pedigree chart",
-                            "description": "A pedigree chart of an individual\u2019s ancestors."
-                        },
-                        "date_added": ""
-                    }
-                },
-                "require": {
-                    "php": "8.3 - 8.5",
-                    "ext-dom": "*",
-                    "ext-json": "*",
-                    "fisharebest/webtrees": "~2.2.0",
-                    "magicsunday/webtrees-module-base": "^2.5",
-                    "magicsunday/webtrees-module-installer-plugin": "^2.0"
-                },
-                "require-dev": {
-                    "friendsofphp/php-cs-fixer": "^3.0",
-                    "overtrue/phplint": "^9.0",
-                    "phpstan/phpstan": "^2.0",
-                    "phpstan/phpstan-deprecation-rules": "^2.0",
-                    "phpstan/phpstan-phpunit": "^2.0",
-                    "phpstan/phpstan-strict-rules": "^2.0",
-                    "phpunit/phpunit": "^12.0 || ^13.0",
-                    "rector/rector": "^2.0"
-                },
-                "minimum-stability": "dev",
-                "prefer-stable": true,
-                "authors": [
-                    {
-                        "name": "Rico Sonntag",
-                        "email": "mail@ricosonntag.de",
-                        "homepage": "https://ricosonntag.de",
-                        "role": "Developer"
-                    }
-                ],
-                "type": "webtrees-module",
-                "keywords": [
-                    "ancestors",
-                    "chart",
-                    "d3",
-                    "d3js",
-                    "data-visualization",
-                    "family-tree",
-                    "genealogy",
-                    "module",
-                    "pedigree-chart",
-                    "svg",
-                    "visualization",
-                    "webtrees"
-                ],
-                "license": "GPL-3.0-or-later",
-                "config": {
-                    "bin-dir": ".build/bin",
-                    "vendor-dir": ".build/vendor",
-                    "discard-changes": true,
-                    "sort-packages": true,
-                    "optimize-autoloader": true,
-                    "audit": {
-                        "abandoned": "ignore",
-                        "ignore": [
-                            "PKSA-21fb-n1x5-5nf7",
-                            "PKSA-2cx9-ynrq-qdk3",
-                            "PKSA-rqc2-tcc6-nc79",
-                            "PKSA-fndg-qryc-dyc9",
-                            "PKSA-z7t6-zt6p-wtng",
-                            "PKSA-28rh-rzzn-djk4"
-                        ]
-                    },
-                    "allow-plugins": {
-                        "magicsunday/webtrees-module-installer-plugin": true
-                    }
-                },
-                "autoload": {
-                    "psr-4": {
-                        "MagicSunday\\Webtrees\\PedigreeChart\\": "src/"
-                    }
-                },
-                "autoload-dev": {
-                    "psr-4": {
-                        "MagicSunday\\Webtrees\\PedigreeChart\\Test\\": "tests/"
-                    }
-                },
-                "scripts": {
-                    "ci:cgl": [
-                        "php-cs-fixer fix --config .php-cs-fixer.dist.php --diff --verbose"
-                    ],
-                    "ci:rector": [
-                        "rector process --config rector.php"
-                    ],
-                    "ci:test:php:cgl": [
-                        "@ci:cgl --dry-run"
-                    ],
-                    "ci:test:php:lint": [
-                        "phplint --configuration .phplint.yml"
-                    ],
-                    "ci:test:php:phpstan": [
-                        "phpstan analyze --configuration phpstan.neon --memory-limit=-1"
-                    ],
-                    "ci:test:php:rector": [
-                        "@ci:rector --dry-run"
-                    ],
-                    "ci:test:cpd": [
-                        "npx jscpd src resources/js/modules --config .jscpd.json"
-                    ],
-                    "ci:test:php:unit": [
-                        "phpunit --configuration phpunit.xml --display-all-issues"
-                    ],
-                    "ci:test:php:unit:coverage": [
-                        "XDEBUG_MODE=coverage phpunit --configuration phpunit.xml --display-all-issues --coverage-html .build/coverage/"
-                    ],
-                    "ci:test:js:lint": [
-                        "npm run lint"
-                    ],
-                    "ci:test:js:format": [
-                        "npm run format:check"
-                    ],
-                    "ci:test:js:typecheck": [
-                        "npm run typecheck"
-                    ],
-                    "ci:test:js:unit": [
-                        "node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js --passWithNoTests"
-                    ],
-                    "ci:test": [
-                        "@ci:test:php:lint",
-                        "@ci:test:js:lint",
-                        "@ci:test:js:format",
-                        "@ci:test:js:typecheck",
-                        "@ci:test:php:phpstan",
-                        "@ci:test:php:rector",
-                        "@ci:test:cpd",
-                        "@ci:test:php:unit",
-                        "@ci:test:js:unit",
-                        "@ci:test:php:cgl"
-                    ],
-                    "post-update-cmd": [
-                        "npm install --save-dev jscpd"
                     ]
                 }
             }
@@ -4820,6 +4103,34 @@
                         "name": "Jason Potts"
                     }
                 ]
+            },
+            {
+                "version": "1.0.6",
+                "time": "2026-07-09",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "pottsnet/potts-family-books",
+                "description": "Display family history books as HTML pages inside webtrees.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_potts-family-books_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "PottsNet/potts-family-books",
+                            "tag_prefix": "v",
+                            "category": "reports",
+                            "title": "Potts Family Book",
+                            "description": "Display family history books as HTML pages inside webtrees."
+                        },
+                        "date_added": "2026-07-03"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Jason Potts"
+                    }
+                ]
             }
         ],
         "pottsnet/potts-help-centre": [
@@ -4880,68 +4191,12 @@
                         "name": "Jason Potts"
                     }
                 ]
-            },
-            {
-                "version": "1.0.0",
-                "time": "2026-07-09",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "pottsnet/potts-hero-slideshow",
-                "description": "A standalone, theme-aware homepage hero banner with a family photo slideshow.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_potts-hero-slideshow_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "PottsNet/potts-hero-slideshow",
-                            "tag_prefix": "v",
-                            "category": "frontend",
-                            "title": "Potts Hero Slideshow",
-                            "description": "A standalone, theme-aware homepage hero banner with a family photo slideshow."
-                        },
-                        "date_added": "2026-07-10"
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Jason Potts"
-                    }
-                ]
             }
         ],
         "pottsnet/potts-historical-facts": [
             {
                 "version": "1.1.4",
                 "time": "2026-09-17",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "pottsnet/potts-historical-facts",
-                "description": "Displays historical facts from CSV files using visitor-selected historical fact collections available from every page.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_potts-historical-facts_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "PottsNet/potts-historical-facts",
-                            "tag_prefix": "v",
-                            "category": "fact",
-                            "title": "Potts Historical Facts",
-                            "description": "Displays historical facts from CSV files using visitor-selected historical fact collections available from every page."
-                        },
-                        "date_added": "2026-07-05"
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Jason Potts"
-                    }
-                ]
-            },
-            {
-                "version": "1.1.0",
-                "time": "2026-07-04",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -5479,130 +4734,6 @@
                         "@analyse"
                     ]
                 }
-            },
-            {
-                "version": "1.5.1",
-                "time": "2026-09-04",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "thobgg/sammlungen",
-                "description": "webtrees custom module \u2013 Sammlungen (Foto-Galerien mit EXIF und Lightbox)",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_sammlungen_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "thobgg/webtrees-sammlungen",
-                            "tag_prefix": "v",
-                            "category": "media",
-                            "title": "Sammlungen",
-                            "description": "Foto- und Dokumenten-Sammlungen mit EXIF-Anreicherung, Galerie und Lightbox."
-                        },
-                        "date_added": "2026-08-09"
-                    }
-                },
-                "require": {
-                    "php": "^8.2"
-                },
-                "require-dev": {
-                    "phpunit/phpunit": "^11.0",
-                    "phpstan/phpstan": "^2.2"
-                },
-                "authors": [
-                    {
-                        "name": "Thomas Bugge"
-                    }
-                ],
-                "type": "webtrees-module",
-                "license": "GPL-3.0-or-later",
-                "config": {
-                    "optimize-autoloader": true,
-                    "autoloader-suffix": "ThobggSammlungen",
-                    "platform": {
-                        "php": "8.4"
-                    }
-                },
-                "autoload": {
-                    "psr-4": {
-                        "Sammlungen\\": "src/"
-                    }
-                },
-                "autoload-dev": {
-                    "psr-4": {
-                        "Sammlungen\\Tests\\": "tests/"
-                    }
-                },
-                "scripts": {
-                    "test": "@php vendor/bin/phpunit",
-                    "analyse": "@php vendor/bin/phpstan analyse --no-progress",
-                    "check": [
-                        "@test",
-                        "@analyse"
-                    ]
-                }
-            },
-            {
-                "version": "1.5.0",
-                "time": "2026-08-28",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "thobgg/sammlungen",
-                "description": "webtrees custom module \u2013 Sammlungen (Foto-Galerien mit EXIF und Lightbox)",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_sammlungen_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "thobgg/webtrees-sammlungen",
-                            "tag_prefix": "v",
-                            "category": "media",
-                            "title": "Sammlungen",
-                            "description": "Foto- und Dokumenten-Sammlungen mit EXIF-Anreicherung, Galerie und Lightbox."
-                        },
-                        "date_added": "2026-08-09"
-                    }
-                },
-                "require": {
-                    "php": "^8.2"
-                },
-                "require-dev": {
-                    "phpunit/phpunit": "^11.0",
-                    "phpstan/phpstan": "^2.2"
-                },
-                "authors": [
-                    {
-                        "name": "Thomas Bugge"
-                    }
-                ],
-                "type": "webtrees-module",
-                "license": "GPL-3.0-or-later",
-                "config": {
-                    "optimize-autoloader": true,
-                    "autoloader-suffix": "ThobggSammlungen",
-                    "platform": {
-                        "php": "8.4"
-                    }
-                },
-                "autoload": {
-                    "psr-4": {
-                        "Sammlungen\\": "src/"
-                    }
-                },
-                "autoload-dev": {
-                    "psr-4": {
-                        "Sammlungen\\Tests\\": "tests/"
-                    }
-                },
-                "scripts": {
-                    "test": "@php vendor/bin/phpunit",
-                    "analyse": "@php vendor/bin/phpstan analyse --no-progress",
-                    "check": [
-                        "@test",
-                        "@analyse"
-                    ]
-                }
             }
         ],
         "thobgg/webtrees-theme-farbwelten": [
@@ -5686,68 +4817,12 @@
                         "name": "Tywed"
                     }
                 ]
-            },
-            {
-                "version": "0.3.3",
-                "time": "2025-11-30",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "tywed/news-menu",
-                "description": "Add an extra item to the main menu as a link to a webtrees news.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_news-menu_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "Tywed/news-menu",
-                            "tag_prefix": "v",
-                            "category": "menu",
-                            "title": "News",
-                            "description": "Add an extra item to the main menu as a link to a webtrees news."
-                        },
-                        "date_added": ""
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Tywed"
-                    }
-                ]
             }
         ],
         "tywed/telegram": [
             {
                 "version": "0.2.3",
                 "time": "2026-09-11",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "tywed/telegram",
-                "description": "Sends Telegram notifications about family events, such as birthdays and anniversaries.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_telegram_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "Tywed/telegram",
-                            "tag_prefix": "v",
-                            "category": "messages",
-                            "title": "Telegram",
-                            "description": "Sends Telegram notifications about family events, such as birthdays and anniversaries."
-                        },
-                        "date_added": ""
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Tywed"
-                    }
-                ]
-            },
-            {
-                "version": "0.2.2",
-                "time": "2026-06-10",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -6340,82 +5415,6 @@
             {
                 "version": "1.7.1",
                 "time": "2026-10-15",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "wolfrum/datencheck",
-                "description": "A webtrees plugin to check for data consistency and logical errors.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_data-check_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "Vulfharban/webtrees-datencheck-plugin",
-                            "tag_prefix": "v",
-                            "category": "data_validation",
-                            "title": "Data Check",
-                            "description": "Checks for data inconsistencies."
-                        },
-                        "date_added": "2026-02-15"
-                    }
-                },
-                "require": {
-                    "php": "^7.4 || ^8.0"
-                },
-                "authors": [
-                    {
-                        "name": "Christian Wolfrum",
-                        "email": "c.wolfrum@example.com"
-                    }
-                ],
-                "type": "webtrees-module",
-                "autoload": {
-                    "psr-4": {
-                        "Wolfrum\\Datencheck\\": "src/"
-                    }
-                }
-            },
-            {
-                "version": "1.6.9.7",
-                "time": "2026-09-16",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "wolfrum/datencheck",
-                "description": "A webtrees plugin to check for data consistency and logical errors.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_data-check_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "Vulfharban/webtrees-datencheck-plugin",
-                            "tag_prefix": "v",
-                            "category": "data_validation",
-                            "title": "Data Check",
-                            "description": "Checks for data inconsistencies."
-                        },
-                        "date_added": "2026-02-15"
-                    }
-                },
-                "require": {
-                    "php": "^7.4 || ^8.0"
-                },
-                "authors": [
-                    {
-                        "name": "Christian Wolfrum",
-                        "email": "c.wolfrum@example.com"
-                    }
-                ],
-                "type": "webtrees-module",
-                "autoload": {
-                    "psr-4": {
-                        "Wolfrum\\Datencheck\\": "src/"
-                    }
-                }
-            },
-            {
-                "version": "1.6.9.6",
-                "time": "2026-08-27",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
