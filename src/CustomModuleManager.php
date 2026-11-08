@@ -218,6 +218,9 @@ class CustomModuleManager extends AbstractModule implements
     //Switch to add conflicts with the current webtrees version
     public const ADD_CONFLICTS_FOR_MODULES_NOT_EXISTING = false;
 
+    //Switch to remove earlier versions from the custom module lists if they had the same conflict rules
+    public const REMOVE_EARLIER_VERSIONS_WITH_SAME_CONFLICT_RULE = false;
+
     //Use the local json file for the custom module update configuration (in module_update_service_configuration.json)
     public const USE_LOCAL_CONFIG = false;
 
@@ -229,6 +232,9 @@ class CustomModuleManager extends AbstractModule implements
 
     //Whether logging of communication errors with hosting platforms (i.e. GitHub, Codeberg) is activated
     public const LOGGING_COMM_ERRORS_ENABLEDD = 'logging_of_communication_errors_enabled';
+
+    //Conflict rules
+    public const CONFLICT_RULE_NONE = 'none';
 
 
     /**
@@ -406,6 +412,12 @@ class CustomModuleManager extends AbstractModule implements
         if (self::ADD_CONFLICTS_FOR_MODULES_NOT_EXISTING) {
             $this->addConflictsForModulesNotExisting();
         }
+
+        //If the corresponding switch is turned on, we add conflicts to the custom module list
+        if (self::REMOVE_EARLIER_VERSIONS_WITH_SAME_CONFLICT_RULE) {
+            $this->removeEarlierVersionsWithSameConflictRule();
+        }
+
 
         $this->layout = 'layouts/administration';
 
@@ -712,7 +724,7 @@ class CustomModuleManager extends AbstractModule implements
     public function generateCustomModuleList(bool $replace_existing_versions = false): void {
 
         //Load existing custom module list
-        $custom_module_list = self::loadCustomModuleList();
+        $custom_module_list = self::readCustomModuleList();
 
         $config = self::getConfig();
 
@@ -826,7 +838,7 @@ class CustomModuleManager extends AbstractModule implements
                 self::sortComposerJsonData($composer_json);
 
                 //Remove data for version if already exists
-                self::removeVersion($custom_module_list, $package_name, $version);
+                self::removeVersionFromCustomModuleList($custom_module_list, $package_name, $version);
 
                 //If package already exists, add the data of the new version at the beginning of the module list
                 if (isset($custom_module_list['packages'][$package_name])) {
@@ -847,32 +859,31 @@ class CustomModuleManager extends AbstractModule implements
             ksort($custom_module_list['packages']);
 
             //Save the custom module list
-            self::saveCustomModuleList($custom_module_list);
+            self::writeCustomModuleList($custom_module_list);
         }
 
         return;
     }
 
     /**
-     * Gemerate a custom module list in based on the Packagist API v2 JSON format
+     * Add conflicts to custom module list for any modules, which are not existing in the current installation
      *
      * @return void
      */
     public function addConflictsForModulesNotExisting(): void {
 
         //Load existing custom module list
-        $custom_module_list = self::loadCustomModuleList();
+        $custom_module_list = self::readCustomModuleList();
         $modifed = false;
 
         $config = self::getConfig();
 
         foreach ($config as $module_name => $module_config) {
 
-            /** @var PlatformModuleUpdate $module_update_service */
             $module_update_service = CustomModuleUpdateFactory::make($module_name);
 
             if ($module_update_service === null) {
-                break;
+                continue;
             }
 
             $package_name = $module_update_service->getPackageName();
@@ -888,35 +899,95 @@ class CustomModuleManager extends AbstractModule implements
                 if (!isset($latest_version['conflict']['fisharebest/webtrees'])) {
 
                     $latest_version['conflict'] = ['fisharebest/webtrees' => '>=' . Webtrees::VERSION];
+                    $modifed = true;
                 }
                 //Append a conflict
                 elseif (strpos($latest_version['conflict']['fisharebest/webtrees'], '>=' . Webtrees::VERSION) === false) {
                     $latest_version['conflict']['fisharebest/webtrees'] .= ' || >=' . Webtrees::VERSION;
+                    $modifed = true;
                 }
 
                 //Sort
                 self::sortComposerJsonData($latest_version);
 
                 //Remove data for version if already exists
-                self::removeVersion($custom_module_list, $package_name, $version);
+                self::removeVersionFromCustomModuleList($custom_module_list, $package_name, $version);
 
                 //Add updated version data
                 $custom_module_list['packages'][$package_name][] = $latest_version;
-                $modifed = true;
             }
         }
 
         if ($modifed) {
-            self::saveCustomModuleList($custom_module_list);
+            self::writeCustomModuleList($custom_module_list);
         }
     }
 
     /**
-     * Load custom module list
+     * Remove versions from the custom module list, which have the same conflict rules as earlier versions
+     *
+     * @return void
+     */
+    public function removeEarlierVersionsWithSameConflictRule(): void {
+
+        //Load existing custom module list
+        $custom_module_list = self::readCustomModuleList();
+        $modifed = false;
+
+        $config = self::getConfig();
+
+        foreach ($config as $module_name => $module_config) {
+
+            $module_update_service = CustomModuleUpdateFactory::make($module_name);
+
+            if ($module_update_service === null) {
+                continue;
+            }
+
+            $package_name = $module_update_service->getPackageName();
+
+            if (isset($custom_module_list['packages'][$package_name])) {
+
+                $module_versions = ($custom_module_list['packages'][$package_name]);
+                $earlier_version = '';
+                $earlier_conflict_rule = self::CONFLICT_RULE_NONE;
+
+                foreach ($module_versions as $module_version) {
+
+                    $conflict_rule = $module_version['conflict']['fisharebest/webtrees'] ?? '';
+
+                    if ($earlier_conflict_rule !== self::CONFLICT_RULE_NONE && $conflict_rule === $earlier_conflict_rule) {
+
+                        //If the earlier version is alpha or beta and the current version is not, do not remove the current version
+                        if (    preg_match('/.*(alpha|beta).*$/', $earlier_version) === 1
+                            &&  preg_match('/.*(alpha|beta).*$/', $module_version['version']) === 0) {
+
+                            continue;
+                        }
+
+                        //Remove version
+                        self::removeVersionFromCustomModuleList($custom_module_list, $package_name, $module_version['version']);
+                        $modifed = true;
+                        continue;
+                    }
+
+                    $earlier_version       = $module_version['version'];
+                    $earlier_conflict_rule = $conflict_rule;
+                }
+            }
+        }
+
+        if ($modifed) {
+            self::writeCustomModuleList($custom_module_list);
+        }
+    }
+
+    /**
+     * Read custom module list
      *
      * @return array
      */
-    public static function loadCustomModuleList(): array {
+    private static function readCustomModuleList(): array {
 
         $json_file = __DIR__ . self::PATH_CUSTOM_MODULE_LIST;
 
@@ -925,12 +996,12 @@ class CustomModuleManager extends AbstractModule implements
     }
 
     /**
-     * Save custom module list
+     * Write the custom module list to its file
      *
      * @param array $custom_module_list
      * @return void
      */
-    public static function saveCustomModuleList(array $custom_module_list): void {
+    private static function writeCustomModuleList(array $custom_module_list): void {
 
         $json_file = __DIR__ . self::PATH_CUSTOM_MODULE_LIST;
 
@@ -963,7 +1034,7 @@ class CustomModuleManager extends AbstractModule implements
      *
      * @return array
      */
-    public static function getConfig(): array {
+    private static function getConfig(): array {
 
         // If the config is already available, take it
         if (!empty(self::$configuration)) {
@@ -1012,7 +1083,7 @@ class CustomModuleManager extends AbstractModule implements
      *
      * @return array
      */
-    public static function getComposerJson(string $module_folder): array {
+    private static function getComposerJson(string $module_folder): array {
 
         $json_file = __DIR__ . '/../../' . $module_folder . '/composer.json';
 
@@ -1029,7 +1100,7 @@ class CustomModuleManager extends AbstractModule implements
      *
      * @return void
      */
-    public static function sortComposerJsonData(array &$composer_json): void {
+    private static function sortComposerJsonData(array &$composer_json): void {
 
         uksort($composer_json, function ($a, $b) {
 
@@ -1093,7 +1164,7 @@ class CustomModuleManager extends AbstractModule implements
      *
      * @return bool
      */
-    public static function versionExists(array $module_versions, string $version): bool {
+    private static function versionExists(array $module_versions, string $version): bool {
 
         foreach($module_versions as $module_version) {
 
@@ -1113,7 +1184,7 @@ class CustomModuleManager extends AbstractModule implements
      *
      * @return string
      */
-    public static function getVersionBefore(array $module_versions, string $version): string {
+    private static function getVersionBefore(array $module_versions, string $version): string {
 
         uasort($module_versions, function (array $a, array $b) {
                 return Comparator::greaterThan($a['version'], $b['version']) ? -1 : 1;
@@ -1143,7 +1214,7 @@ class CustomModuleManager extends AbstractModule implements
      *
      * @return bool
      */
-    public static function versionIsInList(array &$custom_module_list, string $package_name, string $version): bool {
+    private static function versionIsInList(array &$custom_module_list, string $package_name, string $version): bool {
 
         if (isset($custom_module_list['packages'][$package_name])) {
             $module_versions = $custom_module_list['packages'][$package_name];
@@ -1162,7 +1233,7 @@ class CustomModuleManager extends AbstractModule implements
     }
 
     /**
-     * Remove version
+     * Remove a version from the custom module list
      *
      * @param array  $custom_module_list
      * @param string $package_name
@@ -1170,7 +1241,7 @@ class CustomModuleManager extends AbstractModule implements
      *
      * @return void
      */
-    public static function removeVersion(array &$custom_module_list, string $package_name, string $version): void {
+    private static function removeVersionFromCustomModuleList(array &$custom_module_list, string $package_name, string $version): void {
 
         $reduced_module_versions = [];
 
@@ -1318,7 +1389,7 @@ class CustomModuleManager extends AbstractModule implements
      *
      * @return string
      */
-    public static function readFromFile(string $file): string {
+    private static function readFromFile(string $file): string {
 
         try {
             //Code from: Fisharebest\Webtrees\Cli\Commands\TreeImport, last check: 2026-08-28
@@ -1355,11 +1426,11 @@ class CustomModuleManager extends AbstractModule implements
      */
     public static function webtreesVersionSatifiesConflictRule(string $webtrees_version, string $conflict_rule): bool
     {
-        if ($conflict_rule === '' OR $conflict_rule === null) {
+        if ($conflict_rule === '') {
             throw new InvalidArgumentException("Conflict rule must not be empty.");
         }
 
-        if ($webtrees_version === '' OR $webtrees_version === null) {
+        if ($webtrees_version === '') {
             throw new InvalidArgumentException("Webtrees version must not be empty.");
         }
 
