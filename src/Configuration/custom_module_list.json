@@ -498,7 +498,7 @@
                 "version": "1.1.0",
                 "time": "2026-10-01",
                 "conflict": {
-                    "fisharebest/webtrees": "<2.0"
+                    "fisharebest/webtrees": "<2.0 || >=2.3.0"
                 },
                 "name": "bertkoor/wt-module-custom-views",
                 "description": "Custom views (and translations). Keep your customizations of .phtml files in a different directory, so upgrades do not overwrite them. It also supports customization of translations via .csv files.",
@@ -589,7 +589,7 @@
                 "version": "1.7.0",
                 "time": "2026-10-28",
                 "conflict": {
-                    "fisharebest/webtrees": "<2.2 || >=2.3",
+                    "fisharebest/webtrees": "<2.2 || >=2.3.0",
                     "elysch/webtrees-mitalteli-misc-features": "*"
                 },
                 "name": "bschwede/linkenhancer",
@@ -1369,10 +1369,10 @@
         "hartenthaler/hh-courtship-radius": [
             {
                 "version": "2.2.6.0",
-                "name": "hartenthaler/hh-courtship-radius",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
+                "name": "hartenthaler/hh-courtship-radius",
                 "description": "Analyse the geographic courtship radius of selected families over time.",
                 "extra": {
                     "custom-module-manager": {
@@ -1743,6 +1743,9 @@
             {
                 "version": "2.2.6.0",
                 "time": "2026-10-25",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "hartenthaler/hh_gemeda",
                 "description": "GeMeDa links and claims for webtrees individuals",
                 "extra": {
@@ -2903,10 +2906,10 @@
         "joppla/webtrees-faviconupdater": [
             {
                 "version": "1.0.0",
-                "name": "joppla/webtrees-faviconupdater",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
+                "name": "joppla/webtrees-faviconupdater",
                 "description": "Module to replaces automatically the default favicons with your own custom favicons after every webtrees update.",
                 "extra": {
                     "custom-module-manager": {
@@ -2931,10 +2934,10 @@
         "joppla/webtrees-faviconupdater-xxl": [
             {
                 "version": "1.0.0",
-                "name": "joppla/webtrees-faviconupdater-xxl",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
+                "name": "joppla/webtrees-faviconupdater-xxl",
                 "description": "Replaces automatically the default favicons with your own custom favicons after every webtrees update.",
                 "extra": {
                     "custom-module-manager": {
@@ -2984,10 +2987,10 @@
         "joppla/webtrees-gendexgenerator": [
             {
                 "version": "2.2.6.1",
-                "name": "joppla/webtrees-gendexgenerator",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
+                "name": "joppla/webtrees-gendexgenerator",
                 "description": "Generates a gendex.txt file for your family tree.",
                 "extra": {
                     "custom-module-manager": {
@@ -5328,6 +5331,9 @@
             {
                 "version": "0.1.0",
                 "time": "2026-10-25",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "thobgg/ofb4webtrees",
                 "description": "connector for OFB-Werkstatt (Ortsfamilienbuch) \u2013 tags, export as evidence, handover packages as pending changes.",
                 "extra": {
