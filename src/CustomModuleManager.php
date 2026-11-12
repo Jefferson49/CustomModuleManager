@@ -718,7 +718,7 @@ class CustomModuleManager extends AbstractModule implements
      *
      * @return bool $replace_existing_versions  Whether data of existing versions shall be replaced
      */
-    public function generateCustomModuleList(bool $replace_existing_versions = false): void {
+    private function generateCustomModuleList(bool $replace_existing_versions = false): void {
 
         //Load existing custom module list
         $custom_module_list = self::readCustomModuleList();
@@ -729,7 +729,6 @@ class CustomModuleManager extends AbstractModule implements
 
         foreach ($config as $module_name => $module_config) {
 
-            /** @var PlatformModuleUpdate $module_update_service */
             $module_update_service = CustomModuleUpdateFactory::make($module_name);
 
             //Skip if module update service or module is not available
@@ -748,6 +747,8 @@ class CustomModuleManager extends AbstractModule implements
             if ($version === '') {
                 $version = self::VERSION_NOT_AVAILABLE;
             }
+
+            /** @var PlatformModuleUpdate $module_update_service */
 
             //If the version is not included in the list yet or we shall replace the existing version
             if (!self::versionIsInList($custom_module_list, $package_name, $version) OR $replace_existing_versions) {
