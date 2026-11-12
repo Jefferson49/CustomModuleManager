@@ -497,9 +497,6 @@
             {
                 "version": "1.1.0",
                 "time": "2026-10-01",
-                "conflict": {
-                    "fisharebest/webtrees": "<2.0 || >=2.3.0"
-                },
                 "name": "bertkoor/wt-module-custom-views",
                 "description": "Custom views (and translations). Keep your customizations of .phtml files in a different directory, so upgrades do not overwrite them. It also supports customization of translations via .csv files.",
                 "extra": {
@@ -904,6 +901,30 @@
         ],
         "elysch/webtrees-mitalteli-chart-family-book": [
             {
+                "version": "2.0.4",
+                "time": "2026-11-07",
+                "name": "elysch/webtrees-mitalteli-chart-family-book",
+                "description": "A chart of an individual\u2019s ancestors and descendants, as a family book (enhanced with marriages, images, and more).",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_mitalteli-chart-family-book_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "elysch/webtrees-mitalteli-chart-family-book",
+                            "category": "charts",
+                            "title": "Enhanced family book",
+                            "description": "A chart of an individual\u2019s ancestors and descendants, as a family book (enhanced with marriages, images, and more)."
+                        },
+                        "date_added": ""
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "elysch"
+                    }
+                ]
+            },
+            {
                 "version": "2.0.3",
                 "time": "2026-06-17",
                 "conflict": {
@@ -962,8 +983,8 @@
         ],
         "elysch/webtrees-mitalteli-report-researchtasks": [
             {
-                "version": "3.4.3",
-                "time": "2026-10-21",
+                "version": "3.4.4",
+                "time": "2026-11-07",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
