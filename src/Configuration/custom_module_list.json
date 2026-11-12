@@ -497,9 +497,6 @@
             {
                 "version": "1.1.0",
                 "time": "2026-10-01",
-                "conflict": {
-                    "fisharebest/webtrees": "<2.0 || >=2.3.0"
-                },
                 "name": "bertkoor/wt-module-custom-views",
                 "description": "Custom views (and translations). Keep your customizations of .phtml files in a different directory, so upgrades do not overwrite them. It also supports customization of translations via .csv files.",
                 "extra": {
