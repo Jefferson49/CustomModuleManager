@@ -5487,6 +5487,7 @@
                         "update_service": "GithubModuleUpdate",
                         "params": {
                             "github_repo": "vytux-com/vytux_cousins",
+                            "tag_prefix": "v",
                             "category": "frontend_tab",
                             "title": "Cousins",
                             "description": "A tab showing cousins of an individual."

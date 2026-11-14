@@ -210,7 +210,7 @@ class ModuleUpdateServiceConfiguration
 
         '_WeEt_'                             =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => '08ah15/WeEt', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_SOURCES]],
 
-        '_vytux_cousins_'                    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'vytux-com/vytux_cousins', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_vytux_cousins_'                    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'vytux-com/vytux_cousins', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
 
         '_svajana-master_'                   =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'baskar-yahoo/webtrees-svajana', 'no_release' => true, 'default_branch' => 'master', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
 
