@@ -903,6 +903,7 @@
         "update_service": "GithubModuleUpdate",
         "params": {
             "github_repo": "vytux-com/vytux_cousins",
+            "tag_prefix": "v",
             "category": "frontend_tab",
             "title": "Cousins",
             "description": "A tab showing cousins of an individual."
@@ -1394,7 +1395,7 @@
             "tag_prefix": "v",
             "category": "charts",
             "title": "Lebensb\u00fchne",
-            "description": "Stage of Life: Family tree as a 3D time tunnel featuring time travel, life stories, maps, and historical events."
+            "description": "Vorfahren und Nachkommen als begehbarer 3D-Zeittunnel \u2013 mit Zeitreise, Lebensgeschichten, Karten und Zeitgeschehen."
         },
         "date_added": "2026-10-25"
     }

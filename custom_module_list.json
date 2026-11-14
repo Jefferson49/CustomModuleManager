@@ -1128,7 +1128,7 @@
         ],
         "gregorwolf1973/webtrees-lebensbuehne": [
             {
-                "version": "1.10.2",
+                "version": "1.13.0",
                 "time": "2026-11-01",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
@@ -4575,7 +4575,7 @@
         ],
         "thobgg/api4webtrees": [
             {
-                "version": "1.25.0",
+                "version": "1.26.0",
                 "time": "2026-11-01",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
@@ -5474,19 +5474,20 @@
         ],
         "vytux-com/vytux_cousins": [
             {
-                "version": "2.1.1",
-                "time": "2022-05-27",
+                "version": "2.2.1",
+                "time": "2026-11-13",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
-                "name": "vytux-com/vytux_cousins",
-                "description": "A tab showing cousins of an individual.",
+                "name": "vytux/vytux_cousins",
+                "description": "A webtrees custom module that adds a Cousins tab to the individual page.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_vytux_cousins_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
                             "github_repo": "vytux-com/vytux_cousins",
+                            "tag_prefix": "v",
                             "category": "frontend_tab",
                             "title": "Cousins",
                             "description": "A tab showing cousins of an individual."
@@ -5494,11 +5495,34 @@
                         "date_added": ""
                     }
                 },
+                "require": {
+                    "php": ">=8.3",
+                    "magicsunday/webtrees-module-installer-plugin": "^2.0"
+                },
                 "authors": [
                     {
-                        "name": "Vytautas Krivickas"
+                        "name": "Vytautas Krivickas",
+                        "homepage": "https://vytux.com"
                     }
-                ]
+                ],
+                "homepage": "https://github.com/vytux-com/vytux_cousins",
+                "support": {
+                    "issues": "https://github.com/vytux-com/vytux_cousins/issues",
+                    "source": "https://github.com/vytux-com/vytux_cousins"
+                },
+                "type": "webtrees-module",
+                "keywords": [
+                    "webtrees",
+                    "webtrees-module",
+                    "genealogy",
+                    "cousins"
+                ],
+                "license": "GPL-2.0-or-later",
+                "config": {
+                    "allow-plugins": {
+                        "magicsunday/webtrees-module-installer-plugin": true
+                    }
+                }
             }
         ]
     }
