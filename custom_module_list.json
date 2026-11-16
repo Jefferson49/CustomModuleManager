@@ -901,8 +901,8 @@
         ],
         "elysch/webtrees-mitalteli-chart-family-book": [
             {
-                "version": "2.0.4",
-                "time": "2026-11-07",
+                "version": "2.0.6",
+                "time": "2026-11-16",
                 "name": "elysch/webtrees-mitalteli-chart-family-book",
                 "description": "A chart of an individual\u2019s ancestors and descendants, as a family book (enhanced with marriages, images, and more).",
                 "extra": {
@@ -954,6 +954,30 @@
         ],
         "elysch/webtrees-mitalteli-misc-features": [
             {
+                "version": "1.2.0",
+                "time": "2026-11-15",
+                "name": "elysch/webtrees-mitalteli-misc-features",
+                "description": "Adds UID/UUID markdown links, extended birth/death place search, </br>COHABITATION marriage type, and more.</br></br><div class=\"markdown-alert\" dir=\"auto\">\ud83d\uded1<g-emoji class=\"g-emoji\" alias=\"warning\">\u26a0\ufe0f</g-emoji> Critical Performance Warning (Scalability Limits)</div><div class=\"markdown-alert markdown-alert-caution\" dir=\"auto\"><p class=\"markdown-alert-title\" dir=\"auto\"><svg data-component=\"Octicon\" class=\"octicon octicon-stop mr-2\" viewBox=\"0 0 16 16\" version=\"1.1\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"></path></svg>Caution</p><p dir=\"auto\"><strong>Severe Slowdowns on Large Trees (UID / _UID Searches)</strong>\n<code>webtrees</code> lacks database indexes on <code>UID</code> and <code>_UID</code> fields. Because of how the current database architecture is structured, there is no way to add manual indexes to mitigate the underlying performance bottleneck.</p>\n</div>",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_mitalteli-misc-features_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "elysch/webtrees-mitalteli-misc-features",
+                            "category": "gedcom",
+                            "title": "Mitalteli Misc Features",
+                            "description": "Adds UID/UUID markdown links, extended birth/death place search, </br>COHABITATION marriage type, and more.</br></br><div class=\"markdown-alert\" dir=\"auto\">\ud83d\uded1<g-emoji class=\"g-emoji\" alias=\"warning\">\u26a0\ufe0f</g-emoji> Critical Performance Warning (Scalability Limits)</div><div class=\"markdown-alert markdown-alert-caution\" dir=\"auto\"><p class=\"markdown-alert-title\" dir=\"auto\"><svg data-component=\"Octicon\" class=\"octicon octicon-stop mr-2\" viewBox=\"0 0 16 16\" version=\"1.1\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"></path></svg>Caution</p><p dir=\"auto\"><strong>Severe Slowdowns on Large Trees (UID / _UID Searches)</strong>\n<code>webtrees</code> lacks database indexes on <code>UID</code> and <code>_UID</code> fields. Because of how the current database architecture is structured, there is no way to add manual indexes to mitigate the underlying performance bottleneck.</p>\n</div>"
+                        },
+                        "date_added": "2026-05-31"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "elysch"
+                    }
+                ]
+            },
+            {
                 "version": "1.1.0",
                 "time": "2026-06-17",
                 "conflict": {
@@ -983,8 +1007,8 @@
         ],
         "elysch/webtrees-mitalteli-report-researchtasks": [
             {
-                "version": "3.4.4",
-                "time": "2026-11-07",
+                "version": "3.4.5",
+                "time": "2026-11-15",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -1011,6 +1035,30 @@
             }
         ],
         "elysch/webtrees-mitalteli-show-xref": [
+            {
+                "version": "4.3.1",
+                "time": "2026-11-15",
+                "name": "elysch/webtrees-mitalteli-show-xref",
+                "description": "A sidebar to show XREF and UID values.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_mitalteli-show-xref_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "elysch/webtrees-mitalteli-show-xref",
+                            "category": "frontend_sidebar",
+                            "title": "XREF and UID values module.",
+                            "description": "A sidebar to show XREF and UID values."
+                        },
+                        "date_added": ""
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "elysch"
+                    }
+                ]
+            },
             {
                 "version": "4.2.1",
                 "time": "2026-06-18",
@@ -1128,8 +1176,8 @@
         ],
         "gregorwolf1973/webtrees-lebensbuehne": [
             {
-                "version": "1.13.0",
-                "time": "2026-11-01",
+                "version": "1.15.0",
+                "time": "2026-11-15",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -2893,13 +2941,13 @@
         ],
         "justcarmen/webtrees-fancy-imagebar": [
             {
-                "version": "2.4.1",
-                "time": "2024-12-08",
+                "version": "2.4.2",
+                "time": "2026-11-15",
                 "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
+                    "fisharebest/webtrees": "<2.1 || >=2.3.0"
                 },
                 "name": "justcarmen/webtrees-fancy-imagebar",
-                "description": "An imagebar with small images between header and content.",
+                "description": "A webtrees module that adds an image bar with small images to the top of the page.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_jc-fancy-imagebar_",
@@ -2913,11 +2961,29 @@
                         "date_added": ""
                     }
                 },
+                "require": {
+                    "php": ">=7.4",
+                    "justcarmen/jc-common-code": "^1.0",
+                    "magicsunday/webtrees-module-installer-plugin": "^2.1"
+                },
                 "authors": [
                     {
                         "name": "JustCarmen"
                     }
-                ]
+                ],
+                "type": "webtrees-module",
+                "keywords": [
+                    "webtrees",
+                    "genealogy",
+                    "webtrees-module"
+                ],
+                "license": "GPL-3.0+",
+                "config": {
+                    "prepend-autoloader": false,
+                    "allow-plugins": {
+                        "magicsunday/webtrees-module-installer-plugin": true
+                    }
+                }
             }
         ],
         "justcarmen/webtrees-fancy-research-links": [
@@ -2927,7 +2993,7 @@
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
-                "name": "justcarmen/jc-fancy-research-links",
+                "name": "justcarmen/webtrees-fancy-research-links",
                 "description": "A sidebar module for webtrees that provides shortcuts to popular research websites, using the individual data as a search reference.",
                 "extra": {
                     "custom-module-manager": {
@@ -2969,7 +3035,7 @@
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
-                "name": "justcarmen/jc-fancy-treeview",
+                "name": "justcarmen/webtrees-fancy-treeview",
                 "description": "webtrees module to display a fancy treeview of the genealogy in a narrative way",
                 "extra": {
                     "custom-module-manager": {
@@ -4575,7 +4641,32 @@
         ],
         "thobgg/api4webtrees": [
             {
-                "version": "1.26.0",
+                "version": "1.27.0",
+                "time": "2026-11-14",
+                "name": "thobgg/api4webtrees",
+                "description": "JSON interface for the apps wtAnd, wtWin and wtTux \u2013 and any other client. Reads and writes with the rights of the signed-in user.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_api4webtrees_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "github_repo": "thobgg/api4webtrees",
+                            "tag_prefix": "v",
+                            "category": "admin",
+                            "title": "api4webtrees",
+                            "description": "JSON interface for the apps wtAnd, wtWin and wtTux \u2013 and any other client. Reads and writes with the rights of the signed-in user."
+                        },
+                        "date_added": "2026-10-25"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Thomas Bugge"
+                    }
+                ]
+            },
+            {
+                "version": "1.25.0",
                 "time": "2026-11-01",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
@@ -5474,8 +5565,8 @@
         ],
         "vytux-com/vytux_cousins": [
             {
-                "version": "2.2.1",
-                "time": "2026-11-13",
+                "version": "2.2.2",
+                "time": "2026-11-14",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -5498,6 +5589,9 @@
                 "require": {
                     "php": ">=8.3",
                     "magicsunday/webtrees-module-installer-plugin": "^2.0"
+                },
+                "require-dev": {
+                    "phpunit/phpunit": "^11.0 || ^12.0"
                 },
                 "authors": [
                     {
@@ -5522,6 +5616,15 @@
                     "allow-plugins": {
                         "magicsunday/webtrees-module-installer-plugin": true
                     }
+                },
+                "autoload-dev": {
+                    "psr-4": {
+                        "Vytux\\WebtreesModules\\VytuxCousins\\": "src/",
+                        "Vytux\\WebtreesModules\\VytuxCousins\\Tests\\": "tests/"
+                    }
+                },
+                "scripts": {
+                    "test": "phpunit --bootstrap vendor/autoload.php tests"
                 }
             }
         ]
