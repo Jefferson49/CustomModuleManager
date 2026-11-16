@@ -54,6 +54,7 @@ class ColumnConfigurationAction implements RequestHandlerInterface
         $show_column_date_added     = Validator::parsedBody($request)->boolean(CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, false);
         $show_column_update_service = Validator::parsedBody($request)->boolean(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, false);
         $show_column_downloads      = Validator::parsedBody($request)->boolean(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, false);
+        $show_column_select_version = Validator::parsedBody($request)->boolean(CustomModuleManager::PREF_SHOW_COLUMN_SELECT_VERS, false);
         $table_layout               = Validator::parsedBody($request)->string(CustomModuleManager::PREF_TABLE_LAYOUT, CustomModuleManager::TABLE_LAYOUT_STICKY_HEAD);
         $webtrees_version           = Validator::parsedBody($request)->string(CustomModuleManager::PREF_COMP_WEBTREES_VERSION);
 
@@ -75,6 +76,7 @@ class ColumnConfigurationAction implements RequestHandlerInterface
         $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, $show_column_date_added ? '1' : '0');
         $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, $show_column_update_service ? '1' : '0');
         $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, $show_column_downloads ? '1' : '0');
+        $custom_module_manager->setPreference(CustomModuleManager::PREF_SHOW_COLUMN_SELECT_VERS, $show_column_select_version ? '1' : '0');
         $custom_module_manager->setPreference(CustomModuleManager::PREF_TABLE_LAYOUT, $table_layout);
         $custom_module_manager->setPreference(CustomModuleManager::PREF_COMP_WEBTREES_VERSION, $webtrees_version);
 

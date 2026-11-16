@@ -36,6 +36,7 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleInterface;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Webtrees;
 use Jefferson49\Webtrees\Exceptions\HostingPlatformCommunicationError;
 use Jefferson49\Webtrees\Helpers\Functions;
 use Jefferson49\Webtrees\Log\CustomModuleLog;
@@ -244,7 +245,7 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
         $module = $this->getModule();
         $latest_version = '';
 
-        // If the installed module is available, try to get latest version from the module
+        // If the installed module is available and we do not need to fetch the latest version, try to get latest version from the module
         if ($module !== null && !$fetch_latest && !$this->get_latest_version_from_platform) {
 
             $latest_version = $module->customModuleLatestVersion();
@@ -405,6 +406,33 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
                 return ['tag' => '', 'max_downloads' => -1];
             }
         }, 86400 * 30); // Cache for 30 days (or until manually refreshed)
+    }
+
+    /**
+     * Get a list of module versions with their compatibility information
+     *
+     * @param bool   $fetch_latest      Whether to fetch the latest release information from the platform
+     * @param string $webtrees_version  The version of webtrees, for which the module shall be compatible
+     *
+     * @return array<string, string> [version => version with compatibility]
+     */
+    public function getVersionsWithCompatibility(bool $fetch_latest = false, string $webtrees_version = Webtrees::VERSION): array {
+
+        $versions_with_compatibility = [];
+
+        $release_info = $this->fetchReleasesInfoCached($fetch_latest);
+
+        $versions = [];
+        if (isset($release_info['tags'])) {
+            $versions = $release_info['tags'];
+        }
+
+        foreach ($versions as $version) {
+            $compatbility = $this->getCompatibilityForVersion($version, $webtrees_version);
+            $versions_with_compatibility[$version] = CustomModuleManager::normalizeVersion($this->repo, $version) . ' ' . $compatbility->label();
+        }
+
+        return $versions_with_compatibility;
     }
 
     /**

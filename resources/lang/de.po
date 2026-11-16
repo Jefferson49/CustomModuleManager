@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-10-25 14:25+0100\n"
-"PO-Revision-Date: 2026-10-25 14:29+0100\n"
+"POT-Creation-Date: 2026-11-16 05:47+0100\n"
+"PO-Revision-Date: 2026-11-16 05:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,28 +15,28 @@ msgstr ""
 "X-Poedit-KeywordsList: translate\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/CustomModuleManager.php:282
+#: src/CustomModuleManager.php:289
 msgid "Custom Module Manager"
 msgstr "Management von Erweiterungsmodulen"
 
-#: src/CustomModuleManager.php:295
+#: src/CustomModuleManager.php:302
 msgid "A custom module to manage webtrees custom modules."
 msgstr "Ein Erweiterungsmodul zum Verwalten von webtrees-Erweiterungsmodulen."
 
-#: src/CustomModuleManager.php:454
+#: src/CustomModuleManager.php:467
 #, php-format
 msgid "The preferences for the module \"%s\" were updated."
 msgstr "Die Einstellungen für das Modul \"%s\" wurden aktualisiert."
 
-#: src/CustomModuleManager.php:500
+#: src/CustomModuleManager.php:513
 msgid "Rollback Custom Module Update"
 msgstr "Aktualisierung des Erweiterungsmoduls rückgängig machen"
 
-#: src/CustomModuleManager.php:501
+#: src/CustomModuleManager.php:514
 msgid "Rollback"
 msgstr "Rückgängig machen"
 
-#: src/CustomModuleManager.php:528
+#: src/CustomModuleManager.php:541
 #: vendor/jefferson49/webtrees-common/Module/ModuleCustomTrait.php:206
 #, php-format
 msgid ""
@@ -92,12 +92,7 @@ msgstr "Tags"
 msgid "Data validation"
 msgstr "Daten Validierung"
 
-#: src/ModuleUpdates/AbstractModuleUpdate.php:457
-#, php-format
-msgid "Communication error with %s: %s"
-msgstr "Kommunikationsfehler mit %s: %s"
-
-#: src/ModuleUpdates/PlatformModuleUpdate.php:103
+#: src/ModuleUpdates/PlatformModuleUpdate.php:104
 #: src/ModuleUpdates/UrlModuleUpdate.php:72
 #, php-format
 msgid ""
@@ -107,24 +102,11 @@ msgstr ""
 "Der Aktualisierungsdienst %s konnte nicht erstellt werden. "
 "Konfigurationsparameter \"%s\" fehlt."
 
-#: src/ModuleUpdates/PlatformModuleUpdate.php:195
-#: src/ModuleUpdates/PlatformModuleUpdate.php:397
-#, php-format
-msgid "Communication error with %s"
-msgstr "Kommunikationsfehler mit %s"
-
-#: src/ModuleUpdates/PlatformModuleUpdate.php:327
-#, php-format
-msgid "Could not retrieve release notes due to a communication error with %s."
-msgstr ""
-"Die Versionshinweise konnten aufgrund eines Kommunikationsfehlers mit %s "
-"nicht abgerufen werden."
-
 #: src/RequestHandlers/ColumnConfigurationModal.php:62
 msgid "Configure columns and table layout"
 msgstr "Spalten und Tabellen-Layout konfigurieren"
 
-#: src/RequestHandlers/CustomModuleUpdatePage.php:80
+#: src/RequestHandlers/CustomModuleUpdatePage.php:92
 msgid "Custom Module Updates"
 msgstr "Aktualisierung von Erweiterungsmodulen"
 
@@ -326,30 +308,35 @@ msgstr ""
 "empfohlen, eines der Module zu deaktivieren. Der Pfad des Moduls mit der "
 "parallelen Ansicht lautet: %s"
 
-#: resources/views/modals/column_configuration.phtml:46
-#: resources/views/module_update.phtml:216
+#: resources/views/modals/column_configuration.phtml:47
+#: resources/views/module_update.phtml:225
 msgid "Date Added"
 msgstr "Hinzugefügt am"
 
-#: resources/views/modals/column_configuration.phtml:54
+#: resources/views/modals/column_configuration.phtml:55
 #: resources/views/modals/module_information.phtml:94
-#: resources/views/module_update.phtml:224
+#: resources/views/module_update.phtml:233
 msgid "Update Service"
 msgstr "Aktualisierungs-Dienst"
 
-#: resources/views/modals/column_configuration.phtml:62
+#: resources/views/modals/column_configuration.phtml:63
 msgid "Downloads"
 msgstr "Downloads"
 
-#: resources/views/modals/column_configuration.phtml:70
+#: resources/views/modals/column_configuration.phtml:71
+#: resources/views/module_update.phtml:240
+msgid "Select Version"
+msgstr "Auswahl Version"
+
+#: resources/views/modals/column_configuration.phtml:79
 msgid "Compatiblity with webtrees version"
 msgstr "Kompatibilität mit webtrees-Version"
 
-#: resources/views/modals/column_configuration.phtml:75
+#: resources/views/modals/column_configuration.phtml:84
 msgid "If empty, column will not be shown."
 msgstr "Wenn das Feld leer ist, wird die Spalte nicht angezeigt."
 
-#: resources/views/modals/column_configuration.phtml:77
+#: resources/views/modals/column_configuration.phtml:86
 #, php-format
 msgid ""
 "Compatibility information is only available for webtrees versions >= %s."
@@ -357,21 +344,21 @@ msgstr ""
 "Informationen über die Kompatibilität mit webtrees sind nur für Versionen >= "
 "%s verfügbar."
 
-#: resources/views/modals/column_configuration.phtml:85
+#: resources/views/modals/column_configuration.phtml:94
 #: resources/views/settings.phtml:108
 msgid "Table layout"
 msgstr "Tabellen-Layout"
 
-#: resources/views/modals/column_configuration.phtml:90
+#: resources/views/modals/column_configuration.phtml:99
 #: resources/views/settings.phtml:113
 msgid "Table"
 msgstr "Tabelle"
 
-#: resources/views/modals/column_configuration.phtml:91
+#: resources/views/modals/column_configuration.phtml:100
 msgid "Table with fixed header row"
 msgstr "Tabelle mit fixierter Kopfzeile"
 
-#: resources/views/modals/column_configuration.phtml:92
+#: resources/views/modals/column_configuration.phtml:101
 #: resources/views/settings.phtml:115
 msgid "Responsive table (for small screens)"
 msgstr "Responsive Tabelle (für kleine Bildschirme)"
@@ -385,7 +372,7 @@ msgid "Module folder"
 msgstr "Modul-Ordner"
 
 #: resources/views/modals/module_information.phtml:104
-#: resources/views/module_update.phtml:218
+#: resources/views/module_update.phtml:227
 msgid "Current Version"
 msgstr "Aktuelle Version"
 
@@ -404,15 +391,15 @@ msgid "Module Usage"
 msgstr "Modul-Verwendung"
 
 #: resources/views/modals/release_notes.phtml:31
-#: resources/views/module_update.phtml:219
+#: resources/views/module_update.phtml:228
 msgid "Latest Version"
 msgstr "Neueste Version"
 
-#: resources/views/modals/release_notes.phtml:57
+#: resources/views/modals/release_notes.phtml:58
 msgid "activate update for this version"
 msgstr "Aktualisierung für diese Version aktivieren"
 
-#: resources/views/modals/release_notes.phtml:57
+#: resources/views/modals/release_notes.phtml:58
 msgid "ignore update for this version"
 msgstr "Aktualisierung für diese Version ignorieren"
 
@@ -438,11 +425,11 @@ msgstr ""
 msgid "Please confirm."
 msgstr "Bitte bestätigen Sie."
 
-#: resources/views/modals/vesta_information.phtml:42
+#: resources/views/modals/vesta_information.phtml:43
 msgid "confirm"
 msgstr "Bestätigen"
 
-#: resources/views/module_update.phtml:148
+#: resources/views/module_update.phtml:157
 #, php-format
 msgid ""
 "A new version of \"%s\" is available. It is recommended to upgrade to the "
@@ -452,7 +439,7 @@ msgstr ""
 "neueste Version zu aktualisieren bevor andere Erweiterungsmodule installiert/"
 "aktualisiert werden."
 
-#: resources/views/module_update.phtml:151
+#: resources/views/module_update.phtml:160
 msgid ""
 "Typically, custom modules versions are updated every 24 hours. You can check "
 "if later versions or download counts are available."
@@ -461,7 +448,7 @@ msgstr ""
 "aktualisiert. Sie können prüfen, ob neuere Versionen oder Download-Zahlen "
 "verfügbar sind."
 
-#: resources/views/module_update.phtml:179
+#: resources/views/module_update.phtml:188
 msgid ""
 "Press the save button to enable/disable modules according to the checkbox in "
 "the \"enabled\" column."
@@ -469,89 +456,89 @@ msgstr ""
 "Drücken Sie den \"Speichern\" Button, um Module entsprechend dem "
 "Kontrollkästchen in der Spalte \"Aktiviert\" zu aktivieren/deaktivieren."
 
-#: resources/views/module_update.phtml:202
+#: resources/views/module_update.phtml:211
 msgid "Module Updates"
 msgstr "Aktualisierungen für Module"
 
-#: resources/views/module_update.phtml:211
+#: resources/views/module_update.phtml:220
 msgid "Folder (within modules_v4)"
 msgstr "Ordner (in modules_v4)"
 
-#: resources/views/module_update.phtml:221
+#: resources/views/module_update.phtml:230
 msgid "Compatibility with webtrees"
 msgstr "Kompatibilität mit webtrees"
 
-#: resources/views/module_update.phtml:227
+#: resources/views/module_update.phtml:236
 msgid "Down-loads"
 msgstr "Down-loads"
 
-#: resources/views/module_update.phtml:230
+#: resources/views/module_update.phtml:242
 msgid "Install"
 msgstr "Installieren"
 
-#: resources/views/module_update.phtml:346
-#: resources/views/module_update.phtml:454
+#: resources/views/module_update.phtml:366
+#: resources/views/module_update.phtml:474
 msgid "N/A"
 msgstr "N/A"
 
-#: resources/views/module_update.phtml:422
-#: resources/views/module_update.phtml:532
+#: resources/views/module_update.phtml:442
+#: resources/views/module_update.phtml:577
 msgid "No compatible version available"
 msgstr "Keine kompatible Version verfügbar"
 
-#: resources/views/module_update.phtml:425
+#: resources/views/module_update.phtml:445
 msgid "Current version"
 msgstr "Aktuelle Version"
 
-#: resources/views/module_update.phtml:435
+#: resources/views/module_update.phtml:455
 #, php-format
 msgid "Version %s"
 msgstr "Version %s"
 
-#: resources/views/module_update.phtml:501
+#: resources/views/module_update.phtml:541
 msgid "Update all Vesta modules"
 msgstr "Alle Vesta-Module aktualisieren"
 
-#: resources/views/module_update.phtml:503
+#: resources/views/module_update.phtml:543
 msgid "Update to latest version"
 msgstr "Aktualisieren auf neueste Version"
 
-#: resources/views/module_update.phtml:505
+#: resources/views/module_update.phtml:545
 #, php-format
 msgid "Update to version %s"
 msgstr "Aktualisieren auf Version %s"
 
-#: resources/views/module_update.phtml:507
-#: resources/views/module_update.phtml:523
+#: resources/views/module_update.phtml:549
+#: resources/views/module_update.phtml:568
 msgid "might be incompatible"
 msgstr "möglicherweise inkompatibel"
 
-#: resources/views/module_update.phtml:514
+#: resources/views/module_update.phtml:556
 msgid "Install all Vesta modules"
 msgstr "Alle Vesta-Module installieren"
 
-#: resources/views/module_update.phtml:519
+#: resources/views/module_update.phtml:562
 msgid "Install latest version"
 msgstr "Neueste Version installieren"
 
-#: resources/views/module_update.phtml:521
+#: resources/views/module_update.phtml:564
 #, php-format
 msgid "Install version %s"
 msgstr "Version %s installieren"
 
-#: resources/views/module_update.phtml:530
+#: resources/views/module_update.phtml:575
 msgid "No update service available"
 msgstr "Kein Aktualisierungsdienst verfügbar"
 
-#: resources/views/module_update.phtml:537
+#: resources/views/module_update.phtml:582
 msgid "Manual updating/merging required"
 msgstr "Manuelles Aktualisieren/Zusammenführen erforderlich"
 
-#: resources/views/module_update.phtml:565
+#: resources/views/module_update.phtml:610
 msgid "Delete all Vesta modules"
 msgstr "Alle Vesta-Module löschen"
 
-#: resources/views/module_update.phtml:568
+#: resources/views/module_update.phtml:613
 msgid "Delete module"
 msgstr "Modul löschen"
 
@@ -656,6 +643,26 @@ msgstr ""
 "Durch Auswahl dieser Option werden zusätzliche Debug-Informationen zu "
 "Kommunikationsfehlern mit Hosting-Plattformen (z. B. GitHub, Codeberg) in "
 "den Protokollen der webtrees-Website aufgezeichnet."
+
+#, fuzzy
+#~| msgid "Not compatible"
+#~ msgid "not compatible"
+#~ msgstr "Nicht kompatibel"
+
+#, php-format
+#~ msgid "Communication error with %s: %s"
+#~ msgstr "Kommunikationsfehler mit %s: %s"
+
+#, php-format
+#~ msgid "Communication error with %s"
+#~ msgstr "Kommunikationsfehler mit %s"
+
+#, php-format
+#~ msgid ""
+#~ "Could not retrieve release notes due to a communication error with %s."
+#~ msgstr ""
+#~ "Die Versionshinweise konnten aufgrund eines Kommunikationsfehlers mit %s "
+#~ "nicht abgerufen werden."
 
 #~ msgid "Cannot retrieve download URL."
 #~ msgstr "Die Download-URL kann nicht abgerufen werden."

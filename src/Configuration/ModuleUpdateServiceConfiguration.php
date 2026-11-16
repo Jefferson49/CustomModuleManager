@@ -370,7 +370,7 @@ class ModuleUpdateServiceConfiguration
                 self::$module_update_service_config = self::getLocalConfigFromCustomModuleList();
             }
             catch (RuntimeException $ex) {
-                throw new CustomModuleManagerException(I18N::translate('Failed to load module update service configuration') . ': ' . $ex->getMessage());
+                throw new CustomModuleManagerException('Failed to load local module update service configuration' . ': ' . $ex->getMessage());
             }
         }
 

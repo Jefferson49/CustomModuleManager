@@ -587,6 +587,51 @@ abstract class AbstractModuleUpdate
     }
 
     /**
+     * Get the compatibility information for a specific module version with the given webtrees version
+     *
+     * @param string $module_version   The version of the module, for which the compatibility shall be checked
+     * @param string $webtrees_version The version of webtrees, for which the module shall be compatible
+     *
+     * @return CustomModuleCompatibility  The compatibility information for the specified module version; empty if not found
+     */
+    public function getCompatibilityForVersion(string $module_version, string $webtrees_version = Webtrees::VERSION): CustomModuleCompatibility {
+
+        //If no conflict rules exist, we assume that the module version is compatible with all webtrees versions
+        if (empty($this->conflicts)) {
+            return CustomModuleCompatibility::COMPATIBLE;
+        }
+
+        //The list of conflicts is sorted by release time, so we iterate and take the last compatible version in the list
+        foreach ($this->conflicts as $version => $conflict_rule) {
+
+            // Stop if the version is less than or equal to the specified module version
+            if (CustomModuleManager::versionCompare($this->module_name, $version, $module_version) <= 0) {
+                //continue;
+            }
+
+            //If there is no conflict rule, then the module version is compatible with all webtrees versions
+            if ($conflict_rule === '') {
+
+                return CustomModuleCompatibility::COMPATIBLE;
+            }
+
+            try {
+                //If the webtrees version does not satisfy the conflict rule, then the module version is compatible
+                if (!CustomModuleManager::webtreesVersionSatifiesConflictRule($webtrees_version, $conflict_rule)) {
+
+                    return CustomModuleCompatibility::COMPATIBLE;
+                }
+            }
+            catch (InvalidArgumentException $ex) {
+                //Invalid webtrees version or conflict rule, e.g. empty string
+                //Ignore and continue with next version
+            }
+        }
+
+        return CustomModuleCompatibility::NOT_COMPATIBLE;
+    }
+
+    /**
      * Get the latest version of the module in the custom module list
      * Version ordering is latest version first
      *

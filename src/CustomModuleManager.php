@@ -73,6 +73,7 @@ use Jefferson49\Webtrees\Module\CustomModuleManager\ModuleUpdates\PlatformModule
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ColumnConfigurationAction;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ColumnConfigurationModal;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleActivateAction;
+use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdateAction;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\CustomModuleUpdatePage;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\IgnoreUpdateAction;
 use Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers\ModuleInformationModal;
@@ -145,6 +146,7 @@ class CustomModuleManager extends AbstractModule implements
     public const PREF_SHOW_COLUMN_COMPATIB    = 'show_column_compatibility';
     public const PREF_SHOW_COLUMN_UPD_SERV    = 'show_column_update_service';
     public const PREF_SHOW_COLUMN_DOWNLOADS   = 'show_column_downloads';
+    public const PREF_SHOW_COLUMN_SELECT_VERS = 'show_column_select_version';
     public const PREF_TABLE_LAYOUT            = 'table_layout';
     public const PREF_VESTA_CONFIRMED         = 'vesta_confirmed';
     public const PREF_COMP_WEBTREES_VERSION   = 'webtrees_version';
@@ -267,7 +269,7 @@ class CustomModuleManager extends AbstractModule implements
         Functions::registerRoute(self::ROUTE_MODULE_UPDATE_PAGE, CustomModuleUpdatePage::class, null, [AuthAdministrator::class]);
         Functions::registerRoute(self::ROUTE_MODULE_INFO_MODAL, ModuleInformationModal::class, null, [AuthAdministrator::class]);
         Functions::registerRoute(self::ROUTE_RELEASE_NOTES_MODAL, ReleaseNotesModal::class, null, [AuthAdministrator::class]);
-        Functions::registerRoute(self::ROUTE_ACTIVATE_ACTION, CustomModuleActivateAction::class, null, [RequireHttpPostMethod::class, AuthAdministrator::class]);
+        Functions::registerRoute(self::ROUTE_ACTIVATE_ACTION, CustomModuleUpdateAction::class, null, [RequireHttpPostMethod::class, AuthAdministrator::class]);
         Functions::registerRoute(self::ROUTE_IGNORE_UPDATE, IgnoreUpdateAction::class, null, [RequireHttpPostMethod::class, AuthAdministrator::class]);
         Functions::registerRoute(self::ROUTE_COLUMN_CONF_MODAL, ColumnConfigurationModal::class, null, [AuthAdministrator::class]);
         Functions::registerRoute(self::ROUTE_COLUMN_CONF_ACTION, ColumnConfigurationAction::class, null, [RequireHttpPostMethod::class, AuthAdministrator::class]);
