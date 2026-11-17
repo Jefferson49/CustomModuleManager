@@ -2939,14 +2939,14 @@
                 ]
             }
         ],
-        "justcarmen/webtrees-fancy-imagebar": [
+        "justcarmen/jc-fancy-imagebar": [
             {
                 "version": "2.4.2",
                 "time": "2026-11-15",
                 "conflict": {
                     "fisharebest/webtrees": "<2.1 || >=2.3.0"
                 },
-                "name": "justcarmen/webtrees-fancy-imagebar",
+                "name": "justcarmen/jc-fancy-imagebar",
                 "description": "A webtrees module that adds an image bar with small images to the top of the page.",
                 "extra": {
                     "custom-module-manager": {
@@ -2986,21 +2986,21 @@
                 }
             }
         ],
-        "justcarmen/webtrees-fancy-research-links": [
+        "justcarmen/jc-fancy-research-links": [
             {
                 "version": "2.6.1",
                 "time": "2026-08-13",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
-                "name": "justcarmen/webtrees-fancy-research-links",
+                "name": "justcarmen/jc-fancy-research-links",
                 "description": "A sidebar module for webtrees that provides shortcuts to popular research websites, using the individual data as a search reference.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_jc-fancy-research-links_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "JustCarmen/webtrees-fancy-research-links",
+                            "github_repo": "JustCarmen/jc-fancy-research-links",
                             "category": "frontend_sidebar",
                             "title": "Fancy Research Links",
                             "description": "A sidebar tool to provide quick links to popular research web sites."
@@ -3028,21 +3028,21 @@
                 }
             }
         ],
-        "justcarmen/webtrees-fancy-treeview": [
+        "justcarmen/jc-fancy-treeview": [
             {
                 "version": "2.2.0",
                 "time": "2026-06-03",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
-                "name": "justcarmen/webtrees-fancy-treeview",
+                "name": "justcarmen/jc-fancy-treeview",
                 "description": "webtrees module to display a fancy treeview of the genealogy in a narrative way",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_jc-fancy-treeview_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "JustCarmen/webtrees-fancy-treeview",
+                            "github_repo": "JustCarmen/jc-fancy-treeview",
                             "category": "frontend",
                             "title": "Fancy Treeview",
                             "description": "A narrative overview of the descendants or ancestors of one family (branch)."
@@ -3067,21 +3067,21 @@
                 "license": "GPL-3.0+"
             }
         ],
-        "justcarmen/webtrees-simple-footer": [
+        "justcarmen/jc-simple-footer": [
             {
                 "version": "1.2",
                 "time": "2024-12-08",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
-                "name": "justcarmen/webtrees-simple-footer",
+                "name": "justcarmen/jc-simple-footer",
                 "description": "Add an extra footer and page.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_jc-simple-footer_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "JustCarmen/webtrees-simple-footer",
+                            "github_repo": "JustCarmen/jc-simple-footer",
                             "category": "footer",
                             "title": "Simple footer module",
                             "description": "Add an extra footer and page."
@@ -3096,18 +3096,18 @@
                 ]
             }
         ],
-        "justcarmen/webtrees-simple-media-display": [
+        "justcarmen/jc-simple-media-display": [
             {
                 "version": "2.0",
                 "time": "2024-12-08",
-                "name": "justcarmen/webtrees-simple-media-display",
+                "name": "justcarmen/jc-simple-media-display",
                 "description": "Display media objects as in webtrees 2.0, showing multiple media items and additional notes belonging to the same object on the individual page.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_jc-simple-media-display_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "JustCarmen/webtrees-simple-media-display",
+                            "github_repo": "JustCarmen/jc-simple-media-display",
                             "category": "media",
                             "title": "Media Display (as in webtrees 2.0)",
                             "description": "Display media objects as in webtrees 2.0, showing multiple media items and additional notes belonging to the same object on the individual page."
@@ -3122,21 +3122,21 @@
                 ]
             }
         ],
-        "justcarmen/webtrees-simple-menu": [
+        "justcarmen/jc-simple-menu": [
             {
                 "version": "1.4",
                 "time": "2024-02-17",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
-                "name": "justcarmen/webtrees-simple-menu",
+                "name": "justcarmen/jc-simple-menu",
                 "description": "Add an extra mainmenu item and page.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_jc-simple-menu_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "JustCarmen/webtrees-simple-menu",
+                            "github_repo": "JustCarmen/jc-simple-menu",
                             "category": "menu",
                             "title": "Simple menu module",
                             "description": "Add an extra mainmenu item and page."
@@ -3151,21 +3151,21 @@
                 ]
             }
         ],
-        "justcarmen/webtrees-theme-justlight": [
+        "justcarmen/jc-theme-justlight": [
             {
                 "version": "2.4.0",
                 "time": "2025-08-03",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
-                "name": "justcarmen/webtrees-theme-justlight",
+                "name": "justcarmen/jc-theme-justlight",
                 "description": "justlight theme for webtrees",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_jc-theme-justlight_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "JustCarmen/webtrees-theme-justlight",
+                            "github_repo": "JustCarmen/jc-theme-justlight",
                             "is_theme": true,
                             "category": "theme",
                             "title": "JustLight",
