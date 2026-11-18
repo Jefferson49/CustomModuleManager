@@ -750,6 +750,11 @@ class CustomModuleManager extends AbstractModule implements
                 $version = self::VERSION_NOT_AVAILABLE;
             }
 
+            //Do not include alpha or beta versions
+            if (preg_match('/.*(alpha|beta).*$/', $version) === 1) {
+                continue;
+            }
+
             /** @var PlatformModuleUpdate $module_update_service */
 
             //If the version is not included in the list yet or we shall replace the existing version
