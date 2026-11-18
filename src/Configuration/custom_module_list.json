@@ -4470,8 +4470,8 @@
         ],
         "thobgg/api4webtrees": [
             {
-                "version": "1.27.0",
-                "time": "2026-11-14",
+                "version": "1.29.0",
+                "time": "2026-11-17",
                 "name": "thobgg/api4webtrees",
                 "description": "JSON interface for the apps wtAnd, wtWin and wtTux \u2013 and any other client. Reads and writes with the rights of the signed-in user.",
                 "extra": {
