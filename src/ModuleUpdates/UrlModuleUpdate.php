@@ -120,17 +120,6 @@ class UrlModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpdate
      */
     public function getPackageName(): string {
 
-        if (strpos($this->download_url,'codeberg') !== false) {
-
-            $package_name = str_replace('https://codeberg.org/', '', $this->download_url);
-
-            $slash_position1 = strpos($package_name, '/', 0);
-            $slash_position2 = strpos($package_name, '/', $slash_position1 + 1);
-
-            return substr($package_name, 0, $slash_position2);
-        }
-        else {
-            return $this->name();
-        }
+        return strtolower(self::getInstallationFolderFromModuleName($this->getModuleName()));
     }
 }
