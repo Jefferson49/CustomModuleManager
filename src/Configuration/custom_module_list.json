@@ -1691,9 +1691,6 @@
                 "version": "0.3.1",
                 "time": "2026-07-09",
                 "name": "haylau-ronzo/enhanced-charts",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
                 "description": "A configurable tree home-page charts block with built-in chart wrappers plus a module-side Enhanced Hourglass mode based on the built-in webtrees layout.",
                 "extra": {
                     "custom-module-manager": {
@@ -4081,9 +4078,6 @@
             {
                 "version": "1.0.0-rc.2",
                 "time": "2026-07-28",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
                 "name": "pottsnet/potts-help-centre",
                 "description": "An inclusive webtrees help centre for visitors and members, with searchable, contextual and module-aware guidance.",
                 "extra": {
@@ -4111,9 +4105,6 @@
             {
                 "version": "1.0.1",
                 "time": "2026-09-17",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
                 "name": "pottsnet/potts-hero-slideshow",
                 "description": "A standalone, theme-aware homepage hero banner with a family photo slideshow.",
                 "extra": {
@@ -4171,9 +4162,6 @@
             {
                 "version": "1.0.0-rc.6",
                 "time": "2026-07-18",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
                 "name": "pottsnet/potts-life-story-engine",
                 "description": "Creates an intelligent, illustrated biography from the genealogy records visible to each visitor.",
                 "extra": {
