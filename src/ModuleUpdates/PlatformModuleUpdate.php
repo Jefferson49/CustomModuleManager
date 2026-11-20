@@ -429,7 +429,7 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
 
         foreach ($versions as $version) {
             $compatbility = $this->getCompatibilityForVersion($version, $webtrees_version);
-            $versions_with_compatibility[$version] = CustomModuleManager::normalizeVersion($this->repo, $version) . ' ' . $compatbility->label();
+            $versions_with_compatibility[$version] = CustomModuleManager::normalizeVersion($this->getModuleName(), $version) . ' ' . $compatbility->label();
         }
 
         return $versions_with_compatibility;

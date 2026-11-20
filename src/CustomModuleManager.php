@@ -743,6 +743,7 @@ class CustomModuleManager extends AbstractModule implements
 
             //Get the module version
             $version      = CustomModuleManager::normalizeVersion($module_name, $module_update_service->customModuleVersion());
+            $tag          = $module_update_service->customModuleVersion();
             $package_name = $module_update_service->getPackageName();
 
             //If current module version is not available
@@ -766,20 +767,6 @@ class CustomModuleManager extends AbstractModule implements
                 //If we were not able to read composer.json data from the file, we try to retrieve it from GitHub
                 if ($composer_json === [] && in_array($module_update_service::NAME, [GithubModuleUpdate::NAME, CodebergModuleUpdate::NAME], true)) {
 
-                    $tag        = $version;
-                    $tag_prefix = $module_update_service->getTagPrefix();
-
-                    //Add prefix, if the tags of the repository have a prefix
-                    if ($tag_prefix !== '') {
-                        if ($tag !== '' && strlen($tag) > strlen($tag_prefix)) {
-
-                            //If tag does not start with prefix, add prefix
-                            if (substr($tag, 0, strlen($tag_prefix)) !== $tag_prefix) {
-                                $tag = $tag_prefix . $tag;
-                            }
-                        }
-                    }
-
                     try {
                         if (in_array($module_update_service::NAME, [CodebergModuleUpdate::NAME, GithubModuleUpdate::NAME])) {
                             $json = $module_update_service->getTextFileContent($module_update_service->getRepository(), $tag, 'composer.json');
@@ -801,7 +788,7 @@ class CustomModuleManager extends AbstractModule implements
                 if (!isset($composer_json['time']) && in_array($module_update_service::NAME, [GithubModuleUpdate::NAME, CodebergModuleUpdate::NAME], true)) {
                     $release_info = $module_update_service->fetchReleasesInfoCached();
 
-                    if (isset($release_info['published_at'])) {
+                    if (isset($release_info['published_at']) && $release_info['tag'] === $tag) {
 
                         $dt = new DateTimeImmutable($release_info['published_at']);
                         $composer_json['time'] = $dt->format("Y-m-d");

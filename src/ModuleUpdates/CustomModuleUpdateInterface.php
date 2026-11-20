@@ -256,7 +256,7 @@ interface CustomModuleUpdateInterface
      *
      * @return CustomModuleCompatibility  The compatibility level
      */
-    public function getCompatibility(string $module_version, string $webtrees_version = Webtrees::VERSION): CustomModuleCompatibility;
+    public function getCompatibilityForVersion(string $module_version, string $webtrees_version = Webtrees::VERSION): CustomModuleCompatibility;
 
     /**
      * Get the repository of the module

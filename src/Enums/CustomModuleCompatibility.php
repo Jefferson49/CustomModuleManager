@@ -47,7 +47,7 @@ enum CustomModuleCompatibility: int
     public function label(): string
     {
         return match ($this) {
-            self::NOT_AVAILABLE         => I18N::translate('Not available'),
+            self::NOT_AVAILABLE         => I18N::translate('Compatibility not available'),
             self::NOT_COMPATIBLE        => I18N::translate('Not compatible'),
             self::POSSIBLY_COMPATIBLE   => I18N::translate('Possibly compatible'),
             self::PRESUMABLY_COMPATIBLE => I18N::translate('Presumably compatible'),

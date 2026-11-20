@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-11-16 05:47+0100\n"
-"PO-Revision-Date: 2026-11-16 05:47+0100\n"
+"POT-Creation-Date: 2026-11-20 06:32+0100\n"
+"PO-Revision-Date: 2026-11-20 06:33+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -47,8 +47,8 @@ msgstr ""
 "Version %s aktualisiert."
 
 #: src/Enums/CustomModuleCompatibility.php:50
-msgid "Not available"
-msgstr "Nicht verfügbar"
+msgid "Compatibility not available"
+msgstr "Kompatibilität nicht verfügbar"
 
 #: src/Enums/CustomModuleCompatibility.php:51
 msgid "Not compatible"
@@ -476,13 +476,19 @@ msgstr "Down-loads"
 msgid "Install"
 msgstr "Installieren"
 
+#: resources/views/module_update.phtml:288
+#: resources/views/module_update.phtml:377
+#: resources/views/module_update.phtml:406
+msgid "Not available"
+msgstr "Nicht verfügbar"
+
 #: resources/views/module_update.phtml:366
 #: resources/views/module_update.phtml:474
 msgid "N/A"
 msgstr "N/A"
 
 #: resources/views/module_update.phtml:442
-#: resources/views/module_update.phtml:577
+#: resources/views/module_update.phtml:580
 msgid "No compatible version available"
 msgstr "Keine kompatible Version verfügbar"
 
@@ -495,50 +501,50 @@ msgstr "Aktuelle Version"
 msgid "Version %s"
 msgstr "Version %s"
 
-#: resources/views/module_update.phtml:541
+#: resources/views/module_update.phtml:544
 msgid "Update all Vesta modules"
 msgstr "Alle Vesta-Module aktualisieren"
 
-#: resources/views/module_update.phtml:543
+#: resources/views/module_update.phtml:546
 msgid "Update to latest version"
 msgstr "Aktualisieren auf neueste Version"
 
-#: resources/views/module_update.phtml:545
+#: resources/views/module_update.phtml:548
 #, php-format
 msgid "Update to version %s"
 msgstr "Aktualisieren auf Version %s"
 
-#: resources/views/module_update.phtml:549
-#: resources/views/module_update.phtml:568
+#: resources/views/module_update.phtml:552
+#: resources/views/module_update.phtml:571
 msgid "might be incompatible"
 msgstr "möglicherweise inkompatibel"
 
-#: resources/views/module_update.phtml:556
+#: resources/views/module_update.phtml:559
 msgid "Install all Vesta modules"
 msgstr "Alle Vesta-Module installieren"
 
-#: resources/views/module_update.phtml:562
+#: resources/views/module_update.phtml:565
 msgid "Install latest version"
 msgstr "Neueste Version installieren"
 
-#: resources/views/module_update.phtml:564
+#: resources/views/module_update.phtml:567
 #, php-format
 msgid "Install version %s"
 msgstr "Version %s installieren"
 
-#: resources/views/module_update.phtml:575
+#: resources/views/module_update.phtml:578
 msgid "No update service available"
 msgstr "Kein Aktualisierungsdienst verfügbar"
 
-#: resources/views/module_update.phtml:582
+#: resources/views/module_update.phtml:585
 msgid "Manual updating/merging required"
 msgstr "Manuelles Aktualisieren/Zusammenführen erforderlich"
 
-#: resources/views/module_update.phtml:610
+#: resources/views/module_update.phtml:613
 msgid "Delete all Vesta modules"
 msgstr "Alle Vesta-Module löschen"
 
-#: resources/views/module_update.phtml:613
+#: resources/views/module_update.phtml:616
 msgid "Delete module"
 msgstr "Modul löschen"
 

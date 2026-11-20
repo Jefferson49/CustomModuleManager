@@ -419,7 +419,7 @@ $order = [[$sort_column, 'desc']];
                                 <?php $general_compatibility = CustomModuleCompatibility::NOT_AVAILABLE ?>
                             <?php else : ?>
                                 <?php if ($module !== null) : ?>
-                                    <?php $current_compatibility = $module_update_service->getCompatibility(
+                                    <?php $current_compatibility = $module_update_service->getCompatibilityForVersion(
                                         $current_version,
                                         $custom_module_manager->getPreference(CustomModuleManager::PREF_COMP_WEBTREES_VERSION, '')
                                     ) ?>
