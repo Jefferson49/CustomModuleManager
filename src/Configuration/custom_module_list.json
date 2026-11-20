@@ -4495,8 +4495,8 @@
                 ]
             },
             {
-                "version": "1.25.0",
-                "time": "2026-11-01",
+                "version": "1.26.0",
+                "time": "2026-11-11",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
