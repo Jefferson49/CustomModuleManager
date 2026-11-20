@@ -947,8 +947,8 @@
         ],
         "elysch/webtrees-mitalteli-report-researchtasks": [
             {
-                "version": "3.4.5",
-                "time": "2026-11-15",
+                "version": "3.4.6",
+                "time": "2026-11-19",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -1691,9 +1691,6 @@
                 "version": "0.3.1",
                 "time": "2026-07-09",
                 "name": "haylau-ronzo/enhanced-charts",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
                 "description": "A configurable tree home-page charts block with built-in chart wrappers plus a module-side Enhanced Hourglass mode based on the built-in webtrees layout.",
                 "extra": {
                     "custom-module-manager": {
@@ -4081,9 +4078,6 @@
             {
                 "version": "1.0.0-rc.2",
                 "time": "2026-07-28",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
                 "name": "pottsnet/potts-help-centre",
                 "description": "An inclusive webtrees help centre for visitors and members, with searchable, contextual and module-aware guidance.",
                 "extra": {
@@ -4111,9 +4105,6 @@
             {
                 "version": "1.0.1",
                 "time": "2026-09-17",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
                 "name": "pottsnet/potts-hero-slideshow",
                 "description": "A standalone, theme-aware homepage hero banner with a family photo slideshow.",
                 "extra": {
@@ -4171,9 +4162,6 @@
             {
                 "version": "1.0.0-rc.6",
                 "time": "2026-07-18",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
                 "name": "pottsnet/potts-life-story-engine",
                 "description": "Creates an intelligent, illustrated biography from the genealogy records visible to each visitor.",
                 "extra": {
@@ -4470,8 +4458,8 @@
         ],
         "thobgg/api4webtrees": [
             {
-                "version": "1.27.0",
-                "time": "2026-11-14",
+                "version": "1.29.0",
+                "time": "2026-11-17",
                 "name": "thobgg/api4webtrees",
                 "description": "JSON interface for the apps wtAnd, wtWin and wtTux \u2013 and any other client. Reads and writes with the rights of the signed-in user.",
                 "extra": {
@@ -4495,8 +4483,8 @@
                 ]
             },
             {
-                "version": "1.25.0",
-                "time": "2026-11-01",
+                "version": "1.26.0",
+                "time": "2026-11-11",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -5394,8 +5382,8 @@
         ],
         "vytux-com/vytux_cousins": [
             {
-                "version": "2.2.2",
-                "time": "2026-11-14",
+                "version": "2.2.3",
+                "time": "2026-11-18",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
