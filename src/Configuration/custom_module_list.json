@@ -947,8 +947,8 @@
         ],
         "elysch/webtrees-mitalteli-report-researchtasks": [
             {
-                "version": "3.4.5",
-                "time": "2026-11-15",
+                "version": "3.4.6",
+                "time": "2026-11-19",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -5394,8 +5394,8 @@
         ],
         "vytux-com/vytux_cousins": [
             {
-                "version": "2.2.2",
-                "time": "2026-11-14",
+                "version": "2.2.3",
+                "time": "2026-11-18",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
