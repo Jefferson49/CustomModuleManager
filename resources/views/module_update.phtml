@@ -660,8 +660,10 @@ $order = [[$sort_column, 'desc']];
         }
     });
 
-	document.querySelector('.version-select').addEventListener('change', function () {
-        document.getElementById('module-update-form').submit();
+    document.addEventListener('change', function (event) {
+        if (event.target.matches('.version-select select')) {
+            document.getElementById('module-update-form').submit();
+        }
     });
 
 </script>
