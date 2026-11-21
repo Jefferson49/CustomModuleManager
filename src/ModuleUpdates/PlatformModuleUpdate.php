@@ -97,8 +97,8 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
         $this->module_service        = new ModuleService();
         $this->custom_module_manager = Registry::container()->get(CustomModuleManager::class);
 
-        if (array_key_exists(strtolower($this->platform_name) . '_repo', $params)) {
-            $this->repo = $params[strtolower($this->platform_name) . '_repo'];
+        if (array_key_exists('repository', $params)) {
+            $this->repo = $params['repository'];
         }
         else {
             throw new CustomModuleManagerException(I18N::translate('Could not create the %s update service. Configuration parameter "%s" missing.', basename(str_replace('\\', '/', __CLASS__)) , strtolower($this->platform_name)));
