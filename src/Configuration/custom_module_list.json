@@ -3080,8 +3080,8 @@
         ],
         "magicsunday/webtrees-descendants-chart": [
             {
-                "version": "2.7.0",
-                "time": "2026-11-03",
+                "version": "2.8.0",
+                "time": "2026-11-19",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -3102,23 +3102,21 @@
                     }
                 },
                 "require": {
-                    "php": "8.3 - 8.5",
+                    "php": ">=8.3 <9",
                     "ext-dom": "*",
                     "ext-json": "*",
                     "fisharebest/webtrees": "~2.2.0",
-                    "magicsunday/webtrees-module-base": "^3.10.0",
+                    "magicsunday/webtrees-module-base": "^3.13.0",
                     "magicsunday/webtrees-module-installer-plugin": "^2.0"
                 },
                 "require-dev": {
                     "infection/infection": "^0.35.8",
-                    "magicsunday/coding-standard": "^3.8",
+                    "magicsunday/coding-standard": "^3.12.0",
                     "phpat/phpat": "^0.12.4",
                     "shipmonk/phpstan-rules": "^4.4",
                     "spaze/phpstan-disallowed-calls": "^4.13",
                     "symplify/phpstan-rules": "^14.19"
                 },
-                "minimum-stability": "dev",
-                "prefer-stable": true,
                 "authors": [
                     {
                         "name": "Rico Sonntag",
@@ -3251,9 +3249,14 @@
                         "@ci:test:php:cpd",
                         "@ci:test:php:templates",
                         "@ci:test:php:deptrac",
-                        "@ci:test:php:unit",
+                        "@ci:test:php:unit:coverage",
                         "@ci:test:js:unit",
-                        "@ci:test:php:cgl"
+                        "@ci:test:php:cgl",
+                        "@ci:test:php:advisories"
+                    ],
+                    "ci:test:php:advisories": [
+                        "@composer audit --format=json > .build/composer-audit.json || true",
+                        "check-stale-advisory-ignores.php composer.json .build/composer-audit.json"
                     ],
                     "ci:test:php:templates": [
                         "check-consumer-config.php ."
@@ -3270,8 +3273,8 @@
         ],
         "magicsunday/webtrees-fan-chart": [
             {
-                "version": "3.8.0",
-                "time": "2026-11-03",
+                "version": "3.9.0",
+                "time": "2026-11-19",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -3292,23 +3295,21 @@
                     }
                 },
                 "require": {
-                    "php": "8.3 - 8.5",
+                    "php": ">=8.3 <9",
                     "ext-dom": "*",
                     "ext-json": "*",
                     "fisharebest/webtrees": "~2.2.0",
-                    "magicsunday/webtrees-module-base": "^3.10.0",
+                    "magicsunday/webtrees-module-base": "^3.13.0",
                     "magicsunday/webtrees-module-installer-plugin": "^2.0"
                 },
                 "require-dev": {
                     "infection/infection": "^0.35.8",
-                    "magicsunday/coding-standard": "^3.8",
+                    "magicsunday/coding-standard": "^3.12.0",
                     "phpat/phpat": "^0.12.4",
                     "shipmonk/phpstan-rules": "^4.4",
                     "spaze/phpstan-disallowed-calls": "^4.13",
                     "symplify/phpstan-rules": "^14.19"
                 },
-                "minimum-stability": "dev",
-                "prefer-stable": true,
                 "authors": [
                     {
                         "name": "Rico Sonntag",
@@ -3441,9 +3442,14 @@
                         "@ci:test:php:cpd",
                         "@ci:test:php:templates",
                         "@ci:test:php:deptrac",
-                        "@ci:test:php:unit",
+                        "@ci:test:php:advisories",
+                        "@ci:test:php:unit:coverage",
                         "@ci:test:js:unit",
                         "@ci:test:php:cgl"
+                    ],
+                    "ci:test:php:advisories": [
+                        "@composer audit --format=json > .build/composer-audit.json",
+                        "check-stale-advisory-ignores.php composer.json .build/composer-audit.json"
                     ],
                     "ci:test:php:templates": [
                         "check-consumer-config.php ."
@@ -3460,8 +3466,8 @@
         ],
         "magicsunday/webtrees-pedigree-chart": [
             {
-                "version": "2.8.0",
-                "time": "2026-11-03",
+                "version": "2.9.1",
+                "time": "2026-11-20",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -3482,23 +3488,21 @@
                     }
                 },
                 "require": {
-                    "php": "8.3 - 8.5",
+                    "php": ">=8.3 <9",
                     "ext-dom": "*",
                     "ext-json": "*",
                     "fisharebest/webtrees": "~2.2.0",
-                    "magicsunday/webtrees-module-base": "^3.10.0",
+                    "magicsunday/webtrees-module-base": "^3.13.0",
                     "magicsunday/webtrees-module-installer-plugin": "^2.0"
                 },
                 "require-dev": {
                     "infection/infection": "^0.35.8",
-                    "magicsunday/coding-standard": "^3.8",
+                    "magicsunday/coding-standard": "^3.13.0",
                     "phpat/phpat": "^0.12.4",
                     "shipmonk/phpstan-rules": "^4.4",
                     "spaze/phpstan-disallowed-calls": "^4.13",
                     "symplify/phpstan-rules": "^14.19"
                 },
-                "minimum-stability": "dev",
-                "prefer-stable": true,
                 "authors": [
                     {
                         "name": "Rico Sonntag",
@@ -3631,9 +3635,14 @@
                         "@ci:test:php:cpd",
                         "@ci:test:php:templates",
                         "@ci:test:php:deptrac",
-                        "@ci:test:php:unit",
+                        "@ci:test:php:advisories",
+                        "@ci:test:php:unit:coverage",
                         "@ci:test:js:unit",
                         "@ci:test:php:cgl"
+                    ],
+                    "ci:test:php:advisories": [
+                        "@composer audit --format=json > .build/composer-audit.json || true",
+                        "check-stale-advisory-ignores.php composer.json .build/composer-audit.json"
                     ],
                     "ci:test:php:templates": [
                         "check-consumer-config.php ."
