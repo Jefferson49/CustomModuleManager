@@ -559,10 +559,8 @@ $order = [[$sort_column, 'desc']];
                                 <?php $action_label = I18N::translate('Update to latest version') ?>
                             <?php else : ?>
                                 <?php $action_label = I18N::translate('Update to version %s', CustomModuleManager::normalizeVersion($module_name, $version_selected !== '' ? $version_selected : $latest_compatible_version)) ?>
-                                <?php if (in_array($compatiblilty, [CustomModuleCompatibility::NOT_COMPATIBLE])) : ?>
-                                    <?php $action_label .= '<br>(' . CustomModuleCompatibility::NOT_COMPATIBLE->label() . ')' ?>
-                                <?php elseif (in_array($compatiblilty, [CustomModuleCompatibility::POSSIBLY_COMPATIBLE, CustomModuleCompatibility::PRESUMABLY_COMPATIBLE])) : ?>
-                                    <?php $action_label .= '<br>(' . I18N::translate('might be incompatible') . ')' ?>
+                                <?php if (!in_array($compatiblilty, [CustomModuleCompatibility::COMPATIBLE])) : ?>
+                                    <?php $action_label .= '<br>(' . $compatiblilty->label() . ')' ?>
                                 <?php endif ?>
                             <?php endif ?>
                         <?php elseif ($module === null) : ?>
@@ -578,10 +576,8 @@ $order = [[$sort_column, 'desc']];
                                 <?php $action_label = I18N::translate('Install latest version') ?>
                             <?php else : ?>
                                 <?php $action_label = I18N::translate('Install version %s', CustomModuleManager::normalizeVersion($module_name, $version_selected !== '' ? $version_selected : $latest_compatible_version)) ?>
-                                <?php if (in_array($compatiblilty, [CustomModuleCompatibility::NOT_COMPATIBLE])) : ?>
-                                    <?php $action_label .= '<br>(' . CustomModuleCompatibility::NOT_COMPATIBLE->label() . ')' ?>
-                                <?php elseif (in_array($compatiblilty, [CustomModuleCompatibility::POSSIBLY_COMPATIBLE, CustomModuleCompatibility::PRESUMABLY_COMPATIBLE])) : ?>
-                                    <?php $action_label .= '<br>(' . I18N::translate('might be incompatible') . ')' ?>
+                                <?php if (!in_array($compatiblilty, [CustomModuleCompatibility::COMPATIBLE])) : ?>
+                                    <?php $action_label .= '<br>(' . $compatiblilty->label() . ')' ?>
                                 <?php endif ?>
                             <?php endif ?>
                         <?php endif ?>
