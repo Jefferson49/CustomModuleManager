@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-11-20 06:32+0100\n"
-"PO-Revision-Date: 2026-11-20 06:33+0100\n"
+"POT-Creation-Date: 2026-11-21 05:23+0100\n"
+"PO-Revision-Date: 2026-11-21 05:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -152,18 +152,10 @@ msgstr "Installiere Modul \"%s\" (in Ordner: \"/module_v4/%s\")"
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:237
 #, php-format
-msgid "Upgrading module \"%s\" (in folder: \"/module_v4/%s\")"
+msgid "Updating module \"%s\" (in folder: \"/module_v4/%s\")"
 msgstr "Aktualisierung von Modul \"%s\" (in Ordner: \"/module_v4/%s\")"
 
 #: src/RequestHandlers/ModuleUpgradeWizardStep.php:242
-msgid ""
-"Version % is the latest compatible version of the custom module. No upgrade "
-"is available."
-msgstr ""
-"Version %s ist die neueste kompatible Version des Moduls. Es ist keine "
-"Aktualisierung verfügbar."
-
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:247
 #, php-format
 msgid ""
 "This custom module can only be used with a webtrees version greater or equal "
@@ -172,7 +164,7 @@ msgstr ""
 "Dieses Erweiterungsmodul kann nur mit einer webtrees-Version größer oder "
 "gleich %s genutzt werden"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:252
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:247
 msgid ""
 "The PHP extension \"zip\" is not installed. In order to use the custom "
 "module, your PHP installation needs to include the \"zip\" extension. You "
@@ -182,42 +174,42 @@ msgstr ""
 "zu nutzen, muss Ihre PHP-Installation die \"zip\"-Erweiterung beinhalten. "
 "Sie müssen die die Erweiterung in der \"php.ini\"-Datei aktivieren."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:261
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:269
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:255
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:263
 msgid "Latest version"
 msgstr "Neueste Version"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:261
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:264
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:255
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:258
 #, php-format
 msgid "Installing version: %s"
 msgstr "Installiere Version %s"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:269
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:272
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:263
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:266
 #, php-format
 msgid "Upgrading the module to version: %s"
 msgstr "Aktualisierung des Moduls auf Version: %s"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:349
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:343
 #, php-format
 msgid "A backup of the current module was created in %s seconds."
 msgstr ""
 "Eine Sicherungskopie des aktuellen Moduls wurde in %s Sekunden erstellt."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:354
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:348
 msgid "Failed to create a backup of the current module."
 msgstr "Es konnte keine Sicherungskopie des aktuellen Moduls erstellt werden."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:381
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:375
 msgid "Error during downloading the module zip file."
 msgstr "Fehler beim Herunterladen der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:413
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:407
 msgid "Error during unzipping the module zip file."
 msgstr "Fehler beim Entpacken der ZIP-Datei des Moduls."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:537
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:531
 #, php-format
 msgid ""
 "The module %s was rolled back to the current version, because the update "
@@ -226,7 +218,7 @@ msgstr ""
 "Das Modul %s wurde auf die bisherige Version zurückgesetzt, weil die "
 "Aktualisierung Fehler verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:540
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:534
 #, php-format
 msgid ""
 "The installation of module %s was rolled back, because the module created "
@@ -235,13 +227,13 @@ msgstr ""
 "Die Installation von Modul %s wurde rückgängig gemacht, weil das Modul "
 "Fehler verursachte."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:550
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:544
 #, php-format
 msgid "A roll back of the module %s to the current version failed."
 msgstr ""
 "Ein Rollback des Moduls %s auf die bisherige Version ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:552
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:546
 #, php-format
 msgid ""
 "Please try to manually roll back by copying the files from \"/data/tmp/"
@@ -251,12 +243,12 @@ msgstr ""
 "Dateien von \"/data/tmp/backup/modules_4/%s\" nach \"/modules_v4/%s\" "
 "kopieren."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:555
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:549
 #, php-format
 msgid "A roll back of the installation of module %s failed."
 msgstr "Ein Rollback der Installation von Modul %s ist fehlgeschlagen."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:557
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:551
 #, php-format
 msgid ""
 "Please try to manually roll back by deleting the folder \"/modules_v4/%s\""
@@ -264,12 +256,12 @@ msgstr ""
 "Bitte versuchen Sie, die Dateien manuell zurückzusetzen, indem Sie den "
 "Ordner \"/modules_4/%s\" löschen"
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:595
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:589
 #, php-format
 msgid "The module was successfully deleted in %s seconds."
 msgstr "Das Modul wurde in %s Sekunden erfolgreich gelöscht."
 
-#: src/RequestHandlers/ModuleUpgradeWizardStep.php:600
+#: src/RequestHandlers/ModuleUpgradeWizardStep.php:594
 msgid "Error during deleting the module."
 msgstr "Fehler beim Löschen des Moduls."
 
@@ -649,6 +641,13 @@ msgstr ""
 "Durch Auswahl dieser Option werden zusätzliche Debug-Informationen zu "
 "Kommunikationsfehlern mit Hosting-Plattformen (z. B. GitHub, Codeberg) in "
 "den Protokollen der webtrees-Website aufgezeichnet."
+
+#~ msgid ""
+#~ "Version % is the latest compatible version of the custom module. No "
+#~ "upgrade is available."
+#~ msgstr ""
+#~ "Version %s ist die neueste kompatible Version des Moduls. Es ist keine "
+#~ "Aktualisierung verfügbar."
 
 #, fuzzy
 #~| msgid "Not compatible"

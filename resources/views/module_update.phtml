@@ -532,7 +532,7 @@ $order = [[$sort_column, 'desc']];
                         <?php elseif (  $module !== null
                                     &&  (!in_array($version_selected !== '' ? $version_selected : $latest_compatible_version, [CustomModuleManager::VERSION_NOT_AVAILABLE, '']))
                                     &&  $latest_compatible_version !== $ignore_version
-                                    &&  CustomModuleManager::versionCompare($module_name, $latest_compatible_version, $current_version) > 0
+                                    &&  ($version_selected !== '' OR  CustomModuleManager::versionCompare($module_name, $latest_compatible_version, $current_version) > 0)
                         ) : ?>
                             <?php if ($module_update_service->updateManually()) : ?>
                                 <?php $action_sort = '2' ?>
@@ -596,7 +596,7 @@ $order = [[$sort_column, 'desc']];
                                     <a href="#" data-bs-toggle="modal" data-bs-backdrop="static" data-bs-target="#wt-ajax-modal" data-wt-href="<?= e(route(ModuleUpgradeWizardPage::class, [
                                             'module_name'     => $module_name,
                                             'current_version' => $current_version,
-                                            'version'         => $latest_compatible_version,
+                                            'version'         => $version_selected !== '' ? $version_selected : $latest_compatible_version,
                                             'action'          => $action,
                                         ])) ?>" type="submit" class="btn btn-<?= $primary_button ? 'primary' : 'secondary' ?>">
                                         <?= $action_label ?>
