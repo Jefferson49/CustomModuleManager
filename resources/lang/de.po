@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CustomModuleManager\n"
-"POT-Creation-Date: 2026-11-21 05:23+0100\n"
-"PO-Revision-Date: 2026-11-21 05:24+0100\n"
+"POT-Creation-Date: 2026-11-21 06:22+0100\n"
+"PO-Revision-Date: 2026-11-21 06:23+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -307,7 +307,7 @@ msgstr "Hinzugefügt am"
 
 #: resources/views/modals/column_configuration.phtml:55
 #: resources/views/modals/module_information.phtml:94
-#: resources/views/module_update.phtml:233
+#: resources/views/module_update.phtml:237
 msgid "Update Service"
 msgstr "Aktualisierungs-Dienst"
 
@@ -316,7 +316,7 @@ msgid "Downloads"
 msgstr "Downloads"
 
 #: resources/views/modals/column_configuration.phtml:71
-#: resources/views/module_update.phtml:240
+#: resources/views/module_update.phtml:244
 msgid "Select Version"
 msgstr "Auswahl Version"
 
@@ -383,7 +383,7 @@ msgid "Module Usage"
 msgstr "Modul-Verwendung"
 
 #: resources/views/modals/release_notes.phtml:31
-#: resources/views/module_update.phtml:228
+#: resources/views/module_update.phtml:231
 msgid "Latest Version"
 msgstr "Neueste Version"
 
@@ -456,87 +456,91 @@ msgstr "Aktualisierungen für Module"
 msgid "Folder (within modules_v4)"
 msgstr "Ordner (in modules_v4)"
 
-#: resources/views/module_update.phtml:230
+#: resources/views/module_update.phtml:229
+msgid "Selected Version"
+msgstr "Ausgewählte Version"
+
+#: resources/views/module_update.phtml:234
 msgid "Compatibility with webtrees"
 msgstr "Kompatibilität mit webtrees"
 
-#: resources/views/module_update.phtml:236
+#: resources/views/module_update.phtml:240
 msgid "Down-loads"
 msgstr "Down-loads"
 
-#: resources/views/module_update.phtml:242
+#: resources/views/module_update.phtml:246
 msgid "Install"
 msgstr "Installieren"
 
-#: resources/views/module_update.phtml:288
-#: resources/views/module_update.phtml:377
-#: resources/views/module_update.phtml:406
+#: resources/views/module_update.phtml:292
+#: resources/views/module_update.phtml:381
+#: resources/views/module_update.phtml:419
 msgid "Not available"
 msgstr "Nicht verfügbar"
 
-#: resources/views/module_update.phtml:366
-#: resources/views/module_update.phtml:474
+#: resources/views/module_update.phtml:370
+#: resources/views/module_update.phtml:487
 msgid "N/A"
 msgstr "N/A"
 
-#: resources/views/module_update.phtml:442
-#: resources/views/module_update.phtml:580
+#: resources/views/module_update.phtml:455
+#: resources/views/module_update.phtml:593
 msgid "No compatible version available"
 msgstr "Keine kompatible Version verfügbar"
 
-#: resources/views/module_update.phtml:445
+#: resources/views/module_update.phtml:458
 msgid "Current version"
 msgstr "Aktuelle Version"
 
-#: resources/views/module_update.phtml:455
+#: resources/views/module_update.phtml:468
 #, php-format
 msgid "Version %s"
 msgstr "Version %s"
 
-#: resources/views/module_update.phtml:544
+#: resources/views/module_update.phtml:557
 msgid "Update all Vesta modules"
 msgstr "Alle Vesta-Module aktualisieren"
 
-#: resources/views/module_update.phtml:546
+#: resources/views/module_update.phtml:559
 msgid "Update to latest version"
 msgstr "Aktualisieren auf neueste Version"
 
-#: resources/views/module_update.phtml:548
+#: resources/views/module_update.phtml:561
 #, php-format
 msgid "Update to version %s"
 msgstr "Aktualisieren auf Version %s"
 
-#: resources/views/module_update.phtml:552
-#: resources/views/module_update.phtml:571
+#: resources/views/module_update.phtml:565
+#: resources/views/module_update.phtml:584
 msgid "might be incompatible"
 msgstr "möglicherweise inkompatibel"
 
-#: resources/views/module_update.phtml:559
+#: resources/views/module_update.phtml:572
 msgid "Install all Vesta modules"
 msgstr "Alle Vesta-Module installieren"
 
-#: resources/views/module_update.phtml:565
+#: resources/views/module_update.phtml:578
 msgid "Install latest version"
 msgstr "Neueste Version installieren"
 
-#: resources/views/module_update.phtml:567
+#: resources/views/module_update.phtml:580
 #, php-format
 msgid "Install version %s"
 msgstr "Version %s installieren"
 
-#: resources/views/module_update.phtml:578
+#: resources/views/module_update.phtml:591
 msgid "No update service available"
 msgstr "Kein Aktualisierungsdienst verfügbar"
 
-#: resources/views/module_update.phtml:585
+#: resources/views/module_update.phtml:598
 msgid "Manual updating/merging required"
 msgstr "Manuelles Aktualisieren/Zusammenführen erforderlich"
 
-#: resources/views/module_update.phtml:613
+#: resources/views/module_update.phtml:626
 msgid "Delete all Vesta modules"
 msgstr "Alle Vesta-Module löschen"
 
-#: resources/views/module_update.phtml:616
+#: resources/views/module_update.phtml:629
 msgid "Delete module"
 msgstr "Modul löschen"
 
