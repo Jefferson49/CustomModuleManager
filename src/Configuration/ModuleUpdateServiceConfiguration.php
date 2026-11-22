@@ -173,7 +173,7 @@ class ModuleUpdateServiceConfiguration
         '_family-tree-home_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'miqrogroove/family-tree-home', 'get_latest_version_from_github' => true, self::CATEGORY => self::CATEGORY_FRONTEND]],
 
         '_ArgonLight_'                       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => '06Games/Webtrees-ArgonLight', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
-        '_evang_mailsystem_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => '06Games/Webtrees-MailSystem', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_MESSAGES]],
+        '_evang_mailsystem_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => '06Games/Webtrees-MailSystem', self::CATEGORY => self::CATEGORY_MESSAGES]],
 
         '_webtrees-branch-statistics_'       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'squatteur/webtrees-branch-statistics', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
