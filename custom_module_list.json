@@ -60,8 +60,8 @@
         ],
         "06games/webtrees-mailsystem": [
             {
-                "version": "2.3.11",
-                "time": "2025-02-16",
+                "version": "2.3.12",
+                "time": "2026-11-21",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -73,8 +73,6 @@
                         "update_service": "GithubModuleUpdate",
                         "params": {
                             "repository": "06Games/Webtrees-MailSystem",
-                            "no_release": true,
-                            "default_branch": "main",
                             "category": "messages",
                             "title": "Mail System",
                             "description": "Sends out newsletters at regular intervals"
