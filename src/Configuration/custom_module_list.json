@@ -2031,6 +2031,61 @@
         ],
         "jefferson49/custommodulemanager": [
             {
+                "version": "3.0.0",
+                "time": "2026-07-21",
+                "conflict": {
+                    "fisharebest/webtrees": "<2.2.3"
+                },
+                "name": "jefferson49/custommodulemanager",
+                "description": "A webtrees custom module to manage custom modules within webtrees",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_custom_module_manager_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "repository": "Jefferson49/CustomModuleManager",
+                            "tag_prefix": "v",
+                            "category": "admin",
+                            "title": "Custom Module Manager",
+                            "description": "A custom module to manage webtrees custom modules."
+                        },
+                        "date_added": ""
+                    }
+                },
+                "require": {
+                    "php": ">=8.3",
+                    "composer/semver": "=3.4.4",
+                    "jefferson49/webtrees-common": ">=1.4.82"
+                },
+                "authors": [
+                    {
+                        "name": "Markus Hemprich",
+                        "homepage": "https://github.com/jefferson49",
+                        "role": "Developer"
+                    }
+                ],
+                "homepage": "https://github.com/jefferson49/custommodulemanager",
+                "support": {
+                    "issues": "https://github.com/jefferson49/custommodulemanager/issues"
+                },
+                "keywords": [
+                    "webtrees",
+                    "custom module"
+                ],
+                "license": [
+                    "GPL-3.0-or-later"
+                ],
+                "repositories": [
+                    {
+                        "url": "https://github.com/Jefferson49/webtrees-common.git",
+                        "type": "git"
+                    }
+                ],
+                "config": {
+                    "prepend-autoloader": false
+                }
+            },
+            {
                 "version": "2.0.5",
                 "time": "2026-07-11",
                 "conflict": {
