@@ -397,8 +397,7 @@ $order = [[$sort_column, 'desc']];
                             <?php elseif (      !in_array($latest_compatible_version, [CustomModuleManager::VERSION_NOT_AVAILABLE, CustomModuleManager::VERSION_LATEST, ''])
                                         &&  $module !== null
                                         &&  CustomModuleManager::versionCompare($module_name, $latest_compatible_version, $current_version) > 0
-                                        &&  (       ($module_update_service instanceof PlatformModuleUpdate && $module_update_service->providesReleasesInRepository())
-                                                OR  ($module_update_service_name === VestaModuleUpdate::NAME))
+                                        &&  ($module_update_service instanceof PlatformModuleUpdate && $module_update_service->providesReleasesInRepository())
                                     ) : ?>
                                 <?php $latest_compatible_version_label = e(CustomModuleManager::normalizeVersion($module_name, $latest_compatible_version)) ?>
                                 <?php if ($compatiblilty === CustomModuleCompatibility::POSSIBLY_COMPATIBLE) : ?>
