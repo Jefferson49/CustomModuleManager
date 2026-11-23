@@ -14,7 +14,7 @@
                         "module_name": "_ArgonLight_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "06Games/Webtrees-ArgonLight",
+                            "repository": "06Games/Webtrees-ArgonLight",
                             "is_theme": true,
                             "category": "theme",
                             "title": "Argon Light",
@@ -72,7 +72,7 @@
                         "module_name": "_evang_mailsystem_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "06Games/Webtrees-MailSystem",
+                            "repository": "06Games/Webtrees-MailSystem",
                             "no_release": true,
                             "default_branch": "main",
                             "category": "messages",
@@ -132,7 +132,7 @@
                         "module_name": "_WeEt_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "08ah15/WeEt",
+                            "repository": "08ah15/WeEt",
                             "no_release": true,
                             "default_branch": "main",
                             "category": "sources",
@@ -162,7 +162,7 @@
                         "module_name": "_all-ages-export-engine_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "0ldM4cM4n/all-ages-export-engine",
+                            "repository": "0ldM4cM4n/all-ages-export-engine",
                             "no_release": true,
                             "default_branch": "main",
                             "category": "gedcom",
@@ -205,7 +205,7 @@
                         "module_name": "_dead-record-detective_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "0ldM4cM4n/dead-record-detective",
+                            "repository": "0ldM4cM4n/dead-record-detective",
                             "no_release": true,
                             "default_branch": "main",
                             "category": "admin",
@@ -247,7 +247,7 @@
                         "module_name": "_user-page-title_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "0ldM4cM4n/webtrees-user-page-title",
+                            "repository": "0ldM4cM4n/webtrees-user-page-title",
                             "category": "frontend",
                             "title": "User page title",
                             "description": "Personalizes the user page title to display the actual username instead of the generic \"My page\"."
@@ -276,7 +276,7 @@
                         "module_name": "_easy-tree_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "ahmadyaseen-pokkat/EasyTree",
+                            "repository": "ahmadyaseen-pokkat/EasyTree",
                             "no_release": true,
                             "default_branch": "main",
                             "is_theme": true,
@@ -308,7 +308,7 @@
                         "module_name": "_full-diagram_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "AlexBocken/WebtreesFullDiagram",
+                            "repository": "AlexBocken/WebtreesFullDiagram",
                             "no_release": true,
                             "default_branch": "master",
                             "tag_prefix": "v",
@@ -359,7 +359,7 @@
                         "module_name": "_finnish-historical-facts_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "ardhtu/finnish-historical-facts",
+                            "repository": "ardhtu/finnish-historical-facts",
                             "no_release": true,
                             "default_branch": "master",
                             "category": "fact",
@@ -390,7 +390,7 @@
                         "module_name": "_svajana-master_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "baskar-yahoo/webtrees-svajana",
+                            "repository": "baskar-yahoo/webtrees-svajana",
                             "no_release": true,
                             "default_branch": "master",
                             "tag_prefix": "v",
@@ -417,7 +417,7 @@
                         "module_name": "_datafix-add-married-names_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "bertkoor/wt-datafix-add-married-names",
+                            "repository": "bertkoor/wt-datafix-add-married-names",
                             "no_release": true,
                             "default_branch": "main",
                             "category": "gedcom",
@@ -462,7 +462,7 @@
                         "module_name": "_module-bulk-delete_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "BertKoor/wt-module-bulk-delete",
+                            "repository": "BertKoor/wt-module-bulk-delete",
                             "no_release": true,
                             "default_branch": "main",
                             "category": "gedcom",
@@ -497,9 +497,6 @@
             {
                 "version": "1.1.0",
                 "time": "2026-10-01",
-                "conflict": {
-                    "fisharebest/webtrees": "<2.0"
-                },
                 "name": "bertkoor/wt-module-custom-views",
                 "description": "Custom views (and translations). Keep your customizations of .phtml files in a different directory, so upgrades do not overwrite them. It also supports customization of translations via .csv files.",
                 "extra": {
@@ -507,7 +504,7 @@
                         "module_name": "_custom-views_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "bertkoor/wt-module-custom-views",
+                            "repository": "bertkoor/wt-module-custom-views",
                             "no_release": true,
                             "default_branch": "main",
                             "category": "frontend",
@@ -552,7 +549,7 @@
                         "module_name": "_old-nicknames_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "bertkoor/wt-module-old-nicknames",
+                            "repository": "bertkoor/wt-module-old-nicknames",
                             "no_release": true,
                             "default_branch": "main",
                             "category": "frontend",
@@ -586,10 +583,11 @@
         ],
         "bschwede/linkenhancer": [
             {
-                "version": "1.5.1",
-                "time": "2026-10-02",
+                "version": "1.7.0",
+                "time": "2026-10-28",
                 "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
+                    "fisharebest/webtrees": "<2.2 || >=2.3.0",
+                    "elysch/webtrees-mitalteli-misc-features": "*"
                 },
                 "name": "bschwede/linkenhancer",
                 "description": "webtrees custom module: link enhancements (linkenhancer)",
@@ -598,7 +596,7 @@
                         "module_name": "_linkenhancer_",
                         "update_service": "CodebergModuleUpdate",
                         "params": {
-                            "codeberg_repo": "bschwede/linkenhancer",
+                            "repository": "bschwede/linkenhancer",
                             "tag_prefix": "v",
                             "category": "frontend",
                             "title": "Link-Enhancer",
@@ -608,7 +606,10 @@
                     }
                 },
                 "require": {
-                    "bschwede/wt-shared-libs": "^1.0"
+                    "bschwede/wt-shared-libs": "^1.1.6"
+                },
+                "require-dev": {
+                    "phpstan/phpstan": "^2.0"
                 },
                 "authors": [
                     {
@@ -624,52 +625,30 @@
                             "symlink": false
                         }
                     }
-                ]
-            },
-            {
-                "version": "1.2.14",
-                "time": "2026-08-02",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
+                ],
+                "config": {
+                    "prepend-autoloader": false
                 },
-                "name": "bschwede/linkenhancer",
-                "description": "Cross-references to Gedcom datasets, Markdown editor, context-sensitive link to the GenWiki webtrees manual",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_linkenhancer_",
-                        "update_service": "CodebergModuleUpdate",
-                        "params": {
-                            "codeberg_repo": "bschwede/linkenhancer",
-                            "tag_prefix": "v",
-                            "category": "frontend",
-                            "title": "Link-Enhancer",
-                            "description": "Cross-references to Gedcom datasets, Markdown editor, context-sensitive link to the GenWiki webtrees manual"
-                        },
-                        "date_added": ""
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Bernd Schwendinger"
-                    }
-                ]
+                "scripts": {
+                    "analyse": "phpstan analyse -c phpstan.neon --memory-limit=1G"
+                }
             }
         ],
         "bschwede/wt-cronjob": [
             {
-                "version": "1.0.0",
-                "time": "2026-09-20",
+                "version": "1.0.5",
+                "time": "2026-10-29",
                 "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
+                    "fisharebest/webtrees": "<2.2"
                 },
                 "name": "schwendinger/webtrees-module-cronjob",
                 "description": "webtrees custom module: cron job scheduler service (time-based maintenance jobs with admin UI, run history and manual trigger)",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_cronjob_",
-                        "update_service": "GitHubModuleUpdate",
+                        "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "bschwede/wt-cronjob",
+                            "repository": "bschwede/wt-cronjob",
                             "tag_prefix": "v",
                             "category": "admin",
                             "title": "Cron Job Scheduler",
@@ -681,12 +660,72 @@
                 "require": {
                     "php": ">=8.3",
                     "dragonmantank/cron-expression": "^3.4",
-                    "bschwede/wt-shared-libs": "^1.0"
+                    "bschwede/wt-shared-libs": "^1.1.4"
                 },
                 "authors": [
                     {
                         "name": "Bernd Schwendinger",
-                        "homepage": "https://codeberg.org/bschwede",
+                        "homepage": "https://github.com/bschwede",
+                        "role": "Developer"
+                    }
+                ],
+                "homepage": "https://github.com/bschwede/wt-cronjob",
+                "support": {
+                    "issues": "https://github.com/bschwede/wt-cronjob/issues"
+                },
+                "type": "project",
+                "keywords": [
+                    "webtrees",
+                    "custom module"
+                ],
+                "license": "GPL-3.0-or-later",
+                "repositories": [
+                    {
+                        "type": "path",
+                        "url": "../wt-shared-libs",
+                        "options": {
+                            "symlink": false
+                        }
+                    }
+                ],
+                "config": {
+                    "platform": {
+                        "php": "8.3.0"
+                    },
+                    "prepend-autoloader": false
+                }
+            },
+            {
+                "version": "1.0.4",
+                "time": "2026-10-10",
+                "conflict": {
+                    "fisharebest/webtrees": "<2.2 || >=2.3.0"
+                },
+                "name": "schwendinger/webtrees-module-cronjob",
+                "description": "webtrees custom module: cron job scheduler service (time-based maintenance jobs with admin UI, run history and manual trigger)",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_cronjob_",
+                        "update_service": "GitHubModuleUpdate",
+                        "params": {
+                            "repository": "bschwede/wt-cronjob",
+                            "tag_prefix": "v",
+                            "category": "admin",
+                            "title": "Cron Job Scheduler",
+                            "description": "Schedule and monitor maintenance jobs: cron expressions, run history and manual trigger."
+                        },
+                        "date_added": "2026-09-21"
+                    }
+                },
+                "require": {
+                    "php": ">=8.3",
+                    "dragonmantank/cron-expression": "^3.4",
+                    "bschwede/wt-shared-libs": "^1.1.4"
+                },
+                "authors": [
+                    {
+                        "name": "Bernd Schwendinger",
+                        "homepage": "https://github.com/bschwede",
                         "role": "Developer"
                     }
                 ],
@@ -731,7 +770,7 @@
                         "module_name": "_historic-events-belgium_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "Dirk-Everts/webtrees-historic-events-belgium",
+                            "repository": "Dirk-Everts/webtrees-historic-events-belgium",
                             "tag_prefix": "v",
                             "category": "fact",
                             "title": "Historic events in present-day Belgium",
@@ -758,7 +797,7 @@
                         "module_name": "_webtrees-lantmateriet_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "ekdahl/webtrees-lantmateriet",
+                            "repository": "ekdahl/webtrees-lantmateriet",
                             "no_release": true,
                             "default_branch": "main",
                             "category": "maps",
@@ -772,8 +811,8 @@
         ],
         "ekdahl/webtrees-primer-theme": [
             {
-                "version": "2.2.6.1",
-                "time": "2026-10-02",
+                "version": "2.2.6.3",
+                "time": "2026-10-07",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -784,7 +823,7 @@
                         "module_name": "_webtrees-primer-theme_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "ekdahl/webtrees-primer-theme",
+                            "repository": "ekdahl/webtrees-primer-theme",
                             "is_theme": true,
                             "category": "theme",
                             "title": "Primer",
@@ -802,6 +841,30 @@
         ],
         "elysch/webtrees-mitalteli-chart-family-book": [
             {
+                "version": "2.0.6",
+                "time": "2026-11-16",
+                "name": "elysch/webtrees-mitalteli-chart-family-book",
+                "description": "A chart of an individual\u2019s ancestors and descendants, as a family book (enhanced with marriages, images, and more).",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_mitalteli-chart-family-book_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "repository": "elysch/webtrees-mitalteli-chart-family-book",
+                            "category": "charts",
+                            "title": "Enhanced family book",
+                            "description": "A chart of an individual\u2019s ancestors and descendants, as a family book (enhanced with marriages, images, and more)."
+                        },
+                        "date_added": ""
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "elysch"
+                    }
+                ]
+            },
+            {
                 "version": "2.0.3",
                 "time": "2026-06-17",
                 "conflict": {
@@ -814,7 +877,7 @@
                         "module_name": "_mitalteli-chart-family-book_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "elysch/webtrees-mitalteli-chart-family-book",
+                            "repository": "elysch/webtrees-mitalteli-chart-family-book",
                             "category": "charts",
                             "title": "Enhanced family book",
                             "description": "A chart of an individual\u2019s ancestors and descendants, as a family book (enhanced with marriages, images, and more)."
@@ -831,6 +894,30 @@
         ],
         "elysch/webtrees-mitalteli-misc-features": [
             {
+                "version": "1.2.0",
+                "time": "2026-11-15",
+                "name": "elysch/webtrees-mitalteli-misc-features",
+                "description": "Adds UID/UUID markdown links, extended birth/death place search, </br>COHABITATION marriage type, and more.</br></br><div class=\"markdown-alert\" dir=\"auto\">\ud83d\uded1<g-emoji class=\"g-emoji\" alias=\"warning\">\u26a0\ufe0f</g-emoji> Critical Performance Warning (Scalability Limits)</div><div class=\"markdown-alert markdown-alert-caution\" dir=\"auto\"><p class=\"markdown-alert-title\" dir=\"auto\"><svg data-component=\"Octicon\" class=\"octicon octicon-stop mr-2\" viewBox=\"0 0 16 16\" version=\"1.1\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"></path></svg>Caution</p><p dir=\"auto\"><strong>Severe Slowdowns on Large Trees (UID / _UID Searches)</strong>\n<code>webtrees</code> lacks database indexes on <code>UID</code> and <code>_UID</code> fields. Because of how the current database architecture is structured, there is no way to add manual indexes to mitigate the underlying performance bottleneck.</p>\n</div>",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_mitalteli-misc-features_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "repository": "elysch/webtrees-mitalteli-misc-features",
+                            "category": "gedcom",
+                            "title": "Mitalteli Misc Features",
+                            "description": "Adds UID/UUID markdown links, extended birth/death place search, </br>COHABITATION marriage type, and more.</br></br><div class=\"markdown-alert\" dir=\"auto\">\ud83d\uded1<g-emoji class=\"g-emoji\" alias=\"warning\">\u26a0\ufe0f</g-emoji> Critical Performance Warning (Scalability Limits)</div><div class=\"markdown-alert markdown-alert-caution\" dir=\"auto\"><p class=\"markdown-alert-title\" dir=\"auto\"><svg data-component=\"Octicon\" class=\"octicon octicon-stop mr-2\" viewBox=\"0 0 16 16\" version=\"1.1\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"></path></svg>Caution</p><p dir=\"auto\"><strong>Severe Slowdowns on Large Trees (UID / _UID Searches)</strong>\n<code>webtrees</code> lacks database indexes on <code>UID</code> and <code>_UID</code> fields. Because of how the current database architecture is structured, there is no way to add manual indexes to mitigate the underlying performance bottleneck.</p>\n</div>"
+                        },
+                        "date_added": "2026-05-31"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "elysch"
+                    }
+                ]
+            },
+            {
                 "version": "1.1.0",
                 "time": "2026-06-17",
                 "conflict": {
@@ -843,7 +930,7 @@
                         "module_name": "_mitalteli-misc-features_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "elysch/webtrees-mitalteli-misc-features",
+                            "repository": "elysch/webtrees-mitalteli-misc-features",
                             "category": "gedcom",
                             "title": "Mitalteli Misc Features",
                             "description": "Adds UID/UUID markdown links, extended birth/death place search, </br>COHABITATION marriage type, and more.</br></br><div class=\"markdown-alert\" dir=\"auto\">\ud83d\uded1<g-emoji class=\"g-emoji\" alias=\"warning\">\u26a0\ufe0f</g-emoji> Critical Performance Warning (Scalability Limits)</div><div class=\"markdown-alert markdown-alert-caution\" dir=\"auto\"><p class=\"markdown-alert-title\" dir=\"auto\"><svg data-component=\"Octicon\" class=\"octicon octicon-stop mr-2\" viewBox=\"0 0 16 16\" version=\"1.1\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"></path></svg>Caution</p><p dir=\"auto\"><strong>Severe Slowdowns on Large Trees (UID / _UID Searches)</strong>\n<code>webtrees</code> lacks database indexes on <code>UID</code> and <code>_UID</code> fields. Because of how the current database architecture is structured, there is no way to add manual indexes to mitigate the underlying performance bottleneck.</p>\n</div>"
@@ -860,8 +947,8 @@
         ],
         "elysch/webtrees-mitalteli-report-researchtasks": [
             {
-                "version": "3.2.1",
-                "time": "2026-06-18",
+                "version": "3.4.6",
+                "time": "2026-11-19",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -872,7 +959,7 @@
                         "module_name": "_mitalteli-report-researchtasks_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "elysch/webtrees-mitalteli-report-researchtasks",
+                            "repository": "elysch/webtrees-mitalteli-report-researchtasks",
                             "category": "reports",
                             "title": "Research tasks report",
                             "description": "A research tasks Report with filters and other options."
@@ -889,6 +976,30 @@
         ],
         "elysch/webtrees-mitalteli-show-xref": [
             {
+                "version": "4.3.1",
+                "time": "2026-11-15",
+                "name": "elysch/webtrees-mitalteli-show-xref",
+                "description": "A sidebar to show XREF and UID values.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_mitalteli-show-xref_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "repository": "elysch/webtrees-mitalteli-show-xref",
+                            "category": "frontend_sidebar",
+                            "title": "XREF and UID values module.",
+                            "description": "A sidebar to show XREF and UID values."
+                        },
+                        "date_added": ""
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "elysch"
+                    }
+                ]
+            },
+            {
                 "version": "4.2.1",
                 "time": "2026-06-18",
                 "conflict": {
@@ -901,7 +1012,7 @@
                         "module_name": "_mitalteli-show-xref_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "elysch/webtrees-mitalteli-show-xref",
+                            "repository": "elysch/webtrees-mitalteli-show-xref",
                             "category": "frontend_sidebar",
                             "title": "XREF and UID values module.",
                             "description": "A sidebar to show XREF and UID values."
@@ -927,7 +1038,7 @@
                         "module_name": "_media-folder-import_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "garraflavatra/webtrees-media-folder-import",
+                            "repository": "garraflavatra/webtrees-media-folder-import",
                             "tag_prefix": "v",
                             "category": "media",
                             "title": "Import media files from folder",
@@ -957,7 +1068,7 @@
                         "module_name": "_time-travel-map_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "gmarcon/webtrees-time-travel-map",
+                            "repository": "gmarcon/webtrees-time-travel-map",
                             "tag_prefix": "v",
                             "category": "charts",
                             "title": "Time Travel Map",
@@ -987,7 +1098,7 @@
                         "module_name": "_insight-lens_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "godzil3/webtrees-insight-lens",
+                            "repository": "godzil3/webtrees-insight-lens",
                             "tag_prefix": "v",
                             "category": "charts",
                             "title": "Insight Lens",
@@ -1003,6 +1114,36 @@
                 ]
             }
         ],
+        "gregorwolf1973/webtrees-lebensbuehne": [
+            {
+                "version": "1.15.0",
+                "time": "2026-11-15",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "gregorwolf1973/webtrees-lebensbuehne",
+                "description": "Vorfahren und Nachkommen als begehbarer 3D-Zeittunnel \u2013 mit Zeitreise, Lebensgeschichten, Karten und Zeitgeschehen.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_lebensbuehne_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "repository": "gregorwolf1973/webtrees-lebensbuehne",
+                            "tag_prefix": "v",
+                            "category": "charts",
+                            "title": "Lebensb\u00fchne",
+                            "description": "Vorfahren und Nachkommen als begehbarer 3D-Zeittunnel \u2013 mit Zeitreise, Lebensgeschichten, Karten und Zeitgeschehen."
+                        },
+                        "date_added": "2026-10-25"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Gregor Wolf"
+                    }
+                ]
+            }
+        ],
         "gustine/gustine-history22": [
             {
                 "version": "2025.12.29",
@@ -1014,7 +1155,7 @@
                         "module_name": "_gustine-history22_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "gustine/gustine-history22",
+                            "repository": "gustine/gustine-history22",
                             "no_release": true,
                             "default_branch": "master",
                             "category": "fact",
@@ -1045,7 +1186,7 @@
                         "module_name": "_sosa20_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "gustine/sosa20",
+                            "repository": "gustine/sosa20",
                             "category": "frontend_sidebar",
                             "title": "Sosa-Stradonitz (Ahnentafel)",
                             "description": "A sidebar showing Sosa-Stradonitz number of individuals."
@@ -1074,7 +1215,7 @@
                         "module_name": "_german-chancellors-presidents_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "hartenthaler/german-chancellors-presidents",
+                            "repository": "hartenthaler/german-chancellors-presidents",
                             "tag_prefix": "v",
                             "category": "fact",
                             "title": "German Chancellors Presidents",
@@ -1104,7 +1245,7 @@
                         "module_name": "_german-wars-battles-worldwide_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "hartenthaler/german-wars-battles-worldwide",
+                            "repository": "hartenthaler/german-wars-battles-worldwide",
                             "tag_prefix": "v",
                             "category": "fact",
                             "title": "Wars and Battles Worldwide \ud83c\udde9\ud83c\uddea",
@@ -1134,7 +1275,7 @@
                         "module_name": "_gramps-historical-facts_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "hartenthaler/gramps-historical-facts",
+                            "repository": "hartenthaler/gramps-historical-facts",
                             "tag_prefix": "v",
                             "category": "fact",
                             "title": "Gramps Historical Facts",
@@ -1164,7 +1305,7 @@
                         "module_name": "_hh-change-log_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "hartenthaler/hh-change-log",
+                            "repository": "hartenthaler/hh-change-log",
                             "category": "frontend_tab",
                             "title": "Changes",
                             "description": "A tab showing recent GEDCOM data changes for an individual."
@@ -1182,17 +1323,17 @@
         "hartenthaler/hh-courtship-radius": [
             {
                 "version": "2.2.6.0",
-                "name": "hartenthaler/hh-courtship-radius",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
+                "name": "hartenthaler/hh-courtship-radius",
                 "description": "Analyse the geographic courtship radius of selected families over time.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_hh_courtship_radius_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "hartenthaler/hh-courtship-radius",
+                            "repository": "hartenthaler/hh-courtship-radius",
                             "tag_prefix": "v",
                             "category": "charts",
                             "title": "Courtship radius",
@@ -1222,7 +1363,7 @@
                         "module_name": "_hh_families_trees_list_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "hartenthaler/hh-family-trees-list",
+                            "repository": "hartenthaler/hh-family-trees-list",
                             "tag_prefix": "v",
                             "category": "frontend",
                             "title": "Family tree list",
@@ -1252,7 +1393,7 @@
                         "module_name": "_hh-unlinked-individual_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "hartenthaler/hh-unlinked-individual",
+                            "repository": "hartenthaler/hh-unlinked-individual",
                             "tag_prefix": "v",
                             "category": "frontend",
                             "title": "Unlinked individual",
@@ -1285,8 +1426,8 @@
         ],
         "hartenthaler/hh_exid": [
             {
-                "version": "2.2.6.2",
-                "time": "2026-09-20",
+                "version": "2.2.6.4",
+                "time": "2026-10-04",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -1297,7 +1438,7 @@
                         "module_name": "_hh_exid_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "hartenthaler/hh_exid",
+                            "repository": "hartenthaler/hh_exid",
                             "tag_prefix": "v",
                             "category": "gedcom",
                             "title": "External identifiers (EXID)",
@@ -1316,6 +1457,9 @@
                 ],
                 "type": "webtrees-module",
                 "license": "GPL-3.0-or-later",
+                "config": {
+                    "prepend-autoloader": false
+                },
                 "autoload": {
                     "psr-4": {
                         "Hartenthaler\\Webtrees\\Module\\ExidModule\\": "src/"
@@ -1325,19 +1469,19 @@
         ],
         "hartenthaler/hh_extended_family": [
             {
-                "version": "2.2.6.14",
-                "time": "2026-07-13",
+                "version": "2.2.6.15",
+                "time": "2026-09-27",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
-                "name": "hartenthaler/hh_extended_family",
-                "description": "A tab showing the extended family of an individual.",
+                "name": "hartenthaler/hh-extended-family",
+                "description": "Shows the extended family of an individual in webtrees.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_hh_extended_family_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "hartenthaler/hh_extended_family",
+                            "repository": "hartenthaler/hh_extended_family",
                             "tag_prefix": "v",
                             "category": "frontend_tab",
                             "title": "Extended family",
@@ -1350,13 +1494,18 @@
                     {
                         "name": "Hermann Hartenthaler"
                     }
-                ]
+                ],
+                "homepage": "https://github.com/hartenthaler/hh_extended_family",
+                "support": {
+                    "issues": "https://github.com/hartenthaler/hh_extended_family/issues"
+                },
+                "license": "GPL-3.0-or-later"
             }
         ],
         "hartenthaler/hh_external_places": [
             {
-                "version": "2.2.6.13",
-                "time": "2026-09-17",
+                "version": "2.2.6.16",
+                "time": "2026-09-25",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -1367,48 +1516,7 @@
                         "module_name": "_hh_external_places_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "hartenthaler/hh_external_places",
-                            "tag_prefix": "v",
-                            "category": "places",
-                            "title": "External Places",
-                            "description": "Links shared places to Wikidata, FactGrid and GOV and displays read-only external place information, optionally including GeoNames context."
-                        },
-                        "date_added": "2026-08-23"
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Hermann Hartenthaler"
-                    }
-                ],
-                "homepage": "https://github.com/hartenthaler/hh_external_places",
-                "support": {
-                    "issues": "https://github.com/hartenthaler/hh_external_places/issues"
-                },
-                "keywords": [
-                    "webtrees",
-                    "custom module",
-                    "places",
-                    "wikidata",
-                    "factgrid",
-                    "gov"
-                ],
-                "license": "GPL-3.0-or-later"
-            },
-            {
-                "version": "2.2.6.8",
-                "time": "2026-08-30",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "hartenthaler/hh-external-places",
-                "description": "A webtrees module for read-only information from Wikidata, FactGrid and GOV.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_hh_external_places_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "hartenthaler/hh_external_places",
+                            "repository": "hartenthaler/hh_external_places",
                             "tag_prefix": "v",
                             "category": "places",
                             "title": "External Places",
@@ -1437,10 +1545,61 @@
                 "license": "GPL-3.0-or-later"
             }
         ],
+        "hartenthaler/hh_gemeda": [
+            {
+                "version": "2.2.6.0",
+                "time": "2026-10-25",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "hartenthaler/hh_gemeda",
+                "description": "GeMeDa links and claims for webtrees individuals",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_hh_gemeda_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "repository": "hartenthaler/hh_gemeda",
+                            "no_release": true,
+                            "default_branch": "main",
+                            "category": "frontend_tab",
+                            "title": "",
+                            "description": ""
+                        },
+                        "date_added": "2026-10-25"
+                    }
+                },
+                "require": {
+                    "webtrees/module-installer": "^1.0",
+                    "hartenthaler/hh-shared": "^0.1"
+                },
+                "authors": [
+                    {
+                        "name": "Hermann Hartenthaler"
+                    }
+                ],
+                "type": "webtrees-module",
+                "license": "GPL-3.0-or-later",
+                "repositories": [
+                    {
+                        "type": "vcs",
+                        "url": "https://github.com/hartenthaler/hh_shared"
+                    }
+                ],
+                "config": {
+                    "prepend-autoloader": false
+                },
+                "autoload": {
+                    "psr-4": {
+                        "Hartenthaler\\Webtrees\\Module\\GeMeDaModule\\": "src/"
+                    }
+                }
+            }
+        ],
         "hartenthaler/hh_legal_notice": [
             {
-                "version": "2.2.6.9",
-                "time": "2026-07-14",
+                "version": "2.2.6.10",
+                "time": "2026-09-26",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -1451,7 +1610,7 @@
                         "module_name": "_hh_legal_notice_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "hartenthaler/hh_legal_notice",
+                            "repository": "hartenthaler/hh_legal_notice",
                             "tag_prefix": "v",
                             "category": "footer",
                             "title": "Legal Notice and Privacy Policy",
@@ -1481,7 +1640,7 @@
                         "module_name": "_hh_occupation_standardizer_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "hartenthaler/hh_occupation_standardizer",
+                            "repository": "hartenthaler/hh_occupation_standardizer",
                             "tag_prefix": "v",
                             "category": "frontend",
                             "title": "Occupation Standardizer",
@@ -1511,7 +1670,7 @@
                         "module_name": "_hh_privacy_assistant_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "hartenthaler/hh_privacy_assistant",
+                            "repository": "hartenthaler/hh_privacy_assistant",
                             "tag_prefix": "v",
                             "category": "admin",
                             "title": "Privacy and Security Assistant",
@@ -1532,16 +1691,13 @@
                 "version": "0.3.1",
                 "time": "2026-07-09",
                 "name": "haylau-ronzo/enhanced-charts",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
                 "description": "A configurable tree home-page charts block with built-in chart wrappers plus a module-side Enhanced Hourglass mode based on the built-in webtrees layout.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_enhanced-charts_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "haylau-ronzo/enhanced-charts",
+                            "repository": "haylau-ronzo/enhanced-charts",
                             "tag_prefix": "v",
                             "category": "frontend",
                             "title": "Enhanced Charts",
@@ -1571,7 +1727,7 @@
                         "module_name": "_huhwt-cce_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "huhwt/huhwt-cce",
+                            "repository": "huhwt/huhwt-cce",
                             "tag_prefix": "v",
                             "install_clean": true,
                             "category": "clippings_cart",
@@ -1602,7 +1758,7 @@
                         "module_name": "_huhwt-fta_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "huhwt/huhwt-fta",
+                            "repository": "huhwt/huhwt-fta",
                             "tag_prefix": "v",
                             "category": "frontend",
                             "title": "\u210d Family trees Assistant",
@@ -1632,7 +1788,7 @@
                         "module_name": "_huhwt-mtv_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "huhwt/huhwt-mtv",
+                            "repository": "huhwt/huhwt-mtv",
                             "tag_prefix": "v",
                             "category": "admin",
                             "title": "\u210d MultTreeView",
@@ -1662,7 +1818,7 @@
                         "module_name": "_huhwt-tsm_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "huhwt/huhwt-tsm",
+                            "repository": "huhwt/huhwt-tsm",
                             "tag_prefix": "v",
                             "category": "tags",
                             "title": "\u210d Tagging service manager",
@@ -1692,7 +1848,7 @@
                         "module_name": "_huhwt-wtlin_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "huhwt/huhwt-wtlin",
+                            "repository": "huhwt/huhwt-wtlin",
                             "tag_prefix": "v",
                             "category": "charts",
                             "title": "\u210d LINchart",
@@ -1722,7 +1878,7 @@
                         "module_name": "_huhwt-wttam_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "huhwt/huhwt-wttam",
+                            "repository": "huhwt/huhwt-wttam",
                             "tag_prefix": "v",
                             "category": "charts",
                             "title": "\u210d TAMchart",
@@ -1752,7 +1908,7 @@
                         "module_name": "_huhwt-xtv_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "huhwt/huhwt-xtv",
+                            "repository": "huhwt/huhwt-xtv",
                             "tag_prefix": "v",
                             "category": "charts",
                             "title": "\u210d&\u210dwt Interactive tree XT",
@@ -1781,7 +1937,7 @@
                         "module_name": "_webtrees-json-api_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "jbh4x82/webtrees_api",
+                            "repository": "jbh4x82/webtrees_api",
                             "no_release": true,
                             "default_branch": "main",
                             "category": "admin",
@@ -1803,7 +1959,7 @@
                 "version": "1.2.1",
                 "time": "2025-03-14",
                 "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
+                    "fisharebest/webtrees": "<2.1 || >=2.3.0"
                 },
                 "name": "jefferson49/changelanguagewithurl",
                 "description": "ChangeLanguageWithURL module",
@@ -1812,7 +1968,7 @@
                         "module_name": "_change_language_with_url_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "Jefferson49/ChangeLanguageWithURL",
+                            "repository": "Jefferson49/ChangeLanguageWithURL",
                             "tag_prefix": "v",
                             "category": "language",
                             "title": "ChangeLanguageWithURL module",
@@ -1833,7 +1989,7 @@
                 "version": "1.0.0-beta",
                 "time": "2025-11-02",
                 "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
+                    "fisharebest/webtrees": "<2.1 || >=2.3.0"
                 },
                 "name": "jefferson49/customfilesystem",
                 "description": "Create a custom filesystem",
@@ -1842,7 +1998,7 @@
                         "module_name": "_custom_filesystem_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "Jefferson49/CustomFilesystem",
+                            "repository": "Jefferson49/CustomFilesystem",
                             "tag_prefix": "v",
                             "category": "admin",
                             "title": "Custom Filesystem",
@@ -1875,7 +2031,7 @@
         ],
         "jefferson49/custommodulemanager": [
             {
-                "version": "2.0.6",
+                "version": "2.0.5",
                 "time": "2026-07-11",
                 "conflict": {
                     "fisharebest/webtrees": "<2.2.3 || >=2.3.0"
@@ -1887,7 +2043,7 @@
                         "module_name": "_custom_module_manager_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "Jefferson49/CustomModuleManager",
+                            "repository": "Jefferson49/CustomModuleManager",
                             "tag_prefix": "v",
                             "category": "admin",
                             "title": "Custom Module Manager",
@@ -1932,10 +2088,64 @@
         ],
         "jefferson49/extendedimportexport": [
             {
+                "version": "4.3.2",
+                "time": "2026-10-25",
+                "conflict": {
+                    "fisharebest/webtrees": "<2.1"
+                },
+                "name": "jefferson49/extendedimportexport",
+                "description": "A webtrees custom module for advanced GEDCOM import, export, and filter operations. The module also supports remote downloads/uploads via URL requests.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_extended_import_export_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "repository": "Jefferson49/ExtendedImportExport",
+                            "tag_prefix": "v",
+                            "category": "gedcom",
+                            "title": "Extended Import/Export",
+                            "description": "A custom module for advanced GEDCOM import, export, and filter operations. The module also supports remote downloads/uploads/filters via URL requests."
+                        },
+                        "date_added": ""
+                    }
+                },
+                "require": {
+                    "php": ">=8.1",
+                    "jefferson49/webtrees-common": ">=1.4.73"
+                },
+                "authors": [
+                    {
+                        "name": "Markus Hemprich",
+                        "homepage": "https://github.com/jefferson49",
+                        "role": "Developer"
+                    }
+                ],
+                "homepage": "https://github.com/jefferson49/extendedimportexport",
+                "support": {
+                    "issues": "https://github.com/jefferson49/extendedimportexport/issues"
+                },
+                "keywords": [
+                    "webtrees",
+                    "custom module"
+                ],
+                "license": [
+                    "GPL-3.0-or-later"
+                ],
+                "repositories": [
+                    {
+                        "url": "https://github.com/Jefferson49/webtrees-common.git",
+                        "type": "git"
+                    }
+                ],
+                "config": {
+                    "prepend-autoloader": false
+                }
+            },
+            {
                 "version": "4.2.14",
                 "time": "2026-06-27",
                 "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
+                    "fisharebest/webtrees": "<2.1 || >=2.3.0"
                 },
                 "name": "jefferson49/extendedimportexport",
                 "description": "A custom module for advanced GEDCOM import, export, and filter operations. The module also supports remote downloads/uploads/filters via URL requests.",
@@ -1944,7 +2154,7 @@
                         "module_name": "_extended_import_export_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "Jefferson49/ExtendedImportExport",
+                            "repository": "Jefferson49/ExtendedImportExport",
                             "tag_prefix": "v",
                             "category": "gedcom",
                             "title": "Extended Import/Export",
@@ -1978,7 +2188,7 @@
                 "version": "0.9.99",
                 "time": "2025-07-31",
                 "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
+                    "fisharebest/webtrees": "<2.1 || >=2.3.0"
                 },
                 "name": "jefferson49/mycustomtags",
                 "description": "A module to provide custom tags, types, relationship descriptors, and roles in events",
@@ -1987,7 +2197,7 @@
                         "module_name": "_my_custom_tags_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "Jefferson49/MyCustomTags",
+                            "repository": "Jefferson49/MyCustomTags",
                             "tag_prefix": "v",
                             "update_manually": true,
                             "category": "gedcom",
@@ -2019,7 +2229,7 @@
                 "version": "1.5.7",
                 "time": "2026-05-02",
                 "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
+                    "fisharebest/webtrees": "<2.1 || >=2.3.0"
                 },
                 "name": "jefferson49/repositoryhierarchy",
                 "description": "A hierarchical structured list of the sources of an archive based on the call numbers of the sources",
@@ -2028,7 +2238,7 @@
                         "module_name": "_repository_hierarchy_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "Jefferson49/RepositoryHierarchy",
+                            "repository": "Jefferson49/RepositoryHierarchy",
                             "tag_prefix": "v",
                             "category": "sources",
                             "title": "Repository Hierarchy",
@@ -2063,10 +2273,91 @@
         ],
         "jefferson49/webtrees-api": [
             {
+                "version": "1.3.0",
+                "time": "2026-11-01",
+                "conflict": {
+                    "fisharebest/webtrees": "<2.2"
+                },
+                "name": "jefferson49/webtrees-api",
+                "description": "A webtrees custom module to provide a Web based API, also supporting MCP.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_webtrees-api_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "repository": "Jefferson49/webtrees-API",
+                            "tag_prefix": "v",
+                            "category": "admin",
+                            "title": "webtrees API",
+                            "description": "A custom module to provide an API for webtrees."
+                        },
+                        "date_added": "2026-02-15"
+                    }
+                },
+                "require": {
+                    "php": ">=8.4",
+                    "fig/http-message-util": "1.1.5",
+                    "jefferson49/webtrees-common": ">=1.4.76",
+                    "mcp/sdk": "=v0.9.0",
+                    "zircote/swagger-php": "=5.8.3",
+                    "liberu-genealogy/php-gedcom": "=4.2.0",
+                    "league/oauth2-server": "*"
+                },
+                "replace": {
+                    "psr/clock": "*",
+                    "psr/container": "*",
+                    "psr/event-dispatcher": "*",
+                    "psr/http-server-handler": "*",
+                    "psr/http-server-middleware": "*",
+                    "psr/log": "*",
+                    "symfony/polyfill-ctype": "*",
+                    "symfony/polyfill-mbstring": "*",
+                    "symfony/polyfill-php85": "*",
+                    "symfony/service-contracts": "*",
+                    "symfony/string": "*"
+                },
+                "authors": [
+                    {
+                        "name": "Markus Hemprich",
+                        "homepage": "https://github.com/jefferson49",
+                        "role": "Developer"
+                    }
+                ],
+                "homepage": "https://github.com/jefferson49/webtrees-api",
+                "support": {
+                    "issues": "https://github.com/jefferson49/webtrees-api/issues"
+                },
+                "keywords": [
+                    "webtrees",
+                    "custom module"
+                ],
+                "license": [
+                    "GPL-3.0-or-later"
+                ],
+                "repositories": [
+                    {
+                        "url": "https://github.com/Jefferson49/webtrees-common.git",
+                        "type": "git"
+                    }
+                ],
+                "custom_repositories": [
+                    {
+                        "url": "https://github.com/Jefferson49/php-gedcom.git",
+                        "type": "git"
+                    }
+                ],
+                "config": {
+                    "prepend-autoloader": false,
+                    "allow-plugins": {
+                        "php-http/discovery": true
+                    }
+                }
+            },
+            {
                 "version": "1.2.3",
                 "time": "2026-08-06",
                 "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
+                    "fisharebest/webtrees": "<2.1 || >=2.3.0"
                 },
                 "name": "jefferson49/webtrees-api",
                 "description": "A custom module to provide an API for webtrees.",
@@ -2075,7 +2366,7 @@
                         "module_name": "_webtrees-api_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "Jefferson49/webtrees-API",
+                            "repository": "Jefferson49/webtrees-API",
                             "tag_prefix": "v",
                             "category": "admin",
                             "title": "webtrees API",
@@ -2125,10 +2416,85 @@
         ],
         "jefferson49/webtrees-oauth2-client": [
             {
+                "version": "1.2.2",
+                "time": "2026-10-25",
+                "conflict": {
+                    "fisharebest/webtrees": "<2.1"
+                },
+                "name": "jefferson49/webtrees-oauth2-client",
+                "description": "A webtrees custom module to manage custom modules within webtrees",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_oauth2_client_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "repository": "Jefferson49/webtrees-oauth2-client",
+                            "tag_prefix": "v",
+                            "category": "signin",
+                            "title": "OAuth2 Client",
+                            "description": "A custom module to implement a OAuth2 client for webtrees."
+                        },
+                        "date_added": ""
+                    }
+                },
+                "require": {
+                    "php": ">=7.4",
+                    "bahuma/oauth2-nextcloud": "=2.1.0",
+                    "guzzlehttp/guzzle": "7.15.5",
+                    "jefferson49/oauth2-authelia": ">=1.0.0",
+                    "jefferson49/oauth2-kanidm": ">=1.1.1",
+                    "jefferson49/webtrees-common": ">=1.4.73",
+                    "league/oauth2-client": "=2.9.1",
+                    "league/oauth2-github": "=3.1.1",
+                    "league/oauth2-google": "=4.2.0",
+                    "stevenmaguire/oauth2-dropbox": "=3.1.0",
+                    "stevenmaguire/oauth2-keycloak": "=5.1.0"
+                },
+                "replace": {
+                    "firebase/php-jwt": "*",
+                    "paragonie/random_compat": "*"
+                },
+                "authors": [
+                    {
+                        "name": "Markus Hemprich",
+                        "homepage": "https://github.com/jefferson49",
+                        "role": "Developer"
+                    }
+                ],
+                "homepage": "https://github.com/jefferson49/webtrees-oauth2-client",
+                "support": {
+                    "issues": "https://github.com/jefferson49/webtrees-oauth2-client/issues"
+                },
+                "keywords": [
+                    "webtrees",
+                    "custom module"
+                ],
+                "license": [
+                    "GPL-3.0-or-later"
+                ],
+                "repositories": [
+                    {
+                        "url": "https://github.com/Jefferson49/webtrees-common.git",
+                        "type": "git"
+                    },
+                    {
+                        "url": "https://github.com/jefferson49/oauth2-kanidm.git",
+                        "type": "git"
+                    },
+                    {
+                        "url": "https://github.com/jefferson49/oauth2-authelia.git",
+                        "type": "git"
+                    }
+                ],
+                "config": {
+                    "prepend-autoloader": false
+                }
+            },
+            {
                 "version": "1.1.11",
                 "time": "2026-04-18",
                 "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
+                    "fisharebest/webtrees": "<2.1 || >=2.3.0"
                 },
                 "name": "jefferson49/webtrees-oauth2-client",
                 "description": "A custom module to implement a OAuth2 client for webtrees.",
@@ -2137,7 +2503,7 @@
                         "module_name": "_oauth2_client_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "Jefferson49/webtrees-oauth2-client",
+                            "repository": "Jefferson49/webtrees-oauth2-client",
                             "tag_prefix": "v",
                             "category": "signin",
                             "title": "OAuth2 Client",
@@ -2200,7 +2566,7 @@
                         "module_name": "_myartjaub_ruraltheme_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "jon48/webtrees-theme-rural",
+                            "repository": "jon48/webtrees-theme-rural",
                             "is_theme": true,
                             "category": "theme",
                             "title": "Rural",
@@ -2260,17 +2626,17 @@
         "joppla/webtrees-faviconupdater": [
             {
                 "version": "1.0.0",
-                "name": "joppla/webtrees-faviconupdater",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
+                "name": "joppla/webtrees-faviconupdater",
                 "description": "Module to replaces automatically the default favicons with your own custom favicons after every webtrees update.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_favicon-updater_",
                         "update_service": "CodebergModuleUpdate",
                         "params": {
-                            "codeberg_repo": "Joppla/Webtrees-FaviconUpdater",
+                            "repository": "Joppla/Webtrees-FaviconUpdater",
                             "category": "frontend",
                             "title": "FaviconUpdater",
                             "description": "Module to replaces automatically the default favicons with your own custom favicons after every webtrees update."
@@ -2288,17 +2654,17 @@
         "joppla/webtrees-faviconupdater-xxl": [
             {
                 "version": "1.0.0",
-                "name": "joppla/webtrees-faviconupdater-xxl",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
+                "name": "joppla/webtrees-faviconupdater-xxl",
                 "description": "Replaces automatically the default favicons with your own custom favicons after every webtrees update.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_favicon-updater-xxl_",
                         "update_service": "CodebergModuleUpdate",
                         "params": {
-                            "codeberg_repo": "Joppla/Webtrees-FaviconUpdater-XXL",
+                            "repository": "Joppla/Webtrees-FaviconUpdater-XXL",
                             "category": "frontend",
                             "title": "FaviconUpdaterXXL",
                             "description": "Replaces automatically the default favicons with your own custom favicons after every webtrees update."
@@ -2323,7 +2689,7 @@
                         "module_name": "_favicon-updater-xxs_",
                         "update_service": "CodebergModuleUpdate",
                         "params": {
-                            "codeberg_repo": "Joppla/Webtrees-FaviconUpdater-XXS",
+                            "repository": "Joppla/Webtrees-FaviconUpdater-XXS",
                             "category": "frontend",
                             "title": "FaviconUpdaterXXS",
                             "description": "Base module to replaces automatically the default favicons with your own custom favicons after every webtrees update."
@@ -2341,17 +2707,17 @@
         "joppla/webtrees-gendexgenerator": [
             {
                 "version": "2.2.6.1",
-                "name": "joppla/webtrees-gendexgenerator",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
+                "name": "joppla/webtrees-gendexgenerator",
                 "description": "Generates a gendex.txt file for your family tree.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_gendex-generator_",
                         "update_service": "CodebergModuleUpdate",
                         "params": {
-                            "codeberg_repo": "Joppla/Webtrees-GendexGenerator",
+                            "repository": "Joppla/Webtrees-GendexGenerator",
                             "category": "gedcom",
                             "title": "Gendex Generator",
                             "description": "Generates a gendex.txt file for your family tree."
@@ -2380,7 +2746,7 @@
                         "module_name": "_jp-main-menu-manual_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "jpretired/jp-main-menu-manual",
+                            "repository": "jpretired/jp-main-menu-manual",
                             "tag_prefix": "v",
                             "category": "menu",
                             "title": "Main menu manual",
@@ -2407,7 +2773,7 @@
                         "module_name": "_jp-theme-colors_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "jpretired/jp-theme-colors",
+                            "repository": "jpretired/jp-theme-colors",
                             "is_theme": true,
                             "category": "theme",
                             "get_latest_version_from_github": true,
@@ -2439,7 +2805,7 @@
                         "module_name": "_media-badge_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "JRMine/webtrees-media-badge",
+                            "repository": "JRMine/webtrees-media-badge",
                             "tag_prefix": "v",
                             "category": "frontend",
                             "title": "Media Badge",
@@ -2457,19 +2823,19 @@
         ],
         "justcarmen/webtrees-fancy-imagebar": [
             {
-                "version": "2.4.1",
-                "time": "2024-12-08",
+                "version": "2.4.2",
+                "time": "2026-11-15",
                 "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
+                    "fisharebest/webtrees": "<2.1 || >=2.3.0"
                 },
                 "name": "justcarmen/webtrees-fancy-imagebar",
-                "description": "An imagebar with small images between header and content.",
+                "description": "A webtrees module that adds an image bar with small images to the top of the page.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_jc-fancy-imagebar_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "JustCarmen/webtrees-fancy-imagebar",
+                            "repository": "JustCarmen/webtrees-fancy-imagebar",
                             "category": "frontend",
                             "title": "Fancy Imagebar",
                             "description": "An imagebar with small images between header and content."
@@ -2477,11 +2843,29 @@
                         "date_added": ""
                     }
                 },
+                "require": {
+                    "php": ">=7.4",
+                    "justcarmen/jc-common-code": "^1.0",
+                    "magicsunday/webtrees-module-installer-plugin": "^2.1"
+                },
                 "authors": [
                     {
                         "name": "JustCarmen"
                     }
-                ]
+                ],
+                "type": "webtrees-module",
+                "keywords": [
+                    "webtrees",
+                    "genealogy",
+                    "webtrees-module"
+                ],
+                "license": "GPL-3.0+",
+                "config": {
+                    "prepend-autoloader": false,
+                    "allow-plugins": {
+                        "magicsunday/webtrees-module-installer-plugin": true
+                    }
+                }
             }
         ],
         "justcarmen/webtrees-fancy-research-links": [
@@ -2491,14 +2875,14 @@
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
-                "name": "justcarmen/jc-fancy-research-links",
+                "name": "justcarmen/webtrees-fancy-research-links",
                 "description": "A sidebar module for webtrees that provides shortcuts to popular research websites, using the individual data as a search reference.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_jc-fancy-research-links_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "JustCarmen/webtrees-fancy-research-links",
+                            "repository": "JustCarmen/webtrees-fancy-research-links",
                             "category": "frontend_sidebar",
                             "title": "Fancy Research Links",
                             "description": "A sidebar tool to provide quick links to popular research web sites."
@@ -2533,14 +2917,14 @@
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
-                "name": "justcarmen/jc-fancy-treeview",
+                "name": "justcarmen/webtrees-fancy-treeview",
                 "description": "webtrees module to display a fancy treeview of the genealogy in a narrative way",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_jc-fancy-treeview_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "JustCarmen/webtrees-fancy-treeview",
+                            "repository": "JustCarmen/webtrees-fancy-treeview",
                             "category": "frontend",
                             "title": "Fancy Treeview",
                             "description": "A narrative overview of the descendants or ancestors of one family (branch)."
@@ -2579,7 +2963,7 @@
                         "module_name": "_jc-simple-footer_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "JustCarmen/webtrees-simple-footer",
+                            "repository": "JustCarmen/webtrees-simple-footer",
                             "category": "footer",
                             "title": "Simple footer module",
                             "description": "Add an extra footer and page."
@@ -2605,7 +2989,7 @@
                         "module_name": "_jc-simple-media-display_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "JustCarmen/webtrees-simple-media-display",
+                            "repository": "JustCarmen/webtrees-simple-media-display",
                             "category": "media",
                             "title": "Media Display (as in webtrees 2.0)",
                             "description": "Display media objects as in webtrees 2.0, showing multiple media items and additional notes belonging to the same object on the individual page."
@@ -2634,7 +3018,7 @@
                         "module_name": "_jc-simple-menu_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "JustCarmen/webtrees-simple-menu",
+                            "repository": "JustCarmen/webtrees-simple-menu",
                             "category": "menu",
                             "title": "Simple menu module",
                             "description": "Add an extra mainmenu item and page."
@@ -2663,7 +3047,7 @@
                         "module_name": "_jc-theme-justlight_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "JustCarmen/webtrees-theme-justlight",
+                            "repository": "JustCarmen/webtrees-theme-justlight",
                             "is_theme": true,
                             "category": "theme",
                             "title": "JustLight",
@@ -2696,8 +3080,8 @@
         ],
         "magicsunday/webtrees-descendants-chart": [
             {
-                "version": "2.6.4",
-                "time": "2026-06-06",
+                "version": "2.8.0",
+                "time": "2026-11-19",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -2708,7 +3092,7 @@
                         "module_name": "_webtrees-descendants-chart_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "magicsunday/webtrees-descendants-chart",
+                            "repository": "magicsunday/webtrees-descendants-chart",
                             "install_clean": true,
                             "category": "charts",
                             "title": "Descendants chart",
@@ -2718,25 +3102,21 @@
                     }
                 },
                 "require": {
-                    "php": "8.3 - 8.5",
+                    "php": ">=8.3 <9",
                     "ext-dom": "*",
                     "ext-json": "*",
                     "fisharebest/webtrees": "~2.2.0",
-                    "magicsunday/webtrees-module-base": "^2.5",
+                    "magicsunday/webtrees-module-base": "^3.13.0",
                     "magicsunday/webtrees-module-installer-plugin": "^2.0"
                 },
                 "require-dev": {
-                    "friendsofphp/php-cs-fixer": "^3.0",
-                    "overtrue/phplint": "^9.0",
-                    "phpstan/phpstan": "^2.0",
-                    "phpstan/phpstan-deprecation-rules": "^2.0",
-                    "phpstan/phpstan-phpunit": "^2.0",
-                    "phpstan/phpstan-strict-rules": "^2.0",
-                    "phpunit/phpunit": "^12.0 || ^13.0",
-                    "rector/rector": "^2.0"
+                    "infection/infection": "^0.35.8",
+                    "magicsunday/coding-standard": "^3.12.0",
+                    "phpat/phpat": "^0.12.4",
+                    "shipmonk/phpstan-rules": "^4.4",
+                    "spaze/phpstan-disallowed-calls": "^4.13",
+                    "symplify/phpstan-rules": "^14.19"
                 },
-                "minimum-stability": "dev",
-                "prefer-stable": true,
                 "authors": [
                     {
                         "name": "Rico Sonntag",
@@ -2767,19 +3147,40 @@
                     "discard-changes": true,
                     "sort-packages": true,
                     "optimize-autoloader": true,
-                    "audit": {
-                        "abandoned": "ignore",
-                        "ignore": [
-                            "PKSA-21fb-n1x5-5nf7",
-                            "PKSA-2cx9-ynrq-qdk3",
-                            "PKSA-rqc2-tcc6-nc79",
-                            "PKSA-fndg-qryc-dyc9",
-                            "PKSA-z7t6-zt6p-wtng",
-                            "PKSA-28rh-rzzn-djk4"
-                        ]
-                    },
                     "allow-plugins": {
-                        "magicsunday/webtrees-module-installer-plugin": true
+                        "magicsunday/webtrees-module-installer-plugin": true,
+                        "infection/extension-installer": true
+                    },
+                    "policy": {
+                        "advisories": {
+                            "ignore-id": {
+                                "PKSA-gcrk-3vtt-1r14": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-69246, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-cnw1-2ytm-cgr8": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-69245, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-fy2t-3c5f-827y": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-67354, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-qxvb-2bpp-dnk6": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-67355, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-bbs6-q5q9-f3t4": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-67353, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-bcdd-5xc7-gwfb": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-59883, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-pwsk-hy21-4gby": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-67339, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-93qv-9n9h-6k6p": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-55767, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-k22t-f949-t9g6": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-55568, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-m2dq-1fhr-29b1": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-m4t9-vsgq-8khn": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-zyf5-hrxv-hrd7": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-nv44-1b4d-6gjg": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-kr3s-894t-g5w2": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-9q1p-3s19-bp1q": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-5mzr-szzf-z6cn": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-cqd6-fg4n-nxpf": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-1q6p-sqkj-8mmj": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-mc58-w91n-f5gv": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-t21r-vtr5-3mdz": "UPSTREAM-PINNED: league/commonmark CVE-2026-71488, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-scnn-p8mm-jbft": "UPSTREAM-PINNED: league/commonmark CVE-2026-71478, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-w9tt-7782-78jx": "UPSTREAM-PINNED: league/flysystem CVE-2026-102601, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-z7t6-zt6p-wtng": "UPSTREAM-PINNED: symfony/cache CVE-2026-45073, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-vq1j-sc3k-jzzk": "UPSTREAM-PINNED: symfony/expression-language CVE-2026-109449, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-28rh-rzzn-djk4": "UPSTREAM-PINNED: symfony/mailer CVE-2026-45068, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version."
+                            }
+                        }
                     }
                 },
                 "autoload": {
@@ -2811,14 +3212,20 @@
                     "ci:test:php:rector": [
                         "@ci:rector --dry-run"
                     ],
-                    "ci:test:cpd": [
-                        "npx jscpd src resources/js/modules --config .jscpd.json"
+                    "ci:test:php:cpd": [
+                        "node_modules/.bin/jscpd --config .jscpd.json --skip-comments --no-tips --fail-on-empty"
                     ],
                     "ci:test:php:unit": [
                         "phpunit --configuration phpunit.xml --display-all-issues"
                     ],
                     "ci:test:php:unit:coverage": [
                         "XDEBUG_MODE=coverage phpunit --configuration phpunit.xml --display-all-issues --coverage-html .build/coverage/"
+                    ],
+                    "ci:test:php:infection": [
+                        "XDEBUG_MODE=coverage infection --threads=max --no-progress --no-interaction"
+                    ],
+                    "ci:test:php:infection:changed": [
+                        "XDEBUG_MODE=coverage GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=diff.renames GIT_CONFIG_VALUE_0=false infection --threads=max --no-progress --no-interaction --git-diff-lines --min-covered-msi=80 --ignore-msi-with-no-mutations"
                     ],
                     "ci:test:js:lint": [
                         "npm run lint"
@@ -2830,7 +3237,7 @@
                         "npm run typecheck"
                     ],
                     "ci:test:js:unit": [
-                        "node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js --passWithNoTests"
+                        "node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js"
                     ],
                     "ci:test": [
                         "@ci:test:php:lint",
@@ -2839,21 +3246,35 @@
                         "@ci:test:js:typecheck",
                         "@ci:test:php:phpstan",
                         "@ci:test:php:rector",
-                        "@ci:test:cpd",
-                        "@ci:test:php:unit",
+                        "@ci:test:php:cpd",
+                        "@ci:test:php:templates",
+                        "@ci:test:php:deptrac",
+                        "@ci:test:php:unit:coverage",
                         "@ci:test:js:unit",
-                        "@ci:test:php:cgl"
+                        "@ci:test:php:cgl",
+                        "@ci:test:php:advisories"
                     ],
-                    "post-update-cmd": [
-                        "npm install --save-dev jscpd"
+                    "ci:test:php:advisories": [
+                        "@composer audit --format=json > .build/composer-audit.json || true",
+                        "check-stale-advisory-ignores.php composer.json .build/composer-audit.json"
+                    ],
+                    "ci:test:php:templates": [
+                        "check-consumer-config.php ."
+                    ],
+                    "ci:test:php:deptrac": [
+                        "deptrac analyse --no-progress",
+                        "deptrac debug:unassigned",
+                        "@php -r \"is_dir('.build') || mkdir('.build', 0777, true);\"",
+                        "deptrac analyse --no-progress --formatter=graphviz-dot --output=.build/deptrac-layers.dot",
+                        "check-deptrac-cycles.php .build/deptrac-layers.dot"
                     ]
                 }
             }
         ],
         "magicsunday/webtrees-fan-chart": [
             {
-                "version": "3.7.1",
-                "time": "2026-07-08",
+                "version": "3.9.0",
+                "time": "2026-11-19",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -2864,7 +3285,7 @@
                         "module_name": "_webtrees-fan-chart_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "magicsunday/webtrees-fan-chart",
+                            "repository": "magicsunday/webtrees-fan-chart",
                             "install_clean": true,
                             "category": "charts",
                             "title": "Fan chart",
@@ -2874,25 +3295,21 @@
                     }
                 },
                 "require": {
-                    "php": "8.3 - 8.5",
+                    "php": ">=8.3 <9",
                     "ext-dom": "*",
                     "ext-json": "*",
                     "fisharebest/webtrees": "~2.2.0",
-                    "magicsunday/webtrees-module-base": "^2.6",
+                    "magicsunday/webtrees-module-base": "^3.13.0",
                     "magicsunday/webtrees-module-installer-plugin": "^2.0"
                 },
                 "require-dev": {
-                    "friendsofphp/php-cs-fixer": "^3.0",
-                    "overtrue/phplint": "^9.0",
-                    "phpstan/phpstan": "^2.0",
-                    "phpstan/phpstan-deprecation-rules": "^2.0",
-                    "phpstan/phpstan-phpunit": "^2.0",
-                    "phpstan/phpstan-strict-rules": "^2.0",
-                    "phpunit/phpunit": "^12.0 || ^13.0",
-                    "rector/rector": "^2.0"
+                    "infection/infection": "^0.35.8",
+                    "magicsunday/coding-standard": "^3.12.0",
+                    "phpat/phpat": "^0.12.4",
+                    "shipmonk/phpstan-rules": "^4.4",
+                    "spaze/phpstan-disallowed-calls": "^4.13",
+                    "symplify/phpstan-rules": "^14.19"
                 },
-                "minimum-stability": "dev",
-                "prefer-stable": true,
                 "authors": [
                     {
                         "name": "Rico Sonntag",
@@ -2924,12 +3341,37 @@
                     "sort-packages": true,
                     "optimize-autoloader": true,
                     "allow-plugins": {
-                        "magicsunday/webtrees-module-installer-plugin": true
+                        "magicsunday/webtrees-module-installer-plugin": true,
+                        "infection/extension-installer": true
                     },
                     "policy": {
                         "advisories": {
-                            "ignore": {
-                                "guzzlehttp/guzzle": "Transitive dev/test dependency pinned exactly by fisharebest/webtrees; the module ships no guzzle and the admin's webtrees install governs the upgrade. New guzzle CVEs still surface via composer audit, and advisories on any other package still block resolution."
+                            "ignore-id": {
+                                "PKSA-gcrk-3vtt-1r14": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-69246, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-cnw1-2ytm-cgr8": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-69245, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-fy2t-3c5f-827y": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-67354, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-qxvb-2bpp-dnk6": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-67355, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-bbs6-q5q9-f3t4": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-67353, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-bcdd-5xc7-gwfb": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-59883, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-pwsk-hy21-4gby": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-67339, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-93qv-9n9h-6k6p": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-55767, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-k22t-f949-t9g6": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-55568, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-m2dq-1fhr-29b1": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-m4t9-vsgq-8khn": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-zyf5-hrxv-hrd7": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-nv44-1b4d-6gjg": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-kr3s-894t-g5w2": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-9q1p-3s19-bp1q": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-5mzr-szzf-z6cn": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-cqd6-fg4n-nxpf": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-1q6p-sqkj-8mmj": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-mc58-w91n-f5gv": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-t21r-vtr5-3mdz": "UPSTREAM-PINNED: league/commonmark CVE-2026-71488, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-scnn-p8mm-jbft": "UPSTREAM-PINNED: league/commonmark CVE-2026-71478, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-w9tt-7782-78jx": "UPSTREAM-PINNED: league/flysystem CVE-2026-102601, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-z7t6-zt6p-wtng": "UPSTREAM-PINNED: symfony/cache CVE-2026-45073, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-vq1j-sc3k-jzzk": "UPSTREAM-PINNED: symfony/expression-language CVE-2026-109449, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-28rh-rzzn-djk4": "UPSTREAM-PINNED: symfony/mailer CVE-2026-45068, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version."
                             }
                         }
                     }
@@ -2963,14 +3405,20 @@
                     "ci:test:php:rector": [
                         "@ci:rector --dry-run"
                     ],
-                    "ci:test:cpd": [
-                        "npx jscpd src resources/js/modules --config .jscpd.json --skip-comments --no-tips"
+                    "ci:test:php:cpd": [
+                        "node_modules/.bin/jscpd --config .jscpd.json --skip-comments --no-tips --fail-on-empty"
                     ],
                     "ci:test:php:unit": [
                         "phpunit --configuration phpunit.xml --display-all-issues"
                     ],
                     "ci:test:php:unit:coverage": [
                         "XDEBUG_MODE=coverage phpunit --configuration phpunit.xml --display-all-issues --coverage-html .build/coverage/"
+                    ],
+                    "ci:test:php:infection": [
+                        "XDEBUG_MODE=coverage infection --threads=max --no-progress --no-interaction"
+                    ],
+                    "ci:test:php:infection:changed": [
+                        "XDEBUG_MODE=coverage GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=diff.renames GIT_CONFIG_VALUE_0=false infection --threads=max --no-progress --no-interaction --git-diff-lines --min-covered-msi=80 --ignore-msi-with-no-mutations"
                     ],
                     "ci:test:js:lint": [
                         "npm run lint"
@@ -2982,10 +3430,7 @@
                         "npm run typecheck"
                     ],
                     "ci:test:js:unit": [
-                        "SKIP_EXPORT_BUILD=true node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js --passWithNoTests --ignore=resources/js/tests/export"
-                    ],
-                    "ci:compliance": [
-                        "php scripts/analyze-exif-compliance.php 50"
+                        "node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js"
                     ],
                     "ci:test": [
                         "@ci:test:php:lint",
@@ -2994,18 +3439,35 @@
                         "@ci:test:js:typecheck",
                         "@ci:test:php:phpstan",
                         "@ci:test:php:rector",
-                        "@ci:test:cpd",
-                        "@ci:test:php:unit",
+                        "@ci:test:php:cpd",
+                        "@ci:test:php:templates",
+                        "@ci:test:php:deptrac",
+                        "@ci:test:php:advisories",
+                        "@ci:test:php:unit:coverage",
                         "@ci:test:js:unit",
                         "@ci:test:php:cgl"
+                    ],
+                    "ci:test:php:advisories": [
+                        "@composer audit --format=json > .build/composer-audit.json",
+                        "check-stale-advisory-ignores.php composer.json .build/composer-audit.json"
+                    ],
+                    "ci:test:php:templates": [
+                        "check-consumer-config.php ."
+                    ],
+                    "ci:test:php:deptrac": [
+                        "deptrac analyse --no-progress",
+                        "deptrac debug:unassigned",
+                        "@php -r \"is_dir('.build') || mkdir('.build', 0777, true);\"",
+                        "deptrac analyse --no-progress --formatter=graphviz-dot --output=.build/deptrac-layers.dot",
+                        "check-deptrac-cycles.php .build/deptrac-layers.dot"
                     ]
                 }
             }
         ],
         "magicsunday/webtrees-pedigree-chart": [
             {
-                "version": "2.7.4",
-                "time": "2026-06-06",
+                "version": "2.9.1",
+                "time": "2026-11-20",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -3016,7 +3478,7 @@
                         "module_name": "_webtrees-pedigree-chart_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "magicsunday/webtrees-pedigree-chart",
+                            "repository": "magicsunday/webtrees-pedigree-chart",
                             "install_clean": true,
                             "category": "charts",
                             "title": "Pedigree chart",
@@ -3026,25 +3488,21 @@
                     }
                 },
                 "require": {
-                    "php": "8.3 - 8.5",
+                    "php": ">=8.3 <9",
                     "ext-dom": "*",
                     "ext-json": "*",
                     "fisharebest/webtrees": "~2.2.0",
-                    "magicsunday/webtrees-module-base": "^2.5",
+                    "magicsunday/webtrees-module-base": "^3.13.0",
                     "magicsunday/webtrees-module-installer-plugin": "^2.0"
                 },
                 "require-dev": {
-                    "friendsofphp/php-cs-fixer": "^3.0",
-                    "overtrue/phplint": "^9.0",
-                    "phpstan/phpstan": "^2.0",
-                    "phpstan/phpstan-deprecation-rules": "^2.0",
-                    "phpstan/phpstan-phpunit": "^2.0",
-                    "phpstan/phpstan-strict-rules": "^2.0",
-                    "phpunit/phpunit": "^12.0 || ^13.0",
-                    "rector/rector": "^2.0"
+                    "infection/infection": "^0.35.8",
+                    "magicsunday/coding-standard": "^3.13.0",
+                    "phpat/phpat": "^0.12.4",
+                    "shipmonk/phpstan-rules": "^4.4",
+                    "spaze/phpstan-disallowed-calls": "^4.13",
+                    "symplify/phpstan-rules": "^14.19"
                 },
-                "minimum-stability": "dev",
-                "prefer-stable": true,
                 "authors": [
                     {
                         "name": "Rico Sonntag",
@@ -3075,19 +3533,40 @@
                     "discard-changes": true,
                     "sort-packages": true,
                     "optimize-autoloader": true,
-                    "audit": {
-                        "abandoned": "ignore",
-                        "ignore": [
-                            "PKSA-21fb-n1x5-5nf7",
-                            "PKSA-2cx9-ynrq-qdk3",
-                            "PKSA-rqc2-tcc6-nc79",
-                            "PKSA-fndg-qryc-dyc9",
-                            "PKSA-z7t6-zt6p-wtng",
-                            "PKSA-28rh-rzzn-djk4"
-                        ]
-                    },
                     "allow-plugins": {
-                        "magicsunday/webtrees-module-installer-plugin": true
+                        "magicsunday/webtrees-module-installer-plugin": true,
+                        "infection/extension-installer": true
+                    },
+                    "policy": {
+                        "advisories": {
+                            "ignore-id": {
+                                "PKSA-gcrk-3vtt-1r14": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-69246, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-cnw1-2ytm-cgr8": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-69245, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-fy2t-3c5f-827y": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-67354, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-qxvb-2bpp-dnk6": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-67355, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-bbs6-q5q9-f3t4": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-67353, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-bcdd-5xc7-gwfb": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-59883, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-pwsk-hy21-4gby": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-67339, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-93qv-9n9h-6k6p": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-55767, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-k22t-f949-t9g6": "UPSTREAM-PINNED: guzzlehttp/guzzle CVE-2026-55568, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-m2dq-1fhr-29b1": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-m4t9-vsgq-8khn": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-zyf5-hrxv-hrd7": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-nv44-1b4d-6gjg": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-kr3s-894t-g5w2": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-9q1p-3s19-bp1q": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-5mzr-szzf-z6cn": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-cqd6-fg4n-nxpf": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-1q6p-sqkj-8mmj": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-mc58-w91n-f5gv": "UPSTREAM-PINNED: league/commonmark advisory without a CVE, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-t21r-vtr5-3mdz": "UPSTREAM-PINNED: league/commonmark CVE-2026-71488, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-scnn-p8mm-jbft": "UPSTREAM-PINNED: league/commonmark CVE-2026-71478, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-w9tt-7782-78jx": "UPSTREAM-PINNED: league/flysystem CVE-2026-102601, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-z7t6-zt6p-wtng": "UPSTREAM-PINNED: symfony/cache CVE-2026-45073, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-vq1j-sc3k-jzzk": "UPSTREAM-PINNED: symfony/expression-language CVE-2026-109449, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version.",
+                                "PKSA-28rh-rzzn-djk4": "UPSTREAM-PINNED: symfony/mailer CVE-2026-45068, fixed in a public release but exact-pinned below it by every fisharebest/webtrees 2.2.x release. Transitive dependency of the required fisharebest/webtrees, the module ships none. Remove once the supported webtrees range no longer pins an affected version."
+                            }
+                        }
                     }
                 },
                 "autoload": {
@@ -3119,14 +3598,20 @@
                     "ci:test:php:rector": [
                         "@ci:rector --dry-run"
                     ],
-                    "ci:test:cpd": [
-                        "npx jscpd src resources/js/modules --config .jscpd.json"
+                    "ci:test:php:cpd": [
+                        "node_modules/.bin/jscpd --config .jscpd.json --skip-comments --no-tips --fail-on-empty"
                     ],
                     "ci:test:php:unit": [
                         "phpunit --configuration phpunit.xml --display-all-issues"
                     ],
                     "ci:test:php:unit:coverage": [
                         "XDEBUG_MODE=coverage phpunit --configuration phpunit.xml --display-all-issues --coverage-html .build/coverage/"
+                    ],
+                    "ci:test:php:infection": [
+                        "XDEBUG_MODE=coverage infection --threads=max --no-progress --no-interaction"
+                    ],
+                    "ci:test:php:infection:changed": [
+                        "XDEBUG_MODE=coverage GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=diff.renames GIT_CONFIG_VALUE_0=false infection --threads=max --no-progress --no-interaction --git-diff-lines --min-covered-msi=80 --ignore-msi-with-no-mutations"
                     ],
                     "ci:test:js:lint": [
                         "npm run lint"
@@ -3138,7 +3623,7 @@
                         "npm run typecheck"
                     ],
                     "ci:test:js:unit": [
-                        "node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js --passWithNoTests"
+                        "node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js"
                     ],
                     "ci:test": [
                         "@ci:test:php:lint",
@@ -3147,13 +3632,27 @@
                         "@ci:test:js:typecheck",
                         "@ci:test:php:phpstan",
                         "@ci:test:php:rector",
-                        "@ci:test:cpd",
-                        "@ci:test:php:unit",
+                        "@ci:test:php:cpd",
+                        "@ci:test:php:templates",
+                        "@ci:test:php:deptrac",
+                        "@ci:test:php:advisories",
+                        "@ci:test:php:unit:coverage",
                         "@ci:test:js:unit",
                         "@ci:test:php:cgl"
                     ],
-                    "post-update-cmd": [
-                        "npm install --save-dev jscpd"
+                    "ci:test:php:advisories": [
+                        "@composer audit --format=json > .build/composer-audit.json || true",
+                        "check-stale-advisory-ignores.php composer.json .build/composer-audit.json"
+                    ],
+                    "ci:test:php:templates": [
+                        "check-consumer-config.php ."
+                    ],
+                    "ci:test:php:deptrac": [
+                        "deptrac analyse --no-progress",
+                        "deptrac debug:unassigned",
+                        "@php -r \"is_dir('.build') || mkdir('.build', 0777, true);\"",
+                        "deptrac analyse --no-progress --formatter=graphviz-dot --output=.build/deptrac-layers.dot",
+                        "check-deptrac-cycles.php .build/deptrac-layers.dot"
                     ]
                 }
             }
@@ -3172,7 +3671,7 @@
                         "module_name": "_webtrees-statistics_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "magicsunday/webtrees-statistics",
+                            "repository": "magicsunday/webtrees-statistics",
                             "install_clean": true,
                             "category": "charts",
                             "title": "Statistics",
@@ -3325,7 +3824,7 @@
                         "module_name": "_k-theme_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "mdkaleel/k-theme",
+                            "repository": "mdkaleel/k-theme",
                             "no_release": true,
                             "default_branch": "main",
                             "is_theme": true,
@@ -3364,7 +3863,7 @@
                         "module_name": "_family-tree-home_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "miqrogroove/family-tree-home",
+                            "repository": "miqrogroove/family-tree-home",
                             "get_latest_version_from_github": true,
                             "category": "frontend",
                             "title": "Family Tree Home Page",
@@ -3394,7 +3893,7 @@
                         "module_name": "_GVExport_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "Neriderc/GVExport",
+                            "repository": "Neriderc/GVExport",
                             "tag_prefix": "v",
                             "category": "charts",
                             "title": "GVExport",
@@ -3422,7 +3921,7 @@
                         "module_name": "_polish-historic-events_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "p-ja/polish-historic-events",
+                            "repository": "p-ja/polish-historic-events",
                             "tag_prefix": "v",
                             "category": "fact",
                             "title": "Historia Polski \ud83c\uddf5\ud83c\uddf1",
@@ -3452,7 +3951,7 @@
                         "module_name": "_topola_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "PeWu/topola-webtrees",
+                            "repository": "PeWu/topola-webtrees",
                             "category": "charts",
                             "title": "Interactive tree (Topola)",
                             "description": "Opens the Topola Genealogy Viewer interactive familty tree."
@@ -3481,7 +3980,7 @@
                         "module_name": "_watermark-module_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "photon-flip/watermark-module",
+                            "repository": "photon-flip/watermark-module",
                             "tag_prefix": "v",
                             "category": "media",
                             "title": "Watermark Module",
@@ -3511,7 +4010,7 @@
                         "module_name": "_webtrees-HTML-block-advanced_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "photon-flip/webtrees-HTML-block-advanced",
+                            "repository": "photon-flip/webtrees-HTML-block-advanced",
                             "tag_prefix": "v",
                             "category": "frontend",
                             "title": "HTML Advanced",
@@ -3538,7 +4037,7 @@
                         "module_name": "_potts-admin-shortcuts_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "PottsNet/potts-admin-shortcuts",
+                            "repository": "PottsNet/potts-admin-shortcuts",
                             "tag_prefix": "v",
                             "category": "admin",
                             "title": "Administration shortcuts",
@@ -3556,8 +4055,8 @@
         ],
         "pottsnet/potts-family-books": [
             {
-                "version": "1.1.0-beta.2",
-                "time": "2026-07-25",
+                "version": "1.0.6",
+                "time": "2026-07-09",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -3568,7 +4067,7 @@
                         "module_name": "_potts-family-books_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "PottsNet/potts-family-books",
+                            "repository": "PottsNet/potts-family-books",
                             "tag_prefix": "v",
                             "category": "reports",
                             "title": "Potts Family Book",
@@ -3588,9 +4087,6 @@
             {
                 "version": "1.0.0-rc.2",
                 "time": "2026-07-28",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
                 "name": "pottsnet/potts-help-centre",
                 "description": "An inclusive webtrees help centre for visitors and members, with searchable, contextual and module-aware guidance.",
                 "extra": {
@@ -3598,7 +4094,7 @@
                         "module_name": "_potts-help-centre_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "PottsNet/potts-help-centre",
+                            "repository": "PottsNet/potts-help-centre",
                             "tag_prefix": "v",
                             "category": "frontend",
                             "title": "Potts Help Centre",
@@ -3618,9 +4114,6 @@
             {
                 "version": "1.0.1",
                 "time": "2026-09-17",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
                 "name": "pottsnet/potts-hero-slideshow",
                 "description": "A standalone, theme-aware homepage hero banner with a family photo slideshow.",
                 "extra": {
@@ -3628,35 +4121,7 @@
                         "module_name": "_potts-hero-slideshow_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "PottsNet/potts-hero-slideshow",
-                            "tag_prefix": "v",
-                            "category": "frontend",
-                            "title": "Potts Hero Slideshow",
-                            "description": "A standalone, theme-aware homepage hero banner with a family photo slideshow."
-                        },
-                        "date_added": "2026-07-10"
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Jason Potts"
-                    }
-                ]
-            },
-            {
-                "version": "1.0.0",
-                "time": "2026-07-09",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "pottsnet/potts-hero-slideshow",
-                "description": "A standalone, theme-aware homepage hero banner with a family photo slideshow.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_potts-hero-slideshow_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "PottsNet/potts-hero-slideshow",
+                            "repository": "PottsNet/potts-hero-slideshow",
                             "tag_prefix": "v",
                             "category": "frontend",
                             "title": "Potts Hero Slideshow",
@@ -3686,35 +4151,7 @@
                         "module_name": "_potts-historical-facts_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "PottsNet/potts-historical-facts",
-                            "tag_prefix": "v",
-                            "category": "fact",
-                            "title": "Potts Historical Facts",
-                            "description": "Displays historical facts from CSV files using visitor-selected historical fact collections available from every page."
-                        },
-                        "date_added": "2026-07-05"
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Jason Potts"
-                    }
-                ]
-            },
-            {
-                "version": "1.1.0",
-                "time": "2026-07-04",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "pottsnet/potts-historical-facts",
-                "description": "Displays historical facts from CSV files using visitor-selected historical fact collections available from every page.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_potts-historical-facts_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "PottsNet/potts-historical-facts",
+                            "repository": "PottsNet/potts-historical-facts",
                             "tag_prefix": "v",
                             "category": "fact",
                             "title": "Potts Historical Facts",
@@ -3734,9 +4171,6 @@
             {
                 "version": "1.0.0-rc.6",
                 "time": "2026-07-18",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
                 "name": "pottsnet/potts-life-story-engine",
                 "description": "Creates an intelligent, illustrated biography from the genealogy records visible to each visitor.",
                 "extra": {
@@ -3744,7 +4178,7 @@
                         "module_name": "_potts-life-story-engine_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "PottsNet/potts-life-story-engine",
+                            "repository": "PottsNet/potts-life-story-engine",
                             "tag_prefix": "v",
                             "category": "frontend_tab",
                             "title": "Potts Biography",
@@ -3762,34 +4196,6 @@
         ],
         "pottsnet/potts-modern-theme": [
             {
-                "version": "1.4.0-alpha.10",
-                "time": "2026-09-02",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "pottsnet/potts-modern-theme",
-                "description": "A modern, responsive heritage theme for webtrees.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_potts-modern-theme_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "PottsNet/potts-modern-theme",
-                            "tag_prefix": "v",
-                            "category": "theme",
-                            "title": "Potts Modern",
-                            "description": "A modern, responsive heritage theme for webtrees."
-                        },
-                        "date_added": "2026-07-05"
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Jason Potts"
-                    }
-                ]
-            },
-            {
                 "version": "1.3.0",
                 "time": "2026-09-01",
                 "conflict": {
@@ -3802,7 +4208,7 @@
                         "module_name": "_potts-modern-theme_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "PottsNet/potts-modern-theme",
+                            "repository": "PottsNet/potts-modern-theme",
                             "tag_prefix": "v",
                             "category": "theme",
                             "title": "Potts Modern",
@@ -3832,7 +4238,7 @@
                         "module_name": "_potts-narrative-ancestor-book_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "PottsNet/potts-narrative-ancestor-book",
+                            "repository": "PottsNet/potts-narrative-ancestor-book",
                             "tag_prefix": "v",
                             "category": "reports",
                             "title": "Potts Narrative Ancestor Book",
@@ -3865,7 +4271,7 @@
                         "module_name": "_potts-relationship-context_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "PottsNet/potts-relationship-context",
+                            "repository": "PottsNet/potts-relationship-context",
                             "tag_prefix": "v",
                             "category": "frontend",
                             "title": "Potts Relationship Context",
@@ -3895,7 +4301,7 @@
                         "module_name": "_potts-seo-helper_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "PottsNet/potts-seo-helper",
+                            "repository": "PottsNet/potts-seo-helper",
                             "tag_prefix": "v",
                             "category": "admin",
                             "title": "Potts SEO Helper",
@@ -3922,7 +4328,7 @@
                         "module_name": "_potts_fact_ages_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "PottsNet/potts_fact_ages",
+                            "repository": "PottsNet/potts_fact_ages",
                             "tag_prefix": "v",
                             "category": "frontend_tab",
                             "title": "Potts Fact Ages",
@@ -3952,7 +4358,7 @@
                         "module_name": "_potts_on_this_day_email_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "PottsNet/potts_on_this_day_email",
+                            "repository": "PottsNet/potts_on_this_day_email",
                             "tag_prefix": "v",
                             "category": "email",
                             "title": "Potts On This Day Email",
@@ -3982,7 +4388,7 @@
                         "module_name": "_webtrees-branch-statistics_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "squatteur/webtrees-branch-statistics",
+                            "repository": "squatteur/webtrees-branch-statistics",
                             "tag_prefix": "v",
                             "category": "charts",
                             "title": "Branch statistics",
@@ -4012,7 +4418,7 @@
                         "module_name": "_theme-noctis_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "szporwolik/webtrees-theme-noctis",
+                            "repository": "szporwolik/webtrees-theme-noctis",
                             "tag_prefix": "v",
                             "is_theme": true,
                             "category": "theme",
@@ -4043,7 +4449,7 @@
                         "module_name": "_tree-explorer_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "szporwolik/webtrees-tree-explorer",
+                            "repository": "szporwolik/webtrees-tree-explorer",
                             "tag_prefix": "v",
                             "category": "charts",
                             "title": "Tree Explorer",
@@ -4055,6 +4461,92 @@
                 "authors": [
                     {
                         "name": "Szymon Porwolik"
+                    }
+                ]
+            }
+        ],
+        "thobgg/api4webtrees": [
+            {
+                "version": "1.29.0",
+                "time": "2026-11-17",
+                "name": "thobgg/api4webtrees",
+                "description": "JSON interface for the apps wtAnd, wtWin and wtTux \u2013 and any other client. Reads and writes with the rights of the signed-in user.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_api4webtrees_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "repository": "thobgg/api4webtrees",
+                            "tag_prefix": "v",
+                            "category": "admin",
+                            "title": "api4webtrees",
+                            "description": "JSON interface for the apps wtAnd, wtWin and wtTux \u2013 and any other client. Reads and writes with the rights of the signed-in user."
+                        },
+                        "date_added": "2026-10-25"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Thomas Bugge"
+                    }
+                ]
+            },
+            {
+                "version": "1.26.0",
+                "time": "2026-11-11",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "thobgg/api4webtrees",
+                "description": "JSON interface for the apps wtAnd, wtWin and wtTux \u2013 and any other client. Reads and writes with the rights of the signed-in user.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_api4webtrees_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "repository": "thobgg/api4webtrees",
+                            "tag_prefix": "v",
+                            "category": "admin",
+                            "title": "api4webtrees",
+                            "description": "JSON interface for the apps wtAnd, wtWin and wtTux \u2013 and any other client. Reads and writes with the rights of the signed-in user."
+                        },
+                        "date_added": "2026-10-25"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Thomas Bugge"
+                    }
+                ]
+            }
+        ],
+        "thobgg/ofb4webtrees": [
+            {
+                "version": "0.1.0",
+                "time": "2026-10-25",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
+                "name": "thobgg/ofb4webtrees",
+                "description": "connector for OFB-Werkstatt (Ortsfamilienbuch) \u2013 tags, export as evidence, handover packages as pending changes.",
+                "extra": {
+                    "custom-module-manager": {
+                        "module_name": "_ofb4webtrees_",
+                        "update_service": "GithubModuleUpdate",
+                        "params": {
+                            "repository": "thobgg/ofb4webtrees",
+                            "no_release": true,
+                            "default_branch": "main",
+                            "category": "gedcom",
+                            "title": "",
+                            "description": ""
+                        },
+                        "date_added": "2026-10-25"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Thomas Bugge"
                     }
                 ]
             }
@@ -4073,7 +4565,7 @@
                         "module_name": "_ortsregister_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "thobgg/webtrees-ortsregister",
+                            "repository": "thobgg/webtrees-ortsregister",
                             "tag_prefix": "v",
                             "category": "places",
                             "title": "Ortsregister",
@@ -4120,8 +4612,8 @@
         ],
         "thobgg/webtrees-sammlungen": [
             {
-                "version": "1.5.1",
-                "time": "2026-09-04",
+                "version": "1.10.0",
+                "time": "2026-10-11",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -4132,69 +4624,7 @@
                         "module_name": "_sammlungen_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "thobgg/webtrees-sammlungen",
-                            "tag_prefix": "v",
-                            "category": "media",
-                            "title": "Sammlungen",
-                            "description": "Foto- und Dokumenten-Sammlungen mit EXIF-Anreicherung, Galerie und Lightbox."
-                        },
-                        "date_added": "2026-08-09"
-                    }
-                },
-                "require": {
-                    "php": "^8.2"
-                },
-                "require-dev": {
-                    "phpunit/phpunit": "^11.0",
-                    "phpstan/phpstan": "^2.2"
-                },
-                "authors": [
-                    {
-                        "name": "Thomas Bugge"
-                    }
-                ],
-                "type": "webtrees-module",
-                "license": "GPL-3.0-or-later",
-                "config": {
-                    "optimize-autoloader": true,
-                    "autoloader-suffix": "ThobggSammlungen",
-                    "platform": {
-                        "php": "8.4"
-                    }
-                },
-                "autoload": {
-                    "psr-4": {
-                        "Sammlungen\\": "src/"
-                    }
-                },
-                "autoload-dev": {
-                    "psr-4": {
-                        "Sammlungen\\Tests\\": "tests/"
-                    }
-                },
-                "scripts": {
-                    "test": "@php vendor/bin/phpunit",
-                    "analyse": "@php vendor/bin/phpstan analyse --no-progress",
-                    "check": [
-                        "@test",
-                        "@analyse"
-                    ]
-                }
-            },
-            {
-                "version": "1.5.0",
-                "time": "2026-08-28",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "thobgg/sammlungen",
-                "description": "webtrees custom module \u2013 Sammlungen (Foto-Galerien mit EXIF und Lightbox)",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_sammlungen_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "thobgg/webtrees-sammlungen",
+                            "repository": "thobgg/webtrees-sammlungen",
                             "tag_prefix": "v",
                             "category": "media",
                             "title": "Sammlungen",
@@ -4258,7 +4688,7 @@
                         "module_name": "_theme-farbwelten_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "thobgg/webtrees-theme-farbwelten",
+                            "repository": "thobgg/webtrees-theme-farbwelten",
                             "tag_prefix": "v",
                             "category": "theme",
                             "title": "Farbwelten",
@@ -4285,7 +4715,7 @@
                         "module_name": "_fam-nav-parents-last_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "tronsmit/fam-nav-parents-last",
+                            "repository": "tronsmit/fam-nav-parents-last",
                             "no_release": true,
                             "default_branch": "main",
                             "category": "frontend_sidebar",
@@ -4311,35 +4741,7 @@
                         "module_name": "_news-menu_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "Tywed/news-menu",
-                            "tag_prefix": "v",
-                            "category": "menu",
-                            "title": "News",
-                            "description": "Add an extra item to the main menu as a link to a webtrees news."
-                        },
-                        "date_added": ""
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Tywed"
-                    }
-                ]
-            },
-            {
-                "version": "0.3.3",
-                "time": "2025-11-30",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "tywed/news-menu",
-                "description": "Add an extra item to the main menu as a link to a webtrees news.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_news-menu_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "Tywed/news-menu",
+                            "repository": "Tywed/news-menu",
                             "tag_prefix": "v",
                             "category": "menu",
                             "title": "News",
@@ -4369,35 +4771,7 @@
                         "module_name": "_telegram_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "Tywed/telegram",
-                            "tag_prefix": "v",
-                            "category": "messages",
-                            "title": "Telegram",
-                            "description": "Sends Telegram notifications about family events, such as birthdays and anniversaries."
-                        },
-                        "date_added": ""
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Tywed"
-                    }
-                ]
-            },
-            {
-                "version": "0.2.2",
-                "time": "2026-06-10",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "tywed/telegram",
-                "description": "Sends Telegram notifications about family events, such as birthdays and anniversaries.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_telegram_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "Tywed/telegram",
+                            "repository": "Tywed/telegram",
                             "tag_prefix": "v",
                             "category": "messages",
                             "title": "Telegram",
@@ -4427,7 +4801,7 @@
                         "module_name": "_webtrees-faces_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "UksusoFF/webtrees-faces",
+                            "repository": "UksusoFF/webtrees-faces",
                             "tag_prefix": "v",
                             "category": "media",
                             "title": "Faces",
@@ -4476,7 +4850,7 @@
                         "module_name": "_webtrees-mdi_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "UksusoFF/webtrees-mdi",
+                            "repository": "UksusoFF/webtrees-mdi",
                             "tag_prefix": "v",
                             "category": "frontend",
                             "title": "Material Design Icons",
@@ -4528,7 +4902,7 @@
                         "module_name": "_webtrees-photos_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "UksusoFF/webtrees-photos",
+                            "repository": "UksusoFF/webtrees-photos",
                             "tag_prefix": "v",
                             "category": "media",
                             "title": "Recent photos",
@@ -4580,7 +4954,7 @@
                         "module_name": "_webtrees-reminder_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "UksusoFF/webtrees-reminder",
+                            "repository": "UksusoFF/webtrees-reminder",
                             "tag_prefix": "v",
                             "category": "messages",
                             "title": "Reminder",
@@ -4629,7 +5003,7 @@
                         "module_name": "_webtrees-tree_view_full_screen_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "UksusoFF/webtrees-tree_view_full_screen",
+                            "repository": "UksusoFF/webtrees-tree_view_full_screen",
                             "tag_prefix": "v",
                             "category": "charts",
                             "title": "Tree View Full Screen",
@@ -4680,7 +5054,7 @@
                         "module_name": "_vesta_classic_look_and_feel_",
                         "update_service": "VestaModuleUpdate",
                         "params": {
-                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_classic_laf",
+                            "repository": "vesta-webtrees-2-custom-modules/vesta_classic_laf",
                             "category": "frontend",
                             "title": "\u26b6 Vesta Classic Look & Feel",
                             "description": "A module adjusting all themes and other features, providing a look & feel closer to the webtrees 1.x version."
@@ -4708,7 +5082,7 @@
                         "module_name": "_vesta_clippings_cart_",
                         "update_service": "VestaModuleUpdate",
                         "params": {
-                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_clippings_cart",
+                            "repository": "vesta-webtrees-2-custom-modules/vesta_clippings_cart",
                             "category": "clippings_cart",
                             "title": "\u26b6 Vesta Clippings Cart",
                             "description": "Select records from your family tree and save them as a GEDCOM file. Replacement for the original 'Clippings Cart' module."
@@ -4736,7 +5110,7 @@
                         "module_name": "_vesta_common_",
                         "update_service": "VestaModuleUpdate",
                         "params": {
-                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_common",
+                            "repository": "vesta-webtrees-2-custom-modules/vesta_common",
                             "category": "none",
                             "title": "\u26b6 Vesta Common",
                             "description": "A module providing common classes and translations for other 'Vesta' custom modules. Make sure to enable this module if any other Vesta module is enabled."
@@ -4764,7 +5138,7 @@
                         "module_name": "_vesta_extended_relationships_",
                         "update_service": "VestaModuleUpdate",
                         "params": {
-                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_extended_relationships",
+                            "repository": "vesta-webtrees-2-custom-modules/vesta_extended_relationships",
                             "category": "charts",
                             "title": "\u26b6 Vesta Extended Relationships",
                             "description": "A module providing various algorithms used to determine relationships. Includes a chart displaying relationships between two individuals, as a replacement for the original 'Relationships' module. Also includes an extended 'Who is online' block."
@@ -4792,7 +5166,7 @@
                         "module_name": "_vesta_gov4webtrees_",
                         "update_service": "VestaModuleUpdate",
                         "params": {
-                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_gov4webtrees",
+                            "repository": "vesta-webtrees-2-custom-modules/vesta_gov4webtrees",
                             "category": "places",
                             "title": "\u26b6 Vesta Gov4Webtrees",
                             "description": "A module integrating GOV (historic gazetteer) data."
@@ -4820,7 +5194,7 @@
                         "module_name": "_vesta_location_data_",
                         "update_service": "VestaModuleUpdate",
                         "params": {
-                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_location_data",
+                            "repository": "vesta-webtrees-2-custom-modules/vesta_location_data",
                             "category": "places",
                             "title": "\u26b6 Vesta Webtrees Location Data Provider",
                             "description": "A module providing (non-GEDCOM-based) webtrees location data to other modules."
@@ -4848,7 +5222,7 @@
                         "module_name": "_vesta_personal_facts_",
                         "update_service": "VestaModuleUpdate",
                         "params": {
-                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_personal_facts",
+                            "repository": "vesta-webtrees-2-custom-modules/vesta_personal_facts",
                             "category": "frontend_tab",
                             "title": "\u26b6 Vesta Facts and events",
                             "description": "A tab showing the facts and events of an individual. Replacement for the original 'Facts and events' module.  Also extends facts and events on the family page. Also provides additional map links."
@@ -4876,7 +5250,7 @@
                         "module_name": "_vesta_places_and_pedigree_map_",
                         "update_service": "VestaModuleUpdate",
                         "params": {
-                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_places_and_pedigree_map",
+                            "repository": "vesta-webtrees-2-custom-modules/vesta_places_and_pedigree_map",
                             "category": "places",
                             "title": "\u26b6 Vesta Places and Pedigree map",
                             "description": "The Place hierarchy. Also show the location of events and the birthplace of ancestors on a map. Replacement for the original 'Place hierarchy', 'Places' and  'Pedigree map' modules."
@@ -4904,7 +5278,7 @@
                         "module_name": "_vesta_relatives_",
                         "update_service": "VestaModuleUpdate",
                         "params": {
-                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_relatives",
+                            "repository": "vesta-webtrees-2-custom-modules/vesta_relatives",
                             "category": "frontend_tab",
                             "title": "\u26b6 Vesta Families",
                             "description": "A tab showing the close relatives of an individual. Replacement for the original 'Families' module."
@@ -4932,7 +5306,7 @@
                         "module_name": "_vesta_research_suggestions_",
                         "update_service": "VestaModuleUpdate",
                         "params": {
-                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_research_suggestions",
+                            "repository": "vesta-webtrees-2-custom-modules/vesta_research_suggestions",
                             "category": "sources",
                             "title": "\u26b6 Vesta Research Suggestions",
                             "description": "A module providing suggestions for additional research, based on available sources."
@@ -4960,7 +5334,7 @@
                         "module_name": "_vesta_shared_places_",
                         "update_service": "VestaModuleUpdate",
                         "params": {
-                            "github_repo": "vesta-webtrees-2-custom-modules/vesta_shared_places",
+                            "repository": "vesta-webtrees-2-custom-modules/vesta_shared_places",
                             "category": "places",
                             "title": "\u26b6 Vesta Shared Places",
                             "description": "A module providing support for shared places."
@@ -4977,8 +5351,8 @@
         ],
         "vulfharban/webtrees-datencheck-plugin": [
             {
-                "version": "1.6.9.7",
-                "time": "2026-09-16",
+                "version": "1.7.1",
+                "time": "2026-10-15",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -4989,45 +5363,7 @@
                         "module_name": "_data-check_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "Vulfharban/webtrees-datencheck-plugin",
-                            "tag_prefix": "v",
-                            "category": "data_validation",
-                            "title": "Data Check",
-                            "description": "Checks for data inconsistencies."
-                        },
-                        "date_added": "2026-02-15"
-                    }
-                },
-                "require": {
-                    "php": "^7.4 || ^8.0"
-                },
-                "authors": [
-                    {
-                        "name": "Christian Wolfrum",
-                        "email": "c.wolfrum@example.com"
-                    }
-                ],
-                "type": "webtrees-module",
-                "autoload": {
-                    "psr-4": {
-                        "Wolfrum\\Datencheck\\": "src/"
-                    }
-                }
-            },
-            {
-                "version": "1.6.9.6",
-                "time": "2026-08-27",
-                "conflict": {
-                    "fisharebest/webtrees": ">=2.3.0"
-                },
-                "name": "wolfrum/datencheck",
-                "description": "A webtrees plugin to check for data consistency and logical errors.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_data-check_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "github_repo": "Vulfharban/webtrees-datencheck-plugin",
+                            "repository": "Vulfharban/webtrees-datencheck-plugin",
                             "tag_prefix": "v",
                             "category": "data_validation",
                             "title": "Data Check",
@@ -5055,19 +5391,20 @@
         ],
         "vytux-com/vytux_cousins": [
             {
-                "version": "2.1.1",
-                "time": "2022-05-27",
+                "version": "2.2.3",
+                "time": "2026-11-18",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
-                "name": "vytux-com/vytux_cousins",
-                "description": "A tab showing cousins of an individual.",
+                "name": "vytux/vytux_cousins",
+                "description": "A webtrees custom module that adds a Cousins tab to the individual page.",
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_vytux_cousins_",
                         "update_service": "GithubModuleUpdate",
                         "params": {
-                            "github_repo": "vytux-com/vytux_cousins",
+                            "repository": "vytux-com/vytux_cousins",
+                            "tag_prefix": "v",
                             "category": "frontend_tab",
                             "title": "Cousins",
                             "description": "A tab showing cousins of an individual."
@@ -5075,11 +5412,46 @@
                         "date_added": ""
                     }
                 },
+                "require": {
+                    "php": ">=8.3",
+                    "magicsunday/webtrees-module-installer-plugin": "^2.0"
+                },
+                "require-dev": {
+                    "phpunit/phpunit": "^11.0 || ^12.0"
+                },
                 "authors": [
                     {
-                        "name": "Vytautas Krivickas"
+                        "name": "Vytautas Krivickas",
+                        "homepage": "https://vytux.com"
                     }
-                ]
+                ],
+                "homepage": "https://github.com/vytux-com/vytux_cousins",
+                "support": {
+                    "issues": "https://github.com/vytux-com/vytux_cousins/issues",
+                    "source": "https://github.com/vytux-com/vytux_cousins"
+                },
+                "type": "webtrees-module",
+                "keywords": [
+                    "webtrees",
+                    "webtrees-module",
+                    "genealogy",
+                    "cousins"
+                ],
+                "license": "GPL-2.0-or-later",
+                "config": {
+                    "allow-plugins": {
+                        "magicsunday/webtrees-module-installer-plugin": true
+                    }
+                },
+                "autoload-dev": {
+                    "psr-4": {
+                        "Vytux\\WebtreesModules\\VytuxCousins\\": "src/",
+                        "Vytux\\WebtreesModules\\VytuxCousins\\Tests\\": "tests/"
+                    }
+                },
+                "scripts": {
+                    "test": "phpunit --bootstrap vendor/autoload.php tests"
+                }
             }
         ]
     }

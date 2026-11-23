@@ -43,9 +43,9 @@ class CustomModuleUpdateFactory
     /**
      * Create a custom module update service
      *
-     * @param string $module_name  Name of the custom module
+     * @param string $module_name            Name of the custom module
      *
-     * @return CustomModuleUpdateInterface   A configured update service. Null, if not found
+     * @return ?CustomModuleUpdateInterface  A configured update service. Null, if not found
      */
     public static function make(string $module_name) : ?CustomModuleUpdateInterface
     {

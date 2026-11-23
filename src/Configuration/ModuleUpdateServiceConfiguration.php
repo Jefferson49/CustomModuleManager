@@ -36,9 +36,10 @@ use Fisharebest\Webtrees\Module\ModuleCustomInterface;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
 use Fisharebest\Webtrees\Session;
-use Jefferson49\Webtrees\Exceptions\GithubCommunicationError;
+use Jefferson49\Webtrees\Exceptions\HostingPlatformCommunicationError;
 use Jefferson49\Webtrees\Helpers\GithubService;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Local\LocalFilesystemAdapter;
 
@@ -102,175 +103,175 @@ class ModuleUpdateServiceConfiguration
 	//Note: Still needed to generate the JSON configuration file!
     public const MODULE_UPDATE_SERVICE_CONFIG = [
 
-        '_change_language_with_url_'         =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'Jefferson49/ChangeLanguageWithURL', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_LANGUAGE]],
-        '_custom_filesystem_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'Jefferson49/CustomFilesystem', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
-        '_custom_module_manager_'            =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'Jefferson49/CustomModuleManager', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
-        '_extended_import_export_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'Jefferson49/ExtendedImportExport', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_GEDCOM]],
-        '_my_custom_tags_'                   =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'Jefferson49/MyCustomTags', 'tag_prefix' => 'v', 'update_manually' => true, self::CATEGORY => self::CATEGORY_GEDCOM]],
-        '_oauth2_client_'                    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'Jefferson49/webtrees-oauth2-client', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_SIGNIN]],
-        '_repository_hierarchy_'             =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'Jefferson49/RepositoryHierarchy', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_SOURCES]],
-        '_webtrees-api_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'Jefferson49/webtrees-API', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_change_language_with_url_'         =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'Jefferson49/ChangeLanguageWithURL', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_LANGUAGE]],
+        '_custom_filesystem_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'Jefferson49/CustomFilesystem', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_custom_module_manager_'            =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'Jefferson49/CustomModuleManager', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_extended_import_export_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'Jefferson49/ExtendedImportExport', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_GEDCOM]],
+        '_my_custom_tags_'                   =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'Jefferson49/MyCustomTags', 'tag_prefix' => 'v', 'update_manually' => true, self::CATEGORY => self::CATEGORY_GEDCOM]],
+        '_oauth2_client_'                    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'Jefferson49/webtrees-oauth2-client', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_SIGNIN]],
+        '_repository_hierarchy_'             =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'Jefferson49/RepositoryHierarchy', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_SOURCES]],
+        '_webtrees-api_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'Jefferson49/webtrees-API', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
 
-        '_jc-fancy-imagebar_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-imagebar', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_jc-fancy-research-links_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-research-links', self::CATEGORY => self::CATEGORY_FRONTEND_SIDEBAR]],
-        '_jc-fancy-treeview_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'JustCarmen/webtrees-fancy-treeview', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_jc-theme-justlight_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'JustCarmen/webtrees-theme-justlight', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
-        '_jc-simple-footer_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'JustCarmen/webtrees-simple-footer', self::CATEGORY => self::CATEGORY_FOOTER]],
-        '_jc-simple-media-display_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'JustCarmen/webtrees-simple-media-display', self::CATEGORY => self::CATEGORY_MEDIA]],
-        '_jc-simple-menu_'                   =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'JustCarmen/webtrees-simple-menu', self::CATEGORY => self::CATEGORY_MENU]],
+        '_jc-fancy-imagebar_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'JustCarmen/webtrees-fancy-imagebar', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_jc-fancy-research-links_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'JustCarmen/webtrees-fancy-research-links', self::CATEGORY => self::CATEGORY_FRONTEND_SIDEBAR]],
+        '_jc-fancy-treeview_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'JustCarmen/webtrees-fancy-treeview', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_jc-theme-justlight_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'JustCarmen/webtrees-theme-justlight', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
+        '_jc-simple-footer_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'JustCarmen/webtrees-simple-footer', self::CATEGORY => self::CATEGORY_FOOTER]],
+        '_jc-simple-media-display_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'JustCarmen/webtrees-simple-media-display', self::CATEGORY => self::CATEGORY_MEDIA]],
+        '_jc-simple-menu_'                   =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'JustCarmen/webtrees-simple-menu', self::CATEGORY => self::CATEGORY_MENU]],
 
-        '_webtrees-lantmateriet_'            =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'ekdahl/webtrees-lantmateriet', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_MAP]],
-        '_webtrees-primer-theme_'            =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'ekdahl/webtrees-primer-theme', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
+        '_webtrees-lantmateriet_'            =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'ekdahl/webtrees-lantmateriet', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_MAP]],
+        '_webtrees-primer-theme_'            =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'ekdahl/webtrees-primer-theme', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
 
-        '_GVExport_'                         =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'Neriderc/GVExport', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_GVExport_'                         =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'Neriderc/GVExport', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
-        '_webtrees-descendants-chart_'       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'magicsunday/webtrees-descendants-chart', 'install_clean' => true, self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_webtrees-fan-chart_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'magicsunday/webtrees-fan-chart', 'install_clean' => true, self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_webtrees-pedigree-chart_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'magicsunday/webtrees-pedigree-chart', 'install_clean' => true, self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_webtrees-statistics_'              =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'magicsunday/webtrees-statistics', 'install_clean' => true, self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_webtrees-descendants-chart_'       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'magicsunday/webtrees-descendants-chart', 'install_clean' => true, self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_webtrees-fan-chart_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'magicsunday/webtrees-fan-chart', 'install_clean' => true, self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_webtrees-pedigree-chart_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'magicsunday/webtrees-pedigree-chart', 'install_clean' => true, self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_webtrees-statistics_'              =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'magicsunday/webtrees-statistics', 'install_clean' => true, self::CATEGORY => self::CATEGORY_CHARTS]],
 
-        '_myartjaub_ruraltheme_'             =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'jon48/webtrees-theme-rural', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
+        '_myartjaub_ruraltheme_'             =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'jon48/webtrees-theme-rural', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
 
-        '_huhwt-cce_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'huhwt/huhwt-cce', 'tag_prefix' => 'v', 'install_clean' => true, self::CATEGORY => self::CATEGORY_CLIPPINGS_CART]],
-        '_huhwt-fta_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'huhwt/huhwt-fta', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_huhwt-mtv_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'huhwt/huhwt-mtv', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
-        '_huhwt-tsm_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'huhwt/huhwt-tsm', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_TAGS]],
-        '_huhwt-wttam_'                      =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'huhwt/huhwt-wttam', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_huhwt-wtlin_'                      =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'huhwt/huhwt-wtlin', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_huhwt-xtv_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'huhwt/huhwt-xtv', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_huhwt-cce_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'huhwt/huhwt-cce', 'tag_prefix' => 'v', 'install_clean' => true, self::CATEGORY => self::CATEGORY_CLIPPINGS_CART]],
+        '_huhwt-fta_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'huhwt/huhwt-fta', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_huhwt-mtv_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'huhwt/huhwt-mtv', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_huhwt-tsm_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'huhwt/huhwt-tsm', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_TAGS]],
+        '_huhwt-wttam_'                      =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'huhwt/huhwt-wttam', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_huhwt-wtlin_'                      =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'huhwt/huhwt-wtlin', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_huhwt-xtv_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'huhwt/huhwt-xtv', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
-        '_vesta_classic_look_and_feel_'      =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_classic_laf', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_vesta_clippings_cart_'             =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_clippings_cart', self::CATEGORY => self::CATEGORY_CLIPPINGS_CART]],
-        '_vesta_common_'                     =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_common', self::CATEGORY => self::CATEGORY_NONE]],
-        '_vesta_extended_relationships_'     =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_extended_relationships', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_vesta_personal_facts_'             =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_personal_facts', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
-        '_vesta_relatives_'                  =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_relatives', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
-        '_vesta_gov4webtrees_'               =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_gov4webtrees', self::CATEGORY => self::CATEGORY_PLACES]],
-        '_vesta_places_and_pedigree_map_'    =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_places_and_pedigree_map', self::CATEGORY => self::CATEGORY_PLACES]],
-        '_vesta_research_suggestions_'       =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_research_suggestions', self::CATEGORY => self::CATEGORY_SOURCES]],
-        '_vesta_shared_places_'              =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_shared_places', self::CATEGORY => self::CATEGORY_PLACES]],
-        '_vesta_location_data_'              =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['github_repo' => 'vesta-webtrees-2-custom-modules/vesta_location_data', self::CATEGORY => self::CATEGORY_PLACES]],
+        '_vesta_classic_look_and_feel_'      =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['repository' => 'vesta-webtrees-2-custom-modules/vesta_classic_laf', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_vesta_clippings_cart_'             =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['repository' => 'vesta-webtrees-2-custom-modules/vesta_clippings_cart', self::CATEGORY => self::CATEGORY_CLIPPINGS_CART]],
+        '_vesta_common_'                     =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['repository' => 'vesta-webtrees-2-custom-modules/vesta_common', self::CATEGORY => self::CATEGORY_NONE]],
+        '_vesta_extended_relationships_'     =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['repository' => 'vesta-webtrees-2-custom-modules/vesta_extended_relationships', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_vesta_personal_facts_'             =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['repository' => 'vesta-webtrees-2-custom-modules/vesta_personal_facts', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_vesta_relatives_'                  =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['repository' => 'vesta-webtrees-2-custom-modules/vesta_relatives', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_vesta_gov4webtrees_'               =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['repository' => 'vesta-webtrees-2-custom-modules/vesta_gov4webtrees', self::CATEGORY => self::CATEGORY_PLACES]],
+        '_vesta_places_and_pedigree_map_'    =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['repository' => 'vesta-webtrees-2-custom-modules/vesta_places_and_pedigree_map', self::CATEGORY => self::CATEGORY_PLACES]],
+        '_vesta_research_suggestions_'       =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['repository' => 'vesta-webtrees-2-custom-modules/vesta_research_suggestions', self::CATEGORY => self::CATEGORY_SOURCES]],
+        '_vesta_shared_places_'              =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['repository' => 'vesta-webtrees-2-custom-modules/vesta_shared_places', self::CATEGORY => self::CATEGORY_PLACES]],
+        '_vesta_location_data_'              =>  ['update_service' => 'VestaModuleUpdate',    'params' => ['repository' => 'vesta-webtrees-2-custom-modules/vesta_location_data', self::CATEGORY => self::CATEGORY_PLACES]],
 
-        '_sosa20_'                           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'gustine/sosa20', self::CATEGORY => self::CATEGORY_FRONTEND_SIDEBAR]],
-        '_gustine-history22_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'gustine/gustine-history22', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_FACT]],
+        '_sosa20_'                           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'gustine/sosa20', self::CATEGORY => self::CATEGORY_FRONTEND_SIDEBAR]],
+        '_gustine-history22_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'gustine/gustine-history22', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_FACT]],
 
-        '_hh-change-log_'                    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh-change-log', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
-        '_hh_courtship_radius_'              =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh-courtship-radius', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_hh_exid_'                          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_exid', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_GEDCOM]],
-        '_hh_extended_family_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_extended_family', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
-        '_hh_families_trees_list_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh-family-trees-list', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_hh_gemeda_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_gemeda', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
-        '_hh_external_places_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_external_places', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_PLACES]],
-        '_hh_legal_notice_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_legal_notice', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FOOTER]],
-        '_hh-unlinked-individual_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh-unlinked-individual', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_hh_occupation_standardizer_'       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_occupation_standardizer', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_hh_privacy_assistant_'             =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/hh_privacy_assistant', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
-        '_german-chancellors-presidents_'    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/german-chancellors-presidents', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
-        '_german-wars-battles-worldwide_'    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/german-wars-battles-worldwide', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
-        '_gramps-historical-facts_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'hartenthaler/gramps-historical-facts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
+        '_hh-change-log_'                    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'hartenthaler/hh-change-log', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_hh_courtship_radius_'              =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'hartenthaler/hh-courtship-radius', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_hh_exid_'                          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'hartenthaler/hh_exid', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_GEDCOM]],
+        '_hh_extended_family_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'hartenthaler/hh_extended_family', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_hh_families_trees_list_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'hartenthaler/hh-family-trees-list', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_hh_gemeda_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'hartenthaler/hh_gemeda', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_hh_external_places_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'hartenthaler/hh_external_places', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_PLACES]],
+        '_hh_legal_notice_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'hartenthaler/hh_legal_notice', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FOOTER]],
+        '_hh-unlinked-individual_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'hartenthaler/hh-unlinked-individual', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_hh_occupation_standardizer_'       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'hartenthaler/hh_occupation_standardizer', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_hh_privacy_assistant_'             =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'hartenthaler/hh_privacy_assistant', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_german-chancellors-presidents_'    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'hartenthaler/german-chancellors-presidents', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
+        '_german-wars-battles-worldwide_'    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'hartenthaler/german-wars-battles-worldwide', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
+        '_gramps-historical-facts_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'hartenthaler/gramps-historical-facts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
 
-        '_family-tree-home_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'miqrogroove/family-tree-home', 'get_latest_version_from_github' => true, self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_family-tree-home_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'miqrogroove/family-tree-home', 'get_latest_version_from_github' => true, self::CATEGORY => self::CATEGORY_FRONTEND]],
 
-        '_ArgonLight_'                       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => '06Games/Webtrees-ArgonLight', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
-        '_evang_mailsystem_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => '06Games/Webtrees-MailSystem', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_MESSAGES]],
+        '_ArgonLight_'                       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => '06Games/Webtrees-ArgonLight', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
+        '_evang_mailsystem_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => '06Games/Webtrees-MailSystem', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_MESSAGES]],
 
-        '_webtrees-branch-statistics_'       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'squatteur/webtrees-branch-statistics', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_webtrees-branch-statistics_'       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'squatteur/webtrees-branch-statistics', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
-        '_topola_'                           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'PeWu/topola-webtrees', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_topola_'                           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'PeWu/topola-webtrees', self::CATEGORY => self::CATEGORY_CHARTS]],
 
-        '_mitalteli-show-xref_'              =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'elysch/webtrees-mitalteli-show-xref', self::CATEGORY => self::CATEGORY_FRONTEND_SIDEBAR]],
-        '_mitalteli-chart-family-book_'      =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'elysch/webtrees-mitalteli-chart-family-book', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_mitalteli-misc-features_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'elysch/webtrees-mitalteli-misc-features', self::CATEGORY => self::CATEGORY_GEDCOM]],
-        '_mitalteli-report-researchtasks_'   =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'elysch/webtrees-mitalteli-report-researchtasks', self::CATEGORY => self::CATEGORY_REPORTS]],
+        '_mitalteli-show-xref_'              =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'elysch/webtrees-mitalteli-show-xref', self::CATEGORY => self::CATEGORY_FRONTEND_SIDEBAR]],
+        '_mitalteli-chart-family-book_'      =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'elysch/webtrees-mitalteli-chart-family-book', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_mitalteli-misc-features_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'elysch/webtrees-mitalteli-misc-features', self::CATEGORY => self::CATEGORY_GEDCOM]],
+        '_mitalteli-report-researchtasks_'   =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'elysch/webtrees-mitalteli-report-researchtasks', self::CATEGORY => self::CATEGORY_REPORTS]],
 
-        '_webtrees-HTML-block-advanced_'     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'photon-flip/webtrees-HTML-block-advanced', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_watermark-module_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'photon-flip/watermark-module', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
+        '_webtrees-HTML-block-advanced_'     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'photon-flip/webtrees-HTML-block-advanced', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_watermark-module_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'photon-flip/watermark-module', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
 
-        '_webtrees-faces_'                   =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'UksusoFF/webtrees-faces', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
-        '_webtrees-photos_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'UksusoFF/webtrees-photos', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
-        '_webtrees-reminder_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'UksusoFF/webtrees-reminder', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MESSAGES]],
-        '_webtrees-tree_view_full_screen_'   =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'UksusoFF/webtrees-tree_view_full_screen', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
-        '_webtrees-mdi_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'UksusoFF/webtrees-mdi', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_webtrees-faces_'                   =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'UksusoFF/webtrees-faces', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
+        '_webtrees-photos_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'UksusoFF/webtrees-photos', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
+        '_webtrees-reminder_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'UksusoFF/webtrees-reminder', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MESSAGES]],
+        '_webtrees-tree_view_full_screen_'   =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'UksusoFF/webtrees-tree_view_full_screen', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_webtrees-mdi_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'UksusoFF/webtrees-mdi', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
-        '_jp-theme-colors_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'jpretired/jp-theme-colors', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME, 'get_latest_version_from_github' => true , 'tag_prefix' => 'v']],
-        '_jp-main-menu-manual_'              =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'jpretired/jp-main-menu-manual', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MENU]],
+        '_jp-theme-colors_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'jpretired/jp-theme-colors', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME, 'get_latest_version_from_github' => true , 'tag_prefix' => 'v']],
+        '_jp-main-menu-manual_'              =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'jpretired/jp-main-menu-manual', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MENU]],
 
-        '_telegram_'                         =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'Tywed/telegram', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MESSAGES]],
-        '_news-menu_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'Tywed/news-menu', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MENU]],
+        '_telegram_'                         =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'Tywed/telegram', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MESSAGES]],
+        '_news-menu_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'Tywed/news-menu', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MENU]],
 
-        '_finnish-historical-facts_'         =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'ardhtu/finnish-historical-facts', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_FACT]],
+        '_finnish-historical-facts_'         =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'ardhtu/finnish-historical-facts', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_FACT]],
 
-        '_fam-nav-parents-last_'             =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'tronsmit/fam-nav-parents-last', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND_SIDEBAR]],
+        '_fam-nav-parents-last_'             =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'tronsmit/fam-nav-parents-last', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND_SIDEBAR]],
 
-        '_cronjob_'                          =>  ['update_service' => 'CodebergModuleUpdate', 'params' => ['codeberg_repo' => 'bschwede/wt-cronjob', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
-        '_linkenhancer_'                     =>  ['update_service' => 'CodebergModuleUpdate', 'params' => ['codeberg_repo' => 'bschwede/linkenhancer', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_cronjob_'                          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'bschwede/wt-cronjob', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_linkenhancer_'                     =>  ['update_service' => 'CodebergModuleUpdate', 'params' => ['repository' => 'bschwede/linkenhancer', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
-        '_polish-historic-events_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'p-ja/polish-historic-events', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
+        '_polish-historic-events_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'p-ja/polish-historic-events', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
 
-        '_WeEt_'                             =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => '08ah15/WeEt', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_SOURCES]],
+        '_WeEt_'                             =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => '08ah15/WeEt', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_SOURCES]],
 
-        '_vytux_cousins_'                    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'vytux-com/vytux_cousins', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_vytux_cousins_'                    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'vytux-com/vytux_cousins', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
 
-        '_svajana-master_'                   =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'baskar-yahoo/webtrees-svajana', 'no_release' => true, 'default_branch' => 'master', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
+        '_svajana-master_'                   =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'baskar-yahoo/webtrees-svajana', 'no_release' => true, 'default_branch' => 'master', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
 
-        '_historic-events-belgium_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'Dirk-Everts/webtrees-historic-events-belgium', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
+        '_historic-events-belgium_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'Dirk-Everts/webtrees-historic-events-belgium', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
 
-        '_time-travel-map_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'gmarcon/webtrees-time-travel-map', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_time-travel-map_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'gmarcon/webtrees-time-travel-map', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
-        '_custom-views_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'bertkoor/wt-module-custom-views', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_datafix-add-married-names_'        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'bertkoor/wt-datafix-add-married-names', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
-        '_module-bulk-delete_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'BertKoor/wt-module-bulk-delete', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
-        '_old-nicknames_'                    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'bertkoor/wt-module-old-nicknames', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_custom-views_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'bertkoor/wt-module-custom-views', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_datafix-add-married-names_'        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'bertkoor/wt-datafix-add-married-names', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
+        '_module-bulk-delete_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'BertKoor/wt-module-bulk-delete', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
+        '_old-nicknames_'                    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'bertkoor/wt-module-old-nicknames', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
-        '_insight-lens_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'godzil3/webtrees-insight-lens', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_insight-lens_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'godzil3/webtrees-insight-lens', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
-        '_data-check_'                       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'Vulfharban/webtrees-datencheck-plugin', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_DATA_VALIDATION]],
+        '_data-check_'                       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'Vulfharban/webtrees-datencheck-plugin', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_DATA_VALIDATION]],
 
-        '_k-theme_'                          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'mdkaleel/k-theme', 'no_release' => true, 'default_branch' => 'main', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
+        '_k-theme_'                          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'mdkaleel/k-theme', 'no_release' => true, 'default_branch' => 'main', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
 
-        '_easy-tree_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'ahmadyaseen-pokkat/EasyTree', 'no_release' => true, 'default_branch' => 'main', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
+        '_easy-tree_'                        =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'ahmadyaseen-pokkat/EasyTree', 'no_release' => true, 'default_branch' => 'main', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
 
-        '_full-diagram_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'AlexBocken/WebtreesFullDiagram', 'no_release' => true, 'default_branch' => 'master', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_full-diagram_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'AlexBocken/WebtreesFullDiagram', 'no_release' => true, 'default_branch' => 'master', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
-        '_theme-noctis_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'szporwolik/webtrees-theme-noctis', 'tag_prefix' => 'v', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
-        '_tree-explorer_'                    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'szporwolik/webtrees-tree-explorer', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_theme-noctis_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'szporwolik/webtrees-theme-noctis', 'tag_prefix' => 'v', 'is_theme' => true, self::CATEGORY => self::CATEGORY_THEME]],
+        '_tree-explorer_'                    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'szporwolik/webtrees-tree-explorer', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
 
-        '_gendex-generator_'                 =>  ['update_service' => 'CodebergModuleUpdate', 'params' => ['codeberg_repo' => 'Joppla/Webtrees-GendexGenerator', self::CATEGORY => self::CATEGORY_GEDCOM]],
-        '_favicon-updater_'                  =>  ['update_service' => 'CodebergModuleUpdate', 'params' => ['codeberg_repo' => 'Joppla/Webtrees-FaviconUpdater',  self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_favicon-updater-xxs_'              =>  ['update_service' => 'CodebergModuleUpdate', 'params' => ['codeberg_repo' => 'Joppla/Webtrees-FaviconUpdater-XXS', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_favicon-updater-xxl_'              =>  ['update_service' => 'CodebergModuleUpdate', 'params' => ['codeberg_repo' => 'Joppla/Webtrees-FaviconUpdater-XXL', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_gendex-generator_'                 =>  ['update_service' => 'CodebergModuleUpdate', 'params' => ['repository' => 'Joppla/Webtrees-GendexGenerator', self::CATEGORY => self::CATEGORY_GEDCOM]],
+        '_favicon-updater_'                  =>  ['update_service' => 'CodebergModuleUpdate', 'params' => ['repository' => 'Joppla/Webtrees-FaviconUpdater',  self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_favicon-updater-xxs_'              =>  ['update_service' => 'CodebergModuleUpdate', 'params' => ['repository' => 'Joppla/Webtrees-FaviconUpdater-XXS', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_favicon-updater-xxl_'              =>  ['update_service' => 'CodebergModuleUpdate', 'params' => ['repository' => 'Joppla/Webtrees-FaviconUpdater-XXL', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
-        '_media-folder-import_'              =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'garraflavatra/webtrees-media-folder-import', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
+        '_media-folder-import_'              =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'garraflavatra/webtrees-media-folder-import', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
 
-        '_user-page-title_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => '0ldM4cM4n/webtrees-user-page-title', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_all-ages-export-engine_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => '0ldM4cM4n/all-ages-export-engine', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
-        '_dead-record-detective_'            =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => '0ldM4cM4n/dead-record-detective', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_user-page-title_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => '0ldM4cM4n/webtrees-user-page-title', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_all-ages-export-engine_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => '0ldM4cM4n/all-ages-export-engine', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
+        '_dead-record-detective_'            =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => '0ldM4cM4n/dead-record-detective', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_ADMIN]],
 
-        '_webtrees-json-api_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'jbh4x82/webtrees_api', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_webtrees-json-api_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'jbh4x82/webtrees_api', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_ADMIN]],
 
-        '_potts-admin-shortcuts_'            =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'PottsNet/potts-admin-shortcuts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
-        '_potts_fact_ages_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'PottsNet/potts_fact_ages', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
-        '_potts-family-books_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'PottsNet/potts-family-books', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_REPORTS]],
-        '_potts-help-centre_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'PottsNet/potts-help-centre', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_potts-hero-slideshow_'             =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'PottsNet/potts-hero-slideshow', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_potts-historical-facts_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'PottsNet/potts-historical-facts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
-        '_potts-seo-helper_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'PottsNet/potts-seo-helper', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
-        '_potts-life-story-engine_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'PottsNet/potts-life-story-engine', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
-        '_potts-modern-theme_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'PottsNet/potts-modern-theme', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
-        '_potts-narrative-ancestor-book_'    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'PottsNet/potts-narrative-ancestor-book', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_REPORTS]],
-        '_potts_on_this_day_email_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'PottsNet/potts_on_this_day_email', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_EMAIL]],
-        '_potts-relationship-context_'       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'PottsNet/potts-relationship-context', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_potts-admin-shortcuts_'            =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'PottsNet/potts-admin-shortcuts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_potts_fact_ages_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'PottsNet/potts_fact_ages', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_potts-family-books_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'PottsNet/potts-family-books', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_REPORTS]],
+        '_potts-help-centre_'                =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'PottsNet/potts-help-centre', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_potts-hero-slideshow_'             =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'PottsNet/potts-hero-slideshow', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_potts-historical-facts_'           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'PottsNet/potts-historical-facts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FACT]],
+        '_potts-seo-helper_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'PottsNet/potts-seo-helper', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_potts-life-story-engine_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'PottsNet/potts-life-story-engine', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND_TAB]],
+        '_potts-modern-theme_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'PottsNet/potts-modern-theme', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
+        '_potts-narrative-ancestor-book_'    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'PottsNet/potts-narrative-ancestor-book', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_REPORTS]],
+        '_potts_on_this_day_email_'          =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'PottsNet/potts_on_this_day_email', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_EMAIL]],
+        '_potts-relationship-context_'       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'PottsNet/potts-relationship-context', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
-        '_enhanced-charts_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'haylau-ronzo/enhanced-charts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_enhanced-charts_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'haylau-ronzo/enhanced-charts', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
 
-        '_media-badge_'                      =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'JRMine/webtrees-media-badge', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
-        '_sammlungen_'                       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'thobgg/webtrees-sammlungen', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
-        '_ortsregister_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'thobgg/webtrees-ortsregister', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_PLACES]],
-        '_theme-farbwelten_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'thobgg/webtrees-theme-farbwelten', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
-        '_api4webtrees_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'thobgg/api4webtrees', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
-        '_ofb4webtrees_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'thobgg/ofb4webtrees', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
+        '_media-badge_'                      =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'JRMine/webtrees-media-badge', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_sammlungen_'                       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'thobgg/webtrees-sammlungen', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_MEDIA]],
+        '_ortsregister_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'thobgg/webtrees-ortsregister', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_PLACES]],
+        '_theme-farbwelten_'                 =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'thobgg/webtrees-theme-farbwelten', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
+        '_api4webtrees_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'thobgg/api4webtrees', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_ofb4webtrees_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'thobgg/ofb4webtrees', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_GEDCOM]],
 
-        '_lebensbuehne_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'gregorwolf1973/webtrees-lebensbuehne', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
+        '_lebensbuehne_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'gregorwolf1973/webtrees-lebensbuehne', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_CHARTS]],
     ];
 
 
@@ -280,41 +281,41 @@ class ModuleUpdateServiceConfiguration
 
     private const MODULES_WITH_ERRORS = [
 
-        '_MABeatty1978/webtrees_modules_'    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'MABeatty1978/webtrees_modules']],
+        '_MABeatty1978/webtrees_modules_'    =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'MABeatty1978/webtrees_modules']],
         //Four custom modules in one repo. Not possible to handle in CMM; seperate repo needed for each module
 
-        '_maoli-yuqing_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'mastermaoli/webtrees-theme-maoli-yuqing', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_THEME]],
+        '_maoli-yuqing_'                     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'mastermaoli/webtrees-theme-maoli-yuqing', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_THEME]],
         //Last check: 2026-09-20
         //PHP error after opening webtrees (not during installation):
         //Error: Call to undefined function Maoli\Webtrees\Module\app() in /webtrees/modules_v4/webtrees-theme-maoli-yuqing/module.php:161
 
-        '_webtrees-translate_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'Aengelking/webtrees-translate', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_webtrees-translate_'               =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'Aengelking/webtrees-translate', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
         //Last check: 2026-09-20
         //PHP errors after installation
 
-        '_admin-announcement-billboard_'     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => '0ldM4cM4n/admin-announcement-billboard', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
+        '_admin-announcement-billboard_'     =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => '0ldM4cM4n/admin-announcement-billboard', 'no_release' => true, 'default_branch' => 'main', self::CATEGORY => self::CATEGORY_FRONTEND]],
         //Last check: 2026-09-20
         //Wrongly shows new version available in CMM
         //Does not provide releases yet
 
-        '_WebtreesChatBot_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'MABeatty1978/WebtreesChatBot', 'no_release' => true, 'default_branch' => 'master', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
+        '_WebtreesChatBot_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'MABeatty1978/WebtreesChatBot', 'no_release' => true, 'default_branch' => 'master', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_ADMIN]],
         //No standard custom module files; needs manual copying of specific files to webtrees core
 
-        '_custom-css_'                       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo'  => 'makitso/custom-css']],
+        '_custom-css_'                       =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository'  => 'makitso/custom-css']],
         //Unusual folder structure; disabled by default: modules_v4/custom-css-1.0.19/custom-css.disable/module.php
 
-        '_SA-history-4-webtrees_'            =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo'  => 'tronsmit/SA-history-4-webtrees']],
+        '_SA-history-4-webtrees_'            =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository'  => 'tronsmit/SA-history-4-webtrees']],
         //Last check: 2026-09-20
         //Creates errors if module folder is renamed (e.g. from "SA-history-4-webtrees-1.1.0" to "SA-history-4-webtrees")
         //Seems not to occur in control panel, even if installed manually
         //Last update in Dec 2024
 
-        '_paradiso-master_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'filicis/paradiso', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_THEME]],
+        '_paradiso-master_'                  =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'filicis/paradiso', 'no_release' => true, 'default_branch' => 'master', self::CATEGORY => self::CATEGORY_THEME]],
         //Last commit is 6 years ago; seemingly not compatible to webtrees 2.2
         //Main folder "paradiso-master" seems to contain 5 module in sub-directories
         //Included modules create PHP errors
 
-        '_jsonld_'                           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'bmarwell/webtrees-jsonld', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
+        '_jsonld_'                           =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'bmarwell/webtrees-jsonld', 'tag_prefix' => 'v', self::CATEGORY => self::CATEGORY_THEME]],
         //Last check: 2026-09-20
         //Only preliminary release from Nov. 2025 available; creates errors
     ];
@@ -324,7 +325,7 @@ class ModuleUpdateServiceConfiguration
         '_source-worklist_',
         //No download link available
 
-        '_new_reports_'                      =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['github_repo' => 'sevtor/modules']],
+        '_new_reports_'                      =>  ['update_service' => 'GithubModuleUpdate',   'params' => ['repository' => 'sevtor/modules']],
         //No module, but substitution of webtrees core code
 
         '_changes_'
@@ -344,18 +345,9 @@ class ModuleUpdateServiceConfiguration
             return self::$module_update_service_config;
         }
 
-        // Try to load the configuration from a local custom module list (a Packagist JSON file)
-        if (CustomModuleManager::USE_LOCAL_CONFIG_FROM_CUSTOM_MODULE_LIST) {
-            try {
-                self::$module_update_service_config = self::getLocalConfigFromCustomModuleList();
-            }
-            catch (RuntimeException $ex) {
-                // Fail gracefully; local configuration will be loaded below
-            }
-        }
-
         // Try to load the configuration from GitHub
-        elseif (!CustomModuleManager::USE_LOCAL_CONFIG) {
+        if (!CustomModuleManager::USE_LOCAL_CONFIG_FROM_CUSTOM_MODULE_LIST) {
+
             $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
             $github_api_token = $custom_module_manager->getPreference(CustomModuleManager::PREF_GITHUB_API_TOKEN, '');
 
@@ -365,51 +357,32 @@ class ModuleUpdateServiceConfiguration
                 //Rational: The remote configuration file on GitHub might not be compatible with the local code if the module is not updated to the latest version
                 try {
                     $json_config = GithubService::getTextFileContent(CustomModuleManager::GITHUB_REPO, CustomModuleManager::CONFIG_GITHUB_BRANCH, CustomModuleManager::CONFIG_GITHUB_PATH, $github_api_token);
-                    self::$module_update_service_config = json_decode($json_config, true);
+                    self::$module_update_service_config = self::getConfigFromPackagistJson($json_config);
                 }
-                catch (GithubCommunicationError $ex) {
+                catch (HostingPlatformCommunicationError $ex) {
                     // Fail gracefully; local configuration will be loaded below
                 }
             }
         }
-
-        // If we still have no configuration yet, we take the local one
-        if (self::$module_update_service_config === []) {
-            $local_config = self::getLocalConfiguration();
-            self::$module_update_service_config = $local_config;
-            return $local_config;
+        // Try to load the configuration from a local custom module list
+        if (empty(self::$module_update_service_config)) {
+            try {
+                self::$module_update_service_config = self::getLocalConfigFromCustomModuleList();
+            }
+            catch (RuntimeException $ex) {
+                throw new CustomModuleManagerException('Failed to load local module update service configuration' . ': ' . $ex->getMessage());
+            }
         }
 
         return self::$module_update_service_config;
     }
 
     /**
-     * Get the local configuration (from a JSON file in the module)
+     * Get the configuration from a local custom module list (in a Packagist JSON file)
      *
      * @return array<string> module_name => module_config
      */
-    public static function getLocalConfiguration(): array {
-
-        $json_file = __DIR__ .CustomModuleManager::PATH_LOCAL_CONFIG;
-        $file_system = new Filesystem(new LocalFilesystemAdapter(__DIR__ . '/..'));
-
-        //Open file
-        if (!$file_system->fileExists(CustomModuleManager::PATH_LOCAL_CONFIG)) {
-             throw new RuntimeException('Cannot open file: ' . $json_file);
-        }
-
-        $local_json_config = $file_system->read(CustomModuleManager::PATH_LOCAL_CONFIG);
-        $local_config = json_decode($local_json_config, true);
-
-        return $local_config;
-    }
-
-    /**
-     * Get the configuration from a local custom module list (from a Packagist JSON file in the module)
-     *
-     * @return array<string> module_name => module_config
-     */
-    public static function getLocalConfigFromCustomModuleList(): array {
+    private static function getLocalConfigFromCustomModuleList(): array {
 
         $json_file   = __DIR__ . '/..' . CustomModuleManager::PATH_CUSTOM_MODULE_LIST;
         $file_system = new Filesystem(new LocalFilesystemAdapter(__DIR__ . '/..'));
@@ -420,7 +393,20 @@ class ModuleUpdateServiceConfiguration
         }
 
         $local_custom_module_list = $file_system->read(CustomModuleManager::PATH_CUSTOM_MODULE_LIST);
-        $custom_module_list = json_decode($local_custom_module_list, true);
+
+        return self::getConfigFromPackagistJson($local_custom_module_list);
+    }
+
+    /**
+     * Get the configuration from Packagist JSON data
+     *
+     * @param string $packagist_json  Packagist JSON data
+     *
+     * @return array<string> module_name => module_config
+     */
+    private static function getConfigFromPackagistJson(string $packagist_json): array {
+
+        $custom_module_list = json_decode($packagist_json, true);
 
         /** @var $conflicts array<string>  version => conflict rule for version*/
         $config = [];

@@ -43,7 +43,7 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
     const NAME = 'Vesta';
 
     //The Github repository of the module, e.g. Jefferson49/CustomModuleManager
-    protected string $github_repo;
+    protected string $repository;
 
     /**
      * @param string $module_name  The custom module name
@@ -55,11 +55,11 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
 
         $this->module_name = $module_name;
 
-        if (array_key_exists('github_repo', $params)) {
-            $this->github_repo = $params['github_repo'];
+        if (array_key_exists('repository', $params)) {
+            $this->repository = $params['repository'];
         }
         else {
-            $this->github_repo = '';
+            $this->repository = '';
         }
 
         if (array_key_exists('conflicts', $params)) {
@@ -100,11 +100,11 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
      */
     public function documentationUrl(): string
     {
-        if ($this->github_repo === '') {
+        if ($this->repository === '') {
             return '';
         }
 
-        return 'https://github.com/'. $this->github_repo;
+        return 'https://github.com/'. $this->repository;
     }
 
     /**
@@ -114,7 +114,7 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
      */
     public function getRepository(): string
     {
-        return $this->github_repo;
+        return $this->repository;
     }
 
     /**
@@ -241,10 +241,10 @@ class VestaModuleUpdate extends AbstractModuleUpdate implements CustomModuleUpda
     /**
      * Get the package name (for custom module list)
      *
-     * @return bool
+     * @return string
      */
     public function getPackageName(): string {
 
-        return strtolower($this->github_repo);
+        return strtolower($this->repository);
     }
 }

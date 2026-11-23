@@ -36,6 +36,7 @@ use Fisharebest\Webtrees\I18N;
 use Fisharebest\Webtrees\Module\ModuleInterface;
 use Fisharebest\Webtrees\Registry;
 use Fisharebest\Webtrees\Services\ModuleService;
+use Fisharebest\Webtrees\Webtrees;
 use Jefferson49\Webtrees\Exceptions\HostingPlatformCommunicationError;
 use Jefferson49\Webtrees\Helpers\Functions;
 use Jefferson49\Webtrees\Log\CustomModuleLog;
@@ -96,8 +97,8 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
         $this->module_service        = new ModuleService();
         $this->custom_module_manager = Registry::container()->get(CustomModuleManager::class);
 
-        if (array_key_exists(strtolower($this->platform_name) . '_repo', $params)) {
-            $this->repo = $params[strtolower($this->platform_name) . '_repo'];
+        if (array_key_exists('repository', $params)) {
+            $this->repo = $params['repository'];
         }
         else {
             throw new CustomModuleManagerException(I18N::translate('Could not create the %s update service. Configuration parameter "%s" missing.', basename(str_replace('\\', '/', __CLASS__)) , strtolower($this->platform_name)));
@@ -192,7 +193,7 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
         }
         catch (HostingPlatformCommunicationError $ex) {
             // Can't connect to the platform?
-            $message = I18N::translate('Communication error with %s', $this->platform_name);
+            $message = 'Communication error with ' . $this->platform_name;
             $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
             CustomModuleLog::addDebugLog($custom_module_manager, $message . "\n" . 'Cannot retrieve download URL.' . "\n" . $ex->getMessage());
 
@@ -244,7 +245,7 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
         $module = $this->getModule();
         $latest_version = '';
 
-        // If the installed module is available, try to get latest version from the module
+        // If the installed module is available and we do not need to fetch the latest version, try to get latest version from the module
         if ($module !== null && !$fetch_latest && !$this->get_latest_version_from_platform) {
 
             $latest_version = $module->customModuleLatestVersion();
@@ -324,7 +325,7 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
         catch (HostingPlatformCommunicationError $ex) {
             // Can't connect to the hosting platform?
             $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
-		    $message = I18N::translate('Could not retrieve release notes due to a communication error with %s.', $this->platform_name);
+		    $message = 'Could not retrieve release notes due to a communication error with %' . $this->platform_name;
             CustomModuleLog::addDebugLog($custom_module_manager, $message . "\n" . $ex->getMessage());
 
             return $message;
@@ -394,8 +395,8 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
             catch (HostingPlatformCommunicationError $ex) {
 
                 $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
-                $message = I18N::translate('Communication error with %s', $this->platform_name);
-                CustomModuleLog::addDebugLog($custom_module_manager, $message . "\n" . $ex->getMessage());
+                $message = 'Communication error with ' . $this->platform_name . ': ' . $ex->getMessage();
+                CustomModuleLog::addDebugLog($custom_module_manager, $message);
 
                 //Show flash message if has not already been shown before
                 if (!CustomModuleManager::rememberPlatformCommunciationError()) {
@@ -405,6 +406,33 @@ abstract class PlatformModuleUpdate extends AbstractModuleUpdate implements Cust
                 return ['tag' => '', 'max_downloads' => -1];
             }
         }, 86400 * 30); // Cache for 30 days (or until manually refreshed)
+    }
+
+    /**
+     * Get a list of module versions with their compatibility information
+     *
+     * @param bool   $fetch_latest      Whether to fetch the latest release information from the platform
+     * @param string $webtrees_version  The version of webtrees, for which the module shall be compatible
+     *
+     * @return array<string, string> [version => version with compatibility]
+     */
+    public function getVersionsWithCompatibility(bool $fetch_latest = false, string $webtrees_version = Webtrees::VERSION): array {
+
+        $versions_with_compatibility = [];
+
+        $release_info = $this->fetchReleasesInfoCached($fetch_latest);
+
+        $versions = [];
+        if (isset($release_info['tags'])) {
+            $versions = $release_info['tags'];
+        }
+
+        foreach ($versions as $version) {
+            $compatbility = $this->getCompatibilityForVersion($version, $webtrees_version);
+            $versions_with_compatibility[$version] = CustomModuleManager::normalizeVersion($this->getModuleName(), $version) . ' ' . $compatbility->label();
+        }
+
+        return $versions_with_compatibility;
     }
 
     /**

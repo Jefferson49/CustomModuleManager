@@ -14,6 +14,7 @@ use function view;
  * @var bool   $show_column_date_added
  * @var bool   $show_column_update_service
  * @var bool   $show_column_downloads
+ * @var bool   $show_column_select_version
  * @var string $table_layout
  * @var string $webtrees_version
  */
@@ -63,6 +64,14 @@ use function view;
             </legend>
             <div class="col-sm-9 wt-page-options-value">
                 <?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, 'checked' => $show_column_downloads]) ?>
+            </div>
+        </fieldset>
+        <fieldset class="row">
+            <legend class="col-sm-3 col-form-label wt-page-options-label">
+                <?= I18N::translate('Select Version') ?>
+            </legend>
+            <div class="col-sm-9 wt-page-options-value">
+                <?= view('components/checkbox', ['label' => MoreI18N::xlate('Show'), 'name' => CustomModuleManager::PREF_SHOW_COLUMN_SELECT_VERS, 'checked' => $show_column_select_version]) ?>
             </div>
         </fieldset>
         <fieldset class="row">

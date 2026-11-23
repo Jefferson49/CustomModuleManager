@@ -119,9 +119,6 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
     // Wether we operate in the context of a modal
     private bool $modal;
 
-    // The version of the module, which shall be installed
-    private string $version_to_install = '';
-
 
     /**
      * @param UpgradeService         $webtrees_upgrade_service
@@ -237,20 +234,10 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $alert = I18N::translate('Installing module "%s" (to folder: "/module_v4/%s")', $module_title, $folder_name) . "\n\n";
         }
         else {
-            $alert = I18N::translate('Upgrading module "%s" (in folder: "/module_v4/%s")', $module_title, $folder_name) . "\n\n";
+            $alert = I18N::translate('Updating module "%s" (in folder: "/module_v4/%s")', $module_title, $folder_name) . "\n\n";
         }
 
-        if ($action === CustomModuleManager::ACTION_UPDATE && $version === '') {
-            $alert_type = self::ALERT_DANGER;
-            $alert      .= MoreI18N::xlate('No upgrade information is available.');
-            $abort      = true;
-        }
-        elseif ($action === CustomModuleManager::ACTION_UPDATE && CustomModuleManager::versionCompare($module_update_service->getModuleName(), $current_version, $version) >= 0) {
-            $alert_type = self::ALERT_DANGER;
-            $alert      .= I18N::translate('Version % is the latest compatible version of the custom module. No upgrade is available.', e($current_version));
-            $abort      = true;
-        }
-        elseif (!CustomModuleManager::runsWithInstalledWebtreesVersion()) {
+        if (!CustomModuleManager::runsWithInstalledWebtreesVersion()) {
             $alert_type = self::ALERT_DANGER;
             $alert      .= I18N::translate('This custom module can only be used with a webtrees version greater or equal than %s', CustomModuleManager::MINIMUM_WEBTREES_VERSION);
             $abort      = true;
@@ -261,21 +248,23 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
             $abort      = true;
         }
         else {
-            /* I18N: %s is a version number, such as 1.2.3 */
             $alert_type = self::ALERT_SUCCESS;
 
             if ($action === CustomModuleManager::ACTION_INSTALL) {
-                if ($version === '') {
+                if ($version === '' OR $version === CustomModuleManager::VERSION_LATEST) {
                     $alert .= I18N::translate('Installing version: %s', I18N::translate('Latest version'));
                 }
                 else {
-                    $this->version_to_install = $version;
                     $alert .= I18N::translate('Installing version: %s',e(CustomModuleManager::normalizeVersion($module_name, $version)));
                 }
             }
             else {
-                $this->version_to_install = $version;
-                $alert .= I18N::translate('Upgrading the module from version "%s" to version "%s"', e($current_version), e(CustomModuleManager::normalizeVersion($module_name, $version)));
+                if ($version === '' OR $version === CustomModuleManager::VERSION_LATEST) {
+                    $alert .= I18N::translate('Upgrading the module to version: %s', I18N::translate('Latest version'));
+                }
+                else {
+                    $alert .= I18N::translate('Upgrading the module to version: %s', e(CustomModuleManager::normalizeVersion($module_name, $version)));
+                }
             }
         }
 
@@ -314,7 +303,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
         }
         catch (Throwable $exception) {
             $alert_type = self::ALERT_DANGER;
-            $alert      = MoreI18N::xlate('Error during creating the temporary backup and upgrade folders') . "\n\n" . $exception->getMessage() . "\n\n";
+            $alert      = MoreI18N::xlate('Error during creating the temporary backup and update folders') . "\n\n" . $exception->getMessage() . "\n\n";
             $abort      = true;
         }
 
@@ -479,7 +468,7 @@ class ModuleUpgradeWizardStep implements RequestHandlerInterface
                 $this->webtrees_upgrade_service->moveFiles($source_filesystem, $destination_filesystem);
             }
 
-            $alert      = MoreI18N::xlate('The upgrade is complete.');
+            $alert      = MoreI18N::xlate('The update is complete.');
             $alert_type = self::ALERT_SUCCESS;
         }
         catch (Throwable $exception) {

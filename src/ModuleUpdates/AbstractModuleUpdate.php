@@ -454,7 +454,7 @@ abstract class AbstractModuleUpdate
         catch (HostingPlatformCommunicationError $ex) {
             // Can't connect to the server?
             $custom_module_manager = Functions::getFromContainer(CustomModuleManager::class);
-            $message = I18N::translate('Communication error with %s: %s', $module->customModuleLatestVersionUrl(), $ex->getMessage());
+            $message = 'Communication error with ' . $module->customModuleLatestVersionUrl() . ': ' . $ex->getMessage();
             CustomModuleLog::addDebugLog($custom_module_manager, $message);
 
             return '';
@@ -531,6 +531,7 @@ abstract class AbstractModuleUpdate
 
         foreach ($this->conflicts as $version => $conflict_rule) {
 
+            //Skip if there is no conflict rule, because it means the module version is compatible with all webtrees versions
             if ($conflict_rule === '') {
                 continue;
             }
@@ -619,17 +620,17 @@ abstract class AbstractModuleUpdate
         $version = '';
         $compatiblilty = CustomModuleCompatibility::NOT_AVAILABLE;
 
-
         // If no information is available at all, the latest version shall be taken
         if ($latest_compatible_version === CustomModuleManager::VERSION_NOT_AVAILABLE && $latest_version === '') {
             $version = CustomModuleManager::VERSION_LATEST;
             $compatiblilty = CustomModuleCompatibility::POSSIBLY_COMPATIBLE;
         }
         // If the latest version in the module list is compatible, we assume that any latest version can be installed
-        elseif ($latest_compatible_version === $latest_version_in_module_list && $latest_compatible_version !== CustomModuleManager::VERSION_NOT_AVAILABLE) {
+        elseif (    $latest_compatible_version === $latest_version_in_module_list
+                &&  $latest_compatible_version !== CustomModuleManager::VERSION_NOT_AVAILABLE) {
 
-            // If module does not provide its latest version, we take the latest compatible version
-            if ($latest_version === '') {
+            // If module does not provide its latest version or latest version is not a stable release, we take the latest compatible version
+            if ($latest_version === '' OR preg_match('/.*(alpha|beta).*$/', $latest_version) === 1) {
                 $version = $latest_compatible_version;
                 $compatiblilty = CustomModuleCompatibility::COMPATIBLE;
             }
@@ -648,10 +649,11 @@ abstract class AbstractModuleUpdate
             $version = $latest_compatible_version;
             $compatiblilty = CustomModuleCompatibility::COMPATIBLE;
         }
-        // If no compatible version is known and a newer version than in the module list is available
+        // If no compatible version is known and a newer version (which is not alpha or beta) than in the module list is available
         elseif ($latest_compatible_version === '') {
             if (    CustomModuleManager::versionCompare($module_name, $latest_version, $latest_version_in_module_list) > 0
-                &&  CustomModuleManager::versionCompare($module_name, $latest_version, $current_version) > 0) {
+                &&  CustomModuleManager::versionCompare($module_name, $latest_version, $current_version) > 0
+                &&  preg_match('/.*(alpha|beta).*$/', $latest_version) !== 1) {
 
                 $version = $latest_version;
 
@@ -690,24 +692,30 @@ abstract class AbstractModuleUpdate
      *
      * @return CustomModuleCompatibility  The compatibility level
      */
-    public function getCompatibility(string $module_version, string $webtrees_version = Webtrees::VERSION): CustomModuleCompatibility {
-
-        $module_name                   = $this->getModuleName();
-        $latest_compatible_version     = $this->getLatestCompatibleVersion($webtrees_version);
-        $latest_version_in_module_list = $this->getLatestVersionInCustomModuleList($webtrees_version);
-        $earliest_incompatible_version = $this->getEarliestIncompatibleVersion($webtrees_version);
+    public function getCompatibilityForVersion(string $module_version, string $webtrees_version = Webtrees::VERSION): CustomModuleCompatibility {
 
         // If the webtrees version is below a minimum webtrees version, we cannot provide any information
         if (version_compare($webtrees_version, CustomModuleManager::VERSION_WEBTREES_MINIMUM) < 0) {
             return CustomModuleCompatibility::NOT_AVAILABLE;
         }
 
+        // If the module version is alpha or beta, we do not provide any information
+        if (preg_match('/.*(alpha|beta).*$/', $module_version) === 1) {
+            return CustomModuleCompatibility::NOT_AVAILABLE;
+        }
+
+        $module_name                   = $this->getModuleName();
+        $latest_compatible_version     = $this->getLatestCompatibleVersion($webtrees_version);
+        $latest_version_in_module_list = $this->getLatestVersionInCustomModuleList($webtrees_version);
+        $earliest_incompatible_version = $this->getEarliestIncompatibleVersion($webtrees_version);
+
         // If no compatibility information is available
         if ($latest_compatible_version === CustomModuleManager::VERSION_NOT_AVAILABLE) {
             return CustomModuleCompatibility::NOT_AVAILABLE;
         }
+
         // If the latest version in the module list is compatible, we assume that any greater version is compatible
-        elseif ($latest_compatible_version === $latest_version_in_module_list) {
+        if ($latest_compatible_version === $latest_version_in_module_list) {
 
             if (CustomModuleManager::versionCompare($module_name, $module_version, $latest_version_in_module_list) === 0) {
                 return CustomModuleCompatibility::COMPATIBLE;
@@ -717,8 +725,10 @@ abstract class AbstractModuleUpdate
                 return CustomModuleCompatibility::PRESUMABLY_COMPATIBLE;
             }
         }
-        // If version is lower than the earliest incompatible version
-        elseif (CustomModuleManager::versionCompare($module_name, $module_version, $earliest_incompatible_version) < 0) {
+
+        // If the version is between the latest compatible and the earliest incompatible version
+        if (    CustomModuleManager::versionCompare($module_name, $module_version, $latest_compatible_version) < 0
+            &&  CustomModuleManager::versionCompare($module_name, $module_version, $earliest_incompatible_version) > 0) {
             return CustomModuleCompatibility::COMPATIBLE;
         }
 

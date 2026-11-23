@@ -38,8 +38,11 @@ use function view;
         <?= view('icons/cancel') ?>
         <?= MoreI18N::xlate('cancel') ?>
     </button>
-    <a class="btn btn-secondary" href="<?= e(route(VestaInformationAction::class)) ?>" >
-        <?= I18N::translate('confirm') ?>
-    </a>
+    <form method="post" action="<?= e(route(VestaInformationAction::class)) ?>" >
+        <button type="submit" class="btn btn-secondary">
+            <?= I18N::translate('confirm') ?>
+        </button>
+        <?= csrf_field() ?>
+    </form>
 </div>
 

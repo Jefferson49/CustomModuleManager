@@ -49,13 +49,16 @@ use function view;
         <?= view('icons/cancel') ?>
         <?= MoreI18N::xlate('close') ?>
     </button>
-    <a class="btn btn-secondary" href="<?= e(route(IgnoreUpdateAction::class, [
+    <form method="post" action="<?= e(route(IgnoreUpdateAction::class, [
             'module_name'    => $module_name,
             'ignore_updates' => $version !== $ignore_version,
             'ignore_version' => $version,
-        ])) ?>" >
-        <?= $version === $ignore_version ? I18N::translate('activate update for this version') : I18N::translate('ignore update for this version') ?>
-    </a>
+            ])) ?>" >
+        <button type="submit" class="btn btn-secondary">
+            <?= $version === $ignore_version ? I18N::translate('activate update for this version') : I18N::translate('ignore update for this version') ?>
+        </button>
+        <?= csrf_field() ?>
+    </form>
 </div>
 
 <?= view('modals/ajax') ?>

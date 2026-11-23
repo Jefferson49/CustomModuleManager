@@ -32,6 +32,7 @@ declare(strict_types=1);
 namespace Jefferson49\Webtrees\Module\CustomModuleManager\RequestHandlers;
 
 use Fisharebest\Webtrees\Auth;
+use Fisharebest\Webtrees\FlashMessages;
 use Fisharebest\Webtrees\Http\RequestHandlers\HomePage;
 use Fisharebest\Webtrees\Http\ViewResponseTrait;
 use Fisharebest\Webtrees\I18N;
@@ -43,6 +44,7 @@ use Fisharebest\Webtrees\User;
 use Fisharebest\Webtrees\Validator;
 use Jefferson49\Webtrees\Module\CustomModuleManager\Configuration\ModuleUpdateServiceConfiguration;
 use Jefferson49\Webtrees\Module\CustomModuleManager\CustomModuleManager;
+use Jefferson49\Webtrees\Module\CustomModuleManager\Exceptions\CustomModuleManagerException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -62,9 +64,11 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $tree         = Validator::attributes($request)->treeOptional();
-        $user         = Validator::attributes($request)->user();
-        $fetch_latest = Validator::queryParams($request)->boolean('fetch_latest', false);
+        $tree                 = Validator::attributes($request)->treeOptional();
+        $user                 = Validator::attributes($request)->user();
+        $fetch_latest         = Validator::queryParams($request)->boolean('fetch_latest', false);
+        $module_name_selected = Validator::queryParams($request)->string('module', '');
+        $version_selected     = Validator::queryParams($request)->string('version', '');
 
         // If no administrator, redirect to home page
         if (!($user instanceof User) OR !Auth::isAdmin($user)) {
@@ -76,24 +80,35 @@ class CustomModuleUpdatePage implements RequestHandlerInterface
         $module_service        = New ModuleService();
         $custom_module_manager = Registry::container()->get(CustomModuleManager::class);
 
+        try {
+            $module_names = ModuleUpdateServiceConfiguration::getModuleNames();
+        }
+        catch (CustomModuleManagerException $ex) {
+            $module_names = [];
+            FlashMessages::addMessage($ex->getMessage(), 'danger');
+        }
+
         return $this->viewResponse(CustomModuleManager::viewsNamespace() . '::module_update', [
-            'title'                                          => I18N::translate('Custom Module Updates'),
-            'custom_module_manager'                          => $custom_module_manager,
-            'module_service'                                 => $module_service,
-            'module_names'                                   => ModuleUpdateServiceConfiguration::getModuleNames(),
-            'custom_modules'                                 => $module_service->findByInterface(ModuleCustomInterface::class, true),
-            'themes'                                         => $module_service->findByInterface(ModuleThemeInterface::class, true),
-            'fetch_latest'                                   => $fetch_latest,
-            CustomModuleManager::PREF_MODULES_TO_SHOW        => $custom_module_manager->getPreference(CustomModuleManager::PREF_MODULES_TO_SHOW, CustomModuleManager::PREF_SHOW_ALL),
-            CustomModuleManager::PREF_SHOW_COLUMN_DESCR      => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DESCR, '1')),
-            CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY   => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY, '1')),
-            CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, '1')),
-            CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV   => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, '1')),
-            CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS  => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, '1')),
-            CustomModuleManager::PREF_SHOW_COLUMN_COMPATIB   => $custom_module_manager->getPreference(CustomModuleManager::PREF_COMP_WEBTREES_VERSION, CustomModuleManager::VERSION_WEBTREES_COMP_DEFAULT) !== '',
-            CustomModuleManager::PREF_TABLE_LAYOUT           => $custom_module_manager->getPreference(CustomModuleManager::PREF_TABLE_LAYOUT, CustomModuleManager::TABLE_LAYOUT_STICKY_HEAD),
-            CustomModuleManager::PREF_VESTA_CONFIRMED        => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_VESTA_CONFIRMED, '0')),
-            CustomModuleManager::PREF_COMP_WEBTREES_VERSION  => $custom_module_manager->getPreference(CustomModuleManager::PREF_COMP_WEBTREES_VERSION, CustomModuleManager::VERSION_WEBTREES_COMP_DEFAULT),
+            'title'                                           => I18N::translate('Custom Module Updates'),
+            'custom_module_manager'                           => $custom_module_manager,
+            'module_service'                                  => $module_service,
+            'module_names'                                    => $module_names,
+            'custom_modules'                                  => $module_service->findByInterface(ModuleCustomInterface::class, true),
+            'themes'                                          => $module_service->findByInterface(ModuleThemeInterface::class, true),
+            'fetch_latest'                                    => $fetch_latest,
+            'module_name_selected'                            => $module_name_selected,
+            'version_selected'                                => $version_selected,
+            CustomModuleManager::PREF_MODULES_TO_SHOW         => $custom_module_manager->getPreference(CustomModuleManager::PREF_MODULES_TO_SHOW, CustomModuleManager::PREF_SHOW_ALL),
+            CustomModuleManager::PREF_SHOW_COLUMN_DESCR       => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DESCR, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY    => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_CATEGORY, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED  => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DATE_ADDED, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV    => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_UPD_SERV, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS   => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_DOWNLOADS, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_SELECT_VERS => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_SHOW_COLUMN_SELECT_VERS, '1')),
+            CustomModuleManager::PREF_SHOW_COLUMN_COMPATIB    => $custom_module_manager->getPreference(CustomModuleManager::PREF_COMP_WEBTREES_VERSION, CustomModuleManager::VERSION_WEBTREES_COMP_DEFAULT) !== '',
+            CustomModuleManager::PREF_TABLE_LAYOUT            => $custom_module_manager->getPreference(CustomModuleManager::PREF_TABLE_LAYOUT, CustomModuleManager::TABLE_LAYOUT_STICKY_HEAD),
+            CustomModuleManager::PREF_VESTA_CONFIRMED         => boolval($custom_module_manager->getPreference(CustomModuleManager::PREF_VESTA_CONFIRMED, '0')),
+            CustomModuleManager::PREF_COMP_WEBTREES_VERSION   => $custom_module_manager->getPreference(CustomModuleManager::PREF_COMP_WEBTREES_VERSION, CustomModuleManager::VERSION_WEBTREES_COMP_DEFAULT),
         ]);
     }
 }
