@@ -1146,6 +1146,9 @@
             {
                 "version": "2025.12.29",
                 "time": "2026-09-07",
+                "conflict": {
+                    "fisharebest/webtrees": "<2.2 || >=2.3.0"
+                },
                 "name": "gustine/gustine-history22",
                 "description": "Variante de FrenchHistory.php pour webtrees 2.2",
                 "extra": {
@@ -1686,8 +1689,8 @@
         ],
         "haylau-ronzo/enhanced-charts": [
             {
-                "version": "0.3.1",
-                "time": "2026-07-09",
+                "version": "0.3.2",
+                "time": "2026-11-22",
                 "name": "haylau-ronzo/enhanced-charts",
                 "description": "A configurable tree home-page charts block with built-in chart wrappers plus a module-side Enhanced Hourglass mode based on the built-in webtrees layout.",
                 "extra": {
