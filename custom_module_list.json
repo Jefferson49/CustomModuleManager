@@ -350,6 +350,9 @@
             {
                 "version": "1.0.0.5",
                 "time": "2026-09-07",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "ardhtu/finnish-historical-facts",
                 "description": "Historical facts (in Finnish) - p\u00e4\u00e4ministerit, presidentit, suuriruhtinaat ja kuninkaat",
                 "extra": {
@@ -637,66 +640,6 @@
                 "version": "1.0.5",
                 "time": "2026-10-29",
                 "conflict": {
-                    "fisharebest/webtrees": "<2.2"
-                },
-                "name": "schwendinger/webtrees-module-cronjob",
-                "description": "webtrees custom module: cron job scheduler service (time-based maintenance jobs with admin UI, run history and manual trigger)",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_cronjob_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "repository": "bschwede/wt-cronjob",
-                            "tag_prefix": "v",
-                            "category": "admin",
-                            "title": "Cron Job Scheduler",
-                            "description": "Schedule and monitor maintenance jobs: cron expressions, run history and manual trigger."
-                        },
-                        "date_added": "2026-09-21"
-                    }
-                },
-                "require": {
-                    "php": ">=8.3",
-                    "dragonmantank/cron-expression": "^3.4",
-                    "bschwede/wt-shared-libs": "^1.1.4"
-                },
-                "authors": [
-                    {
-                        "name": "Bernd Schwendinger",
-                        "homepage": "https://github.com/bschwede",
-                        "role": "Developer"
-                    }
-                ],
-                "homepage": "https://github.com/bschwede/wt-cronjob",
-                "support": {
-                    "issues": "https://github.com/bschwede/wt-cronjob/issues"
-                },
-                "type": "project",
-                "keywords": [
-                    "webtrees",
-                    "custom module"
-                ],
-                "license": "GPL-3.0-or-later",
-                "repositories": [
-                    {
-                        "type": "path",
-                        "url": "../wt-shared-libs",
-                        "options": {
-                            "symlink": false
-                        }
-                    }
-                ],
-                "config": {
-                    "platform": {
-                        "php": "8.3.0"
-                    },
-                    "prepend-autoloader": false
-                }
-            },
-            {
-                "version": "1.0.4",
-                "time": "2026-10-10",
-                "conflict": {
                     "fisharebest/webtrees": "<2.2 || >=2.3.0"
                 },
                 "name": "schwendinger/webtrees-module-cronjob",
@@ -704,7 +647,7 @@
                 "extra": {
                     "custom-module-manager": {
                         "module_name": "_cronjob_",
-                        "update_service": "GitHubModuleUpdate",
+                        "update_service": "GithubModuleUpdate",
                         "params": {
                             "repository": "bschwede/wt-cronjob",
                             "tag_prefix": "v",
@@ -894,30 +837,6 @@
             {
                 "version": "1.2.0",
                 "time": "2026-11-15",
-                "name": "elysch/webtrees-mitalteli-misc-features",
-                "description": "Adds UID/UUID markdown links, extended birth/death place search, </br>COHABITATION marriage type, and more.</br></br><div class=\"markdown-alert\" dir=\"auto\">\ud83d\uded1<g-emoji class=\"g-emoji\" alias=\"warning\">\u26a0\ufe0f</g-emoji> Critical Performance Warning (Scalability Limits)</div><div class=\"markdown-alert markdown-alert-caution\" dir=\"auto\"><p class=\"markdown-alert-title\" dir=\"auto\"><svg data-component=\"Octicon\" class=\"octicon octicon-stop mr-2\" viewBox=\"0 0 16 16\" version=\"1.1\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"></path></svg>Caution</p><p dir=\"auto\"><strong>Severe Slowdowns on Large Trees (UID / _UID Searches)</strong>\n<code>webtrees</code> lacks database indexes on <code>UID</code> and <code>_UID</code> fields. Because of how the current database architecture is structured, there is no way to add manual indexes to mitigate the underlying performance bottleneck.</p>\n</div>",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_mitalteli-misc-features_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "repository": "elysch/webtrees-mitalteli-misc-features",
-                            "category": "gedcom",
-                            "title": "Mitalteli Misc Features",
-                            "description": "Adds UID/UUID markdown links, extended birth/death place search, </br>COHABITATION marriage type, and more.</br></br><div class=\"markdown-alert\" dir=\"auto\">\ud83d\uded1<g-emoji class=\"g-emoji\" alias=\"warning\">\u26a0\ufe0f</g-emoji> Critical Performance Warning (Scalability Limits)</div><div class=\"markdown-alert markdown-alert-caution\" dir=\"auto\"><p class=\"markdown-alert-title\" dir=\"auto\"><svg data-component=\"Octicon\" class=\"octicon octicon-stop mr-2\" viewBox=\"0 0 16 16\" version=\"1.1\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"></path></svg>Caution</p><p dir=\"auto\"><strong>Severe Slowdowns on Large Trees (UID / _UID Searches)</strong>\n<code>webtrees</code> lacks database indexes on <code>UID</code> and <code>_UID</code> fields. Because of how the current database architecture is structured, there is no way to add manual indexes to mitigate the underlying performance bottleneck.</p>\n</div>"
-                        },
-                        "date_added": "2026-05-31"
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "elysch"
-                    }
-                ]
-            },
-            {
-                "version": "1.1.0",
-                "time": "2026-06-17",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -3970,6 +3889,9 @@
             {
                 "version": "0.1.0",
                 "time": "2025-11-06",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "p-ja/polish-historic-events",
                 "description": "Historia Polski",
                 "extra": {
@@ -4227,6 +4149,9 @@
             {
                 "version": "1.0.0-rc.6",
                 "time": "2026-07-18",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "pottsnet/potts-life-story-engine",
                 "description": "Creates an intelligent, illustrated biography from the genealogy records visible to each visitor.",
                 "extra": {
@@ -4377,6 +4302,9 @@
             {
                 "version": "1.0.2",
                 "time": "2026-08-25",
+                "conflict": {
+                    "fisharebest/webtrees": ">=2.3.0"
+                },
                 "name": "pottsnet/potts_fact_ages",
                 "description": "Displays a person\u2019s calculated age at dated facts and events.",
                 "extra": {
@@ -4523,33 +4451,7 @@
         ],
         "thobgg/api4webtrees": [
             {
-                "version": "1.29.0",
-                "time": "2026-11-17",
-                "name": "thobgg/api4webtrees",
-                "description": "JSON interface for the apps wtAnd, wtWin and wtTux \u2013 and any other client. Reads and writes with the rights of the signed-in user.",
-                "extra": {
-                    "custom-module-manager": {
-                        "module_name": "_api4webtrees_",
-                        "update_service": "GithubModuleUpdate",
-                        "params": {
-                            "repository": "thobgg/api4webtrees",
-                            "tag_prefix": "v",
-                            "category": "admin",
-                            "title": "api4webtrees",
-                            "description": "JSON interface for the apps wtAnd, wtWin and wtTux \u2013 and any other client. Reads and writes with the rights of the signed-in user."
-                        },
-                        "date_added": "2026-10-25"
-                    }
-                },
-                "authors": [
-                    {
-                        "name": "Thomas Bugge"
-                    }
-                ]
-            },
-            {
-                "version": "1.26.0",
-                "time": "2026-11-11",
+                "version": "1.30.0",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
@@ -5447,8 +5349,8 @@
         ],
         "vytux-com/vytux_cousins": [
             {
-                "version": "2.2.3",
-                "time": "2026-11-18",
+                "version": "2.2.4",
+                "time": "2026-11-27",
                 "conflict": {
                     "fisharebest/webtrees": ">=2.3.0"
                 },
